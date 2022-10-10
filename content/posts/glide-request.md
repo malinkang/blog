@@ -788,11 +788,13 @@ public void reschedule(DecodeJob<?> job) {
 `ModelLoader`是一个工厂接口，负责将复杂的数据类型转换为具体的数据类型，`DataFetcher`使用该具体类型获取数据。
 ```mermaid
 classDiagram
-  class ModelLoader{ 
-    LoadData buildLoadData()
-    boolean handles(Model model)
-  }
-  <<interface>> ModelLoader
+ class ModelLoader{ 
+	LoadData buildLoadData()
+	boolean handles(Model model)
+}
+ <<interface>> ModelLoader
+
+ 
 ```
 
 ### getLoadData()
