@@ -22,3 +22,11 @@ jobs:
       - name: blog sync
         run: |
           python scripts/blog.py
+      - name: commit
+        uses: EndBug/add-and-commit@v7
+        with:
+          branch: master
+          author_name: malinkang
+          author_email: linkang.ma@gmail.com
+          committer_name: malinkang
+          committer_email: linkang.ma@gmail.com
