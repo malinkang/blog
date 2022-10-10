@@ -1,10 +1,6 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 from datetime import datetime, timedelta
-import json
-from urllib import response
-import requests
-import argparse
 import notion_api
 template = '''
 ---
