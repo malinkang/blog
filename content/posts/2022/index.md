@@ -1,5 +1,5 @@
 ---
-title: "2022"
+title: "2022年终总结"
 description: 
 date: 2022-12-31T15:28:05+08:00
 image: https://images.unsplash.com/photo-1637653150840-aa4a2f50276b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80
@@ -65,9 +65,10 @@ tags: [年终总结]
 1. 跑1000公里。
 2. 每天在微信读书读30分钟书。
 3. 每天LeetCode刷一道题。
-4. 改掉熬夜的习惯。
-5. 每周看一部电影。
-6. 每天在多邻国打卡。
+4. 每周看一部电影。
+5. 每天在多邻国打卡。
+6. 改掉熬夜的习惯。
+7. 少刷短视频。
 
 
 
