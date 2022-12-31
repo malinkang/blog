@@ -1,8 +1,8 @@
 baseurl: https://blog.malinkang.com
 languageCode: zh-cn
 theme:
-  - stack
-  - gallery
+- stack
+- gallery
 paginate: 5
 title: Malinkang's Blog
 
@@ -111,12 +111,12 @@ params:
             siteName: "" # You must insert a unique identifier here matching the one you registered (See https://cactus.chat/docs/getting-started/quick-start/#register-your-site)
 
         giscus:
-            repo:
-            repoID:
-            category:
-            categoryID:
-            mapping:
-            lightTheme:
+            repo: "malinkang/blog"
+            repoID: "R_kgDOILW58Q"
+            category: "General"
+            categoryID: "DIC_kwDOILW58c4CTVti"
+            mapping: "pathname"
+            lightTheme: 
             darkTheme:
             reactionsEnabled: 1
             emitMetadata: 0
