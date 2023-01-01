@@ -6,8 +6,6 @@ theme:
 paginate: 5
 title: Malinkang's Blog
 
-
-
 # GA Tracking ID
 googleAnalytics:
 
@@ -177,7 +175,13 @@ params:
 ### See https://docs.stack.jimmycai.com/configuration/custom-menu.html
 ### To remove about, archive and search page menu item, remove `menu` field from their FrontMatter
 menu:
-    main: []
+    main: 
+        - identifier: note
+          name: 笔记
+          url: https://note.malinkang.com
+          weight: 1
+          params:
+              icon: note
     social:
         - identifier: github
           name: GitHub
@@ -190,6 +194,11 @@ menu:
           url: https://twitter.com/malinkang
           params:
               icon: brand-twitter
+        - identifier: telegram
+          name: Telegram
+          url: https://t.me/malinkangK Y
+          params:
+              icon: brand-telegram
 
 related:
     includeNewer: true
