@@ -2,7 +2,7 @@
 title: "2022年终总结"
 description: 
 date: 2022-12-31T15:28:05+08:00
-image: https://images.unsplash.com/photo-1637653150840-aa4a2f50276b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80
+featured_image: https://images.unsplash.com/photo-1637653150840-aa4a2f50276b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80
 math: 
 license: 
 hidden: false
