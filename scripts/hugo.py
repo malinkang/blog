@@ -7,10 +7,6 @@ from notion_client import Client
 import argparse
 import concurrent.futures
 
-from datetime import datetime
-
-from requests.api import get, post
-
 template = """---
 title: {title}
 date: {date}
@@ -27,8 +23,6 @@ comment : true
 
 def blocks_children(block_id):
     response = client.blocks.children.list(block_id=block_id)
-    with open(f"{block_id}.json","w") as f:
-        f.write(json.dumps(response))
     return response.get("results")
 
 
@@ -71,8 +65,6 @@ def convert_block(block: dict, depth=0) -> str:
             elif block_type == "table":
                 depth += 1
                 child_blocks = blocks_children(block["id"])
-                with open("test2.json","w") as f:
-                    f.write(json.dumps(child_blocks))
                 outcome_block = create_table(cell_blocks=child_blocks)
             # create indent block
             else:
