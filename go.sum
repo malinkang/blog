@@ -1,2 +1,4 @@
 github.com/Runzelee/aplayer-hugo-module v0.0.0-20220608171959-be69e75151aa h1:lFtDOzLYYslGSqH8i1JaAMsquVk8YqQGxzT49bZhL5w=
 github.com/Runzelee/aplayer-hugo-module v0.0.0-20220608171959-be69e75151aa/go.mod h1:ihmYowG9+5yKw+3MKxINeqDISAHUW2q3/T8Phgwm4QU=
+github.com/martignoni/hugo-notice v0.0.0-20230418180851-cce7afd430d4 h1:OSXyp1wbpFw+WqGmo1aiTKmMzb9+UBrY3UA7jN9UEUo=
+github.com/martignoni/hugo-notice v0.0.0-20230418180851-cce7afd430d4/go.mod h1:MIQPOMgEcbyRC0gNLzQFSgrS+wIy3RuQ/HbaZYtTOKU=

@@ -23,6 +23,7 @@ markup:
 module:
   imports:
   - path: github.com/Runzelee/aplayer-hugo-module
+  - path: github.com/martignoni/hugo-notice
 params:
   subtitle: "记录生活"
   enableGitalk: false
