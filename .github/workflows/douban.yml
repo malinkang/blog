@@ -1,6 +1,7 @@
 # .github/workflows/douban.yml
 name: douban
 on: 
+  workflow_dispatch:
   schedule:
   - cron: "0 0,0,12,23 * * *"
   watch:
