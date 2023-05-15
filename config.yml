@@ -59,15 +59,21 @@ taxonomies:
   category: categories
 menu:
   main:
+    - url: /posts
+      name: 归档
+      weight: 1
     - url: /categories
-      name: Categories
+      name: 分类
       weight: 2
     - url: /tags
-      name: Tags
+      name: 标签
       weight: 3
-    - url: /posts
-      name: Archive
-      weight: 1
+    - url: /movies
+      name: 电影
+      weight: 4
+    - url: /books
+      name: 阅读
+      weight: 5
     - url: /index.xml
       name: RSS Feed
-      weight: 4
+      weight: 6
