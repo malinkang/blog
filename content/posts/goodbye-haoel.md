@@ -7,11 +7,11 @@ tags: []
 categories: []
 comment : true
 ---
-我跟左耳朵耗子在现实中没有任何的交集，我是从开始看[CoolShell](https://coolshell.cn/)开始认识左耳朵耗子的。后来关注了他的Twitter和Weibo，看他分享各种知识和人生经验。对我影响最多的是他的**[程序员技术练级攻略](https://coolshell.cn/articles/4990.html)****和****[科学上网](https://haoel.github.io/)****。**
+我跟左耳朵耗子在现实中没有任何的交集，我是从开始看[CoolShell](https://coolshell.cn/)开始认识左耳朵耗子的。后来关注了他的Twitter和Weibo，看他分享各种知识和人生经验。对我影响最多的是他的[程序员技术练级攻略](https://coolshell.cn/articles/4990.html)和[科学上网](https://haoel.github.io/)**。**
 
 昨天媳妇突然跟我说左耳朵耗子去世了，真不敢相信，记得前几天他还分享自己的作息，感觉挺规律的。后来看Twitter大家都在发这个信息，确认无疑了。
 
-![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/5745a14d-7d3c-41bc-8cd0-5a5af7808227/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230516%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230516T013041Z&X-Amz-Expires=3600&X-Amz-Signature=d6af0851bda47c78fa3571dc97cce64b8b0ce9b016b7793b415c956667ed6b54&X-Amz-SignedHeaders=host&x-id=GetObject)
+![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/5745a14d-7d3c-41bc-8cd0-5a5af7808227/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230518%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230518T013721Z&X-Amz-Expires=3600&X-Amz-Signature=05bc47a35f9367bf3dcb84b2956bdb1380736b4b2297389a00c688d275b5cd82&X-Amz-SignedHeaders=host&x-id=GetObject)
 
 <br/>
 
