@@ -11,7 +11,7 @@ comment : true
 
 昨天媳妇突然跟我说左耳朵耗子去世了，真不敢相信，记得前几天他还分享自己的作息，感觉挺规律的。后来看Twitter大家都在发这个信息，确认无疑了。
 
-![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/5745a14d-7d3c-41bc-8cd0-5a5af7808227/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230518%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230518T013721Z&X-Amz-Expires=3600&X-Amz-Signature=05bc47a35f9367bf3dcb84b2956bdb1380736b4b2297389a00c688d275b5cd82&X-Amz-SignedHeaders=host&x-id=GetObject)
+![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/5745a14d-7d3c-41bc-8cd0-5a5af7808227/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230521%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230521T010408Z&X-Amz-Expires=3600&X-Amz-Signature=0b4b76911d3e51c93ca8069e049cecfa00ed78a14948c46ba05863e9e04763db&X-Amz-SignedHeaders=host&x-id=GetObject)
 
 <br/>
 
@@ -21,13 +21,13 @@ comment : true
 
 下午的时候看到有人把他的Twitter全部导出，准备做一个数字版的Haoel，有感于我们生活在现在这样一个AI的时代，可以让我们以另外一种形式存活。
 
-{{< tweet user="yihong0618" id="1657970291145080832" >}}
-
 左耳朵耗子的离开我也有两点感悟：
 
 1. 记录分享自己的生活，如果突然离开，至少留下一些文字一些记录。
 
 1. 更多的关注自己的身体，不熬夜，多锻炼。
+
+<br/>
 
 <br/>
 
