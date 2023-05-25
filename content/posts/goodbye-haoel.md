@@ -1,5 +1,5 @@
 ---
-title: 缅怀左耳朵耗子
+title: 左耳朵耗子去世有感
 date: 2023-05-16T01:04:00.000Z
 featured_image: https://images.unsplash.com/photo-1471899236350-e3016bf1e69e?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb
 draft: False
@@ -7,11 +7,11 @@ tags: []
 categories: []
 comment : true
 ---
-我跟左耳朵耗子在现实中没有任何的交集，我是从开始看[CoolShell](https://coolshell.cn/)开始认识左耳朵耗子的。后来关注了他的Twitter和Weibo，看他分享各种知识和人生经验。对我影响最多的是他的[程序员技术练级攻略](https://coolshell.cn/articles/4990.html)和[科学上网](https://haoel.github.io/)**。**
+我跟左耳朵耗子在现实中没有任何的交集，我是从开始看[CoolShell](https://coolshell.cn/)开始认识左耳朵耗子的。后来关注了他的Twitter和Weibo，看他分享各种知识和人生经验。对我影响最多的是他的[程序员技术练级攻略](https://coolshell.cn/articles/4990.html)和[科学上网](https://haoel.github.io/)。
 
 昨天媳妇突然跟我说左耳朵耗子去世了，真不敢相信，记得前几天他还分享自己的作息，感觉挺规律的。后来看Twitter大家都在发这个信息，确认无疑了。
 
-![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/5745a14d-7d3c-41bc-8cd0-5a5af7808227/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230521%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230521T010408Z&X-Amz-Expires=3600&X-Amz-Signature=0b4b76911d3e51c93ca8069e049cecfa00ed78a14948c46ba05863e9e04763db&X-Amz-SignedHeaders=host&x-id=GetObject)
+![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/5745a14d-7d3c-41bc-8cd0-5a5af7808227/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230525%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230525T014047Z&X-Amz-Expires=3600&X-Amz-Signature=049f21fdd42a0eeea44802389a389c6eee1072d6f77595ce1048cd83a61a3e3f&X-Amz-SignedHeaders=host&x-id=GetObject)
 
 <br/>
 
