@@ -68,11 +68,6 @@ menu:
     - url: /tags
       name: 标签
       weight: 3
-    - url: /movies
-      name: 电影
-      weight: 4
-    - url: /books
-      name: 阅读
       weight: 5
     - url: /index.xml
       name: RSS Feed

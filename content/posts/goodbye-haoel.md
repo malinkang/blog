@@ -1,8 +1,8 @@
 ---
-title: 左耳朵耗子去世有感
+title: 纪念左耳朵耗子
 date: 2023-05-16T01:04:00.000Z
 featured_image: https://images.unsplash.com/photo-1471899236350-e3016bf1e69e?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb
-draft: False
+draft: false
 tags: []
 categories: []
 comment : true
@@ -13,21 +13,14 @@ comment : true
 
 ![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/5745a14d-7d3c-41bc-8cd0-5a5af7808227/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230528%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230528T010638Z&X-Amz-Expires=3600&X-Amz-Signature=a517e94f463363844e5ead83ba5939092763d13e95cba9f0af850dbd9513d38d&X-Amz-SignedHeaders=host&x-id=GetObject)
 
-<br/>
 
 {{< tweet user="haoel" id="1656235956515790849" >}}
 
-<br/>
 
 下午的时候看到有人把他的Twitter全部导出，准备做一个数字版的Haoel，有感于我们生活在现在这样一个AI的时代，可以让我们以另外一种形式存活。
 
-左耳朵耗子的离开我也有两点感悟：
+左耳朵耗子的离开我确实让我有点震撼，一个人前几天还在网络上活跃，突然就离开了。在今后的日子要更多的关注自己的身体，不熬夜，多锻炼。记录分享自己的生活，如果突然离开，至少留下一些文字一些记录。
 
-1. 记录分享自己的生活，如果突然离开，至少留下一些文字一些记录。
 
-1. 更多的关注自己的身体，不熬夜，多锻炼。
 
-<br/>
-
-<br/>
 
