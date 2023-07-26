@@ -25,10 +25,10 @@ jobs:
         id: malinkang
         type: book
         format: csv
-        dir: ./douban
+        dir: ./data/douban
 
     - name: Commit
       uses: EndBug/add-and-commit@v8
       with:
         message: 'chore: update douban data'
-        add: './douban'
+        add: './data/douban'
