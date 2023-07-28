@@ -4,3 +4,6 @@
 [submodule "content/posts"]
 	path = content/posts
 	url = git@github.com:malinkang/posts
+[submodule "themes/diary"]
+	path = themes/diary
+	url = git@github.com:malinkang/hugo-theme-diary
