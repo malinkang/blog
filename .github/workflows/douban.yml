@@ -18,7 +18,7 @@ jobs:
         id: malinkang
         type: movie
         format: csv
-        dir: ./douban
+        dir: ./data/douban
     - name: book
       uses: lizheming/doumark-action@master
       with:
@@ -30,5 +30,7 @@ jobs:
     - name: Commit
       uses: EndBug/add-and-commit@v8
       with:
-        message: 'chore: update douban data'
-        add: './data/douban'
+        author_name: malinkang
+        author_email: linkang.ma@gmail.com
+        committer_name: malinkang
+        committer_email: linkang.ma@gmail.com

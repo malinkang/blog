@@ -1,9 +1,6 @@
 [submodule "themes/gallery"]
 	path = themes/gallery
 	url = https://github.com/mfg92/hugo-shortcode-gallery.git
-[submodule "themes/diary"]
-	path = themes/diary
-	url = https://github.com/malinkang/hugo-theme-diary.git
 [submodule "content/posts"]
 	path = content/posts
 	url = git@github.com:malinkang/posts
