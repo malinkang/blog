@@ -26,6 +26,7 @@ jobs:
         type: book
         format: csv
         dir: ./data/douban
+
     - name: Commit
       uses: EndBug/add-and-commit@v8
       with:
@@ -33,17 +34,17 @@ jobs:
         author_email: linkang.ma@gmail.com
         committer_name: malinkang
         committer_email: linkang.ma@gmail.com
-    - name: movie
+    - name: movie_2_neodb
       uses: lizheming/doumark-action@master
       with:
         id: malinkang
         type: movie
         format: neodb
-        neodb_token: ${{ secrets.NEODB_TOKEN }}
-    - name: book
+        neodb_token: ${{ secrets.neodb_token }}
+    - name: book_2_neodb
       uses: lizheming/doumark-action@master
       with:
         id: malinkang
         type: book
         format: neodb
-        neodb_token: ${{ secrets.NEODB_TOKEN }}
+        neodb_token: ${{ secrets.neodb_token }}
