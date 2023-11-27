@@ -7,3 +7,9 @@
 [submodule "themes/diary"]
 	path = themes/diary
 	url = git@github.com:malinkang/hugo-theme-diary
+[submodule "content/android"]
+	path = content/android
+	url = git@github.com:malinkang/AndroidNote.git
+[submodule "themes/stack"]
+	path = themes/stack
+	url = git@github.com:malinkang/hugo-theme-stack
