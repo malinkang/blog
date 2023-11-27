@@ -55,7 +55,7 @@ params:
         default: Licensed under CC BY-NC-SA 4.0
   comments:
     enabled: true
-    provider: disqus
+    provider: giscus
     disqusjs:
       shortname:
       apiUrl:
@@ -102,13 +102,13 @@ params:
         serverName: "cactus.chat"
         siteName: "" # You must insert a unique identifier here matching the one you registered (See https://cactus.chat/docs/getting-started/quick-start/#register-your-site)
     giscus:
-      repo:
-      repoID:
-      category:
-      categoryID:
-      mapping:
-      lightTheme:
-      darkTheme:
+      repo: malinkang/malinkang
+      repoID: MDEwOlJlcG9zaXRvcnkzMTUwNzEyODU=
+      category: General
+      categoryID: DIC_kwDOEsebNc4CbSPg
+      mapping: pathname
+      lightTheme: light
+      darkTheme: dark
       reactionsEnabled: 1
       emitMetadata: 0
 
