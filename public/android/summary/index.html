@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Table of contents Android学习资料 Android知识点梳理 调试工具 aop 界面 ViewPager2 [View] View.post()分析 自定义View Canvas使用 Paint使用 Path使用 PathMeasure使用 Matrix使用 View事件分发 TextView EditText 引导页 菜单 Toolbar RecyclerView ViewPager BottomSheet 通知 CalendarView TimePicker LayoutInfalter shadowlayout 状态栏适配 RecyclerView 屏幕适配 组件 Activity Intent 服务 服务 绑定服务 AIDL Broadcasts Fragment ContentProvider 权限 数据存储 数据和文件存储 将文件保存到外部存储中 将文件保存在内部存储中 Android 存储用例和最佳做法 保存键值对数据 编译时注解 Untitled [译]Java注解处理器](annotation/annotation-processing.md) JavaPoet 文档翻译 图形和图像 Drawable使用 网络 WebView OkHttp文档翻译 OkHttp使用 OkHttp拦截器 Retrofit使用 Retrofit源码分析 HttpURLConnection使用 Volley使用 Volley源码分析 Glide使用 Glide源码分析 RxJava 插件化 插件化框架 VirtualAPK分析 依赖注入 开源库 EventBus源码分析 Okio概览 Okio菜谱 OkHttp拦截器 OKHttp缓存 Okhttp源码分析 集合 SparseArray ArrayMap 架构 Jetpack databinding adapter databinding坑 databinding源码分析 Android Data Binding: Let’s Flip This Thing Untitled Lifecycle源码分析 ViewModel源码分析 LiveData源码分析 音频和视频 CameraX使用 ExoPlayer GsyVideoPlayer 性能优化 崩溃优化 内存优化 LeakCanary如何工作 渲染优化 电池优化 启动优化 网络优化 安装包大小优化 NDK开发 系统源码分析 Android源码下载 Android系统启动 init进程启动过程 Zygote进程启动过程 Zygote进程启动流程 SystemServer处理过程 应用程序进程启动过程 应用程序进程启动过程介绍 Window WMS WindowManagerService 四大组件的工作过程 Activity启动流程分析 Activity启动流程 ActivityManagerService分析 Context详解 Binder原理 Binder驱动 获取ServiceManager 启动ServiceManager Parcel源码分析 Android图形系统概述 Choreographer原理 Handler使用 Handler源码分析 '>
+<title></title>
+
+<link rel='canonical' href='https://example.com/android/summary/'>
+
+<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
+<meta property='og:description' content='Table of contents Android学习资料 Android知识点梳理 调试工具 aop 界面 ViewPager2 [View] View.post()分析 自定义View Canvas使用 Paint使用 Path使用 PathMeasure使用 Matrix使用 View事件分发 TextView EditText 引导页 菜单 Toolbar RecyclerView ViewPager BottomSheet 通知 CalendarView TimePicker LayoutInfalter shadowlayout 状态栏适配 RecyclerView 屏幕适配 组件 Activity Intent 服务 服务 绑定服务 AIDL Broadcasts Fragment ContentProvider 权限 数据存储 数据和文件存储 将文件保存到外部存储中 将文件保存在内部存储中 Android 存储用例和最佳做法 保存键值对数据 编译时注解 Untitled [译]Java注解处理器](annotation/annotation-processing.md) JavaPoet 文档翻译 图形和图像 Drawable使用 网络 WebView OkHttp文档翻译 OkHttp使用 OkHttp拦截器 Retrofit使用 Retrofit源码分析 HttpURLConnection使用 Volley使用 Volley源码分析 Glide使用 Glide源码分析 RxJava 插件化 插件化框架 VirtualAPK分析 依赖注入 开源库 EventBus源码分析 Okio概览 Okio菜谱 OkHttp拦截器 OKHttp缓存 Okhttp源码分析 集合 SparseArray ArrayMap 架构 Jetpack databinding adapter databinding坑 databinding源码分析 Android Data Binding: Let’s Flip This Thing Untitled Lifecycle源码分析 ViewModel源码分析 LiveData源码分析 音频和视频 CameraX使用 ExoPlayer GsyVideoPlayer 性能优化 崩溃优化 内存优化 LeakCanary如何工作 渲染优化 电池优化 启动优化 网络优化 安装包大小优化 NDK开发 系统源码分析 Android源码下载 Android系统启动 init进程启动过程 Zygote进程启动过程 Zygote进程启动流程 SystemServer处理过程 应用程序进程启动过程 应用程序进程启动过程介绍 Window WMS WindowManagerService 四大组件的工作过程 Activity启动流程分析 Activity启动流程 ActivityManagerService分析 Context详解 Binder原理 Binder驱动 获取ServiceManager 启动ServiceManager Parcel源码分析 Android图形系统概述 Choreographer原理 Handler使用 Handler源码分析 '>
+<meta property='og:url' content='https://example.com/android/summary/'>
+<meta property='og:site_name' content='Malinkang&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Android' />
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="Table of contents Android学习资料 Android知识点梳理 调试工具 aop 界面 ViewPager2 [View] View.post()分析 自定义View Canvas使用 Paint使用 Path使用 PathMeasure使用 Matrix使用 View事件分发 TextView EditText 引导页 菜单 Toolbar RecyclerView ViewPager BottomSheet 通知 CalendarView TimePicker LayoutInfalter shadowlayout 状态栏适配 RecyclerView 屏幕适配 组件 Activity Intent 服务 服务 绑定服务 AIDL Broadcasts Fragment ContentProvider 权限 数据存储 数据和文件存储 将文件保存到外部存储中 将文件保存在内部存储中 Android 存储用例和最佳做法 保存键值对数据 编译时注解 Untitled [译]Java注解处理器](annotation/annotation-processing.md) JavaPoet 文档翻译 图形和图像 Drawable使用 网络 WebView OkHttp文档翻译 OkHttp使用 OkHttp拦截器 Retrofit使用 Retrofit源码分析 HttpURLConnection使用 Volley使用 Volley源码分析 Glide使用 Glide源码分析 RxJava 插件化 插件化框架 VirtualAPK分析 依赖注入 开源库 EventBus源码分析 Okio概览 Okio菜谱 OkHttp拦截器 OKHttp缓存 Okhttp源码分析 集合 SparseArray ArrayMap 架构 Jetpack databinding adapter databinding坑 databinding源码分析 Android Data Binding: Let’s Flip This Thing Untitled Lifecycle源码分析 ViewModel源码分析 LiveData源码分析 音频和视频 CameraX使用 ExoPlayer GsyVideoPlayer 性能优化 崩溃优化 内存优化 LeakCanary如何工作 渲染优化 电池优化 启动优化 网络优化 安装包大小优化 NDK开发 系统源码分析 Android源码下载 Android系统启动 init进程启动过程 Zygote进程启动过程 Zygote进程启动流程 SystemServer处理过程 应用程序进程启动过程 应用程序进程启动过程介绍 Window WMS WindowManagerService 四大组件的工作过程 Activity启动流程分析 Activity启动流程 ActivityManagerService分析 Context详解 Binder原理 Binder驱动 获取ServiceManager 启动ServiceManager Parcel源码分析 Android图形系统概述 Choreographer原理 Handler使用 Handler源码分析 ">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
+}
+</script>
+<style>
+    :root {
+      --sys-font-family: "Noto Serif SC";
+      --zh-font-family: "Noto Serif SC";
+      --base-font-family: "Noto Serif SC";
+      --code-font-family: "Noto Serif SC";
+      --article-font-family: "Noto Serif SC";
+    }
+  </style>
+  
+  <script>
+    (function () {
+      const customFont = document.createElement("link");
+      customFont.href =
+        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+  
+      customFont.type = "text/css";
+      customFont.rel = "stylesheet";
+  
+      document.head.appendChild(customFont);
+    })();
+  </script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
+     crossorigin="anonymous"></script>
+  
+
+<script>
+    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/images/avatar_hu74e4307e0baa534a3da4ee0210445065_34446_300x0_resize_q75_box.jpeg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
+            <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/malinkang'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/malinkang'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/android/summary/"></a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    1 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="table-of-contents">Table of contents</h1>
+<ul>
+<li><a class="link" href="README.md" >Android学习资料</a></li>
+<li><a class="link" href="interview-questions.md" >Android知识点梳理</a></li>
+<li><a class="link" href="tiao-shi-gong-ju.md" >调试工具</a></li>
+<li><a class="link" href="aop.md" >aop</a></li>
+<li><a class="link" href="ui/README.md" >界面</a>
+<ul>
+<li><a class="link" href="ui/viewpager2.md" >ViewPager2</a></li>
+<li><a class="link" href="ui/view/README.md" >[View]</a>
+<ul>
+<li><a class="link" href="ui/view/view.post-fen-xi.md" >View.post()分析</a></li>
+<li><a class="link" href="ui/view/custom-views/README.md" >自定义View</a>
+<ul>
+<li><a class="link" href="ui/view/custom-views/canvas.md" >Canvas使用</a></li>
+<li><a class="link" href="ui/view/custom-views/paint.md" >Paint使用</a></li>
+<li><a class="link" href="ui/view/custom-views/path.md" >Path使用</a></li>
+<li><a class="link" href="ui/view/custom-views/pathmeasure.md" >PathMeasure使用</a></li>
+<li><a class="link" href="ui/view/custom-views/pathmeasure-1.md" >Matrix使用</a></li>
+</ul>
+</li>
+<li><a class="link" href="ui/view/view-shi-jian-fen-fa.md" >View事件分发</a></li>
+</ul>
+</li>
+<li><a class="link" href="ui/textview.md" >TextView</a></li>
+<li><a class="link" href="ui/edittext.md" >EditText</a></li>
+<li><a class="link" href="ui/yin-dao-ye.md" >引导页</a></li>
+<li><a class="link" href="ui/menu.md" >菜单</a></li>
+<li><a class="link" href="ui/toolbar.md" >Toolbar</a></li>
+<li><a class="link" href="ui/recyclerview.md" >RecyclerView</a></li>
+<li><a class="link" href="ui/viewpager.md" >ViewPager</a></li>
+<li><a class="link" href="ui/bottomsheet.md" >BottomSheet</a></li>
+<li><a class="link" href="ui/notifications.md" >通知</a></li>
+<li><a class="link" href="ui/calendarview.md" >CalendarView</a></li>
+<li><a class="link" href="ui/timepicker.md" >TimePicker</a></li>
+<li><a class="link" href="ui/layoutinfalter.md" >LayoutInfalter</a></li>
+<li><a class="link" href="ui/shadowlayout.md" >shadowlayout</a></li>
+<li><a class="link" href="ui/zhuang-tai-lan-kuo-pei.md" >状态栏适配</a></li>
+<li><a class="link" href="ui/recyclerview-1.md" >RecyclerView</a></li>
+<li><a class="link" href="ui/screen-adaptation.md" >屏幕适配</a></li>
+</ul>
+</li>
+<li><a class="link" href="components/README.md" >组件</a>
+<ul>
+<li><a class="link" href="components/activities.md" >Activity</a></li>
+<li><a class="link" href="components/intent.md" >Intent</a></li>
+<li><a class="link" href="components/services/README.md" >服务</a>
+<ul>
+<li><a class="link" href="components/services/services.md" >服务</a></li>
+<li><a class="link" href="components/services/bound-services.md" >绑定服务</a></li>
+<li><a class="link" href="components/services/aidl.md" >AIDL</a></li>
+</ul>
+</li>
+<li><a class="link" href="components/broadcasts.md" >Broadcasts</a></li>
+<li><a class="link" href="components/fragment.md" >Fragment</a></li>
+<li><a class="link" href="components/contentprovider.md" >ContentProvider</a></li>
+</ul>
+</li>
+<li><a class="link" href="permissions.md" >权限</a></li>
+<li><a class="link" href="data-storage/README.md" >数据存储</a>
+<ul>
+<li><a class="link" href="data-storage/shu-ju-he-wen-jian-cun-chu.md" >数据和文件存储</a></li>
+<li><a class="link" href="data-storage/jiang-wen-jian-bao-cun-dao-wai-bu-cun-chu-zhong.md" >将文件保存到外部存储中</a></li>
+<li><a class="link" href="data-storage/jiang-wen-jian-bao-cun-zai-nei-bu-cun-chu-zhong.md" >将文件保存在内部存储中</a></li>
+<li><a class="link" href="data-storage/use-cases.md" >Android 存储用例和最佳做法</a></li>
+<li><a class="link" href="data-storage/shared-preferences.md" >保存键值对数据</a></li>
+</ul>
+</li>
+<li><a class="link" href="annotation/README.md" >编译时注解</a>
+<ul>
+<li><a class="link" href="annotation/untitled.md" >Untitled</a></li>
+<li><a class="link" href="annotation/yi-java-zhu-jie-chu-li-qi-annotationannotationprocessing.md.md" >[译]Java注解处理器](annotation/annotation-processing.md)</a></li>
+<li><a class="link" href="annotation/javapoet-wen-dang-fan-yi.md" >JavaPoet 文档翻译</a></li>
+</ul>
+</li>
+<li><a class="link" href="graphics/README.md" >图形和图像</a>
+<ul>
+<li><a class="link" href="graphics/drawable.md" >Drawable使用</a></li>
+</ul>
+</li>
+<li><a class="link" href="network/README.md" >网络</a>
+<ul>
+<li><a class="link" href="network/webview.md" >WebView</a></li>
+<li><a class="link" href="network/okhttp/README.md" >OkHttp文档翻译</a>
+<ul>
+<li><a class="link" href="network/okhttp/okhttp-shi-yong.md" >OkHttp使用</a></li>
+<li><a class="link" href="network/okhttp/okhttp-lan-jie-qi.md" >OkHttp拦截器</a></li>
+</ul>
+</li>
+<li><a class="link" href="network/retrofit.md" >Retrofit使用</a></li>
+<li><a class="link" href="network/retrofit-source.md" >Retrofit源码分析</a></li>
+<li><a class="link" href="network/httpurlconnection.md" >HttpURLConnection使用</a></li>
+<li><a class="link" href="network/volley.md" >Volley使用</a></li>
+<li><a class="link" href="network/volley-source.md" >Volley源码分析</a></li>
+<li><a class="link" href="network/glide.md" >Glide使用</a></li>
+<li><a class="link" href="network/glide-source.md" >Glide源码分析</a></li>
+<li><a class="link" href="network/rxjava.md" >RxJava</a></li>
+</ul>
+</li>
+<li><a class="link" href="cha-jian-hua/README.md" >插件化</a>
+<ul>
+<li><a class="link" href="cha-jian-hua/cha-jian-hua-kuang-jia.md" >插件化框架</a></li>
+<li><a class="link" href="cha-jian-hua/virtualapk-fen-xi.md" >VirtualAPK分析</a></li>
+</ul>
+</li>
+<li><a class="link" href="dependency-injection.md" >依赖注入</a></li>
+<li><a class="link" href="kai-yuan-ku/README.md" >开源库</a>
+<ul>
+<li><a class="link" href="thirdparty/eventbus.md" >EventBus源码分析</a></li>
+<li><a class="link" href="thirdparty/okio-overview.md" >Okio概览</a></li>
+<li><a class="link" href="thirdparty/okio-recipes.md" >Okio菜谱</a></li>
+<li><a class="link" href="thirdparty/okhttp-interceptor.md" >OkHttp拦截器</a></li>
+<li><a class="link" href="thirdparty/okhttp-cache.md" >OKHttp缓存</a></li>
+<li><a class="link" href="thirdparty/okhttp.md" >Okhttp源码分析</a></li>
+</ul>
+</li>
+<li><a class="link" href="ji-he/README.md" >集合</a>
+<ul>
+<li><a class="link" href="ji-he/sparsearray.md" >SparseArray</a></li>
+<li><a class="link" href="ji-he/arraymap.md" >ArrayMap</a></li>
+</ul>
+</li>
+<li><a class="link" href="jia-gou.md" >架构</a></li>
+<li><a class="link" href="jetpacket/README.md" >Jetpack</a>
+<ul>
+<li><a class="link" href="jetpacket/databinding-adapter.md" >databinding adapter</a></li>
+<li><a class="link" href="jetpacket/databinding-keng.md" >databinding坑</a></li>
+<li><a class="link" href="jetpacket/databinding-yuan-ma-fen-xi.md" >databinding源码分析</a></li>
+<li><a class="link" href="jetpacket/android-data-binding-lets-flip-this-thing.md" >Android Data Binding: Let’s Flip This Thing</a></li>
+<li><a class="link" href="jetpacket/untitled.md" >Untitled</a></li>
+<li><a class="link" href="jetpacket/lifecycle-source-analysis.md" >Lifecycle源码分析</a></li>
+<li><a class="link" href="jetpacket/viewmodel-source-analysis.md" >ViewModel源码分析</a></li>
+<li><a class="link" href="jetpacket/livedata-source-analysis.md" >LiveData源码分析</a></li>
+</ul>
+</li>
+<li><a class="link" href="yin-pin-he-shi-pin/README.md" >音频和视频</a>
+<ul>
+<li><a class="link" href="yin-pin-he-shi-pin/camerax.md" >CameraX使用</a></li>
+<li><a class="link" href="yin-pin-he-shi-pin/exoplayer.md" >ExoPlayer</a></li>
+<li><a class="link" href="yin-pin-he-shi-pin/gsyvideoplayer.md" >GsyVideoPlayer</a></li>
+</ul>
+</li>
+<li><a class="link" href="performance/README.md" >性能优化</a>
+<ul>
+<li><a class="link" href="performance/crash.md" >崩溃优化</a></li>
+<li><a class="link" href="performance/memory/README.md" >内存优化</a>
+<ul>
+<li><a class="link" href="performance/memory/fundamentals-how-leakcanary-works.md" >LeakCanary如何工作</a></li>
+</ul>
+</li>
+<li><a class="link" href="performance/render.md" >渲染优化</a></li>
+<li><a class="link" href="performance/power.md" >电池优化</a></li>
+<li><a class="link" href="performance/launch-time.md" >启动优化</a></li>
+<li><a class="link" href="performance/network.md" >网络优化</a></li>
+<li><a class="link" href="performance/reduce-apk-size.md" >安装包大小优化</a></li>
+</ul>
+</li>
+<li><a class="link" href="ndk-kai-fa.md" >NDK开发</a></li>
+<li><a class="link" href="aosp/README.md" >系统源码分析</a>
+<ul>
+<li><a class="link" href="aosp/android-yuan-ma-xia-zai.md" >Android源码下载</a></li>
+<li><a class="link" href="aosp/android-xi-tong-qi-dong/README.md" >Android系统启动</a>
+<ul>
+<li><a class="link" href="aosp/android-xi-tong-qi-dong/init-jin-cheng-qi-dong-guo-cheng.md" >init进程启动过程</a></li>
+<li><a class="link" href="aosp/android-xi-tong-qi-dong/zygote-jin-cheng-qi-dong-guo-cheng.md" >Zygote进程启动过程</a></li>
+<li><a class="link" href="aosp/android-xi-tong-qi-dong/zygote-jin-cheng-qi-dong-liu-cheng.md" >Zygote进程启动流程</a></li>
+<li><a class="link" href="aosp/android-xi-tong-qi-dong/systemserver-chu-li-guo-cheng.md" >SystemServer处理过程</a></li>
+</ul>
+</li>
+<li><a class="link" href="aosp/ying-yong-cheng-xu-jin-cheng-qi-dong-guo-cheng/README.md" >应用程序进程启动过程</a>
+<ul>
+<li><a class="link" href="aosp/ying-yong-cheng-xu-jin-cheng-qi-dong-guo-cheng/ying-yong-cheng-xu-jin-cheng-qi-dong-guo-cheng-jie-shao.md" >应用程序进程启动过程介绍</a></li>
+</ul>
+</li>
+<li><a class="link" href="aosp/window.md" >Window</a></li>
+<li><a class="link" href="aosp/wms.md" >WMS</a></li>
+<li><a class="link" href="aosp/windowmanagerservice.md" >WindowManagerService</a></li>
+<li><a class="link" href="aosp/si-da-zu-jian-de-gong-zuo-guo-cheng/README.md" >四大组件的工作过程</a>
+<ul>
+<li><a class="link" href="aosp/si-da-zu-jian-de-gong-zuo-guo-cheng/activity-qi-dong-liu-cheng-fen-xi.md" >Activity启动流程分析</a></li>
+<li><a class="link" href="aosp/si-da-zu-jian-de-gong-zuo-guo-cheng/activity-qi-dong-liu-cheng.md" >Activity启动流程</a></li>
+</ul>
+</li>
+<li><a class="link" href="aosp/activitymanagerservice-fen-xi.md" >ActivityManagerService分析</a></li>
+<li><a class="link" href="aosp/context.md" >Context详解</a></li>
+<li><a class="link" href="aosp/binder-yuan-li/README.md" >Binder原理</a>
+<ul>
+<li><a class="link" href="aosp/binder-yuan-li/binder-qu-dong.md" >Binder驱动</a></li>
+<li><a class="link" href="aosp/binder-yuan-li/huo-qu-servicemanager.md" >获取ServiceManager</a></li>
+<li><a class="link" href="aosp/binder-yuan-li/qi-dong-servicemanager.md" >启动ServiceManager</a></li>
+<li><a class="link" href="aosp/binder-yuan-li/parcel-yuan-ma-fen-xi.md" >Parcel源码分析</a></li>
+</ul>
+</li>
+<li><a class="link" href="aosp/android-tu-xing-xi-tong-gai-shu.md" >Android图形系统概述</a></li>
+<li><a class="link" href="aosp/choreographer-yuan-li.md" >Choreographer原理</a></li>
+<li><a class="link" href="aosp/handler-shi-yong.md" >Handler使用</a></li>
+<li><a class="link" href="aosp/handler-yuan-ma-fen-xi.md" >Handler源码分析</a></li>
+</ul>
+</li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script
+    src="https://giscus.app/client.js"
+    data-repo="malinkang/malinkang"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkzMTUwNzEyODU="
+    data-category="General"
+    data-category-id="DIC_kwDOEsebNc4CbSPg"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="en"
+    crossorigin="anonymous"
+    async
+></script>
+<script>
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
+        }
+    }
+
+    (function () {
+        addEventListener("message", (e) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('light');
+            } else {
+                setGiscusTheme('dark');
+            }
+        }
+    })();
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2013 - 
+        
+        2024 malinkang
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

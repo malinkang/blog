@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='内容提供程序基础知识 内容提供程序管理对中央数据存储区的访问。提供程序是 Android 应用的一部分，通常提供自己的界面来使用数据。但是，内容提供程序主要旨在供其他应用使用，这些应用使用提供程序客户端对象来访问提供程序。提供程序与提供程序客户端共同提供一致的标准数据界面，该界面还可处理跨进程通信并保护数据访问的安全性。
+通常，您可以在以下两种场景中任择其一使用内容提供程序：通过实现代码来访问其他应用中的现有内容提供程序；或者在应用中创建新的内容提供程序，进而与其他应用共享数据。本主题介绍使用现有内容提供程序的基础知识。如要详细了解如何在自己的应用中实现内容提供程序，请参阅创建内容提供程序。
+本主题介绍以下内容：
+内容提供程序的工作方式。 用于从内容提供程序检索数据的 API。 用于在内容提供程序中插入、更新或删除数据的 API。 其他有助于使用提供程序的 API 功能。 概览 内容提供程序以一个或多个表的形式将数据呈现给外部应用，这些表与在关系型数据库中找到的表类似。行表示提供程序收集的某种数据类型实例，行中的每个列表示为实例所收集的每条数据。
+内容提供程序为协调许多不同的 API 和组件对应用数据存储层的访问（如图 1 所示），其中包括：
+与其他应用共享对应用数据的访问 向微件发送数据 使用 SearchRecentSuggestionsProvider，通过搜索框架返回应用的自定义搜索建议 使用 AbstractThreadedSyncAdapter 的实现，以同步服务器中的应用数据 使用 CursorLoader 加载界面中的数据 访问提供程序 如要访问内容提供程序中的数据，您可以客户端的形式使用应用的 Context 中的 ContentResolver 对象，从而与提供程序进行通信。ContentResolver 对象会与提供程序对象（即实现 ContentProvider 的类实例）进行通信。提供程序对象从客户端接收数据请求、执行请求的操作并返回结果。此对象的某些方法可调用提供程序对象（ContentProvider 某个具体子类的实例）中的同名方法。ContentResolver 方法可提供持续存储的基本“CRUD”（创建、检索、更新和删除）功能。
+从界面访问 ContentProvider 的常用模式会通过使用 CursorLoader，在后台运行异步查询。界面中的 Activity 或 Fragment 会调用查询的 CursorLoader，其转而使用 ContentResolver 来获取 ContentProvider。如此一来，用户便可在查询运行时继续使用界面。如图 2 所示，此模式涉及许多不同对象的交互，以及底层存储机制。
+Android 平台的内置提供程序之一是用户字典，其用于存储用户想要保存的非标准字词的拼写。表 1 描述数据在此提供程序表中的显示情况：
+字词 应用 id 频率 语言区域 _ID mapreduce user1 100 en_US 1 precompiler user14 200 fr_FR 2 applet user2 225 fr_CA 3 const user1 255 pt_BR 4 int user5 100 en_UK 5 在表 1 中，每行表示可能无法在标准词典中找到的字词实例。每列表示该字词的一些数据，如该字词首次出现时的语言区域。列标题是存储在提供程序中的列名称。如要引用行的语言区域，您需引用其 locale 列。对于此提供程序，_ID 列充当由提供程序自动维护的“主键”列。'>
+<title></title>
+
+<link rel='canonical' href='https://example.com/android/data-storage/providers/content-provider-basics/'>
+
+<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
+<meta property='og:description' content='内容提供程序基础知识 内容提供程序管理对中央数据存储区的访问。提供程序是 Android 应用的一部分，通常提供自己的界面来使用数据。但是，内容提供程序主要旨在供其他应用使用，这些应用使用提供程序客户端对象来访问提供程序。提供程序与提供程序客户端共同提供一致的标准数据界面，该界面还可处理跨进程通信并保护数据访问的安全性。
+通常，您可以在以下两种场景中任择其一使用内容提供程序：通过实现代码来访问其他应用中的现有内容提供程序；或者在应用中创建新的内容提供程序，进而与其他应用共享数据。本主题介绍使用现有内容提供程序的基础知识。如要详细了解如何在自己的应用中实现内容提供程序，请参阅创建内容提供程序。
+本主题介绍以下内容：
+内容提供程序的工作方式。 用于从内容提供程序检索数据的 API。 用于在内容提供程序中插入、更新或删除数据的 API。 其他有助于使用提供程序的 API 功能。 概览 内容提供程序以一个或多个表的形式将数据呈现给外部应用，这些表与在关系型数据库中找到的表类似。行表示提供程序收集的某种数据类型实例，行中的每个列表示为实例所收集的每条数据。
+内容提供程序为协调许多不同的 API 和组件对应用数据存储层的访问（如图 1 所示），其中包括：
+与其他应用共享对应用数据的访问 向微件发送数据 使用 SearchRecentSuggestionsProvider，通过搜索框架返回应用的自定义搜索建议 使用 AbstractThreadedSyncAdapter 的实现，以同步服务器中的应用数据 使用 CursorLoader 加载界面中的数据 访问提供程序 如要访问内容提供程序中的数据，您可以客户端的形式使用应用的 Context 中的 ContentResolver 对象，从而与提供程序进行通信。ContentResolver 对象会与提供程序对象（即实现 ContentProvider 的类实例）进行通信。提供程序对象从客户端接收数据请求、执行请求的操作并返回结果。此对象的某些方法可调用提供程序对象（ContentProvider 某个具体子类的实例）中的同名方法。ContentResolver 方法可提供持续存储的基本“CRUD”（创建、检索、更新和删除）功能。
+从界面访问 ContentProvider 的常用模式会通过使用 CursorLoader，在后台运行异步查询。界面中的 Activity 或 Fragment 会调用查询的 CursorLoader，其转而使用 ContentResolver 来获取 ContentProvider。如此一来，用户便可在查询运行时继续使用界面。如图 2 所示，此模式涉及许多不同对象的交互，以及底层存储机制。
+Android 平台的内置提供程序之一是用户字典，其用于存储用户想要保存的非标准字词的拼写。表 1 描述数据在此提供程序表中的显示情况：
+字词 应用 id 频率 语言区域 _ID mapreduce user1 100 en_US 1 precompiler user14 200 fr_FR 2 applet user2 225 fr_CA 3 const user1 255 pt_BR 4 int user5 100 en_UK 5 在表 1 中，每行表示可能无法在标准词典中找到的字词实例。每列表示该字词的一些数据，如该字词首次出现时的语言区域。列标题是存储在提供程序中的列名称。如要引用行的语言区域，您需引用其 locale 列。对于此提供程序，_ID 列充当由提供程序自动维护的“主键”列。'>
+<meta property='og:url' content='https://example.com/android/data-storage/providers/content-provider-basics/'>
+<meta property='og:site_name' content='Malinkang&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Android' />
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="内容提供程序基础知识 内容提供程序管理对中央数据存储区的访问。提供程序是 Android 应用的一部分，通常提供自己的界面来使用数据。但是，内容提供程序主要旨在供其他应用使用，这些应用使用提供程序客户端对象来访问提供程序。提供程序与提供程序客户端共同提供一致的标准数据界面，该界面还可处理跨进程通信并保护数据访问的安全性。
+通常，您可以在以下两种场景中任择其一使用内容提供程序：通过实现代码来访问其他应用中的现有内容提供程序；或者在应用中创建新的内容提供程序，进而与其他应用共享数据。本主题介绍使用现有内容提供程序的基础知识。如要详细了解如何在自己的应用中实现内容提供程序，请参阅创建内容提供程序。
+本主题介绍以下内容：
+内容提供程序的工作方式。 用于从内容提供程序检索数据的 API。 用于在内容提供程序中插入、更新或删除数据的 API。 其他有助于使用提供程序的 API 功能。 概览 内容提供程序以一个或多个表的形式将数据呈现给外部应用，这些表与在关系型数据库中找到的表类似。行表示提供程序收集的某种数据类型实例，行中的每个列表示为实例所收集的每条数据。
+内容提供程序为协调许多不同的 API 和组件对应用数据存储层的访问（如图 1 所示），其中包括：
+与其他应用共享对应用数据的访问 向微件发送数据 使用 SearchRecentSuggestionsProvider，通过搜索框架返回应用的自定义搜索建议 使用 AbstractThreadedSyncAdapter 的实现，以同步服务器中的应用数据 使用 CursorLoader 加载界面中的数据 访问提供程序 如要访问内容提供程序中的数据，您可以客户端的形式使用应用的 Context 中的 ContentResolver 对象，从而与提供程序进行通信。ContentResolver 对象会与提供程序对象（即实现 ContentProvider 的类实例）进行通信。提供程序对象从客户端接收数据请求、执行请求的操作并返回结果。此对象的某些方法可调用提供程序对象（ContentProvider 某个具体子类的实例）中的同名方法。ContentResolver 方法可提供持续存储的基本“CRUD”（创建、检索、更新和删除）功能。
+从界面访问 ContentProvider 的常用模式会通过使用 CursorLoader，在后台运行异步查询。界面中的 Activity 或 Fragment 会调用查询的 CursorLoader，其转而使用 ContentResolver 来获取 ContentProvider。如此一来，用户便可在查询运行时继续使用界面。如图 2 所示，此模式涉及许多不同对象的交互，以及底层存储机制。
+Android 平台的内置提供程序之一是用户字典，其用于存储用户想要保存的非标准字词的拼写。表 1 描述数据在此提供程序表中的显示情况：
+字词 应用 id 频率 语言区域 _ID mapreduce user1 100 en_US 1 precompiler user14 200 fr_FR 2 applet user2 225 fr_CA 3 const user1 255 pt_BR 4 int user5 100 en_UK 5 在表 1 中，每行表示可能无法在标准词典中找到的字词实例。每列表示该字词的一些数据，如该字词首次出现时的语言区域。列标题是存储在提供程序中的列名称。如要引用行的语言区域，您需引用其 locale 列。对于此提供程序，_ID 列充当由提供程序自动维护的“主键”列。">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
+}
+</script>
+<style>
+    :root {
+      --sys-font-family: "Noto Serif SC";
+      --zh-font-family: "Noto Serif SC";
+      --base-font-family: "Noto Serif SC";
+      --code-font-family: "Noto Serif SC";
+      --article-font-family: "Noto Serif SC";
+    }
+  </style>
+  
+  <script>
+    (function () {
+      const customFont = document.createElement("link");
+      customFont.href =
+        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+  
+      customFont.type = "text/css";
+      customFont.rel = "stylesheet";
+  
+      document.head.appendChild(customFont);
+    })();
+  </script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
+     crossorigin="anonymous"></script>
+  
+
+<script>
+    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/images/avatar_hu74e4307e0baa534a3da4ee0210445065_34446_300x0_resize_q75_box.jpeg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
+            <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/malinkang'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/malinkang'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#概览">概览</a>
+      <ol>
+        <li><a href="#访问提供程序">访问提供程序</a></li>
+        <li><a href="#内容-uri">内容 URI</a></li>
+      </ol>
+    </li>
+    <li><a href="#从提供程序检索数据">从提供程序检索数据</a>
+      <ol>
+        <li><a href="#请求读取访问权限">请求读取访问权限</a></li>
+        <li><a href="#构建查询">构建查询</a>
+          <ol>
+            <li><a href="#防止恶意输入">防止恶意输入</a></li>
+          </ol>
+        </li>
+        <li><a href="#显示查询结果">显示查询结果</a></li>
+        <li><a href="#从查询结果中获取数据">从查询结果中获取数据</a></li>
+      </ol>
+    </li>
+    <li><a href="#内容提供程序权限">内容提供程序权限</a></li>
+    <li><a href="#插入更新和删除数据">插入、更新和删除数据</a>
+      <ol>
+        <li><a href="#插入数据">插入数据</a></li>
+        <li><a href="#更新数据">更新数据</a></li>
+        <li><a href="#删除数据">删除数据</a></li>
+      </ol>
+    </li>
+    <li><a href="#提供程序数据类型">提供程序数据类型</a></li>
+    <li><a href="#提供程序访问的替代形式">提供程序访问的替代形式</a>
+      <ol>
+        <li><a href="#批量访问">批量访问</a></li>
+        <li><a href="#通过-intent-访问数据">通过 Intent 访问数据</a>
+          <ol>
+            <li><a href="#通过临时权限获取访问权限">通过临时权限获取访问权限</a></li>
+            <li><a href="#使用其他应用">使用其他应用</a></li>
+            <li><a href="#使用帮助程序应用显示数据">使用帮助程序应用显示数据</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#协定类">协定类</a></li>
+    <li><a href="#mime-类型引用">MIME 类型引用</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/android/data-storage/providers/content-provider-basics/"></a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    10 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="内容提供程序基础知识">内容提供程序基础知识</h1>
+<p>内容提供程序管理对中央数据存储区的访问。提供程序是 Android 应用的一部分，通常提供自己的界面来使用数据。但是，内容提供程序主要旨在供其他应用使用，这些应用使用提供程序客户端对象来访问提供程序。提供程序与提供程序客户端共同提供一致的标准数据界面，该界面还可处理跨进程通信并保护数据访问的安全性。</p>
+<p>通常，您可以在以下两种场景中任择其一使用内容提供程序：通过实现代码来访问其他应用中的现有内容提供程序；或者在应用中创建新的内容提供程序，进而与其他应用共享数据。本主题介绍使用现有内容提供程序的基础知识。如要详细了解如何在自己的应用中实现内容提供程序，请参阅<a class="link" href="https://developer.android.com/guide/topics/providers/content-provider-creating.html"  target="_blank" rel="noopener"
+    >创建内容提供程序</a>。</p>
+<p>本主题介绍以下内容：</p>
+<ul>
+<li>内容提供程序的工作方式。</li>
+<li>用于从内容提供程序检索数据的 API。</li>
+<li>用于在内容提供程序中插入、更新或删除数据的 API。</li>
+<li>其他有助于使用提供程序的 API 功能。</li>
+</ul>
+<h2 id="概览">概览</h2>
+<p>内容提供程序以一个或多个表的形式将数据呈现给外部应用，这些表与在关系型数据库中找到的表类似。行表示提供程序收集的某种数据类型实例，行中的每个列表示为实例所收集的每条数据。</p>
+<p>内容提供程序为协调许多不同的 API 和组件对应用数据存储层的访问（如图 1 所示），其中包括：</p>
+<ul>
+<li>与其他应用共享对应用数据的访问</li>
+<li>向微件发送数据</li>
+<li>使用 <code>SearchRecentSuggestionsProvider</code>，通过搜索框架返回应用的自定义搜索建议</li>
+<li>使用 <code>AbstractThreadedSyncAdapter</code> 的实现，以同步服务器中的应用数据</li>
+<li>使用 <code>CursorLoader</code> 加载界面中的数据</li>
+</ul>
+<p><img src="/images/content-provider-tech-stack.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="图 1. 内容提供程序与其他组件的关系。"
+	
+	
+></p>
+<h3 id="访问提供程序">访问提供程序</h3>
+<p>如要访问内容提供程序中的数据，您可以客户端的形式使用应用的 <code>Context</code> 中的 <code>ContentResolver</code> 对象，从而与提供程序进行通信。<code>ContentResolver</code> 对象会与提供程序对象（即实现 <code>ContentProvider</code> 的类实例）进行通信。提供程序对象从客户端接收数据请求、执行请求的操作并返回结果。此对象的某些方法可调用提供程序对象（<code>ContentProvider</code> 某个具体子类的实例）中的同名方法。<code>ContentResolver</code> 方法可提供持续存储的基本“CRUD”（创建、检索、更新和删除）功能。</p>
+<p>从界面访问 <code>ContentProvider</code> 的常用模式会通过使用 <code>CursorLoader</code>，在后台运行异步查询。界面中的 <code>Activity</code> 或 <code>Fragment</code> 会调用查询的 <code>CursorLoader</code>，其转而使用 <code>ContentResolver</code> 来获取 <code>ContentProvider</code>。如此一来，用户便可在查询运行时继续使用界面。如图 2 所示，此模式涉及许多不同对象的交互，以及底层存储机制。</p>
+<p><img src="/images/content-provider-interaction.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="content-provider-interaction"
+	
+	
+></p>
+<p>Android 平台的内置提供程序之一是用户字典，其用于存储用户想要保存的非标准字词的拼写。表 1 描述数据在此提供程序表中的显示情况：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>字词</th>
+<th>应用 id</th>
+<th>频率</th>
+<th>语言区域</th>
+<th>_ID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mapreduce</td>
+<td>user1</td>
+<td>100</td>
+<td>en_US</td>
+<td>1</td>
+</tr>
+<tr>
+<td>precompiler</td>
+<td>user14</td>
+<td>200</td>
+<td>fr_FR</td>
+<td>2</td>
+</tr>
+<tr>
+<td>applet</td>
+<td>user2</td>
+<td>225</td>
+<td>fr_CA</td>
+<td>3</td>
+</tr>
+<tr>
+<td>const</td>
+<td>user1</td>
+<td>255</td>
+<td>pt_BR</td>
+<td>4</td>
+</tr>
+<tr>
+<td>int</td>
+<td>user5</td>
+<td>100</td>
+<td>en_UK</td>
+<td>5</td>
+</tr>
+</tbody>
+</table></div>
+<p>在表 1 中，每行表示可能无法在标准词典中找到的字词实例。每列表示该字词的一些数据，如该字词首次出现时的语言区域。列标题是存储在提供程序中的列名称。如要引用行的语言区域，您需引用其 <code>locale</code> 列。对于此提供程序，<code>_ID</code> 列充当由提供程序自动维护的“主键”列。</p>
+<p>如要从用户字典提供程序中获取字词及其语言区域的列表，您需调用 <code>ContentResolver.query()</code>。<code>query()</code> 方法会调用用户字典提供程序所定义的 <code>ContentProvider.query()</code> 方法。以下代码行展示如何调用 <code>ContentResolver.query()</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// Queries the user dictionary and returns results</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">cursor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getContentResolver</span><span class="p">().</span><span class="na">query</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">UserDictionary</span><span class="p">.</span><span class="na">Words</span><span class="p">.</span><span class="na">CONTENT_URI</span><span class="p">,</span><span class="w">   </span><span class="c1">// The content URI of the words table</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">projection</span><span class="p">,</span><span class="w">                        </span><span class="c1">// The columns to return for each row</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">selectionClause</span><span class="p">,</span><span class="w">                   </span><span class="c1">// Selection criteria</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">selectionArgs</span><span class="p">,</span><span class="w">                     </span><span class="c1">// Selection criteria</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">sortOrder</span><span class="p">);</span><span class="w">                        </span><span class="c1">// The sort order for the returned rows</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>表 2 展示 <code>query(Uri,projection,selection,selectionArgs,sortOrder)</code> 的参数如何匹配 SQL SELECT 语句</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>query() 参数</th>
+<th>SELECT 关键字/参数</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Uri</code></td>
+<td><code>FROM *table_name*</code></td>
+<td><code>Uri</code> 映射至名为 <em>table_name</em> 的提供程序中的表。</td>
+</tr>
+<tr>
+<td><code>projection</code></td>
+<td><code>*col,col,col,...*</code></td>
+<td><code>projection</code> 是一个数组，其中包含应为检索到的每个行加入的列。</td>
+</tr>
+<tr>
+<td><code>selection</code></td>
+<td><code>WHERE *col* = *value*</code></td>
+<td><code>selection</code> 会指定选择行的条件。</td>
+</tr>
+<tr>
+<td><code>selectionArgs</code></td>
+<td>（没有完全等效项。选择参数会替换选择子句中的 <code>?</code> 占位符。）</td>
+<td></td>
+</tr>
+<tr>
+<td><code>sortOrder</code></td>
+<td><code>ORDER BY *col,col,...*</code></td>
+<td><code>sortOrder</code> 指定行在返回的 <code>Cursor</code> 中的显示顺序。</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="内容-uri">内容 URI</h3>
+<p><strong>内容 URI</strong> 是用于在提供程序中标识数据的 URI。内容 URI 包括整个提供程序的符号名称（其<strong>授权</strong>）和指向表的名称（<strong>路径</strong>）。当您调用客户端方法来访问提供程序中的表时，该表的内容 URI 将是其参数之一。</p>
+<p>在前面的代码行中，常量 <code>CONTENT_URI</code> 包含用户字典“words”表的内容 URI。<code>ContentResolver</code> 对象会分析出 URI 的授权，并将该授权与已知提供程序的系统表进行比较，从而“解析”提供程序。然后，<code>ContentResolver</code> 可以将查询参数分派给正确的提供程序。</p>
+<p><code>ContentProvider</code> 使用内容 URI 的路径部分来选择要访问的表。通常，提供程序会为其公开的每个表显示一条<strong>路径</strong>。</p>
+<p>在前面的代码行中，“words”表的完整 URI 是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">content://user_dictionary/words
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中，<code>user_dictionary</code> 字符串是提供程序的授权，<code>words</code> 字符串是表的路径。字符串 <code>content://</code>（<strong>架构</strong>）始终显示，并且会将其标识为内容 URI。</p>
+<p>许多提供程序均允许您将 ID 值追加至 URI 末尾，从而访问表中的单个行。例如，如要从用户字典中检索 <code>_ID</code> 为 <code>4</code> 的行，您可以使用此内容 URI：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Uri</span><span class="w"> </span><span class="n">singleUri</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ContentUris</span><span class="p">.</span><span class="na">withAppendedId</span><span class="p">(</span><span class="n">UserDictionary</span><span class="p">.</span><span class="na">Words</span><span class="p">.</span><span class="na">CONTENT_URI</span><span class="p">,</span><span class="n">4</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>在检索到一组行并且想要更新或删除其中某一行时，您通常会使用 ID 值。</p>
+<blockquote>
+<p><strong>注意：</strong><code>Uri</code> 和 <code>Uri.Builder</code> 类包含一些便捷方法，可用于根据字符串构建格式规范的 URI 对象。<code>ContentUris</code> 类包含一些便捷方法，可用于将 ID 值轻松追加至 URI。前段代码使用 <code>withAppendedId()</code> 将 ID 追加至 UserDictionary 内容 URI。</p>
+</blockquote>
+<h2 id="从提供程序检索数据">从提供程序检索数据</h2>
+<p>本部分将以用户字典提供程序为例，介绍如何从提供程序中检索数据。</p>
+<p>为进行明确说明，本部分中的代码段将在“界面线程”上调用 <code>ContentResolver.query()</code>。但在实际代码中，您应在单独的线程上异步执行查询。执行此操作的其中一种方法是使用 <code>CursorLoader</code> 类，<a class="link" href="https://developer.android.com/guide/components/loaders.html"  target="_blank" rel="noopener"
+    >加载器</a>指南中对此有更为详细的介绍。此外，前述代码行仅为部分代码，并未显示整个应用。</p>
+<p>如要从提供程序检索数据，请按照以下基本步骤执行操作：</p>
+<ol>
+<li>请求对提供程序的读取访问权限。</li>
+<li>定义将查询发送至提供程序的代码。</li>
+</ol>
+<h3 id="请求读取访问权限">请求读取访问权限</h3>
+<p>如要从提供程序检索数据，您的应用需具备对提供程序的“读取访问权限”。您无法在运行时请求此权限；相反，您需要使用  <code>&lt;uses-permission&gt;</code>元素和提供程序定义的准确权限名称，在清单文件中指明您需要此权限。在清单文件中指定此元素后，您便可有效地为应用“请求”此权限。在安装您的应用时，用户会隐式授予此请求。</p>
+<p>如要为正在使用的提供程序找出读取访问权限的准确名称，以及提供程序所用其他访问权限的名称，请查看提供程序的文档。</p>
+<p>如需详细了解权限在访问提供程序过程中的作用，请参阅<a class="link" href="https://developer.android.com/guide/topics/providers/content-provider-basics#Permissions"  target="_blank" rel="noopener"
+    >内容提供程序权限</a>部分。</p>
+<p>用户字典提供程序在其清单文件中定义了 <code>android.permission.READ_USER_DICTIONARY</code> 权限，因此若应用希望从提供程序中读取数据，则其必须请求此权限。</p>
+<h3 id="构建查询">构建查询</h3>
+<p>从提供程序检索数据的下一步是构建查询。第一个代码段定义某些用于访问用户字典提供程序的变量：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// A &#34;projection&#34; defines the columns that will be returned for each row</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">mProjection</span><span class="w"> </span><span class="o">=</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">UserDictionary</span><span class="p">.</span><span class="na">Words</span><span class="p">.</span><span class="na">_ID</span><span class="p">,</span><span class="w">    </span><span class="c1">// Contract class constant for the _ID column name</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">UserDictionary</span><span class="p">.</span><span class="na">Words</span><span class="p">.</span><span class="na">WORD</span><span class="p">,</span><span class="w">   </span><span class="c1">// Contract class constant for the word column name</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">UserDictionary</span><span class="p">.</span><span class="na">Words</span><span class="p">.</span><span class="na">LOCALE</span><span class="w">  </span><span class="c1">// Contract class constant for the locale column name</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">};</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// Defines a string to contain the selection clause</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">String</span><span class="w"> </span><span class="n">selectionClause</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// Initializes an array to contain selection arguments</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">selectionArgs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&#34;&#34;</span><span class="p">};</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>下一段代码以用户字典提供程序为例，展示如何使用 <code>ContentResolver.query()</code>。提供程序客户端查询与 SQL 查询类似，并且包含一组要返回的列、一组选择条件和排序顺序。</p>
+<p>查询应返回的列集称为<strong>投影</strong>（变量 <code>mProjection</code>）。</p>
+<p>对于指定待检索行的表达式，我们将其拆分为选择子句和选择参数。选择子句是逻辑和布尔表达式、列名称以及值（变量 <code>mSelectionClause</code>）的组合。如果您指定可替换参数 <code>?</code> 而非值，则查询方法会从选择参数数组（变量 <code>mSelectionArgs</code>）中检索值。</p>
+<p>在下一段代码中，如果用户未输入字词，则选择子句将设置为 <code>null</code>，而且查询会返回提供程序中的所有字词。如果用户输入字词，则选择子句将设置为 <code>UserDictionary.Words.WORD + &quot; = ?&quot;</code>，并且选择参数数组的第一个元素将设置为用户输入的字词。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * This defines a one-element String array to contain the selection argument.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">selectionArgs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&#34;&#34;</span><span class="p">};</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// Gets a word from the UI</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">searchString</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">searchWord</span><span class="p">.</span><span class="na">getText</span><span class="p">().</span><span class="na">toString</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// Remember to insert code here to check for invalid or malicious input.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// If the word is the empty string, gets everything</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">TextUtils</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">(</span><span class="n">searchString</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Setting the selection clause to null will return all words</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">selectionClause</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">selectionArgs</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Constructs a selection clause that matches the word that the user entered.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">selectionClause</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UserDictionary</span><span class="p">.</span><span class="na">Words</span><span class="p">.</span><span class="na">WORD</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34; = ?&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Moves the user&#39;s input string to the selection arguments.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">selectionArgs</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">searchString</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// Does a query against the table and returns a Cursor object</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">mCursor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getContentResolver</span><span class="p">().</span><span class="na">query</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">UserDictionary</span><span class="p">.</span><span class="na">Words</span><span class="p">.</span><span class="na">CONTENT_URI</span><span class="p">,</span><span class="w">  </span><span class="c1">// The content URI of the words table</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">projection</span><span class="p">,</span><span class="w">                       </span><span class="c1">// The columns to return for each row</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">selectionClause</span><span class="p">,</span><span class="w">                  </span><span class="c1">// Either null, or the word the user entered</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">selectionArgs</span><span class="p">,</span><span class="w">                    </span><span class="c1">// Either empty, or the string the user entered</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">sortOrder</span><span class="p">);</span><span class="w">                       </span><span class="c1">// The sort order for the returned rows</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// Some providers return null if an error occurs, others throw an exception</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="kc">null</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">mCursor</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * Insert code here to handle the error. Be sure not to use the cursor! You may want to
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * call android.util.Log.e() to log this error.
+</span></span></span><span class="line"><span class="cl"><span class="cm">     *
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// If the Cursor is empty, the provider found no matches</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mCursor</span><span class="p">.</span><span class="na">getCount</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * Insert code here to notify the user that the search was unsuccessful. This isn&#39;t necessarily
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * an error. You may want to offer the user the option to insert a new row, or re-type the
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * search term.
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Insert code here to do something with the results</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>此查询与 SQL 语句类似：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">SELECT _ID, word, locale FROM words WHERE word = &lt;userinput&gt; ORDER BY word ASC;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在此 SQL 语句中，会使用实际的列名称而非协定类常量。</p>
+<h4 id="防止恶意输入">防止恶意输入</h4>
+<p>如果内容提供程序管理的数据位于 SQL 数据库，则在原始 SQL 语句中加入不受信任的外部数据可能会导致 SQL 注入。</p>
+<p>考虑此选择子句：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// Constructs a selection clause by concatenating the user&#39;s input to the column name</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">String</span><span class="w"> </span><span class="n">selectionClause</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;var = &#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">userInput</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>若执行此操作，则会允许用户将恶意 SQL 连接至 SQL 语句。例如，用户可以为 <code>mUserInput</code> 输入“nothing; DROP TABLE *;”，从而生成选择子句 <code>var = nothing; DROP TABLE *;</code>。由于选择子句是作为 SQL 语句处理的，因此这可能会导致提供程序清空基础 SQLite 数据库中的所有表（除非提供程序设置为可捕获 <a class="link" href="http://en.wikipedia.org/wiki/SQL_injection"  target="_blank" rel="noopener"
+    >SQL 注入</a>尝试）。</p>
+<p>如要避免此问题，请使用将 <code>?</code> 作为可替换参数的选择子句，以及单独的选择参数数组。执行此操作时，用户输入直接受查询约束，而不解释为 SQL 语句的一部分。由于用户输入未作为 SQL 处理，因此其无法注入恶意 SQL。请使用以下选择子句（而非连接）加入用户输入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// Constructs a selection clause with a replaceable parameter</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">String</span><span class="w"> </span><span class="n">selectionClause</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="s">&#34;var = ?&#34;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>按如下所示设置选择参数数组：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// Defines an array to contain the selection arguments</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">selectionArgs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&#34;&#34;</span><span class="p">};</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>按如下所示将值放入选择参数数组：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// Sets the selection argument to the user&#39;s input</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">selectionArgs</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">userInput</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>如要指定选择，首选方式是使用将 <code>?</code> 用作可替换参数的选择子句和选择参数数组（即使提供程序并未基于 SQL 数据库）。</p>
+<h3 id="显示查询结果">显示查询结果</h3>
+<p><code>ContentResolver.query()</code> 客户端方法始终会返回符合以下条件的 <code>Cursor</code>：包含查询的投影为匹配查询选择条件的行所指定的列。<code>Cursor</code> 对象提供对其所含行和列的随机读取访问权限。通过使用 <code>Cursor</code> 方法，您可以循环访问结果中的行、确定每列的数据类型、从列中获取数据，并检查结果的其他属性。某些 <code>Cursor</code> 实现会在提供程序的数据发生更改时自动更新对象，并/或在 <code>Cursor</code> 更改时触发观察程序对象中的方法。</p>
+<blockquote>
+<p>**注意：**提供程序可能会根据发出查询的对象的性质来限制对列的访问。例如，联系人提供程序会限定只有同步适配器才能访问某些列，因此不会将这些列返回至 Activity 或服务。</p>
+</blockquote>
+<p>如果没有与选择条件匹配的行，提供程序会返回 <code>Cursor.getCount()</code> 为 0（空游标）的 <code>Cursor</code> 对象。</p>
+<p>如果出现内部错误，查询结果会视具体提供程序而定。它可能会选择返回 <code>null</code>，或抛出 <code>Exception</code>。</p>
+<p>由于 <code>Cursor</code> 是行“列表”，因此显示 <code>Cursor</code> 内容的一个好方法是通过 <code>SimpleCursorAdapter</code> 将其与 <code>ListView</code> 关联。</p>
+<p>以下代码段延续上段代码。它会创建一个 <code>SimpleCursorAdapter</code> 对象（其中包含查询所检索到的 <code>Cursor</code>），并将此对象设置为 <code>ListView</code> 的适配器：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// Defines a list of columns to retrieve from the Cursor and load into an output row</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">wordListColumns</span><span class="w"> </span><span class="o">=</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">UserDictionary</span><span class="p">.</span><span class="na">Words</span><span class="p">.</span><span class="na">WORD</span><span class="p">,</span><span class="w">   </span><span class="c1">// Contract class constant containing the word column name</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">UserDictionary</span><span class="p">.</span><span class="na">Words</span><span class="p">.</span><span class="na">LOCALE</span><span class="w">  </span><span class="c1">// Contract class constant containing the locale column name</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">};</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// Defines a list of View IDs that will receive the Cursor columns for each row</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">wordListItems</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">dictWord</span><span class="p">,</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">locale</span><span class="p">};</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// Creates a new SimpleCursorAdapter</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">cursorAdapter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SimpleCursorAdapter</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">getApplicationContext</span><span class="p">(),</span><span class="w">               </span><span class="c1">// The application&#39;s Context object</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">R</span><span class="p">.</span><span class="na">layout</span><span class="p">.</span><span class="na">wordlistrow</span><span class="p">,</span><span class="w">                  </span><span class="c1">// A layout in XML for one row in the ListView</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">mCursor</span><span class="p">,</span><span class="w">                               </span><span class="c1">// The result from the query</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">wordListColumns</span><span class="p">,</span><span class="w">                      </span><span class="c1">// A string array of column names in the cursor</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">wordListItems</span><span class="p">,</span><span class="w">                        </span><span class="c1">// An integer array of view IDs in the row layout</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">0</span><span class="p">);</span><span class="w">                                    </span><span class="c1">// Flags (usually none are needed)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// Sets the adapter for the ListView</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">wordList</span><span class="p">.</span><span class="na">setAdapter</span><span class="p">(</span><span class="n">cursorAdapter</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>**注意：**如要通过 <code>Cursor</code> 支持 <code>ListView</code>，则游标必须包含名为 <code>_ID</code> 的列。正因如此，即使 <code>ListView</code> 未显示 <code>_ID</code> 列，前文显示的查询也会为“words”表检索该类列。此限制也解释了为何大多数提供程序的每个表均拥有 <code>_ID</code> 列。</p>
+</blockquote>
+<h3 id="从查询结果中获取数据">从查询结果中获取数据</h3>
+<p>您可以将查询结果用于其他任务，而非简单地显示查询结果。例如，您可以从用户字典中检索拼写，然后在其他提供程序中查找这些拼写。如要执行此操作，您需在 <code>Cursor</code> 中循环访问行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// Determine the column index of the column named &#34;word&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mCursor</span><span class="p">.</span><span class="na">getColumnIndex</span><span class="p">(</span><span class="n">UserDictionary</span><span class="p">.</span><span class="na">Words</span><span class="p">.</span><span class="na">WORD</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Only executes if the cursor is valid. The User Dictionary Provider returns null if
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * an internal error occurs. Other providers may throw an Exception instead of returning null.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mCursor</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * Moves to the next row in the cursor. Before the first movement in the cursor, the
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * &#34;row pointer&#34; is -1, and if you try to retrieve data at that position you will get an
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * exception.
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">mCursor</span><span class="p">.</span><span class="na">moveToNext</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// Gets the value from the column.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">newWord</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mCursor</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="n">index</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// Insert code here to process the retrieved word.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// end of while loop</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Insert code here to report an error if the cursor is null or the provider threw an exception.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>Cursor</code> 实现包含多个“获取”方法，用于从对象中检索不同类型的数据。例如，上一段代码使用 <code>getString()</code>。这些实现还拥有 <code>getType()</code> 方法，用于返回指示列的数据类型的值。</p>
+<h2 id="内容提供程序权限">内容提供程序权限</h2>
+<p>提供程序的应用可以指定其他应用的必需权限，以便其访问提供程序的数据。这些权限可确保用户了解应用将尝试访问哪些数据。根据提供程序的要求，其他应用会请求其访问提供程序时所需的权限。最终用户会在安装应用时看到所请求的权限。</p>
+<p>如果提供程序的应用未指定任何权限，则其他应用将无权访问提供程序的数据。但是，无论指定权限为何，提供程序的应用组件始终拥有完整的读取和写入访问权限。</p>
+<p>如前文所述，用户字典提供程序需使用 <code>android.permission.READ_USER_DICTIONARY</code> 权限从中检索数据。提供程序拥有单独的 <code>android.permission.WRITE_USER_DICTIONARY</code> 权限，可用于插入、更新或删除数据。</p>
+<p>如要获取访问提供程序所需的权限，应用需通过其清单文件中的 `` 元素来请求这些权限。当 Android 软件包管理器安装应用时，用户必须批准该应用请求的所有权限。如果用户批准所有权限，软件包管理器将继续安装；如果用户未批准这些权限，软件包管理器将中止安装。</p>
+<p>以下 <code>&lt;uses-permission&gt;</code> 元素会请求对用户字典提供程序的读取访问权限：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">&#34;android.permission.READ_USER_DICTIONARY&#34;</span><span class="nt">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><a class="link" href="https://developer.android.com/guide/topics/security/security.html"  target="_blank" rel="noopener"
+    >安全与权限</a>指南详细介绍了权限对提供程序访问的影响。</p>
+<h2 id="插入更新和删除数据">插入、更新和删除数据</h2>
+<p>与从提供程序检索数据的方式相同，您也可通过提供程序客户端和提供程序 <code>ContentProvider</code> 之间的交互来修改数据。您可以使用传递至 <code>ContentProvider</code> 对应方法的参数，调用 <code>ContentResolver</code> 的方法。提供程序和提供程序客户端会自动处理安全性和跨进程通信。</p>
+<h3 id="插入数据">插入数据</h3>
+<p>如要将数据插入提供程序，您可以调用 <code>ContentResolver.insert()</code> 方法。此方法会在提供程序中插入新行，并为该行返回内容 URI。此段代码显示如何将新字词插入用户字典提供程序：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// Defines a new Uri object that receives the result of the insertion</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Uri</span><span class="w"> </span><span class="n">newUri</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// Defines an object to contain the new values to insert</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">ContentValues</span><span class="w"> </span><span class="n">newValues</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ContentValues</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Sets the values of each column and inserts the word. The arguments to the &#34;put&#34;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * method are &#34;column name&#34; and &#34;value&#34;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">newValues</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">UserDictionary</span><span class="p">.</span><span class="na">Words</span><span class="p">.</span><span class="na">APP_ID</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;example.user&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">newValues</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">UserDictionary</span><span class="p">.</span><span class="na">Words</span><span class="p">.</span><span class="na">LOCALE</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;en_US&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">newValues</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">UserDictionary</span><span class="p">.</span><span class="na">Words</span><span class="p">.</span><span class="na">WORD</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;insert&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">newValues</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">UserDictionary</span><span class="p">.</span><span class="na">Words</span><span class="p">.</span><span class="na">FREQUENCY</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;100&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">newUri</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getContentResolver</span><span class="p">().</span><span class="na">insert</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">UserDictionary</span><span class="p">.</span><span class="na">Words</span><span class="p">.</span><span class="na">CONTENT_URI</span><span class="p">,</span><span class="w">   </span><span class="c1">// the user dictionary content URI</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">newValues</span><span class="w">                          </span><span class="c1">// the values to insert</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>新行的数据会进入单个 <code>ContentValues</code> 对象，该对象在形式上与单行游标类似。此对象中的列无需拥有相同的数据类型，如果您不想指定值，则可以使用 <code>ContentValues.putNull()</code> 将列设置为 <code>null</code>。</p>
+<p>此段代码不会添加 <code>_ID</code> 列，因为系统会自动维护此列。提供程序会向添加的每个行分配唯一的 <code>_ID</code> 值。通常，提供程序会将此值用作表的主键。</p>
+<p><code>newUri</code> 中返回的内容 URI 会按以下格式标识新添加的行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nl">content</span><span class="p">:</span><span class="c1">//user_dictionary/words/&lt;id_value&gt;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>&lt;id_value&gt;</code> 是新行 <code>_ID</code> 的内容。大多数提供程序可自动检测这种格式的内容 URI，然后在该特定行上执行请求的操作。</p>
+<p>如要从返回的 <code>Uri</code> 中获取 <code>_ID</code> 的值，请调用 <code>ContentUris.parseId()</code>。</p>
+<h3 id="更新数据">更新数据</h3>
+<p>如要更新行，请按执行插入的方式使用拥有更新值的 <code>ContentValues</code> 对象，并按执行查询的方式使用选择条件。您使用的客户端方法是 <code>ContentResolver.update()</code>。您只需将值添加至待更新列的 <code>ContentValues</code> 对象。如果您要清除列的内容，请将值设置为 <code>null</code>。</p>
+<p>以下代码段会将语言区域拥有语言“en”的所有行的语言区域更改为 <code>null</code>。返回值是已更新的行数：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// Defines an object to contain the updated values</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">ContentValues</span><span class="w"> </span><span class="n">updateValues</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ContentValues</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// Defines selection criteria for the rows you want to update</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">String</span><span class="w"> </span><span class="n">selectionClause</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UserDictionary</span><span class="p">.</span><span class="na">Words</span><span class="p">.</span><span class="na">LOCALE</span><span class="w"> </span><span class="o">+</span><span class="w">  </span><span class="s">&#34; LIKE ?&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">selectionArgs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&#34;en_%&#34;</span><span class="p">};</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// Defines a variable to contain the number of updated rows</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kt">int</span><span class="w"> </span><span class="n">rowsUpdated</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">0</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Sets the updated value and updates the selected words.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">updateValues</span><span class="p">.</span><span class="na">putNull</span><span class="p">(</span><span class="n">UserDictionary</span><span class="p">.</span><span class="na">Words</span><span class="p">.</span><span class="na">LOCALE</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">rowsUpdated</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getContentResolver</span><span class="p">().</span><span class="na">update</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">UserDictionary</span><span class="p">.</span><span class="na">Words</span><span class="p">.</span><span class="na">CONTENT_URI</span><span class="p">,</span><span class="w">   </span><span class="c1">// the user dictionary content URI</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">updateValues</span><span class="p">,</span><span class="w">                      </span><span class="c1">// the columns to update</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">selectionClause</span><span class="p">,</span><span class="w">                   </span><span class="c1">// the column to select on</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">selectionArgs</span><span class="w">                      </span><span class="c1">// the value to compare to</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>您还应在调用 <code>ContentResolver.update()</code> 时检查用户输入。如需了解有关此内容的更多信息，请阅读<a class="link" href="https://developer.android.com/guide/topics/providers/content-provider-basics#Injection"  target="_blank" rel="noopener"
+    >防止恶意输入</a>部分。</p>
+<h3 id="删除数据">删除数据</h3>
+<p>删除行与检索行数据类似：为要删除的行指定选择条件，而客户端方法会返回已删除的行数。以下代码段会删除 appid 与“user”匹配的行。该方法会返回已删除行的数量。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// Defines selection criteria for the rows you want to delete</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">String</span><span class="w"> </span><span class="n">selectionClause</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UserDictionary</span><span class="p">.</span><span class="na">Words</span><span class="p">.</span><span class="na">APP_ID</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34; LIKE ?&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">selectionArgs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&#34;user&#34;</span><span class="p">};</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// Defines a variable to contain the number of rows deleted</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kt">int</span><span class="w"> </span><span class="n">rowsDeleted</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">0</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// Deletes the words that match the selection criteria</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">rowsDeleted</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getContentResolver</span><span class="p">().</span><span class="na">delete</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">UserDictionary</span><span class="p">.</span><span class="na">Words</span><span class="p">.</span><span class="na">CONTENT_URI</span><span class="p">,</span><span class="w">   </span><span class="c1">// the user dictionary content URI</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">selectionClause</span><span class="p">,</span><span class="w">                   </span><span class="c1">// the column to select on</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">selectionArgs</span><span class="w">                      </span><span class="c1">// the value to compare to</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>您还应在调用 <code>ContentResolver.delete()</code> 时检查用户输入。如需了解有关此内容的更多信息，请阅读<a class="link" href="https://developer.android.com/guide/topics/providers/content-provider-basics#Injection"  target="_blank" rel="noopener"
+    >防止恶意输入</a>部分。</p>
+<h2 id="提供程序数据类型">提供程序数据类型</h2>
+<p>内容提供程序可以提供多种不同的数据类型。用户字典提供程序仅提供文本，但提供程序也能提供以下格式：</p>
+<ul>
+<li>整型</li>
+<li>长整型（长）</li>
+<li>浮点型</li>
+<li>长浮点型（双精度）</li>
+</ul>
+<p>提供程序经常使用的另一种数据类型是作为 64KB 字节的数组实现的二进制大型对象 (BLOB)。您可以查看 <code>Cursor</code> 类的“获取”方法，从而查看可用数据类型。</p>
+<p>提供程序文档通常都会列出其每个列的数据类型。用户字典提供程序协定类 <code>UserDictionary.Words</code> 参考文档中列有其数据类型（如需了解详细介绍，请参阅<a class="link" href="https://developer.android.com/guide/topics/providers/content-provider-basics#ContractClasses"  target="_blank" rel="noopener"
+    >协定类</a>部分）。您也可通过调用 <code>Cursor.getType()</code> 来确定数据类型。</p>
+<p>提供程序还会为其定义的每个内容 URI 维护 MIME（多用途互联网邮件扩展）数据类型信息。您可以使用 MIME 类型信息查明应用是否可处理提供程序提供的数据，或根据 MIME 类型选择处理类型。在使用包含复杂数据结构或文件的提供程序时，您通常需要 MIME 类型。例如，联系人提供程序中的 <code>ContactsContract.Data</code> 表会使用 MIME 类型来标记每行中存储的联系人数据类型。如要获取与内容 URI 对应的 MIME 类型，请调用 <code>ContentResolver.getType()</code>。</p>
+<p><a class="link" href="https://developer.android.com/guide/topics/providers/content-provider-basics#MIMETypeReference"  target="_blank" rel="noopener"
+    >MIME 类型引用</a>部分介绍了标准和自定义 MIME 类型的语法。</p>
+<h2 id="提供程序访问的替代形式">提供程序访问的替代形式</h2>
+<p>在应用开发过程中，提供程序访问的三种替代形式十分重要：</p>
+<ul>
+<li><a class="link" href="https://developer.android.com/guide/topics/providers/content-provider-basics#Batch"  target="_blank" rel="noopener"
+    >批量访问</a>：您可以使用 <code>ContentProviderOperation</code> 类中的方法创建一批访问调用，然后通过 <code>ContentResolver.applyBatch()</code> 应用这些调用。</li>
+<li>异步查询：您应在单独的线程中执行查询。执行此操作的其中一种方法是使用 <code>CursorLoader</code> 对象。<a class="link" href="https://developer.android.com/guide/components/loaders.html"  target="_blank" rel="noopener"
+    >加载器</a>指南中的示例展示了如何执行此操作。</li>
+<li><a class="link" href="https://developer.android.com/guide/topics/providers/content-provider-basics#Intents"  target="_blank" rel="noopener"
+    >通过 Intent 访问数据</a>：尽管您无法直接向提供程序发送 Intent，但您可以向提供程序的应用发送 Intent，后者通常是修改提供程序数据的最佳手段。</li>
+</ul>
+<p>下文将介绍通过 Intent 进行批量访问和修改。</p>
+<h3 id="批量访问">批量访问</h3>
+<p>批量访问提供程序适用于插入大量行，或通过同一方法调用在多个表中插入行，或者通常用于以事务（原子操作）的形式跨进程边界执行一组操作。</p>
+<p>如要在“批量模式”下访问提供程序，您可以创建 <code>ContentProviderOperation</code> 对象数组，然后使用 <code>ContentResolver.applyBatch()</code> 将其分派给内容提供程序。您需向此方法传递内容提供程序的<a class="link" href="https://developer.android.com/guide/topics/manifest/provider-element.html#auth"  target="_blank" rel="noopener"
+    ><em>授权</em></a>，而非特定的内容 URI。如此一来，数组中的每个 <code>ContentProviderOperation</code> 对象都能适用于其他表。调用 <code>ContentResolver.applyBatch()</code> 会返回结果数组。</p>
+<p><code>ContactsContract.RawContacts</code> 协定类的说明包含展示批量注入的代码段。<a class="link" href="https://developer.android.com/resources/samples/ContactManager/index.html"  target="_blank" rel="noopener"
+    >联系人管理器</a>示例应用包含在其 <code>ContactAdder.java</code> 源文件中进行批量访问的示例。</p>
+<h3 id="通过-intent-访问数据">通过 Intent 访问数据</h3>
+<p>Intent 可以提供对内容提供程序的间接访问。即使应用没有访问权限，您也可通过以下方式允许用户访问提供程序中的数据：从拥有权限的应用中获取回结果 Intent，或者通过激活拥有权限的应用并允许用户使用该应用。</p>
+<h4 id="通过临时权限获取访问权限">通过临时权限获取访问权限</h4>
+<p>即使没有适当的访问权限，您也可通过以下方式访问内容提供程序中的数据：将 Intent 发送至拥有权限的应用，然后收回包含“URI”权限的结果 Intent。以下是特定内容 URI 的权限，其将持续至接收该权限的 Activity 结束。拥有永久权限的应用会在结果 Intent 中设置标记，从而授予临时权限：</p>
+<ul>
+<li><strong>读取权限：</strong><code>FLAG_GRANT_READ_URI_PERMISSION</code></li>
+<li><strong>写入权限：</strong><code>FLAG_GRANT_WRITE_URI_PERMISSION</code></li>
+</ul>
+<blockquote>
+<p>**注意：**如果内容 URI 中包含提供程序的授权，则这些标记不提供对提供程序的常规读取或写入访问权限。访问权限仅适用于 URI 本身。</p>
+</blockquote>
+<p>提供程序通过使用 <code>元素的 `android:grantUriPermission` 属性和</code> 元素的 `` 子元素，在其清单文件中定义内容 URI 的 URI 权限。<a class="link" href="https://developer.android.com/guide/topics/permissions/overview#uri"  target="_blank" rel="noopener"
+    >权限概览</a>指南更加详细地说明了 URI 权限机制。</p>
+<p>例如，即使没有 <code>READ_CONTACTS</code> 权限，您也可在联系人提供程序中检索联系人的数据。您可能希望在向联系人发送电子生日祝福的应用中执行此操作。相较于通过请求 <code>READ_CONTACTS</code> 来访问用户的所有联系人及其信息，您可能更愿意让用户控制应用所使用的联系人。为此，您需完成以下过程：</p>
+<ol>
+<li>您的应用会使用 <code>startActivityForResult()</code> 方法发送包含 <code>ACTION_PICK</code> 操作和 <code>CONTENT_ITEM_TYPE</code>“联系人”MIME 类型的 Intent。</li>
+<li>由于此 Intent 与“联系人”应用“选择”Activity 的 Intent 过滤器相匹配，因此 Activity 会显示在前台。</li>
+<li>在选择 Activity 中，用户会选择要更新的联系人。发生此情况时，选择 Activity 会调用 <code>setResult(resultcode, intent)</code>，以设置用于返回至应用的 Intent。Intent 包含用户所选联系人的内容 URI，以及“extra”标记 <code>FLAG_GRANT_READ_URI_PERMISSION</code>。这些标记会为您的应用授予 URI 权限，以便读取内容 URI 所指向联系人的数据。然后，选择 Activity 会调用 <code>finish()</code>，将控制权交还给您的应用。</li>
+<li>您的 Activity 会返回至前台，并且系统会调用此 Activity 的 <code>onActivityResult()</code> 方法。此方法会收到“联系人”应用中选择 Activity 所创建的结果 Intent。</li>
+<li>通过来自结果 Intent 的内容 URI，您可以读取来自联系人提供程序的联系人数据，即使您未在清单文件中请求对该提供程序的永久读取访问权限。您可以获取联系人的生日信息或其电子邮件地址，然后发送电子祝福。</li>
+</ol>
+<h4 id="使用其他应用">使用其他应用</h4>
+<p>如要让用户修改您无权访问的数据，一种简单方法是激活拥有权限的应用，并让用户使用该应用。</p>
+<p>例如，日历应用会接受 <code>ACTION_INSERT</code> Intent 对象，以便您激活应用的插入界面。您可以在此 Intent（应用会使用该 Intent 来预填充界面）中传递“extra”数据。由于周期性事件的语法较为复杂，因此如要将事件插入日历提供程序，首选方法是激活拥有 <code>ACTION_INSERT</code> 的日历应用，然后让用户在该应用中插入事件。</p>
+<h4 id="使用帮助程序应用显示数据">使用帮助程序应用显示数据</h4>
+<p>如果您的应用<em>拥有</em>访问权限，您可能仍想使用 Intent 对象在其他应用中显示数据。例如，日历应用可接受显示特定日期或事件的 <code>ACTION_VIEW</code> Intent 对象。如此一来，您便可显示日历信息，而无需创建自己的界面。如要了解有关此功能的更多信息，请参见<a class="link" href="https://developer.android.com/guide/topics/providers/calendar-provider.html"  target="_blank" rel="noopener"
+    >日历提供程序</a>指南。</p>
+<p>如果您要向某应用发送 Intent，该应用无需与提供程序进行关联。例如，您可以从联系人提供程序中检索联系人，然后向图像查看器发送 <code>ACTION_VIEW</code> Intent（包含用于联系人图像的内容 URI）。</p>
+<h2 id="协定类">协定类</h2>
+<p>协定类可定义一些常量，帮助应用使用内容 URI、列名称、Intent 操作以及内容提供程序的其他功能。提供程序不会自动包含协定类，因此提供程序的开发者需定义这些类，并将其提供给其他开发者。Android 平台中的许多提供程序在 <code>android.provider</code> 软件包中均拥有对应的协定类。</p>
+<p>例如，用户字典提供程序拥有包含内容 URI 和列名称常量的协定类 <code>UserDictionary</code>。常量 <code>UserDictionary.Words.CONTENT_URI</code> 中定义了“words”表的内容 URI。<code>UserDictionary.Words</code> 类也包含列名称常量，本指南的示例代码段中便使用了该常量。例如，查询投影可定义为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">projection</span><span class="w"> </span><span class="o">=</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">UserDictionary</span><span class="p">.</span><span class="na">Words</span><span class="p">.</span><span class="na">_ID</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">UserDictionary</span><span class="p">.</span><span class="na">Words</span><span class="p">.</span><span class="na">WORD</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">UserDictionary</span><span class="p">.</span><span class="na">Words</span><span class="p">.</span><span class="na">LOCALE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">};</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>联系人提供程序的 <code>ContactsContract</code> 也是一个协定类。此类的参考文档包含示例代码段。该类的其中一个子类 <code>ContactsContract.Intents.Insert</code> 是包含 Intent 和 Intent 数据常量的协定类。</p>
+<h2 id="mime-类型引用">MIME 类型引用</h2>
+<p>内容提供程序可以返回标准 MIME 媒体类型和/或自定义 MIME 类型字符串。</p>
+<p>MIME 类型拥有以下格式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">type/subtype
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>例如，众所周知的 MIME 类型 <code>text/html</code> 拥有 <code>text</code> 类型和 <code>html</code> 子类型。如果提供程序为 URI 返回此类型，这意味着使用该 URI 的查询会返回包含 HTML 标记的文本。</p>
+<p>自定义 MIME 类型字符串（也称为“特定于供应商”的 MIME 类型）拥有更复杂的<em>类型</em>和<em>子类型</em>值。<em>类型</em>值始终为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">vnd</span><span class="p">.</span><span class="na">android</span><span class="p">.</span><span class="na">cursor</span><span class="p">.</span><span class="na">dir</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>（多行）或</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">vnd.android.cursor.item
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>（单行）。</p>
+<p><em>子类型</em>特定于提供程序。Android 内置提供程序通常拥有简单的子类型。例如，当“通讯录”应用为电话号码创建行时，它会在行中设置以下 MIME 类型：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">vnd.android.cursor.item/phone_v2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>请注意，子类型值只是 <code>phone_v2</code>。</p>
+<p>其他提供程序开发者可能会根据提供程序的授权和表名称创建自己的子类型模式。例如，假设提供程序包含列车时刻表。提供程序的授权是 <code>com.example.trains</code>，并包含表 Line1、Line2 和 Line3。在响应表 Line1 的内容 URI</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">content://com.example.trains/Line1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>时，提供程序会返回 MIME 类型</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">vnd.android.cursor.dir/vnd.example.line1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在响应表 Line2 中第 5 行的内容 URI</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">content://com.example.trains/Line2/5
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>时，提供程序会返回 MIME 类型</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">vnd.android.cursor.item/vnd.example.line2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>大多数内容提供程序都会为其使用的 MIME 类型定义协定类常量。例如，联系人提供程序协定类 <code>ContactsContract.RawContacts</code> 会为单个原始联系人行的 MIME 类型定义常量 <code>CONTENT_ITEM_TYPE</code>。</p>
+<p><a class="link" href="https://developer.android.com/guide/topics/providers/content-provider-basics#ContentURIs"  target="_blank" rel="noopener"
+    >内容 URI</a> 部分介绍了单个行的内容 URI。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script
+    src="https://giscus.app/client.js"
+    data-repo="malinkang/malinkang"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkzMTUwNzEyODU="
+    data-category="General"
+    data-category-id="DIC_kwDOEsebNc4CbSPg"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="en"
+    crossorigin="anonymous"
+    async
+></script>
+<script>
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
+        }
+    }
+
+    (function () {
+        addEventListener("message", (e) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('light');
+            } else {
+                setGiscusTheme('dark');
+            }
+        }
+    })();
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2013 - 
+        
+        2024 malinkang
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

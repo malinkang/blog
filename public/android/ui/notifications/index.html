@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='通知 通知是您可以在应用的常规 UI 外部向用户显示的消息。当您告知系统发出通知时，它将先以图标的形式显示在通知区域中。用户可以打开抽屉式通知栏查看通知的详细信息。 通知区域和抽屉式通知栏均是由系统控制的区域，用户可以随时查看。
+创建通知 SupportV4包提供了 NotificationCompat.Builder 类。Android 3.0（API 级别 11）中已添加类 Notification.Builder。
+您可以在 NotificationCompat.Builder 对象中为通知指定 UI 信息和操作。要创建通知，请调用 NotificationCompat.Builder.build()，它将返回包含您的具体规范的 Notification 对象。要发出通知，请通过调用 NotificationManager.notify() 将 Notification 对象传递给系统。
+必需的通知内容 Notification 对象必须包含以下内容：
+小图标，由 setSmallIcon() 设置 标题，由 setContentTitle() 设置 详细文本，由 setContentText() 设置 可选通知内容和设置 所有其他通知设置和内容都是可选的。如需了解有关它们的更多详情，请参阅 NotificationCompat.Builder 参考文档。
+通知操作 尽管通知操作都是可选的，但是您至少应向通知添加一个操作。 操作允许用户直接从通知转到应用中的 Activity，他们可在其中查看一个或多个事件或执行进一步的操作。
+一个通知可以提供多个操作。您应该始终定义一个当用户点击通知时会触发的操作；通常，此操作会在应用中打开 Activity。 您也可以向通知添加按钮来执行其他操作，例如，暂停闹铃或立即答复短信；此功能自 Android 4.1 起可用。如果使用其他操作按钮，则您还必须使这些按钮的功能在应用的 Activity 中可用；
+在 Notification 内部，操作本身由 PendingIntent 定义，后者包含在应用中启动 Activity 的 Intent。要将 PendingIntent 与手势相关联，请调用 NotificationCompat.Builder 的适当方法。例如，如果您要在用户点击抽屉式通知栏中的通知文本时启动 Activity，则可通过调用 setContentIntent() 来添加 PendingIntent。
+在用户点击通知时启动 Activity 是最常见的操作场景。此外，您还可以在用户清除通知时启动 Activity。在 Android 4.'>
+<title></title>
+
+<link rel='canonical' href='https://example.com/android/ui/notifications/'>
+
+<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
+<meta property='og:description' content='通知 通知是您可以在应用的常规 UI 外部向用户显示的消息。当您告知系统发出通知时，它将先以图标的形式显示在通知区域中。用户可以打开抽屉式通知栏查看通知的详细信息。 通知区域和抽屉式通知栏均是由系统控制的区域，用户可以随时查看。
+创建通知 SupportV4包提供了 NotificationCompat.Builder 类。Android 3.0（API 级别 11）中已添加类 Notification.Builder。
+您可以在 NotificationCompat.Builder 对象中为通知指定 UI 信息和操作。要创建通知，请调用 NotificationCompat.Builder.build()，它将返回包含您的具体规范的 Notification 对象。要发出通知，请通过调用 NotificationManager.notify() 将 Notification 对象传递给系统。
+必需的通知内容 Notification 对象必须包含以下内容：
+小图标，由 setSmallIcon() 设置 标题，由 setContentTitle() 设置 详细文本，由 setContentText() 设置 可选通知内容和设置 所有其他通知设置和内容都是可选的。如需了解有关它们的更多详情，请参阅 NotificationCompat.Builder 参考文档。
+通知操作 尽管通知操作都是可选的，但是您至少应向通知添加一个操作。 操作允许用户直接从通知转到应用中的 Activity，他们可在其中查看一个或多个事件或执行进一步的操作。
+一个通知可以提供多个操作。您应该始终定义一个当用户点击通知时会触发的操作；通常，此操作会在应用中打开 Activity。 您也可以向通知添加按钮来执行其他操作，例如，暂停闹铃或立即答复短信；此功能自 Android 4.1 起可用。如果使用其他操作按钮，则您还必须使这些按钮的功能在应用的 Activity 中可用；
+在 Notification 内部，操作本身由 PendingIntent 定义，后者包含在应用中启动 Activity 的 Intent。要将 PendingIntent 与手势相关联，请调用 NotificationCompat.Builder 的适当方法。例如，如果您要在用户点击抽屉式通知栏中的通知文本时启动 Activity，则可通过调用 setContentIntent() 来添加 PendingIntent。
+在用户点击通知时启动 Activity 是最常见的操作场景。此外，您还可以在用户清除通知时启动 Activity。在 Android 4.'>
+<meta property='og:url' content='https://example.com/android/ui/notifications/'>
+<meta property='og:site_name' content='Malinkang&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Android' />
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="通知 通知是您可以在应用的常规 UI 外部向用户显示的消息。当您告知系统发出通知时，它将先以图标的形式显示在通知区域中。用户可以打开抽屉式通知栏查看通知的详细信息。 通知区域和抽屉式通知栏均是由系统控制的区域，用户可以随时查看。
+创建通知 SupportV4包提供了 NotificationCompat.Builder 类。Android 3.0（API 级别 11）中已添加类 Notification.Builder。
+您可以在 NotificationCompat.Builder 对象中为通知指定 UI 信息和操作。要创建通知，请调用 NotificationCompat.Builder.build()，它将返回包含您的具体规范的 Notification 对象。要发出通知，请通过调用 NotificationManager.notify() 将 Notification 对象传递给系统。
+必需的通知内容 Notification 对象必须包含以下内容：
+小图标，由 setSmallIcon() 设置 标题，由 setContentTitle() 设置 详细文本，由 setContentText() 设置 可选通知内容和设置 所有其他通知设置和内容都是可选的。如需了解有关它们的更多详情，请参阅 NotificationCompat.Builder 参考文档。
+通知操作 尽管通知操作都是可选的，但是您至少应向通知添加一个操作。 操作允许用户直接从通知转到应用中的 Activity，他们可在其中查看一个或多个事件或执行进一步的操作。
+一个通知可以提供多个操作。您应该始终定义一个当用户点击通知时会触发的操作；通常，此操作会在应用中打开 Activity。 您也可以向通知添加按钮来执行其他操作，例如，暂停闹铃或立即答复短信；此功能自 Android 4.1 起可用。如果使用其他操作按钮，则您还必须使这些按钮的功能在应用的 Activity 中可用；
+在 Notification 内部，操作本身由 PendingIntent 定义，后者包含在应用中启动 Activity 的 Intent。要将 PendingIntent 与手势相关联，请调用 NotificationCompat.Builder 的适当方法。例如，如果您要在用户点击抽屉式通知栏中的通知文本时启动 Activity，则可通过调用 setContentIntent() 来添加 PendingIntent。
+在用户点击通知时启动 Activity 是最常见的操作场景。此外，您还可以在用户清除通知时启动 Activity。在 Android 4.">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
+}
+</script>
+<style>
+    :root {
+      --sys-font-family: "Noto Serif SC";
+      --zh-font-family: "Noto Serif SC";
+      --base-font-family: "Noto Serif SC";
+      --code-font-family: "Noto Serif SC";
+      --article-font-family: "Noto Serif SC";
+    }
+  </style>
+  
+  <script>
+    (function () {
+      const customFont = document.createElement("link");
+      customFont.href =
+        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+  
+      customFont.type = "text/css";
+      customFont.rel = "stylesheet";
+  
+      document.head.appendChild(customFont);
+    })();
+  </script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
+     crossorigin="anonymous"></script>
+  
+
+<script>
+    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/images/avatar_hu74e4307e0baa534a3da4ee0210445065_34446_300x0_resize_q75_box.jpeg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
+            <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/malinkang'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/malinkang'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#创建通知">创建通知</a>
+      <ol>
+        <li><a href="#必需的通知内容">必需的通知内容</a></li>
+      </ol>
+    </li>
+    <li><a href="#可选通知内容和设置">可选通知内容和设置</a>
+      <ol>
+        <li><a href="#通知操作">通知操作</a></li>
+        <li><a href="#通知优先级">通知优先级</a></li>
+        <li><a href="#创建简单通知">创建简单通知</a></li>
+        <li><a href="#通知的其他设置">通知的其他设置</a></li>
+      </ol>
+    </li>
+    <li><a href="#将扩展布局应用于通知">将扩展布局应用于通知</a>
+      <ol>
+        <li><a href="#处理兼容性">处理兼容性</a></li>
+      </ol>
+    </li>
+    <li><a href="#管理通知">管理通知</a>
+      <ol>
+        <li><a href="#更新通知">更新通知</a></li>
+        <li><a href="#删除通知">删除通知</a></li>
+      </ol>
+    </li>
+    <li><a href="#启动-activity-时保留导航">启动 Activity 时保留导航</a>
+      <ol>
+        <li><a href="#设置常规-activity-pendingintent">设置常规 Activity PendingIntent</a></li>
+        <li><a href="#设置特殊-activity-pendingintent">设置特殊 Activity PendingIntent</a></li>
+      </ol>
+    </li>
+    <li><a href="#在通知中显示进度">在通知中显示进度</a>
+      <ol>
+        <li><a href="#显示持续时间固定的进度指示器">显示持续时间固定的进度指示器</a></li>
+        <li><a href="#显示持续-activity-指示器">显示持续 Activity 指示器</a></li>
+      </ol>
+    </li>
+    <li><a href="#通知元数据">通知元数据</a></li>
+    <li><a href="#浮动通知">浮动通知</a></li>
+    <li><a href="#锁定屏幕通知">锁定屏幕通知</a></li>
+    <li><a href="#设置可见性">设置可见性</a></li>
+    <li><a href="#在锁定屏幕上控制媒体播放">在锁定屏幕上控制媒体播放</a></li>
+    <li><a href="#自定义通知布局">自定义通知布局</a>
+      <ol>
+        <li><a href="#对自定义通知文本使用样式资源">对自定义通知文本使用样式资源</a></li>
+      </ol>
+    </li>
+    <li><a href="#参考">参考</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/android/ui/notifications/"></a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    8 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="通知">通知</h1>
+<p>通知是您可以在应用的常规 UI 外部向用户显示的消息。当您告知系统发出通知时，它将先以图标的形式显示在通知区域中。用户可以打开抽屉式通知栏查看通知的详细信息。 通知区域和抽屉式通知栏均是由系统控制的区域，用户可以随时查看。</p>
+<p><img src="/../.gitbook/assets/notification%5c_area%20%282%29%20%282%29%20%282%29%20%281%29%20%282%29%20%282%29%20%282%29%20%282%29%20%281%29.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="图 1. 通知区域中的通知。"
+	
+	
+></p>
+<p><img src="/../.gitbook/assets/notification%5c_drawer%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="图 2. 抽屉式通知栏中的通知。"
+	
+	
+></p>
+<h2 id="创建通知">创建通知</h2>
+<p>SupportV4包提供了 <a class="link" href="https://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html"  target="_blank" rel="noopener"
+    >NotificationCompat.Builder</a> 类。Android 3.0（API 级别 11）中已添加类 <a class="link" href="https://developer.android.com/reference/android/app/Notification.Builder.html"  target="_blank" rel="noopener"
+    >Notification.Builder</a>。</p>
+<p>您可以在 NotificationCompat.Builder 对象中为通知指定 UI 信息和操作。要创建通知，请调用 NotificationCompat.Builder.build()，它将返回包含您的具体规范的 Notification 对象。要发出通知，请通过调用 NotificationManager.notify() 将 Notification 对象传递给系统。</p>
+<h3 id="必需的通知内容">必需的通知内容</h3>
+<p>Notification 对象必须包含以下内容：</p>
+<ul>
+<li>小图标，由 setSmallIcon() 设置</li>
+<li>标题，由 setContentTitle() 设置</li>
+<li>详细文本，由 setContentText() 设置</li>
+</ul>
+<h2 id="可选通知内容和设置">可选通知内容和设置</h2>
+<p>所有其他通知设置和内容都是可选的。如需了解有关它们的更多详情，请参阅 NotificationCompat.Builder 参考文档。</p>
+<h3 id="通知操作">通知操作</h3>
+<p>尽管通知操作都是可选的，但是您至少应向通知添加一个操作。 操作允许用户直接从通知转到应用中的 Activity，他们可在其中查看一个或多个事件或执行进一步的操作。</p>
+<p>一个通知可以提供多个操作。您应该始终定义一个当用户点击通知时会触发的操作；通常，此操作会在应用中打开 Activity。 您也可以向通知添加按钮来执行其他操作，例如，暂停闹铃或立即答复短信；此功能自 Android 4.1 起可用。如果使用其他操作按钮，则您还必须使这些按钮的功能在应用的 Activity 中可用；</p>
+<p>在 Notification 内部，操作本身由 PendingIntent 定义，后者包含在应用中启动 Activity 的 Intent。要将 PendingIntent 与手势相关联，请调用 NotificationCompat.Builder 的适当方法。例如，如果您要在用户点击抽屉式通知栏中的通知文本时启动 Activity，则可通过调用 setContentIntent() 来添加 PendingIntent。</p>
+<p>在用户点击通知时启动 Activity 是最常见的操作场景。此外，您还可以在用户清除通知时启动 Activity。在 Android 4.1 及更高版本中，您可以通过操作按钮启动 Activity。</p>
+<h3 id="通知优先级">通知优先级</h3>
+<p>您可以根据需要设置通知的优先级。优先级充当一个提示，提醒设备 UI 应该如何显示通知。 要设置通知的优先级，请调用 NotificationCompat.Builder.setPriority() 并传入一个 NotificationCompat 优先级常量。有五个优先级别，范围从 NotificationCompat.PRIORITY_MIN (-2) 到 NotificationCompat.PRIORITY_MAX (2)；如果未设置，则优先级默认为 PRIORITY_DEFAULT (0)。</p>
+<p>有关设置适当优先级别的信息，请参阅<a class="link" href="https://material.io/guidelines/patterns/notifications.html"  target="_blank" rel="noopener"
+    >通知设计指南</a>中的“正确设置和管理通知优先级”</p>
+<h3 id="创建简单通知">创建简单通知</h3>
+<p>以下代码段说明了一个指定某项 Activity 在用户点击通知时打开的简单通知。 请注意，该代码将创建 TaskStackBuilder 对象并使用它来为操作创建 PendingIntent。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">NotificationCompat</span><span class="p">.</span><span class="na">Builder</span><span class="w"> </span><span class="n">mBuilder</span><span class="w"> </span><span class="o">=</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">NotificationCompat</span><span class="p">.</span><span class="na">Builder</span><span class="p">(</span><span class="k">this</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="na">setSmallIcon</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">drawable</span><span class="p">.</span><span class="na">notification_icon</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="na">setContentTitle</span><span class="p">(</span><span class="s">&#34;My notification&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="na">setContentText</span><span class="p">(</span><span class="s">&#34;Hello World!&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// Creates an explicit intent for an Activity in your app</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Intent</span><span class="w"> </span><span class="n">resultIntent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Intent</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">ResultActivity</span><span class="p">.</span><span class="na">class</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// The stack builder object will contain an artificial back stack for the</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// started Activity.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// This ensures that navigating backward from the Activity leads out of</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// your application to the Home screen.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">TaskStackBuilder</span><span class="w"> </span><span class="n">stackBuilder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TaskStackBuilder</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="k">this</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// Adds the back stack for the Intent (but not the Intent itself)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">stackBuilder</span><span class="p">.</span><span class="na">addParentStack</span><span class="p">(</span><span class="n">ResultActivity</span><span class="p">.</span><span class="na">class</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// Adds the Intent that starts the Activity to the top of the stack</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">stackBuilder</span><span class="p">.</span><span class="na">addNextIntent</span><span class="p">(</span><span class="n">resultIntent</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">PendingIntent</span><span class="w"> </span><span class="n">resultPendingIntent</span><span class="w"> </span><span class="o">=</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">stackBuilder</span><span class="p">.</span><span class="na">getPendingIntent</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">0</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">PendingIntent</span><span class="p">.</span><span class="na">FLAG_UPDATE_CURRENT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">mBuilder</span><span class="p">.</span><span class="na">setContentIntent</span><span class="p">(</span><span class="n">resultPendingIntent</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">NotificationManager</span><span class="w"> </span><span class="n">mNotificationManager</span><span class="w"> </span><span class="o">=</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">(</span><span class="n">NotificationManager</span><span class="p">)</span><span class="w"> </span><span class="n">getSystemService</span><span class="p">(</span><span class="n">Context</span><span class="p">.</span><span class="na">NOTIFICATION_SERVICE</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// mId allows you to update the notification later on.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">mNotificationManager</span><span class="p">.</span><span class="na">notify</span><span class="p">(</span><span class="n">mId</span><span class="p">,</span><span class="w"> </span><span class="n">mBuilder</span><span class="p">.</span><span class="na">build</span><span class="p">());</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>就这么简单。您的用户现已收到通知。</p>
+<h3 id="通知的其他设置">通知的其他设置</h3>
+<p>可以通过调用Notification的属性为通知添加更多的设置。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Notification</span><span class="w"> </span><span class="n">notification</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mBuilder</span><span class="p">.</span><span class="na">build</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">//设置铃声</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">notification</span><span class="p">.</span><span class="na">sound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RingtoneManager</span><span class="p">.</span><span class="na">getDefaultUri</span><span class="p">(</span><span class="n">RingtoneManager</span><span class="p">.</span><span class="na">TYPE_ALARM</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">//设置LED闪烁</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">notification</span><span class="p">.</span><span class="na">ledARGB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="na">GREEN</span><span class="p">;</span><span class="c1">// 控制 LED 灯的颜色，一般有红绿蓝三种颜色可选</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">notification</span><span class="p">.</span><span class="na">ledOnMS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">1000</span><span class="p">;</span><span class="c1">// 指定 LED 灯亮起的时长，以毫秒为单位</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">notification</span><span class="p">.</span><span class="na">ledOffMS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">1000</span><span class="p">;</span><span class="c1">// 指定 LED 灯暗去的时长，也是以毫秒为单位</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">notification</span><span class="p">.</span><span class="na">flags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Notification</span><span class="p">.</span><span class="na">FLAG_SHOW_LIGHTS</span><span class="p">;</span><span class="c1">// 指定通知的一些行为，其中就包括显示</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">//设置震动</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kt">long</span><span class="o">[]</span><span class="w"> </span><span class="n">vibrates</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">0</span><span class="p">,</span><span class="w"> </span><span class="n">1000</span><span class="p">,</span><span class="w"> </span><span class="n">1000</span><span class="p">,</span><span class="w"> </span><span class="n">1000</span><span class="p">};</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">notification</span><span class="p">.</span><span class="na">vibrate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vibrates</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// mId allows you to update the notification later on.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">mNotificationManager</span><span class="p">.</span><span class="na">notify</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="w"> </span><span class="n">notification</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="将扩展布局应用于通知">将扩展布局应用于通知</h2>
+<p>要使通知出现在展开视图中，请先创建一个带有所需普通视图选项的 NotificationCompat.Builder 对象。接下来，调用以扩展布局对象作为其参数的 Builder.setStyle()。</p>
+<p>请记住，扩展通知在 Android 4.1 之前的平台上不可用。要了解如何处理针对 Android 4.1 及更早版本平台的通知，请阅读处理兼容性部分。</p>
+<p>例如，以下代码段演示了如何更改在前面的代码段中创建的通知，以便使用扩展布局：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">NotificationCompat</span><span class="p">.</span><span class="na">Builder</span><span class="w"> </span><span class="n">mBuilder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">NotificationCompat</span><span class="p">.</span><span class="na">Builder</span><span class="p">(</span><span class="k">this</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">setSmallIcon</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">drawable</span><span class="p">.</span><span class="na">notification_icon</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">setContentTitle</span><span class="p">(</span><span class="s">&#34;Event tracker&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">setContentText</span><span class="p">(</span><span class="s">&#34;Events received&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">NotificationCompat</span><span class="p">.</span><span class="na">InboxStyle</span><span class="w"> </span><span class="n">inboxStyle</span><span class="w"> </span><span class="o">=</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">NotificationCompat</span><span class="p">.</span><span class="na">InboxStyle</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">events</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">String</span><span class="o">[</span><span class="n">6</span><span class="o">]</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// Sets a title for the Inbox in expanded layout</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">inboxStyle</span><span class="p">.</span><span class="na">setBigContentTitle</span><span class="p">(</span><span class="s">&#34;Event tracker details:&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// Moves events into the expanded layout</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="n">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">events</span><span class="p">.</span><span class="na">length</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">inboxStyle</span><span class="p">.</span><span class="na">addLine</span><span class="p">(</span><span class="n">events</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// Moves the expanded layout object into the notification object.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">mBuilder</span><span class="p">.</span><span class="na">setStyle</span><span class="p">(</span><span class="n">inBoxStyle</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// Issue the notification here.</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="处理兼容性">处理兼容性</h3>
+<p>并非所有通知功能都可用于某特定版本，即便用于设置这些功能的方法位于支持库类 NotificationCompat.Builder 中也是如此。 例如，依赖于扩展通知的操作按钮仅会显示在 Android 4.1 及更高版本的系统中，这是因为扩展通知本身仅在 Android 4.1 及更高版本的系统中可用。</p>
+<p>为了确保最佳兼容性，请使用 NotificationCompat 及其子类（特别是 NotificationCompat.Builder）创建通知。此外，在实现通知时，请遵循以下流程：</p>
+<ol>
+<li>
+<p>为所有用户提供通知的全部功能，无论他们使用何种版本的 Android 系统。 为此，请验证是否可从应用的 Activity 中获得所有功能。要执行此操作，您可能需要添加新的 Activity。</p>
+<p>例如，若要使用 addAction() 提供停止和启动媒体播放的控件，请先在应用的 Activity 中实现此控件。</p>
+</li>
+<li>
+<p>确保所有用户均可通过点击通知启动 Activity 来获得该Activity中的功能。 为此，请为 Activity 创建 PendingIntent。调用 setContentIntent() 以将 PendingIntent 添加到通知。</p>
+</li>
+<li>
+<p>现在，将要使用的扩展通知功能添加到通知。请记住，您添加的任何功能还必须在用户点击通知时启动的 Activity 中可用。</p>
+</li>
+</ol>
+<h2 id="管理通知">管理通知</h2>
+<p>当您需要为同一类型的事件多次发出同一通知时，应避免创建全新的通知， 而是应考虑通过更改之前通知的某些值和/或为其添加某些值来更新通知。</p>
+<p>例如，Gmail 通过增加未读消息计数并将每封电子邮件的摘要添加到通知，通知用户收到了新的电子邮件。 这称为“堆叠”通知；通知设计指南对此进行了更详尽的描述。</p>
+<blockquote>
+<p>注：此 Gmail 功能需要“收件箱”扩展布局，该布局是自 Android 4.1 版本起可用的扩展通知功能的一部分。</p>
+</blockquote>
+<h3 id="更新通知">更新通知</h3>
+<p>要将通知设置为能够更新，请通过调用 NotificationManager.notify() 发出带有通知 ID 的通知。 要在发出之后更新此通知，请更新或创建 NotificationCompat.Builder 对象，从该对象构建 Notification 对象，并发出与之前所用 ID 相同的 Notification。如果之前的通知仍然可见，则系统会根据 Notification 对象的内容更新该通知。相反，如果之前的通知已被清除，系统则会创建一个新通知。</p>
+<p>以下代码段演示了经过更新以反映所发生事件数量的通知。 它将通知堆叠并显示摘要：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">mNotificationManager</span><span class="w"> </span><span class="o">=</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">(</span><span class="n">NotificationManager</span><span class="p">)</span><span class="w"> </span><span class="n">getSystemService</span><span class="p">(</span><span class="n">Context</span><span class="p">.</span><span class="na">NOTIFICATION_SERVICE</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// Sets an ID for the notification, so it can be updated</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kt">int</span><span class="w"> </span><span class="n">notifyID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">1</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">mNotifyBuilder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">NotificationCompat</span><span class="p">.</span><span class="na">Builder</span><span class="p">(</span><span class="k">this</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">setContentTitle</span><span class="p">(</span><span class="s">&#34;New Message&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">setContentText</span><span class="p">(</span><span class="s">&#34;You&#39;ve received new messages.&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">setSmallIcon</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">drawable</span><span class="p">.</span><span class="na">ic_notify_status</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">numMessages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">0</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// Start of a loop that processes data and then notifies the user</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">mNotifyBuilder</span><span class="p">.</span><span class="na">setContentText</span><span class="p">(</span><span class="n">currentText</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="na">setNumber</span><span class="p">(</span><span class="o">++</span><span class="n">numMessages</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Because the ID remains unchanged, the existing notification is</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// updated.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">mNotificationManager</span><span class="p">.</span><span class="na">notify</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">notifyID</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">mNotifyBuilder</span><span class="p">.</span><span class="na">build</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">...</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="删除通知">删除通知</h3>
+<p>除非发生以下情况之一，否则通知仍然可见：</p>
+<ul>
+<li>用户单独或通过使用“全部清除”清除了该通知（如果通知可以清除）。</li>
+<li>用户点击通知，且您在创建通知时调用了 setAutoCancel()。</li>
+<li>您针对特定的通知 ID 调用了 cancel()。此方法还会删除当前通知。</li>
+<li>您调用了 cancelAll() 方法，该方法将删除之前发出的所有通知。</li>
+</ul>
+<h2 id="启动-activity-时保留导航">启动 Activity 时保留导航</h2>
+<p>从通知中启动 Activity 时，您必须保留用户的预期导航体验。 点击“返回”应该使用户将应用的正常工作流回退到主屏幕，而点击“最新动态”则应将 Activity 显示为单独的任务。 要保留导航体验，您应该在全新任务中启动 Activity。如何设置 PendingIntent 以获得全新任务取决于正在启动的 Activity 的性质。一般有两种情况：</p>
+<ul>
+<li>
+<p>常规 Activity：</p>
+<p>您要启动的 Activity 是应用的正常工作流的一部分。在这种情况下，请设置 PendingIntent 以启动全新任务并为 PendingIntent提供返回栈，这将重现应用的正常“返回”行为。</p>
+<p>Gmail 应用中的通知演示了这一点。点击一封电子邮件消息的通知时，您将看到消息具体内容。 触摸返回将使您从 Gmail 回退到主屏幕，就好像您是从主屏幕（而不是通知）进入 Gmail 一样。</p>
+</li>
+</ul>
+<p>无论您触摸通知时处于哪个应用，都会发生这种情况。 例如，如果您在 Gmail 中撰写消息时点击了一封电子邮件的通知，则会立即转到该电子邮件。 触摸“返回”会依次转到收件箱和主屏幕，而不是转到您在撰写的邮件。</p>
+<ul>
+<li>
+<p>特殊 Activity：</p>
+<p>仅当从通知中启动时，用户才会看到此 Activity。 从某种意义上说，Activity 是通过提供很难显示在通知本身中的信息来扩展通知。对于这种情况，请将 PendingIntent 设置为在全新任务中启动。但是，由于启动的 Activity 不是应用 Activity 流程的一部分，因此无需创建返回栈。点击“返回”仍会将用户带到主屏幕。</p>
+</li>
+</ul>
+<h3 id="设置常规-activity-pendingintent">设置常规 Activity PendingIntent</h3>
+<p>要设置可启动直接进入 Activity 的 PendingIntent，请执行以下步骤：</p>
+<ol>
+<li>在清单文件中定义应用的 Activity 层次结构。
+<ul>
+<li>
+<p>添加对 Android 4.0.3 及更低版本的支持。为此，请通过添加 元素作为 的子项来指定正在启动的 Activity 的父项。</p>
+<p>对于此元素，请设置 android:name=&ldquo;android.support.PARENT_ACTIVITY&rdquo;。 设置 android:value=&quot;&quot;，其中， 是父 元素的 android:name 值。请参阅下面的 XML 示例。</p>
+</li>
+<li>
+<p>同样添加对 Android 4.1 及更高版本的支持。为此，请将 android:parentActivityName 属性添加到正在启动的 Activity 的 元素中。</p>
+<p>最终的 XML 应如下所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;activity
+</span></span><span class="line"><span class="cl">  android:name=&#34;.MainActivity&#34;
+</span></span><span class="line"><span class="cl">  android:label=&#34;@string/app_name&#34; &gt;
+</span></span><span class="line"><span class="cl">  &lt;intent-filter&gt;
+</span></span><span class="line"><span class="cl">      &lt;action android:name=&#34;android.intent.action.MAIN&#34; /&gt;
+</span></span><span class="line"><span class="cl">      &lt;category android:name=&#34;android.intent.category.LAUNCHER&#34; /&gt;
+</span></span><span class="line"><span class="cl">  &lt;/intent-filter&gt;
+</span></span><span class="line"><span class="cl">&lt;/activity&gt;
+</span></span><span class="line"><span class="cl">&lt;activity
+</span></span><span class="line"><span class="cl">  android:name=&#34;.ResultActivity&#34;
+</span></span><span class="line"><span class="cl">  android:parentActivityName=&#34;.MainActivity&#34;&gt;
+</span></span><span class="line"><span class="cl">  &lt;meta-data
+</span></span><span class="line"><span class="cl">      android:name=&#34;android.support.PARENT_ACTIVITY&#34;
+</span></span><span class="line"><span class="cl">      android:value=&#34;.MainActivity&#34;/&gt;
+</span></span><span class="line"><span class="cl">&lt;/activity&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>根据可启动 Activity 的 Intent 创建返回栈：
+<ul>
+<li>
+<p>创建 Intent 以启动 Activity。</p>
+</li>
+<li>
+<p>通过调用 TaskStackBuilder.create() 创建堆栈生成器。</p>
+</li>
+<li>
+<p>通过调用 addParentStack() 将返回栈添加到堆栈生成器。 对于在清单文件中所定义层次结构内的每个 Activity，返回栈均包含可启动 Activity 的 Intent 对象。此方法还会添加一些可在全新任务中启动堆栈的标志。</p>
+<blockquote>
+<p>注：尽管 addParentStack() 的参数是对已启动 Activity 的引用，但是方法调用不会添加可启动 Activity 的 Intent，而是留待下一步进行处理。</p>
+</blockquote>
+</li>
+<li>
+<p>通过调用 addNextIntent()，添加可从通知中启动 Activity 的 Intent。 将在第一步中创建的 Intent 作为 addNextIntent() 的参数传递。</p>
+</li>
+<li>
+<p>如需，请通过调用 TaskStackBuilder.editIntentAt() 向堆栈中的 Intent 对象添加参数。有时，需要确保目标 Activity 在用户使用“返回”导航回它时会显示有意义的数据。</p>
+</li>
+<li>
+<p>通过调用 getPendingIntent() 获得此返回栈的 PendingIntent。 然后，您可以使用此 PendingIntent 作为 setContentIntent() 的参数。</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>以下代码段演示了该流程：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="p">...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Intent</span><span class="w"> </span><span class="n">resultIntent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Intent</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">ResultActivity</span><span class="p">.</span><span class="na">class</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">TaskStackBuilder</span><span class="w"> </span><span class="n">stackBuilder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TaskStackBuilder</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="k">this</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// Adds the back stack</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">stackBuilder</span><span class="p">.</span><span class="na">addParentStack</span><span class="p">(</span><span class="n">ResultActivity</span><span class="p">.</span><span class="na">class</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// Adds the Intent to the top of the stack</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">stackBuilder</span><span class="p">.</span><span class="na">addNextIntent</span><span class="p">(</span><span class="n">resultIntent</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// Gets a PendingIntent containing the entire back stack</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">PendingIntent</span><span class="w"> </span><span class="n">resultPendingIntent</span><span class="w"> </span><span class="o">=</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">stackBuilder</span><span class="p">.</span><span class="na">getPendingIntent</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="w"> </span><span class="n">PendingIntent</span><span class="p">.</span><span class="na">FLAG_UPDATE_CURRENT</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">NotificationCompat</span><span class="p">.</span><span class="na">Builder</span><span class="w"> </span><span class="n">builder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">NotificationCompat</span><span class="p">.</span><span class="na">Builder</span><span class="p">(</span><span class="k">this</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">builder</span><span class="p">.</span><span class="na">setContentIntent</span><span class="p">(</span><span class="n">resultPendingIntent</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">NotificationManager</span><span class="w"> </span><span class="n">mNotificationManager</span><span class="w"> </span><span class="o">=</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">(</span><span class="n">NotificationManager</span><span class="p">)</span><span class="w"> </span><span class="n">getSystemService</span><span class="p">(</span><span class="n">Context</span><span class="p">.</span><span class="na">NOTIFICATION_SERVICE</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">mNotificationManager</span><span class="p">.</span><span class="na">notify</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">builder</span><span class="p">.</span><span class="na">build</span><span class="p">());</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="设置特殊-activity-pendingintent">设置特殊 Activity PendingIntent</h3>
+<p>下文介绍如何设置特殊 Activity PendingIntent。</p>
+<p>特殊 Activity 无需返回栈，因此您不必在清单文件中定义其 Activity 层次结构，也不必调用 addParentStack() 来构建返回栈。取而代之的是，您可使用清单文件设置 Activity 任务选项，并通过调用 getActivity() 创建 PendingIntent：</p>
+<ol>
+<li>在清单文件中，将以下属性添加到 Activity 的 元素
+<ul>
+<li>
+<p>android:name=&ldquo;activityclass&rdquo; Activity 的完全限定类名。</p>
+</li>
+<li>
+<p>android:taskAffinity=&quot;&quot; 与您在代码中设置的 FLAG_ACTIVITY_NEW_TASK 标志相结合，这可确保此 Activity 不会进入应用的默认任务。任何具有应用默认关联的现有任务均不受影响。</p>
+</li>
+<li>
+<p>android:excludeFromRecents=&ldquo;true&rdquo; 将新任务从“最新动态”中排除，这样用户就不会在无意中导航回它。 以下代码段显示了该元素：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;activity
+</span></span><span class="line"><span class="cl">  android:name=&#34;.ResultActivity&#34;
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">  android:launchMode=&#34;singleTask&#34;
+</span></span><span class="line"><span class="cl">  android:taskAffinity=&#34;&#34;
+</span></span><span class="line"><span class="cl">  android:excludeFromRecents=&#34;true&#34;&gt;
+</span></span><span class="line"><span class="cl">&lt;/activity&gt;
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>构建并发出通知：
+<ul>
+<li>
+<p>创建可启动 Activity的 Intent。</p>
+</li>
+<li>
+<p>通过使用 FLAG_ACTIVITY_NEW_TASK 和 FLAG_ACTIVITY_CLEAR_TASK 标志调用 setFlags()，将 Activity 设置为在新的空任务中启动。</p>
+</li>
+<li>
+<p>为 Intent 设置所需的任何其他选项。</p>
+</li>
+<li>
+<p>通过调用 getActivity() 从 Intent 中创建 PendingIntent。 然后，您可以使用此 PendingIntent 作为 setContentIntent() 的参数。 以下代码段演示了该流程：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// Instantiate a Builder object.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">NotificationCompat</span><span class="p">.</span><span class="na">Builder</span><span class="w"> </span><span class="n">builder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">NotificationCompat</span><span class="p">.</span><span class="na">Builder</span><span class="p">(</span><span class="k">this</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// Creates an Intent for the Activity</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Intent</span><span class="w"> </span><span class="n">notifyIntent</span><span class="w"> </span><span class="o">=</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="k">new</span><span class="w"> </span><span class="n">Intent</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">ResultActivity</span><span class="p">.</span><span class="na">class</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// Sets the Activity to start in a new, empty task</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">notifyIntent</span><span class="p">.</span><span class="na">setFlags</span><span class="p">(</span><span class="n">Intent</span><span class="p">.</span><span class="na">FLAG_ACTIVITY_NEW_TASK</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                      </span><span class="o">|</span><span class="w"> </span><span class="n">Intent</span><span class="p">.</span><span class="na">FLAG_ACTIVITY_CLEAR_TASK</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// Creates the PendingIntent</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">PendingIntent</span><span class="w"> </span><span class="n">notifyPendingIntent</span><span class="w"> </span><span class="o">=</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">PendingIntent</span><span class="p">.</span><span class="na">getActivity</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="k">this</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">0</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">notifyIntent</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">PendingIntent</span><span class="p">.</span><span class="na">FLAG_UPDATE_CURRENT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// Puts the PendingIntent into the notification builder</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">builder</span><span class="p">.</span><span class="na">setContentIntent</span><span class="p">(</span><span class="n">notifyPendingIntent</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// Notifications are issued by sending them to the</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// NotificationManager system service.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">NotificationManager</span><span class="w"> </span><span class="n">mNotificationManager</span><span class="w"> </span><span class="o">=</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">(</span><span class="n">NotificationManager</span><span class="p">)</span><span class="w"> </span><span class="n">getSystemService</span><span class="p">(</span><span class="n">Context</span><span class="p">.</span><span class="na">NOTIFICATION_SERVICE</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// Builds an anonymous Notification object from the builder, and</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// passes it to the NotificationManager</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">mNotificationManager</span><span class="p">.</span><span class="na">notify</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">builder</span><span class="p">.</span><span class="na">build</span><span class="p">());</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+</ol>
+<h2 id="在通知中显示进度">在通知中显示进度</h2>
+<p>通知可能包括动画形式的进度指示器，向用户显示正在进行的操作状态。 如果您可以估计操作所需的时间以及任意时刻的完成进度，则使用“限定”形式的指示器（进度栏）。 如果无法估计操作的时长，则使用“非限定”形式的指示器（Activity 指示器）。</p>
+<p>平台的 ProgressBar 类实现中显示有进度指示器。</p>
+<p>要在 Android 4.0 及更高版本的平台上使用进度指示器，需调用 setProgress()。对于早期版本，您必须创建包括 ProgressBar 视图的自定义通知布局。</p>
+<p>下文介绍如何使用 setProgress() 在通知中显示进度。</p>
+<h3 id="显示持续时间固定的进度指示器">显示持续时间固定的进度指示器</h3>
+<p>要显示限定形式的进度栏，请通过调用 setProgress(max, progress, false) 将进度栏添加到通知，然后发出通知。随着操作继续进行，递增 progress 并更新通知。操作结束时， progress 应该等于 max。调用 setProgress() 的常见方法是将 max 设置为 100，然后将 progress 作为操作的“完成百分比”值递增。</p>
+<p>您可以在操作完成后仍保留显示进度栏，也可以将其删除。无论哪种情况，都请记住更新通知文本以显示操作已完成。 要删除进度栏，请调用 setProgress(0, 0, false)。例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="p">...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">mNotifyManager</span><span class="w"> </span><span class="o">=</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">(</span><span class="n">NotificationManager</span><span class="p">)</span><span class="w"> </span><span class="n">getSystemService</span><span class="p">(</span><span class="n">Context</span><span class="p">.</span><span class="na">NOTIFICATION_SERVICE</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">mBuilder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">NotificationCompat</span><span class="p">.</span><span class="na">Builder</span><span class="p">(</span><span class="k">this</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">mBuilder</span><span class="p">.</span><span class="na">setContentTitle</span><span class="p">(</span><span class="s">&#34;Picture Download&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">setContentText</span><span class="p">(</span><span class="s">&#34;Download in progress&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">setSmallIcon</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">drawable</span><span class="p">.</span><span class="na">ic_notification</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// Start a lengthy operation in a background thread</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">Runnable</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">incr</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c1">// Do the &#34;lengthy&#34; operation 20 times</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">incr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">0</span><span class="p">;</span><span class="w"> </span><span class="n">incr</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">100</span><span class="p">;</span><span class="w"> </span><span class="n">incr</span><span class="o">+=</span><span class="n">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="c1">// Sets the progress indicator to a max value, the</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="c1">// current completion percentage, and &#34;determinate&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="c1">// state</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="n">mBuilder</span><span class="p">.</span><span class="na">setProgress</span><span class="p">(</span><span class="n">100</span><span class="p">,</span><span class="w"> </span><span class="n">incr</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="c1">// Displays the progress bar for the first time.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="n">mNotifyManager</span><span class="p">.</span><span class="na">notify</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="w"> </span><span class="n">mBuilder</span><span class="p">.</span><span class="na">build</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                        </span><span class="c1">// Sleeps the thread, simulating an operation</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                        </span><span class="c1">// that takes time</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                            </span><span class="c1">// Sleep for 5 seconds</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                            </span><span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="n">5</span><span class="o">*</span><span class="n">1000</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">InterruptedException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                            </span><span class="n">Log</span><span class="p">.</span><span class="na">d</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;sleep failure&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c1">// When the loop is finished, updates the notification</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">mBuilder</span><span class="p">.</span><span class="na">setContentText</span><span class="p">(</span><span class="s">&#34;Download complete&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c1">// Removes the progress bar</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="p">.</span><span class="na">setProgress</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="n">0</span><span class="p">,</span><span class="kc">false</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">mNotifyManager</span><span class="p">.</span><span class="na">notify</span><span class="p">(</span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">mBuilder</span><span class="p">.</span><span class="na">build</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// Starts the thread by calling the run() method in its Runnable</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">).</span><span class="na">start</span><span class="p">();</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="显示持续-activity-指示器">显示持续 Activity 指示器</h3>
+<p>要显示非限定形式的 Activity 指示器，请使用 setProgress(0, 0, true) 将其添加到通知（忽略前两个参数），然后发出通知。这样一来，指示器的样式就与进度栏相同，只是其动画还在继续。</p>
+<p>在操作开始之际发出通知。除非您修改通知，否则动画将一直运行。 操作完成后，调用 setProgress(0, 0, false)，然后更新通知以删除 Activity 指示器。 请务必这样做；否则，即使操作完成，动画仍将运行。同时，请记得更改通知文本，以表明操作已完成。</p>
+<p>要了解 Activity 指示器的工作方式，请参阅上述代码段。找到以下几行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// Sets the progress indicator to a max value, the current completion</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// percentage, and &#34;determinate&#34; state</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">mBuilder</span><span class="p">.</span><span class="na">setProgress</span><span class="p">(</span><span class="n">100</span><span class="p">,</span><span class="w"> </span><span class="n">incr</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// Issues the notification</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">mNotifyManager</span><span class="p">.</span><span class="na">notify</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="w"> </span><span class="n">mBuilder</span><span class="p">.</span><span class="na">build</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">将找到的这几行替换为以下几行</span><span class="err">：</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="c1">// Sets an activity indicator for an operation of indeterminate length</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">mBuilder</span><span class="p">.</span><span class="na">setProgress</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="w"> </span><span class="n">0</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// Issues the notification</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">mNotifyManager</span><span class="p">.</span><span class="na">notify</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="w"> </span><span class="n">mBuilder</span><span class="p">.</span><span class="na">build</span><span class="p">());</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="通知元数据">通知元数据</h2>
+<p>通知可根据您使用以下 NotificationCompat.Builder 方法分配的元数据进行排序：</p>
+<p>当设备处于“优先”模式时，setCategory() 会告知系统如何处理应用通知（例如，通知代表传入呼叫、即时消息还是闹铃）。 如果优先级字段设置为 PRIORITY_MAX 或 PRIORITY_HIGH 的通知还有声音或振动，则 setPriority() 会将其显示在小型浮动窗口中。 addPerson() 允许您向通知添加人员名单。您的应用可以使用此名单指示系统将指定人员发出的通知归成一组，或者将这些人员发出的通知视为更重要的通知。</p>
+<h2 id="浮动通知">浮动通知</h2>
+<p>对于 Android 5.0（API 级别 21），当设备处于活动状态时（即，设备未锁定且其屏幕已打开），通知可以显示在小型浮动窗口中（也称为“浮动通知”）。 这些通知看上去类似于精简版的通知​​，只是浮动通知还显示操作按钮。 用户可以在不离开当前应用的情况下处理或清除浮动通知。</p>
+<p><img src="/../.gitbook/assets/heads-up%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%281%29.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="图 3. 显示浮动通知的全屏 Activity"
+	
+	
+></p>
+<p>可能触发浮动通知的条件示例包括：</p>
+<ul>
+<li>用户的 Activity 处于全屏模式中（应用使用 fullScreenIntent），或者</li>
+<li>通知具有较高的优先级并使用铃声或振动</li>
+</ul>
+<h2 id="锁定屏幕通知">锁定屏幕通知</h2>
+<p>随着 Android 5.0（API 级别 21）的发布，通知现在还可显示在锁定屏幕上。您的应用可以使用此功能提供媒体播放控件以及其他常用操作。 用户可以通过“设置”选择是否将通知显示在锁定屏幕上，并且您可以指定您应用中的通知在锁定屏幕上是否可见。</p>
+<h2 id="设置可见性">设置可见性</h2>
+<p>您的应用可以控制在安全锁定屏幕上显示的通知中可见的详细级别。 调用 setVisibility() 并指定以下值之一：</p>
+<ul>
+<li>VISIBILITY_PUBLIC 显示通知的完整内容。</li>
+<li>VISIBILITY_SECRET 不会在锁定屏幕上显示此通知的任何部分。</li>
+<li>VISIBILITY_PRIVATE 显示通知图标和内容标题等基本信息，但是隐藏通知的完整内容。</li>
+</ul>
+<p>设置 VISIBILITY_PRIVATE 后，您还可以提供其中隐藏了某些详细信息的替换版本通知内容。例如，短信 应用可能会显示一条通知，指出“您有 3 条新短信”，但是隐藏了短信内容和发件人。要提供此替换版本的通知，请先使用 NotificationCompat.Builder 创建替换通知。创建专用通知对象时，请通过 setPublicVersion() 方法为其附加替换通知。</p>
+<h2 id="在锁定屏幕上控制媒体播放">在锁定屏幕上控制媒体播放</h2>
+<p>在 Android 5.0（API 级别 21）中，锁定屏幕不再基于 RemoteControlClient（现已弃用）显示媒体控件。取而代之的是，将 Notification.MediaStyle 模板与 addAction() 方法结合使用，后者可将操作转换为可点击的图标。</p>
+<blockquote>
+<p>注：该模板和 addAction() 方法未包含在支持库中，因此这些功能只能在 Android 5.0 及更高版本的系统上运行。</p>
+</blockquote>
+<p>要在 Android 5.0 系统的锁定屏幕上显示媒体播放控件，请将可见性设置为 VISIBILITY_PUBLIC，如上文所述。然后，添加操作并设置 Notification.MediaStyle 模板，如以下示例代码中所述：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Notification</span><span class="w"> </span><span class="n">notification</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Notification</span><span class="p">.</span><span class="na">Builder</span><span class="p">(</span><span class="n">context</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Show controls on lock screen even when user hides sensitive content.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">setVisibility</span><span class="p">(</span><span class="n">Notification</span><span class="p">.</span><span class="na">VISIBILITY_PUBLIC</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">setSmallIcon</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">drawable</span><span class="p">.</span><span class="na">ic_stat_player</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Add media control buttons that invoke intents in your media service</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">addAction</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">drawable</span><span class="p">.</span><span class="na">ic_prev</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;Previous&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">prevPendingIntent</span><span class="p">)</span><span class="w"> </span><span class="c1">// #0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">addAction</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">drawable</span><span class="p">.</span><span class="na">ic_pause</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;Pause&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">pausePendingIntent</span><span class="p">)</span><span class="w">  </span><span class="c1">// #1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">addAction</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">drawable</span><span class="p">.</span><span class="na">ic_next</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;Next&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">nextPendingIntent</span><span class="p">)</span><span class="w">     </span><span class="c1">// #2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Apply the media style template</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">setStyle</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Notification</span><span class="p">.</span><span class="na">MediaStyle</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">setShowActionsInCompactView</span><span class="p">(</span><span class="n">1</span><span class="w"> </span><span class="cm">/* #1: pause button */</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">setMediaSession</span><span class="p">(</span><span class="n">mMediaSession</span><span class="p">.</span><span class="na">getSessionToken</span><span class="p">())</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">setContentTitle</span><span class="p">(</span><span class="s">&#34;Wonderful music&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">setContentText</span><span class="p">(</span><span class="s">&#34;My Awesome Band&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">setLargeIcon</span><span class="p">(</span><span class="n">albumArtBitmap</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">build</span><span class="p">();</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>注：弃用 RemoteControlClient 会对控制媒体产生进一步的影响。如需了解有关用于管理媒体会话和控制播放的新 API 的详细信息，请参阅媒体播放控件。</p>
+</blockquote>
+<h2 id="自定义通知布局">自定义通知布局</h2>
+<p>您可以利用通知框架定义自定义通知布局，由该布局定义通知在 RemoteViews 对象中的外观。 自定义布局通知类似于常规通知，但是它们是基于 XML 布局文件中所定义的 RemoteViews。</p>
+<p>自定义通知布局的可用高度取决于通知视图。普通视图布局限制为 64 dp，扩展视图布局限制为 256 dp。</p>
+<p>要定义自定义通知布局，请首先实例化 RemoteViews 对象来扩充 XML 布局文件。然后，调用 setContent()，而不是调用 setContentTitle() 等方法。要在自定义通知中设置内容详细信息，请使用 RemoteViews 中的方法设置视图子项的值：</p>
+<p>在单独的文件中为通知创建 XML 布局。您可以根据需要使用任何文件名，但必须使用扩展名 .xml。 在您的应用中，使用 RemoteViews 方法定义通知的图标和文本。通过调用 setContent() 将此 RemoteViews 对象放入 NotificationCompat.Builder 中。避免在 RemoteViews 对象上设置背景 Drawable，因为文本颜色可能使文本变得难以阅读。 此外，RemoteViews 类中还有一些方法可供您轻松将 Chronometer 或 ProgressBar 添加到通知布局。如需了解有关为通知创建自定义布局的详细信息，请参阅 RemoteViews 参考文档。</p>
+<p>注意：使用自定义通知布局时，要特别注意确保自定义布局适用于不同的设备方向和分辨率。 尽管这条建议适用于所有“视图”布局，但对通知尤为重要，因为抽屉式通知栏中的空间非常有限。 不要让自定义布局过于复杂，同时确保在各种配置中对其进行测试。</p>
+<h3 id="对自定义通知文本使用样式资源">对自定义通知文本使用样式资源</h3>
+<p>始终对自定义通知的文本使用样式资源。通知的背景颜色可能因设备和系统版本的不同而异，使用样式资源有助于您充分考虑到这一点。 从 Android 2.3 开始，系统定义了标准通知布局文本的样式。若要在面向 Android 2.3 或更高版本系统的多个应用中使用相同样式，则应确保文本在显示背景上可见。</p>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a class="link" href="https://developer.android.com/guide/topics/ui/notifiers/notifications.html"  target="_blank" rel="noopener"
+    >通知</a></li>
+<li><a class="link" href="http://blog.csdn.net/w804518214/article/details/51231946"  target="_blank" rel="noopener"
+    >Android Notification常见样式总结</a></li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script
+    src="https://giscus.app/client.js"
+    data-repo="malinkang/malinkang"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkzMTUwNzEyODU="
+    data-category="General"
+    data-category-id="DIC_kwDOEsebNc4CbSPg"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="en"
+    crossorigin="anonymous"
+    async
+></script>
+<script>
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
+        }
+    }
+
+    (function () {
+        addEventListener("message", (e) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('light');
+            } else {
+                setGiscusTheme('dark');
+            }
+        }
+    })();
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2013 - 
+        
+        2024 malinkang
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

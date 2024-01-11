@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Jetpack 学习资料整理 Android 生命周期备忘录 — 第一部分：单一 Activities Android 生命周期备忘录 — 第二部分：多 Activity Android 生命周期备忘录 — 第三部分：Fragments 来 GitHub 参与 Jetpack 开源协作！ 聚焦 Android 11: Jetpack 划重点 | Android Jetpack 三大重要更新！ Android Jetpack 助推应用开发 | 中文字幕视频介绍 Android Sunflower 带您玩转 Jetpack 把 &amp;ldquo;格子衫&amp;rdquo; 改造得更时尚 | Kotlin &amp;amp; Jetpack 最佳实践技巧 Lifecycle LiveData Android Jetpack: LiveData 和 Lifecycle 介绍 | 中文教学视频 架构组件之 ViewModel | 中文教学视频 Android Jetpack: Room | 中文教学视频 Android Jetpack: 分页库 (Paging Library) | 中文教学视频 Android Jetpack WorkManager | Android 中文教学视频 Android Jetpack 导航组件 | Android 中文教学视频 Android Jetpack: LiveData 和 Lifecycle 介绍 | 中文教学视频 两步使用 LiveData 替换 Observable Field 理解协程、LiveData 和 Flow LiveData with Coroutines and Flow — Part I: Reactive UIs LiveData with Coroutines and Flow — Part II: Launching coroutines with Architecture Components LiveData with Coroutines and Flow — Part III: LiveData and coroutines patterns Jetpack Compose ViewModel Compose 学习计划 现代 Android 开发: 利用 Jetpack Compose 及更多精彩功能！ 深入详解 Jetpack Compose | 实现原理 深入详解 Jetpack Compose | 优化 UI 构建 Jetpack Compose Alpha 版现已发布！ 知识点 | ViewModel 四种集成方式 Android Jetpack: ViewModel | 中文教学视频 Paging Android Jetpack: 分页库 (Paging Library) | 中文教学视频 Room 实战 | 在 Room 中使用 Flow Room 中的数据库关系 Android Jetpack: Room | 中文教学视频 Android Room with a View - Kotlin WorkManager 自定义 WorkManager —— 基础概念 WorkManager: 周期性任务 使用 Dagger 自定义 WorkManager Android Jetpack WorkManager | Android 中文教学视频 Compose What&amp;rsquo;s New in Jetpack Compose (Android Dev Summit &amp;lsquo;19) 深入详解 Jetpack Compose | 实现原理 深入详解 Jetpack Compose | 优化 UI 构建 现代 Android 开发: 利用 Jetpack Compose 及更多精彩功能！ CameraX Android Jetpack CameraX 库 Beta 版正式发布！ Jetpack Security 使用 Jetpack Security 在 Android 上进行数据加密 使用 PreviewView 来展示相机预览 App Startup Android Jetpack组件之App Startup '>
+<title></title>
+
+<link rel='canonical' href='https://example.com/android/jetpacket/readme/'>
+
+<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
+<meta property='og:description' content='Jetpack 学习资料整理 Android 生命周期备忘录 — 第一部分：单一 Activities Android 生命周期备忘录 — 第二部分：多 Activity Android 生命周期备忘录 — 第三部分：Fragments 来 GitHub 参与 Jetpack 开源协作！ 聚焦 Android 11: Jetpack 划重点 | Android Jetpack 三大重要更新！ Android Jetpack 助推应用开发 | 中文字幕视频介绍 Android Sunflower 带您玩转 Jetpack 把 &amp;ldquo;格子衫&amp;rdquo; 改造得更时尚 | Kotlin &amp;amp; Jetpack 最佳实践技巧 Lifecycle LiveData Android Jetpack: LiveData 和 Lifecycle 介绍 | 中文教学视频 架构组件之 ViewModel | 中文教学视频 Android Jetpack: Room | 中文教学视频 Android Jetpack: 分页库 (Paging Library) | 中文教学视频 Android Jetpack WorkManager | Android 中文教学视频 Android Jetpack 导航组件 | Android 中文教学视频 Android Jetpack: LiveData 和 Lifecycle 介绍 | 中文教学视频 两步使用 LiveData 替换 Observable Field 理解协程、LiveData 和 Flow LiveData with Coroutines and Flow — Part I: Reactive UIs LiveData with Coroutines and Flow — Part II: Launching coroutines with Architecture Components LiveData with Coroutines and Flow — Part III: LiveData and coroutines patterns Jetpack Compose ViewModel Compose 学习计划 现代 Android 开发: 利用 Jetpack Compose 及更多精彩功能！ 深入详解 Jetpack Compose | 实现原理 深入详解 Jetpack Compose | 优化 UI 构建 Jetpack Compose Alpha 版现已发布！ 知识点 | ViewModel 四种集成方式 Android Jetpack: ViewModel | 中文教学视频 Paging Android Jetpack: 分页库 (Paging Library) | 中文教学视频 Room 实战 | 在 Room 中使用 Flow Room 中的数据库关系 Android Jetpack: Room | 中文教学视频 Android Room with a View - Kotlin WorkManager 自定义 WorkManager —— 基础概念 WorkManager: 周期性任务 使用 Dagger 自定义 WorkManager Android Jetpack WorkManager | Android 中文教学视频 Compose What&amp;rsquo;s New in Jetpack Compose (Android Dev Summit &amp;lsquo;19) 深入详解 Jetpack Compose | 实现原理 深入详解 Jetpack Compose | 优化 UI 构建 现代 Android 开发: 利用 Jetpack Compose 及更多精彩功能！ CameraX Android Jetpack CameraX 库 Beta 版正式发布！ Jetpack Security 使用 Jetpack Security 在 Android 上进行数据加密 使用 PreviewView 来展示相机预览 App Startup Android Jetpack组件之App Startup '>
+<meta property='og:url' content='https://example.com/android/jetpacket/readme/'>
+<meta property='og:site_name' content='Malinkang&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Android' />
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="Jetpack 学习资料整理 Android 生命周期备忘录 — 第一部分：单一 Activities Android 生命周期备忘录 — 第二部分：多 Activity Android 生命周期备忘录 — 第三部分：Fragments 来 GitHub 参与 Jetpack 开源协作！ 聚焦 Android 11: Jetpack 划重点 | Android Jetpack 三大重要更新！ Android Jetpack 助推应用开发 | 中文字幕视频介绍 Android Sunflower 带您玩转 Jetpack 把 &amp;ldquo;格子衫&amp;rdquo; 改造得更时尚 | Kotlin &amp;amp; Jetpack 最佳实践技巧 Lifecycle LiveData Android Jetpack: LiveData 和 Lifecycle 介绍 | 中文教学视频 架构组件之 ViewModel | 中文教学视频 Android Jetpack: Room | 中文教学视频 Android Jetpack: 分页库 (Paging Library) | 中文教学视频 Android Jetpack WorkManager | Android 中文教学视频 Android Jetpack 导航组件 | Android 中文教学视频 Android Jetpack: LiveData 和 Lifecycle 介绍 | 中文教学视频 两步使用 LiveData 替换 Observable Field 理解协程、LiveData 和 Flow LiveData with Coroutines and Flow — Part I: Reactive UIs LiveData with Coroutines and Flow — Part II: Launching coroutines with Architecture Components LiveData with Coroutines and Flow — Part III: LiveData and coroutines patterns Jetpack Compose ViewModel Compose 学习计划 现代 Android 开发: 利用 Jetpack Compose 及更多精彩功能！ 深入详解 Jetpack Compose | 实现原理 深入详解 Jetpack Compose | 优化 UI 构建 Jetpack Compose Alpha 版现已发布！ 知识点 | ViewModel 四种集成方式 Android Jetpack: ViewModel | 中文教学视频 Paging Android Jetpack: 分页库 (Paging Library) | 中文教学视频 Room 实战 | 在 Room 中使用 Flow Room 中的数据库关系 Android Jetpack: Room | 中文教学视频 Android Room with a View - Kotlin WorkManager 自定义 WorkManager —— 基础概念 WorkManager: 周期性任务 使用 Dagger 自定义 WorkManager Android Jetpack WorkManager | Android 中文教学视频 Compose What&amp;rsquo;s New in Jetpack Compose (Android Dev Summit &amp;lsquo;19) 深入详解 Jetpack Compose | 实现原理 深入详解 Jetpack Compose | 优化 UI 构建 现代 Android 开发: 利用 Jetpack Compose 及更多精彩功能！ CameraX Android Jetpack CameraX 库 Beta 版正式发布！ Jetpack Security 使用 Jetpack Security 在 Android 上进行数据加密 使用 PreviewView 来展示相机预览 App Startup Android Jetpack组件之App Startup ">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
+}
+</script>
+<style>
+    :root {
+      --sys-font-family: "Noto Serif SC";
+      --zh-font-family: "Noto Serif SC";
+      --base-font-family: "Noto Serif SC";
+      --code-font-family: "Noto Serif SC";
+      --article-font-family: "Noto Serif SC";
+    }
+  </style>
+  
+  <script>
+    (function () {
+      const customFont = document.createElement("link");
+      customFont.href =
+        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+  
+      customFont.type = "text/css";
+      customFont.rel = "stylesheet";
+  
+      document.head.appendChild(customFont);
+    })();
+  </script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
+     crossorigin="anonymous"></script>
+  
+
+<script>
+    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/images/avatar_hu74e4307e0baa534a3da4ee0210445065_34446_300x0_resize_q75_box.jpeg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
+            <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/malinkang'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/malinkang'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#学习资料整理">学习资料整理</a>
+      <ol>
+        <li><a href="#lifecycle">Lifecycle</a></li>
+        <li><a href="#livedata">LiveData</a></li>
+        <li><a href="#jetpack-compose-a-idactivity-namea">Jetpack Compose <a id="activity-name"></a></a></li>
+        <li><a href="#viewmodel">ViewModel</a></li>
+        <li><a href="#paging">Paging</a></li>
+        <li><a href="#room">Room</a></li>
+        <li><a href="#workmanager">WorkManager</a></li>
+        <li><a href="#compose">Compose</a></li>
+        <li><a href="#camerax">CameraX</a></li>
+        <li><a href="#jetpack-security">Jetpack Security</a></li>
+        <li><a href="#app-startup">App Startup</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/android/jetpacket/readme/"></a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    2 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="jetpack">Jetpack</h1>
+<h2 id="学习资料整理">学习资料整理</h2>
+<ul>
+<li><a class="link" href="https://github.com/xitu/gold-miner/blob/master/TODO/the-android-lifecycle-cheat-sheet-part-i-single-activities.md"  target="_blank" rel="noopener"
+    >Android 生命周期备忘录 — 第一部分：单一 Activities</a></li>
+<li><a class="link" href="https://github.com/xitu/gold-miner/blob/master/TODO1/The-Android-Lifecycle-cheat-sheet-part-II-Multiple-activities.md"  target="_blank" rel="noopener"
+    >Android 生命周期备忘录 — 第二部分：多 Activity</a></li>
+<li><a class="link" href="https://github.com/xitu/gold-miner/blob/master/TODO1/The-Android-Lifecycle-cheat-sheet-part-III-Fragments.md"  target="_blank" rel="noopener"
+    >Android 生命周期备忘录 — 第三部分：Fragments</a></li>
+<li><a class="link" href="https://mp.weixin.qq.com/s/tLKvytXqkHYVhtmrXT0D0w"  target="_blank" rel="noopener"
+    >来 GitHub 参与 Jetpack 开源协作！</a></li>
+<li><a class="link" href="https://mp.weixin.qq.com/s/XbxDxhv09O-7_2zK35yTog"  target="_blank" rel="noopener"
+    >聚焦 Android 11: Jetpack</a></li>
+<li><a class="link" href="https://mp.weixin.qq.com/s/iX31RclvKX7Bz8EYvMN-rA"  target="_blank" rel="noopener"
+    >划重点 | Android Jetpack 三大重要更新！</a></li>
+<li><a class="link" href="https://mp.weixin.qq.com/s/o_q4FgVJjYeP2OHEB8PjnQ"  target="_blank" rel="noopener"
+    >Android Jetpack 助推应用开发 | 中文字幕视频介绍</a></li>
+<li><a class="link" href="https://mp.weixin.qq.com/s/k-zQVB5EhsKXIR1H3hbGYQ"  target="_blank" rel="noopener"
+    >Android Sunflower 带您玩转 Jetpack</a></li>
+<li><a class="link" href="https://mp.weixin.qq.com/s/9FyPM-VjgMwZErmEtbj2uQ"  target="_blank" rel="noopener"
+    >把 &ldquo;格子衫&rdquo; 改造得更时尚 | Kotlin &amp; Jetpack 最佳实践技巧</a></li>
+</ul>
+<h3 id="lifecycle">Lifecycle</h3>
+<h3 id="livedata">LiveData</h3>
+<ul>
+<li><a class="link" href="https://mp.weixin.qq.com/s/lH1GxtkWnxhr0Fy6LkMP4Q"  target="_blank" rel="noopener"
+    >Android Jetpack: LiveData 和 Lifecycle 介绍 | 中文教学视频</a></li>
+<li><a class="link" href="https://mp.weixin.qq.com/s/RcupMal5d-N36rq42Xb0WQ"  target="_blank" rel="noopener"
+    >架构组件之 ViewModel | 中文教学视频</a></li>
+<li><a class="link" href="https://mp.weixin.qq.com/s/JH3XG39qhfuCKDX98To3zA"  target="_blank" rel="noopener"
+    >Android Jetpack: Room | 中文教学视频</a></li>
+<li><a class="link" href="https://mp.weixin.qq.com/s/s-o3p0fzwrWEXorTXKbUKA"  target="_blank" rel="noopener"
+    >Android Jetpack: 分页库 (Paging Library) | 中文教学视频</a></li>
+<li><a class="link" href="https://mp.weixin.qq.com/s/3YsXrGu2yolFdFuooTr5Fw"  target="_blank" rel="noopener"
+    >Android Jetpack WorkManager | Android 中文教学视频</a></li>
+<li><a class="link" href="https://mp.weixin.qq.com/s/wbJsufFv98h_bdGQKtLWyg"  target="_blank" rel="noopener"
+    >Android Jetpack 导航组件 | Android 中文教学视频</a></li>
+<li><a class="link" href="https://mp.weixin.qq.com/s/lH1GxtkWnxhr0Fy6LkMP4Q"  target="_blank" rel="noopener"
+    >Android Jetpack: LiveData 和 Lifecycle 介绍 | 中文教学视频</a></li>
+<li><a class="link" href="https://mp.weixin.qq.com/s/pFZjm4QaQpuw4LIf41iB7Q"  target="_blank" rel="noopener"
+    >两步使用 LiveData 替换 Observable Field</a></li>
+<li><a class="link" href="https://mp.weixin.qq.com/s/p5H51RC6QfyyoAcQ1aGRLg"  target="_blank" rel="noopener"
+    >理解协程、LiveData 和 Flow</a></li>
+<li><a class="link" href="https://medium.com/androiddevelopers/livedata-with-coroutines-and-flow-part-i-reactive-uis-b20f676d25d7"  target="_blank" rel="noopener"
+    >LiveData with Coroutines and Flow — Part I: Reactive UIs</a></li>
+<li><a class="link" href="https://medium.com/androiddevelopers/livedata-with-coroutines-and-flow-part-ii-launching-coroutines-with-architecture-components-337909f37ae7"  target="_blank" rel="noopener"
+    >LiveData with Coroutines and Flow — Part II: Launching coroutines with Architecture Components</a></li>
+<li><a class="link" href="https://medium.com/androiddevelopers/livedata-with-coroutines-and-flow-part-iii-livedata-and-coroutines-patterns-592485a4a85a"  target="_blank" rel="noopener"
+    >LiveData with Coroutines and Flow — Part III: LiveData and coroutines patterns</a></li>
+</ul>
+<h3 id="jetpack-compose-a-idactivity-namea">Jetpack Compose <a id="activity-name"></a></h3>
+<h3 id="viewmodel">ViewModel</h3>
+<ul>
+<li><a class="link" href="https://developer.android.google.cn/courses/pathways/compose"  target="_blank" rel="noopener"
+    >Compose 学习计划</a></li>
+<li><a class="link" href="https://mp.weixin.qq.com/s/tGKdXls3edCvEf2lhImNXg"  target="_blank" rel="noopener"
+    >现代 Android 开发: 利用 Jetpack Compose 及更多精彩功能！</a></li>
+<li><a class="link" href="https://mp.weixin.qq.com/s/cFLDF0CDmRropKLfzNKUiw"  target="_blank" rel="noopener"
+    >深入详解 Jetpack Compose | 实现原理</a></li>
+<li><a class="link" href="https://mp.weixin.qq.com/s/pRurO-7upTk4sRgJbJyUFw"  target="_blank" rel="noopener"
+    >深入详解 Jetpack Compose | 优化 UI 构建</a></li>
+<li><a class="link" href="https://mp.weixin.qq.com/s/U1Er4fA45KrqGDWZNtW82A"  target="_blank" rel="noopener"
+    >Jetpack Compose Alpha 版现已发布！</a></li>
+<li><a class="link" href="https://mp.weixin.qq.com/s/Hl8Yuf2bkDlVlgdB4M-wrw"  target="_blank" rel="noopener"
+    >知识点 | ViewModel 四种集成方式</a></li>
+<li><a class="link" href="https://mp.weixin.qq.com/s/uGWH1os8Kq3Pp6_x5hXI8Q"  target="_blank" rel="noopener"
+    >Android Jetpack: ViewModel | 中文教学视频</a></li>
+</ul>
+<h3 id="paging">Paging</h3>
+<ul>
+<li><a class="link" href="https://mp.weixin.qq.com/s/s-o3p0fzwrWEXorTXKbUKA"  target="_blank" rel="noopener"
+    >Android Jetpack: 分页库 (Paging Library) | 中文教学视频</a></li>
+</ul>
+<h3 id="room">Room</h3>
+<ul>
+<li><a class="link" href="https://mp.weixin.qq.com/s/fwvhfpjW3sWwUdsCjJzt0Q"  target="_blank" rel="noopener"
+    >实战 | 在 Room 中使用 Flow</a></li>
+<li><a class="link" href="https://mp.weixin.qq.com/s/5--TmnUAnWtI8Ug97WbohA"  target="_blank" rel="noopener"
+    >Room 中的数据库关系</a></li>
+<li><a class="link" href="https://mp.weixin.qq.com/s/JH3XG39qhfuCKDX98To3zA"  target="_blank" rel="noopener"
+    >Android Jetpack: Room | 中文教学视频</a></li>
+<li><a class="link" href="https://developer.android.com/codelabs/android-room-with-a-view-kotlin#0"  target="_blank" rel="noopener"
+    >Android Room with a View - Kotlin</a></li>
+</ul>
+<h3 id="workmanager">WorkManager</h3>
+<ul>
+<li><a class="link" href="https://mp.weixin.qq.com/s/blwtOS3VAIKj2fqQAV6qhQ"  target="_blank" rel="noopener"
+    >自定义 WorkManager —— 基础概念</a></li>
+<li><a class="link" href="https://mp.weixin.qq.com/s/wE2Cf9akWQVesC3cuQpucw"  target="_blank" rel="noopener"
+    >WorkManager: 周期性任务</a></li>
+<li><a class="link" href="https://mp.weixin.qq.com/s/bgMg5jCzkcgHjV-moi7NNw"  target="_blank" rel="noopener"
+    >使用 Dagger 自定义 WorkManager</a></li>
+<li><a class="link" href="https://mp.weixin.qq.com/s/3YsXrGu2yolFdFuooTr5Fw"  target="_blank" rel="noopener"
+    >Android Jetpack WorkManager | Android 中文教学视频</a></li>
+</ul>
+<h3 id="compose">Compose</h3>
+<ul>
+<li><a class="link" href="https://www.youtube.com/watch?v=dtm2h-_sNDQ&amp;list=PLWz5rJ2EKKc_xXXubDti2eRnIKU0p7wHd&amp;index=8&amp;t=0s"  target="_blank" rel="noopener"
+    >What&rsquo;s New in Jetpack Compose (Android Dev Summit &lsquo;19)</a></li>
+<li><a class="link" href="https://mp.weixin.qq.com/s/cFLDF0CDmRropKLfzNKUiw"  target="_blank" rel="noopener"
+    >深入详解 Jetpack Compose | 实现原理</a></li>
+<li><a class="link" href="https://mp.weixin.qq.com/s/pRurO-7upTk4sRgJbJyUFw"  target="_blank" rel="noopener"
+    >深入详解 Jetpack Compose | 优化 UI 构建</a></li>
+<li><a class="link" href="https://mp.weixin.qq.com/s/tGKdXls3edCvEf2lhImNXg"  target="_blank" rel="noopener"
+    >现代 Android 开发: 利用 Jetpack Compose 及更多精彩功能！</a></li>
+</ul>
+<h3 id="camerax">CameraX</h3>
+<ul>
+<li><a class="link" href="https://mp.weixin.qq.com/s/dkMZ88NqPCtXyqCsjBpsfA"  target="_blank" rel="noopener"
+    >Android Jetpack CameraX 库 Beta 版正式发布！</a></li>
+</ul>
+<h3 id="jetpack-security">Jetpack Security</h3>
+<ul>
+<li><a class="link" href="https://mp.weixin.qq.com/s/ZP9vHHWdWRUnoz1odu32mA"  target="_blank" rel="noopener"
+    >使用 Jetpack Security 在 Android 上进行数据加密</a></li>
+<li><a class="link" href="https://mp.weixin.qq.com/s/hbls80hCCftnFLkO8U5Kbw"  target="_blank" rel="noopener"
+    >使用 PreviewView 来展示相机预览</a></li>
+</ul>
+<h3 id="app-startup">App Startup</h3>
+<ul>
+<li><a class="link" href="https://mp.weixin.qq.com/s/gl_mHEEXi0q4k4wuQ5m_Ww"  target="_blank" rel="noopener"
+    >Android Jetpack组件之App Startup</a></li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script
+    src="https://giscus.app/client.js"
+    data-repo="malinkang/malinkang"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkzMTUwNzEyODU="
+    data-category="General"
+    data-category-id="DIC_kwDOEsebNc4CbSPg"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="en"
+    crossorigin="anonymous"
+    async
+></script>
+<script>
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
+        }
+    }
+
+    (function () {
+        addEventListener("message", (e) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('light');
+            } else {
+                setGiscusTheme('dark');
+            }
+        }
+    })();
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2013 - 
+        
+        2024 malinkang
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

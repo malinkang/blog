@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='介绍 ConstraintLayout允许您使用平面视图层次结构创建大而复杂的布局（无嵌套视图组）。它类似于RelativeLayout，因为所有视图都是根据兄弟视图和父布局之间的关系来布局的，但它比RelativeLayout更灵活，并且更易于与Android Studio的布局编辑器一起使用。
+ConstraintLayout的所有功能都可以直接从布局编辑器的可视化工具中获得，因为布局API和布局编辑器是专门为彼此构建的。因此，您可以使用ConstraintLayout完全通过拖放而不是编辑XML来构建布局。
+ConstraintLayout适用于与Android 2.3（API级别9）及更高版本兼容的API库。
+要在ConstraintLayout中定义视图的位置，您必须为视图添加至少一个水平和一个垂直约束。每个约束表示与另一个视图，父布局或不可见的guideline的连接或对齐。每个约束定义视图在垂直或水平轴上的位置;因此每个视图必须对每个轴至少有一个约束，但通常需要更多的约束。
+当您将视图拖放到布局编辑器中时，即使没有约束，它仍然保留在您离开的位置。但是，这只是使编辑更容易;如果视图在设备上运行布局时没有约束，则绘制在位置[0,0]（左上角）。
+在下图中视图C上没有垂直约束。当此布局绘制在设备上时，视图C与视图A居中对齐，但出现在A的顶部，因为它没有垂直的约束。
+虽然缺少的约束不会导致编译错误，但是布局编辑器则指出缺少的约束作为工具栏中的错误。要查看错误和其他警告，请单击显示警告和错误。为了帮助您避免缺少约束，布局编辑器可以使用自动连接和推断约束功能为您自动添加约束。
+添加ConstraintLayout到项目中 要在项目中使用ConstraintLayout，请按照下列步骤操作：
+确保您的模块级build.gradle文件中声明了maven.google.com存储库
+1 2 3 4 5 repositories { maven { url &amp;#39;https://maven.google.com&amp;#39; } } 在相同的build.gradle文件中将库添加为依赖关系：
+1 2 dependencies { compile &amp;#39;com.android.support.constraint:constraint-layout:1.0.2&amp;#39; } ```
+在工具栏或同步通知中，单击同步项目与Gradle文件。 现在，您可以使用ConstraintLayout构建您的布局。
+转换布局 要将现有布局转换为约束布局，请按照下列步骤操作：
+在Android Studio中打开您的布局，然后单击编辑器窗口底部的“设计”选项卡。 在“组件树”窗口中，右键单击布局，然后单击“将布局转换为ConstraintLayout”。 创建一个新的布局 要启动新的约束布局文件，请按照下列步骤操作：
+在项目窗口中，单击模块文件夹，然后选择文件&amp;gt;新建&amp;gt; XML&amp;gt;布局XML。 输入布局文件的名称，并为根标记输入“android.support.constraint.ConstraintLayout”。 单击完成。 添加约束 参考 Build a Responsive UI with ConstraintLayout ConstraintLayout完全解析 '>
+<title></title>
+
+<link rel='canonical' href='https://example.com/android/ui/layout/constraint-layout/'>
+
+<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
+<meta property='og:description' content='介绍 ConstraintLayout允许您使用平面视图层次结构创建大而复杂的布局（无嵌套视图组）。它类似于RelativeLayout，因为所有视图都是根据兄弟视图和父布局之间的关系来布局的，但它比RelativeLayout更灵活，并且更易于与Android Studio的布局编辑器一起使用。
+ConstraintLayout的所有功能都可以直接从布局编辑器的可视化工具中获得，因为布局API和布局编辑器是专门为彼此构建的。因此，您可以使用ConstraintLayout完全通过拖放而不是编辑XML来构建布局。
+ConstraintLayout适用于与Android 2.3（API级别9）及更高版本兼容的API库。
+要在ConstraintLayout中定义视图的位置，您必须为视图添加至少一个水平和一个垂直约束。每个约束表示与另一个视图，父布局或不可见的guideline的连接或对齐。每个约束定义视图在垂直或水平轴上的位置;因此每个视图必须对每个轴至少有一个约束，但通常需要更多的约束。
+当您将视图拖放到布局编辑器中时，即使没有约束，它仍然保留在您离开的位置。但是，这只是使编辑更容易;如果视图在设备上运行布局时没有约束，则绘制在位置[0,0]（左上角）。
+在下图中视图C上没有垂直约束。当此布局绘制在设备上时，视图C与视图A居中对齐，但出现在A的顶部，因为它没有垂直的约束。
+虽然缺少的约束不会导致编译错误，但是布局编辑器则指出缺少的约束作为工具栏中的错误。要查看错误和其他警告，请单击显示警告和错误。为了帮助您避免缺少约束，布局编辑器可以使用自动连接和推断约束功能为您自动添加约束。
+添加ConstraintLayout到项目中 要在项目中使用ConstraintLayout，请按照下列步骤操作：
+确保您的模块级build.gradle文件中声明了maven.google.com存储库
+1 2 3 4 5 repositories { maven { url &amp;#39;https://maven.google.com&amp;#39; } } 在相同的build.gradle文件中将库添加为依赖关系：
+1 2 dependencies { compile &amp;#39;com.android.support.constraint:constraint-layout:1.0.2&amp;#39; } ```
+在工具栏或同步通知中，单击同步项目与Gradle文件。 现在，您可以使用ConstraintLayout构建您的布局。
+转换布局 要将现有布局转换为约束布局，请按照下列步骤操作：
+在Android Studio中打开您的布局，然后单击编辑器窗口底部的“设计”选项卡。 在“组件树”窗口中，右键单击布局，然后单击“将布局转换为ConstraintLayout”。 创建一个新的布局 要启动新的约束布局文件，请按照下列步骤操作：
+在项目窗口中，单击模块文件夹，然后选择文件&amp;gt;新建&amp;gt; XML&amp;gt;布局XML。 输入布局文件的名称，并为根标记输入“android.support.constraint.ConstraintLayout”。 单击完成。 添加约束 参考 Build a Responsive UI with ConstraintLayout ConstraintLayout完全解析 '>
+<meta property='og:url' content='https://example.com/android/ui/layout/constraint-layout/'>
+<meta property='og:site_name' content='Malinkang&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Android' />
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="介绍 ConstraintLayout允许您使用平面视图层次结构创建大而复杂的布局（无嵌套视图组）。它类似于RelativeLayout，因为所有视图都是根据兄弟视图和父布局之间的关系来布局的，但它比RelativeLayout更灵活，并且更易于与Android Studio的布局编辑器一起使用。
+ConstraintLayout的所有功能都可以直接从布局编辑器的可视化工具中获得，因为布局API和布局编辑器是专门为彼此构建的。因此，您可以使用ConstraintLayout完全通过拖放而不是编辑XML来构建布局。
+ConstraintLayout适用于与Android 2.3（API级别9）及更高版本兼容的API库。
+要在ConstraintLayout中定义视图的位置，您必须为视图添加至少一个水平和一个垂直约束。每个约束表示与另一个视图，父布局或不可见的guideline的连接或对齐。每个约束定义视图在垂直或水平轴上的位置;因此每个视图必须对每个轴至少有一个约束，但通常需要更多的约束。
+当您将视图拖放到布局编辑器中时，即使没有约束，它仍然保留在您离开的位置。但是，这只是使编辑更容易;如果视图在设备上运行布局时没有约束，则绘制在位置[0,0]（左上角）。
+在下图中视图C上没有垂直约束。当此布局绘制在设备上时，视图C与视图A居中对齐，但出现在A的顶部，因为它没有垂直的约束。
+虽然缺少的约束不会导致编译错误，但是布局编辑器则指出缺少的约束作为工具栏中的错误。要查看错误和其他警告，请单击显示警告和错误。为了帮助您避免缺少约束，布局编辑器可以使用自动连接和推断约束功能为您自动添加约束。
+添加ConstraintLayout到项目中 要在项目中使用ConstraintLayout，请按照下列步骤操作：
+确保您的模块级build.gradle文件中声明了maven.google.com存储库
+1 2 3 4 5 repositories { maven { url &amp;#39;https://maven.google.com&amp;#39; } } 在相同的build.gradle文件中将库添加为依赖关系：
+1 2 dependencies { compile &amp;#39;com.android.support.constraint:constraint-layout:1.0.2&amp;#39; } ```
+在工具栏或同步通知中，单击同步项目与Gradle文件。 现在，您可以使用ConstraintLayout构建您的布局。
+转换布局 要将现有布局转换为约束布局，请按照下列步骤操作：
+在Android Studio中打开您的布局，然后单击编辑器窗口底部的“设计”选项卡。 在“组件树”窗口中，右键单击布局，然后单击“将布局转换为ConstraintLayout”。 创建一个新的布局 要启动新的约束布局文件，请按照下列步骤操作：
+在项目窗口中，单击模块文件夹，然后选择文件&amp;gt;新建&amp;gt; XML&amp;gt;布局XML。 输入布局文件的名称，并为根标记输入“android.support.constraint.ConstraintLayout”。 单击完成。 添加约束 参考 Build a Responsive UI with ConstraintLayout ConstraintLayout完全解析 ">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
+}
+</script>
+<style>
+    :root {
+      --sys-font-family: "Noto Serif SC";
+      --zh-font-family: "Noto Serif SC";
+      --base-font-family: "Noto Serif SC";
+      --code-font-family: "Noto Serif SC";
+      --article-font-family: "Noto Serif SC";
+    }
+  </style>
+  
+  <script>
+    (function () {
+      const customFont = document.createElement("link");
+      customFont.href =
+        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+  
+      customFont.type = "text/css";
+      customFont.rel = "stylesheet";
+  
+      document.head.appendChild(customFont);
+    })();
+  </script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
+     crossorigin="anonymous"></script>
+  
+
+<script>
+    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/images/avatar_hu74e4307e0baa534a3da4ee0210445065_34446_300x0_resize_q75_box.jpeg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
+            <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/malinkang'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/malinkang'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li>
+      <ol>
+        <li><a href="#介绍">介绍</a></li>
+        <li><a href="#添加constraintlayout到项目中">添加ConstraintLayout到项目中</a>
+          <ol>
+            <li><a href="#转换布局">转换布局</a></li>
+            <li><a href="#创建一个新的布局">创建一个新的布局</a></li>
+          </ol>
+        </li>
+        <li><a href="#添加约束">添加约束</a></li>
+        <li><a href="#参考">参考</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/android/ui/layout/constraint-layout/"></a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    1 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h3 id="介绍">介绍</h3>
+<p>ConstraintLayout允许您使用平面视图层次结构创建大而复杂的布局（无嵌套视图组）。它类似于RelativeLayout，因为所有视图都是根据兄弟视图和父布局之间的关系来布局的，但它比RelativeLayout更灵活，并且更易于与Android Studio的布局编辑器一起使用。</p>
+<p>ConstraintLayout的所有功能都可以直接从布局编辑器的可视化工具中获得，因为布局API和布局编辑器是专门为彼此构建的。因此，您可以使用ConstraintLayout完全通过拖放而不是编辑XML来构建布局。</p>
+<p>ConstraintLayout适用于与Android 2.3（API级别9）及更高版本兼容的API库。</p>
+<p>要在ConstraintLayout中定义视图的位置，您必须为视图添加至少一个水平和一个垂直约束。每个约束表示与另一个视图，父布局或不可见的<code>guideline</code>的连接或对齐。每个约束定义视图在垂直或水平轴上的位置;因此每个视图必须对每个轴至少有一个约束，但通常需要更多的约束。</p>
+<p>当您将视图拖放到布局编辑器中时，即使没有约束，它仍然保留在您离开的位置。但是，这只是使编辑更容易;如果视图在设备上运行布局时没有约束，则绘制在位置[0,0]（左上角）。</p>
+<p>在下图中视图C上没有垂直约束。当此布局绘制在设备上时，视图C与视图A居中对齐，但出现在A的顶部，因为它没有垂直的约束。</p>
+<p><img src="/assets/images/constraintlayout-2.jpeg"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p><img src="/assets/images/constraintlayout-3.jpeg"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>虽然缺少的约束不会导致编译错误，但是布局编辑器则指出缺少的约束作为工具栏中的错误。要查看错误和其他警告，请单击显示警告和错误。为了帮助您避免缺少约束，布局编辑器可以使用自动连接和推断约束功能为您自动添加约束。</p>
+<h3 id="添加constraintlayout到项目中">添加ConstraintLayout到项目中</h3>
+<p>要在项目中使用ConstraintLayout，请按照下列步骤操作：</p>
+<ol>
+<li>
+<p>确保您的模块级build.gradle文件中声明了<code>maven.google.com</code>存储库</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gradle" data-lang="gradle"><span class="line"><span class="cl"><span class="n">repositories</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">maven</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">url</span> <span class="s1">&#39;https://maven.google.com&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>在相同的build.gradle文件中将库添加为依赖关系：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gradle" data-lang="gradle"><span class="line"><span class="cl"><span class="n">dependencies</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="n">compile</span> <span class="s1">&#39;com.android.support.constraint:constraint-layout:1.0.2&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<p>}
+```</p>
+<ol start="3">
+<li>在工具栏或同步通知中，单击同步项目与Gradle文件。</li>
+</ol>
+<p>现在，您可以使用ConstraintLayout构建您的布局。</p>
+<h4 id="转换布局">转换布局</h4>
+<p>要将现有布局转换为约束布局，请按照下列步骤操作：</p>
+<ol>
+<li>在Android Studio中打开您的布局，然后单击编辑器窗口底部的“设计”选项卡。</li>
+<li>在“组件树”窗口中，右键单击布局，然后单击“将布局转换为ConstraintLayout”。</li>
+</ol>
+<h4 id="创建一个新的布局">创建一个新的布局</h4>
+<p>要启动新的约束布局文件，请按照下列步骤操作：</p>
+<ul>
+<li>在项目窗口中，单击模块文件夹，然后选择文件&gt;新建&gt; XML&gt;布局XML。</li>
+<li>输入布局文件的名称，并为根标记输入“android.support.constraint.ConstraintLayout”。
+单击完成。</li>
+</ul>
+<h3 id="添加约束">添加约束</h3>
+<h3 id="参考">参考</h3>
+<ul>
+<li><a class="link" href="https://developer.android.com/training/constraint-layout/index.html"  target="_blank" rel="noopener"
+    >Build a Responsive UI with ConstraintLayout</a></li>
+<li><a class="link" href="http://blog.csdn.net/guolin_blog/article/details/53122387"  target="_blank" rel="noopener"
+    >ConstraintLayout完全解析</a></li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script
+    src="https://giscus.app/client.js"
+    data-repo="malinkang/malinkang"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkzMTUwNzEyODU="
+    data-category="General"
+    data-category-id="DIC_kwDOEsebNc4CbSPg"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="en"
+    crossorigin="anonymous"
+    async
+></script>
+<script>
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
+        }
+    }
+
+    (function () {
+        addEventListener("message", (e) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('light');
+            } else {
+                setGiscusTheme('dark');
+            }
+        }
+    })();
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2013 - 
+        
+        2024 malinkang
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

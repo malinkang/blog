@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='ExoPlayer 1.介绍 Android提供了MediaPlayer可以使用少量的代码快速实现媒体播放功能。同时还提供了偏向底层的媒体api如MediaCodec、AudioTrack和MediaDrm，可以利用这些去构建自定义媒体播放方案。
+ExoPlayer是构建在Android底层媒体api之上的应用级别的开源项目。
+2.特点 ExoPlayer对比MediaPlayer具有以下优点： 1. 支持基于HTTP的动态自适应流 (DASH) 和SmoothStreaming，任何目前MediaPlayer 支持的视频格式，同时它还支持 HTTP 直播(HLS)，MP4，MP3，WebM，M4A，MPEG-TS 和 AAC。 2. 支持高级的 HLS 特性，例如正确处理 EXT-X-DISCONTINUITY 标签。 3. 能够无缝地合并，连接和循环媒体。 4. 具有自定义和扩展播放器以适应您的用例的能力。ExoPlayer专门设计了这一点，并允许许多组件被替换为自定义实现。 5. 便于随着 App 的升级而升级。因为 ExoPlayer 是一个包含在你的应用中的库，对于你使用哪个版本有完全的控制权，并且你可以简单的跟随应用的升级而升级； 6. 更少的适配性问题。 7. 支持Android 4.4（API等级19）以上的Widevine通用加密。
+缺点： 1. ExoPlayer的标准视频和音频组件依赖Android的MediaCodec,该接口发布于Android4.1，因此不能再Android4.1之前的版本使用ExoPlayer。
+3.库介绍 ExoPlayer库的核心是ExoPlayer接口。ExoPlayer提供传统的媒体播放功能例如媒体缓冲、播放，暂停和快进等。ExoPlayer实现不是直接实现媒体的加载和呈现，而是委托给其他组件来完成。常用的组件包括如下。
+一个MediaSource表示一个媒体资源，当调用ExoPlayer的prepare方法时，传入MediaSource。 Renderer渲染媒体的独立组件，当player创建时Renderer被注入。 TrackSelector选择由MediaSource提供的轨道，以供每个可用渲染器使用。当播放器创建时，TrackSelector将被注入。 LoadControl用于控制媒体的加载。在创建播放器时注入LoadControl。 这些组件提供了默认的实现以满足常见的用例。用户也可以自定义组件。
+4.基本使用 1.添加ExoPlayer的依赖 首先确保工程根目录下build.gradle文件包含jcenter repository。
+1 2 3 repositories { jcenter() } 添加一个gradle compile dependency到你的app下的build.gradle文件中。
+1 compile &amp;#39;com.google.android.exoplayer:exoplayer:r2.X.X&amp;#39; 你也可以只添加你需要的库。例如要开发一个只支持DASH内容播放的应用程序，则只需添加依赖Core，DASH和UI库模块。
+1 2 3 compile &amp;#39;com.google.android.exoplayer:exoplayer-core:r2.X.X&amp;#39; compile &amp;#39;com.'>
+<title></title>
+
+<link rel='canonical' href='https://example.com/android/yin-pin-he-shi-pin/exoplayer/'>
+
+<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
+<meta property='og:description' content='ExoPlayer 1.介绍 Android提供了MediaPlayer可以使用少量的代码快速实现媒体播放功能。同时还提供了偏向底层的媒体api如MediaCodec、AudioTrack和MediaDrm，可以利用这些去构建自定义媒体播放方案。
+ExoPlayer是构建在Android底层媒体api之上的应用级别的开源项目。
+2.特点 ExoPlayer对比MediaPlayer具有以下优点： 1. 支持基于HTTP的动态自适应流 (DASH) 和SmoothStreaming，任何目前MediaPlayer 支持的视频格式，同时它还支持 HTTP 直播(HLS)，MP4，MP3，WebM，M4A，MPEG-TS 和 AAC。 2. 支持高级的 HLS 特性，例如正确处理 EXT-X-DISCONTINUITY 标签。 3. 能够无缝地合并，连接和循环媒体。 4. 具有自定义和扩展播放器以适应您的用例的能力。ExoPlayer专门设计了这一点，并允许许多组件被替换为自定义实现。 5. 便于随着 App 的升级而升级。因为 ExoPlayer 是一个包含在你的应用中的库，对于你使用哪个版本有完全的控制权，并且你可以简单的跟随应用的升级而升级； 6. 更少的适配性问题。 7. 支持Android 4.4（API等级19）以上的Widevine通用加密。
+缺点： 1. ExoPlayer的标准视频和音频组件依赖Android的MediaCodec,该接口发布于Android4.1，因此不能再Android4.1之前的版本使用ExoPlayer。
+3.库介绍 ExoPlayer库的核心是ExoPlayer接口。ExoPlayer提供传统的媒体播放功能例如媒体缓冲、播放，暂停和快进等。ExoPlayer实现不是直接实现媒体的加载和呈现，而是委托给其他组件来完成。常用的组件包括如下。
+一个MediaSource表示一个媒体资源，当调用ExoPlayer的prepare方法时，传入MediaSource。 Renderer渲染媒体的独立组件，当player创建时Renderer被注入。 TrackSelector选择由MediaSource提供的轨道，以供每个可用渲染器使用。当播放器创建时，TrackSelector将被注入。 LoadControl用于控制媒体的加载。在创建播放器时注入LoadControl。 这些组件提供了默认的实现以满足常见的用例。用户也可以自定义组件。
+4.基本使用 1.添加ExoPlayer的依赖 首先确保工程根目录下build.gradle文件包含jcenter repository。
+1 2 3 repositories { jcenter() } 添加一个gradle compile dependency到你的app下的build.gradle文件中。
+1 compile &amp;#39;com.google.android.exoplayer:exoplayer:r2.X.X&amp;#39; 你也可以只添加你需要的库。例如要开发一个只支持DASH内容播放的应用程序，则只需添加依赖Core，DASH和UI库模块。
+1 2 3 compile &amp;#39;com.google.android.exoplayer:exoplayer-core:r2.X.X&amp;#39; compile &amp;#39;com.'>
+<meta property='og:url' content='https://example.com/android/yin-pin-he-shi-pin/exoplayer/'>
+<meta property='og:site_name' content='Malinkang&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Android' />
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="ExoPlayer 1.介绍 Android提供了MediaPlayer可以使用少量的代码快速实现媒体播放功能。同时还提供了偏向底层的媒体api如MediaCodec、AudioTrack和MediaDrm，可以利用这些去构建自定义媒体播放方案。
+ExoPlayer是构建在Android底层媒体api之上的应用级别的开源项目。
+2.特点 ExoPlayer对比MediaPlayer具有以下优点： 1. 支持基于HTTP的动态自适应流 (DASH) 和SmoothStreaming，任何目前MediaPlayer 支持的视频格式，同时它还支持 HTTP 直播(HLS)，MP4，MP3，WebM，M4A，MPEG-TS 和 AAC。 2. 支持高级的 HLS 特性，例如正确处理 EXT-X-DISCONTINUITY 标签。 3. 能够无缝地合并，连接和循环媒体。 4. 具有自定义和扩展播放器以适应您的用例的能力。ExoPlayer专门设计了这一点，并允许许多组件被替换为自定义实现。 5. 便于随着 App 的升级而升级。因为 ExoPlayer 是一个包含在你的应用中的库，对于你使用哪个版本有完全的控制权，并且你可以简单的跟随应用的升级而升级； 6. 更少的适配性问题。 7. 支持Android 4.4（API等级19）以上的Widevine通用加密。
+缺点： 1. ExoPlayer的标准视频和音频组件依赖Android的MediaCodec,该接口发布于Android4.1，因此不能再Android4.1之前的版本使用ExoPlayer。
+3.库介绍 ExoPlayer库的核心是ExoPlayer接口。ExoPlayer提供传统的媒体播放功能例如媒体缓冲、播放，暂停和快进等。ExoPlayer实现不是直接实现媒体的加载和呈现，而是委托给其他组件来完成。常用的组件包括如下。
+一个MediaSource表示一个媒体资源，当调用ExoPlayer的prepare方法时，传入MediaSource。 Renderer渲染媒体的独立组件，当player创建时Renderer被注入。 TrackSelector选择由MediaSource提供的轨道，以供每个可用渲染器使用。当播放器创建时，TrackSelector将被注入。 LoadControl用于控制媒体的加载。在创建播放器时注入LoadControl。 这些组件提供了默认的实现以满足常见的用例。用户也可以自定义组件。
+4.基本使用 1.添加ExoPlayer的依赖 首先确保工程根目录下build.gradle文件包含jcenter repository。
+1 2 3 repositories { jcenter() } 添加一个gradle compile dependency到你的app下的build.gradle文件中。
+1 compile &amp;#39;com.google.android.exoplayer:exoplayer:r2.X.X&amp;#39; 你也可以只添加你需要的库。例如要开发一个只支持DASH内容播放的应用程序，则只需添加依赖Core，DASH和UI库模块。
+1 2 3 compile &amp;#39;com.google.android.exoplayer:exoplayer-core:r2.X.X&amp;#39; compile &amp;#39;com.">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
+}
+</script>
+<style>
+    :root {
+      --sys-font-family: "Noto Serif SC";
+      --zh-font-family: "Noto Serif SC";
+      --base-font-family: "Noto Serif SC";
+      --code-font-family: "Noto Serif SC";
+      --article-font-family: "Noto Serif SC";
+    }
+  </style>
+  
+  <script>
+    (function () {
+      const customFont = document.createElement("link");
+      customFont.href =
+        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+  
+      customFont.type = "text/css";
+      customFont.rel = "stylesheet";
+  
+      document.head.appendChild(customFont);
+    })();
+  </script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
+     crossorigin="anonymous"></script>
+  
+
+<script>
+    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/images/avatar_hu74e4307e0baa534a3da4ee0210445065_34446_300x0_resize_q75_box.jpeg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
+            <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/malinkang'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/malinkang'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#1介绍">1.介绍</a></li>
+    <li><a href="#2特点">2.特点</a></li>
+    <li><a href="#3库介绍">3.库介绍</a></li>
+    <li><a href="#4基本使用">4.基本使用</a>
+      <ol>
+        <li><a href="#1添加exoplayer的依赖">1.添加ExoPlayer的依赖</a></li>
+        <li><a href="#2创建exoplayer实例">2.创建ExoPlayer实例</a></li>
+        <li><a href="#3将player关联到view上">3.将player关联到view上</a></li>
+        <li><a href="#4准备player">4.准备Player</a></li>
+      </ol>
+    </li>
+    <li><a href="#扩展阅读">扩展阅读</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/android/yin-pin-he-shi-pin/exoplayer/"></a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    1 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="exoplayer">ExoPlayer</h1>
+<h2 id="1介绍">1.介绍</h2>
+<p>Android提供了MediaPlayer可以使用少量的代码快速实现媒体播放功能。同时还提供了偏向底层的媒体api如MediaCodec、AudioTrack和MediaDrm，可以利用这些去构建自定义媒体播放方案。</p>
+<p>ExoPlayer是构建在Android底层媒体api之上的应用级别的开源项目。</p>
+<h2 id="2特点">2.特点</h2>
+<p>ExoPlayer对比MediaPlayer具有以下优点： 1. 支持基于HTTP的动态自适应流 (DASH) 和SmoothStreaming，任何目前MediaPlayer 支持的视频格式，同时它还支持 HTTP 直播(HLS)，MP4，MP3，WebM，M4A，MPEG-TS 和 AAC。 2. 支持高级的 HLS 特性，例如正确处理 EXT-X-DISCONTINUITY 标签。 3. 能够无缝地合并，连接和循环媒体。 4. 具有自定义和扩展播放器以适应您的用例的能力。ExoPlayer专门设计了这一点，并允许许多组件被替换为自定义实现。 5. 便于随着 App 的升级而升级。因为 ExoPlayer 是一个包含在你的应用中的库，对于你使用哪个版本有完全的控制权，并且你可以简单的跟随应用的升级而升级； 6. 更少的适配性问题。 7. 支持Android 4.4（API等级19）以上的Widevine通用加密。</p>
+<p>缺点： 1. ExoPlayer的标准视频和音频组件依赖Android的MediaCodec,该接口发布于Android4.1，因此不能再Android4.1之前的版本使用ExoPlayer。</p>
+<h2 id="3库介绍">3.库介绍</h2>
+<p><code>ExoPlayer</code>库的核心是ExoPlayer接口。ExoPlayer提供传统的媒体播放功能例如媒体缓冲、播放，暂停和快进等。ExoPlayer实现不是直接实现媒体的加载和呈现，而是委托给其他组件来完成。常用的组件包括如下。</p>
+<ul>
+<li>一个MediaSource表示一个媒体资源，当调用<code>ExoPlayer</code>的prepare方法时，传入MediaSource。</li>
+<li>Renderer渲染媒体的独立组件，当player创建时Renderer被注入。</li>
+<li>TrackSelector选择由MediaSource提供的轨道，以供每个可用渲染器使用。当播放器创建时，TrackSelector将被注入。</li>
+<li>LoadControl用于控制媒体的加载。在创建播放器时注入LoadControl。</li>
+</ul>
+<p>这些组件提供了默认的实现以满足常见的用例。用户也可以自定义组件。</p>
+<h2 id="4基本使用">4.基本使用</h2>
+<h3 id="1添加exoplayer的依赖">1.添加ExoPlayer的依赖</h3>
+<ol>
+<li>
+<p>首先确保工程根目录下build.gradle文件包含jcenter repository。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">repositories</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"> <span class="n">jcenter</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>添加一个gradle compile dependency到你的app下的build.gradle文件中。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">compile</span> <span class="s1">&#39;com.google.android.exoplayer:exoplayer:r2.X.X&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>你也可以只添加你需要的库。例如要开发一个只支持DASH内容播放的应用程序，则只需添加依赖Core，DASH和UI库模块。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">compile</span> <span class="s1">&#39;com.google.android.exoplayer:exoplayer-core:r2.X.X&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">compile</span> <span class="s1">&#39;com.google.android.exoplayer:exoplayer-dash:r2.X.X&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">compile</span> <span class="s1">&#39;com.google.android.exoplayer:exoplayer-ui:r2.X.X&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<p>可用模块包括如下：</p>
+<ul>
+<li>exoplayer-core：包含核心功能，所以必须被添加</li>
+<li>exoplayer-dash：支持DASH内容</li>
+<li>exoplayer-hls：支持HLS内容</li>
+<li>exoplayer-smoothstreaming：支持SmoothStreaming内容</li>
+<li>exoplayer-ui：UI组件和资源。</li>
+</ul>
+<p>可以查看<a class="link" href="https://bintray.com/google/exoplayer"  target="_blank" rel="noopener"
+    >Bintray</a>上的工程,了解更多的信息。</p>
+<h3 id="2创建exoplayer实例">2.创建ExoPlayer实例</h3>
+<p>ExoPlayerFactory提供了多个创建ExoPlayer实例的方法。大多数情况下ExoPlayerFactory.newSimpleInstance方法，该方法返回一个SimpleExoPlayer对象。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//1.创建一个默认的 TrackSelector</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">DefaultBandwidthMeter</span><span class="w"> </span><span class="n">bandwidthMeter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DefaultBandwidthMeter</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">TrackSelection</span><span class="p">.</span><span class="na">Factory</span><span class="w"> </span><span class="n">videoTrackSelectionFactory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">AdaptiveTrackSelection</span><span class="p">.</span><span class="na">Factory</span><span class="p">(</span><span class="n">bandwidthMeter</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">TrackSelector</span><span class="w"> </span><span class="n">trackSelector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DefaultTrackSelector</span><span class="p">(</span><span class="n">videoTrackSelectionFactory</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// 2.创建Player</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">final</span><span class="w"> </span><span class="n">SimpleExoPlayer</span><span class="w"> </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ExoPlayerFactory</span><span class="p">.</span><span class="na">newSimpleInstance</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">trackSelector</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3将player关联到view上">3.将player关联到view上</h3>
+<p>ExoPlayer提供了一个SimpleExoPlayerView包含了一个<code>PlaybackControlView</code>和用于渲染视频的<code>Surface</code>。</p>
+<p>在xml中添加<code>SimpleExoPlayerView</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">LinearLayout</span>
+</span></span><span class="line"><span class="cl">    <span class="n">xmlns</span><span class="p">:</span><span class="n">android</span><span class="o">=</span><span class="s2">&#34;http://schemas.android.com/apk/res/android&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">xmlns</span><span class="p">:</span><span class="n">tools</span><span class="o">=</span><span class="s2">&#34;http://schemas.android.com/tools&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">android</span><span class="p">:</span><span class="n">layout_width</span><span class="o">=</span><span class="s2">&#34;match_parent&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">android</span><span class="p">:</span><span class="n">layout_height</span><span class="o">=</span><span class="s2">&#34;match_parent&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">android</span><span class="p">:</span><span class="n">orientation</span><span class="o">=</span><span class="s2">&#34;vertical&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tools</span><span class="p">:</span><span class="n">context</span><span class="o">=</span><span class="s2">&#34;cn.malinkang.multimedia.ExoPlayerSampleActivity&#34;</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="n">com</span><span class="o">.</span><span class="n">google</span><span class="o">.</span><span class="n">android</span><span class="o">.</span><span class="n">exoplayer2</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">SimpleExoPlayerView</span>
+</span></span><span class="line"><span class="cl">        <span class="n">android</span><span class="p">:</span><span class="n">id</span><span class="o">=</span><span class="s2">&#34;@+id/simpleExoPlayerView&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">android</span><span class="p">:</span><span class="n">layout_width</span><span class="o">=</span><span class="s2">&#34;match_parent&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">android</span><span class="p">:</span><span class="n">layout_height</span><span class="o">=</span><span class="s2">&#34;wrap_content&#34;</span><span class="o">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">&lt;/</span><span class="n">LinearLayout</span><span class="o">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>通过setPlayer方法将player和view绑定：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">simpleExoPlayerView</span><span class="p">.</span><span class="na">setPlayer</span><span class="p">(</span><span class="n">player</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="4准备player">4.准备Player</h3>
+<p>在ExoPlayer中，每一块媒体均由MediaSource表示。要播放一块媒体，您必须先创建一个相应的MediaSource，然后将此对象传递给ExoPlayer.prepare。 ExoPlayer库为DASH（DashMediaSource），SmoothStreaming（SsMediaSource），HLS（HlsMediaSource）和常规媒体文件（ExtractorMediaSource）都提供了MediaSource的实现。以下代码显示如何使用适合播放MP4文件的MediaSource准备播放器。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">DataSource</span><span class="p">.</span><span class="na">Factory</span><span class="w"> </span><span class="n">dataSourceFactory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DefaultDataSourceFactory</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">Util</span><span class="p">.</span><span class="na">getUserAgent</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;Multimedia&#34;</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">ExtractorsFactory</span><span class="w"> </span><span class="n">extractorsFactory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DefaultExtractorsFactory</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">MediaSource</span><span class="w"> </span><span class="n">videoSource</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ExtractorMediaSource</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Uri</span><span class="p">.</span><span class="na">parse</span><span class="p">(</span><span class="s">&#34;file:///android_asset/aimei.mp4&#34;</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">dataSourceFactory</span><span class="p">,</span><span class="w"> </span><span class="n">extractorsFactory</span><span class="p">,</span><span class="w"> </span><span class="n">mainHandler</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">ExtractorMediaSource</span><span class="p">.</span><span class="na">EventListener</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onLoadError</span><span class="p">(</span><span class="n">IOException</span><span class="w"> </span><span class="n">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">Log</span><span class="p">.</span><span class="na">e</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;onLoadError: &#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">error</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">});</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">player</span><span class="p">.</span><span class="na">prepare</span><span class="p">(</span><span class="n">videoSource</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>按照上面的步骤，我们可以实现一个视频播放的功能。</p>
+<p><img src="/../.gitbook/assets/exoplayer-1%20%282%29%20%282%29%20%282%29%20%281%29%20%282%29%20%282%29%20%282%29%20%281%29.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="扩展阅读">扩展阅读</h2>
+<ul>
+<li><a class="link" href="https://google.github.io/ExoPlayer/"  target="_blank" rel="noopener"
+    >项目主页</a></li>
+<li><a class="link" href="https://medium.com/google-exoplayer"  target="_blank" rel="noopener"
+    >The ExoPlayer developer blog</a></li>
+<li><a class="link" href="http://blog.csdn.net/leixiaohua1020/article/details/18893769"  target="_blank" rel="noopener"
+    >视音频编解码技术零基础学习方法</a></li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script
+    src="https://giscus.app/client.js"
+    data-repo="malinkang/malinkang"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkzMTUwNzEyODU="
+    data-category="General"
+    data-category-id="DIC_kwDOEsebNc4CbSPg"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="en"
+    crossorigin="anonymous"
+    async
+></script>
+<script>
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
+        }
+    }
+
+    (function () {
+        addEventListener("message", (e) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('light');
+            } else {
+                setGiscusTheme('dark');
+            }
+        }
+    })();
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2013 - 
+        
+        2024 malinkang
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='LeakCanary如何工作 一旦安装了LeakCanary，它就会按照以下4个步骤自动检测和报告内存泄漏
+检测持有对象 转储堆。 分析堆。 对泄漏进行分类。 1. 检测持有对象 LeakCanary与Android生命周期想关联，自动检测Activity和Fragment何时被销毁，何时应该被垃圾回收。这些被销毁的对象被传递给ObjectWatcher，该ObjectWatcher持有对它们的弱引用。LeakCanary会自动检测以下对象的泄漏:
+销毁的Activity实例 销毁的Fragment实例 销毁的View实例 ViewModel实例 您可以观看任何不再需要的对象，例如一个分离的视图或一个被破坏的演示器。
+1 AppWatcher.objectWatcher.watch(myDetachedView, &amp;#34;View was detached&amp;#34;) 如果ObjectWatcher持有的弱引用在等待5秒并运行垃圾回收后没有被清除，被监视的对象就会被认为是被持有，并且有可能泄漏。LeakCanary将此记录到Logcat。
+1 2 3 4 5 6 7 D LeakCanary: Watching instance of com.example.leakcanary.MainActivity (Activity received Activity#onDestroy() callback) ... 5 seconds later ... D LeakCanary: Scheduling check for retained objects because found new object retained LeakCanary等待保留对象的计数达到阈值后才会转储堆，并显示最新计数的通知。
+1 2 D LeakCanary: Rescheduling check for retained objects in 2000ms because found only 4 retained objects (&amp;lt; 5 while app visible) 默认的阈值是当应用可见时保留5个对象，当应用不可见时保留1个对象。如果您看到保留对象通知，然后将应用程序置于后台（例如按下主页按钮），那么阈值从5变为1，LeakCanary会在5秒内转储堆。点击通知会迫使LeakCanary立即转储堆。'>
+<title></title>
+
+<link rel='canonical' href='https://example.com/android/performance/memory/fundamentals-how-leakcanary-works/'>
+
+<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
+<meta property='og:description' content='LeakCanary如何工作 一旦安装了LeakCanary，它就会按照以下4个步骤自动检测和报告内存泄漏
+检测持有对象 转储堆。 分析堆。 对泄漏进行分类。 1. 检测持有对象 LeakCanary与Android生命周期想关联，自动检测Activity和Fragment何时被销毁，何时应该被垃圾回收。这些被销毁的对象被传递给ObjectWatcher，该ObjectWatcher持有对它们的弱引用。LeakCanary会自动检测以下对象的泄漏:
+销毁的Activity实例 销毁的Fragment实例 销毁的View实例 ViewModel实例 您可以观看任何不再需要的对象，例如一个分离的视图或一个被破坏的演示器。
+1 AppWatcher.objectWatcher.watch(myDetachedView, &amp;#34;View was detached&amp;#34;) 如果ObjectWatcher持有的弱引用在等待5秒并运行垃圾回收后没有被清除，被监视的对象就会被认为是被持有，并且有可能泄漏。LeakCanary将此记录到Logcat。
+1 2 3 4 5 6 7 D LeakCanary: Watching instance of com.example.leakcanary.MainActivity (Activity received Activity#onDestroy() callback) ... 5 seconds later ... D LeakCanary: Scheduling check for retained objects because found new object retained LeakCanary等待保留对象的计数达到阈值后才会转储堆，并显示最新计数的通知。
+1 2 D LeakCanary: Rescheduling check for retained objects in 2000ms because found only 4 retained objects (&amp;lt; 5 while app visible) 默认的阈值是当应用可见时保留5个对象，当应用不可见时保留1个对象。如果您看到保留对象通知，然后将应用程序置于后台（例如按下主页按钮），那么阈值从5变为1，LeakCanary会在5秒内转储堆。点击通知会迫使LeakCanary立即转储堆。'>
+<meta property='og:url' content='https://example.com/android/performance/memory/fundamentals-how-leakcanary-works/'>
+<meta property='og:site_name' content='Malinkang&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Android' />
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="LeakCanary如何工作 一旦安装了LeakCanary，它就会按照以下4个步骤自动检测和报告内存泄漏
+检测持有对象 转储堆。 分析堆。 对泄漏进行分类。 1. 检测持有对象 LeakCanary与Android生命周期想关联，自动检测Activity和Fragment何时被销毁，何时应该被垃圾回收。这些被销毁的对象被传递给ObjectWatcher，该ObjectWatcher持有对它们的弱引用。LeakCanary会自动检测以下对象的泄漏:
+销毁的Activity实例 销毁的Fragment实例 销毁的View实例 ViewModel实例 您可以观看任何不再需要的对象，例如一个分离的视图或一个被破坏的演示器。
+1 AppWatcher.objectWatcher.watch(myDetachedView, &amp;#34;View was detached&amp;#34;) 如果ObjectWatcher持有的弱引用在等待5秒并运行垃圾回收后没有被清除，被监视的对象就会被认为是被持有，并且有可能泄漏。LeakCanary将此记录到Logcat。
+1 2 3 4 5 6 7 D LeakCanary: Watching instance of com.example.leakcanary.MainActivity (Activity received Activity#onDestroy() callback) ... 5 seconds later ... D LeakCanary: Scheduling check for retained objects because found new object retained LeakCanary等待保留对象的计数达到阈值后才会转储堆，并显示最新计数的通知。
+1 2 D LeakCanary: Rescheduling check for retained objects in 2000ms because found only 4 retained objects (&amp;lt; 5 while app visible) 默认的阈值是当应用可见时保留5个对象，当应用不可见时保留1个对象。如果您看到保留对象通知，然后将应用程序置于后台（例如按下主页按钮），那么阈值从5变为1，LeakCanary会在5秒内转储堆。点击通知会迫使LeakCanary立即转储堆。">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
+}
+</script>
+<style>
+    :root {
+      --sys-font-family: "Noto Serif SC";
+      --zh-font-family: "Noto Serif SC";
+      --base-font-family: "Noto Serif SC";
+      --code-font-family: "Noto Serif SC";
+      --article-font-family: "Noto Serif SC";
+    }
+  </style>
+  
+  <script>
+    (function () {
+      const customFont = document.createElement("link");
+      customFont.href =
+        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+  
+      customFont.type = "text/css";
+      customFont.rel = "stylesheet";
+  
+      document.head.appendChild(customFont);
+    })();
+  </script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
+     crossorigin="anonymous"></script>
+  
+
+<script>
+    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/images/avatar_hu74e4307e0baa534a3da4ee0210445065_34446_300x0_resize_q75_box.jpeg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
+            <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/malinkang'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/malinkang'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#1-检测持有对象">1. 检测持有对象</a></li>
+    <li><a href="#2转储堆">2.转储堆</a></li>
+    <li><a href="#3分析堆">3.分析堆</a></li>
+    <li><a href="#4泄露分类">4.泄露分类</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/android/performance/memory/fundamentals-how-leakcanary-works/"></a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    2 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="leakcanary如何工作">LeakCanary如何工作</h1>
+<p>一旦安装了<code>LeakCanary</code>，它就会按照以下4个步骤自动检测和报告内存泄漏</p>
+<ul>
+<li>检测持有对象</li>
+<li>转储堆。</li>
+<li>分析堆。</li>
+<li>对泄漏进行分类。</li>
+</ul>
+<h2 id="1-检测持有对象">1. 检测持有对象</h2>
+<p><code>LeakCanary</code>与<code>Android</code>生命周期想关联，自动检测<code>Activity</code>和<code>Fragment</code>何时被销毁，何时应该被垃圾回收。这些被销毁的对象被传递给<code>ObjectWatcher</code>，该<code>ObjectWatcher</code>持有对它们的弱引用。<code>LeakCanary</code>会自动检测以下对象的泄漏:</p>
+<ul>
+<li>销毁的<code>Activity</code>实例</li>
+<li>销毁的<code>Fragment</code>实例</li>
+<li>销毁的<code>View</code>实例</li>
+<li><code>ViewModel</code>实例</li>
+</ul>
+<p>您可以观看任何不再需要的对象，例如一个分离的视图或一个被破坏的演示器。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">AppWatcher</span><span class="p">.</span><span class="na">objectWatcher</span><span class="p">.</span><span class="na">watch</span><span class="p">(</span><span class="n">myDetachedView</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;View was detached&#34;</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果<code>ObjectWatcher</code>持有的弱引用在等待5秒并运行垃圾回收后没有被清除，被监视的对象就会被认为是被持有，并且有可能泄漏。<code>LeakCanary</code>将此记录到<code>Logcat</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">D LeakCanary: Watching instance of com.example.leakcanary.MainActivity
+</span></span><span class="line"><span class="cl">  (Activity received Activity#onDestroy() callback) 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">... 5 seconds later ...
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">D LeakCanary: Scheduling check for retained objects because found new object
+</span></span><span class="line"><span class="cl">  retained
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>LeakCanary等待保留对象的计数达到阈值后才会转储堆，并显示最新计数的通知。</p>
+<p><img src="https://square.github.io/leakcanary/images/retained-notification.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="&#x56FE;1.LeakCanary&#x53D1;&#x73B0;4&#x4E2A;&#x4FDD;&#x7559;&#x5BF9;&#x8C61;"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">D LeakCanary: Rescheduling check for retained objects in 2000ms because found
+</span></span><span class="line"><span class="cl">  only 4 retained objects (&lt; 5 while app visible)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>默认的阈值是当应用可见时保留5个对象，当应用不可见时保留1个对象。如果您看到保留对象通知，然后将应用程序置于后台（例如按下主页按钮），那么阈值从5变为1，LeakCanary会在5秒内转储堆。点击通知会迫使LeakCanary立即转储堆。</p>
+</blockquote>
+<h2 id="2转储堆">2.转储堆</h2>
+<p>当保留对象的数量达到阈值时，LeakCanary会将Java堆转储到一个存储在Android文件系统上的.hprof文件（堆转储）中（参见LeakCanary在哪里存储堆转储？转储堆会使应用程序冻结很短的时间，在此期间，LeakCanary会显示以下<code>Toast</code>。</p>
+<p><img src="https://square.github.io/leakcanary/images/dumping-toast.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="&#x56FE;2. LeakCanary&#x5728;&#x8F6C;&#x50A8;&#x5806;&#x7684;&#x540C;&#x65F6;&#xFF0C;&#x4E5F;&#x5C55;&#x793A;&#x4E86;&#x4E00;&#x4E2A;Toast&#x3002;"
+	
+	
+></p>
+<h2 id="3分析堆">3.分析堆</h2>
+<p>LeakCanary使用Shark解析.hprof文件，并定位该堆转储中保留的对象。</p>
+<p><img src="https://square.github.io/leakcanary/images/finding-retained-notification.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="&#x56FE;3.LeakCanary&#x5728;&#x5806;&#x8F6C;&#x50A8;&#x4E2D;&#x627E;&#x5230;&#x4FDD;&#x7559;&#x7684;&#x5BF9;&#x8C61;&#x3002;LeakCanary&#x5728;&#x5806;&#x8F6C;&#x50A8;&#x4E2D;&#x627E;&#x5230;&#x4FDD;&#x7559;&#x7684;&#x5BF9;&#x8C61;&#x3002;"
+	
+	
+></p>
+<p>对于每个保留的对象，LeakCanary会找到防止该保留对象被垃圾回收的引用路径：它的泄漏跟踪。你将在下一节学习分析泄漏跟踪。修复内存泄漏。</p>
+<p><img src="https://square.github.io/leakcanary/images/building-leak-traces-notification.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="&#x56FE;4. LeakCanary&#x8BA1;&#x7B97;&#x6BCF;&#x4E2A;&#x4FDD;&#x7559;&#x5BF9;&#x8C61;&#x7684;&#x6CC4;&#x6F0F;&#x8DDF;&#x8E2A;&#x3002;"
+	
+	
+></p>
+<p>当分析完成后，LeakCanary会显示一个带有摘要的通知，并在Logcat中打印结果。请注意下面的4个保留对象是如何被归为2个不同的泄漏的。LeakCanary 为每个泄漏跟踪创建一个签名，并将具有相同签名的泄漏分组在一起，即由相同错误引起的泄漏。</p>
+<p><img src="https://square.github.io/leakcanary/images/analysis-done.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="&#x56FE;5. 4&#x6761;&#x6CC4;&#x6F0F;&#x75D5;&#x8FF9;&#x53D8;&#x6210;&#x4E86;2&#x4E2A;&#x4E0D;&#x540C;&#x7684;&#x6CC4;&#x6F0F;&#x4FE1;&#x53F7;&#x3002;"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">====================================
+</span></span><span class="line"><span class="cl">HEAP ANALYSIS RESULT
+</span></span><span class="line"><span class="cl">====================================
+</span></span><span class="line"><span class="cl">2 APPLICATION LEAKS
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Displaying only 1 leak trace out of 2 with the same signature
+</span></span><span class="line"><span class="cl">Signature: ce9dee3a1feb859fd3b3a9ff51e3ddfd8efbc6
+</span></span><span class="line"><span class="cl">┬───
+</span></span><span class="line"><span class="cl">│ GC Root: Local variable in native code
+</span></span><span class="line"><span class="cl">│
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>点击通知会打开一个<code>Activity</code>，提供更多细节。稍后通过点击LeakCanary启动器图标再次回到它。</p>
+<p><img src="https://square.github.io/leakcanary/images/launcher.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="&#x56FE;6.LeakCanary&#x4E3A;&#x6BCF;&#x4E2A;&#x5B89;&#x88C5;&#x7684;&#x5E94;&#x7528;&#x6DFB;&#x52A0;&#x542F;&#x52A8;&#x5668;&#x56FE;&#x6807;"
+	
+	
+></p>
+<p>每一行对应于一组具有相同签名的泄漏。LeakCanary在应用程序首次触发具有该签名的泄漏时，将某行标记为 &ldquo;New&rdquo;。</p>
+<p><img src="https://square.github.io/leakcanary/images/heap-dump.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="&#x56FE;7. 4&#x4E2A;&#x6CC4;&#x6F0F;&#x70B9;&#x5206;&#x4E3A;2&#x884C;&#xFF0C;&#x6BCF;&#x4E00;&#x4E2A;&#x4E0D;&#x540C;&#x7684;&#x6CC4;&#x6F0F;&#x70B9;&#x7B7E;&#x540D;&#x90FD;&#x6709;&#x4E00;&#x884C;&#x3002;"
+	
+	
+></p>
+<p>点击一个泄漏物，打开一个有泄漏痕迹的屏幕。你可以通过下拉菜单在保留的对象和它们的泄漏痕迹之间进行切换。</p>
+<p><img src="https://square.github.io/leakcanary/images/leak-screen.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="&#x56FE;8. &#x5C4F;&#x5E55;&#x4E0A;&#x663E;&#x793A;&#x4E86;3&#x4E2A;&#x6309;&#x5176;&#x5171;&#x540C;&#x6CC4;&#x6F0F;&#x7279;&#x5F81;&#x5206;&#x7EC4;&#x7684;&#x6CC4;&#x6F0F;&#x3002;"
+	
+	
+></p>
+<p>泄漏签名是涉嫌导致泄漏的每个参考文献的连接的哈希值，即每个参考文献用红色下划线显示。</p>
+<p><img src="https://square.github.io/leakcanary/images/signature.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="&#x56FE;9. &#x4E00;&#x4E2A;&#x6709;3&#x4E2A;&#x53EF;&#x7591;&#x53C2;&#x7167;&#x7269;&#x7684;&#x6CC4;&#x6F0F;&#x8DDF;&#x8E2A;&#x3002;"
+	
+	
+></p>
+<p>当泄漏跟踪以文本形式共享时，这些同样可疑的引用会用~~~来下划线。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">│  
+</span></span><span class="line"><span class="cl">├─ com.example.leakcanary.LeakingSingleton class
+</span></span><span class="line"><span class="cl">│    Leaking: NO (a class is never leaking)
+</span></span><span class="line"><span class="cl">│    ↓ static LeakingSingleton.leakedViews
+</span></span><span class="line"><span class="cl">│                              ~~~~~~~~~~~
+</span></span><span class="line"><span class="cl">├─ java.util.ArrayList instance
+</span></span><span class="line"><span class="cl">│    Leaking: UNKNOWN
+</span></span><span class="line"><span class="cl">│    ↓ ArrayList.elementData
+</span></span><span class="line"><span class="cl">│                ~~~~~~~~~~~
+</span></span><span class="line"><span class="cl">├─ java.lang.Object[] array
+</span></span><span class="line"><span class="cl">│    Leaking: UNKNOWN
+</span></span><span class="line"><span class="cl">│    ↓ Object[].[0]
+</span></span><span class="line"><span class="cl">│               ~~~
+</span></span><span class="line"><span class="cl">├─ android.widget.TextView instance
+</span></span><span class="line"><span class="cl">│    Leaking: YES (View.mContext references a destroyed activity)
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在上面的例子中，泄漏的签名将被计算为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="k">val</span> <span class="py">leakSignature</span> <span class="p">=</span> <span class="n">sha1Hash</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;com.example.leakcanary.LeakingSingleton.leakedView&#34;</span> <span class="p">+</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;java.util.ArrayList.elementData&#34;</span> <span class="p">+</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;java.lang.Object[].[x]&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">println</span><span class="p">(</span><span class="n">leakSignature</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// dbfa277d7e5624792e8b60bc950cd164190a11aa
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="4泄露分类">4.泄露分类</h2>
+<p>LeakCanary 将它在您的应用程序中发现的泄漏分为两类。应用程序泄漏和库泄漏。库泄漏是由您无法控制的第三方代码中的已知错误引起的泄漏。这种泄漏影响了您的应用程序，但不幸的是，修复它可能不在您的控制范围内，所以LeakCanary将其分离出来。</p>
+<p>在Logcat打印的结果中，这两类是分开的。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">====================================
+</span></span><span class="line"><span class="cl">HEAP ANALYSIS RESULT
+</span></span><span class="line"><span class="cl">====================================
+</span></span><span class="line"><span class="cl">0 APPLICATION LEAKS
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">====================================
+</span></span><span class="line"><span class="cl">1 LIBRARY LEAK
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">┬───
+</span></span><span class="line"><span class="cl">│ GC Root: Local variable in native code
+</span></span><span class="line"><span class="cl">│
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>LeakCanary</code>在其泄漏名单中，将一行人标记为图书馆泄漏。 <img src="https://square.github.io/leakcanary/images/library-leak.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="&#x56FE;10.LeakCanary&#x53D1;&#x73B0;&#x56FE;&#x4E66;&#x9986;&#x6CC4;&#x6F0F;&#x3002;LeakCanary&#x53D1;&#x73B0;&#x4E86;&#x4E00;&#x4E2A;library&#x6CC4;&#x6F0F;&#x3002;"
+	
+	
+></p>
+<p>LeakCanary 提供了一个已知泄漏的数据库，它通过参考名称的模式匹配来识别。例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Leak pattern: instance field android.app.Activity$1#this$0
+</span></span><span class="line"><span class="cl">Description: Android Q added a new IRequestFinishCallback$Stub class [...]
+</span></span><span class="line"><span class="cl">┬───
+</span></span><span class="line"><span class="cl">│ GC Root: Global variable in native code
+</span></span><span class="line"><span class="cl">│
+</span></span><span class="line"><span class="cl">├─ android.app.Activity$1 instance
+</span></span><span class="line"><span class="cl">│    Leaking: UNKNOWN
+</span></span><span class="line"><span class="cl">│    Anonymous subclass of android.app.IRequestFinishCallback$Stub
+</span></span><span class="line"><span class="cl">│    ↓ Activity$1.this$0
+</span></span><span class="line"><span class="cl">│                 ~~~~~~
+</span></span><span class="line"><span class="cl">╰→ com.example.MainActivity instance
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script
+    src="https://giscus.app/client.js"
+    data-repo="malinkang/malinkang"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkzMTUwNzEyODU="
+    data-category="General"
+    data-category-id="DIC_kwDOEsebNc4CbSPg"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="en"
+    crossorigin="anonymous"
+    async
+></script>
+<script>
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
+        }
+    }
+
+    (function () {
+        addEventListener("message", (e) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('light');
+            } else {
+                setGiscusTheme('dark');
+            }
+        }
+    })();
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2013 - 
+        
+        2024 malinkang
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

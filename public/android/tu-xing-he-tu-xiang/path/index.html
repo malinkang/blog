@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Path使用 Path封装了由直线和曲线(二次，三次贝塞尔曲线)构成的几何路径。你能用Canvas中的drawPath来把这条路径画出来(同样支持Paint的不同绘制模式)，也可以用于剪裁画布和根据路径绘制文字。我们有时会用Path来描述一个图像的轮廓，所以也会称为轮廓线(轮廓线仅是Path的一种使用方法，两者并不等价)。
+canvas只能绘制出常见的形状，但是无法绘制出复杂的形状。
+moveTo、 setLastPoint、 lineTo 和 close moveTo：移动下一次操作的起点位置 setLastPoint：重置当前path中最后一个点位置，如果在绘制之前调用，效果和moveTo相同 lineTo：添加上一个点到当前点之间的直线到Path close：连接第一个点连接到最后一个点，形成一个闭合区域 1 2 3 4 Paint mPaint = new Paint(); // 创建画笔 mPaint.setColor(getResources().getColor(R.color.green));//设置画笔颜色 mPaint.setStyle(Paint.Style.STROKE);//设置画笔样式 mPaint.setStrokeWidth(10f); //设置画笔宽度为10px 1 2 3 4 5 Path path = new Path(); // 创建Path path.lineTo(400, 400); // 添加(0,0)到(400,400)之间的直线 path.moveTo(400, 200); // 移动到(400,200) path.lineTo(200, 0); // 添加(200,0)到(400,400)之间的直线 canvas.drawPath(path, mPaint); // 绘制Path 1 2 3 4 5 6 Path path = new Path(); // 创建Path path.lineTo(400, 400); // 添加(0,0)到(400,400)之间的直线 path.'>
+<title></title>
+
+<link rel='canonical' href='https://example.com/android/tu-xing-he-tu-xiang/path/'>
+
+<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
+<meta property='og:description' content='Path使用 Path封装了由直线和曲线(二次，三次贝塞尔曲线)构成的几何路径。你能用Canvas中的drawPath来把这条路径画出来(同样支持Paint的不同绘制模式)，也可以用于剪裁画布和根据路径绘制文字。我们有时会用Path来描述一个图像的轮廓，所以也会称为轮廓线(轮廓线仅是Path的一种使用方法，两者并不等价)。
+canvas只能绘制出常见的形状，但是无法绘制出复杂的形状。
+moveTo、 setLastPoint、 lineTo 和 close moveTo：移动下一次操作的起点位置 setLastPoint：重置当前path中最后一个点位置，如果在绘制之前调用，效果和moveTo相同 lineTo：添加上一个点到当前点之间的直线到Path close：连接第一个点连接到最后一个点，形成一个闭合区域 1 2 3 4 Paint mPaint = new Paint(); // 创建画笔 mPaint.setColor(getResources().getColor(R.color.green));//设置画笔颜色 mPaint.setStyle(Paint.Style.STROKE);//设置画笔样式 mPaint.setStrokeWidth(10f); //设置画笔宽度为10px 1 2 3 4 5 Path path = new Path(); // 创建Path path.lineTo(400, 400); // 添加(0,0)到(400,400)之间的直线 path.moveTo(400, 200); // 移动到(400,200) path.lineTo(200, 0); // 添加(200,0)到(400,400)之间的直线 canvas.drawPath(path, mPaint); // 绘制Path 1 2 3 4 5 6 Path path = new Path(); // 创建Path path.lineTo(400, 400); // 添加(0,0)到(400,400)之间的直线 path.'>
+<meta property='og:url' content='https://example.com/android/tu-xing-he-tu-xiang/path/'>
+<meta property='og:site_name' content='Malinkang&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Android' />
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="Path使用 Path封装了由直线和曲线(二次，三次贝塞尔曲线)构成的几何路径。你能用Canvas中的drawPath来把这条路径画出来(同样支持Paint的不同绘制模式)，也可以用于剪裁画布和根据路径绘制文字。我们有时会用Path来描述一个图像的轮廓，所以也会称为轮廓线(轮廓线仅是Path的一种使用方法，两者并不等价)。
+canvas只能绘制出常见的形状，但是无法绘制出复杂的形状。
+moveTo、 setLastPoint、 lineTo 和 close moveTo：移动下一次操作的起点位置 setLastPoint：重置当前path中最后一个点位置，如果在绘制之前调用，效果和moveTo相同 lineTo：添加上一个点到当前点之间的直线到Path close：连接第一个点连接到最后一个点，形成一个闭合区域 1 2 3 4 Paint mPaint = new Paint(); // 创建画笔 mPaint.setColor(getResources().getColor(R.color.green));//设置画笔颜色 mPaint.setStyle(Paint.Style.STROKE);//设置画笔样式 mPaint.setStrokeWidth(10f); //设置画笔宽度为10px 1 2 3 4 5 Path path = new Path(); // 创建Path path.lineTo(400, 400); // 添加(0,0)到(400,400)之间的直线 path.moveTo(400, 200); // 移动到(400,200) path.lineTo(200, 0); // 添加(200,0)到(400,400)之间的直线 canvas.drawPath(path, mPaint); // 绘制Path 1 2 3 4 5 6 Path path = new Path(); // 创建Path path.lineTo(400, 400); // 添加(0,0)到(400,400)之间的直线 path.">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
+}
+</script>
+<style>
+    :root {
+      --sys-font-family: "Noto Serif SC";
+      --zh-font-family: "Noto Serif SC";
+      --base-font-family: "Noto Serif SC";
+      --code-font-family: "Noto Serif SC";
+      --article-font-family: "Noto Serif SC";
+    }
+  </style>
+  
+  <script>
+    (function () {
+      const customFont = document.createElement("link");
+      customFont.href =
+        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+  
+      customFont.type = "text/css";
+      customFont.rel = "stylesheet";
+  
+      document.head.appendChild(customFont);
+    })();
+  </script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
+     crossorigin="anonymous"></script>
+  
+
+<script>
+    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/images/avatar_hu74e4307e0baa534a3da4ee0210445065_34446_300x0_resize_q75_box.jpeg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
+            <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/malinkang'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/malinkang'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#moveto-setlastpoint-lineto-和-close">moveTo、 setLastPoint、 lineTo 和 close</a></li>
+    <li><a href="#添加基本图形">添加基本图形</a></li>
+    <li><a href="#添加弧形">添加弧形</a></li>
+    <li><a href="#其他方法">其他方法</a></li>
+    <li><a href="#填充规则">填充规则</a>
+      <ol>
+        <li><a href="#非零环绕数规则">非零环绕数规则</a></li>
+        <li><a href="#其他与填充模式相关的方法">其他与填充模式相关的方法</a></li>
+      </ol>
+    </li>
+    <li><a href="#布尔操作apigt19">布尔操作（API&gt;19)</a></li>
+    <li><a href="#计算边界">计算边界</a></li>
+    <li><a href="#重置path">重置path</a></li>
+    <li><a href="#参考">参考</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/android/tu-xing-he-tu-xiang/path/"></a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="path使用">Path使用</h1>
+<p>Path封装了由直线和曲线(二次，三次贝塞尔曲线)构成的几何路径。你能用Canvas中的drawPath来把这条路径画出来(同样支持Paint的不同绘制模式)，也可以用于剪裁画布和根据路径绘制文字。我们有时会用Path来描述一个图像的轮廓，所以也会称为轮廓线(轮廓线仅是Path的一种使用方法，两者并不等价)。</p>
+<p>canvas只能绘制出常见的形状，但是无法绘制出复杂的形状。</p>
+<h2 id="moveto-setlastpoint-lineto-和-close">moveTo、 setLastPoint、 lineTo 和 close</h2>
+<ul>
+<li>moveTo：移动下一次操作的起点位置</li>
+<li>setLastPoint：重置当前path中最后一个点位置，如果在绘制之前调用，效果和moveTo相同</li>
+<li>lineTo：添加上一个点到当前点之间的直线到Path</li>
+<li>close：连接第一个点连接到最后一个点，形成一个闭合区域</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Paint</span><span class="w"> </span><span class="n">mPaint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Paint</span><span class="p">();</span><span class="w">             </span><span class="c1">// 创建画笔</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">mPaint</span><span class="p">.</span><span class="na">setColor</span><span class="p">(</span><span class="n">getResources</span><span class="p">().</span><span class="na">getColor</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">color</span><span class="p">.</span><span class="na">green</span><span class="p">));</span><span class="c1">//设置画笔颜色</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">mPaint</span><span class="p">.</span><span class="na">setStyle</span><span class="p">(</span><span class="n">Paint</span><span class="p">.</span><span class="na">Style</span><span class="p">.</span><span class="na">STROKE</span><span class="p">);</span><span class="c1">//设置画笔样式</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">mPaint</span><span class="p">.</span><span class="na">setStrokeWidth</span><span class="p">(</span><span class="n">10f</span><span class="p">);</span><span class="w"> </span><span class="c1">//设置画笔宽度为10px</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Path</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Path</span><span class="p">();</span><span class="w">                     </span><span class="c1">// 创建Path</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">path</span><span class="p">.</span><span class="na">lineTo</span><span class="p">(</span><span class="n">400</span><span class="p">,</span><span class="w"> </span><span class="n">400</span><span class="p">);</span><span class="w">                      </span><span class="c1">// 添加(0,0)到(400,400)之间的直线</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">path</span><span class="p">.</span><span class="na">moveTo</span><span class="p">(</span><span class="n">400</span><span class="p">,</span><span class="w"> </span><span class="n">200</span><span class="p">);</span><span class="w">                       </span><span class="c1">// 移动到(400,200)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">path</span><span class="p">.</span><span class="na">lineTo</span><span class="p">(</span><span class="n">200</span><span class="p">,</span><span class="w"> </span><span class="n">0</span><span class="p">);</span><span class="w">                         </span><span class="c1">// 添加(200,0)到(400,400)之间的直线</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawPath</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">mPaint</span><span class="p">);</span><span class="w">              </span><span class="c1">// 绘制Path</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/../.gitbook/assets/path-1%20%281%29.jpeg"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Path</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Path</span><span class="p">();</span><span class="w">                     </span><span class="c1">// 创建Path</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">path</span><span class="p">.</span><span class="na">lineTo</span><span class="p">(</span><span class="n">400</span><span class="p">,</span><span class="w"> </span><span class="n">400</span><span class="p">);</span><span class="w">                      </span><span class="c1">// 添加(0,0)到(400,400)之间的直线</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">path</span><span class="p">.</span><span class="na">setLastPoint</span><span class="p">(</span><span class="n">400</span><span class="p">,</span><span class="w"> </span><span class="n">200</span><span class="p">);</span><span class="w">                 </span><span class="c1">//设置终点为(400,200)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">path</span><span class="p">.</span><span class="na">lineTo</span><span class="p">(</span><span class="n">200</span><span class="p">,</span><span class="w"> </span><span class="n">0</span><span class="p">);</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">path</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w">                               </span><span class="c1">// close</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawPath</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">mPaint</span><span class="p">);</span><span class="w">              </span><span class="c1">// 绘制Path</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/../.gitbook/assets/path-2%20%281%29.jpeg"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="添加基本图形">添加基本图形</h2>
+<p>Path提供了如下方法来添加基本图形</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 圆形</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">//Direction是一个枚举(Enum)类型，里面只有两个枚举常量 CW  clockwise   顺时针</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">//CCW   counter-clockwise   逆时针</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">addCircle</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">radius</span><span class="p">,</span><span class="w"> </span><span class="n">Path</span><span class="p">.</span><span class="na">Direction</span><span class="w"> </span><span class="n">dir</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// 椭圆</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">addOval</span><span class="w"> </span><span class="p">(</span><span class="n">RectF</span><span class="w"> </span><span class="n">oval</span><span class="p">,</span><span class="w"> </span><span class="n">Path</span><span class="p">.</span><span class="na">Direction</span><span class="w"> </span><span class="n">dir</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// 矩形</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">addRect</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">top</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">right</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">bottom</span><span class="p">,</span><span class="w"> </span><span class="n">Path</span><span class="p">.</span><span class="na">Direction</span><span class="w"> </span><span class="n">dir</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">addRect</span><span class="w"> </span><span class="p">(</span><span class="n">RectF</span><span class="w"> </span><span class="n">rect</span><span class="p">,</span><span class="w"> </span><span class="n">Path</span><span class="p">.</span><span class="na">Direction</span><span class="w"> </span><span class="n">dir</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// 圆角矩形</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">addRoundRect</span><span class="w"> </span><span class="p">(</span><span class="n">RectF</span><span class="w"> </span><span class="n">rect</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="o">[]</span><span class="w"> </span><span class="n">radii</span><span class="p">,</span><span class="w"> </span><span class="n">Path</span><span class="p">.</span><span class="na">Direction</span><span class="w"> </span><span class="n">dir</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">addRoundRect</span><span class="w"> </span><span class="p">(</span><span class="n">RectF</span><span class="w"> </span><span class="n">rect</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">rx</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">ry</span><span class="p">,</span><span class="w"> </span><span class="n">Path</span><span class="p">.</span><span class="na">Direction</span><span class="w"> </span><span class="n">dir</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="添加弧形">添加弧形</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="w"> </span><span class="c1">// addArc 直接添加一个圆弧到path中</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">addArc</span><span class="w"> </span><span class="p">(</span><span class="n">RectF</span><span class="w"> </span><span class="n">oval</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">startAngle</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">sweepAngle</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// arcTo 添加一个圆弧到path，如果圆弧的起点和上次最后一个坐标点不相同，就连接两个点</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">arcTo</span><span class="w"> </span><span class="p">(</span><span class="n">RectF</span><span class="w"> </span><span class="n">oval</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">startAngle</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">sweepAngle</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">arcTo</span><span class="w"> </span><span class="p">(</span><span class="n">RectF</span><span class="w"> </span><span class="n">oval</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">startAngle</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">sweepAngle</span><span class="p">,</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">forceMoveTo</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="其他方法">其他方法</h2>
+<ul>
+<li>isEmpty：判断path中是否包含内容</li>
+<li>isRect：判断是否是矩形</li>
+<li>set:将新的path赋值到现有path。</li>
+<li>offset：将path平移一段</li>
+</ul>
+<h2 id="填充规则">填充规则</h2>
+<p>我们要做一个同心圆，我们的代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Path</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Path</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">path</span><span class="p">.</span><span class="na">addCircle</span><span class="p">(</span><span class="n">500</span><span class="p">,</span><span class="n">500</span><span class="p">,</span><span class="n">400</span><span class="p">,</span><span class="n">Path</span><span class="p">.</span><span class="na">Direction</span><span class="p">.</span><span class="na">CW</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">path</span><span class="p">.</span><span class="na">addCircle</span><span class="p">(</span><span class="n">500</span><span class="p">,</span><span class="n">500</span><span class="p">,</span><span class="n">300</span><span class="p">,</span><span class="n">Path</span><span class="p">.</span><span class="na">Direction</span><span class="p">.</span><span class="na">CW</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawPath</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/../.gitbook/assets/path-3%20%281%29.jpeg"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>但是得到的是一个实心圆。我们要给一个图形内部填充颜色，首先需要分清哪一部分是外部，哪一部分是内部，机器不像我们人那么聪明，机器是如何判断内外呢？</p>
+<p>Path为我们提供setFillType方法来设置内外判定的规则</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setFillType</span><span class="p">(</span><span class="n">FillType</span><span class="w"> </span><span class="n">ft</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>FillType是一个枚举类型，包括如下值</p>
+<ul>
+<li>
+<p>EVEN_ODD</p>
+</li>
+<li>
+<p>INVERSE_EVEN_ODD</p>
+</li>
+<li>
+<p>WINDING</p>
+</li>
+<li>
+<p>INVERSE_WINDING</p>
+<p><strong>奇偶规则</strong></p>
+</li>
+</ul>
+<p>EVEN_ODD遵从奇偶规则，即从任意位置p作一条射线， 若与该射线相交的图形边的数目为奇数，则p是图形内部点，否则是外部点。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Path</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Path</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">path</span><span class="p">.</span><span class="na">addCircle</span><span class="p">(</span><span class="n">500</span><span class="p">,</span><span class="n">500</span><span class="p">,</span><span class="n">400</span><span class="p">,</span><span class="n">Path</span><span class="p">.</span><span class="na">Direction</span><span class="p">.</span><span class="na">CW</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">path</span><span class="p">.</span><span class="na">addCircle</span><span class="p">(</span><span class="n">500</span><span class="p">,</span><span class="n">500</span><span class="p">,</span><span class="n">300</span><span class="p">,</span><span class="n">Path</span><span class="p">.</span><span class="na">Direction</span><span class="p">.</span><span class="na">CW</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">path</span><span class="p">.</span><span class="na">setFillType</span><span class="p">(</span><span class="n">Path</span><span class="p">.</span><span class="na">FillType</span><span class="p">.</span><span class="na">EVEN_ODD</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawPath</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/../.gitbook/assets/path-4%20%281%29.jpeg"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p><img src="/../.gitbook/assets/even-odd-winding%20%281%29.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="a&#x70B9;&#x7A7F;&#x8FC7;path&#x8FB9;&#x7684;&#x6570;&#x76EE;&#x662F;3&#xFF0C;&#x6240;&#x4EE5;&#x5C5E;&#x4E8E;&#x5185;&#x90E8;&#xFF0C;b&#x70B9;&#x6B21;&#x6570;&#x4E3A;2&#x662F;&#x5916;&#x90E8;&#xFF0C;c&#x70B9;&#x6B21;&#x6570;&#x4E3A;1&#x662F;&#x5185;&#x90E8;"
+	
+	
+></p>
+<p>INVERSE_EVEN_ODD遵从反奇偶规则。与奇偶规则相反。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Path</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Path</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">path</span><span class="p">.</span><span class="na">addCircle</span><span class="p">(</span><span class="n">500</span><span class="p">,</span><span class="n">500</span><span class="p">,</span><span class="n">400</span><span class="p">,</span><span class="n">Path</span><span class="p">.</span><span class="na">Direction</span><span class="p">.</span><span class="na">CW</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">path</span><span class="p">.</span><span class="na">addCircle</span><span class="p">(</span><span class="n">500</span><span class="p">,</span><span class="n">500</span><span class="p">,</span><span class="n">300</span><span class="p">,</span><span class="n">Path</span><span class="p">.</span><span class="na">Direction</span><span class="p">.</span><span class="na">CW</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">path</span><span class="p">.</span><span class="na">setFillType</span><span class="p">(</span><span class="n">Path</span><span class="p">.</span><span class="na">FillType</span><span class="p">.</span><span class="na">EVEN_ODD</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawPath</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/../.gitbook/assets/path-filltype-INVERSE_EVEN_ODD.jpeg"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h3 id="非零环绕数规则">非零环绕数规则</h3>
+<p>WINDING遵从非零环绕数规则，即首先使图形的边变为矢量（具有方向）。将环绕数初始化为零。再从任意位置p作一条射线。当从p点沿射线方向移动时，对在每个方向上穿过射线的边计数，每当图形的边从右到左穿过射线时，环绕数加1，从左到右时，环绕数减1。处理完图形的所有相关边之后，若环绕数为非零，则p为内部点，否则，p是外部点。</p>
+<p><img src="/../.gitbook/assets/non-zero-winding-1%20%281%29.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>A点：首先，内圆从右向左穿过射线，环绕数加一（1）;然后内圆从左到右穿过射线，环绕数减一（0）;外圆从右向左穿过射线，环绕数加一（1）。由于该值不为零，所以属于内部。</p>
+<p>B点：首先，内圆从左向右穿过射线，环绕数减一（-1）;外圆从右向左穿过射线，环绕数加一（0）。由于该值为零，所以属于外部。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Path</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Path</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">path</span><span class="p">.</span><span class="na">addCircle</span><span class="p">(</span><span class="n">500</span><span class="p">,</span><span class="n">500</span><span class="p">,</span><span class="n">400</span><span class="p">,</span><span class="n">Path</span><span class="p">.</span><span class="na">Direction</span><span class="p">.</span><span class="na">CW</span><span class="p">);</span><span class="w"> </span><span class="c1">//内圆顺时针</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">path</span><span class="p">.</span><span class="na">addCircle</span><span class="p">(</span><span class="n">500</span><span class="p">,</span><span class="n">500</span><span class="p">,</span><span class="n">300</span><span class="p">,</span><span class="n">Path</span><span class="p">.</span><span class="na">Direction</span><span class="p">.</span><span class="na">CCW</span><span class="p">);</span><span class="w"> </span><span class="c1">//外圆逆时针</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">path</span><span class="p">.</span><span class="na">setFillType</span><span class="p">(</span><span class="n">Path</span><span class="p">.</span><span class="na">FillType</span><span class="p">.</span><span class="na">WINDING</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawPath</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/../.gitbook/assets/non-zero-winding-3%20%281%29.jpeg"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>改变内圈的方向</p>
+<p><img src="/../.gitbook/assets/non-zero-winding-2%20%281%29.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>A点：首先，内圆从左向右穿过射线，环绕数加一（-1）;然后内圆从右到左穿过射线，环绕数加一（0）;外圆从右向左穿过射线，环绕数加一（1）。由于该值不为零，所以属于内部。</p>
+<p>B点：首先，内圆从右向左穿过射线，环绕数加1（1）;外圆从右向左穿过射线，环绕数加一（2）。由于该值不为零，所以属于内部。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Path</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Path</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">path</span><span class="p">.</span><span class="na">addCircle</span><span class="p">(</span><span class="n">500</span><span class="p">,</span><span class="n">500</span><span class="p">,</span><span class="n">400</span><span class="p">,</span><span class="n">Path</span><span class="p">.</span><span class="na">Direction</span><span class="p">.</span><span class="na">CCW</span><span class="p">);</span><span class="w"> </span><span class="c1">//内圆逆时针</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">path</span><span class="p">.</span><span class="na">addCircle</span><span class="p">(</span><span class="n">500</span><span class="p">,</span><span class="n">500</span><span class="p">,</span><span class="n">300</span><span class="p">,</span><span class="n">Path</span><span class="p">.</span><span class="na">Direction</span><span class="p">.</span><span class="na">CCW</span><span class="p">);</span><span class="w"> </span><span class="c1">//外圆逆时针</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">path</span><span class="p">.</span><span class="na">setFillType</span><span class="p">(</span><span class="n">Path</span><span class="p">.</span><span class="na">FillType</span><span class="p">.</span><span class="na">WINDING</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawPath</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/../.gitbook/assets/non-zero-winding-4%20%281%29.jpeg"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>INVERSE_WINDING遵从反非零环绕数规则。与WINDING相反。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Path</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Path</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">path</span><span class="p">.</span><span class="na">addCircle</span><span class="p">(</span><span class="n">500</span><span class="p">,</span><span class="n">500</span><span class="p">,</span><span class="n">400</span><span class="p">,</span><span class="n">Path</span><span class="p">.</span><span class="na">Direction</span><span class="p">.</span><span class="na">CW</span><span class="p">);</span><span class="w"> </span><span class="c1">//内圆顺时针</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">path</span><span class="p">.</span><span class="na">addCircle</span><span class="p">(</span><span class="n">500</span><span class="p">,</span><span class="n">500</span><span class="p">,</span><span class="n">300</span><span class="p">,</span><span class="n">Path</span><span class="p">.</span><span class="na">Direction</span><span class="p">.</span><span class="na">CCW</span><span class="p">);</span><span class="w"> </span><span class="c1">//外圆逆时针</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">path</span><span class="p">.</span><span class="na">setFillType</span><span class="p">(</span><span class="n">Path</span><span class="p">.</span><span class="na">FillType</span><span class="p">.</span><span class="na">INVERSE_WINDING</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawPath</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/../.gitbook/assets/inverse_winding-1%20%281%29.jpeg"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Path</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Path</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">path</span><span class="p">.</span><span class="na">addCircle</span><span class="p">(</span><span class="n">500</span><span class="p">,</span><span class="n">500</span><span class="p">,</span><span class="n">400</span><span class="p">,</span><span class="n">Path</span><span class="p">.</span><span class="na">Direction</span><span class="p">.</span><span class="na">CCW</span><span class="p">);</span><span class="w"> </span><span class="c1">//内圆逆时针</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">path</span><span class="p">.</span><span class="na">addCircle</span><span class="p">(</span><span class="n">500</span><span class="p">,</span><span class="n">500</span><span class="p">,</span><span class="n">300</span><span class="p">,</span><span class="n">Path</span><span class="p">.</span><span class="na">Direction</span><span class="p">.</span><span class="na">CCW</span><span class="p">);</span><span class="w"> </span><span class="c1">//外圆逆时针</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">path</span><span class="p">.</span><span class="na">setFillType</span><span class="p">(</span><span class="n">Path</span><span class="p">.</span><span class="na">FillType</span><span class="p">.</span><span class="na">INVERSE_WINDING</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawPath</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/../.gitbook/assets/inverse_winding-2%20%281%29.jpeg"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h3 id="其他与填充模式相关的方法">其他与填充模式相关的方法</h3>
+<p>除了上面提到的setFillType方法，Path还提供了下面3个与填充模式相关的方法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//获取当前填充模式</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="n">FillType</span><span class="w"> </span><span class="nf">getFillType</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">//判断是否是反向规则</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">isInverseFillType</span><span class="p">()</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">//原有规则与反向规则之间相互切换</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">toggleInverseFillType</span><span class="p">()</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="布尔操作apigt19">布尔操作（API&gt;19)</h2>
+<p>布尔操作是两个Path之间的运算，主要作用是用一些简单的图形通过一些规则合成一些相对比较复杂，或难以直接得到的图形。</p>
+<p>在Path中的布尔运算有两个方法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="w"> </span><span class="c1">// 对 path1 和 path2 执行布尔运算，运算方式由第二个参数指定，运算结果存入到path1中。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kt">boolean</span><span class="w"> </span><span class="nf">op</span><span class="w"> </span><span class="p">(</span><span class="n">Path</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">Path</span><span class="p">.</span><span class="na">Op</span><span class="w"> </span><span class="n">op</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// 对 path1 和 path2 执行布尔运算，运算方式由第三个参数指定，运算结果存入到path3中。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kt">boolean</span><span class="w"> </span><span class="nf">op</span><span class="w"> </span><span class="p">(</span><span class="n">Path</span><span class="w"> </span><span class="n">path1</span><span class="p">,</span><span class="w"> </span><span class="n">Path</span><span class="w"> </span><span class="n">path2</span><span class="p">,</span><span class="w"> </span><span class="n">Path</span><span class="p">.</span><span class="na">Op</span><span class="w"> </span><span class="n">op</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>两个方法中的返回值用于判断布尔运算是否成功。Path.Op可选的值包括如下：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th style="text-align:left">逻辑名称</th>
+<th style="text-align:left">类比</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">示意图</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">DIFFERENCE</td>
+<td style="text-align:left">差集</td>
+<td style="text-align:left">Path1中减去Path2后剩下的部分</td>
+<td style="text-align:left"><img src="http://ww2.sinaimg.cn/large/005Xtdi2gw1f43j85gcaqj305k03c0sn.jpg"
+	
+	
+	
+	loading="lazy"
+	
+	
+></td>
+</tr>
+<tr>
+<td style="text-align:left">REVERSE_DIFFERENCE</td>
+<td style="text-align:left">差集</td>
+<td style="text-align:left">Path2中减去Path1后剩下的部分</td>
+<td style="text-align:left"><img src="http://ww2.sinaimg.cn/large/005Xtdi2gw1f43jbaaw80j305k03c0sn.jpg"
+	
+	
+	
+	loading="lazy"
+	
+	
+></td>
+</tr>
+<tr>
+<td style="text-align:left">INTERSECT</td>
+<td style="text-align:left">交集</td>
+<td style="text-align:left">Path1与Path2相交的部分</td>
+<td style="text-align:left"><img src="http://ww3.sinaimg.cn/large/005Xtdi2gw1f43jbj4iddj305k03c746.jpg"
+	
+	
+	
+	loading="lazy"
+	
+	
+></td>
+</tr>
+<tr>
+<td style="text-align:left">UNION</td>
+<td style="text-align:left">并集</td>
+<td style="text-align:left">包含全部Path1和Path2</td>
+<td style="text-align:left"><img src="http://ww2.sinaimg.cn/large/005Xtdi2gw1f43jbqk8rbj305k03cmx4.jpg"
+	
+	
+	
+	loading="lazy"
+	
+	
+></td>
+</tr>
+<tr>
+<td style="text-align:left">XOR</td>
+<td style="text-align:left">异或</td>
+<td style="text-align:left">包含Path1与Path2但不包括两者相交的部分</td>
+<td style="text-align:left"><img src="http://ww3.sinaimg.cn/large/005Xtdi2gw1f43jby8c60j305k03c0sp.jpg"
+	
+	
+	
+	loading="lazy"
+	
+	
+></td>
+</tr>
+</tbody>
+</table></div>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">80</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kt">int</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">100</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">translate</span><span class="p">(</span><span class="n">250</span><span class="p">,</span><span class="n">0</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Path</span><span class="w"> </span><span class="n">path1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Path</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Path</span><span class="w"> </span><span class="n">path2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Path</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Path</span><span class="w"> </span><span class="n">pathOpResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Path</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">path1</span><span class="p">.</span><span class="na">addCircle</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">0</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">Path</span><span class="p">.</span><span class="na">Direction</span><span class="p">.</span><span class="na">CW</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">path2</span><span class="p">.</span><span class="na">addCircle</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">0</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">Path</span><span class="p">.</span><span class="na">Direction</span><span class="p">.</span><span class="na">CW</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">pathOpResult</span><span class="p">.</span><span class="na">op</span><span class="p">(</span><span class="n">path1</span><span class="p">,</span><span class="n">path2</span><span class="p">,</span><span class="w"> </span><span class="n">Path</span><span class="p">.</span><span class="na">Op</span><span class="p">.</span><span class="na">DIFFERENCE</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">translate</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="w"> </span><span class="n">200</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawText</span><span class="p">(</span><span class="s">&#34;DIFFERENCE&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">240</span><span class="p">,</span><span class="n">0</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawPath</span><span class="p">(</span><span class="n">pathOpResult</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">pathOpResult</span><span class="p">.</span><span class="na">op</span><span class="p">(</span><span class="n">path1</span><span class="p">,</span><span class="n">path2</span><span class="p">,</span><span class="w"> </span><span class="n">Path</span><span class="p">.</span><span class="na">Op</span><span class="p">.</span><span class="na">REVERSE_DIFFERENCE</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">translate</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="w"> </span><span class="n">300</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawText</span><span class="p">(</span><span class="s">&#34;REVERSE_DIFFERENCE&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">240</span><span class="p">,</span><span class="n">0</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawPath</span><span class="p">(</span><span class="n">pathOpResult</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">pathOpResult</span><span class="p">.</span><span class="na">op</span><span class="p">(</span><span class="n">path1</span><span class="p">,</span><span class="n">path2</span><span class="p">,</span><span class="w"> </span><span class="n">Path</span><span class="p">.</span><span class="na">Op</span><span class="p">.</span><span class="na">INTERSECT</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">translate</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="w"> </span><span class="n">300</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawText</span><span class="p">(</span><span class="s">&#34;INTERSECT&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">240</span><span class="p">,</span><span class="n">0</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawPath</span><span class="p">(</span><span class="n">pathOpResult</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">pathOpResult</span><span class="p">.</span><span class="na">op</span><span class="p">(</span><span class="n">path1</span><span class="p">,</span><span class="n">path2</span><span class="p">,</span><span class="w"> </span><span class="n">Path</span><span class="p">.</span><span class="na">Op</span><span class="p">.</span><span class="na">UNION</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">translate</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="w"> </span><span class="n">300</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawText</span><span class="p">(</span><span class="s">&#34;UNION&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">240</span><span class="p">,</span><span class="n">0</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawPath</span><span class="p">(</span><span class="n">pathOpResult</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">pathOpResult</span><span class="p">.</span><span class="na">op</span><span class="p">(</span><span class="n">path1</span><span class="p">,</span><span class="n">path2</span><span class="p">,</span><span class="w"> </span><span class="n">Path</span><span class="p">.</span><span class="na">Op</span><span class="p">.</span><span class="na">XOR</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">translate</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="w"> </span><span class="n">300</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawText</span><span class="p">(</span><span class="s">&#34;XOR&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">240</span><span class="p">,</span><span class="n">0</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawPath</span><span class="p">(</span><span class="n">pathOpResult</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/../.gitbook/assets/path-op%20%281%29.jpeg"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="计算边界">计算边界</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//bounds    测量结果会放入这个矩形</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">//exact 是否精确测量，目前这一个参数作用已经废弃，一般写true即可</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kt">void</span><span class="w"> </span><span class="nf">computeBounds</span><span class="w"> </span><span class="p">(</span><span class="n">RectF</span><span class="w"> </span><span class="n">bounds</span><span class="p">,</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">exact</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>这个方法主要作用是计算Path所占用的空间以及所在位置。</p>
+<h2 id="重置path">重置path</h2>
+<p>重置Path有两个方法，分别是reset和rewind，两者区别主要有以下两点：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th style="text-align:left">方法</th>
+<th style="text-align:center">是否保留FillType设置</th>
+<th style="text-align:center">是否保留原有数据结构</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">reset</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">否</td>
+</tr>
+<tr>
+<td style="text-align:left">rewind</td>
+<td style="text-align:center">否</td>
+<td style="text-align:center">是</td>
+</tr>
+</tbody>
+</table></div>
+<p>这个两个方法应该何时选择呢？</p>
+<p>选择权重: FillType &gt; 数据结构</p>
+<p>因为“FillType”影响的是显示效果，而“数据结构”影响的是重建速度。</p>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a class="link" href="https://blog.stylingandroid.com/vectordrawable-fill-windings/"  target="_blank" rel="noopener"
+    >VectorDrawable Fill Windings</a></li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script
+    src="https://giscus.app/client.js"
+    data-repo="malinkang/malinkang"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkzMTUwNzEyODU="
+    data-category="General"
+    data-category-id="DIC_kwDOEsebNc4CbSPg"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="en"
+    crossorigin="anonymous"
+    async
+></script>
+<script>
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
+        }
+    }
+
+    (function () {
+        addEventListener("message", (e) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('light');
+            } else {
+                setGiscusTheme('dark');
+            }
+        }
+    })();
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2013 - 
+        
+        2024 malinkang
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

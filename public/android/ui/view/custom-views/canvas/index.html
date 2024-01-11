@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Canvas使用 Canvas我们可以称之为画布，我们可以使用画笔在上面绘制颜色，也可以绘制点、线以及矩形、扇形等各种形状，还可以绘制图片文本路径等，下面我们一一进行介绍
+绘制颜色 Canvas提供了三个绘制颜色的方法。
+drawColor drawRGB drawARGB 绘制基本形状 想要在画布上进行绘制，就需要一个画笔Paint。这里我们只简单介绍画笔的使用，关于画笔的详细使用将在画笔这一章详细介绍。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 public class CanvasView extends View { public CanvasView(Context context, @Nullable AttributeSet attrs) { super(context, attrs); initPaint(); } //1.创建Paint对象 private Paint mPaint = new Paint(); //2.初始化Paint private void initPaint(){ mPaint.setColor(getResources().getColor(R.color.purple));//设置画笔颜色 mPaint.setStyle(Paint.Style.FILL);//设置画笔样式为填充 mPaint.setStrokeWidth(10f); //设置画笔宽度为10px } @Override protected void onDraw(Canvas canvas) { super.onDraw(canvas); } } 绘制点 绘制一个点需要这个点的坐标。'>
+<title></title>
+
+<link rel='canonical' href='https://example.com/android/ui/view/custom-views/canvas/'>
+
+<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
+<meta property='og:description' content='Canvas使用 Canvas我们可以称之为画布，我们可以使用画笔在上面绘制颜色，也可以绘制点、线以及矩形、扇形等各种形状，还可以绘制图片文本路径等，下面我们一一进行介绍
+绘制颜色 Canvas提供了三个绘制颜色的方法。
+drawColor drawRGB drawARGB 绘制基本形状 想要在画布上进行绘制，就需要一个画笔Paint。这里我们只简单介绍画笔的使用，关于画笔的详细使用将在画笔这一章详细介绍。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 public class CanvasView extends View { public CanvasView(Context context, @Nullable AttributeSet attrs) { super(context, attrs); initPaint(); } //1.创建Paint对象 private Paint mPaint = new Paint(); //2.初始化Paint private void initPaint(){ mPaint.setColor(getResources().getColor(R.color.purple));//设置画笔颜色 mPaint.setStyle(Paint.Style.FILL);//设置画笔样式为填充 mPaint.setStrokeWidth(10f); //设置画笔宽度为10px } @Override protected void onDraw(Canvas canvas) { super.onDraw(canvas); } } 绘制点 绘制一个点需要这个点的坐标。'>
+<meta property='og:url' content='https://example.com/android/ui/view/custom-views/canvas/'>
+<meta property='og:site_name' content='Malinkang&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Android' />
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="Canvas使用 Canvas我们可以称之为画布，我们可以使用画笔在上面绘制颜色，也可以绘制点、线以及矩形、扇形等各种形状，还可以绘制图片文本路径等，下面我们一一进行介绍
+绘制颜色 Canvas提供了三个绘制颜色的方法。
+drawColor drawRGB drawARGB 绘制基本形状 想要在画布上进行绘制，就需要一个画笔Paint。这里我们只简单介绍画笔的使用，关于画笔的详细使用将在画笔这一章详细介绍。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 public class CanvasView extends View { public CanvasView(Context context, @Nullable AttributeSet attrs) { super(context, attrs); initPaint(); } //1.创建Paint对象 private Paint mPaint = new Paint(); //2.初始化Paint private void initPaint(){ mPaint.setColor(getResources().getColor(R.color.purple));//设置画笔颜色 mPaint.setStyle(Paint.Style.FILL);//设置画笔样式为填充 mPaint.setStrokeWidth(10f); //设置画笔宽度为10px } @Override protected void onDraw(Canvas canvas) { super.onDraw(canvas); } } 绘制点 绘制一个点需要这个点的坐标。">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
+}
+</script>
+<style>
+    :root {
+      --sys-font-family: "Noto Serif SC";
+      --zh-font-family: "Noto Serif SC";
+      --base-font-family: "Noto Serif SC";
+      --code-font-family: "Noto Serif SC";
+      --article-font-family: "Noto Serif SC";
+    }
+  </style>
+  
+  <script>
+    (function () {
+      const customFont = document.createElement("link");
+      customFont.href =
+        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+  
+      customFont.type = "text/css";
+      customFont.rel = "stylesheet";
+  
+      document.head.appendChild(customFont);
+    })();
+  </script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
+     crossorigin="anonymous"></script>
+  
+
+<script>
+    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/images/avatar_hu74e4307e0baa534a3da4ee0210445065_34446_300x0_resize_q75_box.jpeg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
+            <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/malinkang'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/malinkang'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#绘制颜色">绘制颜色</a></li>
+    <li><a href="#绘制基本形状">绘制基本形状</a>
+      <ol>
+        <li><a href="#绘制点">绘制点</a></li>
+        <li><a href="#绘制直线">绘制直线</a></li>
+        <li><a href="#绘制矩形">绘制矩形</a></li>
+        <li><a href="#绘制圆角矩形">绘制圆角矩形</a></li>
+        <li><a href="#绘制椭圆">绘制椭圆</a></li>
+        <li><a href="#绘制圆">绘制圆</a></li>
+        <li><a href="#绘制圆弧">绘制圆弧</a></li>
+      </ol>
+    </li>
+    <li><a href="#画布操作">画布操作</a>
+      <ol>
+        <li><a href="#位移translate">位移（translate）</a></li>
+        <li><a href="#缩放scale">缩放（scale）</a></li>
+        <li><a href="#旋转rotate">旋转（rotate）</a></li>
+        <li><a href="#错切skew">错切（skew）</a></li>
+      </ol>
+    </li>
+    <li><a href="#绘制图片">绘制图片</a>
+      <ol>
+        <li><a href="#绘制bitmap">绘制Bitmap</a></li>
+      </ol>
+    </li>
+    <li><a href="#绘制文字">绘制文字</a></li>
+    <li><a href="#参考">参考</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/android/ui/view/custom-views/canvas/"></a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    5 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="canvas使用">Canvas使用</h1>
+<p>Canvas我们可以称之为画布，我们可以使用画笔在上面绘制颜色，也可以绘制点、线以及矩形、扇形等各种形状，还可以绘制图片文本路径等，下面我们一一进行介绍</p>
+<h2 id="绘制颜色">绘制颜色</h2>
+<p>Canvas提供了三个绘制颜色的方法。</p>
+<ul>
+<li>drawColor</li>
+<li>drawRGB</li>
+<li>drawARGB</li>
+</ul>
+<h2 id="绘制基本形状">绘制基本形状</h2>
+<p>想要在画布上进行绘制，就需要一个画笔Paint。这里我们只简单介绍画笔的使用，关于画笔的详细使用将在画笔这一章详细介绍。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CanvasView</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">View</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="nf">CanvasView</span><span class="p">(</span><span class="n">Context</span><span class="w"> </span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="nd">@Nullable</span><span class="w"> </span><span class="n">AttributeSet</span><span class="w"> </span><span class="n">attrs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">super</span><span class="p">(</span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">attrs</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">initPaint</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">//1.创建Paint对象</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">Paint</span><span class="w"> </span><span class="n">mPaint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Paint</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">//2.初始化Paint</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">initPaint</span><span class="p">(){</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">mPaint</span><span class="p">.</span><span class="na">setColor</span><span class="p">(</span><span class="n">getResources</span><span class="p">().</span><span class="na">getColor</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">color</span><span class="p">.</span><span class="na">purple</span><span class="p">));</span><span class="c1">//设置画笔颜色</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">mPaint</span><span class="p">.</span><span class="na">setStyle</span><span class="p">(</span><span class="n">Paint</span><span class="p">.</span><span class="na">Style</span><span class="p">.</span><span class="na">FILL</span><span class="p">);</span><span class="c1">//设置画笔样式为填充</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">mPaint</span><span class="p">.</span><span class="na">setStrokeWidth</span><span class="p">(</span><span class="n">10f</span><span class="p">);</span><span class="w"> </span><span class="c1">//设置画笔宽度为10px</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nd">@Override</span><span class="w"> </span><span class="kd">protected</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onDraw</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">super</span><span class="p">.</span><span class="na">onDraw</span><span class="p">(</span><span class="n">canvas</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="绘制点">绘制点</h3>
+<p>绘制一个点需要这个点的坐标。</p>
+<p>Canvas提供了三个绘制点的方法：</p>
+<ul>
+<li>public void drawPoint(float x, float y, @NonNull Paint paint)；绘制单个点</li>
+<li>public void drawPoints(@Size(multiple=2) @NonNull float[] pts, @NonNull Paint paint) 绘制多个点</li>
+<li>public void drawPoints(@Size(multiple=2) float[] pts, int offset, int count, @NonNull Paint paint)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//在坐标(200,200)位置绘制一个点</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawPoint</span><span class="p">(</span><span class="n">200</span><span class="p">,</span><span class="w"> </span><span class="n">200</span><span class="p">,</span><span class="w"> </span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">//绘制一组点，坐标位置由float数组指定</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawPoints</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="kt">float</span><span class="o">[]</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">500</span><span class="p">,</span><span class="n">500</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">500</span><span class="p">,</span><span class="n">600</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">500</span><span class="p">,</span><span class="n">700</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">},</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/../../../.gitbook/assets/canvas-point%20%281%29.jpeg"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h3 id="绘制直线">绘制直线</h3>
+<p>绘制直线需要两个点，初始点和结束点。</p>
+<p>Canvas同样提供了三个绘制直线的方法：</p>
+<ul>
+<li>public void drawLine(float startX, float startY, float stopX, float stopY, @NonNull Paint paint)</li>
+<li>public void drawLines(@Size(multiple=4) @NonNull float[] pts, int offset, int count,@NonNull Paint paint)</li>
+<li>public void drawLines(@Size(multiple=4) @NonNull float[] pts, @NonNull Paint paint)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">canvas</span><span class="p">.</span><span class="na">drawLine</span><span class="p">(</span><span class="n">300</span><span class="p">,</span><span class="w"> </span><span class="n">300</span><span class="p">,</span><span class="w"> </span><span class="n">500</span><span class="p">,</span><span class="w"> </span><span class="n">600</span><span class="p">,</span><span class="w"> </span><span class="n">mPaint</span><span class="p">);</span><span class="w">    </span><span class="c1">// 在坐标(300,300)(500,600)之间绘制一条直线</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawLines</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="kt">float</span><span class="o">[]</span><span class="w"> </span><span class="p">{</span><span class="w">               </span><span class="c1">// 绘制一组线 每四数字(两个点的坐标)确定一条线</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">100</span><span class="p">,</span><span class="w"> </span><span class="n">200</span><span class="p">,</span><span class="w"> </span><span class="n">200</span><span class="p">,</span><span class="w"> </span><span class="n">200</span><span class="p">,</span><span class="w"> </span><span class="n">100</span><span class="p">,</span><span class="w"> </span><span class="n">300</span><span class="p">,</span><span class="w"> </span><span class="n">200</span><span class="p">,</span><span class="w"> </span><span class="n">300</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">},</span><span class="w"> </span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/../../../.gitbook/assets/canvas-line%20%281%29%20%281%29%20%281%29%20%281%29%20%281%29.jpeg"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h3 id="绘制矩形">绘制矩形</h3>
+<p>确定一个矩形最少需要四个数据，就是对角线的两个点的坐标值，这里一般采用左上角和右下角的两个点的坐标。</p>
+<p>Canvas提供了三个绘制矩形的方法：</p>
+<ul>
+<li>public void drawRect(float left, float top, float right, float bottom, @NonNull Paint paint):前两个参数是左上角点的坐标，后两个参数是右下角坐标点</li>
+<li>public void drawRect(@NonNull Rect r, @NonNull Paint paint)</li>
+<li>public void drawRect(@NonNull RectF rect, @NonNull Paint paint)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">canvas</span><span class="p">.</span><span class="na">drawRect</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="n">0</span><span class="p">,</span><span class="n">400</span><span class="p">,</span><span class="n">400</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// or</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Rect</span><span class="w"> </span><span class="n">rect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Rect</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="n">0</span><span class="p">,</span><span class="n">400</span><span class="p">,</span><span class="n">400</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawRect</span><span class="p">(</span><span class="n">rect</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// or</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">RectF</span><span class="w"> </span><span class="n">rectF</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RectF</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="n">0</span><span class="p">,</span><span class="n">400</span><span class="p">,</span><span class="n">400</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawRect</span><span class="p">(</span><span class="n">rectF</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/../../../.gitbook/assets/canvas-rect%20%281%29%20%281%29%20%281%29%20%281%29%20%282%29.jpeg"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h3 id="绘制圆角矩形">绘制圆角矩形</h3>
+<p>Canvas提供了两个绘制圆角矩形的方法：</p>
+<ul>
+<li>public void drawRoundRect(float left, float top, float right, float bottom, float rx, float ry,@NonNull Paint paint)：相比绘制矩形，我们需要提供一个圆角的半径，由于圆角是一个椭圆，所以需要提供椭圆的两个半径rx和ry。</li>
+<li>public void drawRoundRect(@NonNull RectF rect, float rx, float ry, @NonNull Paint paint)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// API 21 提供</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawRoundRect</span><span class="p">(</span><span class="n">100</span><span class="p">,</span><span class="n">100</span><span class="p">,</span><span class="n">500</span><span class="p">,</span><span class="n">500</span><span class="p">,</span><span class="n">20</span><span class="p">,</span><span class="n">20</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// or</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">RectF</span><span class="w"> </span><span class="n">rectF</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RectF</span><span class="p">(</span><span class="n">100</span><span class="p">,</span><span class="n">100</span><span class="p">,</span><span class="n">500</span><span class="p">,</span><span class="n">500</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawRoundRect</span><span class="p">(</span><span class="n">rectF</span><span class="p">,</span><span class="n">20</span><span class="p">,</span><span class="n">20</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/../../../.gitbook/assets/canvas-roundrect%20%281%29%20%281%29.jpeg"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>当rx或者ry的值大于矩形的一半时，按照一半进行处理：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// API 21 提供</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawRoundRect</span><span class="p">(</span><span class="n">100</span><span class="p">,</span><span class="n">100</span><span class="p">,</span><span class="n">500</span><span class="p">,</span><span class="n">500</span><span class="p">,</span><span class="n">250</span><span class="p">,</span><span class="n">250</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// or</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">RectF</span><span class="w"> </span><span class="n">rectF</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RectF</span><span class="p">(</span><span class="n">100</span><span class="p">,</span><span class="n">100</span><span class="p">,</span><span class="n">500</span><span class="p">,</span><span class="n">500</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawRoundRect</span><span class="p">(</span><span class="n">rectF</span><span class="p">,</span><span class="n">250</span><span class="p">,</span><span class="n">250</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/../../../.gitbook/assets/canvas-roundrect2%20%281%29%20%281%29.jpeg"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h3 id="绘制椭圆">绘制椭圆</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//API 21 提供</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawOval</span><span class="p">(</span><span class="n">100</span><span class="p">,</span><span class="n">100</span><span class="p">,</span><span class="n">800</span><span class="p">,</span><span class="n">400</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">//or</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">RectF</span><span class="w"> </span><span class="n">rectF</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RectF</span><span class="p">(</span><span class="n">100</span><span class="p">,</span><span class="n">100</span><span class="p">,</span><span class="n">800</span><span class="p">,</span><span class="n">400</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawOval</span><span class="p">(</span><span class="n">rectF</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/../../../.gitbook/assets/canvas-oval%20%281%29%20%281%29.jpeg"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h3 id="绘制圆">绘制圆</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">canvas</span><span class="p">.</span><span class="na">drawCircle</span><span class="p">(</span><span class="n">500</span><span class="p">,</span><span class="n">500</span><span class="p">,</span><span class="n">400</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">  </span><span class="c1">// 绘制一个圆心坐标在(500,500)，半径为400 的圆。</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/../../../.gitbook/assets/canvas-circle%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%281%29.jpg"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h3 id="绘制圆弧">绘制圆弧</h3>
+<p>Canvas提供了两个绘制圆弧的方法：</p>
+<ul>
+<li>public void drawArc(@NonNull RectF oval, float startAngle, float sweepAngle, boolean useCenter, @NonNull Paint paint)</li>
+<li>public void drawArc(float left, float top, float right, float bottom, float startAngle,float sweepAngle, boolean useCenter, @NonNull Paint paint)</li>
+</ul>
+<p>从上面可以看出，相比于绘制椭圆，绘制圆弧还多了三个参数：</p>
+<ul>
+<li>startAngle：开始角度</li>
+<li>sweepAngle：扫过角度</li>
+<li>useCenter：是否使用中心，使用了中心点之后绘制出来类似于一个扇形，而不使用中心点则是圆弧起始点和结束点之间的连线加上圆弧围成的图形。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//绘制背景</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">mPaint</span><span class="p">.</span><span class="na">setColor</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">GRAY</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">RectF</span><span class="w"> </span><span class="n">rectF</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RectF</span><span class="p">(</span><span class="n">100</span><span class="p">,</span><span class="n">100</span><span class="p">,</span><span class="n">500</span><span class="p">,</span><span class="n">500</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">RectF</span><span class="w"> </span><span class="n">rectF2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RectF</span><span class="p">(</span><span class="n">600</span><span class="p">,</span><span class="n">100</span><span class="p">,</span><span class="n">1000</span><span class="p">,</span><span class="n">500</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawRect</span><span class="p">(</span><span class="n">rectF</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawRect</span><span class="p">(</span><span class="n">rectF2</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">//绘制圆弧</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">mPaint</span><span class="p">.</span><span class="na">setColor</span><span class="p">(</span><span class="n">getResources</span><span class="p">().</span><span class="na">getColor</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">color</span><span class="p">.</span><span class="na">purple</span><span class="p">));</span><span class="c1">//设置画笔颜色</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawArc</span><span class="p">(</span><span class="n">rectF</span><span class="p">,</span><span class="n">0</span><span class="p">,</span><span class="n">90</span><span class="p">,</span><span class="kc">true</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawArc</span><span class="p">(</span><span class="n">rectF2</span><span class="p">,</span><span class="n">0</span><span class="p">,</span><span class="n">90</span><span class="p">,</span><span class="kc">false</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/../../../.gitbook/assets/canvas-arc%20%281%29%20%281%29%20%281%29%20%281%29%20%281%29%20%281%29.jpeg"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="画布操作">画布操作</h2>
+<h3 id="位移translate">位移（translate）</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">canvas</span><span class="p">.</span><span class="na">translate</span><span class="p">(</span><span class="n">100</span><span class="p">,</span><span class="n">100</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawCircle</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="n">0</span><span class="p">,</span><span class="n">100</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">translate</span><span class="p">(</span><span class="n">200</span><span class="p">,</span><span class="n">0</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawCircle</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="n">0</span><span class="p">,</span><span class="n">100</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/../../../.gitbook/assets/canvas-translate%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%281%29%20%281%29.jpg"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h3 id="缩放scale">缩放（scale）</h3>
+<p>canvas提供了两个方法缩放的方法</p>
+<ul>
+<li>public void scale (float sx, float sy)</li>
+<li>public final void scale (float sx, float sy, float px, float py)</li>
+</ul>
+<p>这两个方法中前两个参数是相同的分别为x轴和y轴的缩放比例。而第二种方法比前一种多了两个参数，用来控制缩放中心位置的。</p>
+<p>缩放比例(sx,sy)取值范围详解：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>取值范围(n)</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[-∞, -1)</td>
+<td>先根据缩放中心放大n倍，再根据中心轴进行翻转</td>
+</tr>
+<tr>
+<td>-1</td>
+<td>根据缩放中心轴进行翻转</td>
+</tr>
+<tr>
+<td>(-1, 0)</td>
+<td>先根据缩放中心缩小到n，再根据中心轴进行翻转</td>
+</tr>
+<tr>
+<td>0</td>
+<td>不会显示，若sx为0，则宽度为0，不会显示，sy同理</td>
+</tr>
+<tr>
+<td>(0, 1)</td>
+<td>根据缩放中心缩小到n</td>
+</tr>
+<tr>
+<td>1</td>
+<td>没有变化</td>
+</tr>
+<tr>
+<td>(1, +∞)</td>
+<td>根据缩放中心放大n倍</td>
+</tr>
+</tbody>
+</table></div>
+<p>如果在缩放时稍微注意一下就会发现<strong>缩放的中心默认为坐标原点,而缩放中心轴就是坐标轴</strong>，如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">RectF</span><span class="w"> </span><span class="n">rect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RectF</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="n">0</span><span class="p">,</span><span class="n">400</span><span class="p">,</span><span class="n">400</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawRect</span><span class="p">(</span><span class="n">rect</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">scale</span><span class="p">(</span><span class="n">0</span><span class="p">.</span><span class="na">5f</span><span class="p">,</span><span class="n">0</span><span class="p">.</span><span class="na">5f</span><span class="p">);</span><span class="c1">//画布缩小一半</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">mPaint</span><span class="p">.</span><span class="na">setColor</span><span class="p">(</span><span class="n">getResources</span><span class="p">().</span><span class="na">getColor</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">color</span><span class="p">.</span><span class="na">purple</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawRect</span><span class="p">(</span><span class="n">rect</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/../../../.gitbook/assets/canvas-scale1%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%281%29%20%281%29.jpg"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>设置缩放中心位置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">RectF</span><span class="w"> </span><span class="n">rect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RectF</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="n">0</span><span class="p">,</span><span class="n">400</span><span class="p">,</span><span class="n">400</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawRect</span><span class="p">(</span><span class="n">rect</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">scale</span><span class="p">(</span><span class="n">0</span><span class="p">.</span><span class="na">5f</span><span class="p">,</span><span class="n">0</span><span class="p">.</span><span class="na">5f</span><span class="p">,</span><span class="n">200</span><span class="p">,</span><span class="n">200</span><span class="p">);</span><span class="c1">//画布缩小一半</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">mPaint</span><span class="p">.</span><span class="na">setColor</span><span class="p">(</span><span class="n">getResources</span><span class="p">().</span><span class="na">getColor</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">color</span><span class="p">.</span><span class="na">purple</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawRect</span><span class="p">(</span><span class="n">rect</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">   </span><span class="c1">// 绘制蓝色矩形</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawRect</span><span class="p">(</span><span class="n">rect</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/../../../.gitbook/assets/canvas-scale2%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%282%29%20%281%29.jpg"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>前面两个示例缩放的数值都是正数，按照表格中的说明，<strong>当缩放比例为负数的时候会根据缩放中心轴进行翻转</strong>，下面我们就来实验一下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">RectF</span><span class="w"> </span><span class="n">rect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RectF</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="n">0</span><span class="p">,</span><span class="n">600</span><span class="p">,</span><span class="n">400</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawRect</span><span class="p">(</span><span class="n">rect</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">scale</span><span class="p">(</span><span class="o">-</span><span class="n">0</span><span class="p">.</span><span class="na">5f</span><span class="p">,</span><span class="o">-</span><span class="n">0</span><span class="p">.</span><span class="na">5f</span><span class="p">,</span><span class="n">600</span><span class="p">,</span><span class="n">400</span><span class="p">);</span><span class="c1">//画布缩小一半</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">mPaint</span><span class="p">.</span><span class="na">setColor</span><span class="p">(</span><span class="n">getResources</span><span class="p">().</span><span class="na">getColor</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">color</span><span class="p">.</span><span class="na">purple</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawRect</span><span class="p">(</span><span class="n">rect</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/../../../.gitbook/assets/canvas-scale3%20%281%29%20%282%29%20%281%29.jpeg"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>本次缩放可以看做是先根据缩放中心(坐标原点)缩放到原来的0.5倍，然后分别按照x轴和y轴进行翻转。</p>
+<h3 id="旋转rotate">旋转（rotate）</h3>
+<p>canvas提供了两个旋转的方法：</p>
+<ul>
+<li>
+<p>public void rotate (float degrees)</p>
+</li>
+<li>
+<p>public final void rotate (float degrees, float px, float py)</p>
+<p>和缩放一样，第二种方法多出来的两个参数依旧是控制旋转中心点的。</p>
+</li>
+</ul>
+<p>默认的旋转中心依旧是坐标原点：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">canvas</span><span class="p">.</span><span class="na">translate</span><span class="p">(</span><span class="n">200</span><span class="p">,</span><span class="n">200</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">RectF</span><span class="w"> </span><span class="n">rect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RectF</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="n">0</span><span class="p">,</span><span class="n">200</span><span class="p">,</span><span class="n">200</span><span class="p">);</span><span class="w">   </span><span class="c1">// 矩形区域</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawRect</span><span class="p">(</span><span class="n">rect</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">mPaint</span><span class="p">.</span><span class="na">setColor</span><span class="p">(</span><span class="n">getResources</span><span class="p">().</span><span class="na">getColor</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">color</span><span class="p">.</span><span class="na">purple</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">rotate</span><span class="p">(</span><span class="n">45</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawRect</span><span class="p">(</span><span class="n">rect</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/../../../.gitbook/assets/canvas-rotate1%20%281%29%20%281%29.jpeg"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">canvas</span><span class="p">.</span><span class="na">translate</span><span class="p">(</span><span class="n">200</span><span class="p">,</span><span class="n">200</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">RectF</span><span class="w"> </span><span class="n">rect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RectF</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="n">0</span><span class="p">,</span><span class="n">200</span><span class="p">,</span><span class="n">200</span><span class="p">);</span><span class="w">   </span><span class="c1">// 矩形区域</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawRect</span><span class="p">(</span><span class="n">rect</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">mPaint</span><span class="p">.</span><span class="na">setColor</span><span class="p">(</span><span class="n">getResources</span><span class="p">().</span><span class="na">getColor</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">color</span><span class="p">.</span><span class="na">purple</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">rotate</span><span class="p">(</span><span class="n">45</span><span class="p">,</span><span class="n">100</span><span class="p">,</span><span class="n">100</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawRect</span><span class="p">(</span><span class="n">rect</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/../../../.gitbook/assets/canvas-rotate2%20%282%29%20%281%29.jpeg"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h3 id="错切skew">错切（skew）</h3>
+<p>skew这里翻译为错切，错切是特殊类型的线性变换。</p>
+<p>错切只提供了一种方法：</p>
+<ul>
+<li>public void skew (float sx, float sy)</li>
+</ul>
+<p>参数含义： float sx:将画布在x方向上倾斜相应的角度，sx倾斜角度的tan值. float sy:将画布在y轴方向上倾斜相应的角度，sy为倾斜角度的tan值.</p>
+<p>示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">mPaint</span><span class="p">.</span><span class="na">setStyle</span><span class="p">(</span><span class="n">Paint</span><span class="p">.</span><span class="na">Style</span><span class="p">.</span><span class="na">STROKE</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">RectF</span><span class="w"> </span><span class="n">rect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RectF</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="n">0</span><span class="p">,</span><span class="n">200</span><span class="p">,</span><span class="n">200</span><span class="p">);</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawRect</span><span class="p">(</span><span class="n">rect</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">skew</span><span class="p">(</span><span class="n">1</span><span class="p">,</span><span class="n">0</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">mPaint</span><span class="p">.</span><span class="na">setColor</span><span class="p">(</span><span class="n">getResources</span><span class="p">().</span><span class="na">getColor</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">color</span><span class="p">.</span><span class="na">purple</span><span class="p">));</span><span class="w">        
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawRect</span><span class="p">(</span><span class="n">rect</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/../../../.gitbook/assets/canvas-skew%20%281%29%20%281%29%20%281%29%20%281%29.jpeg"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="绘制图片">绘制图片</h2>
+<h3 id="绘制bitmap">绘制Bitmap</h3>
+<p>Canvas提供了如下绘制Bitmap的方法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//第一类</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">drawBitmap</span><span class="w"> </span><span class="p">(</span><span class="n">Bitmap</span><span class="w"> </span><span class="n">bitmap</span><span class="p">,</span><span class="w"> </span><span class="n">Matrix</span><span class="w"> </span><span class="n">matrix</span><span class="p">,</span><span class="w"> </span><span class="n">Paint</span><span class="w"> </span><span class="n">paint</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">//第二类绘制时指定了图片左上角的坐标(距离坐标原点的距离)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">drawBitmap</span><span class="w"> </span><span class="p">(</span><span class="n">Bitmap</span><span class="w"> </span><span class="n">bitmap</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">top</span><span class="p">,</span><span class="w"> </span><span class="n">Paint</span><span class="w"> </span><span class="n">paint</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">//第三类绘制图片的部分区域</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">//src指定绘制图片的区域，dst指定图片在屏幕上显示的区域</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">drawBitmap</span><span class="w"> </span><span class="p">(</span><span class="n">Bitmap</span><span class="w"> </span><span class="n">bitmap</span><span class="p">,</span><span class="w"> </span><span class="n">Rect</span><span class="w"> </span><span class="n">src</span><span class="p">,</span><span class="w"> </span><span class="n">Rect</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">Paint</span><span class="w"> </span><span class="n">paint</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">drawBitmap</span><span class="w"> </span><span class="p">(</span><span class="n">Bitmap</span><span class="w"> </span><span class="n">bitmap</span><span class="p">,</span><span class="w"> </span><span class="n">Rect</span><span class="w"> </span><span class="n">src</span><span class="p">,</span><span class="w"> </span><span class="n">RectF</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">Paint</span><span class="w"> </span><span class="n">paint</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Bitmap</span><span class="w"> </span><span class="n">bitmap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BitmapFactory</span><span class="p">.</span><span class="na">decodeResource</span><span class="p">(</span><span class="n">getResources</span><span class="p">(),</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">drawable</span><span class="p">.</span><span class="na">cat</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawBitmap</span><span class="p">(</span><span class="n">bitmap</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Matrix</span><span class="p">(),</span><span class="w"> </span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/../../../.gitbook/assets/canvas-bitmap1%20%282%29%20%281%29%20%281%29%20%281%29%20%281%29%20%281%29.jpeg"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>绘制部分区域</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Bitmap</span><span class="w"> </span><span class="n">bitmap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BitmapFactory</span><span class="p">.</span><span class="na">decodeResource</span><span class="p">(</span><span class="n">getResources</span><span class="p">(),</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">drawable</span><span class="p">.</span><span class="na">cat</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// 指定图片绘制区域</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Rect</span><span class="w"> </span><span class="n">src</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Rect</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="n">0</span><span class="p">,</span><span class="n">bitmap</span><span class="p">.</span><span class="na">getWidth</span><span class="p">()</span><span class="o">/</span><span class="n">2</span><span class="p">,</span><span class="n">bitmap</span><span class="p">.</span><span class="na">getHeight</span><span class="p">()</span><span class="o">/</span><span class="n">2</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// 指定图片在屏幕上显示的区域</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Rect</span><span class="w"> </span><span class="n">dst</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Rect</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="n">0</span><span class="p">,</span><span class="n">bitmap</span><span class="p">.</span><span class="na">getWidth</span><span class="p">(),</span><span class="n">bitmap</span><span class="p">.</span><span class="na">getHeight</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawBitmap</span><span class="p">(</span><span class="n">bitmap</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">,</span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/../../../.gitbook/assets/canvas-bitmap2%20%281%29%20%281%29%20%281%29%20%281%29%20%281%29%20%281%29%20%281%29%20%282%29%20%281%29.jpeg"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="绘制文字">绘制文字</h2>
+<p>canvas提供如下绘制文字的方法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 第一类 指定文本基线位置(基线x默认在字符串左侧，基线y默认在字符串下方)。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">drawText</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">Paint</span><span class="w"> </span><span class="n">paint</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">drawText</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">end</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">Paint</span><span class="w"> </span><span class="n">paint</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">drawText</span><span class="w"> </span><span class="p">(</span><span class="n">CharSequence</span><span class="w"> </span><span class="n">text</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">end</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">Paint</span><span class="w"> </span><span class="n">paint</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">drawText</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="o">[]</span><span class="w"> </span><span class="n">text</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">Paint</span><span class="w"> </span><span class="n">paint</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// 第二类可以分别指定每个文字的位置。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">drawPosText</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="o">[]</span><span class="w"> </span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="n">Paint</span><span class="w"> </span><span class="n">paint</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">drawPosText</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="o">[]</span><span class="w"> </span><span class="n">text</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="o">[]</span><span class="w"> </span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="n">Paint</span><span class="w"> </span><span class="n">paint</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// 第三类指定一个路径，根据路径绘制文字。</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">drawTextOnPath</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="p">,</span><span class="w"> </span><span class="n">Path</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">hOffset</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">vOffset</span><span class="p">,</span><span class="w"> </span><span class="n">Paint</span><span class="w"> </span><span class="n">paint</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">drawTextOnPath</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="o">[]</span><span class="w"> </span><span class="n">text</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="p">,</span><span class="w"> </span><span class="n">Path</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">hOffset</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">vOffset</span><span class="p">,</span><span class="w"> </span><span class="n">Paint</span><span class="w"> </span><span class="n">paint</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">String</span><span class="w"> </span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;ABCDEFGHIJK&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">mPaint</span><span class="p">.</span><span class="na">setTextSize</span><span class="p">(</span><span class="n">50</span><span class="p">);</span><span class="w">              </span><span class="c1">// 设置字体大小</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawText</span><span class="p">(</span><span class="n">str</span><span class="p">,</span><span class="n">2</span><span class="p">,</span><span class="n">5</span><span class="p">,</span><span class="n">200</span><span class="p">,</span><span class="n">500</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/../../../.gitbook/assets/canvas-text%20%281%29%20%281%29%20%281%29%20%281%29%20%281%29%20%281%29%20%281%29%20%281%29.jpeg"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>为每个字符指定位置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">String</span><span class="w"> </span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;ABCDEF&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">mPaint</span><span class="p">.</span><span class="na">setTextSize</span><span class="p">(</span><span class="n">50</span><span class="p">);</span><span class="w">              </span><span class="c1">// 设置字体大小</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawPosText</span><span class="p">(</span><span class="n">str</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">float</span><span class="o">[]</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">100</span><span class="p">,</span><span class="w"> </span><span class="n">100</span><span class="p">,</span><span class="w">    </span><span class="c1">// 第一个字符位置</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">200</span><span class="p">,</span><span class="w"> </span><span class="n">200</span><span class="p">,</span><span class="w">    </span><span class="c1">// 第二个字符位置</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">300</span><span class="p">,</span><span class="w"> </span><span class="n">300</span><span class="p">,</span><span class="w">    </span><span class="c1">// ...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">400</span><span class="p">,</span><span class="w"> </span><span class="n">400</span><span class="p">,</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">500</span><span class="p">,</span><span class="w"> </span><span class="n">500</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">600</span><span class="p">,</span><span class="w"> </span><span class="n">600</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">},</span><span class="w"> </span><span class="n">mPaint</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/../../../.gitbook/assets/canvas-text2%20%282%29%20%281%29.jpeg"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a class="link" href="https://github.com/GcsSloop/AndroidNote"  target="_blank" rel="noopener"
+    >AndroidNote</a></li>
+<li><a class="link" href="http://chiuki.github.io/android-shaders-filters/"  target="_blank" rel="noopener"
+    >Fun with Android Shaders and Filters</a></li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script
+    src="https://giscus.app/client.js"
+    data-repo="malinkang/malinkang"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkzMTUwNzEyODU="
+    data-category="General"
+    data-category-id="DIC_kwDOEsebNc4CbSPg"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="en"
+    crossorigin="anonymous"
+    async
+></script>
+<script>
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
+        }
+    }
+
+    (function () {
+        addEventListener("message", (e) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('light');
+            } else {
+                setGiscusTheme('dark');
+            }
+        }
+    })();
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2013 - 
+        
+        2024 malinkang
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

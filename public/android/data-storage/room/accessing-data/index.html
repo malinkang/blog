@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='使用Room DAO访问数据 要使用Room持久性库访问应用程序的数据 ，您需要使用数据访问对象或DAO。这组 Dao对象构成Room的主要组成部分，因为每个DAO都包含提供对应用程序数据库的抽象访问的方法。
+通过使用DAO类而不是查询构建器或直接查询访问数据库，可以分离数据库体系结构的不同组件。此外，DAO允许您在测试应用程序时轻松模拟数据库访问 。
+**注意：**在将DAO类添加到您的应用程序之前， 请将“架构组件”工件添加 到您的应用程序build.gradle文件中。
+DAO可以是接口，也可以是抽象类。如果它是一个抽象类，则可以选择使用一个RoomDatabase作为其唯一参数的构造 函数。Room会在编译时创建每个DAO实现。
+注意： Room不支持在主线程上进行数据库访问，除非您已在构建器上调用过allowMainThreadQueries()，因为Room 可能会长时间锁定UI。返回LiveData 或Flowable实例的异步查询不受此规则的限制，因为它们在需要时在后台线程上异步运行查询。
+定义方法以方便使用 您可以使用DAO类表示多个便捷查询。本文档包括几个常见示例。
+插入 创建DAO方法并用注释时 @Insert，Room会生成一个实现，该实现可在单个事务中将所有参数插入数据库。
+以下代码段显示了几个示例查询：
+1 2 3 4 5 6 7 8 9 10 11 @Dao public interface MyDao { @Insert(onConflict = OnConflictStrategy.REPLACE) public void insertUsers(User... users); @Insert public void insertBothUsers(User user1, User user2); @Insert public void insertUsersAndFriends(User user, List&amp;lt;User&amp;gt; friends); } 如果该@Insert 方法仅接收1个参数，则可以返回一个long值，这是插入项的新rowId。如果参数是数组或集合，则应返回long[]或List。
+有关更多详细信息，请参阅@Insert注释的参考文档 以及 SQLite documentation for rowid tables。
+更新 Update便利方法修改作为参数的一组实体。它使用与每个实体的主键匹配的查询。'>
+<title></title>
+
+<link rel='canonical' href='https://example.com/android/data-storage/room/accessing-data/'>
+
+<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
+<meta property='og:description' content='使用Room DAO访问数据 要使用Room持久性库访问应用程序的数据 ，您需要使用数据访问对象或DAO。这组 Dao对象构成Room的主要组成部分，因为每个DAO都包含提供对应用程序数据库的抽象访问的方法。
+通过使用DAO类而不是查询构建器或直接查询访问数据库，可以分离数据库体系结构的不同组件。此外，DAO允许您在测试应用程序时轻松模拟数据库访问 。
+**注意：**在将DAO类添加到您的应用程序之前， 请将“架构组件”工件添加 到您的应用程序build.gradle文件中。
+DAO可以是接口，也可以是抽象类。如果它是一个抽象类，则可以选择使用一个RoomDatabase作为其唯一参数的构造 函数。Room会在编译时创建每个DAO实现。
+注意： Room不支持在主线程上进行数据库访问，除非您已在构建器上调用过allowMainThreadQueries()，因为Room 可能会长时间锁定UI。返回LiveData 或Flowable实例的异步查询不受此规则的限制，因为它们在需要时在后台线程上异步运行查询。
+定义方法以方便使用 您可以使用DAO类表示多个便捷查询。本文档包括几个常见示例。
+插入 创建DAO方法并用注释时 @Insert，Room会生成一个实现，该实现可在单个事务中将所有参数插入数据库。
+以下代码段显示了几个示例查询：
+1 2 3 4 5 6 7 8 9 10 11 @Dao public interface MyDao { @Insert(onConflict = OnConflictStrategy.REPLACE) public void insertUsers(User... users); @Insert public void insertBothUsers(User user1, User user2); @Insert public void insertUsersAndFriends(User user, List&amp;lt;User&amp;gt; friends); } 如果该@Insert 方法仅接收1个参数，则可以返回一个long值，这是插入项的新rowId。如果参数是数组或集合，则应返回long[]或List。
+有关更多详细信息，请参阅@Insert注释的参考文档 以及 SQLite documentation for rowid tables。
+更新 Update便利方法修改作为参数的一组实体。它使用与每个实体的主键匹配的查询。'>
+<meta property='og:url' content='https://example.com/android/data-storage/room/accessing-data/'>
+<meta property='og:site_name' content='Malinkang&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Android' />
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="使用Room DAO访问数据 要使用Room持久性库访问应用程序的数据 ，您需要使用数据访问对象或DAO。这组 Dao对象构成Room的主要组成部分，因为每个DAO都包含提供对应用程序数据库的抽象访问的方法。
+通过使用DAO类而不是查询构建器或直接查询访问数据库，可以分离数据库体系结构的不同组件。此外，DAO允许您在测试应用程序时轻松模拟数据库访问 。
+**注意：**在将DAO类添加到您的应用程序之前， 请将“架构组件”工件添加 到您的应用程序build.gradle文件中。
+DAO可以是接口，也可以是抽象类。如果它是一个抽象类，则可以选择使用一个RoomDatabase作为其唯一参数的构造 函数。Room会在编译时创建每个DAO实现。
+注意： Room不支持在主线程上进行数据库访问，除非您已在构建器上调用过allowMainThreadQueries()，因为Room 可能会长时间锁定UI。返回LiveData 或Flowable实例的异步查询不受此规则的限制，因为它们在需要时在后台线程上异步运行查询。
+定义方法以方便使用 您可以使用DAO类表示多个便捷查询。本文档包括几个常见示例。
+插入 创建DAO方法并用注释时 @Insert，Room会生成一个实现，该实现可在单个事务中将所有参数插入数据库。
+以下代码段显示了几个示例查询：
+1 2 3 4 5 6 7 8 9 10 11 @Dao public interface MyDao { @Insert(onConflict = OnConflictStrategy.REPLACE) public void insertUsers(User... users); @Insert public void insertBothUsers(User user1, User user2); @Insert public void insertUsersAndFriends(User user, List&amp;lt;User&amp;gt; friends); } 如果该@Insert 方法仅接收1个参数，则可以返回一个long值，这是插入项的新rowId。如果参数是数组或集合，则应返回long[]或List。
+有关更多详细信息，请参阅@Insert注释的参考文档 以及 SQLite documentation for rowid tables。
+更新 Update便利方法修改作为参数的一组实体。它使用与每个实体的主键匹配的查询。">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
+}
+</script>
+<style>
+    :root {
+      --sys-font-family: "Noto Serif SC";
+      --zh-font-family: "Noto Serif SC";
+      --base-font-family: "Noto Serif SC";
+      --code-font-family: "Noto Serif SC";
+      --article-font-family: "Noto Serif SC";
+    }
+  </style>
+  
+  <script>
+    (function () {
+      const customFont = document.createElement("link");
+      customFont.href =
+        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+  
+      customFont.type = "text/css";
+      customFont.rel = "stylesheet";
+  
+      document.head.appendChild(customFont);
+    })();
+  </script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
+     crossorigin="anonymous"></script>
+  
+
+<script>
+    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/images/avatar_hu74e4307e0baa534a3da4ee0210445065_34446_300x0_resize_q75_box.jpeg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
+            <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/malinkang'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/malinkang'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#定义方法以方便使用">定义方法以方便使用</a>
+      <ol>
+        <li><a href="#插入">插入</a></li>
+        <li><a href="#更新">更新</a></li>
+        <li><a href="#删除">删除</a></li>
+      </ol>
+    </li>
+    <li><a href="#查询信息">查询信息</a>
+      <ol>
+        <li><a href="#简单查询">简单查询</a></li>
+        <li><a href="#将参数传递到查询中">将参数传递到查询中</a></li>
+        <li><a href="#返回列的子集">返回列的子集</a></li>
+        <li><a href="#传递参数集合">传递参数集合</a></li>
+        <li><a href="#可观察的查询">可观察的查询</a></li>
+        <li><a href="#使用rxjava进行响应式查询">使用RxJava进行响应式查询</a></li>
+        <li><a href="#直接cursor访问">直接Cursor访问</a></li>
+        <li><a href="#查询多个表">查询多个表</a></li>
+        <li><a href="#用kotlin协程编写异步方法">用Kotlin协程编写异步方法</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/android/data-storage/room/accessing-data/"></a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="使用room-dao访问数据">使用Room DAO访问数据</h1>
+<p>要使用<a class="link" href="https://developer.android.com/training/data-storage/room/index.html"  target="_blank" rel="noopener"
+    >Room持久性库</a>访问应用程序的数据 ，您需要使用<em>数据访问对象</em>或DAO。这组 <a class="link" href="https://developer.android.com/reference/androidx/room/Dao.html"  target="_blank" rel="noopener"
+    ><code>Dao</code></a>对象构成Room的主要组成部分，因为每个DAO都包含提供对应用程序数据库的抽象访问的方法。</p>
+<p>通过使用DAO类而不是查询构建器或直接查询访问数据库，可以分离数据库体系结构的不同组件。此外，DAO允许您在<a class="link" href="https://developer.android.com/training/data-storage/room/testing-db.html"  target="_blank" rel="noopener"
+    >测试应用程序时</a>轻松模拟数据库访问 。</p>
+<blockquote>
+<p>**注意：**在将DAO类添加到您的应用程序之前， <a class="link" href="https://developer.android.com/topic/libraries/architecture/adding-components.html"  target="_blank" rel="noopener"
+    >请将“架构组件”工件添加</a> 到您的应用程序<code>build.gradle</code>文件中。</p>
+</blockquote>
+<p>DAO可以是接口，也可以是抽象类。如果它是一个抽象类，则可以选择使用一个<a class="link" href="https://developer.android.com/reference/androidx/room/RoomDatabase.html"  target="_blank" rel="noopener"
+    ><code>RoomDatabase</code></a>作为其唯一参数的构造 函数。Room会在编译时创建每个DAO实现。</p>
+<blockquote>
+<p><strong>注意：</strong> Room不支持在主线程上进行数据库访问，除非您已在构建器上调用过<code>allowMainThreadQueries()</code>，因为Room 可能会长时间锁定UI。返回<a class="link" href="https://developer.android.com/reference/androidx/lifecycle/LiveData.html"  target="_blank" rel="noopener"
+    ><code>LiveData</code></a> 或<a class="link" href="http://reactivex.io/RxJava/2.x/javadoc/io/reactivex/Flowable.html"  target="_blank" rel="noopener"
+    ><code>Flowable</code></a>实例的异步查询不受此规则的限制，因为它们在需要时在后台线程上异步运行查询。</p>
+</blockquote>
+<h2 id="定义方法以方便使用">定义方法以方便使用</h2>
+<p>您可以使用DAO类表示多个便捷查询。本文档包括几个常见示例。</p>
+<h3 id="插入">插入</h3>
+<p>创建DAO方法并用注释时 <a class="link" href="https://developer.android.com/reference/androidx/room/Insert.html"  target="_blank" rel="noopener"
+    ><code>@Insert</code></a>，Room会生成一个实现，该实现可在单个事务中将所有参数插入数据库。</p>
+<p>以下代码段显示了几个示例查询：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Dao</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">MyDao</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Insert</span><span class="p">(</span><span class="n">onConflict</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OnConflictStrategy</span><span class="p">.</span><span class="na">REPLACE</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">insertUsers</span><span class="p">(</span><span class="n">User</span><span class="p">...</span><span class="w"> </span><span class="n">users</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Insert</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">insertBothUsers</span><span class="p">(</span><span class="n">User</span><span class="w"> </span><span class="n">user1</span><span class="p">,</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="n">user2</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Insert</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">insertUsersAndFriends</span><span class="p">(</span><span class="n">User</span><span class="w"> </span><span class="n">user</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="n">friends</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果该<a class="link" href="https://developer.android.com/reference/androidx/room/Insert.html"  target="_blank" rel="noopener"
+    ><code>@Insert</code></a> 方法仅接收1个参数，则可以返回一个<code>long</code>值，这是插入项的新<code>rowId</code>。如果参数是数组或集合，则应返回<code>long[]</code>或<code>List</code>。</p>
+<p>有关更多详细信息，请参阅<a class="link" href="https://developer.android.com/reference/androidx/room/Insert.html"  target="_blank" rel="noopener"
+    ><code>@Insert</code></a>注释的参考文档 以及 <a class="link" href="https://www.sqlite.org/rowidtable.html"  target="_blank" rel="noopener"
+    >SQLite documentation for rowid tables</a>。</p>
+<h3 id="更新">更新</h3>
+<p><code>Update</code>便利方法修改作为参数的一组实体。它使用与每个实体的主键匹配的查询。</p>
+<p>以下代码段演示了如何定义此方法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Dao</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">MyDao</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Update</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">updateUsers</span><span class="p">(</span><span class="n">User</span><span class="p">...</span><span class="w"> </span><span class="n">users</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>尽管通常没有必要，但是您可以让此方法返回一个<code>int</code>值，以指示数据库中更新的行数。</p>
+<h3 id="删除">删除</h3>
+<p><code>Delete</code>便利方法删除作为参数的一组实体。它使用主键来查找要删除的实体。</p>
+<p>以下代码段演示了如何定义此方法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Dao</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">MyDao</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Delete</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">deleteUsers</span><span class="p">(</span><span class="n">User</span><span class="p">...</span><span class="w"> </span><span class="n">users</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>尽管通常没有必要，但是您可以让此方法返回一个<code>int</code>值，以指示从数据库中删除的行数。</p>
+<h2 id="查询信息">查询信息</h2>
+<p><a class="link" href="https://developer.android.com/reference/androidx/room/Query.html"  target="_blank" rel="noopener"
+    ><code>@Query</code></a>是DAO类中使用的主要注释。它允许您对数据库执行读/写操作。每种 <a class="link" href="https://developer.android.com/reference/androidx/room/Query.html"  target="_blank" rel="noopener"
+    ><code>@Query</code></a>方法都在编译时进行验证，因此，如果查询存在问题，则会发生编译错误，而不是运行时错误。</p>
+<p>Room还会验证查询的返回值，以便如果返回的对象中字段的名称与查询响应中的相应列名称不匹配，Room可以通过以下两种方式之一向您发出警报：</p>
+<ul>
+<li>如果仅某些字段名称匹配，则会发出警告。</li>
+<li>如果没有匹配的字段名称，则会产生错误。</li>
+</ul>
+<h3 id="简单查询">简单查询</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Dao</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">MyDao</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&#34;SELECT * FROM user&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="o">[]</span><span class="w"> </span><span class="nf">loadAllUsers</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>这是一个非常简单的查询，可加载所有用户。在编译时，Room知道它正在查询用户表中的所有列。如果查询包含语法错误，或者数据库中不存在用户表，则Room会在编译应用时显示错误并显示相应的消息。</p>
+<h3 id="将参数传递到查询中">将参数传递到查询中</h3>
+<p>大多数时候，您需要将参数传递给查询以执行过滤操作，例如仅显示年龄超过特定年龄的用户。要完成此任务，请在Room批注中使用方法参数，如以下代码片段所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Dao</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">MyDao</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&#34;SELECT * FROM user WHERE age &gt; :minAge&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="o">[]</span><span class="w"> </span><span class="nf">loadAllUsersOlderThan</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">minAge</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>在编译时处理此查询时，Room将<code>:minAge</code>绑定参数与<code>minAge</code>方法参数进行匹配。Room使用参数名称执行匹配。如果不匹配，则在您的应用编译时会发生错误。</p>
+<p>您还可以在查询中传递多个参数或多次引用它们，如以下代码片段所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Dao</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">MyDao</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&#34;SELECT * FROM user WHERE age BETWEEN :minAge AND :maxAge&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="o">[]</span><span class="w"> </span><span class="nf">loadAllUsersBetweenAges</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">minAge</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">maxAge</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&#34;SELECT * FROM user WHERE first_name LIKE :search &#34;</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">           </span><span class="s">&#34;OR last_name LIKE :search&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findUserWithName</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">search</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="返回列的子集">返回列的子集</h3>
+<p>大多数时候，您只需要获取实体的几个字段。例如，您的UI可能仅显示用户的名字和姓氏，而不是有关用户的每个详细信息。通过仅提取出现在应用程序UI中的列，可以节省宝贵的资源，并且查询可以更快地完成。</p>
+<p>只要可以将结果列的集合映射到返回的对象中，Room允许您从查询中返回任何基于Java的对象。例如，您可以创建以下简单的基于Java的旧对象（POJO）以获取用户的名字和姓氏：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">NameTuple</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@ColumnInfo</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;first_name&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">firstName</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@ColumnInfo</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;last_name&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@NonNull</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">lastName</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>现在，您可以在查询方法中使用此POJO：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Dao</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">MyDao</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&#34;SELECT first_name, last_name FROM user&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">NameTuple</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">loadFullName</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Room知道查询将返回和的值，<code>first_name</code>并且 <code>last_name</code>这些值可以映射到<code>NameTuple</code>类的字段中 。因此，Room可以生成正确的代码。如果查询返回的列过多或<code>NameTuple</code> 该类中不存在的列，Room将显示警告。</p>
+<blockquote>
+<p>**注意：**这些POJO也可以使用 <a class="link" href="https://developer.android.com/reference/androidx/room/Embedded.html"  target="_blank" rel="noopener"
+    ><code>@Embedded</code></a> 注释。</p>
+</blockquote>
+<h3 id="传递参数集合">传递参数集合</h3>
+<p>您的某些查询可能要求您传递可变数量的参数，直到运行时才知道确切数量的参数。例如，您可能想从区域子集中检索有关所有用户的信息。Room可以了解参数何时表示集合，并根据提供的参数数量在运行时自动扩展它。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Dao</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">MyDao</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&#34;SELECT first_name, last_name FROM user WHERE region IN (:regions)&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">NameTuple</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">loadUsersFromRegions</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">regions</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="可观察的查询">可观察的查询</h3>
+<p>执行查询时，您通常会希望您的应用程序的UI在数据更改时自动更新。为此，请在查询方法描述中使用<a class="link" href="https://developer.android.com/reference/androidx/lifecycle/LiveData.html"  target="_blank" rel="noopener"
+    ><code>LiveData</code></a>类型的返回值。Room会生成所有必需的代码，以在数据库更新时更新 <a class="link" href="https://developer.android.com/reference/androidx/lifecycle/LiveData.html"  target="_blank" rel="noopener"
+    ><code>LiveData</code></a>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Dao</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">MyDao</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&#34;SELECT first_name, last_name FROM user WHERE region IN (:regions)&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">LiveData</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="nf">loadUsersFromRegionsSync</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">regions</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="使用rxjava进行响应式查询">使用RxJava进行响应式查询</h3>
+<p>Room对RxJava2类型的返回值提供以下支持：</p>
+<ul>
+<li><code>@Query</code>方法：房间支持类型的返回值 <a class="link" href="http://www.reactive-streams.org/reactive-streams-1.0.1-javadoc/org/reactivestreams/Publisher.html"  target="_blank" rel="noopener"
+    ><code>Publisher</code></a>， <a class="link" href="http://reactivex.io/RxJava/2.x/javadoc/io/reactivex/Flowable.html"  target="_blank" rel="noopener"
+    ><code>Flowable</code></a>和 <a class="link" href="http://reactivex.io/RxJava/2.x/javadoc/io/reactivex/Observable.html"  target="_blank" rel="noopener"
+    ><code>Observable</code></a>。</li>
+<li><code>@Insert</code>，<code>@Update</code>及<code>@Delete</code>方法：2.1.0室和更高版本支持返回类型的值 <a class="link" href="http://reactivex.io/RxJava/javadoc/io/reactivex/Completable.html"  target="_blank" rel="noopener"
+    ><code>Completable</code></a>， <a class="link" href="http://reactivex.io/RxJava/javadoc/io/reactivex/Single.html"  target="_blank" rel="noopener"
+    ><code>Single</code></a>和 <a class="link" href="http://reactivex.io/RxJava/javadoc/io/reactivex/Maybe.html"  target="_blank" rel="noopener"
+    ><code>Maybe</code></a></li>
+</ul>
+<p>要使用此功能，请 在应用程序的文件中包括最新版本的<strong>rxjava2</strong>构件<code>build.gradle</code>：</p>
+<p><code>app/build.gradle</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">dependencies</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">def</span> <span class="n">room_version</span> <span class="o">=</span> <span class="s2">&#34;2.1.0&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">implementation</span> <span class="s1">&#39;androidx.room:room-rxjava2:$room_version&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>有关更多详细信息，请参阅Google Developers <a class="link" href="https://medium.com/google-developers/room-rxjava-acb0cd4f3757"  target="_blank" rel="noopener"
+    >Room和RxJava</a>文章。</p>
+<h3 id="直接cursor访问">直接Cursor访问</h3>
+<p>如果您的应用程序逻辑需要直接访问返回行，则可以从查询中返回一个<code>Cursor</code>对象，如以下代码片段所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Dao</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">MyDao</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&#34;SELECT * FROM user WHERE age &gt; :minAge LIMIT 5&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Cursor</span><span class="w"> </span><span class="nf">loadRawUsersOlderThan</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">minAge</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>**警告：**强烈建议不要使用Cursor API，因为它不能保证行是否存在或行包含哪些值。仅当您已经拥有需要游标且无法轻松重构的代码时，才使用此功能。</p>
+</blockquote>
+<h3 id="查询多个表">查询多个表</h3>
+<p>您的某些查询可能需要访问多个表才能计算结果。Room允许您编写任何查询，因此您也可以联接表。此外，如果响应是可观察到的数据类型（例如Flowable 或LiveData） ，则Room会监视查询中引用的所有表是否有效。</p>
+<p>以下代码段显示了如何执行表联接以合并包含正在借书的用户的表和包含有关当前借书的数据的表之间的信息：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Dao</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">MyDao</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&#34;SELECT * FROM book &#34;</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">           </span><span class="s">&#34;INNER JOIN loan ON loan.book_id = book.id &#34;</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">           </span><span class="s">&#34;INNER JOIN user ON user.id = loan.user_id &#34;</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">           </span><span class="s">&#34;WHERE user.name LIKE :userName&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Book</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findBooksBorrowedByNameSync</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">userName</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>您还可以从这些查询返回POJO。例如，您可以编写一个查询来加载用户及其宠物的名称，如下所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Dao</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">MyDao</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&#34;SELECT user.name AS userName, pet.name AS petName &#34;</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="s">&#34;FROM user, pet &#34;</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="s">&#34;WHERE user.id = pet.user_id&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="kd">public</span><span class="w"> </span><span class="n">LiveData</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">UserPet</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="nf">loadUserAndPetNames</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="c1">// You can also define this class in a separate file, as long as you add the</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="c1">// &#34;public&#34; access modifier.</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="kd">static</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserPet</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">userName</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">petName</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="用kotlin协程编写异步方法">用Kotlin协程编写异步方法</h3>
+<p>您可以将<code>suspend</code>Kotlin关键字添加到DAO方法中，以使用Kotlin协程功能使其异步。这样可以确保它们无法在主线程上执行。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Dao</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">interface</span> <span class="nc">MyDao</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Insert</span><span class="p">(</span><span class="n">onConflict</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OnConflictStrategy</span><span class="p">.</span><span class="na">REPLACE</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">suspend</span><span class="w"> </span><span class="n">fun</span><span class="w"> </span><span class="nf">insertUsers</span><span class="p">(</span><span class="n">vararg</span><span class="w"> </span><span class="n">users</span><span class="p">:</span><span class="w"> </span><span class="n">User</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Update</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">suspend</span><span class="w"> </span><span class="n">fun</span><span class="w"> </span><span class="nf">updateUsers</span><span class="p">(</span><span class="n">vararg</span><span class="w"> </span><span class="n">users</span><span class="p">:</span><span class="w"> </span><span class="n">User</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Delete</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">suspend</span><span class="w"> </span><span class="n">fun</span><span class="w"> </span><span class="nf">deleteUsers</span><span class="p">(</span><span class="n">vararg</span><span class="w"> </span><span class="n">users</span><span class="p">:</span><span class="w"> </span><span class="n">User</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&#34;SELECT * FROM user&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">suspend</span><span class="w"> </span><span class="n">fun</span><span class="w"> </span><span class="nf">loadAllUsers</span><span class="p">():</span><span class="w"> </span><span class="n">Array</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>**注意：**将Room与Kotlin协程一起使用需要Room 2.1.0，Kotlin 1.3.0和Coroutines 1.0.0或更高版本。有关更多信息，请参见 <a class="link" href="https://developer.android.com/jetpack/androidx/releases/room#declaring_dependencies"  target="_blank" rel="noopener"
+    >声明依赖项</a>。</p>
+</blockquote>
+<p>本指南还适用于带有注释的DAO方法 。您可以使用此功能从其他DAO方法中构建挂起数据库方法。这些方法然后在单个数据库事务中运行。<a class="link" href="https://developer.android.com/reference/androidx/room/Transaction"  target="_blank" rel="noopener"
+    > <code>@Transaction</code></a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Dao</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">abstract</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UsersDao</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Transaction</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">open</span><span class="w"> </span><span class="n">suspend</span><span class="w"> </span><span class="n">fun</span><span class="w"> </span><span class="nf">setLoggedInUser</span><span class="p">(</span><span class="n">loggedInUser</span><span class="p">:</span><span class="w"> </span><span class="n">User</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">deleteUser</span><span class="p">(</span><span class="n">loggedInUser</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">insertUser</span><span class="p">(</span><span class="n">loggedInUser</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&#34;DELETE FROM users&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">abstract</span><span class="w"> </span><span class="n">fun</span><span class="w"> </span><span class="nf">deleteUser</span><span class="p">(</span><span class="n">user</span><span class="p">:</span><span class="w"> </span><span class="n">User</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Insert</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">abstract</span><span class="w"> </span><span class="n">suspend</span><span class="w"> </span><span class="n">fun</span><span class="w"> </span><span class="nf">insertUser</span><span class="p">(</span><span class="n">user</span><span class="p">:</span><span class="w"> </span><span class="n">User</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>**注意：**避免在单个数据库事务中执行额外的应用程序端工作，因为Room将事务视为独占事务，并且一次只能执行一个事务。这意味着包含比必要更多的操作的事务很容易锁定数据库并影响性能。</p>
+</blockquote>
+<p>有关在您的应用程序中使用Kotlin协程的更多信息，请参阅使用Kotlin协程 <a class="link" href="https://developer.android.com/kotlin/coroutines"  target="_blank" rel="noopener"
+    >提高应用程序性能</a>。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script
+    src="https://giscus.app/client.js"
+    data-repo="malinkang/malinkang"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkzMTUwNzEyODU="
+    data-category="General"
+    data-category-id="DIC_kwDOEsebNc4CbSPg"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="en"
+    crossorigin="anonymous"
+    async
+></script>
+<script>
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
+        }
+    }
+
+    (function () {
+        addEventListener("message", (e) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('light');
+            } else {
+                setGiscusTheme('dark');
+            }
+        }
+    })();
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2013 - 
+        
+        2024 malinkang
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

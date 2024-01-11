@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='数据和文件存储 Android 使用的文件系统类似于其他平台上基于磁盘的文件系统。该系统为您提供了以下几种保存应用数据的选项：
+应用专属存储空间：存储仅供应用使用的文件，可以存储到内部存储卷中的专属目录或外部存储空间中的其他专属目录。使用内部存储空间中的目录保存其他应用不应访问的敏感信息。 共享存储：存储您的应用打算与其他应用共享的文件，包括媒体、文档和其他文件。 偏好设置：以键值对形式存储私有原始数据。 数据库：使用 Room 持久性库将结构化数据存储在专用数据库中。 下表汇总了这些选项的特点：
+内容类型 访问方法 所需权限 其他应用是否可以访问？ 卸载应用时是否移除文件？ 应用专属文件 仅供您的应用使用的文件 从内部存储空间访问，可以使用 getFilesDir() 或 getCacheDir() 方法 从外部存储空间访问，可以使用 getExternalFilesDir() 或 getExternalCacheDir() 方法 从内部存储空间访问不需要任何权限 如果应用在搭载 Android 4.4（API 级别 19）或更高版本的设备上运行，从外部存储空间访问不需要任何权限 如果文件存储在内部存储空间中的目录内，则不能访问 如果文件存储在外部存储空间中的目录内，则可以访问 是 媒体 可共享的媒体文件（图片、音频文件、视频） MediaStore API 在 Android 10（API 级别 29）或更高版本中，访问其他应用的文件需要 READ_EXTERNAL_STORAGE 或 WRITE_EXTERNAL_STORAGE 权限 在 Android 9（API 级别 28）或更低版本中，访问所有文件均需要相关权限 是，但其他应用需要 READ_EXTERNAL_STORAGE 权限 否 文档和其他文件 其他类型的可共享内容，包括已下载的文件 存储访问框架 无 是，可以通过系统文件选择器访问 否 应用偏好设置 键值对 Jetpack Preferences 库 无 否 是 数据库 结构化数据 Room 持久性库 无 否 是 您应根据自己的具体需求选择解决方案：'>
+<title></title>
+
+<link rel='canonical' href='https://example.com/android/data-storage/shu-ju-he-wen-jian-cun-chu/'>
+
+<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
+<meta property='og:description' content='数据和文件存储 Android 使用的文件系统类似于其他平台上基于磁盘的文件系统。该系统为您提供了以下几种保存应用数据的选项：
+应用专属存储空间：存储仅供应用使用的文件，可以存储到内部存储卷中的专属目录或外部存储空间中的其他专属目录。使用内部存储空间中的目录保存其他应用不应访问的敏感信息。 共享存储：存储您的应用打算与其他应用共享的文件，包括媒体、文档和其他文件。 偏好设置：以键值对形式存储私有原始数据。 数据库：使用 Room 持久性库将结构化数据存储在专用数据库中。 下表汇总了这些选项的特点：
+内容类型 访问方法 所需权限 其他应用是否可以访问？ 卸载应用时是否移除文件？ 应用专属文件 仅供您的应用使用的文件 从内部存储空间访问，可以使用 getFilesDir() 或 getCacheDir() 方法 从外部存储空间访问，可以使用 getExternalFilesDir() 或 getExternalCacheDir() 方法 从内部存储空间访问不需要任何权限 如果应用在搭载 Android 4.4（API 级别 19）或更高版本的设备上运行，从外部存储空间访问不需要任何权限 如果文件存储在内部存储空间中的目录内，则不能访问 如果文件存储在外部存储空间中的目录内，则可以访问 是 媒体 可共享的媒体文件（图片、音频文件、视频） MediaStore API 在 Android 10（API 级别 29）或更高版本中，访问其他应用的文件需要 READ_EXTERNAL_STORAGE 或 WRITE_EXTERNAL_STORAGE 权限 在 Android 9（API 级别 28）或更低版本中，访问所有文件均需要相关权限 是，但其他应用需要 READ_EXTERNAL_STORAGE 权限 否 文档和其他文件 其他类型的可共享内容，包括已下载的文件 存储访问框架 无 是，可以通过系统文件选择器访问 否 应用偏好设置 键值对 Jetpack Preferences 库 无 否 是 数据库 结构化数据 Room 持久性库 无 否 是 您应根据自己的具体需求选择解决方案：'>
+<meta property='og:url' content='https://example.com/android/data-storage/shu-ju-he-wen-jian-cun-chu/'>
+<meta property='og:site_name' content='Malinkang&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Android' />
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="数据和文件存储 Android 使用的文件系统类似于其他平台上基于磁盘的文件系统。该系统为您提供了以下几种保存应用数据的选项：
+应用专属存储空间：存储仅供应用使用的文件，可以存储到内部存储卷中的专属目录或外部存储空间中的其他专属目录。使用内部存储空间中的目录保存其他应用不应访问的敏感信息。 共享存储：存储您的应用打算与其他应用共享的文件，包括媒体、文档和其他文件。 偏好设置：以键值对形式存储私有原始数据。 数据库：使用 Room 持久性库将结构化数据存储在专用数据库中。 下表汇总了这些选项的特点：
+内容类型 访问方法 所需权限 其他应用是否可以访问？ 卸载应用时是否移除文件？ 应用专属文件 仅供您的应用使用的文件 从内部存储空间访问，可以使用 getFilesDir() 或 getCacheDir() 方法 从外部存储空间访问，可以使用 getExternalFilesDir() 或 getExternalCacheDir() 方法 从内部存储空间访问不需要任何权限 如果应用在搭载 Android 4.4（API 级别 19）或更高版本的设备上运行，从外部存储空间访问不需要任何权限 如果文件存储在内部存储空间中的目录内，则不能访问 如果文件存储在外部存储空间中的目录内，则可以访问 是 媒体 可共享的媒体文件（图片、音频文件、视频） MediaStore API 在 Android 10（API 级别 29）或更高版本中，访问其他应用的文件需要 READ_EXTERNAL_STORAGE 或 WRITE_EXTERNAL_STORAGE 权限 在 Android 9（API 级别 28）或更低版本中，访问所有文件均需要相关权限 是，但其他应用需要 READ_EXTERNAL_STORAGE 权限 否 文档和其他文件 其他类型的可共享内容，包括已下载的文件 存储访问框架 无 是，可以通过系统文件选择器访问 否 应用偏好设置 键值对 Jetpack Preferences 库 无 否 是 数据库 结构化数据 Room 持久性库 无 否 是 您应根据自己的具体需求选择解决方案：">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
+}
+</script>
+<style>
+    :root {
+      --sys-font-family: "Noto Serif SC";
+      --zh-font-family: "Noto Serif SC";
+      --base-font-family: "Noto Serif SC";
+      --code-font-family: "Noto Serif SC";
+      --article-font-family: "Noto Serif SC";
+    }
+  </style>
+  
+  <script>
+    (function () {
+      const customFont = document.createElement("link");
+      customFont.href =
+        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+  
+      customFont.type = "text/css";
+      customFont.rel = "stylesheet";
+  
+      document.head.appendChild(customFont);
+    })();
+  </script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
+     crossorigin="anonymous"></script>
+  
+
+<script>
+    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/images/avatar_hu74e4307e0baa534a3da4ee0210445065_34446_300x0_resize_q75_box.jpeg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
+            <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/malinkang'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/malinkang'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#存储位置的类别">存储位置的类别</a></li>
+    <li><a href="#对外部存储空间的访问和所需权限">对外部存储空间的访问和所需权限</a>
+      <ol>
+        <li><a href="#分区存储">分区存储</a></li>
+      </ol>
+    </li>
+    <li><a href="#对文件执行操作的最佳做法">对文件执行操作的最佳做法</a>
+      <ol>
+        <li>
+          <ol>
+            <li><a href="#请勿反复打开和关闭文件-a-idopen-close-filesa">请勿反复打开和关闭文件 <a id="open-close-files"></a></a></li>
+            <li><a href="#共享单个文件-a-idshare-individual-filesa">共享单个文件 <a id="share-individual-files"></a></a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#查看设备上的文件">查看设备上的文件</a></li>
+    <li><a href="#参考">参考</a>
+      <ol>
+        <li><a href="#heading"></a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/android/data-storage/shu-ju-he-wen-jian-cun-chu/"></a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    1 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="数据和文件存储">数据和文件存储</h1>
+<p>Android 使用的文件系统类似于其他平台上基于磁盘的文件系统。该系统为您提供了以下几种保存应用数据的选项：</p>
+<ul>
+<li><strong>应用专属存储空间</strong>：存储仅供应用使用的文件，可以存储到内部存储卷中的专属目录或外部存储空间中的其他专属目录。使用内部存储空间中的目录保存其他应用不应访问的敏感信息。</li>
+<li><strong>共享存储</strong>：存储您的应用打算与其他应用共享的文件，包括媒体、文档和其他文件。</li>
+<li><strong>偏好设置</strong>：以键值对形式存储私有原始数据。</li>
+<li><strong>数据库</strong>：使用 Room 持久性库将结构化数据存储在专用数据库中。</li>
+</ul>
+<p>下表汇总了这些选项的特点：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th style="text-align:left">内容类型</th>
+<th style="text-align:center">访问方法</th>
+<th style="text-align:left">所需权限</th>
+<th style="text-align:left">其他应用是否可以访问？</th>
+<th style="text-align:left">卸载应用时是否移除文件？</th>
+<th style="text-align:left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><a class="link" href="https://developer.android.com/training/data-storage/app-specific"  target="_blank" rel="noopener"
+    >应用专属文件</a></td>
+<td style="text-align:center">仅供您的应用使用的文件</td>
+<td style="text-align:left">从内部存储空间访问，可以使用 <code>getFilesDir()</code> 或 <code>getCacheDir()</code> 方法  从外部存储空间访问，可以使用 <code>getExternalFilesDir()</code> 或 <code>getExternalCacheDir()</code> 方法</td>
+<td style="text-align:left">从内部存储空间访问不需要任何权限  如果应用在搭载 Android 4.4（API 级别 19）或更高版本的设备上运行，从外部存储空间访问不需要任何权限</td>
+<td style="text-align:left">如果文件存储在内部存储空间中的目录内，则不能访问  如果文件存储在外部存储空间中的目录内，则可以访问</td>
+<td style="text-align:left">是</td>
+</tr>
+<tr>
+<td style="text-align:left"><a class="link" href="https://developer.android.com/training/data-storage/shared/media"  target="_blank" rel="noopener"
+    >媒体</a></td>
+<td style="text-align:center">可共享的媒体文件（图片、音频文件、视频）</td>
+<td style="text-align:left"><code>MediaStore</code> API</td>
+<td style="text-align:left">在 Android 10（API 级别 29）或更高版本中，访问其他应用的文件需要 <code>READ_EXTERNAL_STORAGE</code> 或 <code>WRITE_EXTERNAL_STORAGE</code> 权限  在 Android 9（API 级别 28）或更低版本中，访问<strong>所有</strong>文件均需要相关权限</td>
+<td style="text-align:left">是，但其他应用需要 <code>READ_EXTERNAL_STORAGE</code> 权限</td>
+<td style="text-align:left">否</td>
+</tr>
+<tr>
+<td style="text-align:left"><a class="link" href="https://developer.android.com/training/data-storage/shared/documents-files"  target="_blank" rel="noopener"
+    >文档和其他文件</a></td>
+<td style="text-align:center">其他类型的可共享内容，包括已下载的文件</td>
+<td style="text-align:left">存储访问框架</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">是，可以通过系统文件选择器访问</td>
+<td style="text-align:left">否</td>
+</tr>
+<tr>
+<td style="text-align:left"><a class="link" href="https://developer.android.com/training/data-storage/shared-preferences"  target="_blank" rel="noopener"
+    >应用偏好设置</a></td>
+<td style="text-align:center">键值对</td>
+<td style="text-align:left"><a class="link" href="https://developer.android.com/guide/topics/ui/settings/use-saved-values"  target="_blank" rel="noopener"
+    >Jetpack Preferences</a> 库</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">否</td>
+<td style="text-align:left">是</td>
+</tr>
+<tr>
+<td style="text-align:left">数据库</td>
+<td style="text-align:center">结构化数据</td>
+<td style="text-align:left"><a class="link" href="https://developer.android.com/training/data-storage/room"  target="_blank" rel="noopener"
+    >Room</a> 持久性库</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">否</td>
+<td style="text-align:left">是</td>
+</tr>
+</tbody>
+</table></div>
+<p>您应根据自己的具体需求选择解决方案：</p>
+<p><strong>您的数据需要占用多少空间</strong></p>
+<p>内部存储空间中用于存储应用专属数据的空间有限。如果您需要保存大量数据，请使用其他类型的存储空间。</p>
+<p><strong>数据访问需要达到怎样的可靠程度？</strong></p>
+<p>如果应用的基本功能需要某些数据（例如应用启动时需要的数据），可以将相应数据存放到内部存储目录或数据库中。存储在外部存储空间中的应用专属文件并非一直可以访问，因为有些设备允许用户移除提供外部存储空间的实体设备。</p>
+<p><strong>您需要存储哪类数据？</strong></p>
+<p>如果数据仅供您的应用使用，应使用应用专属存储空间。对于可分享的媒体内容，应使用共享的存储空间，以便其他应用可以访问相应内容。对于结构化数据，应使用偏好设置（适合键值对数据）或数据库（适合包含 2 个以上列的数据）。</p>
+<p><strong>数据是否应仅供您的应用使用？</strong></p>
+<p>在存储敏感数据（不可通过任何其他应用访问的数据）时，应使用内部存储空间、偏好设置或数据库。内部存储空间的一个额外优势是用户无法看到相应数据。</p>
+<h2 id="存储位置的类别">存储位置的类别</h2>
+<p>Android 提供两类物理存储位置：内部存储空间和外部存储空间。在大多数设备上，内部存储空间小于外部存储空间。不过，所有设备上的内部存储空间都是始终可用的，因此在存储应用所依赖的数据时更为可靠。</p>
+<p>可移除卷（例如 SD 卡）在文件系统中属于外部存储空间。Android 使用路径（例如 <code>/sdcard</code>）表示这些存储设备。</p>
+<p>{% hint style=&ldquo;info&rdquo; %}
+<strong>注意</strong>：可用于保存文件的确切位置可能因设备而异。因此，请勿使用硬编码的文件路径。
+{% endhint %}</p>
+<p>默认情况下，应用本身存储在内部存储空间中。不过，如果您的 APK 非常大，也可以在应用的清单文件中指明偏好设置，以便将应用安装到外部存储空间：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    &lt;manifest ...
+</span></span><span class="line"><span class="cl">      android:installLocation=&#34;preferExternal&#34;&gt;
+</span></span><span class="line"><span class="cl">      ...
+</span></span><span class="line"><span class="cl">    &lt;/manifest&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="对外部存储空间的访问和所需权限">对外部存储空间的访问和所需权限</h2>
+<p>Android 为对外部存储空间的读写访问定义了以下权限：<a class="link" href="https://developer.android.com/reference/android/Manifest.permission#READ_EXTERNAL_STORAGE"  target="_blank" rel="noopener"
+    ><code>READ_EXTERNAL_STORAGE</code></a> 和 <a class="link" href="https://developer.android.com/reference/android/Manifest.permission#WRITE_EXTERNAL_STORAGE"  target="_blank" rel="noopener"
+    ><code>WRITE_EXTERNAL_STORAGE</code></a>。</p>
+<p>在较低版本的 Android 系统中，应用需要声明这些权限才能访问位于外部存储空间中<a class="link" href="https://developer.android.com/training/data-storage/app-specific#external"  target="_blank" rel="noopener"
+    >应用专属目录</a>之外的任何文件。Android 系统的版本越新，就越依赖于文件的用途而不是位置来确定应用对文件的访问能力。这种基于用途的存储模型可增强用户隐私保护，因为应用只能访问其在设备文件系统中实际使用的区域。</p>
+<h3 id="分区存储">分区存储</h3>
+<p>为了让用户更好地管理自己的文件并减少混乱，以 Android 10（API 级别 29）及更高版本为目标平台的应用在默认情况下被赋予了对外部存储空间的分区访问权限（即分区存储）。此类应用只能访问外部存储空间上的应用专属目录，以及本应用所创建的特定类型的媒体文件。</p>
+<p>{% hint style=&ldquo;info&rdquo; %}
+<strong>注意</strong>：如果您的应用在运行时请求与存储空间相关的权限，面向用户的对话框会表明您的应用正在请求对外部存储空间的广泛访问，即使已启用分区存储也是如此。
+{% endhint %}</p>
+<p>除非您的应用需要访问存储在<a class="link" href="https://developer.android.com/training/data-storage/app-specific"  target="_blank" rel="noopener"
+    >应用专属目录</a>和 <a class="link" href="https://developer.android.com/reference/android/provider/MediaStore"  target="_blank" rel="noopener"
+    ><code>MediaStore</code></a> API 可以访问的目录之外的文件，否则请使用分区存储。如果您将应用专属文件存储在外部存储空间中，则可以将这些文件存放在<a class="link" href="https://developer.android.com/training/data-storage/app-specific#external"  target="_blank" rel="noopener"
+    >外部存储空间中的应用专属目录</a>内，以便更加轻松地采用分区存储。这样，在启用分区存储后，您的应用将可以继续访问这些文件。</p>
+<p>如果应用的其他用例不在分区存储的涵盖范围内，请<a class="link" href="https://source.android.com/setup/contribute/report-bugs"  target="_blank" rel="noopener"
+    >提交功能请求</a>并<a class="link" href="https://developer.android.com/training/data-storage/compatibility"  target="_blank" rel="noopener"
+    >使用平台提供的应用兼容性功能</a>。</p>
+<h2 id="对文件执行操作的最佳做法">对文件执行操作的最佳做法</h2>
+<p>本部分介绍了一些从应用打开和共享文件的一般最佳法。</p>
+<h4 id="请勿反复打开和关闭文件-a-idopen-close-filesa">请勿反复打开和关闭文件 <a id="open-close-files"></a></h4>
+<p>为确保应用的性能不受影响，请勿多次打开和关闭同一文件。对于系统来说，打开文件并首次读取文件的成本很高。</p>
+<h4 id="共享单个文件-a-idshare-individual-filesa">共享单个文件 <a id="share-individual-files"></a></h4>
+<p>如果您需要与其他应用共享单个文件或应用数据，可以使用 Android 提供的以下 API：</p>
+<ul>
+<li>如果您需要<a class="link" href="https://developer.android.com/training/secure-file-sharing"  target="_blank" rel="noopener"
+    >与其他应用共享特定文件</a>，请使用 <a class="link" href="https://developer.android.com/reference/androidx/core/content/FileProvider"  target="_blank" rel="noopener"
+    ><code>FileProvider</code></a> API。</li>
+<li>如果您需要向其他应用提供数据，可以使用<a class="link" href="https://developer.android.com/guide/topics/providers/content-providers"  target="_blank" rel="noopener"
+    >内容提供器</a>。借助内容提供器，您可以完全控制向其他应用提供的读取和写入访问权限。尽管您可以将内容提供器与任何存储媒介一起使用，但它们通常与数据库一起使用。</li>
+</ul>
+<h2 id="查看设备上的文件">查看设备上的文件</h2>
+<p>您可以使用 Android Studio 的<a class="link" href="https://developer.android.com/studio/debug/device-file-explorer"  target="_blank" rel="noopener"
+    >设备文件浏览器</a>查看存储在设备上的文件。</p>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a class="link" href="https://www.youtube.com/watch?v=UnJ3amzJM94"  target="_blank" rel="noopener"
+    >为采用分区存储做好准备（2019 年 Android 开发者峰会）</a></li>
+</ul>
+<h3 id="heading"></h3>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script
+    src="https://giscus.app/client.js"
+    data-repo="malinkang/malinkang"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkzMTUwNzEyODU="
+    data-category="General"
+    data-category-id="DIC_kwDOEsebNc4CbSPg"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="en"
+    crossorigin="anonymous"
+    async
+></script>
+<script>
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
+        }
+    }
+
+    (function () {
+        addEventListener("message", (e) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('light');
+            } else {
+                setGiscusTheme('dark');
+            }
+        }
+    })();
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2013 - 
+        
+        2024 malinkang
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

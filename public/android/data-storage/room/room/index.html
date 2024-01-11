@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='使用Room将数据保存在本地数据库中 Room在SQLite上提供了一个抽象层，以允许流畅的数据库访问，同时利用SQLite的全部功能。
+处理大量数据的应用程序可以从本地持久存储这些数据中受益匪浅。最常见的用例是缓存相关数据。这样，当设备无法访问网络时，用户仍可以在脱机时浏览该内容。设备重新联机后，任何由用户的内容更改都将同步到服务器。
+由于Room为您解决了这些问题，因此我们强烈建议您使用Room而不是SQLite。但是，如果您希望直接使用SQLite API，请阅读使用SQLite保存数据。
+Room包含3个主要组成部分：
+数据库： 包含数据库所有者，并用作与应用程序的持久关系数据的基础连接的主要访问点。
+带有注释的类 @Database应满足以下条件：
+一个继承 RoomDatabase的抽象类。 在注解内包括与数据库关联的实体类集合。 包含一个具有0个参数的抽象方法，并返回带有注释的类 @Dao。 在运行时，您可以通过调用 Room.databaseBuilder()或 Room.inMemoryDatabaseBuilder()获取一个Database实例 。
+实体：表示数据库中的表。
+DAO：包含用于访问数据库的方法。
+该应用程序使用Room数据库获取与该数据库关联的数据访问对象或DAO。然后，该应用程序使用每个DAO从数据库中获取实体，并将对这些实体的所有更改保存回数据库。最后，该应用程序使用一个实体来获取和设置与数据库中的表列相对应的值。
+Room不同组件之间的这种关系如图1所示：
+以下代码段是一个包含一个实体和一个DAO的数据库配置的示例：
+User
+1 2 3 4 5 6 7 8 9 10 11 @Entity public class User { @PrimaryKey public int uid; @ColumnInfo(name = &amp;#34;first_name&amp;#34;) public String firstName; @ColumnInfo(name = &amp;#34;last_name&amp;#34;) public String lastName; } UserDao
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 @Dao public interface UserDao { @Query(&amp;#34;SELECT * FROM user&amp;#34;) List&amp;lt;User&amp;gt; getAll(); @Query(&amp;#34;SELECT * FROM user WHERE uid IN (:userIds)&amp;#34;) List&amp;lt;User&amp;gt; loadAllByIds(int[] userIds); @Query(&amp;#34;SELECT * FROM user WHERE first_name LIKE :first AND &amp;#34; &#43; &amp;#34;last_name LIKE :last LIMIT 1&amp;#34;) User findByName(String first, String last); @Insert void insertAll(User.'>
+<title></title>
+
+<link rel='canonical' href='https://example.com/android/data-storage/room/room/'>
+
+<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
+<meta property='og:description' content='使用Room将数据保存在本地数据库中 Room在SQLite上提供了一个抽象层，以允许流畅的数据库访问，同时利用SQLite的全部功能。
+处理大量数据的应用程序可以从本地持久存储这些数据中受益匪浅。最常见的用例是缓存相关数据。这样，当设备无法访问网络时，用户仍可以在脱机时浏览该内容。设备重新联机后，任何由用户的内容更改都将同步到服务器。
+由于Room为您解决了这些问题，因此我们强烈建议您使用Room而不是SQLite。但是，如果您希望直接使用SQLite API，请阅读使用SQLite保存数据。
+Room包含3个主要组成部分：
+数据库： 包含数据库所有者，并用作与应用程序的持久关系数据的基础连接的主要访问点。
+带有注释的类 @Database应满足以下条件：
+一个继承 RoomDatabase的抽象类。 在注解内包括与数据库关联的实体类集合。 包含一个具有0个参数的抽象方法，并返回带有注释的类 @Dao。 在运行时，您可以通过调用 Room.databaseBuilder()或 Room.inMemoryDatabaseBuilder()获取一个Database实例 。
+实体：表示数据库中的表。
+DAO：包含用于访问数据库的方法。
+该应用程序使用Room数据库获取与该数据库关联的数据访问对象或DAO。然后，该应用程序使用每个DAO从数据库中获取实体，并将对这些实体的所有更改保存回数据库。最后，该应用程序使用一个实体来获取和设置与数据库中的表列相对应的值。
+Room不同组件之间的这种关系如图1所示：
+以下代码段是一个包含一个实体和一个DAO的数据库配置的示例：
+User
+1 2 3 4 5 6 7 8 9 10 11 @Entity public class User { @PrimaryKey public int uid; @ColumnInfo(name = &amp;#34;first_name&amp;#34;) public String firstName; @ColumnInfo(name = &amp;#34;last_name&amp;#34;) public String lastName; } UserDao
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 @Dao public interface UserDao { @Query(&amp;#34;SELECT * FROM user&amp;#34;) List&amp;lt;User&amp;gt; getAll(); @Query(&amp;#34;SELECT * FROM user WHERE uid IN (:userIds)&amp;#34;) List&amp;lt;User&amp;gt; loadAllByIds(int[] userIds); @Query(&amp;#34;SELECT * FROM user WHERE first_name LIKE :first AND &amp;#34; &#43; &amp;#34;last_name LIKE :last LIMIT 1&amp;#34;) User findByName(String first, String last); @Insert void insertAll(User.'>
+<meta property='og:url' content='https://example.com/android/data-storage/room/room/'>
+<meta property='og:site_name' content='Malinkang&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Android' />
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="使用Room将数据保存在本地数据库中 Room在SQLite上提供了一个抽象层，以允许流畅的数据库访问，同时利用SQLite的全部功能。
+处理大量数据的应用程序可以从本地持久存储这些数据中受益匪浅。最常见的用例是缓存相关数据。这样，当设备无法访问网络时，用户仍可以在脱机时浏览该内容。设备重新联机后，任何由用户的内容更改都将同步到服务器。
+由于Room为您解决了这些问题，因此我们强烈建议您使用Room而不是SQLite。但是，如果您希望直接使用SQLite API，请阅读使用SQLite保存数据。
+Room包含3个主要组成部分：
+数据库： 包含数据库所有者，并用作与应用程序的持久关系数据的基础连接的主要访问点。
+带有注释的类 @Database应满足以下条件：
+一个继承 RoomDatabase的抽象类。 在注解内包括与数据库关联的实体类集合。 包含一个具有0个参数的抽象方法，并返回带有注释的类 @Dao。 在运行时，您可以通过调用 Room.databaseBuilder()或 Room.inMemoryDatabaseBuilder()获取一个Database实例 。
+实体：表示数据库中的表。
+DAO：包含用于访问数据库的方法。
+该应用程序使用Room数据库获取与该数据库关联的数据访问对象或DAO。然后，该应用程序使用每个DAO从数据库中获取实体，并将对这些实体的所有更改保存回数据库。最后，该应用程序使用一个实体来获取和设置与数据库中的表列相对应的值。
+Room不同组件之间的这种关系如图1所示：
+以下代码段是一个包含一个实体和一个DAO的数据库配置的示例：
+User
+1 2 3 4 5 6 7 8 9 10 11 @Entity public class User { @PrimaryKey public int uid; @ColumnInfo(name = &amp;#34;first_name&amp;#34;) public String firstName; @ColumnInfo(name = &amp;#34;last_name&amp;#34;) public String lastName; } UserDao
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 @Dao public interface UserDao { @Query(&amp;#34;SELECT * FROM user&amp;#34;) List&amp;lt;User&amp;gt; getAll(); @Query(&amp;#34;SELECT * FROM user WHERE uid IN (:userIds)&amp;#34;) List&amp;lt;User&amp;gt; loadAllByIds(int[] userIds); @Query(&amp;#34;SELECT * FROM user WHERE first_name LIKE :first AND &amp;#34; &#43; &amp;#34;last_name LIKE :last LIMIT 1&amp;#34;) User findByName(String first, String last); @Insert void insertAll(User.">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
+}
+</script>
+<style>
+    :root {
+      --sys-font-family: "Noto Serif SC";
+      --zh-font-family: "Noto Serif SC";
+      --base-font-family: "Noto Serif SC";
+      --code-font-family: "Noto Serif SC";
+      --article-font-family: "Noto Serif SC";
+    }
+  </style>
+  
+  <script>
+    (function () {
+      const customFont = document.createElement("link");
+      customFont.href =
+        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+  
+      customFont.type = "text/css";
+      customFont.rel = "stylesheet";
+  
+      document.head.appendChild(customFont);
+    })();
+  </script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
+     crossorigin="anonymous"></script>
+  
+
+<script>
+    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/images/avatar_hu74e4307e0baa534a3da4ee0210445065_34446_300x0_resize_q75_box.jpeg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
+            <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/malinkang'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/malinkang'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/android/data-storage/room/room/"></a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    1 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="使用room将数据保存在本地数据库中">使用Room将数据保存在本地数据库中</h1>
+<p>Room在SQLite上提供了一个抽象层，以允许流畅的数据库访问，同时利用SQLite的全部功能。</p>
+<p>处理大量数据的应用程序可以从本地持久存储这些数据中受益匪浅。最常见的用例是缓存相关数据。这样，当设备无法访问网络时，用户仍可以在脱机时浏览该内容。设备重新联机后，任何由用户的内容更改都将同步到服务器。</p>
+<p>由于Room为您解决了这些问题，因此我们<strong>强烈建议您</strong>使用Room而不是SQLite。但是，如果您希望直接使用SQLite API，请阅读<a class="link" href="https://developer.android.com/training/data-storage/sqlite.html"  target="_blank" rel="noopener"
+    >使用SQLite保存数据</a>。</p>
+<p>Room包含3个主要组成部分：</p>
+<ul>
+<li>
+<p><a class="link" href="https://developer.android.com/reference/androidx/room/Database.html"  target="_blank" rel="noopener"
+    ><strong>数据库：</strong></a> 包含数据库所有者，并用作与应用程序的持久关系数据的基础连接的主要访问点。</p>
+<p>带有注释的类 <a class="link" href="https://developer.android.com/reference/androidx/room/Database.html"  target="_blank" rel="noopener"
+    ><code>@Database</code></a>应满足以下条件：</p>
+<ul>
+<li>一个继承 <a class="link" href="https://developer.android.com/reference/androidx/room/RoomDatabase.html"  target="_blank" rel="noopener"
+    ><code>RoomDatabase</code></a>的抽象类。</li>
+<li>在注解内包括与数据库关联的实体类集合。</li>
+<li>包含一个具有0个参数的抽象方法，并返回带有注释的类 <a class="link" href="https://developer.android.com/reference/androidx/room/Dao.html"  target="_blank" rel="noopener"
+    ><code>@Dao</code></a>。</li>
+</ul>
+<p>在运行时，您可以通过调用 <code>Room.databaseBuilder()</code>或 <code>Room.inMemoryDatabaseBuilder()</code>获取一个<a class="link" href="https://developer.android.com/reference/androidx/room/Database.html"  target="_blank" rel="noopener"
+    ><code>Database</code></a>实例 。</p>
+</li>
+<li>
+<p><a class="link" href="https://developer.android.com/training/data-storage/room/defining-data.html"  target="_blank" rel="noopener"
+    ><strong>实体：</strong></a>表示数据库中的表。</p>
+</li>
+<li>
+<p><a class="link" href="https://developer.android.com/training/data-storage/room/accessing-data.html"  target="_blank" rel="noopener"
+    ><strong>DAO：</strong></a>包含用于访问数据库的方法。</p>
+</li>
+</ul>
+<p>该应用程序使用Room数据库获取与该数据库关联的数据访问对象或DAO。然后，该应用程序使用每个DAO从数据库中获取实体，并将对这些实体的所有更改保存回数据库。最后，该应用程序使用一个实体来获取和设置与数据库中的表列相对应的值。</p>
+<p>Room不同组件之间的这种关系如图1所示：</p>
+<p><img src="/images/room_architecture.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="room_architecture"
+	
+	
+></p>
+<p>以下代码段是一个包含一个实体和一个DAO的数据库配置的示例：</p>
+<p><code>User</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Entity</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">User</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@PrimaryKey</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">uid</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@ColumnInfo</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;first_name&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">firstName</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@ColumnInfo</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;last_name&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">lastName</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>UserDao</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Dao</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">UserDao</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&#34;SELECT * FROM user&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">getAll</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&#34;SELECT * FROM user WHERE uid IN (:userIds)&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">loadAllByIds</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">userIds</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&#34;SELECT * FROM user WHERE first_name LIKE :first AND &#34;</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">           </span><span class="s">&#34;last_name LIKE :last LIMIT 1&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">User</span><span class="w"> </span><span class="nf">findByName</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">first</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">last</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Insert</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">insertAll</span><span class="p">(</span><span class="n">User</span><span class="p">...</span><span class="w"> </span><span class="n">users</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Delete</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="n">User</span><span class="w"> </span><span class="n">user</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>AppDatabase</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Database</span><span class="p">(</span><span class="n">entities</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">User</span><span class="p">.</span><span class="na">class</span><span class="p">},</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">1</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">abstract</span><span class="w"> </span><span class="kd">class</span> <span class="nc">AppDatabase</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">RoomDatabase</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">abstract</span><span class="w"> </span><span class="n">UserDao</span><span class="w"> </span><span class="nf">userDao</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>在创建完上面的文件之后，您将使用以下代码获得创建的数据库(AppDatabase)的实例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">AppDatabase</span><span class="w"> </span><span class="n">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Room</span><span class="p">.</span><span class="na">databaseBuilder</span><span class="p">(</span><span class="n">getApplicationContext</span><span class="p">(),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">AppDatabase</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;database-name&#34;</span><span class="p">).</span><span class="na">build</span><span class="p">();</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>**注意：**如果您的应用程序在单个进程中运行，则在实例化<code>AppDatabase</code> 对象时应遵循单例设计模式。每个<a class="link" href="https://developer.android.com/reference/androidx/room/RoomDatabase.html"  target="_blank" rel="noopener"
+    > <code>RoomDatabase</code></a>实例都相当昂贵，您几乎不需要在单个进程中访问多个实例。</p>
+<p>如果您的应用程序在多个进程中运行，请包含 <code>enableMultiInstanceInvalidation()</code>在数据库构建器调用中。这样，当<code>AppDatabase</code> 在每个进程中都有一个实例时，可以在一个进程中使共享数据库文件无效，并且这种无效性会自动传播到<code>AppDatabase</code>其他进程中的实例 。</p>
+</blockquote>
+<p>要获得Room的动手体验，请尝试<a class="link" href="https://codelabs.developers.google.com/codelabs/android-room-with-a-view-kotlin"  target="_blank" rel="noopener"
+    >Android Room with a View</a> 和<a class="link" href="https://codelabs.developers.google.com/codelabs/android-persistence/"  target="_blank" rel="noopener"
+    >Android Persistence</a> codelabs。要浏览代码示例，请参阅 <a class="link" href="https://github.com/googlesamples/android-architecture-components/"  target="_blank" rel="noopener"
+    >Android体系结构组件示例</a></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script
+    src="https://giscus.app/client.js"
+    data-repo="malinkang/malinkang"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkzMTUwNzEyODU="
+    data-category="General"
+    data-category-id="DIC_kwDOEsebNc4CbSPg"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="en"
+    crossorigin="anonymous"
+    async
+></script>
+<script>
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
+        }
+    }
+
+    (function () {
+        addEventListener("message", (e) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('light');
+            } else {
+                setGiscusTheme('dark');
+            }
+        }
+    })();
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2013 - 
+        
+        2024 malinkang
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
