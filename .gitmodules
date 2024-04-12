@@ -10,9 +10,6 @@
 [submodule "content/android"]
 	path = content/android
 	url = git@github.com:malinkang/AndroidNote.git
-[submodule "themes/stack"]
-	path = themes/stack
-	url = git@github.com:malinkang/hugo-theme-stack
 [submodule "themes/hugo-notice"]
 	path = themes/hugo-notice
 	url = https://github.com/martignoni/hugo-notice.git
