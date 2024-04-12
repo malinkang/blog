@@ -1,7 +1,7 @@
 baseurl: https://example.com
 languageCode: en-us
 theme: 
-  - stack
+  - stack-mod
   - gallery
   - hugo-notice
 paginate: 5
@@ -163,21 +163,15 @@ params:
 ### Custom menu
 ### See https://docs.stack.jimmycai.com/configuration/custom-menu.html
 ### To remove about, archive and search page menu item, remove `menu` field from their FrontMatter
+#https://tabler.io/icons
 menu:
     main: 
       - identifier: home
-        name: 主页
+        name: Home
         url: /
         weight: -100
         params:
           icon: home
-          newTab: false
-      - identifier: archives
-        name: 归档
-        url: /archives
-        weight: -100
-        params:
-          icon: archives
           newTab: false
     social:
       - identifier: github
@@ -191,6 +185,16 @@ menu:
         url: https://twitter.com/malinkang
         params:
             icon: brand-twitter
+      - identifier: douban
+        name: Douban
+        url: https://twitter.com/malinkang
+        params:
+            icon: brand-douban
+      - identifier: bilibili
+        name: Bilibili
+        url: https://twitter.com/malinkang
+        params:
+            icon: brand-bilibili
 
 related:
     includeNewer: true
