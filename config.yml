@@ -194,7 +194,12 @@ menu:
         name: Bilibili
         url: https://twitter.com/malinkang
         params:
-            icon: brand-bilibili
+            icon: brand-bilibili      
+      - identifier: telegram
+        name: Telegram
+        url: https://t.me/malinkang
+        params:
+            icon: brand-telegram
 
 related:
     includeNewer: true
