@@ -1,87 +1,36 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Paint使用 基本方法 1 public void setStrokeWidth(float width) setStrokeWidth方法用来设置边的宽度。该方法只有在Paint的style设置为STROKE或者FILL_AND_STROKE时起作用。STROKE 的宽度均分两半，一半绘制在圆外，一半绘制在圆内。
-1 2 3 4 5 6 7 8 Paint mPaint = new Paint(); mPaint.setStyle(Paint.Style.STROKE); mPaint.setStrokeWidth(128); mPaint.setColor(getResources().getColor(R.color.orange));//#FF7F00 canvas.drawCircle(192,192,128,mPaint);//绘制带stroke的圆 mPaint.setColor(getResources().getColor(R.color.green));//半透明绿色#2200FF00 mPaint.setStyle(Paint.Style.FILL); canvas.drawCircle(192,192,128,mPaint);//绘制实心圆 MaskFilter ColorFilter Xfermode Xfermode设置两张图片相交时的模式。Paint提供public Xfermode setXfermode(Xfermode xfermode)来为画笔设置Xfermode。Xfermode有三个子类：AvoidXfermode,PixelXorXfermode和PorterDuffXfermode，前两个类在API 16被遗弃了，所以这里不作介绍。PorterDuffXfermode类主要用于图形合成时的图像过渡模式计算，其概念来自于1984年在ACM SIGGRAPH计算机图形学出版物上发表了“Compositing digital images（合成数字图像）”的Tomas Porter和Tom Duff，合成图像的概念极大地推动了图形图像学的发展，PorterDuffXfermode类名就来源于这俩人的名字组合PorterDuff。
-构造函数：
-1 public PorterDuffXfermode(PorterDuff.Mode mode) PorterDuff.Mode代表混合模式，是一个枚举类型，他的值包括如下：CLEAR、SRC、DST、SRC_OVER、DST_OVER、SRC_IN、DST_IN、SRC_OUT、DST_OUT、SRC_ATOP、DST_ATOP、XOR、DARKEN、LIGHTEN、MULTIPLY、SCREEN。
-PathEffect PathEffect本身是没有实现什么效果的，只是一个简单的基类，不过android.graphics提供了集中常见的效果，系统为了高效的实现不同效果，它们的实现都封装在native中。
-CornerPathEffect 线条的交汇角效果 DashPathEffect 线条的虚线效果 DiscretePathEffect 线条的离散 PathDashPathEffect 使用Path做虚线的效果（Path可以画图像） ComposePathEffect 组合两种效果 SumPathEffect 叠加向后纵效果 着色器 Shader即着色器，负责为定义的图形着色。
-Paint提供了public Shader setShader(Shader shader)方法为画笔设置着色器。
-android.graphics.Shader类有5个子类：
-BitmapShader LinearGradient RadialGradient SweepGradient ComposeShader BitmapShader BitmapShader就是使用Bitmap对绘制的图形进行着色。'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Paint使用 基本方法 1 public void setStrokeWidth(float width) setStrokeWidth方法用来设置边的宽度。该方法只有在Paint的style设置为STROKE或者FILL_AND_STROKE时起作用。STROKE 的宽度均分两半，一半绘制在圆外，一半绘制在圆内。 1 2 3 4 5 6 7 8 Paint mPaint = new Paint(); mPaint.setStyle(Paint.Style.STROKE); mPaint.setStrokeWidth(128); mPaint.setColor(getResources().getColor(R.color.orange));//#FF7F00 canvas.drawCircle(192,192,128,mPaint);//绘制带stroke的圆 mPaint.setColor(getResources().getColor(R.color.green));//半透明绿色#2200FF00 mPaint.setStyle(Paint.Style.FILL); canvas.drawCircle(192,192,128,mPaint);//绘制实心圆 MaskFilter ColorFilter Xfermode Xfermode设置两张图片相交时的模式。Paint提供public Xfermode setXfermode(Xfermode xfermode)来为画笔设置Xfermode。Xfermode有三个子类：AvoidXfermode,PixelXorXfermode和PorterDuffXfermode，前两个类在API 16被遗弃了，所以这里不作介绍。PorterDuffXfermode类主要用于图形合成时的图像过渡模式计算，其概念来自于1984年在ACM SIGGRAPH计算机图形学出版物上发表了“Compositing digital images（合成数字图像）”的Tomas Porter和Tom Duff，合成图像的概念极大地推动了图形图像学的发展，PorterDuffXfermode类名就来源于这俩人的名字组合PorterDuff。 构造函数： 1 public PorterDuffXfermode(PorterDuff.Mode mode) PorterDuff.Mode代表混合模式，是一个枚举类型，他的值包括如下：CLEAR、SRC、DST、SRC_OVER、DST_OVER、SRC_IN、DST_IN、SRC_OUT、DST_OUT、SRC_ATOP、DST_ATOP、XOR、DARKEN、LIGHTEN、MULTIPLY、SCREEN。 PathEffect PathEffect本身是没有实现什么效果的，只是一个简单的基类，不过android.graphics提供了集中常见的效果，系统为了高效的实现不同效果，它们的实现都封装在native中。 CornerPathEffect 线条的交汇角效果 DashPathEffect 线条的虚线效果 DiscretePathEffect 线条的离散 PathDashPathEffect 使用Path做虚线的效果（Path可以画图像） ComposePathEffect 组合两种效果 SumPathEffect 叠加向后纵效果 着色器 Shader即着色器，负责为定义的图形着色。 Paint提供了public Shader setShader(Shader shader)方法为画笔设置着色器。 android.graphics.Shader类有5个子类： BitmapShader LinearGradient RadialGradient SweepGradient ComposeShader BitmapShader BitmapShader就是使用Bitmap对绘制的图形进行着色。">
 <title></title>
 
-<link rel='canonical' href='https://example.com/android/tu-xing-he-tu-xiang/paint/'>
+<link rel='canonical' href='http://localhost:1313/android/tu-xing-he-tu-xiang/paint/'>
 
-<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
-<meta property='og:description' content='Paint使用 基本方法 1 public void setStrokeWidth(float width) setStrokeWidth方法用来设置边的宽度。该方法只有在Paint的style设置为STROKE或者FILL_AND_STROKE时起作用。STROKE 的宽度均分两半，一半绘制在圆外，一半绘制在圆内。
-1 2 3 4 5 6 7 8 Paint mPaint = new Paint(); mPaint.setStyle(Paint.Style.STROKE); mPaint.setStrokeWidth(128); mPaint.setColor(getResources().getColor(R.color.orange));//#FF7F00 canvas.drawCircle(192,192,128,mPaint);//绘制带stroke的圆 mPaint.setColor(getResources().getColor(R.color.green));//半透明绿色#2200FF00 mPaint.setStyle(Paint.Style.FILL); canvas.drawCircle(192,192,128,mPaint);//绘制实心圆 MaskFilter ColorFilter Xfermode Xfermode设置两张图片相交时的模式。Paint提供public Xfermode setXfermode(Xfermode xfermode)来为画笔设置Xfermode。Xfermode有三个子类：AvoidXfermode,PixelXorXfermode和PorterDuffXfermode，前两个类在API 16被遗弃了，所以这里不作介绍。PorterDuffXfermode类主要用于图形合成时的图像过渡模式计算，其概念来自于1984年在ACM SIGGRAPH计算机图形学出版物上发表了“Compositing digital images（合成数字图像）”的Tomas Porter和Tom Duff，合成图像的概念极大地推动了图形图像学的发展，PorterDuffXfermode类名就来源于这俩人的名字组合PorterDuff。
-构造函数：
-1 public PorterDuffXfermode(PorterDuff.Mode mode) PorterDuff.Mode代表混合模式，是一个枚举类型，他的值包括如下：CLEAR、SRC、DST、SRC_OVER、DST_OVER、SRC_IN、DST_IN、SRC_OUT、DST_OUT、SRC_ATOP、DST_ATOP、XOR、DARKEN、LIGHTEN、MULTIPLY、SCREEN。
-PathEffect PathEffect本身是没有实现什么效果的，只是一个简单的基类，不过android.graphics提供了集中常见的效果，系统为了高效的实现不同效果，它们的实现都封装在native中。
-CornerPathEffect 线条的交汇角效果 DashPathEffect 线条的虚线效果 DiscretePathEffect 线条的离散 PathDashPathEffect 使用Path做虚线的效果（Path可以画图像） ComposePathEffect 组合两种效果 SumPathEffect 叠加向后纵效果 着色器 Shader即着色器，负责为定义的图形着色。
-Paint提供了public Shader setShader(Shader shader)方法为画笔设置着色器。
-android.graphics.Shader类有5个子类：
-BitmapShader LinearGradient RadialGradient SweepGradient ComposeShader BitmapShader BitmapShader就是使用Bitmap对绘制的图形进行着色。'>
-<meta property='og:url' content='https://example.com/android/tu-xing-he-tu-xiang/paint/'>
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<meta property='og:description' content="Paint使用 基本方法 1 public void setStrokeWidth(float width) setStrokeWidth方法用来设置边的宽度。该方法只有在Paint的style设置为STROKE或者FILL_AND_STROKE时起作用。STROKE 的宽度均分两半，一半绘制在圆外，一半绘制在圆内。 1 2 3 4 5 6 7 8 Paint mPaint = new Paint(); mPaint.setStyle(Paint.Style.STROKE); mPaint.setStrokeWidth(128); mPaint.setColor(getResources().getColor(R.color.orange));//#FF7F00 canvas.drawCircle(192,192,128,mPaint);//绘制带stroke的圆 mPaint.setColor(getResources().getColor(R.color.green));//半透明绿色#2200FF00 mPaint.setStyle(Paint.Style.FILL); canvas.drawCircle(192,192,128,mPaint);//绘制实心圆 MaskFilter ColorFilter Xfermode Xfermode设置两张图片相交时的模式。Paint提供public Xfermode setXfermode(Xfermode xfermode)来为画笔设置Xfermode。Xfermode有三个子类：AvoidXfermode,PixelXorXfermode和PorterDuffXfermode，前两个类在API 16被遗弃了，所以这里不作介绍。PorterDuffXfermode类主要用于图形合成时的图像过渡模式计算，其概念来自于1984年在ACM SIGGRAPH计算机图形学出版物上发表了“Compositing digital images（合成数字图像）”的Tomas Porter和Tom Duff，合成图像的概念极大地推动了图形图像学的发展，PorterDuffXfermode类名就来源于这俩人的名字组合PorterDuff。 构造函数： 1 public PorterDuffXfermode(PorterDuff.Mode mode) PorterDuff.Mode代表混合模式，是一个枚举类型，他的值包括如下：CLEAR、SRC、DST、SRC_OVER、DST_OVER、SRC_IN、DST_IN、SRC_OUT、DST_OUT、SRC_ATOP、DST_ATOP、XOR、DARKEN、LIGHTEN、MULTIPLY、SCREEN。 PathEffect PathEffect本身是没有实现什么效果的，只是一个简单的基类，不过android.graphics提供了集中常见的效果，系统为了高效的实现不同效果，它们的实现都封装在native中。 CornerPathEffect 线条的交汇角效果 DashPathEffect 线条的虚线效果 DiscretePathEffect 线条的离散 PathDashPathEffect 使用Path做虚线的效果（Path可以画图像） ComposePathEffect 组合两种效果 SumPathEffect 叠加向后纵效果 着色器 Shader即着色器，负责为定义的图形着色。 Paint提供了public Shader setShader(Shader shader)方法为画笔设置着色器。 android.graphics.Shader类有5个子类： BitmapShader LinearGradient RadialGradient SweepGradient ComposeShader BitmapShader BitmapShader就是使用Bitmap对绘制的图形进行着色。">
+<meta property='og:url' content='http://localhost:1313/android/tu-xing-he-tu-xiang/paint/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="Paint使用 基本方法 1 public void setStrokeWidth(float width) setStrokeWidth方法用来设置边的宽度。该方法只有在Paint的style设置为STROKE或者FILL_AND_STROKE时起作用。STROKE 的宽度均分两半，一半绘制在圆外，一半绘制在圆内。
-1 2 3 4 5 6 7 8 Paint mPaint = new Paint(); mPaint.setStyle(Paint.Style.STROKE); mPaint.setStrokeWidth(128); mPaint.setColor(getResources().getColor(R.color.orange));//#FF7F00 canvas.drawCircle(192,192,128,mPaint);//绘制带stroke的圆 mPaint.setColor(getResources().getColor(R.color.green));//半透明绿色#2200FF00 mPaint.setStyle(Paint.Style.FILL); canvas.drawCircle(192,192,128,mPaint);//绘制实心圆 MaskFilter ColorFilter Xfermode Xfermode设置两张图片相交时的模式。Paint提供public Xfermode setXfermode(Xfermode xfermode)来为画笔设置Xfermode。Xfermode有三个子类：AvoidXfermode,PixelXorXfermode和PorterDuffXfermode，前两个类在API 16被遗弃了，所以这里不作介绍。PorterDuffXfermode类主要用于图形合成时的图像过渡模式计算，其概念来自于1984年在ACM SIGGRAPH计算机图形学出版物上发表了“Compositing digital images（合成数字图像）”的Tomas Porter和Tom Duff，合成图像的概念极大地推动了图形图像学的发展，PorterDuffXfermode类名就来源于这俩人的名字组合PorterDuff。
-构造函数：
-1 public PorterDuffXfermode(PorterDuff.Mode mode) PorterDuff.Mode代表混合模式，是一个枚举类型，他的值包括如下：CLEAR、SRC、DST、SRC_OVER、DST_OVER、SRC_IN、DST_IN、SRC_OUT、DST_OUT、SRC_ATOP、DST_ATOP、XOR、DARKEN、LIGHTEN、MULTIPLY、SCREEN。
-PathEffect PathEffect本身是没有实现什么效果的，只是一个简单的基类，不过android.graphics提供了集中常见的效果，系统为了高效的实现不同效果，它们的实现都封装在native中。
-CornerPathEffect 线条的交汇角效果 DashPathEffect 线条的虚线效果 DiscretePathEffect 线条的离散 PathDashPathEffect 使用Path做虚线的效果（Path可以画图像） ComposePathEffect 组合两种效果 SumPathEffect 叠加向后纵效果 着色器 Shader即着色器，负责为定义的图形着色。
-Paint提供了public Shader setShader(Shader shader)方法为画笔设置着色器。
-android.graphics.Shader类有5个子类：
-BitmapShader LinearGradient RadialGradient SweepGradient ComposeShader BitmapShader BitmapShader就是使用Bitmap对绘制的图形进行着色。">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
-}
-</script>
-<style>
-    :root {
-      --sys-font-family: "Noto Serif SC";
-      --zh-font-family: "Noto Serif SC";
-      --base-font-family: "Noto Serif SC";
-      --code-font-family: "Noto Serif SC";
-      --article-font-family: "Noto Serif SC";
-    }
-  </style>
+<meta name="twitter:description" content="Paint使用 基本方法 1 public void setStrokeWidth(float width) setStrokeWidth方法用来设置边的宽度。该方法只有在Paint的style设置为STROKE或者FILL_AND_STROKE时起作用。STROKE 的宽度均分两半，一半绘制在圆外，一半绘制在圆内。 1 2 3 4 5 6 7 8 Paint mPaint = new Paint(); mPaint.setStyle(Paint.Style.STROKE); mPaint.setStrokeWidth(128); mPaint.setColor(getResources().getColor(R.color.orange));//#FF7F00 canvas.drawCircle(192,192,128,mPaint);//绘制带stroke的圆 mPaint.setColor(getResources().getColor(R.color.green));//半透明绿色#2200FF00 mPaint.setStyle(Paint.Style.FILL); canvas.drawCircle(192,192,128,mPaint);//绘制实心圆 MaskFilter ColorFilter Xfermode Xfermode设置两张图片相交时的模式。Paint提供public Xfermode setXfermode(Xfermode xfermode)来为画笔设置Xfermode。Xfermode有三个子类：AvoidXfermode,PixelXorXfermode和PorterDuffXfermode，前两个类在API 16被遗弃了，所以这里不作介绍。PorterDuffXfermode类主要用于图形合成时的图像过渡模式计算，其概念来自于1984年在ACM SIGGRAPH计算机图形学出版物上发表了“Compositing digital images（合成数字图像）”的Tomas Porter和Tom Duff，合成图像的概念极大地推动了图形图像学的发展，PorterDuffXfermode类名就来源于这俩人的名字组合PorterDuff。 构造函数： 1 public PorterDuffXfermode(PorterDuff.Mode mode) PorterDuff.Mode代表混合模式，是一个枚举类型，他的值包括如下：CLEAR、SRC、DST、SRC_OVER、DST_OVER、SRC_IN、DST_IN、SRC_OUT、DST_OUT、SRC_ATOP、DST_ATOP、XOR、DARKEN、LIGHTEN、MULTIPLY、SCREEN。 PathEffect PathEffect本身是没有实现什么效果的，只是一个简单的基类，不过android.graphics提供了集中常见的效果，系统为了高效的实现不同效果，它们的实现都封装在native中。 CornerPathEffect 线条的交汇角效果 DashPathEffect 线条的虚线效果 DiscretePathEffect 线条的离散 PathDashPathEffect 使用Path做虚线的效果（Path可以画图像） ComposePathEffect 组合两种效果 SumPathEffect 叠加向后纵效果 着色器 Shader即着色器，负责为定义的图形着色。 Paint提供了public Shader setShader(Shader shader)方法为画笔设置着色器。 android.graphics.Shader类有5个子类： BitmapShader LinearGradient RadialGradient SweepGradient ComposeShader BitmapShader BitmapShader就是使用Bitmap对绘制的图形进行着色。">
   
-  <script>
-    (function () {
-      const customFont = document.createElement("link");
-      customFont.href =
-        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
   
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-  
-      document.head.appendChild(customFont);
-    })();
-  </script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
-     crossorigin="anonymous"></script>
-  
-
-<script>
-    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
 
 
     </head>
@@ -143,7 +92,7 @@ if (!doNotTrack) {
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
             <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -204,13 +153,32 @@ if (!doNotTrack) {
 
 
                 
-                <span>主页</span>
+                <span>Home</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/archives' >
+            <a href='/pages/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/archives/' >
                 
                 
                 
@@ -224,16 +192,54 @@ if (!doNotTrack) {
 
 
                 
-                <span>归档</span>
+                <span>Archives</span>
             </a>
         </li>
         
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -241,7 +247,7 @@ if (!doNotTrack) {
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -249,10 +255,11 @@ if (!doNotTrack) {
 
 
 
-                    <span>Dark Mode</span>
-                </li>
-            
-        </div>
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -351,9 +358,9 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="paint使用">Paint使用</h1>
-<h2 id="基本方法">基本方法</h2>
-<div class="highlight"><div class="chroma">
+    <h1 id="paint使用">Paint使用
+</h1><h2 id="基本方法">基本方法
+</h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -384,7 +391,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawCircle</span><span class="p">(</span><span class="n">192</span><span class="p">,</span><span class="n">192</span><span class="p">,</span><span class="n">128</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="c1">//绘制实心圆</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/../.gitbook/assets/paint-stroke-width%20%281%29.jpeg"
+</div><p><img src="/.gitbook/assets/paint-stroke-width%20%281%29.jpeg"
 	
 	
 	
@@ -392,10 +399,10 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h2 id="maskfilter">MaskFilter</h2>
-<h2 id="colorfilter">ColorFilter</h2>
-<h2 id="xfermode">Xfermode</h2>
-<p>Xfermode设置两张图片相交时的模式。Paint提供<code>public Xfermode setXfermode(Xfermode xfermode)</code>来为画笔设置Xfermode。Xfermode有三个子类：AvoidXfermode,PixelXorXfermode和PorterDuffXfermode，前两个类在API 16被遗弃了，所以这里不作介绍。PorterDuffXfermode类主要用于图形合成时的图像过渡模式计算，其概念来自于1984年在ACM SIGGRAPH计算机图形学出版物上发表了“Compositing digital images（合成数字图像）”的Tomas Porter和Tom Duff，合成图像的概念极大地推动了图形图像学的发展，PorterDuffXfermode类名就来源于这俩人的名字组合PorterDuff。</p>
+<h2 id="maskfilter">MaskFilter
+</h2><h2 id="colorfilter">ColorFilter
+</h2><h2 id="xfermode">Xfermode
+</h2><p>Xfermode设置两张图片相交时的模式。Paint提供<code>public Xfermode setXfermode(Xfermode xfermode)</code>来为画笔设置Xfermode。Xfermode有三个子类：AvoidXfermode,PixelXorXfermode和PorterDuffXfermode，前两个类在API 16被遗弃了，所以这里不作介绍。PorterDuffXfermode类主要用于图形合成时的图像过渡模式计算，其概念来自于1984年在ACM SIGGRAPH计算机图形学出版物上发表了“Compositing digital images（合成数字图像）”的Tomas Porter和Tom Duff，合成图像的概念极大地推动了图形图像学的发展，PorterDuffXfermode类名就来源于这俩人的名字组合PorterDuff。</p>
 <p>构造函数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -406,7 +413,7 @@ if (!doNotTrack) {
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>PorterDuff.Mode代表混合模式，是一个枚举类型，他的值包括如下：CLEAR、SRC、DST、SRC_OVER、DST_OVER、SRC_IN、DST_IN、SRC_OUT、DST_OUT、SRC_ATOP、DST_ATOP、XOR、DARKEN、LIGHTEN、MULTIPLY、SCREEN。</p>
-<p><img src="/../.gitbook/assets/PorterDuffXfermode.jpg"
+<p><img src="/.gitbook/assets/PorterDuffXfermode.jpg"
 	
 	
 	
@@ -416,8 +423,8 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h2 id="patheffect">PathEffect</h2>
-<p>PathEffect本身是没有实现什么效果的，只是一个简单的基类，不过android.graphics提供了集中常见的效果，系统为了高效的实现不同效果，它们的实现都封装在native中。</p>
+<h2 id="patheffect">PathEffect
+</h2><p>PathEffect本身是没有实现什么效果的，只是一个简单的基类，不过android.graphics提供了集中常见的效果，系统为了高效的实现不同效果，它们的实现都封装在native中。</p>
 <ul>
 <li>CornerPathEffect 线条的交汇角效果</li>
 <li>DashPathEffect 线条的虚线效果</li>
@@ -426,8 +433,8 @@ if (!doNotTrack) {
 <li>ComposePathEffect 组合两种效果</li>
 <li>SumPathEffect 叠加向后纵效果</li>
 </ul>
-<h2 id="着色器">着色器</h2>
-<p>Shader即着色器，负责为定义的图形着色。</p>
+<h2 id="着色器">着色器
+</h2><p>Shader即着色器，负责为定义的图形着色。</p>
 <p>Paint提供了<code>public Shader setShader(Shader shader)</code>方法为画笔设置着色器。</p>
 <p><code>android.graphics.Shader</code>类有5个子类：</p>
 <ul>
@@ -437,8 +444,8 @@ if (!doNotTrack) {
 <li>SweepGradient</li>
 <li>ComposeShader</li>
 </ul>
-<h3 id="bitmapshader">BitmapShader</h3>
-<p>BitmapShader就是使用Bitmap对绘制的图形进行着色。</p>
+<h3 id="bitmapshader">BitmapShader
+</h3><p>BitmapShader就是使用Bitmap对绘制的图形进行着色。</p>
 <p>构造函数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -474,7 +481,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawRect</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="n">0</span><span class="p">,</span><span class="n">800</span><span class="p">,</span><span class="n">800</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/../.gitbook/assets/bitmapshader-repeat%20%281%29.jpeg"
+</div><p><img src="/.gitbook/assets/bitmapshader-repeat%20%281%29.jpeg"
 	
 	
 	
@@ -491,7 +498,7 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">mPaint</span><span class="p">.</span><span class="na">setShader</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">BitmapShader</span><span class="p">(</span><span class="n">mBitmap</span><span class="p">,</span><span class="w"> </span><span class="n">Shader</span><span class="p">.</span><span class="na">TileMode</span><span class="p">.</span><span class="na">MIRROR</span><span class="p">,</span><span class="w"> </span><span class="n">Shader</span><span class="p">.</span><span class="na">TileMode</span><span class="p">.</span><span class="na">MIRROR</span><span class="p">));</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/../.gitbook/assets/bitmapshader-mirror%20%281%29.jpeg"
+</div><p><img src="/.gitbook/assets/bitmapshader-mirror%20%281%29.jpeg"
 	
 	
 	
@@ -508,7 +515,7 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">mPaint</span><span class="p">.</span><span class="na">setShader</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">BitmapShader</span><span class="p">(</span><span class="n">mBitmap</span><span class="p">,</span><span class="w"> </span><span class="n">Shader</span><span class="p">.</span><span class="na">TileMode</span><span class="p">.</span><span class="na">CLAMP</span><span class="p">,</span><span class="w"> </span><span class="n">Shader</span><span class="p">.</span><span class="na">TileMode</span><span class="p">.</span><span class="na">CLAMP</span><span class="p">));</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/../.gitbook/assets/bitmapshader-clamp%20%281%29.jpeg"
+</div><p><img src="/.gitbook/assets/bitmapshader-clamp%20%281%29.jpeg"
 	
 	
 	
@@ -526,7 +533,7 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">canvas</span><span class="p">.</span><span class="na">drawCircle</span><span class="p">(</span><span class="n">mBitmap</span><span class="p">.</span><span class="na">getWidth</span><span class="p">()</span><span class="o">/</span><span class="n">2</span><span class="p">,</span><span class="w"> </span><span class="n">mBitmap</span><span class="p">.</span><span class="na">getWidth</span><span class="p">()</span><span class="o">/</span><span class="n">2</span><span class="p">,</span><span class="w"> </span><span class="n">mBitmap</span><span class="p">.</span><span class="na">getWidth</span><span class="p">()</span><span class="o">/</span><span class="n">2</span><span class="p">,</span><span class="w"> </span><span class="n">mPaint</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/../.gitbook/assets/bitmapshader-circle%20%281%29.jpeg"
+</div><p><img src="/.gitbook/assets/bitmapshader-circle%20%281%29.jpeg"
 	
 	
 	
@@ -537,8 +544,8 @@ if (!doNotTrack) {
 <p>开源项目<a class="link" href="https://github.com/hdodenhof/CircleImageView"  target="_blank" rel="noopener"
     >CircleImageView</a>、<a class="link" href="https://github.com/siyamed/android-shape-imageview"  target="_blank" rel="noopener"
     >android-shape-imageview</a>本质都是利用BitmapShader实现的。</p>
-<h3 id="lineargradient">LinearGradient</h3>
-<p>LinearGradient利用线性渐变填充图形。LinearGradient具有两个构造函数：</p>
+<h3 id="lineargradient">LinearGradient
+</h3><p>LinearGradient利用线性渐变填充图形。LinearGradient具有两个构造函数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -562,7 +569,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawRect</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="n">0</span><span class="p">,</span><span class="n">800</span><span class="p">,</span><span class="n">800</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/../.gitbook/assets/LinearGradient-1.jpeg"
+</div><p><img src="/.gitbook/assets/LinearGradient-1.jpeg"
 	
 	
 	
@@ -624,7 +631,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawRect</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="n">0</span><span class="p">,</span><span class="n">800</span><span class="p">,</span><span class="n">800</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/../.gitbook/assets/LinearGradient-2.jpeg"
+</div><p><img src="/.gitbook/assets/LinearGradient-2.jpeg"
 	
 	
 	
@@ -632,8 +639,8 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h3 id="radialgradient">RadialGradient</h3>
-<p>RadialGradient创建从中心向四周发散的辐射渐变效果。RadialGradient同样有两个构造函数：</p>
+<h3 id="radialgradient">RadialGradient
+</h3><p>RadialGradient创建从中心向四周发散的辐射渐变效果。RadialGradient同样有两个构造函数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -664,7 +671,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawRect</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="n">0</span><span class="p">,</span><span class="n">800</span><span class="p">,</span><span class="n">800</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/../.gitbook/assets/RadialGradient.jpeg"
+</div><p><img src="/.gitbook/assets/RadialGradient.jpeg"
 	
 	
 	
@@ -672,8 +679,8 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h3 id="sweepgradient">SweepGradient</h3>
-<p>SweepGradient可以用来创建360度颜色旋转渐变效果，具体来说颜色是围绕中心点360度顺时针旋转的，起点就是3点钟位置。</p>
+<h3 id="sweepgradient">SweepGradient
+</h3><p>SweepGradient可以用来创建360度颜色旋转渐变效果，具体来说颜色是围绕中心点360度顺时针旋转的，起点就是3点钟位置。</p>
 <p>SweepGradient有两个构造函数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -706,7 +713,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawCircle</span><span class="p">(</span><span class="n">400</span><span class="p">,</span><span class="n">400</span><span class="p">,</span><span class="n">400</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/../.gitbook/assets/SweepGradient.jpeg"
+</div><p><img src="/.gitbook/assets/SweepGradient.jpeg"
 	
 	
 	
@@ -714,8 +721,8 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h3 id="composeshader">ComposeShader</h3>
-<p>ComposeShader它可以将两个Shader按照一定的Xfermode组合起来。</p>
+<h3 id="composeshader">ComposeShader
+</h3><p>ComposeShader它可以将两个Shader按照一定的Xfermode组合起来。</p>
 <p>ComposeShader有两个构造函数:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -731,7 +738,7 @@ if (!doNotTrack) {
 </div>
 </div><p>下面我们将一个BitmapShader与LinearGradient进行混合。</p>
 <p>BitmapShader使用的图片为下图：</p>
-<p><img src="/../.gitbook/assets/android%20%281%29.png"
+<p><img src="/.gitbook/assets/android%20%281%29.png"
 	
 	
 	
@@ -757,7 +764,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawRect</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="n">0</span><span class="p">,</span><span class="n">mBitmap</span><span class="p">.</span><span class="na">getWidth</span><span class="p">(),</span><span class="n">mBitmap</span><span class="p">.</span><span class="na">getHeight</span><span class="p">(),</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/../.gitbook/assets/ComposeShader.jpeg"
+</div><p><img src="/.gitbook/assets/ComposeShader.jpeg"
 	
 	
 	
@@ -765,8 +772,8 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h2 id="参考">参考</h2>
-<ul>
+<h2 id="参考">参考
+</h2><ul>
 <li><a class="link" href="http://www.jianshu.com/p/d11892bbe055"  target="_blank" rel="noopener"
     >各个击破搞明白PorterDuff.Mode</a></li>
 <li><a class="link" href="http://blog.csdn.net/aigestudio/article/details/41799811"  target="_blank" rel="noopener"
@@ -871,7 +878,7 @@ if (!doNotTrack) {
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 

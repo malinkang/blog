@@ -1,63 +1,36 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='知识结构 64k限制 Configure Apps with Over 64K Methods dex分包变形记 美团Android DEX自动拆包及动态加载简介 Gradle [How to speed up your slow Gradle builds](How to speed up your slow Gradle builds) Gradle详解 提示和技巧 快捷键 操作 Mac Windows Linux 命令查表 cmd&#43;shift&#43;A ctrl&#43;shift&#43;A 快速修复 alt&#43;enter alt&#43;enter 格式化代码 alt&#43;cmd&#43;L ctrl&#43;alt&#43;L 显示选中API文档 F1 ctrl&#43;Q 显示选中方法参数 cmd&#43;P ctrl&#43;P 跳到源码 cmd&#43;鼠标左键 或者F4 F4 生成方法 cmd&#43;N 或者 ctrl&#43;enter alt&#43;insert 删除一行 cmd&#43;delete ctrl&#43;Y 复制一行 cmd&#43;D ctrl&#43;Y 搜索symbol alt&#43;cmd&#43;O ctrl&#43;alt&#43;shift&#43;N 构建 cmd&#43;F9 ctrl&#43;F9 构建和运行 ctrl&#43;R shift&#43;F10 打开一个类 cmd&#43;O ctrl&#43;N 打开一个文件 cmd&#43;shift&#43;O ctrl&#43;alt&#43;shift&#43;N 显示类的变量和方法使用位置 alt&#43;F7 alt&#43;F7 显示类的变量和方法使用位置(以对话框的方式展示) cmd&#43;alt&#43;F7 ctrl&#43; alt&#43;F7 定位到类、方法或变量的声明 cmd&#43;B 或者cmd&#43;鼠标左键 ctrl&#43;B或者ctrl&#43;鼠标左键 列出所有实现选中类或接口的类或接口 cmd&#43;alt&#43;B ctrl &#43; alt &#43; B 跳转到父类的方法 cmd&#43;U ctrl &#43; U 移动代码 alt&#43;shift&#43;up/down alt&#43;shift&#43;up/down 显示所有方法和变量 cmd&#43;F12 Sourround With cmd&#43;alt&#43;T 大小写转换 cmd&#43;shift&#43;U 使用模板 cmd&#43;J alt&#43;cmd&#43;F 查找和替换 查找cmd&#43;shift&#43;F 替换cmd&#43;shift&#43;R Surround with cmd&#43;alt&#43;T ctrl&#43;alt&#43;T 局部变量抽取为成员变量ctrl &#43; alt &#43; F 多行编辑ctrl&#43;g 显示粘贴板 shift &#43; commd&#43;v'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="知识结构 64k限制 Configure Apps with Over 64K Methods dex分包变形记 美团Android DEX自动拆包及动态加载简介 Gradle [How to speed up your slow Gradle builds](How to speed up your slow Gradle builds) Gradle详解 提示和技巧 快捷键 操作 Mac 命令查表 cmd+shift+A 快速修复 alt+enter 格式化代码 alt+cmd+L 显示选中API文档 F1 显示选中方法参数 cmd+P 跳到源码 cmd+鼠标左键 或者F4 生成方法 cmd+N 或者 ctrl+enter 删除一行 cmd+delete 复制一行 cmd+D 搜索symbol alt+cmd+O 构建 cmd+F9 构建和运行 ctrl+R 打开一个类 cmd+O 打开一个文件 cmd+shift+O 显示类的变量和方法使用位置 显示类的变量和方法使用位置(以对话框的方式展示) cmd+alt+F7 定位到类、方法或变量的声明 cmd+B 或者cmd+鼠标左键 列出所有实现选中类或接口的类或接口 cmd+alt+B 跳转到父类的方法 cmd+U 移动代码 alt+shift+up/down 显示所有方法和变量 cmd+F12 Sourround With cmd+alt+T 大小写转换 cmd+shift+U 使用模板 cmd+J 选择要粘贴的内容 ++cmd+shift+v++ 查找和替换 查找cmd+shift+F 替换cmd+shift+R Surround with cmd+alt+T 版本控制 操作 Mac 显示VCS Operations Popup ++ctrl+v++ Commit ++cmd+k++ Push ++shift+cmd+k++ Show Diff ++cmd+d++ 文章 Keyboard Shortcuts">
 <title></title>
 
-<link rel='canonical' href='https://example.com/android/tools/android-studio/android-studio/'>
+<link rel='canonical' href='http://localhost:1313/android/tools/android-studio/android-studio/'>
 
-<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
-<meta property='og:description' content='知识结构 64k限制 Configure Apps with Over 64K Methods dex分包变形记 美团Android DEX自动拆包及动态加载简介 Gradle [How to speed up your slow Gradle builds](How to speed up your slow Gradle builds) Gradle详解 提示和技巧 快捷键 操作 Mac Windows Linux 命令查表 cmd&#43;shift&#43;A ctrl&#43;shift&#43;A 快速修复 alt&#43;enter alt&#43;enter 格式化代码 alt&#43;cmd&#43;L ctrl&#43;alt&#43;L 显示选中API文档 F1 ctrl&#43;Q 显示选中方法参数 cmd&#43;P ctrl&#43;P 跳到源码 cmd&#43;鼠标左键 或者F4 F4 生成方法 cmd&#43;N 或者 ctrl&#43;enter alt&#43;insert 删除一行 cmd&#43;delete ctrl&#43;Y 复制一行 cmd&#43;D ctrl&#43;Y 搜索symbol alt&#43;cmd&#43;O ctrl&#43;alt&#43;shift&#43;N 构建 cmd&#43;F9 ctrl&#43;F9 构建和运行 ctrl&#43;R shift&#43;F10 打开一个类 cmd&#43;O ctrl&#43;N 打开一个文件 cmd&#43;shift&#43;O ctrl&#43;alt&#43;shift&#43;N 显示类的变量和方法使用位置 alt&#43;F7 alt&#43;F7 显示类的变量和方法使用位置(以对话框的方式展示) cmd&#43;alt&#43;F7 ctrl&#43; alt&#43;F7 定位到类、方法或变量的声明 cmd&#43;B 或者cmd&#43;鼠标左键 ctrl&#43;B或者ctrl&#43;鼠标左键 列出所有实现选中类或接口的类或接口 cmd&#43;alt&#43;B ctrl &#43; alt &#43; B 跳转到父类的方法 cmd&#43;U ctrl &#43; U 移动代码 alt&#43;shift&#43;up/down alt&#43;shift&#43;up/down 显示所有方法和变量 cmd&#43;F12 Sourround With cmd&#43;alt&#43;T 大小写转换 cmd&#43;shift&#43;U 使用模板 cmd&#43;J alt&#43;cmd&#43;F 查找和替换 查找cmd&#43;shift&#43;F 替换cmd&#43;shift&#43;R Surround with cmd&#43;alt&#43;T ctrl&#43;alt&#43;T 局部变量抽取为成员变量ctrl &#43; alt &#43; F 多行编辑ctrl&#43;g 显示粘贴板 shift &#43; commd&#43;v'>
-<meta property='og:url' content='https://example.com/android/tools/android-studio/android-studio/'>
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<meta property='og:description' content="知识结构 64k限制 Configure Apps with Over 64K Methods dex分包变形记 美团Android DEX自动拆包及动态加载简介 Gradle [How to speed up your slow Gradle builds](How to speed up your slow Gradle builds) Gradle详解 提示和技巧 快捷键 操作 Mac 命令查表 cmd+shift+A 快速修复 alt+enter 格式化代码 alt+cmd+L 显示选中API文档 F1 显示选中方法参数 cmd+P 跳到源码 cmd+鼠标左键 或者F4 生成方法 cmd+N 或者 ctrl+enter 删除一行 cmd+delete 复制一行 cmd+D 搜索symbol alt+cmd+O 构建 cmd+F9 构建和运行 ctrl+R 打开一个类 cmd+O 打开一个文件 cmd+shift+O 显示类的变量和方法使用位置 显示类的变量和方法使用位置(以对话框的方式展示) cmd+alt+F7 定位到类、方法或变量的声明 cmd+B 或者cmd+鼠标左键 列出所有实现选中类或接口的类或接口 cmd+alt+B 跳转到父类的方法 cmd+U 移动代码 alt+shift+up/down 显示所有方法和变量 cmd+F12 Sourround With cmd+alt+T 大小写转换 cmd+shift+U 使用模板 cmd+J 选择要粘贴的内容 ++cmd+shift+v++ 查找和替换 查找cmd+shift+F 替换cmd+shift+R Surround with cmd+alt+T 版本控制 操作 Mac 显示VCS Operations Popup ++ctrl+v++ Commit ++cmd+k++ Push ++shift+cmd+k++ Show Diff ++cmd+d++ 文章 Keyboard Shortcuts">
+<meta property='og:url' content='http://localhost:1313/android/tools/android-studio/android-studio/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="知识结构 64k限制 Configure Apps with Over 64K Methods dex分包变形记 美团Android DEX自动拆包及动态加载简介 Gradle [How to speed up your slow Gradle builds](How to speed up your slow Gradle builds) Gradle详解 提示和技巧 快捷键 操作 Mac Windows Linux 命令查表 cmd&#43;shift&#43;A ctrl&#43;shift&#43;A 快速修复 alt&#43;enter alt&#43;enter 格式化代码 alt&#43;cmd&#43;L ctrl&#43;alt&#43;L 显示选中API文档 F1 ctrl&#43;Q 显示选中方法参数 cmd&#43;P ctrl&#43;P 跳到源码 cmd&#43;鼠标左键 或者F4 F4 生成方法 cmd&#43;N 或者 ctrl&#43;enter alt&#43;insert 删除一行 cmd&#43;delete ctrl&#43;Y 复制一行 cmd&#43;D ctrl&#43;Y 搜索symbol alt&#43;cmd&#43;O ctrl&#43;alt&#43;shift&#43;N 构建 cmd&#43;F9 ctrl&#43;F9 构建和运行 ctrl&#43;R shift&#43;F10 打开一个类 cmd&#43;O ctrl&#43;N 打开一个文件 cmd&#43;shift&#43;O ctrl&#43;alt&#43;shift&#43;N 显示类的变量和方法使用位置 alt&#43;F7 alt&#43;F7 显示类的变量和方法使用位置(以对话框的方式展示) cmd&#43;alt&#43;F7 ctrl&#43; alt&#43;F7 定位到类、方法或变量的声明 cmd&#43;B 或者cmd&#43;鼠标左键 ctrl&#43;B或者ctrl&#43;鼠标左键 列出所有实现选中类或接口的类或接口 cmd&#43;alt&#43;B ctrl &#43; alt &#43; B 跳转到父类的方法 cmd&#43;U ctrl &#43; U 移动代码 alt&#43;shift&#43;up/down alt&#43;shift&#43;up/down 显示所有方法和变量 cmd&#43;F12 Sourround With cmd&#43;alt&#43;T 大小写转换 cmd&#43;shift&#43;U 使用模板 cmd&#43;J alt&#43;cmd&#43;F 查找和替换 查找cmd&#43;shift&#43;F 替换cmd&#43;shift&#43;R Surround with cmd&#43;alt&#43;T ctrl&#43;alt&#43;T 局部变量抽取为成员变量ctrl &#43; alt &#43; F 多行编辑ctrl&#43;g 显示粘贴板 shift &#43; commd&#43;v">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
-}
-</script>
-<style>
-    :root {
-      --sys-font-family: "Noto Serif SC";
-      --zh-font-family: "Noto Serif SC";
-      --base-font-family: "Noto Serif SC";
-      --code-font-family: "Noto Serif SC";
-      --article-font-family: "Noto Serif SC";
-    }
-  </style>
+<meta name="twitter:description" content="知识结构 64k限制 Configure Apps with Over 64K Methods dex分包变形记 美团Android DEX自动拆包及动态加载简介 Gradle [How to speed up your slow Gradle builds](How to speed up your slow Gradle builds) Gradle详解 提示和技巧 快捷键 操作 Mac 命令查表 cmd+shift+A 快速修复 alt+enter 格式化代码 alt+cmd+L 显示选中API文档 F1 显示选中方法参数 cmd+P 跳到源码 cmd+鼠标左键 或者F4 生成方法 cmd+N 或者 ctrl+enter 删除一行 cmd+delete 复制一行 cmd+D 搜索symbol alt+cmd+O 构建 cmd+F9 构建和运行 ctrl+R 打开一个类 cmd+O 打开一个文件 cmd+shift+O 显示类的变量和方法使用位置 显示类的变量和方法使用位置(以对话框的方式展示) cmd+alt+F7 定位到类、方法或变量的声明 cmd+B 或者cmd+鼠标左键 列出所有实现选中类或接口的类或接口 cmd+alt+B 跳转到父类的方法 cmd+U 移动代码 alt+shift+up/down 显示所有方法和变量 cmd+F12 Sourround With cmd+alt+T 大小写转换 cmd+shift+U 使用模板 cmd+J 选择要粘贴的内容 ++cmd+shift+v++ 查找和替换 查找cmd+shift+F 替换cmd+shift+R Surround with cmd+alt+T 版本控制 操作 Mac 显示VCS Operations Popup ++ctrl+v++ Commit ++cmd+k++ Push ++shift+cmd+k++ Show Diff ++cmd+d++ 文章 Keyboard Shortcuts">
   
-  <script>
-    (function () {
-      const customFont = document.createElement("link");
-      customFont.href =
-        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
   
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-  
-      document.head.appendChild(customFont);
-    })();
-  </script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
-     crossorigin="anonymous"></script>
-  
-
-<script>
-    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
 
 
     </head>
@@ -119,7 +92,7 @@ if (!doNotTrack) {
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
             <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -180,13 +153,32 @@ if (!doNotTrack) {
 
 
                 
-                <span>主页</span>
+                <span>Home</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/archives' >
+            <a href='/pages/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/archives/' >
                 
                 
                 
@@ -200,16 +192,54 @@ if (!doNotTrack) {
 
 
                 
-                <span>归档</span>
+                <span>Archives</span>
             </a>
         </li>
         
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -217,7 +247,7 @@ if (!doNotTrack) {
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -225,10 +255,11 @@ if (!doNotTrack) {
 
 
 
-                    <span>Dark Mode</span>
-                </li>
-            
-        </div>
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -262,6 +293,7 @@ if (!doNotTrack) {
     <li><a href="#提示和技巧">提示和技巧</a></li>
     <li><a href="#快捷键">快捷键</a>
       <ol>
+        <li><a href="#版本控制">版本控制</a></li>
         <li><a href="#文章">文章</a></li>
       </ol>
     </li>
@@ -323,8 +355,8 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h3 id="知识结构">知识结构</h3>
-<ul>
+    <h3 id="知识结构">知识结构
+</h3><ul>
 <li>64k限制
 <ul>
 <li><a class="link" href="https://developer.android.com/studio/build/multidex.html"  target="_blank" rel="noopener"
@@ -343,196 +375,162 @@ if (!doNotTrack) {
 </ul>
 </li>
 </ul>
-<h2 id="提示和技巧">提示和技巧</h2>
-<h2 id="快捷键">快捷键</h2>
-<div class="table-wrapper"><table>
+<h2 id="提示和技巧">提示和技巧
+</h2><h2 id="快捷键">快捷键
+</h2><div class="table-wrapper"><table>
 <thead>
 <tr>
 <th>操作</th>
 <th>Mac</th>
-<th>Windows</th>
-<th>Linux</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>命令查表</td>
 <td>cmd+shift+A</td>
-<td>ctrl+shift+A</td>
-<td></td>
 </tr>
 <tr>
 <td>快速修复</td>
 <td>alt+enter</td>
-<td>alt+enter</td>
-<td></td>
 </tr>
 <tr>
 <td>格式化代码</td>
 <td>alt+cmd+L</td>
-<td>ctrl+alt+L</td>
-<td></td>
 </tr>
 <tr>
 <td>显示选中API文档</td>
 <td>F1</td>
-<td>ctrl+Q</td>
-<td></td>
 </tr>
 <tr>
 <td>显示选中方法参数</td>
 <td>cmd+P</td>
-<td>ctrl+P</td>
-<td></td>
 </tr>
 <tr>
 <td>跳到源码</td>
 <td>cmd+鼠标左键 或者F4</td>
-<td>F4</td>
-<td></td>
 </tr>
 <tr>
 <td>生成方法</td>
 <td>cmd+N 或者 ctrl+enter</td>
-<td>alt+insert</td>
-<td></td>
 </tr>
 <tr>
 <td>删除一行</td>
 <td>cmd+delete</td>
-<td>ctrl+Y</td>
-<td></td>
 </tr>
 <tr>
 <td>复制一行</td>
 <td>cmd+D</td>
-<td>ctrl+Y</td>
-<td></td>
 </tr>
 <tr>
 <td>搜索symbol</td>
 <td>alt+cmd+O</td>
-<td>ctrl+alt+shift+N</td>
-<td></td>
 </tr>
 <tr>
 <td>构建</td>
 <td>cmd+F9</td>
-<td>ctrl+F9</td>
-<td></td>
 </tr>
 <tr>
 <td>构建和运行</td>
 <td>ctrl+R</td>
-<td>shift+F10</td>
-<td></td>
 </tr>
 <tr>
 <td>打开一个类</td>
 <td>cmd+O</td>
-<td>ctrl+N</td>
-<td></td>
 </tr>
 <tr>
 <td>打开一个文件</td>
 <td>cmd+shift+O</td>
-<td>ctrl+alt+shift+N</td>
-<td></td>
 </tr>
 <tr>
 <td>显示类的变量和方法使用位置</td>
-<td>alt+F7</td>
-<td>alt+F7</td>
 <td></td>
 </tr>
 <tr>
 <td>显示类的变量和方法使用位置(以对话框的方式展示)</td>
 <td>cmd+alt+F7</td>
-<td>ctrl+ alt+F7</td>
-<td></td>
 </tr>
 <tr>
 <td>定位到类、方法或变量的声明</td>
 <td>cmd+B 或者cmd+鼠标左键</td>
-<td>ctrl+B或者ctrl+鼠标左键</td>
-<td></td>
 </tr>
 <tr>
 <td>列出所有实现选中类或接口的类或接口</td>
 <td>cmd+alt+B</td>
-<td>ctrl + alt + B</td>
-<td></td>
 </tr>
 <tr>
 <td>跳转到父类的方法</td>
 <td>cmd+U</td>
-<td>ctrl + U</td>
-<td></td>
 </tr>
 <tr>
 <td>移动代码</td>
 <td>alt+shift+up/down</td>
-<td>alt+shift+up/down</td>
-<td></td>
 </tr>
 <tr>
 <td>显示所有方法和变量</td>
 <td>cmd+F12</td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td>Sourround With</td>
 <td>cmd+alt+T</td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td>大小写转换</td>
 <td>cmd+shift+U</td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td>使用模板</td>
 <td>cmd+J</td>
-<td></td>
-<td></td>
 </tr>
 <tr>
-<td></td>
-<td>alt+cmd+F</td>
-<td></td>
-<td></td>
+<td>选择要粘贴的内容</td>
+<td>++cmd+shift+v++</td>
 </tr>
 <tr>
 <td><a class="link" href="https://www.jetbrains.com/idea/help/find-and-replace-in-path.html"  target="_blank" rel="noopener"
     >查找和替换</a></td>
 <td>查找cmd+shift+F 替换cmd+shift+R</td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td>Surround with</td>
 <td>cmd+alt+T</td>
-<td>ctrl+alt+T</td>
-<td></td>
 </tr>
 </tbody>
 </table></div>
-<p>局部变量抽取为成员变量ctrl + alt + F
-多行编辑ctrl+g
-显示粘贴板 shift + commd+v</p>
-<h3 id="文章">文章</h3>
-<ul>
+<h3 id="版本控制">版本控制
+</h3><div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>Mac</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>显示VCS Operations Popup</td>
+<td>++ctrl+v++</td>
+</tr>
+<tr>
+<td>Commit</td>
+<td>++cmd+k++</td>
+</tr>
+<tr>
+<td>Push</td>
+<td>++shift+cmd+k++</td>
+</tr>
+<tr>
+<td>Show Diff</td>
+<td>++cmd+d++</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="文章">文章
+</h3><ul>
 <li>
 <p><a class="link" href="https://developer.android.com/studio/intro/keyboard-shortcuts.html"  target="_blank" rel="noopener"
     >Keyboard Shortcuts</a></p>
 </li>
 <li>
-<p><a class="link" href="http://zlv.me/posts/2015/07/13/14_android-studio-tips/"  target="_blank" rel="noopener"
-    >http://zlv.me/posts/2015/07/13/14_android-studio-tips/</a>
-<a class="link" href="https://medium.com/@mmbialas/50-android-studio-tips-tricks-resources-you-should-be-familiar-with-as-an-android-developer-af86e7cf56d2#.ydnovmrwm"  target="_blank" rel="noopener"
+<p><a class="link" href="https://medium.com/@mmbialas/50-android-studio-tips-tricks-resources-you-should-be-familiar-with-as-an-android-developer-af86e7cf56d2#.ydnovmrwm"  target="_blank" rel="noopener"
     >https://medium.com/@mmbialas/50-android-studio-tips-tricks-resources-you-should-be-familiar-with-as-an-android-developer-af86e7cf56d2#.ydnovmrwm</a></p>
 </li>
 </ul>
@@ -631,7 +629,7 @@ if (!doNotTrack) {
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 

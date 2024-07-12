@@ -1,84 +1,36 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='[译]Java注解处理器 翻译参考：Java注解处理器
-原文
-在这篇文章中，我将阐述怎样写一个注解处理器(Annotation Processor)。在这篇教程中，首先，我将向您解释什么是注解器，你可以利用这个强大的工具做什么以及不能做什么；然后，我将一步一步实现一个简单的注解器。
-一些基本概念 在开始之前，我们首先申明一个非常重要的问题：我们并不讨论那些在运行时（Runtime）通过反射机制运行处理的注解，而是讨论在编译时（Compile time）处理的注解。
-注解处理器（Annotation Processor）是javac的一个工具，它用来在编译时扫描和处理注解（Annotation）。你可以对自定义注解，并注册相应的注解处理器。到这里，我假设你已经知道什么是注解，并且知道怎么申明的一个注解。如果你不熟悉注解，你可以在这官方文档中得到更多信息。注解处理器在Java 5开始就有了，但是从Java 6（2006年12月发布）开始才有可用的API。过了一些时间，Java世界才意识到注解处理器的强大作用，所以它到最近几年才流行起来。
-一个注解的注解处理器，以Java代码（或者编译过的字节码）作为输入，生成文件（通常是.java文件）作为输出。这具体的含义什么呢？你可以生成Java代码！这些生成的Java代码是在生成的.java文件中，所以你不能修改已经存在的Java类，例如向已有的类中添加方法。这些生成的Java文件，会同其他普通的手动编写的Java源代码一样被javac编译。
-虚处理器AbstractProcessor 我们首先看一下处理器的API。每一个处理器都是继承于AbstractProcessor，如下所示：
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 package com.example; public class MyProcessor extends AbstractProcessor { @Override public synchronized void init(ProcessingEnvironment env){ } @Override public boolean process(Set&amp;lt;? extends TypeElement&amp;gt; annoations, RoundEnvironment env) { } @Override public Set&amp;lt;String&amp;gt; getSupportedAnnotationTypes() { } @Override public SourceVersion getSupportedSourceVersion() { } } init(ProcessingEnvironment env): 每一个注解处理器类都必须有一个空的构造函数。然而，这里有一个特殊的init()方法，它会被注解处理工具调用，并输入ProcessingEnviroment参数。ProcessingEnviroment提供很多有用的工具类Elements, Types和Filer。后面我们将看到详细的内容。 process(Set&amp;lt;?'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="[译]Java注解处理器 翻译参考：Java注解处理器 原文 在这篇文章中，我将阐述怎样写一个注解处理器(Annotation Processor)。在这篇教程中，首先，我将向您解释什么是注解器，你可以利用这个强大的工具做什么以及不能做什么；然后，我将一步一步实现一个简单的注解器。 一些基本概念 在开始之前，我们首先申明一个非常重要的问题：我们并不讨论那些在运行时（Runtime）通过反射机制运行处理的注解，而是讨论在编译时（Compile time）处理的注解。 注解处理器（Annotation Processor）是javac的一个工具，它用来在编译时扫描和处理注解（Annotation）。你可以对自定义注解，并注册相应的注解处理器。到这里，我假设你已经知道什么是注解，并且知道怎么申明的一个注解。如果你不熟悉注解，你可以在这官方文档中得到更多信息。注解处理器在Java 5开始就有了，但是从Java 6（2006年12月发布）开始才有可用的API。过了一些时间，Java世界才意识到注解处理器的强大作用，所以它到最近几年才流行起来。 一个注解的注解处理器，以Java代码（或者编译过的字节码）作为输入，生成文件（通常是.java文件）作为输出。这具体的含义什么呢？你可以生成Java代码！这些生成的Java代码是在生成的.java文件中，所以你不能修改已经存在的Java类，例如向已有的类中添加方法。这些生成的Java文件，会同其他普通的手动编写的Java源代码一样被javac编译。 虚处理器AbstractProcessor 我们首先看一下处理器的API。每一个处理器都是继承于AbstractProcessor，如下所示： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 package com.example; public class MyProcessor extends AbstractProcessor { @Override public synchronized void init(ProcessingEnvironment env){ } @Override public boolean process(Set&lt;? extends TypeElement&gt; annoations, RoundEnvironment env) { } @Override public Set&lt;String&gt; getSupportedAnnotationTypes() { } @Override public SourceVersion getSupportedSourceVersion() { } } init(ProcessingEnvironment env): 每一个注解处理器类都必须有一个空的构造函数。然而，这里有一个特殊的init()方法，它会被注解处理工具调用，并输入ProcessingEnviroment参数。ProcessingEnviroment提供很多有用的工具类Elements, Types和Filer。后面我们将看到详细的内容。 process(Set&lt;?">
 <title></title>
 
-<link rel='canonical' href='https://example.com/android/annotation/annotation-processing/'>
+<link rel='canonical' href='http://localhost:1313/android/annotation/annotation-processing/'>
 
-<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
-<meta property='og:description' content='[译]Java注解处理器 翻译参考：Java注解处理器
-原文
-在这篇文章中，我将阐述怎样写一个注解处理器(Annotation Processor)。在这篇教程中，首先，我将向您解释什么是注解器，你可以利用这个强大的工具做什么以及不能做什么；然后，我将一步一步实现一个简单的注解器。
-一些基本概念 在开始之前，我们首先申明一个非常重要的问题：我们并不讨论那些在运行时（Runtime）通过反射机制运行处理的注解，而是讨论在编译时（Compile time）处理的注解。
-注解处理器（Annotation Processor）是javac的一个工具，它用来在编译时扫描和处理注解（Annotation）。你可以对自定义注解，并注册相应的注解处理器。到这里，我假设你已经知道什么是注解，并且知道怎么申明的一个注解。如果你不熟悉注解，你可以在这官方文档中得到更多信息。注解处理器在Java 5开始就有了，但是从Java 6（2006年12月发布）开始才有可用的API。过了一些时间，Java世界才意识到注解处理器的强大作用，所以它到最近几年才流行起来。
-一个注解的注解处理器，以Java代码（或者编译过的字节码）作为输入，生成文件（通常是.java文件）作为输出。这具体的含义什么呢？你可以生成Java代码！这些生成的Java代码是在生成的.java文件中，所以你不能修改已经存在的Java类，例如向已有的类中添加方法。这些生成的Java文件，会同其他普通的手动编写的Java源代码一样被javac编译。
-虚处理器AbstractProcessor 我们首先看一下处理器的API。每一个处理器都是继承于AbstractProcessor，如下所示：
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 package com.example; public class MyProcessor extends AbstractProcessor { @Override public synchronized void init(ProcessingEnvironment env){ } @Override public boolean process(Set&amp;lt;? extends TypeElement&amp;gt; annoations, RoundEnvironment env) { } @Override public Set&amp;lt;String&amp;gt; getSupportedAnnotationTypes() { } @Override public SourceVersion getSupportedSourceVersion() { } } init(ProcessingEnvironment env): 每一个注解处理器类都必须有一个空的构造函数。然而，这里有一个特殊的init()方法，它会被注解处理工具调用，并输入ProcessingEnviroment参数。ProcessingEnviroment提供很多有用的工具类Elements, Types和Filer。后面我们将看到详细的内容。 process(Set&amp;lt;?'>
-<meta property='og:url' content='https://example.com/android/annotation/annotation-processing/'>
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<meta property='og:description' content="[译]Java注解处理器 翻译参考：Java注解处理器 原文 在这篇文章中，我将阐述怎样写一个注解处理器(Annotation Processor)。在这篇教程中，首先，我将向您解释什么是注解器，你可以利用这个强大的工具做什么以及不能做什么；然后，我将一步一步实现一个简单的注解器。 一些基本概念 在开始之前，我们首先申明一个非常重要的问题：我们并不讨论那些在运行时（Runtime）通过反射机制运行处理的注解，而是讨论在编译时（Compile time）处理的注解。 注解处理器（Annotation Processor）是javac的一个工具，它用来在编译时扫描和处理注解（Annotation）。你可以对自定义注解，并注册相应的注解处理器。到这里，我假设你已经知道什么是注解，并且知道怎么申明的一个注解。如果你不熟悉注解，你可以在这官方文档中得到更多信息。注解处理器在Java 5开始就有了，但是从Java 6（2006年12月发布）开始才有可用的API。过了一些时间，Java世界才意识到注解处理器的强大作用，所以它到最近几年才流行起来。 一个注解的注解处理器，以Java代码（或者编译过的字节码）作为输入，生成文件（通常是.java文件）作为输出。这具体的含义什么呢？你可以生成Java代码！这些生成的Java代码是在生成的.java文件中，所以你不能修改已经存在的Java类，例如向已有的类中添加方法。这些生成的Java文件，会同其他普通的手动编写的Java源代码一样被javac编译。 虚处理器AbstractProcessor 我们首先看一下处理器的API。每一个处理器都是继承于AbstractProcessor，如下所示： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 package com.example; public class MyProcessor extends AbstractProcessor { @Override public synchronized void init(ProcessingEnvironment env){ } @Override public boolean process(Set&lt;? extends TypeElement&gt; annoations, RoundEnvironment env) { } @Override public Set&lt;String&gt; getSupportedAnnotationTypes() { } @Override public SourceVersion getSupportedSourceVersion() { } } init(ProcessingEnvironment env): 每一个注解处理器类都必须有一个空的构造函数。然而，这里有一个特殊的init()方法，它会被注解处理工具调用，并输入ProcessingEnviroment参数。ProcessingEnviroment提供很多有用的工具类Elements, Types和Filer。后面我们将看到详细的内容。 process(Set&lt;?">
+<meta property='og:url' content='http://localhost:1313/android/annotation/annotation-processing/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="[译]Java注解处理器 翻译参考：Java注解处理器
-原文
-在这篇文章中，我将阐述怎样写一个注解处理器(Annotation Processor)。在这篇教程中，首先，我将向您解释什么是注解器，你可以利用这个强大的工具做什么以及不能做什么；然后，我将一步一步实现一个简单的注解器。
-一些基本概念 在开始之前，我们首先申明一个非常重要的问题：我们并不讨论那些在运行时（Runtime）通过反射机制运行处理的注解，而是讨论在编译时（Compile time）处理的注解。
-注解处理器（Annotation Processor）是javac的一个工具，它用来在编译时扫描和处理注解（Annotation）。你可以对自定义注解，并注册相应的注解处理器。到这里，我假设你已经知道什么是注解，并且知道怎么申明的一个注解。如果你不熟悉注解，你可以在这官方文档中得到更多信息。注解处理器在Java 5开始就有了，但是从Java 6（2006年12月发布）开始才有可用的API。过了一些时间，Java世界才意识到注解处理器的强大作用，所以它到最近几年才流行起来。
-一个注解的注解处理器，以Java代码（或者编译过的字节码）作为输入，生成文件（通常是.java文件）作为输出。这具体的含义什么呢？你可以生成Java代码！这些生成的Java代码是在生成的.java文件中，所以你不能修改已经存在的Java类，例如向已有的类中添加方法。这些生成的Java文件，会同其他普通的手动编写的Java源代码一样被javac编译。
-虚处理器AbstractProcessor 我们首先看一下处理器的API。每一个处理器都是继承于AbstractProcessor，如下所示：
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 package com.example; public class MyProcessor extends AbstractProcessor { @Override public synchronized void init(ProcessingEnvironment env){ } @Override public boolean process(Set&amp;lt;? extends TypeElement&amp;gt; annoations, RoundEnvironment env) { } @Override public Set&amp;lt;String&amp;gt; getSupportedAnnotationTypes() { } @Override public SourceVersion getSupportedSourceVersion() { } } init(ProcessingEnvironment env): 每一个注解处理器类都必须有一个空的构造函数。然而，这里有一个特殊的init()方法，它会被注解处理工具调用，并输入ProcessingEnviroment参数。ProcessingEnviroment提供很多有用的工具类Elements, Types和Filer。后面我们将看到详细的内容。 process(Set&amp;lt;?">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
-}
-</script>
-<style>
-    :root {
-      --sys-font-family: "Noto Serif SC";
-      --zh-font-family: "Noto Serif SC";
-      --base-font-family: "Noto Serif SC";
-      --code-font-family: "Noto Serif SC";
-      --article-font-family: "Noto Serif SC";
-    }
-  </style>
+<meta name="twitter:description" content="[译]Java注解处理器 翻译参考：Java注解处理器 原文 在这篇文章中，我将阐述怎样写一个注解处理器(Annotation Processor)。在这篇教程中，首先，我将向您解释什么是注解器，你可以利用这个强大的工具做什么以及不能做什么；然后，我将一步一步实现一个简单的注解器。 一些基本概念 在开始之前，我们首先申明一个非常重要的问题：我们并不讨论那些在运行时（Runtime）通过反射机制运行处理的注解，而是讨论在编译时（Compile time）处理的注解。 注解处理器（Annotation Processor）是javac的一个工具，它用来在编译时扫描和处理注解（Annotation）。你可以对自定义注解，并注册相应的注解处理器。到这里，我假设你已经知道什么是注解，并且知道怎么申明的一个注解。如果你不熟悉注解，你可以在这官方文档中得到更多信息。注解处理器在Java 5开始就有了，但是从Java 6（2006年12月发布）开始才有可用的API。过了一些时间，Java世界才意识到注解处理器的强大作用，所以它到最近几年才流行起来。 一个注解的注解处理器，以Java代码（或者编译过的字节码）作为输入，生成文件（通常是.java文件）作为输出。这具体的含义什么呢？你可以生成Java代码！这些生成的Java代码是在生成的.java文件中，所以你不能修改已经存在的Java类，例如向已有的类中添加方法。这些生成的Java文件，会同其他普通的手动编写的Java源代码一样被javac编译。 虚处理器AbstractProcessor 我们首先看一下处理器的API。每一个处理器都是继承于AbstractProcessor，如下所示： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 package com.example; public class MyProcessor extends AbstractProcessor { @Override public synchronized void init(ProcessingEnvironment env){ } @Override public boolean process(Set&lt;? extends TypeElement&gt; annoations, RoundEnvironment env) { } @Override public Set&lt;String&gt; getSupportedAnnotationTypes() { } @Override public SourceVersion getSupportedSourceVersion() { } } init(ProcessingEnvironment env): 每一个注解处理器类都必须有一个空的构造函数。然而，这里有一个特殊的init()方法，它会被注解处理工具调用，并输入ProcessingEnviroment参数。ProcessingEnviroment提供很多有用的工具类Elements, Types和Filer。后面我们将看到详细的内容。 process(Set&lt;?">
   
-  <script>
-    (function () {
-      const customFont = document.createElement("link");
-      customFont.href =
-        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
   
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-  
-      document.head.appendChild(customFont);
-    })();
-  </script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
-     crossorigin="anonymous"></script>
-  
-
-<script>
-    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
 
 
     </head>
@@ -140,7 +92,7 @@ if (!doNotTrack) {
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
             <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -201,13 +153,32 @@ if (!doNotTrack) {
 
 
                 
-                <span>主页</span>
+                <span>Home</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/archives' >
+            <a href='/pages/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/archives/' >
                 
                 
                 
@@ -221,16 +192,54 @@ if (!doNotTrack) {
 
 
                 
-                <span>归档</span>
+                <span>Archives</span>
             </a>
         </li>
         
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -238,7 +247,7 @@ if (!doNotTrack) {
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -246,10 +255,11 @@ if (!doNotTrack) {
 
 
 
-                    <span>Dark Mode</span>
-                </li>
-            
-        </div>
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -357,19 +367,19 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="译java注解处理器">[译]Java注解处理器</h1>
-<p>翻译参考：<a class="link" href="https://www.race604.com/annotation-processing/"  target="_blank" rel="noopener"
+    <h1 id="译java注解处理器">[译]Java注解处理器
+</h1><p>翻译参考：<a class="link" href="https://www.race604.com/annotation-processing/"  target="_blank" rel="noopener"
     >Java注解处理器</a></p>
 <p><a class="link" href="http://hannesdorfmann.com/annotation-processing/annotationprocessing101"  target="_blank" rel="noopener"
     >原文</a></p>
 <p>在这篇文章中，我将阐述怎样写一个注解处理器(Annotation Processor)。在这篇教程中，首先，我将向您解释什么是注解器，你可以利用这个强大的工具做什么以及不能做什么；然后，我将一步一步实现一个简单的注解器。</p>
-<h2 id="一些基本概念">一些基本概念</h2>
-<p>在开始之前，我们首先申明一个非常重要的问题：我们并不讨论那些在运行时（Runtime）通过反射机制运行处理的注解，而是讨论在编译时（Compile time）处理的注解。</p>
+<h2 id="一些基本概念">一些基本概念
+</h2><p>在开始之前，我们首先申明一个非常重要的问题：我们并不讨论那些在运行时（Runtime）通过反射机制运行处理的注解，而是讨论在编译时（Compile time）处理的注解。</p>
 <p>注解处理器（Annotation Processor）是<strong>javac</strong>的一个工具，它用来在编译时扫描和处理注解（Annotation）。你可以对自定义注解，并注册相应的注解处理器。到这里，我假设你已经知道什么是注解，并且知道怎么申明的一个注解。如果你不熟悉注解，你可以在这<a class="link" href="http://docs.oracle.com/javase/tutorial/java/annotations/index.html"  target="_blank" rel="noopener"
     >官方文档</a>中得到更多信息。注解处理器在Java 5开始就有了，但是从Java 6（2006年12月发布）开始才有可用的API。过了一些时间，Java世界才意识到注解处理器的强大作用，所以它到最近几年才流行起来。</p>
 <p>一个注解的注解处理器，以Java代码（或者编译过的字节码）作为输入，生成文件（通常是<code>.java</code>文件）作为输出。这具体的含义什么呢？你可以生成Java代码！这些生成的Java代码是在生成的.java文件中，所以你不能修改已经存在的Java类，例如向已有的类中添加方法。这些生成的Java文件，会同其他普通的手动编写的Java源代码一样被<strong>javac</strong>编译。</p>
-<h2 id="虚处理器abstractprocessor">虚处理器<code>AbstractProcessor</code></h2>
-<p>我们首先看一下处理器的API。每一个处理器都是继承于<code>AbstractProcessor</code>，如下所示：</p>
+<h2 id="虚处理器abstractprocessor">虚处理器<code>AbstractProcessor</code>
+</h2><p>我们首先看一下处理器的API。每一个处理器都是继承于<code>AbstractProcessor</code>，如下所示：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -416,8 +426,8 @@ if (!doNotTrack) {
 <li><code>getSupportedAnnotationTypes()</code>: 这里你必须指定，这个注解处理器是注册给哪个注解的。注意，它的返回值是一个字符串的集合，包含本处理器想要处理的注解类型的合法全称。换句话说，你在这里定义你的注解处理器注册到哪些注解上。</li>
 <li><code>getSupportedSourceVersion()</code>: 用来指定你使用的Java版本。通常这里返回<code>SourceVersion.latestSupported()</code>。然而，如果你有足够的理由只支持Java 6的话，你也可以返回<code>SourceVersion.RELEASE_6</code>。我推荐你使用前者。</li>
 </ul>
-<h2 id="注册你的处理器">注册你的处理器</h2>
-<p>你可能会问，<em>我怎样将处理器<code>MyProcessor</code>注册到javac中</em>。你必须提供一个<code>.jar</code>文件。就像其他**.jar**文件一样，你打包你的注解处理器到此文件中。并且，在你的jar中，你需要打包一个特定的文件<code>javax.annotation.processing.Processor</code>到<code>META-INF/services</code>路径下。所以，你的.jar文件看起来就像下面这样：</p>
+<h2 id="注册你的处理器">注册你的处理器
+</h2><p>你可能会问，<em>我怎样将处理器<code>MyProcessor</code>注册到javac中</em>。你必须提供一个<code>.jar</code>文件。就像其他**.jar**文件一样，你打包你的注解处理器到此文件中。并且，在你的jar中，你需要打包一个特定的文件<code>javax.annotation.processing.Processor</code>到<code>META-INF/services</code>路径下。所以，你的.jar文件看起来就像下面这样：</p>
 <ul>
 <li>MyProcessor.jar</li>
 <li>
@@ -489,8 +499,8 @@ if (!doNotTrack) {
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>把<code>MyProcessor.jar</code>放到你的builpath中，javac会自动检查和读取<code>javax.annotation.processing.Processor</code>中的内容，并且注册<code>MyProcessor</code>作为注解处理器。</p>
-<h2 id="例子工厂模式">例子：工厂模式</h2>
-<p>是时候来说一个实际的例子了。我们将使用<strong>maven</strong>工具来作为我们的编译系统和依赖管理工具。如果你不熟悉<strong>maven</strong>，不用担心，因为maven不是必须的。本例子的完成代码在<a class="link" href="https://github.com/sockeqwe/annotationprocessing101"  target="_blank" rel="noopener"
+<h2 id="例子工厂模式">例子：工厂模式
+</h2><p>是时候来说一个实际的例子了。我们将使用<strong>maven</strong>工具来作为我们的编译系统和依赖管理工具。如果你不熟悉<strong>maven</strong>，不用担心，因为maven不是必须的。本例子的完成代码在<a class="link" href="https://github.com/sockeqwe/annotationprocessing101"  target="_blank" rel="noopener"
     >Github</a>上。</p>
 <p>开始之前，我必须说，要为这个教程找到一个需要用注解处理器解决的简单问题，实在并不容易。这里我们将实现一个非常简单的工厂模式（不是抽象工厂模式）。这将对注解处理器的API做一个非常简明的介绍。所以，这个问题的程序并不是那么有用，也不是一个真实世界的例子。所以在此申明，你将学习关于注解处理过程的相关内容，而不是设计模式。</p>
 <p>我们将要解决的问题是：我们将实现一个披萨店，这个披萨店给消费者提供两种披萨（“Margherita”和“Calzone”）以及提拉米苏甜点(Tiramisu)。</p>
@@ -698,8 +708,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="factory注解"><code>@Factory</code>注解</h3>
-<p>你能猜到么：我们想用注解处理器自动生成<code>MealFactory</code>。更一般的说，我们将想要提供一个注解和一个处理器来生成工厂类。</p>
+</div><h3 id="factory注解"><code>@Factory</code>注解
+</h3><p>你能猜到么：我们想用注解处理器自动生成<code>MealFactory</code>。更一般的说，我们将想要提供一个注解和一个处理器来生成工厂类。</p>
 <p>我们先来看一下<code>@Factory</code>注解：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -820,8 +830,8 @@ if (!doNotTrack) {
 <li>具有相同的<code>type</code>的注解类，将被聚合在一起生成一个工厂类。这个生成的类使用_Factory_后缀，例如<code>type = Meal.class</code>，将生成<code>MealFactory</code>工厂类；</li>
 <li><code>id</code>只能是String类型，并且在同一个<code>type</code>组中必须唯一。</li>
 </ol>
-<h3 id="处理器">处理器</h3>
-<p>我将通过添加代码和一段解释的方法，一步一步的引导你来构建我们的处理器。省略号(<code>...</code>)表示省略那些已经讨论过的或者将在后面的步骤中讨论的代码，目的是为了让我们的代码有更好的可读性。正如我们前面说的，我们完整的代码可以在<a class="link" href="https://github.com/sockeqwe/annotationprocessing101"  target="_blank" rel="noopener"
+<h3 id="处理器">处理器
+</h3><p>我将通过添加代码和一段解释的方法，一步一步的引导你来构建我们的处理器。省略号(<code>...</code>)表示省略那些已经讨论过的或者将在后面的步骤中讨论的代码，目的是为了让我们的代码有更好的可读性。正如我们前面说的，我们完整的代码可以在<a class="link" href="https://github.com/sockeqwe/annotationprocessing101"  target="_blank" rel="noopener"
     >Github</a>上找到。好了，让我们来看一下我们的处理器类<code>FactoryProcessor</code>的骨架：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -900,8 +910,8 @@ if (!doNotTrack) {
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>你看到在代码的第一行是<code>@AutoService(Processor.class)</code>，这是什么？这是一个其他注解处理器中引入的注解。<code>AutoService</code>注解处理器是Google开发的，用来生成<code>META-INF/services/javax.annotation.processing.Processor</code>文件的。是的，你没有看错，我们可以在注解处理器中使用注解。非常方便，难道不是么？在<code>getSupportedAnnotationTypes()</code>中，我们指定本处理器将处理<code>@Factory</code>注解。</p>
-<h3 id="elements和typemirrors">Elements和TypeMirrors</h3>
-<p>在<code>init()</code>中我们获得如下引用：</p>
+<h3 id="elements和typemirrors">Elements和TypeMirrors
+</h3><p>在<code>init()</code>中我们获得如下引用：</p>
 <ul>
 <li><strong>Elements</strong>：一个用来处理<code>Element</code>的工具类（后面将做详细说明）；</li>
 <li><strong>Types</strong>：一个用来处理<code>TypeMirror</code>的工具类（后面将做详细说明）；</li>
@@ -957,8 +967,8 @@ if (!doNotTrack) {
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>正如你所见，<strong>Element</strong>代表的是源代码。<code>TypeElement</code>代表的是源代码中的类型元素，例如类。然而，<code>TypeElement</code>并不包含类本身的信息。你可以从<code>TypeElement</code>中获取类的名字，但是你获取不到类的信息，例如它的父类。这种信息需要通过<code>TypeMirror</code>获取。你可以通过调用<code>elements.asType()</code>获取元素的<code>TypeMirror</code>。</p>
-<h3 id="搜索factory注解-a-idfactorya">搜索@Factory注解 <a id="factory"></a></h3>
-<p>我们来一步一步实现<code>process()</code>方法。首先，我们从搜索被注解了<code>@Factory</code>的类开始：</p>
+<h3 id="搜索factory注解-a-idfactorya">搜索@Factory注解 <a id="factory"></a>
+</h3><p>我们来一步一步实现<code>process()</code>方法。首先，我们从搜索被注解了<code>@Factory</code>的类开始：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1037,8 +1047,8 @@ if (!doNotTrack) {
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>为什么要这么做？我们要确保只有class元素被我们的处理器处理。前面我们已经学习到类是用<code>TypeElement</code>表示。我们为什么不这样判断呢<code>if (! (annotatedElement instanceof TypeElement) )</code>？这是错误的，因为接口（interface）类型也是TypeElement。所以在注解处理器中，我们要避免使用<code>instanceof</code>，而是配合<code>TypeMirror</code>使用<code>EmentKind</code>或者<code>TypeKind</code>。</p>
-<h3 id="错误处理">错误处理</h3>
-<p>在<code>init()</code>中，我们也获得了一个<code>Messager</code>对象的引用。<code>Messager</code>提供给注解处理器一个报告错误、警告以及提示信息的途径。它不是注解处理器开发者的日志工具，而是用来写一些信息给使用此注解器的第三方开发者的。在<a class="link" href="http://docs.oracle.com/javase/7/docs/api/javax/tools/Diagnostic.Kind.html"  target="_blank" rel="noopener"
+<h3 id="错误处理">错误处理
+</h3><p>在<code>init()</code>中，我们也获得了一个<code>Messager</code>对象的引用。<code>Messager</code>提供给注解处理器一个报告错误、警告以及提示信息的途径。它不是注解处理器开发者的日志工具，而是用来写一些信息给使用此注解器的第三方开发者的。在<a class="link" href="http://docs.oracle.com/javase/7/docs/api/javax/tools/Diagnostic.Kind.html"  target="_blank" rel="noopener"
     >官方文档</a>中描述了消息的不同级别。非常重要的是<a class="link" href="http://docs.oracle.com/javase/7/docs/api/javax/tools/Diagnostic.Kind.html#ERROR"  target="_blank" rel="noopener"
     ><code>Kind.ERROR</code></a>，因为这种类型的信息用来表示我们的注解处理器处理失败了。很有可能是第三方开发者错误的使用了<code>@Factory</code>注解（例如，给接口使用了@Factory注解）。这个概念和传统的Java应用有点不一样，在传统Java应用中我们可能就抛出一个异常<code>Exception</code>。如果你在<code>process()</code>中抛出一个异常，那么运行注解处理器的JVM将会崩溃（就像其他Java应用一样），使用我们注解处理器FactoryProcessor第三方开发者将会从javac中得到非常难懂的出错信息，因为它包含FactoryProcessor的堆栈跟踪（Stacktace）信息。因此，注解处理器就有一个<code>Messager</code>类，它能够打印非常优美的错误信息。除此之外，你还可以连接到出错的元素。在像IntelliJ这种现代的IDE（集成开发环境）中，第三方开发者可以直接点击错误信息，IDE将会直接跳转到第三方开发者项目的出错的源文件的相应的行。</p>
 <p>我们重新回到<code>process()</code>方法的实现。如果遇到一个非类类型被注解<code>@Factory</code>，我们发出一个出错信息：</p>
@@ -1091,8 +1101,8 @@ if (!doNotTrack) {
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>让Messager显示相关出错信息，更重要的是<strong>注解处理器程序必须完成运行而不崩溃</strong>，这就是为什么在调用<code>error()</code>后直接<code>return</code>。如果我们不直接返回，<code>process()</code>将继续运行，因为<code>messager.printMessage( Diagnostic.Kind.ERROR)</code>不会停止此进程。因此，如果我们在打印错误信息以后不返回的话，我们很可能就会运行到一个_NullPointerException_等。就像我们前面说的，如果我们继续运行<code>process()</code>，问题是如果在<code>process()</code>中抛出一个未处理的异常，javac将会打印出内部的_NullPointerException_，而不是<code>Messager</code>中的错误信息。</p>
-<h3 id="数据模型">数据模型</h3>
-<p>在继续检查被注解@Fractory的类是否满足我们上面说的5条规则之前，我们将介绍一个让我们更方便继续处理的数据结构。有时候，一个问题或者解释器看起来如此简单，以至于程序员倾向于用一个面向过程方式来写整个处理器。但是你知道吗？一个注解处理器任然是一个Java程序，所以我们需要使用面向对象编程、接口、设计模式，以及任何你将在其他普通Java程序中使用的技巧。</p>
+<h3 id="数据模型">数据模型
+</h3><p>在继续检查被注解@Fractory的类是否满足我们上面说的5条规则之前，我们将介绍一个让我们更方便继续处理的数据结构。有时候，一个问题或者解释器看起来如此简单，以至于程序员倾向于用一个面向过程方式来写整个处理器。但是你知道吗？一个注解处理器任然是一个Java程序，所以我们需要使用面向对象编程、接口、设计模式，以及任何你将在其他普通Java程序中使用的技巧。</p>
 <p>我们的<code>FactoryProcessor</code>非常简单，但是我们仍然想要把一些信息存为对象。在<code>FactoryAnnotatedClass</code>中，我们保存被注解类的数据，比如合法的类的名字，以及@Factory注解本身的一些信息。所以，我们保存<code>TypeElement</code>和处理过的@Factory注解：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1348,8 +1358,8 @@ if (!doNotTrack) {
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>正如你所见，这是一个基本的<code>Map&lt;String, FactoryAnnotatedClass&gt;</code>，这个映射表用来映射@Factory.id()到FactoryAnnotatedClass。我们选择<code>Map</code>这个数据类型，是因为我们要确保每个id是唯一的，我们可以很容易通过map查找实现。<code>generateCode()</code>方法将被用来生成工厂类代码（将在后面讨论）。</p>
-<h3 id="匹配标准">匹配标准</h3>
-<p>我们继续实现<code>process()</code>方法。接下来我们想要检查被注解的类必须有只要一个公开的构造函数，不是抽象类，继承于特定的类型，以及是一个公开类：</p>
+<h3 id="匹配标准">匹配标准
+</h3><p>我们继续实现<code>process()</code>方法。接下来我们想要检查被注解的类必须有只要一个公开的构造函数，不是抽象类，继承于特定的类型，以及是一个公开类：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1558,8 +1568,8 @@ if (!doNotTrack) {
 <li>类必须有一个公开的默认构造函数：我们遍历所有的闭元素<code>classElement.getEnclosedElements()</code>，然后检查<code>ElementKind.CONSTRUCTOR</code>、<code>Modifier.PUBLIC</code>以及<code>constructorElement.getParameters().size() == 0</code>。</li>
 </ul>
 <p>如果所有这些条件都满足，<code>isValidClass()</code>返回<code>true</code>，否者就打印错误信息，并且返回<code>false</code>。</p>
-<h3 id="组合被注解的类">组合被注解的类</h3>
-<p>一旦我们检查<code>isValidClass()</code>成功，我们将添加<code>FactoryAnnotatedClass</code>到对应的<code>FactoryGroupedClasses</code>中，如下：</p>
+<h3 id="组合被注解的类">组合被注解的类
+</h3><p>一旦我们检查<code>isValidClass()</code>成功，我们将添加<code>FactoryAnnotatedClass</code>到对应的<code>FactoryGroupedClasses</code>中，如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1656,8 +1666,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="代码生成">代码生成</h3>
-<p>我们已经收集了所有的被<code>@Factory</code>注解的类保存到为<code>FactoryAnnotatedClass</code>，并且组合到了<code>FactoryGroupedClasses</code>。现在我们将为每个工厂生成Java文件了：</p>
+</div><h3 id="代码生成">代码生成
+</h3><p>我们已经收集了所有的被<code>@Factory</code>注解的类保存到为<code>FactoryAnnotatedClass</code>，并且组合到了<code>FactoryGroupedClasses</code>。现在我们将为每个工厂生成Java文件了：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1807,8 +1817,8 @@ if (!doNotTrack) {
 </blockquote>
 <p><strong>更新</strong>：JavaWrite现在已经被<a class="link" href="https://github.com/square/javapoet"  target="_blank" rel="noopener"
     ><code>JavaPoet</code></a>取代了。</p>
-<h3 id="处理循环">处理循环</h3>
-<p>注解处理过程可能会多于一次。官方javadoc定义处理过程如下：</p>
+<h3 id="处理循环">处理循环
+</h3><p>注解处理过程可能会多于一次。官方javadoc定义处理过程如下：</p>
 <blockquote>
 <p>注解处理过程是一个有序的循环过程。在每次循环中，一个处理器可能被要求去处理那些在上一次循环中产生的源文件和类文件中的注解。第一次循环的输入是运行此工具的初始输入。这些初始输入，可以看成是虚拟的第0此的循环的输出。</p>
 </blockquote>
@@ -1889,11 +1899,11 @@ if (!doNotTrack) {
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>我知道这有其他的方法来处理这个问题，例如我们也可以设置一个布尔值标签等。关键的点是：我们要记住注解处理过程是需要经过多轮处理的，并且你不能重载或者重新创建已经生成的源代码。</p>
-<h3 id="分离处理器和注解">分离处理器和注解</h3>
-<p>如果你已经看了我们的<a class="link" href="https://github.com/sockeqwe/annotationprocessing101/tree/master/factory"  target="_blank" rel="noopener"
+<h3 id="分离处理器和注解">分离处理器和注解
+</h3><p>如果你已经看了我们的<a class="link" href="https://github.com/sockeqwe/annotationprocessing101/tree/master/factory"  target="_blank" rel="noopener"
     >代码库</a>，你将发现我们组织我们的代码到两个maven模块中了。我们这么做是因为，我们想让我们的工厂模式的例子的使用者，在他们的工程中只编译注解，而包含处理器模块只是为了编译。有点晕？我们举个例子，如果我们只有一个包。如果另一个开发者想要把我们的工厂模式处理器用于他的项目中，他就必须包含<code>@Factory</code>注解和整个<code>FactoryProcessor</code>的代码（包括FactoryAnnotatedClass和FactoryGroupedClasses）到他们项目中。我非常确定的是，他并不需要在他已经编译好的项目中包含处理器相关的代码。如果你是一个Android的开发者，你肯定听说过65k个方法的限制（即在一个.dex文件中，只能寻址65000个方法）。如果你在FactoryProcessor中使用guava，并且把注解和处理器打包在一个包中，这样的话，Android APK安装包中不只是包含FactoryProcessor的代码，而也包含了整个guava的代码。Guava有大约20000个方法。所以分开注解和处理器是非常有意义的。</p>
-<h3 id="生成的类的实例化">生成的类的实例化</h3>
-<p>你已经看到了，在这个<code>PizzaStore</code>的例子中，生成了<code>MealFactory</code>类，它和其他手写的Java类没有任何区别。进而，你需要就想其他Java对象，手动实例化 它：</p>
+<h3 id="生成的类的实例化">生成的类的实例化
+</h3><p>你已经看到了，在这个<code>PizzaStore</code>的例子中，生成了<code>MealFactory</code>类，它和其他手写的Java类没有任何区别。进而，你需要就想其他Java对象，手动实例化 它：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1936,14 +1946,14 @@ if (!doNotTrack) {
 <p><a class="link" href="https://github.com/sockeqwe/fragmentargs"  target="_blank" rel="noopener"
     ><code>FragmentArgs</code></a>非常类似于ButterKnife。它使用反射机制来创建对象，而不需要开发者手动来做这些。FragmentArgs在处理注解的时候生成一个特别的查找表类，它其实就是一种哈希表，所以整个FragmentArgs库只是在第一次使用的时候，执行一次反射调用，一旦整个<code>Class.forName()</code>的Fragemnt的参数对象被创建，后面的都是本地代码运行了。</p>
 <p>作为一个注解注解处理器的开发者，这些都由你来决定，为其他的注解器使用者，在反射和可用性上找到一个好的平衡。</p>
-<h2 id="总结">总结</h2>
-<p>到此，我希望你对注解处理过程有一个非常深刻的理解。我必须再次说明一下：注解处理器是一个非常强大的工具，减少了很多无聊的代码的编写。我也想提醒的是，注解处理器可以做到比我上面提到的工厂模式的例子复杂很多的事情。例如，泛型的类型擦除，因为注解处理器是发生在类型擦除（type erasure）之前的（译者注：类型擦除可以参考<a class="link" href="http://justjavac.iteye.com/blog/1741638"  target="_blank" rel="noopener"
+<h2 id="总结">总结
+</h2><p>到此，我希望你对注解处理过程有一个非常深刻的理解。我必须再次说明一下：注解处理器是一个非常强大的工具，减少了很多无聊的代码的编写。我也想提醒的是，注解处理器可以做到比我上面提到的工厂模式的例子复杂很多的事情。例如，泛型的类型擦除，因为注解处理器是发生在类型擦除（type erasure）之前的（译者注：类型擦除可以参考<a class="link" href="http://justjavac.iteye.com/blog/1741638"  target="_blank" rel="noopener"
     >这里</a>）。就像你所看到的，你在写注解处理的时候，有两个普遍的问题你需要处理：第一问题， 如果你想在其他类中使用ElementUtils, TypeUtils和Messager，你就必须把他们作为参数传进去。在我为Android开发的注解器<a class="link" href="https://github.com/sockeqwe/AnnotatedAdapter"  target="_blank" rel="noopener"
     ><code>AnnotatedAdapter</code></a>中，我尝试使用Dagger（一个依赖注入库）来解决这个问题。在这个简单的处理中使用它听起来有点过头了，但是它确实很好用；第二个问题，你必须做<strong>查询</strong><code>Elements</code>的操作。就想我之前提到的，处理Element就解析XML或者HTML一样。对于HTML你可以是用jQuery，如果在注解处理器中，有类似于jQuery的库那那绝对是酷毙了。如果你知道有类似的库，请在下面的评论告诉我。</p>
 <p>请注意的是，在FactoryProcessor代码中有一些缺陷和陷阱。这些“错误”是我故意放进去的，是为了演示一些在开发过程中的常见错误（例如“Attempt to recreate a file”）。如果你想基于FactoryProcessor写你自己注解处理器，请<strong>不要</strong>直接拷贝粘贴这些陷阱过去，你应该从最开始就避免它们。</p>
 <p>我在后续的博客中将会写注解处理器的单元测试，敬请关注。</p>
-<h3 id="heading"></h3>
-
+<h3 id="heading">
+</h3>
 </section>
 
 
@@ -2038,7 +2048,7 @@ if (!doNotTrack) {
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 

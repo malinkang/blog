@@ -1,75 +1,36 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Okhttp源码分析 基本流程 创建RequestBody 创建Request 创建OkhttpClient 调用newCall创建Call对象 执行异步或同步操作。 创建Socket连接 发送请求并处理返回结果 创建RequestBody RequestBody主要通过writeTo方法将请求内容写入到BufferedSink。RequestBody提供了3个create静态方法来创建RequestBody，此外RequestBody还包含两个子类。
-FormBody用于表单提交，MultipartBody用于多内容提交。
-创建Request Request对象包含如下信息
-1 2 3 4 5 final HttpUrl url; //请求连接 final String method; //请求方法 final Headers headers; //请求头 final @Nullable RequestBody body; //请求体 final Map&amp;lt;Class&amp;lt;?&amp;gt;, Object&amp;gt; tags; //tags 创建OkHttpClient OkHttpClient可配置的信息包括如下：
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 final Dispatcher dispatcher; //调度器主要负责异步请求 final @Nullable Proxy proxy; //代理 final List&amp;lt;Protocol&amp;gt; protocols; //支持的协议 默认支持HTTP1.'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Okhttp源码分析 基本流程 创建RequestBody 创建Request 创建OkhttpClient 调用newCall创建Call对象 执行异步或同步操作。 创建Socket连接 发送请求并处理返回结果 创建RequestBody RequestBody主要通过writeTo方法将请求内容写入到BufferedSink。RequestBody提供了3个create静态方法来创建RequestBody，此外RequestBody还包含两个子类。 FormBody用于表单提交，MultipartBody用于多内容提交。 创建Request Request对象包含如下信息 1 2 3 4 5 final HttpUrl url; //请求连接 final String method; //请求方法 final Headers headers; //请求头 final @Nullable RequestBody body; //请求体 final Map&lt;Class&lt;?&gt;, Object&gt; tags; //tags 创建OkHttpClient OkHttpClient可配置的信息包括如下： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 final Dispatcher dispatcher; //调度器主要负责异步请求 final @Nullable Proxy proxy; //代理 final List&lt;Protocol&gt; protocols; //支持的协议 默认支持HTTP1.">
 <title></title>
 
-<link rel='canonical' href='https://example.com/android/thirdparty/okhttp/'>
+<link rel='canonical' href='http://localhost:1313/android/thirdparty/okhttp/'>
 
-<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
-<meta property='og:description' content='Okhttp源码分析 基本流程 创建RequestBody 创建Request 创建OkhttpClient 调用newCall创建Call对象 执行异步或同步操作。 创建Socket连接 发送请求并处理返回结果 创建RequestBody RequestBody主要通过writeTo方法将请求内容写入到BufferedSink。RequestBody提供了3个create静态方法来创建RequestBody，此外RequestBody还包含两个子类。
-FormBody用于表单提交，MultipartBody用于多内容提交。
-创建Request Request对象包含如下信息
-1 2 3 4 5 final HttpUrl url; //请求连接 final String method; //请求方法 final Headers headers; //请求头 final @Nullable RequestBody body; //请求体 final Map&amp;lt;Class&amp;lt;?&amp;gt;, Object&amp;gt; tags; //tags 创建OkHttpClient OkHttpClient可配置的信息包括如下：
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 final Dispatcher dispatcher; //调度器主要负责异步请求 final @Nullable Proxy proxy; //代理 final List&amp;lt;Protocol&amp;gt; protocols; //支持的协议 默认支持HTTP1.'>
-<meta property='og:url' content='https://example.com/android/thirdparty/okhttp/'>
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<meta property='og:description' content="Okhttp源码分析 基本流程 创建RequestBody 创建Request 创建OkhttpClient 调用newCall创建Call对象 执行异步或同步操作。 创建Socket连接 发送请求并处理返回结果 创建RequestBody RequestBody主要通过writeTo方法将请求内容写入到BufferedSink。RequestBody提供了3个create静态方法来创建RequestBody，此外RequestBody还包含两个子类。 FormBody用于表单提交，MultipartBody用于多内容提交。 创建Request Request对象包含如下信息 1 2 3 4 5 final HttpUrl url; //请求连接 final String method; //请求方法 final Headers headers; //请求头 final @Nullable RequestBody body; //请求体 final Map&lt;Class&lt;?&gt;, Object&gt; tags; //tags 创建OkHttpClient OkHttpClient可配置的信息包括如下： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 final Dispatcher dispatcher; //调度器主要负责异步请求 final @Nullable Proxy proxy; //代理 final List&lt;Protocol&gt; protocols; //支持的协议 默认支持HTTP1.">
+<meta property='og:url' content='http://localhost:1313/android/thirdparty/okhttp/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="Okhttp源码分析 基本流程 创建RequestBody 创建Request 创建OkhttpClient 调用newCall创建Call对象 执行异步或同步操作。 创建Socket连接 发送请求并处理返回结果 创建RequestBody RequestBody主要通过writeTo方法将请求内容写入到BufferedSink。RequestBody提供了3个create静态方法来创建RequestBody，此外RequestBody还包含两个子类。
-FormBody用于表单提交，MultipartBody用于多内容提交。
-创建Request Request对象包含如下信息
-1 2 3 4 5 final HttpUrl url; //请求连接 final String method; //请求方法 final Headers headers; //请求头 final @Nullable RequestBody body; //请求体 final Map&amp;lt;Class&amp;lt;?&amp;gt;, Object&amp;gt; tags; //tags 创建OkHttpClient OkHttpClient可配置的信息包括如下：
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 final Dispatcher dispatcher; //调度器主要负责异步请求 final @Nullable Proxy proxy; //代理 final List&amp;lt;Protocol&amp;gt; protocols; //支持的协议 默认支持HTTP1.">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
-}
-</script>
-<style>
-    :root {
-      --sys-font-family: "Noto Serif SC";
-      --zh-font-family: "Noto Serif SC";
-      --base-font-family: "Noto Serif SC";
-      --code-font-family: "Noto Serif SC";
-      --article-font-family: "Noto Serif SC";
-    }
-  </style>
+<meta name="twitter:description" content="Okhttp源码分析 基本流程 创建RequestBody 创建Request 创建OkhttpClient 调用newCall创建Call对象 执行异步或同步操作。 创建Socket连接 发送请求并处理返回结果 创建RequestBody RequestBody主要通过writeTo方法将请求内容写入到BufferedSink。RequestBody提供了3个create静态方法来创建RequestBody，此外RequestBody还包含两个子类。 FormBody用于表单提交，MultipartBody用于多内容提交。 创建Request Request对象包含如下信息 1 2 3 4 5 final HttpUrl url; //请求连接 final String method; //请求方法 final Headers headers; //请求头 final @Nullable RequestBody body; //请求体 final Map&lt;Class&lt;?&gt;, Object&gt; tags; //tags 创建OkHttpClient OkHttpClient可配置的信息包括如下： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 final Dispatcher dispatcher; //调度器主要负责异步请求 final @Nullable Proxy proxy; //代理 final List&lt;Protocol&gt; protocols; //支持的协议 默认支持HTTP1.">
   
-  <script>
-    (function () {
-      const customFont = document.createElement("link");
-      customFont.href =
-        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
   
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-  
-      document.head.appendChild(customFont);
-    })();
-  </script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
-     crossorigin="anonymous"></script>
-  
-
-<script>
-    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
 
 
     </head>
@@ -131,7 +92,7 @@ if (!doNotTrack) {
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
             <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -192,13 +153,32 @@ if (!doNotTrack) {
 
 
                 
-                <span>主页</span>
+                <span>Home</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/archives' >
+            <a href='/pages/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/archives/' >
                 
                 
                 
@@ -212,16 +192,54 @@ if (!doNotTrack) {
 
 
                 
-                <span>归档</span>
+                <span>Archives</span>
             </a>
         </li>
         
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -229,7 +247,7 @@ if (!doNotTrack) {
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -237,10 +255,11 @@ if (!doNotTrack) {
 
 
 
-                    <span>Dark Mode</span>
-                </li>
-            
-        </div>
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -371,9 +390,9 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="okhttp源码分析">Okhttp源码分析</h1>
-<h2 id="基本流程">基本流程</h2>
-<ol>
+    <h1 id="okhttp源码分析">Okhttp源码分析
+</h1><h2 id="基本流程">基本流程
+</h2><ol>
 <li>创建<code>RequestBody</code></li>
 <li>创建<code>Request</code></li>
 <li>创建<code>OkhttpClient</code></li>
@@ -382,8 +401,8 @@ if (!doNotTrack) {
 <li>创建<code>Socket</code>连接</li>
 <li>发送请求并处理返回结果</li>
 </ol>
-<h2 id="创建requestbody">创建RequestBody</h2>
-<p><code>RequestBody</code>主要通过<code>writeTo</code>方法将请求内容写入到<code>BufferedSink</code>。<code>RequestBody</code>提供了3个<code>create</code>静态方法来创建<code>RequestBody</code>，此外<code>RequestBody</code>还包含两个子类。</p>
+<h2 id="创建requestbody">创建RequestBody
+</h2><p><code>RequestBody</code>主要通过<code>writeTo</code>方法将请求内容写入到<code>BufferedSink</code>。<code>RequestBody</code>提供了3个<code>create</code>静态方法来创建<code>RequestBody</code>，此外<code>RequestBody</code>还包含两个子类。</p>
 <p><img src="https://malinkang.cn/images/jvm/202111141706239.png"
 	
 	
@@ -395,8 +414,8 @@ if (!doNotTrack) {
 	
 ></p>
 <p><code>FormBody</code>用于表单提交，<code>MultipartBody</code>用于多内容提交。</p>
-<h2 id="创建request">创建Request</h2>
-<p><code>Request</code>对象包含如下信息</p>
+<h2 id="创建request">创建Request
+</h2><p><code>Request</code>对象包含如下信息</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -413,8 +432,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">final</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">Class</span><span class="o">&lt;?&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="o">&gt;</span><span class="w"> </span><span class="n">tags</span><span class="p">;</span><span class="w"> </span><span class="c1">//tags</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="创建okhttpclient">创建OkHttpClient</h2>
-<p><code>OkHttpClient</code>可配置的信息包括如下：</p>
+</div><h2 id="创建okhttpclient">创建OkHttpClient
+</h2><p><code>OkHttpClient</code>可配置的信息包括如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -477,8 +496,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">final</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">pingInterval</span><span class="p">;</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="调用newcall创建call对象">调用newCall创建Call对象</h2>
-<p><img src="https://malinkang.cn/images/jvm/202111141705680.png"
+</div><h2 id="调用newcall创建call对象">调用newCall创建Call对象
+</h2><p><img src="https://malinkang.cn/images/jvm/202111141705680.png"
 	
 	
 	
@@ -512,8 +531,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">override</span><span class="w"> </span><span class="n">fun</span><span class="w"> </span><span class="nf">newCall</span><span class="p">(</span><span class="n">request</span><span class="p">:</span><span class="w"> </span><span class="n">Request</span><span class="p">):</span><span class="w"> </span><span class="n">Call</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RealCall</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">forWebSocket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="执行网络请求">执行网络请求</h2>
-<p><img src="https://malinkang.cn/images/jvm/202111141730335.png"
+</div><h2 id="执行网络请求">执行网络请求
+</h2><p><img src="https://malinkang.cn/images/jvm/202111141730335.png"
 	
 	
 	
@@ -540,8 +559,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="enqueue">enqueue()</h3>
-<p><code>Dispatcher</code>类</p>
+</div><h3 id="enqueue">enqueue()
+</h3><p><code>Dispatcher</code>类</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -578,8 +597,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="promoteandexecute">promoteAndExecute()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="promoteandexecute">promoteAndExecute()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -669,8 +688,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="executeon">executeOn()</h3>
-<p><code>AsyncCall</code>的<code>executeOn</code>方法</p>
+</div><h3 id="executeon">executeOn()
+</h3><p><code>AsyncCall</code>的<code>executeOn</code>方法</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -773,8 +792,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="拦截器">拦截器</h2>
-<p><code>RealInterceptorChain</code>的<code>proceed</code>会创建一个<code>InterceptorChain</code>，并调用拦截器的<code>intercept</code>方法。除了<code>CallServerInterceptor</code>外，所有拦截器的<code>intercept</code>都会调用创建的<code>InterceptorChain</code>的<code>proceed</code>方法。</p>
+</div><h2 id="拦截器">拦截器
+</h2><p><code>RealInterceptorChain</code>的<code>proceed</code>会创建一个<code>InterceptorChain</code>，并调用拦截器的<code>intercept</code>方法。除了<code>CallServerInterceptor</code>外，所有拦截器的<code>intercept</code>都会调用创建的<code>InterceptorChain</code>的<code>proceed</code>方法。</p>
 <p><img src="https://malinkang.cn/images/jvm/202111121831550.png"
 	
 	
@@ -783,8 +802,8 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h3 id="getresponsewithinterceptorchain">getResponseWithInterceptorChain()</h3>
-<div class="highlight"><div class="chroma">
+<h3 id="getresponsewithinterceptorchain">getResponseWithInterceptorChain()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -872,8 +891,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="proceed">proceed()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="proceed">proceed()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -937,9 +956,9 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="缓存分析">缓存分析</h2>
-<h3 id="cache">Cache</h3>
-<p>缓存核心类是<code>Cache</code>对象。</p>
+</div><h2 id="缓存分析">缓存分析
+</h2><h3 id="cache">Cache
+</h3><p>缓存核心类是<code>Cache</code>对象。</p>
 <p><code>Cache</code>的构造函数。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1092,10 +1111,10 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="cacheinterceptor">CacheInterceptor</h3>
-<p>Cache这两个方法都被CacheInterceptor对象调用。所以处理缓存的核心逻辑都在CacheInterceptor中。</p>
-<h3 id="缓存逻辑"><strong>缓存逻辑</strong></h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="cacheinterceptor">CacheInterceptor
+</h3><p>Cache这两个方法都被CacheInterceptor对象调用。所以处理缓存的核心逻辑都在CacheInterceptor中。</p>
+<h3 id="缓存逻辑"><strong>缓存逻辑</strong>
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1229,8 +1248,8 @@ if (!doNotTrack) {
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>这里面加了一堆判断，这里需要先了解一下HTTP的缓存原理。才能搞清楚这些判断的逻辑。</p>
-<h3 id="http缓存原理">Http缓存原理</h3>
-<p>在HTTP 1.0时代，响应使用Expires头标识缓存的有效期，其值是一个绝对时间，比如Expires:Thu,31 Dec 2020 23:59:59 GMT。当客户端再次发出网络请求时可比较当前时间 和上次响应的expires时间进行比较，来决定是使用缓存还是发起新的请求。</p>
+<h3 id="http缓存原理">Http缓存原理
+</h3><p>在HTTP 1.0时代，响应使用Expires头标识缓存的有效期，其值是一个绝对时间，比如Expires:Thu,31 Dec 2020 23:59:59 GMT。当客户端再次发出网络请求时可比较当前时间 和上次响应的expires时间进行比较，来决定是使用缓存还是发起新的请求。</p>
 <p>使用Expires头最大的问题是它依赖客户端的本地时间，如果用户自己修改了本地时间，就会导致无法准确的判断缓存是否过期。</p>
 <p>因此，从HTTP 1.1 开始使用<code>Cache-Control</code>头表示缓存状态，它的优先级高于Expires，常见的取值为下面的一个或多个。</p>
 <ul>
@@ -1240,10 +1259,10 @@ if (!doNotTrack) {
 <li>max-age 表示缓存时长单位为秒，指一个时间段，比如一年，通常用于不经常变化的静态资源。</li>
 <li>no-store 任何节点禁止使用缓存。</li>
 </ul>
-<h4 id="强制缓存">强制缓存</h4>
-<p>在上述缓存头规约基础之上，强制缓存是指网络请求响应header标识了Expires或Cache-Control带了max-age信息，而此时客户端计算缓存并未过期，则可以直接使用本地缓存内容，而不用真正的发起一次网络请求。</p>
-<h3 id="协商缓存">协商缓存</h3>
-<p>强制缓存最大的问题是，一旦服务端资源有更新，直到缓存时间截止前，客户端无法获取到最新的资源（除非请求时手动添加no-store头），另外大部分情况下服务器的资源无法直接确定缓存失效时间，所以使用对比缓存更灵活一些。</p>
+<h4 id="强制缓存">强制缓存
+</h4><p>在上述缓存头规约基础之上，强制缓存是指网络请求响应header标识了Expires或Cache-Control带了max-age信息，而此时客户端计算缓存并未过期，则可以直接使用本地缓存内容，而不用真正的发起一次网络请求。</p>
+<h3 id="协商缓存">协商缓存
+</h3><p>强制缓存最大的问题是，一旦服务端资源有更新，直到缓存时间截止前，客户端无法获取到最新的资源（除非请求时手动添加no-store头），另外大部分情况下服务器的资源无法直接确定缓存失效时间，所以使用对比缓存更灵活一些。</p>
 <p>使用<strong>Last-Modify</strong> / <strong>If-Modify-Since</strong>头实现协商缓存，具体方法是服务端响应头添加Last-Modify头标识资源的最后修改时间，单位为秒，当客户端再次发起请求时添加If-Modify-Since头并赋值为上次请求拿到的Last-Modify头的值。</p>
 <p>服务端收到请求后自行判断缓存资源是否仍然有效，如果有效则返回状态码304同时body体为空，否则下发最新的资源数据。客户端如果发现状态码是304，则取出本地的缓存数据作为响应。</p>
 <p>使用这套方案有一个问题，那就是资源文件使用最后修改时间有一定的局限性：</p>
@@ -1251,8 +1270,8 @@ if (!doNotTrack) {
 <li>Last-Modify单位为秒，如果某些文件在一秒内被修改则并不能准确的标识修改时间。</li>
 <li>资源修改时间并不能作为资源是否修改的唯一依据，比如资源文件是Daily Build的，每天都会生成新的，但是其实际内容可能并未改变。</li>
 </ol>
-<h2 id="建立连接">建立连接</h2>
-<p><img src="https://malinkang.cn/images/jvm/202111141747580.png"
+<h2 id="建立连接">建立连接
+</h2><p><img src="https://malinkang.cn/images/jvm/202111141747580.png"
 	
 	
 	
@@ -1291,8 +1310,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="initexchange">initExchange()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="initexchange">initExchange()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1344,8 +1363,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="find">find()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="find">find()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1399,8 +1418,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="findhealthyconnection">findHealthyConnection()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="findhealthyconnection">findHealthyConnection()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1476,8 +1495,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="findconnection">findConnection()</h3>
-<ol>
+</div><h3 id="findconnection">findConnection()
+</h3><ol>
 <li>如果call里面的connection不为空，则复用call里面的connection。</li>
 <li>如果call中的connection为空，则从连接池中获取一个。</li>
 <li>如果缓存池里也没有就创建一个</li>
@@ -1716,8 +1735,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="okhttp连接复用">OkHttp连接复用</h2>
-<p><code>OkHttp</code> 连接复用主要是通过 <code>RealConnectionPool</code> 来实现的，其内部定义了一个 <code>ConcurrentLinkedQueue</code> 来存储创建的 <code>RealConnection</code>。当获取连接时，优先判断 <code>Call</code> 中的`` Connection <code>是否为空，如果不为空则直接复用，为空则从连接池中获取，当从连接池中获取不到的时候才调用</code> RealConnection <code>构造函数创建一个新的连接并添加到 </code>RealConnectionPool<code> 中。</code>RealConnectionPool<code> 提供了两个可配置的参数：最大空闲连接数和存活时长，这两个参数默认是 5 个和 5 分钟，当然我们也可以在</code>OKHttpClient<code>中自己配置。当向</code>RealConnectionPool` 中添加连接和连接变成空闲时，内部都会遍历队列中所有的连接，如果最大空闲连接数或者存活时长都大于设定的则移除存空闲时长最长的连接，该方法会多次执行，直到最大空闲连接数和存活时长都小于设定的值。</p>
+</div><h2 id="okhttp连接复用">OkHttp连接复用
+</h2><p><code>OkHttp</code> 连接复用主要是通过 <code>RealConnectionPool</code> 来实现的，其内部定义了一个 <code>ConcurrentLinkedQueue</code> 来存储创建的 <code>RealConnection</code>。当获取连接时，优先判断 <code>Call</code> 中的`` Connection <code>是否为空，如果不为空则直接复用，为空则从连接池中获取，当从连接池中获取不到的时候才调用</code> RealConnection <code>构造函数创建一个新的连接并添加到 </code>RealConnectionPool<code> 中。</code>RealConnectionPool<code> 提供了两个可配置的参数：最大空闲连接数和存活时长，这两个参数默认是 5 个和 5 分钟，当然我们也可以在</code>OKHttpClient<code>中自己配置。当向</code>RealConnectionPool` 中添加连接和连接变成空闲时，内部都会遍历队列中所有的连接，如果最大空闲连接数或者存活时长都大于设定的则移除存空闲时长最长的连接，该方法会多次执行，直到最大空闲连接数和存活时长都小于设定的值。</p>
 <p><img src="https://malinkang.cn/images/jvm/202111151057183.png"
 	
 	
@@ -1728,8 +1747,8 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h3 id="connectionpool">ConnectionPool</h3>
-<div class="highlight"><div class="chroma">
+<h3 id="connectionpool">ConnectionPool
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1789,8 +1808,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="清理连接">清理连接</h2>
-<p><img src="https://malinkang.cn/images/jvm/202111151148121.png"
+</div><h2 id="清理连接">清理连接
+</h2><p><img src="https://malinkang.cn/images/jvm/202111151148121.png"
 	
 	
 	
@@ -1800,8 +1819,8 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h2 id="执行网络请求-1">执行网络请求</h2>
-<div class="highlight"><div class="chroma">
+<h2 id="执行网络请求-1">执行网络请求
+</h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
@@ -2039,8 +2058,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="参考">参考</h2>
-<ul>
+</div><h2 id="参考">参考
+</h2><ul>
 <li><a class="link" href="https://juejin.cn/post/6844904087788453896"  target="_blank" rel="noopener"
     >面试官：听说你熟悉OkHttp原理</a></li>
 <li><a class="link" href="https://juejin.cn/post/7020027832977850381"  target="_blank" rel="noopener"
@@ -2141,7 +2160,7 @@ if (!doNotTrack) {
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 

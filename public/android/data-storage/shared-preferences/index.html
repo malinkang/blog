@@ -1,75 +1,36 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='保存键值对数据 原文：https://developer.android.com/training/data-storage/shared-preferences
-如果您有想要保存的相对较小键值对集合，则应使用 SharedPreferences API。SharedPreferences 对象指向包含键值对的文件，并提供读写这些键值对的简单方法。每个 SharedPreferences 文件均由框架进行管理，可以是私有文件，也可以是共享文件。
-{% hint style=&amp;ldquo;info&amp;rdquo; %} 注意：SharedPreferences API 用于读写键值对，不要将它们与 Preference API 混淆，后者可帮助您构建用于显示应用设置的界面（虽然它们也使用 SharedPreferences 保存用户设置）。如需了解 Preference API，请参阅设置开发者指南。 {% endhint %}
-获取SharedPreferences 您可以通过调用以下方法之一创建新的共享偏好设置文件或访问已有共享偏好设置文件：
-getSharedPreferences() - 如果您需要多个由名称（使用第一个参数指定）标识的共享偏好设置文件，则使用此方法。您可以从您的应用中的任何 Context 调用此方法。 getPreferences() - 如果您只需使用 Activity 的一个共享首选项，请从 Activity 中使用此方法。由于这会检索属于该 Activity 的默认共享偏好设置文件，因此您无需提供名称。 如果您使用 SharedPreferences API 保存应用设置，则应改用PreferenceManager 的getDefaultSharedPreferences() 方法获取整个应用的默认共享偏好设置文件。如需了解详情，请参阅设置开发者指南。 1 2 3 4 5 6 7 //在私有模式下打开该文件，确保只有您的应用可以访问该文件： val sharedPreferences1 = getSharedPreferences(&amp;#34;file1&amp;#34;, Context.MODE_PRIVATE) sharedPreferences1.edit().putInt(&amp;#34;value1&amp;#34;,1).apply() val sharedPreferences2 = getPreferences(Context.MODE_PRIVATE) sharedPreferences2.edit().putInt(&amp;#34;value2&amp;#34;,2).apply() val sharedPreferences3 = PreferenceManager.getDefaultSharedPreferences(this) sharedPreferences3.'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="保存键值对数据 原文：https://developer.android.com/training/data-storage/shared-preferences 如果您有想要保存的相对较小键值对集合，则应使用 SharedPreferences API。SharedPreferences 对象指向包含键值对的文件，并提供读写这些键值对的简单方法。每个 SharedPreferences 文件均由框架进行管理，可以是私有文件，也可以是共享文件。 {% hint style=&ldquo;info&rdquo; %} 注意：SharedPreferences API 用于读写键值对，不要将它们与 Preference API 混淆，后者可帮助您构建用于显示应用设置的界面（虽然它们也使用 SharedPreferences 保存用户设置）。如需了解 Preference API，请参阅设置开发者指南。 {% endhint %} 获取SharedPreferences 您可以通过调用以下方法之一创建新的共享偏好设置文件或访问已有共享偏好设置文件： getSharedPreferences() - 如果您需要多个由名称（使用第一个参数指定）标识的共享偏好设置文件，则使用此方法。您可以从您的应用中的任何 Context 调用此方法。 getPreferences() - 如果您只需使用 Activity 的一个共享首选项，请从 Activity 中使用此方法。由于这会检索属于该 Activity 的默认共享偏好设置文件，因此您无需提供名称。 如果您使用 SharedPreferences API 保存应用设置，则应改用PreferenceManager 的getDefaultSharedPreferences() 方法获取整个应用的默认共享偏好设置文件。如需了解详情，请参阅设置开发者指南。 1 2 3 4 5 6 7 //在私有模式下打开该文件，确保只有您的应用可以访问该文件： val sharedPreferences1 = getSharedPreferences(&#34;file1&#34;, Context.MODE_PRIVATE) sharedPreferences1.edit().putInt(&#34;value1&#34;,1).apply() val sharedPreferences2 = getPreferences(Context.MODE_PRIVATE) sharedPreferences2.edit().putInt(&#34;value2&#34;,2).apply() val sharedPreferences3 = PreferenceManager.getDefaultSharedPreferences(this) sharedPreferences3.">
 <title></title>
 
-<link rel='canonical' href='https://example.com/android/data-storage/shared-preferences/'>
+<link rel='canonical' href='http://localhost:1313/android/data-storage/shared-preferences/'>
 
-<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
-<meta property='og:description' content='保存键值对数据 原文：https://developer.android.com/training/data-storage/shared-preferences
-如果您有想要保存的相对较小键值对集合，则应使用 SharedPreferences API。SharedPreferences 对象指向包含键值对的文件，并提供读写这些键值对的简单方法。每个 SharedPreferences 文件均由框架进行管理，可以是私有文件，也可以是共享文件。
-{% hint style=&amp;ldquo;info&amp;rdquo; %} 注意：SharedPreferences API 用于读写键值对，不要将它们与 Preference API 混淆，后者可帮助您构建用于显示应用设置的界面（虽然它们也使用 SharedPreferences 保存用户设置）。如需了解 Preference API，请参阅设置开发者指南。 {% endhint %}
-获取SharedPreferences 您可以通过调用以下方法之一创建新的共享偏好设置文件或访问已有共享偏好设置文件：
-getSharedPreferences() - 如果您需要多个由名称（使用第一个参数指定）标识的共享偏好设置文件，则使用此方法。您可以从您的应用中的任何 Context 调用此方法。 getPreferences() - 如果您只需使用 Activity 的一个共享首选项，请从 Activity 中使用此方法。由于这会检索属于该 Activity 的默认共享偏好设置文件，因此您无需提供名称。 如果您使用 SharedPreferences API 保存应用设置，则应改用PreferenceManager 的getDefaultSharedPreferences() 方法获取整个应用的默认共享偏好设置文件。如需了解详情，请参阅设置开发者指南。 1 2 3 4 5 6 7 //在私有模式下打开该文件，确保只有您的应用可以访问该文件： val sharedPreferences1 = getSharedPreferences(&amp;#34;file1&amp;#34;, Context.MODE_PRIVATE) sharedPreferences1.edit().putInt(&amp;#34;value1&amp;#34;,1).apply() val sharedPreferences2 = getPreferences(Context.MODE_PRIVATE) sharedPreferences2.edit().putInt(&amp;#34;value2&amp;#34;,2).apply() val sharedPreferences3 = PreferenceManager.getDefaultSharedPreferences(this) sharedPreferences3.'>
-<meta property='og:url' content='https://example.com/android/data-storage/shared-preferences/'>
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<meta property='og:description' content="保存键值对数据 原文：https://developer.android.com/training/data-storage/shared-preferences 如果您有想要保存的相对较小键值对集合，则应使用 SharedPreferences API。SharedPreferences 对象指向包含键值对的文件，并提供读写这些键值对的简单方法。每个 SharedPreferences 文件均由框架进行管理，可以是私有文件，也可以是共享文件。 {% hint style=&ldquo;info&rdquo; %} 注意：SharedPreferences API 用于读写键值对，不要将它们与 Preference API 混淆，后者可帮助您构建用于显示应用设置的界面（虽然它们也使用 SharedPreferences 保存用户设置）。如需了解 Preference API，请参阅设置开发者指南。 {% endhint %} 获取SharedPreferences 您可以通过调用以下方法之一创建新的共享偏好设置文件或访问已有共享偏好设置文件： getSharedPreferences() - 如果您需要多个由名称（使用第一个参数指定）标识的共享偏好设置文件，则使用此方法。您可以从您的应用中的任何 Context 调用此方法。 getPreferences() - 如果您只需使用 Activity 的一个共享首选项，请从 Activity 中使用此方法。由于这会检索属于该 Activity 的默认共享偏好设置文件，因此您无需提供名称。 如果您使用 SharedPreferences API 保存应用设置，则应改用PreferenceManager 的getDefaultSharedPreferences() 方法获取整个应用的默认共享偏好设置文件。如需了解详情，请参阅设置开发者指南。 1 2 3 4 5 6 7 //在私有模式下打开该文件，确保只有您的应用可以访问该文件： val sharedPreferences1 = getSharedPreferences(&#34;file1&#34;, Context.MODE_PRIVATE) sharedPreferences1.edit().putInt(&#34;value1&#34;,1).apply() val sharedPreferences2 = getPreferences(Context.MODE_PRIVATE) sharedPreferences2.edit().putInt(&#34;value2&#34;,2).apply() val sharedPreferences3 = PreferenceManager.getDefaultSharedPreferences(this) sharedPreferences3.">
+<meta property='og:url' content='http://localhost:1313/android/data-storage/shared-preferences/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="保存键值对数据 原文：https://developer.android.com/training/data-storage/shared-preferences
-如果您有想要保存的相对较小键值对集合，则应使用 SharedPreferences API。SharedPreferences 对象指向包含键值对的文件，并提供读写这些键值对的简单方法。每个 SharedPreferences 文件均由框架进行管理，可以是私有文件，也可以是共享文件。
-{% hint style=&amp;ldquo;info&amp;rdquo; %} 注意：SharedPreferences API 用于读写键值对，不要将它们与 Preference API 混淆，后者可帮助您构建用于显示应用设置的界面（虽然它们也使用 SharedPreferences 保存用户设置）。如需了解 Preference API，请参阅设置开发者指南。 {% endhint %}
-获取SharedPreferences 您可以通过调用以下方法之一创建新的共享偏好设置文件或访问已有共享偏好设置文件：
-getSharedPreferences() - 如果您需要多个由名称（使用第一个参数指定）标识的共享偏好设置文件，则使用此方法。您可以从您的应用中的任何 Context 调用此方法。 getPreferences() - 如果您只需使用 Activity 的一个共享首选项，请从 Activity 中使用此方法。由于这会检索属于该 Activity 的默认共享偏好设置文件，因此您无需提供名称。 如果您使用 SharedPreferences API 保存应用设置，则应改用PreferenceManager 的getDefaultSharedPreferences() 方法获取整个应用的默认共享偏好设置文件。如需了解详情，请参阅设置开发者指南。 1 2 3 4 5 6 7 //在私有模式下打开该文件，确保只有您的应用可以访问该文件： val sharedPreferences1 = getSharedPreferences(&amp;#34;file1&amp;#34;, Context.MODE_PRIVATE) sharedPreferences1.edit().putInt(&amp;#34;value1&amp;#34;,1).apply() val sharedPreferences2 = getPreferences(Context.MODE_PRIVATE) sharedPreferences2.edit().putInt(&amp;#34;value2&amp;#34;,2).apply() val sharedPreferences3 = PreferenceManager.getDefaultSharedPreferences(this) sharedPreferences3.">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
-}
-</script>
-<style>
-    :root {
-      --sys-font-family: "Noto Serif SC";
-      --zh-font-family: "Noto Serif SC";
-      --base-font-family: "Noto Serif SC";
-      --code-font-family: "Noto Serif SC";
-      --article-font-family: "Noto Serif SC";
-    }
-  </style>
+<meta name="twitter:description" content="保存键值对数据 原文：https://developer.android.com/training/data-storage/shared-preferences 如果您有想要保存的相对较小键值对集合，则应使用 SharedPreferences API。SharedPreferences 对象指向包含键值对的文件，并提供读写这些键值对的简单方法。每个 SharedPreferences 文件均由框架进行管理，可以是私有文件，也可以是共享文件。 {% hint style=&ldquo;info&rdquo; %} 注意：SharedPreferences API 用于读写键值对，不要将它们与 Preference API 混淆，后者可帮助您构建用于显示应用设置的界面（虽然它们也使用 SharedPreferences 保存用户设置）。如需了解 Preference API，请参阅设置开发者指南。 {% endhint %} 获取SharedPreferences 您可以通过调用以下方法之一创建新的共享偏好设置文件或访问已有共享偏好设置文件： getSharedPreferences() - 如果您需要多个由名称（使用第一个参数指定）标识的共享偏好设置文件，则使用此方法。您可以从您的应用中的任何 Context 调用此方法。 getPreferences() - 如果您只需使用 Activity 的一个共享首选项，请从 Activity 中使用此方法。由于这会检索属于该 Activity 的默认共享偏好设置文件，因此您无需提供名称。 如果您使用 SharedPreferences API 保存应用设置，则应改用PreferenceManager 的getDefaultSharedPreferences() 方法获取整个应用的默认共享偏好设置文件。如需了解详情，请参阅设置开发者指南。 1 2 3 4 5 6 7 //在私有模式下打开该文件，确保只有您的应用可以访问该文件： val sharedPreferences1 = getSharedPreferences(&#34;file1&#34;, Context.MODE_PRIVATE) sharedPreferences1.edit().putInt(&#34;value1&#34;,1).apply() val sharedPreferences2 = getPreferences(Context.MODE_PRIVATE) sharedPreferences2.edit().putInt(&#34;value2&#34;,2).apply() val sharedPreferences3 = PreferenceManager.getDefaultSharedPreferences(this) sharedPreferences3.">
   
-  <script>
-    (function () {
-      const customFont = document.createElement("link");
-      customFont.href =
-        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
   
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-  
-      document.head.appendChild(customFont);
-    })();
-  </script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
-     crossorigin="anonymous"></script>
-  
-
-<script>
-    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
 
 
     </head>
@@ -131,7 +92,7 @@ if (!doNotTrack) {
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
             <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -192,13 +153,32 @@ if (!doNotTrack) {
 
 
                 
-                <span>主页</span>
+                <span>Home</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/archives' >
+            <a href='/pages/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/archives/' >
                 
                 
                 
@@ -212,16 +192,54 @@ if (!doNotTrack) {
 
 
                 
-                <span>归档</span>
+                <span>Archives</span>
             </a>
         </li>
         
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -229,7 +247,7 @@ if (!doNotTrack) {
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -237,10 +255,11 @@ if (!doNotTrack) {
 
 
 
-                    <span>Dark Mode</span>
-                </li>
-            
-        </div>
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -354,8 +373,8 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="保存键值对数据">保存键值对数据</h1>
-<blockquote>
+    <h1 id="保存键值对数据">保存键值对数据
+</h1><blockquote>
 <p>原文：<a class="link" href="https://developer.android.com/training/data-storage/shared-preferences"  target="_blank" rel="noopener"
     >https://developer.android.com/training/data-storage/shared-preferences</a></p>
 </blockquote>
@@ -371,8 +390,8 @@ if (!doNotTrack) {
     ><code>Preference</code></a> API，请参阅<a class="link" href="https://developer.android.com/guide/topics/ui/settings"  target="_blank" rel="noopener"
     >设置开发者指南</a>。
 {% endhint %}</p>
-<h2 id="获取sharedpreferences">获取SharedPreferences</h2>
-<p>您可以通过调用以下方法之一创建新的共享偏好设置文件或访问已有共享偏好设置文件：</p>
+<h2 id="获取sharedpreferences">获取SharedPreferences
+</h2><p>您可以通过调用以下方法之一创建新的共享偏好设置文件或访问已有共享偏好设置文件：</p>
 <ul>
 <li><a class="link" href="https://developer.android.com/reference/android/content/Context#getSharedPreferences%28java.lang.String,%20int%29"  target="_blank" rel="noopener"
     ><code>getSharedPreferences()</code></a> - 如果您需要多个由名称（使用第一个参数指定）标识的共享偏好设置文件，则使用此方法。您可以从您的应用中的任何 <a class="link" href="https://developer.android.com/reference/android/content/Context"  target="_blank" rel="noopener"
@@ -405,7 +424,7 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="n">sharedPreferences3</span><span class="p">.</span><span class="n">edit</span><span class="p">().</span><span class="n">putInt</span><span class="p">(</span><span class="s2">&#34;value3&#34;</span><span class="p">,</span><span class="m">3</span><span class="p">).</span><span class="n">apply</span><span class="p">()</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/../.gitbook/assets/image%20%2850%29.png"
+</div><p><img src="/.gitbook/assets/image%20%2850%29.png"
 	
 	
 	
@@ -422,8 +441,8 @@ if (!doNotTrack) {
     ><code>FileProvider</code></a>。如需了解详情，另请参阅<a class="link" href="https://developer.android.com/training/secure-file-sharing"  target="_blank" rel="noopener"
     >共享文件</a>。
 {% endhint %}</p>
-<h2 id="写入共享偏好设置">写入共享偏好设置</h2>
-<p>如需写入共享偏好设置文件，请通过对您的 <a class="link" href="https://developer.android.com/reference/android/content/SharedPreferences"  target="_blank" rel="noopener"
+<h2 id="写入共享偏好设置">写入共享偏好设置
+</h2><p>如需写入共享偏好设置文件，请通过对您的 <a class="link" href="https://developer.android.com/reference/android/content/SharedPreferences"  target="_blank" rel="noopener"
     ><code>SharedPreferences</code></a> 调用 <a class="link" href="https://developer.android.com/reference/android/content/SharedPreferences#edit%28%29"  target="_blank" rel="noopener"
     ><code>edit()</code></a> 以创建一个 <a class="link" href="https://developer.android.com/reference/android/content/SharedPreferences.Editor"  target="_blank" rel="noopener"
     ><code>SharedPreferences.Editor</code></a>。</p>
@@ -456,8 +475,8 @@ if (!doNotTrack) {
     ><code>SharedPreferences</code></a> 对象，但会将更新异步写入磁盘。或者，您也可以使用 <a class="link" href="https://developer.android.com/reference/android/content/SharedPreferences.Editor#commit%28%29"  target="_blank" rel="noopener"
     ><code>commit()</code></a> 将数据同步写入磁盘。但是，由于 <a class="link" href="https://developer.android.com/reference/android/content/SharedPreferences.Editor#commit%28%29"  target="_blank" rel="noopener"
     ><code>commit()</code></a> 是同步的，<strong>您应避免从主线程调用它，因为它可能会暂停您的界面呈现</strong>。</p>
-<h2 id="从共享偏好设置中读取">从共享偏好设置中读取</h2>
-<p>如需从共享偏好设置文件中检索值，请调用 <a class="link" href="https://developer.android.com/reference/android/content/SharedPreferences#getInt%28java.lang.String,%20int%29"  target="_blank" rel="noopener"
+<h2 id="从共享偏好设置中读取">从共享偏好设置中读取
+</h2><p>如需从共享偏好设置文件中检索值，请调用 <a class="link" href="https://developer.android.com/reference/android/content/SharedPreferences#getInt%28java.lang.String,%20int%29"  target="_blank" rel="noopener"
     ><code>getInt()</code></a> 和 <a class="link" href="https://developer.android.com/reference/android/content/SharedPreferences#getString%28java.lang.String,%20java.lang.String%29"  target="_blank" rel="noopener"
     ><code>getString()</code></a> 等方法，为您想要的值提供键；如果键不存在，则可以选择返回默认值。例如：</p>
 <div class="highlight"><div class="chroma">
@@ -472,9 +491,9 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kt">int</span><span class="w"> </span><span class="n">highScore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sharedPref</span><span class="p">.</span><span class="na">getInt</span><span class="p">(</span><span class="n">getString</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">string</span><span class="p">.</span><span class="na">saved_high_score_key</span><span class="p">),</span><span class="w"> </span><span class="n">defaultValue</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="获取sharedpreferences源码分析">获取SharedPreferences源码分析</h2>
-<h3 id="getsharedpreferencesstring-name-int-mode">getSharedPreferences(String name, int mode)</h3>
-<div class="highlight"><div class="chroma">
+</div><h2 id="获取sharedpreferences源码分析">获取SharedPreferences源码分析
+</h2><h3 id="getsharedpreferencesstring-name-int-mode">getSharedPreferences(String name, int mode)
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -581,8 +600,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="getsharedpreferencespath"><strong>getSharedPreferencesPath</strong></h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="getsharedpreferencespath"><strong>getSharedPreferencesPath</strong>
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -740,8 +759,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="getsharedpreferencesfile-file-int-mode">getSharedPreferences(File file, int mode)</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="getsharedpreferencesfile-file-int-mode">getSharedPreferences(File file, int mode)
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -839,8 +858,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="getsharedpreferencescachelocked"><strong>getSharedPreferencesCacheLocked</strong></h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="getsharedpreferencescachelocked"><strong>getSharedPreferencesCacheLocked</strong>
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -872,9 +891,9 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="sharedpreferencesimpl分析">SharedPreferencesImpl分析</h2>
-<h3 id="sharedpreferencesimpl构造函数">SharedPreferencesImpl构造函数</h3>
-<div class="highlight"><div class="chroma">
+</div><h2 id="sharedpreferencesimpl分析">SharedPreferencesImpl分析
+</h2><h3 id="sharedpreferencesimpl构造函数">SharedPreferencesImpl构造函数
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -904,8 +923,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="startloadfromdisk"><strong>startLoadFromDisk</strong></h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="startloadfromdisk"><strong>startLoadFromDisk</strong>
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -937,8 +956,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="loadfromdisk"><strong>loadFromDisk</strong></h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="loadfromdisk"><strong>loadFromDisk</strong>
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1080,8 +1099,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="获取数据分析">获取数据分析</h2>
-<div class="highlight"><div class="chroma">
+</div><h2 id="获取数据分析">获取数据分析
+</h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1147,8 +1166,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="editorimpl分析">EditorImpl分析</h2>
-<div class="highlight"><div class="chroma">
+</div><h2 id="editorimpl分析">EditorImpl分析
+</h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1254,8 +1273,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="commit">commit()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="commit">commit()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1317,8 +1336,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="committomemory">commitToMemory</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="committomemory">commitToMemory
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1490,8 +1509,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="enqueuediskwrite">enqueueDiskWrite</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="enqueuediskwrite">enqueueDiskWrite
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1567,8 +1586,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="writetofile"><strong>writeToFile</strong></h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="writetofile"><strong>writeToFile</strong>
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
@@ -1892,8 +1911,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="apply">apply()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="apply">apply()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1990,16 +2009,16 @@ if (!doNotTrack) {
 <li><code>getSharedPreferences()</code>是从<code>ContextImpl.sSharedPrefsCache</code>唯一的SPI对象;</li>
 <li><code>edit()</code>每次都是创建新的<code>EditorImpl</code>对象.</li>
 </ul>
-<h2 id="缺点">缺点</h2>
-<p>虽然 <code>SharedPreferences</code> 使用非常简便，但也是我们诟病比较多的存储方法。它的性能问题比较多，我可以轻松地说出它的“七宗罪”。</p>
+<h2 id="缺点">缺点
+</h2><p>虽然 <code>SharedPreferences</code> 使用非常简便，但也是我们诟病比较多的存储方法。它的性能问题比较多，我可以轻松地说出它的“七宗罪”。</p>
 <ul>
 <li>跨进程不安全。由于没有使用跨进程的锁，就算使用MODE_MULTI_PROCESS，SharedPreferences 在跨进程频繁读写有可能导致数据全部丢失。根据线上统计，SP 大约会有万分之一的损坏率。</li>
 <li>加载缓慢。<code>SharedPreferences</code> 文件的加载使用了异步线程，而且加载线程并没有设置线程优先级，如果这个时候主线程读取数据就需要等待文件加载线程的结束。这就导致出现主线程等待低优先级线程锁的问题，比如一个 100KB 的 SP 文件读取等待时间大约需要 50~100ms，我建议提前用异步线程预加载启动过程用到的 SP 文件。</li>
 <li>全量写入。无论是调用 commit() 还是 apply()，即使我们只改动其中的一个条目，都会把整个内容全部写到文件。而且即使我们多次写入同一个文件，SP 也没有将多次修改合并为一次，这也是性能差的重要原因之一。</li>
 <li>卡顿。由于提供了异步落盘的 apply 机制，在崩溃或者其他一些异常情况可能会导致数据丢失。所以当应用收到系统广播，或者被调用 onPause 等一些时机，系统会强制把所有的 SharedPreferences 对象数据落地到磁盘。如果没有落地完成，这时候主线程会被一直阻塞。这样非常容易造成卡顿，甚至是 ANR，从线上数据来看 SP 卡顿占比一般会超过 5%。</li>
 </ul>
-<h2 id="参考">参考</h2>
-<ul>
+<h2 id="参考">参考
+</h2><ul>
 <li>****<a class="link" href="https://developer.android.com/training/data-storage/shared-preferences"  target="_blank" rel="noopener"
     ><strong>保存键值对数据</strong></a>****</li>
 <li><a class="link" href="http://gityuan.com/2017/06/18/SharedPreferences/"  target="_blank" rel="noopener"
@@ -2100,7 +2119,7 @@ if (!doNotTrack) {
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 

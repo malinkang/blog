@@ -1,72 +1,36 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Canvas使用 Canvas我们可以称之为画布，我们可以使用画笔在上面绘制颜色，也可以绘制点、线以及矩形、扇形等各种形状，还可以绘制图片文本路径等，下面我们一一进行介绍
-绘制颜色 Canvas提供了三个绘制颜色的方法。
-drawColor drawRGB drawARGB 绘制基本形状 想要在画布上进行绘制，就需要一个画笔Paint。这里我们只简单介绍画笔的使用，关于画笔的详细使用将在画笔这一章详细介绍。
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 public class CanvasView extends View { public CanvasView(Context context, @Nullable AttributeSet attrs) { super(context, attrs); initPaint(); } //1.创建Paint对象 private Paint mPaint = new Paint(); //2.初始化Paint private void initPaint(){ mPaint.setColor(getResources().getColor(R.color.purple));//设置画笔颜色 mPaint.setStyle(Paint.Style.FILL);//设置画笔样式为填充 mPaint.setStrokeWidth(10f); //设置画笔宽度为10px } @Override protected void onDraw(Canvas canvas) { super.onDraw(canvas); } } 绘制点 绘制一个点需要这个点的坐标。'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Canvas使用 Canvas我们可以称之为画布，我们可以使用画笔在上面绘制颜色，也可以绘制点、线以及矩形、扇形等各种形状，还可以绘制图片文本路径等，下面我们一一进行介绍 绘制颜色 Canvas提供了三个绘制颜色的方法。 drawColor drawRGB drawARGB 绘制基本形状 想要在画布上进行绘制，就需要一个画笔Paint。这里我们只简单介绍画笔的使用，关于画笔的详细使用将在画笔这一章详细介绍。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 public class CanvasView extends View { public CanvasView(Context context, @Nullable AttributeSet attrs) { super(context, attrs); initPaint(); } //1.创建Paint对象 private Paint mPaint = new Paint(); //2.初始化Paint private void initPaint(){ mPaint.setColor(getResources().getColor(R.color.purple));//设置画笔颜色 mPaint.setStyle(Paint.Style.FILL);//设置画笔样式为填充 mPaint.setStrokeWidth(10f); //设置画笔宽度为10px } @Override protected void onDraw(Canvas canvas) { super.onDraw(canvas); } } 绘制点 绘制一个点需要这个点的坐标。">
 <title></title>
 
-<link rel='canonical' href='https://example.com/android/ui/zi-ding-yi-view/canvas/'>
+<link rel='canonical' href='http://localhost:1313/android/ui/zi-ding-yi-view/canvas/'>
 
-<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
-<meta property='og:description' content='Canvas使用 Canvas我们可以称之为画布，我们可以使用画笔在上面绘制颜色，也可以绘制点、线以及矩形、扇形等各种形状，还可以绘制图片文本路径等，下面我们一一进行介绍
-绘制颜色 Canvas提供了三个绘制颜色的方法。
-drawColor drawRGB drawARGB 绘制基本形状 想要在画布上进行绘制，就需要一个画笔Paint。这里我们只简单介绍画笔的使用，关于画笔的详细使用将在画笔这一章详细介绍。
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 public class CanvasView extends View { public CanvasView(Context context, @Nullable AttributeSet attrs) { super(context, attrs); initPaint(); } //1.创建Paint对象 private Paint mPaint = new Paint(); //2.初始化Paint private void initPaint(){ mPaint.setColor(getResources().getColor(R.color.purple));//设置画笔颜色 mPaint.setStyle(Paint.Style.FILL);//设置画笔样式为填充 mPaint.setStrokeWidth(10f); //设置画笔宽度为10px } @Override protected void onDraw(Canvas canvas) { super.onDraw(canvas); } } 绘制点 绘制一个点需要这个点的坐标。'>
-<meta property='og:url' content='https://example.com/android/ui/zi-ding-yi-view/canvas/'>
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<meta property='og:description' content="Canvas使用 Canvas我们可以称之为画布，我们可以使用画笔在上面绘制颜色，也可以绘制点、线以及矩形、扇形等各种形状，还可以绘制图片文本路径等，下面我们一一进行介绍 绘制颜色 Canvas提供了三个绘制颜色的方法。 drawColor drawRGB drawARGB 绘制基本形状 想要在画布上进行绘制，就需要一个画笔Paint。这里我们只简单介绍画笔的使用，关于画笔的详细使用将在画笔这一章详细介绍。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 public class CanvasView extends View { public CanvasView(Context context, @Nullable AttributeSet attrs) { super(context, attrs); initPaint(); } //1.创建Paint对象 private Paint mPaint = new Paint(); //2.初始化Paint private void initPaint(){ mPaint.setColor(getResources().getColor(R.color.purple));//设置画笔颜色 mPaint.setStyle(Paint.Style.FILL);//设置画笔样式为填充 mPaint.setStrokeWidth(10f); //设置画笔宽度为10px } @Override protected void onDraw(Canvas canvas) { super.onDraw(canvas); } } 绘制点 绘制一个点需要这个点的坐标。">
+<meta property='og:url' content='http://localhost:1313/android/ui/zi-ding-yi-view/canvas/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="Canvas使用 Canvas我们可以称之为画布，我们可以使用画笔在上面绘制颜色，也可以绘制点、线以及矩形、扇形等各种形状，还可以绘制图片文本路径等，下面我们一一进行介绍
-绘制颜色 Canvas提供了三个绘制颜色的方法。
-drawColor drawRGB drawARGB 绘制基本形状 想要在画布上进行绘制，就需要一个画笔Paint。这里我们只简单介绍画笔的使用，关于画笔的详细使用将在画笔这一章详细介绍。
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 public class CanvasView extends View { public CanvasView(Context context, @Nullable AttributeSet attrs) { super(context, attrs); initPaint(); } //1.创建Paint对象 private Paint mPaint = new Paint(); //2.初始化Paint private void initPaint(){ mPaint.setColor(getResources().getColor(R.color.purple));//设置画笔颜色 mPaint.setStyle(Paint.Style.FILL);//设置画笔样式为填充 mPaint.setStrokeWidth(10f); //设置画笔宽度为10px } @Override protected void onDraw(Canvas canvas) { super.onDraw(canvas); } } 绘制点 绘制一个点需要这个点的坐标。">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
-}
-</script>
-<style>
-    :root {
-      --sys-font-family: "Noto Serif SC";
-      --zh-font-family: "Noto Serif SC";
-      --base-font-family: "Noto Serif SC";
-      --code-font-family: "Noto Serif SC";
-      --article-font-family: "Noto Serif SC";
-    }
-  </style>
+<meta name="twitter:description" content="Canvas使用 Canvas我们可以称之为画布，我们可以使用画笔在上面绘制颜色，也可以绘制点、线以及矩形、扇形等各种形状，还可以绘制图片文本路径等，下面我们一一进行介绍 绘制颜色 Canvas提供了三个绘制颜色的方法。 drawColor drawRGB drawARGB 绘制基本形状 想要在画布上进行绘制，就需要一个画笔Paint。这里我们只简单介绍画笔的使用，关于画笔的详细使用将在画笔这一章详细介绍。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 public class CanvasView extends View { public CanvasView(Context context, @Nullable AttributeSet attrs) { super(context, attrs); initPaint(); } //1.创建Paint对象 private Paint mPaint = new Paint(); //2.初始化Paint private void initPaint(){ mPaint.setColor(getResources().getColor(R.color.purple));//设置画笔颜色 mPaint.setStyle(Paint.Style.FILL);//设置画笔样式为填充 mPaint.setStrokeWidth(10f); //设置画笔宽度为10px } @Override protected void onDraw(Canvas canvas) { super.onDraw(canvas); } } 绘制点 绘制一个点需要这个点的坐标。">
   
-  <script>
-    (function () {
-      const customFont = document.createElement("link");
-      customFont.href =
-        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
   
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-  
-      document.head.appendChild(customFont);
-    })();
-  </script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
-     crossorigin="anonymous"></script>
-  
-
-<script>
-    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
 
 
     </head>
@@ -128,7 +92,7 @@ if (!doNotTrack) {
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
             <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -189,13 +153,32 @@ if (!doNotTrack) {
 
 
                 
-                <span>主页</span>
+                <span>Home</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/archives' >
+            <a href='/pages/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/archives/' >
                 
                 
                 
@@ -209,16 +192,54 @@ if (!doNotTrack) {
 
 
                 
-                <span>归档</span>
+                <span>Archives</span>
             </a>
         </li>
         
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -226,7 +247,7 @@ if (!doNotTrack) {
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -234,10 +255,11 @@ if (!doNotTrack) {
 
 
 
-                    <span>Dark Mode</span>
-                </li>
-            
-        </div>
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -348,17 +370,17 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="canvas使用">Canvas使用</h1>
-<p>Canvas我们可以称之为画布，我们可以使用画笔在上面绘制颜色，也可以绘制点、线以及矩形、扇形等各种形状，还可以绘制图片文本路径等，下面我们一一进行介绍</p>
-<h2 id="绘制颜色">绘制颜色</h2>
-<p>Canvas提供了三个绘制颜色的方法。</p>
+    <h1 id="canvas使用">Canvas使用
+</h1><p>Canvas我们可以称之为画布，我们可以使用画笔在上面绘制颜色，也可以绘制点、线以及矩形、扇形等各种形状，还可以绘制图片文本路径等，下面我们一一进行介绍</p>
+<h2 id="绘制颜色">绘制颜色
+</h2><p>Canvas提供了三个绘制颜色的方法。</p>
 <ul>
 <li>drawColor</li>
 <li>drawRGB</li>
 <li>drawARGB</li>
 </ul>
-<h2 id="绘制基本形状">绘制基本形状</h2>
-<p>想要在画布上进行绘制，就需要一个画笔Paint。这里我们只简单介绍画笔的使用，关于画笔的详细使用将在画笔这一章详细介绍。</p>
+<h2 id="绘制基本形状">绘制基本形状
+</h2><p>想要在画布上进行绘制，就需要一个画笔Paint。这里我们只简单介绍画笔的使用，关于画笔的详细使用将在画笔这一章详细介绍。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -401,8 +423,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="绘制点">绘制点</h3>
-<p>绘制一个点需要这个点的坐标。</p>
+</div><h3 id="绘制点">绘制点
+</h3><p>绘制一个点需要这个点的坐标。</p>
 <p>Canvas提供了三个绘制点的方法：</p>
 <ul>
 <li>public void drawPoint(float x, float y, @NonNull Paint paint)；绘制单个点</li>
@@ -431,7 +453,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">},</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/../../.gitbook/assets/canvas-point%20%282%29.jpeg"
+</div><p><img src="/.gitbook/assets/canvas-point%20%282%29.jpeg"
 	
 	
 	
@@ -439,8 +461,8 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h3 id="绘制直线">绘制直线</h3>
-<p>绘制直线需要两个点，初始点和结束点。</p>
+<h3 id="绘制直线">绘制直线
+</h3><p>绘制直线需要两个点，初始点和结束点。</p>
 <p>Canvas同样提供了三个绘制直线的方法：</p>
 <ul>
 <li>public void drawLine(float startX, float startY, float stopX, float stopY, @NonNull Paint paint)</li>
@@ -461,7 +483,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">},</span><span class="w"> </span><span class="n">mPaint</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/../../.gitbook/assets/canvas-line%20%282%29.jpeg"
+</div><p><img src="/.gitbook/assets/canvas-line%20%282%29.jpeg"
 	
 	
 	
@@ -469,8 +491,8 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h3 id="绘制矩形">绘制矩形</h3>
-<p>确定一个矩形最少需要四个数据，就是对角线的两个点的坐标值，这里一般采用左上角和右下角的两个点的坐标。</p>
+<h3 id="绘制矩形">绘制矩形
+</h3><p>确定一个矩形最少需要四个数据，就是对角线的两个点的坐标值，这里一般采用左上角和右下角的两个点的坐标。</p>
 <p>Canvas提供了三个绘制矩形的方法：</p>
 <ul>
 <li>public void drawRect(float left, float top, float right, float bottom, @NonNull Paint paint):前两个参数是左上角点的坐标，后两个参数是右下角坐标点</li>
@@ -497,7 +519,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawRect</span><span class="p">(</span><span class="n">rectF</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/../../.gitbook/assets/canvas-rect%20%282%29.jpeg"
+</div><p><img src="/.gitbook/assets/canvas-rect%20%282%29.jpeg"
 	
 	
 	
@@ -505,8 +527,8 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h3 id="绘制圆角矩形">绘制圆角矩形</h3>
-<p>Canvas提供了两个绘制圆角矩形的方法：</p>
+<h3 id="绘制圆角矩形">绘制圆角矩形
+</h3><p>Canvas提供了两个绘制圆角矩形的方法：</p>
 <ul>
 <li>public void drawRoundRect(float left, float top, float right, float bottom, float rx, float ry,@NonNull Paint paint)：相比绘制矩形，我们需要提供一个圆角的半径，由于圆角是一个椭圆，所以需要提供椭圆的两个半径rx和ry。</li>
 <li>public void drawRoundRect(@NonNull RectF rect, float rx, float ry, @NonNull Paint paint)</li>
@@ -527,7 +549,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawRoundRect</span><span class="p">(</span><span class="n">rectF</span><span class="p">,</span><span class="n">20</span><span class="p">,</span><span class="n">20</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/../../.gitbook/assets/canvas-roundrect%20%282%29.jpeg"
+</div><p><img src="/.gitbook/assets/canvas-roundrect%20%282%29.jpeg"
 	
 	
 	
@@ -552,7 +574,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawRoundRect</span><span class="p">(</span><span class="n">rectF</span><span class="p">,</span><span class="n">250</span><span class="p">,</span><span class="n">250</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/../../.gitbook/assets/canvas-roundrect2%20%282%29.jpeg"
+</div><p><img src="/.gitbook/assets/canvas-roundrect2%20%282%29.jpeg"
 	
 	
 	
@@ -560,8 +582,8 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h3 id="绘制椭圆">绘制椭圆</h3>
-<div class="highlight"><div class="chroma">
+<h3 id="绘制椭圆">绘制椭圆
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -577,7 +599,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawOval</span><span class="p">(</span><span class="n">rectF</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/../../.gitbook/assets/canvas-oval%20%282%29.jpeg"
+</div><p><img src="/.gitbook/assets/canvas-oval%20%282%29.jpeg"
 	
 	
 	
@@ -585,8 +607,8 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h3 id="绘制圆">绘制圆</h3>
-<div class="highlight"><div class="chroma">
+<h3 id="绘制圆">绘制圆
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -594,7 +616,7 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">canvas</span><span class="p">.</span><span class="na">drawCircle</span><span class="p">(</span><span class="n">500</span><span class="p">,</span><span class="n">500</span><span class="p">,</span><span class="n">400</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">  </span><span class="c1">// 绘制一个圆心坐标在(500,500)，半径为400 的圆。</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/../../.gitbook/assets/canvas-circle%20%282%29.jpg"
+</div><p><img src="/.gitbook/assets/canvas-circle%20%282%29.jpg"
 	
 	
 	
@@ -602,8 +624,8 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h3 id="绘制圆弧">绘制圆弧</h3>
-<p>Canvas提供了两个绘制圆弧的方法：</p>
+<h3 id="绘制圆弧">绘制圆弧
+</h3><p>Canvas提供了两个绘制圆弧的方法：</p>
 <ul>
 <li>public void drawArc(@NonNull RectF oval, float startAngle, float sweepAngle, boolean useCenter, @NonNull Paint paint)</li>
 <li>public void drawArc(float left, float top, float right, float bottom, float startAngle,float sweepAngle, boolean useCenter, @NonNull Paint paint)</li>
@@ -640,7 +662,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawArc</span><span class="p">(</span><span class="n">rectF2</span><span class="p">,</span><span class="n">0</span><span class="p">,</span><span class="n">90</span><span class="p">,</span><span class="kc">false</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/../../.gitbook/assets/canvas-arc%20%282%29.jpeg"
+</div><p><img src="/.gitbook/assets/canvas-arc%20%282%29.jpeg"
 	
 	
 	
@@ -648,9 +670,9 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h2 id="画布操作">画布操作</h2>
-<h3 id="位移translate">位移（translate）</h3>
-<div class="highlight"><div class="chroma">
+<h2 id="画布操作">画布操作
+</h2><h3 id="位移translate">位移（translate）
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -666,7 +688,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawCircle</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="n">0</span><span class="p">,</span><span class="n">100</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/../../.gitbook/assets/canvas-translate%20%282%29.jpg"
+</div><p><img src="/.gitbook/assets/canvas-translate%20%282%29.jpg"
 	
 	
 	
@@ -674,8 +696,8 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h3 id="缩放scale">缩放（scale）</h3>
-<p>canvas提供了两个方法缩放的方法</p>
+<h3 id="缩放scale">缩放（scale）
+</h3><p>canvas提供了两个方法缩放的方法</p>
 <ul>
 <li>public void scale (float sx, float sy)</li>
 <li>public final void scale (float sx, float sy, float px, float py)</li>
@@ -737,7 +759,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawRect</span><span class="p">(</span><span class="n">rect</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/../../.gitbook/assets/canvas-scale1%20%282%29.jpg"
+</div><p><img src="/.gitbook/assets/canvas-scale1%20%282%29.jpg"
 	
 	
 	
@@ -764,7 +786,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawRect</span><span class="p">(</span><span class="n">rect</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/../../.gitbook/assets/canvas-scale2%20%282%29.jpg"
+</div><p><img src="/.gitbook/assets/canvas-scale2%20%282%29.jpg"
 	
 	
 	
@@ -789,7 +811,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawRect</span><span class="p">(</span><span class="n">rect</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/../../.gitbook/assets/canvas-scale3%20%282%29.jpeg"
+</div><p><img src="/.gitbook/assets/canvas-scale3%20%282%29.jpeg"
 	
 	
 	
@@ -798,8 +820,8 @@ if (!doNotTrack) {
 	
 ></p>
 <p>本次缩放可以看做是先根据缩放中心(坐标原点)缩放到原来的0.5倍，然后分别按照x轴和y轴进行翻转。</p>
-<h3 id="旋转rotate">旋转（rotate）</h3>
-<p>canvas提供了两个旋转的方法：</p>
+<h3 id="旋转rotate">旋转（rotate）
+</h3><p>canvas提供了两个旋转的方法：</p>
 <ul>
 <li>
 <p>public void rotate (float degrees)</p>
@@ -828,7 +850,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawRect</span><span class="p">(</span><span class="n">rect</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/../../.gitbook/assets/canvas-rotate1%20%282%29.jpeg"
+</div><p><img src="/.gitbook/assets/canvas-rotate1%20%282%29.jpeg"
 	
 	
 	
@@ -854,7 +876,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawRect</span><span class="p">(</span><span class="n">rect</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/../../.gitbook/assets/canvas-rotate2%20%282%29.jpeg"
+</div><p><img src="/.gitbook/assets/canvas-rotate2%20%282%29.jpeg"
 	
 	
 	
@@ -862,8 +884,8 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h3 id="错切skew">错切（skew）</h3>
-<p>skew这里翻译为错切，错切是特殊类型的线性变换。</p>
+<h3 id="错切skew">错切（skew）
+</h3><p>skew这里翻译为错切，错切是特殊类型的线性变换。</p>
 <p>错切只提供了一种方法：</p>
 <ul>
 <li>public void skew (float sx, float sy)</li>
@@ -888,7 +910,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawRect</span><span class="p">(</span><span class="n">rect</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/../../.gitbook/assets/canvas-skew%20%282%29.jpeg"
+</div><p><img src="/.gitbook/assets/canvas-skew%20%282%29.jpeg"
 	
 	
 	
@@ -896,9 +918,9 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h2 id="绘制图片">绘制图片</h2>
-<h3 id="绘制bitmap">绘制Bitmap</h3>
-<p>Canvas提供了如下绘制Bitmap的方法：</p>
+<h2 id="绘制图片">绘制图片
+</h2><h3 id="绘制bitmap">绘制Bitmap
+</h3><p>Canvas提供了如下绘制Bitmap的方法：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -931,7 +953,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawBitmap</span><span class="p">(</span><span class="n">bitmap</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Matrix</span><span class="p">(),</span><span class="w"> </span><span class="n">mPaint</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/../../.gitbook/assets/canvas-bitmap1%20%282%29.jpeg"
+</div><p><img src="/.gitbook/assets/canvas-bitmap1%20%282%29.jpeg"
 	
 	
 	
@@ -958,7 +980,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawBitmap</span><span class="p">(</span><span class="n">bitmap</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">,</span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">mPaint</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/../../.gitbook/assets/canvas-bitmap2%20%282%29.jpeg"
+</div><p><img src="/.gitbook/assets/canvas-bitmap2%20%282%29.jpeg"
 	
 	
 	
@@ -966,8 +988,8 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h2 id="绘制文字">绘制文字</h2>
-<p>canvas提供如下绘制文字的方法</p>
+<h2 id="绘制文字">绘制文字
+</h2><p>canvas提供如下绘制文字的方法</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1008,7 +1030,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawText</span><span class="p">(</span><span class="n">str</span><span class="p">,</span><span class="n">2</span><span class="p">,</span><span class="n">5</span><span class="p">,</span><span class="n">200</span><span class="p">,</span><span class="n">500</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/../../.gitbook/assets/canvas-text%20%282%29.jpeg"
+</div><p><img src="/.gitbook/assets/canvas-text%20%282%29.jpeg"
 	
 	
 	
@@ -1043,7 +1065,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">},</span><span class="w"> </span><span class="n">mPaint</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/../../.gitbook/assets/canvas-text2%20%282%29.jpeg"
+</div><p><img src="/.gitbook/assets/canvas-text2%20%282%29.jpeg"
 	
 	
 	
@@ -1051,8 +1073,8 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h2 id="参考">参考</h2>
-<ul>
+<h2 id="参考">参考
+</h2><ul>
 <li><a class="link" href="https://github.com/GcsSloop/AndroidNote"  target="_blank" rel="noopener"
     >AndroidNote</a></li>
 <li><a class="link" href="http://chiuki.github.io/android-shaders-filters/"  target="_blank" rel="noopener"
@@ -1153,7 +1175,7 @@ if (!doNotTrack) {
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 

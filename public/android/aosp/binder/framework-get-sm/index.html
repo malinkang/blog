@@ -1,66 +1,36 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='获取ServiceManager ServiceManager的addService和getService方法都会首先调用getIServiceManager来获取ServiceManager。
-类图 ServiceManager addService 1 2 3 4 5 6 7 8 //frameworks/base/core/java/android/os/ServiceManager.java public static void addService(String name, IBinder service) { try { getIServiceManager().addService(name, service, false);//添加服务 } catch (RemoteException e) { Log.e(TAG, &amp;#34;error in addService&amp;#34;, e); } } getService 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 //frameworks/base/core/java/android/os/ServiceManager.java private static HashMap&amp;lt;String, IBinder&amp;gt; sCache = new HashMap&amp;lt;String, IBinder&amp;gt;();//缓存 public static IBinder getService(String name) { try { IBinder service = sCache.'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="获取ServiceManager ServiceManager的addService和getService方法都会首先调用getIServiceManager来获取ServiceManager。 类图 ServiceManager addService 1 2 3 4 5 6 7 8 //frameworks/base/core/java/android/os/ServiceManager.java public static void addService(String name, IBinder service) { try { getIServiceManager().addService(name, service, false);//添加服务 } catch (RemoteException e) { Log.e(TAG, &#34;error in addService&#34;, e); } } getService 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 //frameworks/base/core/java/android/os/ServiceManager.java private static HashMap&lt;String, IBinder&gt; sCache = new HashMap&lt;String, IBinder&gt;();//缓存 public static IBinder getService(String name) { try { IBinder service = sCache.">
 <title>获取ServiceManager</title>
 
-<link rel='canonical' href='https://example.com/android/aosp/binder/framework-get-sm/'>
+<link rel='canonical' href='http://localhost:1313/android/aosp/binder/framework-get-sm/'>
 
-<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content='获取ServiceManager'>
-<meta property='og:description' content='获取ServiceManager ServiceManager的addService和getService方法都会首先调用getIServiceManager来获取ServiceManager。
-类图 ServiceManager addService 1 2 3 4 5 6 7 8 //frameworks/base/core/java/android/os/ServiceManager.java public static void addService(String name, IBinder service) { try { getIServiceManager().addService(name, service, false);//添加服务 } catch (RemoteException e) { Log.e(TAG, &amp;#34;error in addService&amp;#34;, e); } } getService 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 //frameworks/base/core/java/android/os/ServiceManager.java private static HashMap&amp;lt;String, IBinder&amp;gt; sCache = new HashMap&amp;lt;String, IBinder&amp;gt;();//缓存 public static IBinder getService(String name) { try { IBinder service = sCache.'>
-<meta property='og:url' content='https://example.com/android/aosp/binder/framework-get-sm/'>
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="获取ServiceManager">
+<meta property='og:description' content="获取ServiceManager ServiceManager的addService和getService方法都会首先调用getIServiceManager来获取ServiceManager。 类图 ServiceManager addService 1 2 3 4 5 6 7 8 //frameworks/base/core/java/android/os/ServiceManager.java public static void addService(String name, IBinder service) { try { getIServiceManager().addService(name, service, false);//添加服务 } catch (RemoteException e) { Log.e(TAG, &#34;error in addService&#34;, e); } } getService 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 //frameworks/base/core/java/android/os/ServiceManager.java private static HashMap&lt;String, IBinder&gt; sCache = new HashMap&lt;String, IBinder&gt;();//缓存 public static IBinder getService(String name) { try { IBinder service = sCache.">
+<meta property='og:url' content='http://localhost:1313/android/aosp/binder/framework-get-sm/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' /><meta property='article:tag' content='源码分析' /><meta property='article:published_time' content='2020-02-08T09:44:44&#43;00:00'/><meta property='article:modified_time' content='2020-02-08T09:44:44&#43;00:00'/>
 <meta name="twitter:title" content="获取ServiceManager">
-<meta name="twitter:description" content="获取ServiceManager ServiceManager的addService和getService方法都会首先调用getIServiceManager来获取ServiceManager。
-类图 ServiceManager addService 1 2 3 4 5 6 7 8 //frameworks/base/core/java/android/os/ServiceManager.java public static void addService(String name, IBinder service) { try { getIServiceManager().addService(name, service, false);//添加服务 } catch (RemoteException e) { Log.e(TAG, &amp;#34;error in addService&amp;#34;, e); } } getService 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 //frameworks/base/core/java/android/os/ServiceManager.java private static HashMap&amp;lt;String, IBinder&amp;gt; sCache = new HashMap&amp;lt;String, IBinder&amp;gt;();//缓存 public static IBinder getService(String name) { try { IBinder service = sCache.">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
-}
-</script>
-<style>
-    :root {
-      --sys-font-family: "Noto Serif SC";
-      --zh-font-family: "Noto Serif SC";
-      --base-font-family: "Noto Serif SC";
-      --code-font-family: "Noto Serif SC";
-      --article-font-family: "Noto Serif SC";
-    }
-  </style>
+<meta name="twitter:description" content="获取ServiceManager ServiceManager的addService和getService方法都会首先调用getIServiceManager来获取ServiceManager。 类图 ServiceManager addService 1 2 3 4 5 6 7 8 //frameworks/base/core/java/android/os/ServiceManager.java public static void addService(String name, IBinder service) { try { getIServiceManager().addService(name, service, false);//添加服务 } catch (RemoteException e) { Log.e(TAG, &#34;error in addService&#34;, e); } } getService 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 //frameworks/base/core/java/android/os/ServiceManager.java private static HashMap&lt;String, IBinder&gt; sCache = new HashMap&lt;String, IBinder&gt;();//缓存 public static IBinder getService(String name) { try { IBinder service = sCache.">
   
-  <script>
-    (function () {
-      const customFont = document.createElement("link");
-      customFont.href =
-        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
   
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-  
-      document.head.appendChild(customFont);
-    })();
-  </script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
-     crossorigin="anonymous"></script>
-  
-
-<script>
-    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
 
 
     </head>
@@ -122,7 +92,7 @@ if (!doNotTrack) {
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
             <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -183,13 +153,32 @@ if (!doNotTrack) {
 
 
                 
-                <span>主页</span>
+                <span>Home</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/archives' >
+            <a href='/pages/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/archives/' >
                 
                 
                 
@@ -203,16 +192,54 @@ if (!doNotTrack) {
 
 
                 
-                <span>归档</span>
+                <span>Archives</span>
             </a>
         </li>
         
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -220,7 +247,7 @@ if (!doNotTrack) {
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -228,10 +255,11 @@ if (!doNotTrack) {
 
 
 
-                    <span>Dark Mode</span>
-                </li>
-            
-        </div>
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -354,12 +382,12 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="获取servicemanager">获取ServiceManager</h1>
-<p><code>ServiceManager</code>的<code>addService</code>和<code>getService</code>方法都会首先调用<code>getIServiceManager</code>来获取<code>ServiceManager</code>。</p>
-<h2 id="类图">类图</h2>
-<h2 id="servicemanager">ServiceManager</h2>
-<h3 id="addservice">addService</h3>
-<div class="highlight"><div class="chroma">
+    <h1 id="获取servicemanager">获取ServiceManager
+</h1><p><code>ServiceManager</code>的<code>addService</code>和<code>getService</code>方法都会首先调用<code>getIServiceManager</code>来获取<code>ServiceManager</code>。</p>
+<h2 id="类图">类图
+</h2><h2 id="servicemanager">ServiceManager
+</h2><h3 id="addservice">addService
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -381,8 +409,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="getservice">getService</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="getservice">getService
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -418,8 +446,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="getiservicemanager">getIServiceManager</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="getiservicemanager">getIServiceManager
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -469,8 +497,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="getcontextobject">getContextObject</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="getcontextobject">getContextObject
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -482,9 +510,9 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kd">native</span><span class="w"> </span><span class="n">IBinder</span><span class="w"> </span><span class="nf">getContextObject</span><span class="p">();</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="android_util_binder">android_util_Binder</h2>
-<h3 id="getcontextobject-1">getContextObject</h3>
-<div class="highlight"><div class="chroma">
+</div><h2 id="android_util_binder">android_util_Binder
+</h2><h3 id="getcontextobject-1">getContextObject
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -502,8 +530,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="javaobjectforibinder">javaObjectForIBinder</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="javaobjectforibinder">javaObjectForIBinder
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -617,9 +645,9 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="processstate">ProcessState</h2>
-<h3 id="self">self</h3>
-<p><code>ProcessState</code>是一个Singleton（单例）类型的类，在一个进程中，只会存在一个实例。通过<code>ProcessState::self()</code>接口获取这个实例。一旦获取这个实例，便会执行其构造函数，由此完成了对于Binder设备的初始化工作。</p>
+</div><h2 id="processstate">ProcessState
+</h2><h3 id="self">self
+</h3><p><code>ProcessState</code>是一个Singleton（单例）类型的类，在一个进程中，只会存在一个实例。通过<code>ProcessState::self()</code>接口获取这个实例。一旦获取这个实例，便会执行其构造函数，由此完成了对于Binder设备的初始化工作。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -648,8 +676,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="构造函数">构造函数</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="构造函数">构造函数
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -711,8 +739,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="open_driver">open_driver</h3>
-<p><code>open_driver</code>的函数实现如下所示。在这个函数中完成了三个工作：</p>
+</div><h3 id="open_driver">open_driver
+</h3><p><code>open_driver</code>的函数实现如下所示。在这个函数中完成了三个工作：</p>
 <ul>
 <li>首先通过<code>open</code>系统调用打开了<code>dev/binder</code>设备</li>
 <li>然后通过ioctl获取Binder实现的版本号，并检查是否匹配</li>
@@ -776,8 +804,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="getcontextobject-2">getContextObject</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="getcontextobject-2">getContextObject
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -791,8 +819,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="getstrongproxyforhandle">getStrongProxyForHandle</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="getstrongproxyforhandle">getStrongProxyForHandle
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -913,8 +941,8 @@ if (!doNotTrack) {
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>当handle值所对应的IBinder不存在或弱引用无效时会创建BpBinder，否则直接获取。 针对handle==0的特殊情况，通过PING_TRANSACTION来判断是否准备就绪。如果在context manager还未生效前，一个BpBinder的本地引用就已经被创建，那么驱动将无法提供context manager的引用。</p>
-<h3 id="lookuphandlelocked">lookupHandleLocked</h3>
-<div class="highlight"><div class="chroma">
+<h3 id="lookuphandlelocked">lookupHandleLocked
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -945,8 +973,8 @@ if (!doNotTrack) {
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>根据handle值来查找对应的<code>handle_entry</code>,<code>handle_entry</code>是一个结构体，里面记录IBinder和weakref_type两个指针。当handle大于mHandleToObject的Vector长度时，则向该Vector中添加(handle+1-N)个handle_entry结构体。</p>
-<h2 id="参考">参考</h2>
-<ul>
+<h2 id="参考">参考
+</h2><ul>
 <li><a class="link" href="http://gityuan.com/2015/11/08/binder-get-sm/"  target="_blank" rel="noopener"
     >Binder系列4—获取ServiceManager</a></li>
 </ul>
@@ -1051,7 +1079,7 @@ if (!doNotTrack) {
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 

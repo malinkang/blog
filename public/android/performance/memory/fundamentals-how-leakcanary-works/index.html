@@ -1,78 +1,36 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='LeakCanary如何工作 一旦安装了LeakCanary，它就会按照以下4个步骤自动检测和报告内存泄漏
-检测持有对象 转储堆。 分析堆。 对泄漏进行分类。 1. 检测持有对象 LeakCanary与Android生命周期想关联，自动检测Activity和Fragment何时被销毁，何时应该被垃圾回收。这些被销毁的对象被传递给ObjectWatcher，该ObjectWatcher持有对它们的弱引用。LeakCanary会自动检测以下对象的泄漏:
-销毁的Activity实例 销毁的Fragment实例 销毁的View实例 ViewModel实例 您可以观看任何不再需要的对象，例如一个分离的视图或一个被破坏的演示器。
-1 AppWatcher.objectWatcher.watch(myDetachedView, &amp;#34;View was detached&amp;#34;) 如果ObjectWatcher持有的弱引用在等待5秒并运行垃圾回收后没有被清除，被监视的对象就会被认为是被持有，并且有可能泄漏。LeakCanary将此记录到Logcat。
-1 2 3 4 5 6 7 D LeakCanary: Watching instance of com.example.leakcanary.MainActivity (Activity received Activity#onDestroy() callback) ... 5 seconds later ... D LeakCanary: Scheduling check for retained objects because found new object retained LeakCanary等待保留对象的计数达到阈值后才会转储堆，并显示最新计数的通知。
-1 2 D LeakCanary: Rescheduling check for retained objects in 2000ms because found only 4 retained objects (&amp;lt; 5 while app visible) 默认的阈值是当应用可见时保留5个对象，当应用不可见时保留1个对象。如果您看到保留对象通知，然后将应用程序置于后台（例如按下主页按钮），那么阈值从5变为1，LeakCanary会在5秒内转储堆。点击通知会迫使LeakCanary立即转储堆。'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="LeakCanary如何工作 一旦安装了LeakCanary，它就会按照以下4个步骤自动检测和报告内存泄漏 检测持有对象 转储堆。 分析堆。 对泄漏进行分类。 1. 检测持有对象 LeakCanary与Android生命周期想关联，自动检测Activity和Fragment何时被销毁，何时应该被垃圾回收。这些被销毁的对象被传递给ObjectWatcher，该ObjectWatcher持有对它们的弱引用。LeakCanary会自动检测以下对象的泄漏: 销毁的Activity实例 销毁的Fragment实例 销毁的View实例 ViewModel实例 您可以观看任何不再需要的对象，例如一个分离的视图或一个被破坏的演示器。 1 AppWatcher.objectWatcher.watch(myDetachedView, &#34;View was detached&#34;) 如果ObjectWatcher持有的弱引用在等待5秒并运行垃圾回收后没有被清除，被监视的对象就会被认为是被持有，并且有可能泄漏。LeakCanary将此记录到Logcat。 1 2 3 4 5 6 7 D LeakCanary: Watching instance of com.example.leakcanary.MainActivity (Activity received Activity#onDestroy() callback) ... 5 seconds later ... D LeakCanary: Scheduling check for retained objects because found new object retained LeakCanary等待保留对象的计数达到阈值后才会转储堆，并显示最新计数的通知。 1 2 D LeakCanary: Rescheduling check for retained objects in 2000ms because found only 4 retained objects (&lt; 5 while app visible) 默认的阈值是当应用可见时保留5个对象，当应用不可见时保留1个对象。如果您看到保留对象通知，然后将应用程序置于后台（例如按下主页按钮），那么阈值从5变为1，LeakCanary会在5秒内转储堆。点击通知会迫使LeakCanary立即转储堆。">
 <title></title>
 
-<link rel='canonical' href='https://example.com/android/performance/memory/fundamentals-how-leakcanary-works/'>
+<link rel='canonical' href='http://localhost:1313/android/performance/memory/fundamentals-how-leakcanary-works/'>
 
-<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
-<meta property='og:description' content='LeakCanary如何工作 一旦安装了LeakCanary，它就会按照以下4个步骤自动检测和报告内存泄漏
-检测持有对象 转储堆。 分析堆。 对泄漏进行分类。 1. 检测持有对象 LeakCanary与Android生命周期想关联，自动检测Activity和Fragment何时被销毁，何时应该被垃圾回收。这些被销毁的对象被传递给ObjectWatcher，该ObjectWatcher持有对它们的弱引用。LeakCanary会自动检测以下对象的泄漏:
-销毁的Activity实例 销毁的Fragment实例 销毁的View实例 ViewModel实例 您可以观看任何不再需要的对象，例如一个分离的视图或一个被破坏的演示器。
-1 AppWatcher.objectWatcher.watch(myDetachedView, &amp;#34;View was detached&amp;#34;) 如果ObjectWatcher持有的弱引用在等待5秒并运行垃圾回收后没有被清除，被监视的对象就会被认为是被持有，并且有可能泄漏。LeakCanary将此记录到Logcat。
-1 2 3 4 5 6 7 D LeakCanary: Watching instance of com.example.leakcanary.MainActivity (Activity received Activity#onDestroy() callback) ... 5 seconds later ... D LeakCanary: Scheduling check for retained objects because found new object retained LeakCanary等待保留对象的计数达到阈值后才会转储堆，并显示最新计数的通知。
-1 2 D LeakCanary: Rescheduling check for retained objects in 2000ms because found only 4 retained objects (&amp;lt; 5 while app visible) 默认的阈值是当应用可见时保留5个对象，当应用不可见时保留1个对象。如果您看到保留对象通知，然后将应用程序置于后台（例如按下主页按钮），那么阈值从5变为1，LeakCanary会在5秒内转储堆。点击通知会迫使LeakCanary立即转储堆。'>
-<meta property='og:url' content='https://example.com/android/performance/memory/fundamentals-how-leakcanary-works/'>
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<meta property='og:description' content="LeakCanary如何工作 一旦安装了LeakCanary，它就会按照以下4个步骤自动检测和报告内存泄漏 检测持有对象 转储堆。 分析堆。 对泄漏进行分类。 1. 检测持有对象 LeakCanary与Android生命周期想关联，自动检测Activity和Fragment何时被销毁，何时应该被垃圾回收。这些被销毁的对象被传递给ObjectWatcher，该ObjectWatcher持有对它们的弱引用。LeakCanary会自动检测以下对象的泄漏: 销毁的Activity实例 销毁的Fragment实例 销毁的View实例 ViewModel实例 您可以观看任何不再需要的对象，例如一个分离的视图或一个被破坏的演示器。 1 AppWatcher.objectWatcher.watch(myDetachedView, &#34;View was detached&#34;) 如果ObjectWatcher持有的弱引用在等待5秒并运行垃圾回收后没有被清除，被监视的对象就会被认为是被持有，并且有可能泄漏。LeakCanary将此记录到Logcat。 1 2 3 4 5 6 7 D LeakCanary: Watching instance of com.example.leakcanary.MainActivity (Activity received Activity#onDestroy() callback) ... 5 seconds later ... D LeakCanary: Scheduling check for retained objects because found new object retained LeakCanary等待保留对象的计数达到阈值后才会转储堆，并显示最新计数的通知。 1 2 D LeakCanary: Rescheduling check for retained objects in 2000ms because found only 4 retained objects (&lt; 5 while app visible) 默认的阈值是当应用可见时保留5个对象，当应用不可见时保留1个对象。如果您看到保留对象通知，然后将应用程序置于后台（例如按下主页按钮），那么阈值从5变为1，LeakCanary会在5秒内转储堆。点击通知会迫使LeakCanary立即转储堆。">
+<meta property='og:url' content='http://localhost:1313/android/performance/memory/fundamentals-how-leakcanary-works/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="LeakCanary如何工作 一旦安装了LeakCanary，它就会按照以下4个步骤自动检测和报告内存泄漏
-检测持有对象 转储堆。 分析堆。 对泄漏进行分类。 1. 检测持有对象 LeakCanary与Android生命周期想关联，自动检测Activity和Fragment何时被销毁，何时应该被垃圾回收。这些被销毁的对象被传递给ObjectWatcher，该ObjectWatcher持有对它们的弱引用。LeakCanary会自动检测以下对象的泄漏:
-销毁的Activity实例 销毁的Fragment实例 销毁的View实例 ViewModel实例 您可以观看任何不再需要的对象，例如一个分离的视图或一个被破坏的演示器。
-1 AppWatcher.objectWatcher.watch(myDetachedView, &amp;#34;View was detached&amp;#34;) 如果ObjectWatcher持有的弱引用在等待5秒并运行垃圾回收后没有被清除，被监视的对象就会被认为是被持有，并且有可能泄漏。LeakCanary将此记录到Logcat。
-1 2 3 4 5 6 7 D LeakCanary: Watching instance of com.example.leakcanary.MainActivity (Activity received Activity#onDestroy() callback) ... 5 seconds later ... D LeakCanary: Scheduling check for retained objects because found new object retained LeakCanary等待保留对象的计数达到阈值后才会转储堆，并显示最新计数的通知。
-1 2 D LeakCanary: Rescheduling check for retained objects in 2000ms because found only 4 retained objects (&amp;lt; 5 while app visible) 默认的阈值是当应用可见时保留5个对象，当应用不可见时保留1个对象。如果您看到保留对象通知，然后将应用程序置于后台（例如按下主页按钮），那么阈值从5变为1，LeakCanary会在5秒内转储堆。点击通知会迫使LeakCanary立即转储堆。">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
-}
-</script>
-<style>
-    :root {
-      --sys-font-family: "Noto Serif SC";
-      --zh-font-family: "Noto Serif SC";
-      --base-font-family: "Noto Serif SC";
-      --code-font-family: "Noto Serif SC";
-      --article-font-family: "Noto Serif SC";
-    }
-  </style>
+<meta name="twitter:description" content="LeakCanary如何工作 一旦安装了LeakCanary，它就会按照以下4个步骤自动检测和报告内存泄漏 检测持有对象 转储堆。 分析堆。 对泄漏进行分类。 1. 检测持有对象 LeakCanary与Android生命周期想关联，自动检测Activity和Fragment何时被销毁，何时应该被垃圾回收。这些被销毁的对象被传递给ObjectWatcher，该ObjectWatcher持有对它们的弱引用。LeakCanary会自动检测以下对象的泄漏: 销毁的Activity实例 销毁的Fragment实例 销毁的View实例 ViewModel实例 您可以观看任何不再需要的对象，例如一个分离的视图或一个被破坏的演示器。 1 AppWatcher.objectWatcher.watch(myDetachedView, &#34;View was detached&#34;) 如果ObjectWatcher持有的弱引用在等待5秒并运行垃圾回收后没有被清除，被监视的对象就会被认为是被持有，并且有可能泄漏。LeakCanary将此记录到Logcat。 1 2 3 4 5 6 7 D LeakCanary: Watching instance of com.example.leakcanary.MainActivity (Activity received Activity#onDestroy() callback) ... 5 seconds later ... D LeakCanary: Scheduling check for retained objects because found new object retained LeakCanary等待保留对象的计数达到阈值后才会转储堆，并显示最新计数的通知。 1 2 D LeakCanary: Rescheduling check for retained objects in 2000ms because found only 4 retained objects (&lt; 5 while app visible) 默认的阈值是当应用可见时保留5个对象，当应用不可见时保留1个对象。如果您看到保留对象通知，然后将应用程序置于后台（例如按下主页按钮），那么阈值从5变为1，LeakCanary会在5秒内转储堆。点击通知会迫使LeakCanary立即转储堆。">
   
-  <script>
-    (function () {
-      const customFont = document.createElement("link");
-      customFont.href =
-        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
   
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-  
-      document.head.appendChild(customFont);
-    })();
-  </script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
-     crossorigin="anonymous"></script>
-  
-
-<script>
-    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
 
 
     </head>
@@ -134,7 +92,7 @@ if (!doNotTrack) {
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
             <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -195,13 +153,32 @@ if (!doNotTrack) {
 
 
                 
-                <span>主页</span>
+                <span>Home</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/archives' >
+            <a href='/pages/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/archives/' >
                 
                 
                 
@@ -215,16 +192,54 @@ if (!doNotTrack) {
 
 
                 
-                <span>归档</span>
+                <span>Archives</span>
             </a>
         </li>
         
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -232,7 +247,7 @@ if (!doNotTrack) {
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -240,10 +255,11 @@ if (!doNotTrack) {
 
 
 
-                    <span>Dark Mode</span>
-                </li>
-            
-        </div>
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -331,16 +347,16 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="leakcanary如何工作">LeakCanary如何工作</h1>
-<p>一旦安装了<code>LeakCanary</code>，它就会按照以下4个步骤自动检测和报告内存泄漏</p>
+    <h1 id="leakcanary如何工作">LeakCanary如何工作
+</h1><p>一旦安装了<code>LeakCanary</code>，它就会按照以下4个步骤自动检测和报告内存泄漏</p>
 <ul>
 <li>检测持有对象</li>
 <li>转储堆。</li>
 <li>分析堆。</li>
 <li>对泄漏进行分类。</li>
 </ul>
-<h2 id="1-检测持有对象">1. 检测持有对象</h2>
-<p><code>LeakCanary</code>与<code>Android</code>生命周期想关联，自动检测<code>Activity</code>和<code>Fragment</code>何时被销毁，何时应该被垃圾回收。这些被销毁的对象被传递给<code>ObjectWatcher</code>，该<code>ObjectWatcher</code>持有对它们的弱引用。<code>LeakCanary</code>会自动检测以下对象的泄漏:</p>
+<h2 id="1-检测持有对象">1. 检测持有对象
+</h2><p><code>LeakCanary</code>与<code>Android</code>生命周期想关联，自动检测<code>Activity</code>和<code>Fragment</code>何时被销毁，何时应该被垃圾回收。这些被销毁的对象被传递给<code>ObjectWatcher</code>，该<code>ObjectWatcher</code>持有对它们的弱引用。<code>LeakCanary</code>会自动检测以下对象的泄漏:</p>
 <ul>
 <li>销毁的<code>Activity</code>实例</li>
 <li>销毁的<code>Fragment</code>实例</li>
@@ -401,8 +417,8 @@ if (!doNotTrack) {
 </div><blockquote>
 <p>默认的阈值是当应用可见时保留5个对象，当应用不可见时保留1个对象。如果您看到保留对象通知，然后将应用程序置于后台（例如按下主页按钮），那么阈值从5变为1，LeakCanary会在5秒内转储堆。点击通知会迫使LeakCanary立即转储堆。</p>
 </blockquote>
-<h2 id="2转储堆">2.转储堆</h2>
-<p>当保留对象的数量达到阈值时，LeakCanary会将Java堆转储到一个存储在Android文件系统上的.hprof文件（堆转储）中（参见LeakCanary在哪里存储堆转储？转储堆会使应用程序冻结很短的时间，在此期间，LeakCanary会显示以下<code>Toast</code>。</p>
+<h2 id="2转储堆">2.转储堆
+</h2><p>当保留对象的数量达到阈值时，LeakCanary会将Java堆转储到一个存储在Android文件系统上的.hprof文件（堆转储）中（参见LeakCanary在哪里存储堆转储？转储堆会使应用程序冻结很短的时间，在此期间，LeakCanary会显示以下<code>Toast</code>。</p>
 <p><img src="https://square.github.io/leakcanary/images/dumping-toast.png"
 	
 	
@@ -413,8 +429,8 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h2 id="3分析堆">3.分析堆</h2>
-<p>LeakCanary使用Shark解析.hprof文件，并定位该堆转储中保留的对象。</p>
+<h2 id="3分析堆">3.分析堆
+</h2><p>LeakCanary使用Shark解析.hprof文件，并定位该堆转储中保留的对象。</p>
 <p><img src="https://square.github.io/leakcanary/images/finding-retained-notification.png"
 	
 	
@@ -581,8 +597,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="c1">// dbfa277d7e5624792e8b60bc950cd164190a11aa
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="4泄露分类">4.泄露分类</h2>
-<p>LeakCanary 将它在您的应用程序中发现的泄漏分为两类。应用程序泄漏和库泄漏。库泄漏是由您无法控制的第三方代码中的已知错误引起的泄漏。这种泄漏影响了您的应用程序，但不幸的是，修复它可能不在您的控制范围内，所以LeakCanary将其分离出来。</p>
+</div><h2 id="4泄露分类">4.泄露分类
+</h2><p>LeakCanary 将它在您的应用程序中发现的泄漏分为两类。应用程序泄漏和库泄漏。库泄漏是由您无法控制的第三方代码中的已知错误引起的泄漏。这种泄漏影响了您的应用程序，但不幸的是，修复它可能不在您的控制范围内，所以LeakCanary将其分离出来。</p>
 <p>在Logcat打印的结果中，这两类是分开的。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -750,7 +766,7 @@ if (!doNotTrack) {
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 

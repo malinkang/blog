@@ -1,81 +1,36 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='1. 介绍 Universal Image Loader 具有以下特性：
-多线程加载图片 可以高度的自定义ImageLoader的配置（如线程执行，下载器，编码，内存和硬盘缓存，图片展示的选项等等） 许多自定义选项可以被每个展示的图片调用 图片可以缓存在内存中和硬盘上 可以监听图片的加载进度和下载进度 2.基本配置 2.1 构建项目 Jar包下载地址：https://github.com/nostra13/Android-Universal-Image-Loader
-Maven dependency:
-1 2 3 4 5 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.nostra13.universalimageloader&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;universal-image-loader&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.9.3&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; Gradle dependency:
-1 compile &amp;#39;com.nostra13.universalimageloader:universal-image-loader:1.9.3&amp;#39; 2.2 配置 Android Manifest 在android Mainfest 配置必要的权限
-1 2 3 4 5 6 7 8 &amp;lt;manifest&amp;gt; &amp;lt;!-- 网络权限 --&amp;gt; &amp;lt;uses-permission android:name=&amp;#34;android.permission.INTERNET&amp;#34; /&amp;gt; &amp;lt;!-- 内存卡写入权限 --&amp;gt; &amp;lt;uses-permission android:name=&amp;#34;android.permission.WRITE_EXTERNAL_STORAGE&amp;#34; /&amp;gt; ... &amp;lt;/manifest&amp;gt; 2.3 在Application和Activity中初始化ImageLoader 在第一次使用ImageLoader之前一定要在Application或Activity中初始化ImageLoader
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 public class MyActivity extends Activity { @Override public void onCreate() { super.'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="1. 介绍 Universal Image Loader 具有以下特性： 多线程加载图片 可以高度的自定义ImageLoader的配置（如线程执行，下载器，编码，内存和硬盘缓存，图片展示的选项等等） 许多自定义选项可以被每个展示的图片调用 图片可以缓存在内存中和硬盘上 可以监听图片的加载进度和下载进度 2.基本配置 2.1 构建项目 Jar包下载地址：https://github.com/nostra13/Android-Universal-Image-Loader Maven dependency: 1 2 3 4 5 &lt;dependency&gt; &lt;groupId&gt;com.nostra13.universalimageloader&lt;/groupId&gt; &lt;artifactId&gt;universal-image-loader&lt;/artifactId&gt; &lt;version&gt;1.9.3&lt;/version&gt; &lt;/dependency&gt; Gradle dependency: 1 compile &#39;com.nostra13.universalimageloader:universal-image-loader:1.9.3&#39; 2.2 配置 Android Manifest 在android Mainfest 配置必要的权限 1 2 3 4 5 6 7 8 &lt;manifest&gt; &lt;!-- 网络权限 --&gt; &lt;uses-permission android:name=&#34;android.permission.INTERNET&#34; /&gt; &lt;!-- 内存卡写入权限 --&gt; &lt;uses-permission android:name=&#34;android.permission.WRITE_EXTERNAL_STORAGE&#34; /&gt; ... &lt;/manifest&gt; 2.3 在Application和Activity中初始化ImageLoader 在第一次使用ImageLoader之前一定要在Application或Activity中初始化ImageLoader 1 2 3 4 5 6 7 8 9 10 11 12 13 14 public class MyActivity extends Activity { @Override public void onCreate() { super.">
 <title></title>
 
-<link rel='canonical' href='https://example.com/android/network/android-universal-image-loader/'>
+<link rel='canonical' href='http://localhost:1313/android/network/android-universal-image-loader/'>
 
-<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
-<meta property='og:description' content='1. 介绍 Universal Image Loader 具有以下特性：
-多线程加载图片 可以高度的自定义ImageLoader的配置（如线程执行，下载器，编码，内存和硬盘缓存，图片展示的选项等等） 许多自定义选项可以被每个展示的图片调用 图片可以缓存在内存中和硬盘上 可以监听图片的加载进度和下载进度 2.基本配置 2.1 构建项目 Jar包下载地址：https://github.com/nostra13/Android-Universal-Image-Loader
-Maven dependency:
-1 2 3 4 5 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.nostra13.universalimageloader&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;universal-image-loader&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.9.3&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; Gradle dependency:
-1 compile &amp;#39;com.nostra13.universalimageloader:universal-image-loader:1.9.3&amp;#39; 2.2 配置 Android Manifest 在android Mainfest 配置必要的权限
-1 2 3 4 5 6 7 8 &amp;lt;manifest&amp;gt; &amp;lt;!-- 网络权限 --&amp;gt; &amp;lt;uses-permission android:name=&amp;#34;android.permission.INTERNET&amp;#34; /&amp;gt; &amp;lt;!-- 内存卡写入权限 --&amp;gt; &amp;lt;uses-permission android:name=&amp;#34;android.permission.WRITE_EXTERNAL_STORAGE&amp;#34; /&amp;gt; ... &amp;lt;/manifest&amp;gt; 2.3 在Application和Activity中初始化ImageLoader 在第一次使用ImageLoader之前一定要在Application或Activity中初始化ImageLoader
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 public class MyActivity extends Activity { @Override public void onCreate() { super.'>
-<meta property='og:url' content='https://example.com/android/network/android-universal-image-loader/'>
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<meta property='og:description' content="1. 介绍 Universal Image Loader 具有以下特性： 多线程加载图片 可以高度的自定义ImageLoader的配置（如线程执行，下载器，编码，内存和硬盘缓存，图片展示的选项等等） 许多自定义选项可以被每个展示的图片调用 图片可以缓存在内存中和硬盘上 可以监听图片的加载进度和下载进度 2.基本配置 2.1 构建项目 Jar包下载地址：https://github.com/nostra13/Android-Universal-Image-Loader Maven dependency: 1 2 3 4 5 &lt;dependency&gt; &lt;groupId&gt;com.nostra13.universalimageloader&lt;/groupId&gt; &lt;artifactId&gt;universal-image-loader&lt;/artifactId&gt; &lt;version&gt;1.9.3&lt;/version&gt; &lt;/dependency&gt; Gradle dependency: 1 compile &#39;com.nostra13.universalimageloader:universal-image-loader:1.9.3&#39; 2.2 配置 Android Manifest 在android Mainfest 配置必要的权限 1 2 3 4 5 6 7 8 &lt;manifest&gt; &lt;!-- 网络权限 --&gt; &lt;uses-permission android:name=&#34;android.permission.INTERNET&#34; /&gt; &lt;!-- 内存卡写入权限 --&gt; &lt;uses-permission android:name=&#34;android.permission.WRITE_EXTERNAL_STORAGE&#34; /&gt; ... &lt;/manifest&gt; 2.3 在Application和Activity中初始化ImageLoader 在第一次使用ImageLoader之前一定要在Application或Activity中初始化ImageLoader 1 2 3 4 5 6 7 8 9 10 11 12 13 14 public class MyActivity extends Activity { @Override public void onCreate() { super.">
+<meta property='og:url' content='http://localhost:1313/android/network/android-universal-image-loader/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="1. 介绍 Universal Image Loader 具有以下特性：
-多线程加载图片 可以高度的自定义ImageLoader的配置（如线程执行，下载器，编码，内存和硬盘缓存，图片展示的选项等等） 许多自定义选项可以被每个展示的图片调用 图片可以缓存在内存中和硬盘上 可以监听图片的加载进度和下载进度 2.基本配置 2.1 构建项目 Jar包下载地址：https://github.com/nostra13/Android-Universal-Image-Loader
-Maven dependency:
-1 2 3 4 5 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.nostra13.universalimageloader&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;universal-image-loader&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.9.3&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; Gradle dependency:
-1 compile &amp;#39;com.nostra13.universalimageloader:universal-image-loader:1.9.3&amp;#39; 2.2 配置 Android Manifest 在android Mainfest 配置必要的权限
-1 2 3 4 5 6 7 8 &amp;lt;manifest&amp;gt; &amp;lt;!-- 网络权限 --&amp;gt; &amp;lt;uses-permission android:name=&amp;#34;android.permission.INTERNET&amp;#34; /&amp;gt; &amp;lt;!-- 内存卡写入权限 --&amp;gt; &amp;lt;uses-permission android:name=&amp;#34;android.permission.WRITE_EXTERNAL_STORAGE&amp;#34; /&amp;gt; ... &amp;lt;/manifest&amp;gt; 2.3 在Application和Activity中初始化ImageLoader 在第一次使用ImageLoader之前一定要在Application或Activity中初始化ImageLoader
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 public class MyActivity extends Activity { @Override public void onCreate() { super.">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
-}
-</script>
-<style>
-    :root {
-      --sys-font-family: "Noto Serif SC";
-      --zh-font-family: "Noto Serif SC";
-      --base-font-family: "Noto Serif SC";
-      --code-font-family: "Noto Serif SC";
-      --article-font-family: "Noto Serif SC";
-    }
-  </style>
+<meta name="twitter:description" content="1. 介绍 Universal Image Loader 具有以下特性： 多线程加载图片 可以高度的自定义ImageLoader的配置（如线程执行，下载器，编码，内存和硬盘缓存，图片展示的选项等等） 许多自定义选项可以被每个展示的图片调用 图片可以缓存在内存中和硬盘上 可以监听图片的加载进度和下载进度 2.基本配置 2.1 构建项目 Jar包下载地址：https://github.com/nostra13/Android-Universal-Image-Loader Maven dependency: 1 2 3 4 5 &lt;dependency&gt; &lt;groupId&gt;com.nostra13.universalimageloader&lt;/groupId&gt; &lt;artifactId&gt;universal-image-loader&lt;/artifactId&gt; &lt;version&gt;1.9.3&lt;/version&gt; &lt;/dependency&gt; Gradle dependency: 1 compile &#39;com.nostra13.universalimageloader:universal-image-loader:1.9.3&#39; 2.2 配置 Android Manifest 在android Mainfest 配置必要的权限 1 2 3 4 5 6 7 8 &lt;manifest&gt; &lt;!-- 网络权限 --&gt; &lt;uses-permission android:name=&#34;android.permission.INTERNET&#34; /&gt; &lt;!-- 内存卡写入权限 --&gt; &lt;uses-permission android:name=&#34;android.permission.WRITE_EXTERNAL_STORAGE&#34; /&gt; ... &lt;/manifest&gt; 2.3 在Application和Activity中初始化ImageLoader 在第一次使用ImageLoader之前一定要在Application或Activity中初始化ImageLoader 1 2 3 4 5 6 7 8 9 10 11 12 13 14 public class MyActivity extends Activity { @Override public void onCreate() { super.">
   
-  <script>
-    (function () {
-      const customFont = document.createElement("link");
-      customFont.href =
-        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
   
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-  
-      document.head.appendChild(customFont);
-    })();
-  </script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
-     crossorigin="anonymous"></script>
-  
-
-<script>
-    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
 
 
     </head>
@@ -137,7 +92,7 @@ if (!doNotTrack) {
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
             <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -198,13 +153,32 @@ if (!doNotTrack) {
 
 
                 
-                <span>主页</span>
+                <span>Home</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/archives' >
+            <a href='/pages/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/archives/' >
                 
                 
                 
@@ -218,16 +192,54 @@ if (!doNotTrack) {
 
 
                 
-                <span>归档</span>
+                <span>Archives</span>
             </a>
         </li>
         
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -235,7 +247,7 @@ if (!doNotTrack) {
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -243,10 +255,11 @@ if (!doNotTrack) {
 
 
 
-                    <span>Dark Mode</span>
-                </li>
-            
-        </div>
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -358,8 +371,8 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h3 id="1-介绍">1. 介绍</h3>
-<p><a class="link" href="https://github.com/nostra13/Android-Universal-Image-Loader"  target="_blank" rel="noopener"
+    <h3 id="1-介绍">1. 介绍
+</h3><p><a class="link" href="https://github.com/nostra13/Android-Universal-Image-Loader"  target="_blank" rel="noopener"
     >Universal Image Loader</a> 具有以下特性：</p>
 <ul>
 <li>多线程加载图片</li>
@@ -368,9 +381,9 @@ if (!doNotTrack) {
 <li>图片可以缓存在内存中和硬盘上</li>
 <li>可以监听图片的加载进度和下载进度</li>
 </ul>
-<h3 id="2基本配置">2.基本配置</h3>
-<h4 id="21-构建项目">2.1 构建项目</h4>
-<p>Jar包下载地址：<a class="link" href="https://github.com/nostra13/Android-Universal-Image-Loader"  target="_blank" rel="noopener"
+<h3 id="2基本配置">2.基本配置
+</h3><h4 id="21-构建项目">2.1 构建项目
+</h4><p>Jar包下载地址：<a class="link" href="https://github.com/nostra13/Android-Universal-Image-Loader"  target="_blank" rel="noopener"
     >https://github.com/nostra13/Android-Universal-Image-Loader</a></p>
 <p>Maven dependency:</p>
 <div class="highlight"><div class="chroma">
@@ -398,8 +411,8 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">compile</span> <span class="s1">&#39;com.nostra13.universalimageloader:universal-image-loader:1.9.3&#39;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="22-配置-android-manifest">2.2 配置 Android Manifest</h4>
-<p>在android Mainfest 配置必要的权限</p>
+</div><h4 id="22-配置-android-manifest">2.2 配置 Android Manifest
+</h4><p>在android Mainfest 配置必要的权限</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -422,8 +435,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="nt">&lt;/manifest&gt;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="23-在application和activity中初始化imageloader">2.3 在Application和Activity中初始化ImageLoader</h4>
-<p>在第一次使用ImageLoader之前一定要在Application或Activity中初始化ImageLoader</p>
+</div><h4 id="23-在application和activity中初始化imageloader">2.3 在Application和Activity中初始化ImageLoader
+</h4><p>在第一次使用ImageLoader之前一定要在Application或Activity中初始化ImageLoader</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -557,9 +570,9 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="na">build</span><span class="p">();</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="3使用">3.使用</h3>
-<h4 id="31-支持多种uri">3.1 支持多种URI</h4>
-<p>Universal Image Loader 不仅可以加载网络图片还可以加载内存卡，asset文件夹下的图片等等。</p>
+</div><h3 id="3使用">3.使用
+</h3><h4 id="31-支持多种uri">3.1 支持多种URI
+</h4><p>Universal Image Loader 不仅可以加载网络图片还可以加载内存卡，asset文件夹下的图片等等。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -578,8 +591,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">String</span><span class="w"> </span><span class="n">imageUri</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;drawable://&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">drawable</span><span class="p">.</span><span class="na">img</span><span class="p">;</span><span class="w"> </span><span class="c1">// from drawables (non-9patch images)</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="32imageloader常用方法">3.2ImageLoader常用方法</h4>
-<ul>
+</div><h4 id="32imageloader常用方法">3.2ImageLoader常用方法
+</h4><ul>
 <li>displayImage：加载图片，转换为Bitmap对象，将Bitmap展示在ImageView上或者其他实现ImageAware接口的View。</li>
 </ul>
 <div class="highlight"><div class="chroma">
@@ -706,9 +719,9 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Bitmap</span><span class="w"> </span><span class="n">bmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">imageLoader</span><span class="p">.</span><span class="na">loadImageSync</span><span class="p">(</span><span class="n">imageUri</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="4源码分析">4.源码分析</h3>
-<h4 id="41-imageloader">4.1 ImageLoader</h4>
-<p>displayImage方法</p>
+</div><h3 id="4源码分析">4.源码分析
+</h3><h4 id="41-imageloader">4.1 ImageLoader
+</h4><p>displayImage方法</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -861,8 +874,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="42-loadanddisplayimagetask">4.2 LoadAndDisplayImageTask</h4>
-<div class="highlight"><div class="chroma">
+</div><h4 id="42-loadanddisplayimagetask">4.2 LoadAndDisplayImageTask
+</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1141,16 +1154,16 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="43-下载图片">4.3 下载图片</h4>
-<ul>
+</div><h4 id="43-下载图片">4.3 下载图片
+</h4><ul>
 <li>ImageDownloader:接口
 <ul>
 <li>BaseImageDownloader</li>
 </ul>
 </li>
 </ul>
-<h4 id="44-硬盘缓存">4.4 硬盘缓存</h4>
-<ul>
+<h4 id="44-硬盘缓存">4.4 硬盘缓存
+</h4><ul>
 <li>DiskCache
 <ul>
 <li>LruDiskCache</li>
@@ -1162,8 +1175,8 @@ if (!doNotTrack) {
 </ul>
 </li>
 </ul>
-<h4 id="45-内存缓存">4.5 内存缓存</h4>
-<ul>
+<h4 id="45-内存缓存">4.5 内存缓存
+</h4><ul>
 <li>MemoryCache
 <ul>
 <li>LruMemoryCache：默认</li>
@@ -1184,8 +1197,8 @@ if (!doNotTrack) {
 </ul>
 </li>
 </ul>
-<h3 id="参考">参考</h3>
-<ul>
+<h3 id="参考">参考
+</h3><ul>
 <li><a class="link" href="http://codekk.com/open-source-project-analysis/detail/Android/huxian99/Android%20Universal%20Image%20Loader%20%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90"  target="_blank" rel="noopener"
     >Android Universal Image Loader 源码分析</a></li>
 </ul>
@@ -1284,7 +1297,7 @@ if (!doNotTrack) {
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 

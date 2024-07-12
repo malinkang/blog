@@ -1,75 +1,36 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='AIDL Android 接口定义语言 (AIDL) 与您可能使用过的其他接口语言 (IDL) 类似。您可以利用它定义客户端与服务均认可的编程接口，以便二者使用进程间通信 (IPC) 进行相互通信。在 Android 中，一个进程通常无法访问另一个进程的内存。因此，为进行通信，进程需将其对象分解成可供操作系统理解的原语，并将其编组为可供您操作的对象。编写执行该编组操作的代码较为繁琐，因此 Android 会使用 AIDL 为您处理此问题。
-{% hint style=&amp;ldquo;info&amp;rdquo; %} **注意：**只有在需要不同应用的客户端通过 IPC 方式访问服务，并且希望在服务中进行多线程处理时，您才有必要使用 AIDL。如果您无需跨不同应用执行并发 IPC，则应通过实现 Binder 来创建接口；或者，如果您想执行 IPC，但_不_需要处理多线程，请使用 Messenger 来实现接口。无论如何，在实现 AIDL 之前，请您务必理解绑定服务。 {% endhint %}
-在开始设计 AIDL 接口之前，请注意，AIDL 接口的调用是直接函数调用。您无需对发生调用的线程做任何假设。实际情况的差异取决于调用是来自本地进程中的线程，还是远程进程中的线程。具体而言：
-来自本地进程的调用在发起调用的同一线程内执行。如果该线程是您的主界面线程，则其将继续在 AIDL 接口中执行。如果该线程是其他线程，则其便是在服务中执行代码的线程。因此，只有在本地线程访问服务时，您才能完全控制哪些线程在服务中执行（但若出现此情况，您根本无需使用 AIDL，而应通过实现 Binder 类来创建接口）。 远程进程的调用分派自线程池，且平台会在您自己的进程内部维护该线程池。您必须为来自未知线程，且多次调用同时发生的传入调用做好准备。换言之，AIDL 接口的实现必须基于完全的线程安全。如果调用来自同一远程对象上的某个线程，则该调用将依次抵达接收器端。 oneway 关键字用于修改远程调用的行为。使用此关键字后，远程调用不会屏蔽，而只是发送事务数据并立即返回。最终接收该数据时，接口的实现会将其视为来自 Binder 线程池的常规调用（普通的远程调用）。如果 oneway 用于本地调用，则不会有任何影响，且调用仍为同步调用。 定义 AIDL 接口 您必须在 .aidl 文件中使用 Java 编程语言的语法定义 AIDL 接口，然后将其保存至应用的源代码（在 src/ 目录中）内，这类应用会托管服务或与服务进行绑定。
-在构建每个包含 .aidl 文件的应用时，Android SDK 工具会生成基于该 .aidl 文件的 IBinder 接口，并将其保存到项目的 gen/ 目录中。服务必须视情况实现 IBinder 接口。然后，客户端应用便可绑定到该服务，并调用 IBinder 中的方法来执行 IPC。'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="AIDL Android 接口定义语言 (AIDL) 与您可能使用过的其他接口语言 (IDL) 类似。您可以利用它定义客户端与服务均认可的编程接口，以便二者使用进程间通信 (IPC) 进行相互通信。在 Android 中，一个进程通常无法访问另一个进程的内存。因此，为进行通信，进程需将其对象分解成可供操作系统理解的原语，并将其编组为可供您操作的对象。编写执行该编组操作的代码较为繁琐，因此 Android 会使用 AIDL 为您处理此问题。 {% hint style=&ldquo;info&rdquo; %} **注意：**只有在需要不同应用的客户端通过 IPC 方式访问服务，并且希望在服务中进行多线程处理时，您才有必要使用 AIDL。如果您无需跨不同应用执行并发 IPC，则应通过实现 Binder 来创建接口；或者，如果您想执行 IPC，但_不_需要处理多线程，请使用 Messenger 来实现接口。无论如何，在实现 AIDL 之前，请您务必理解绑定服务。 {% endhint %} 在开始设计 AIDL 接口之前，请注意，AIDL 接口的调用是直接函数调用。您无需对发生调用的线程做任何假设。实际情况的差异取决于调用是来自本地进程中的线程，还是远程进程中的线程。具体而言： 来自本地进程的调用在发起调用的同一线程内执行。如果该线程是您的主界面线程，则其将继续在 AIDL 接口中执行。如果该线程是其他线程，则其便是在服务中执行代码的线程。因此，只有在本地线程访问服务时，您才能完全控制哪些线程在服务中执行（但若出现此情况，您根本无需使用 AIDL，而应通过实现 Binder 类来创建接口）。 远程进程的调用分派自线程池，且平台会在您自己的进程内部维护该线程池。您必须为来自未知线程，且多次调用同时发生的传入调用做好准备。换言之，AIDL 接口的实现必须基于完全的线程安全。如果调用来自同一远程对象上的某个线程，则该调用将依次抵达接收器端。 oneway 关键字用于修改远程调用的行为。使用此关键字后，远程调用不会屏蔽，而只是发送事务数据并立即返回。最终接收该数据时，接口的实现会将其视为来自 Binder 线程池的常规调用（普通的远程调用）。如果 oneway 用于本地调用，则不会有任何影响，且调用仍为同步调用。 定义 AIDL 接口 您必须在 .aidl 文件中使用 Java 编程语言的语法定义 AIDL 接口，然后将其保存至应用的源代码（在 src/ 目录中）内，这类应用会托管服务或与服务进行绑定。 在构建每个包含 .aidl 文件的应用时，Android SDK 工具会生成基于该 .aidl 文件的 IBinder 接口，并将其保存到项目的 gen/ 目录中。服务必须视情况实现 IBinder 接口。然后，客户端应用便可绑定到该服务，并调用 IBinder 中的方法来执行 IPC。">
 <title></title>
 
-<link rel='canonical' href='https://example.com/android/components/services/aidl/'>
+<link rel='canonical' href='http://localhost:1313/android/components/services/aidl/'>
 
-<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
-<meta property='og:description' content='AIDL Android 接口定义语言 (AIDL) 与您可能使用过的其他接口语言 (IDL) 类似。您可以利用它定义客户端与服务均认可的编程接口，以便二者使用进程间通信 (IPC) 进行相互通信。在 Android 中，一个进程通常无法访问另一个进程的内存。因此，为进行通信，进程需将其对象分解成可供操作系统理解的原语，并将其编组为可供您操作的对象。编写执行该编组操作的代码较为繁琐，因此 Android 会使用 AIDL 为您处理此问题。
-{% hint style=&amp;ldquo;info&amp;rdquo; %} **注意：**只有在需要不同应用的客户端通过 IPC 方式访问服务，并且希望在服务中进行多线程处理时，您才有必要使用 AIDL。如果您无需跨不同应用执行并发 IPC，则应通过实现 Binder 来创建接口；或者，如果您想执行 IPC，但_不_需要处理多线程，请使用 Messenger 来实现接口。无论如何，在实现 AIDL 之前，请您务必理解绑定服务。 {% endhint %}
-在开始设计 AIDL 接口之前，请注意，AIDL 接口的调用是直接函数调用。您无需对发生调用的线程做任何假设。实际情况的差异取决于调用是来自本地进程中的线程，还是远程进程中的线程。具体而言：
-来自本地进程的调用在发起调用的同一线程内执行。如果该线程是您的主界面线程，则其将继续在 AIDL 接口中执行。如果该线程是其他线程，则其便是在服务中执行代码的线程。因此，只有在本地线程访问服务时，您才能完全控制哪些线程在服务中执行（但若出现此情况，您根本无需使用 AIDL，而应通过实现 Binder 类来创建接口）。 远程进程的调用分派自线程池，且平台会在您自己的进程内部维护该线程池。您必须为来自未知线程，且多次调用同时发生的传入调用做好准备。换言之，AIDL 接口的实现必须基于完全的线程安全。如果调用来自同一远程对象上的某个线程，则该调用将依次抵达接收器端。 oneway 关键字用于修改远程调用的行为。使用此关键字后，远程调用不会屏蔽，而只是发送事务数据并立即返回。最终接收该数据时，接口的实现会将其视为来自 Binder 线程池的常规调用（普通的远程调用）。如果 oneway 用于本地调用，则不会有任何影响，且调用仍为同步调用。 定义 AIDL 接口 您必须在 .aidl 文件中使用 Java 编程语言的语法定义 AIDL 接口，然后将其保存至应用的源代码（在 src/ 目录中）内，这类应用会托管服务或与服务进行绑定。
-在构建每个包含 .aidl 文件的应用时，Android SDK 工具会生成基于该 .aidl 文件的 IBinder 接口，并将其保存到项目的 gen/ 目录中。服务必须视情况实现 IBinder 接口。然后，客户端应用便可绑定到该服务，并调用 IBinder 中的方法来执行 IPC。'>
-<meta property='og:url' content='https://example.com/android/components/services/aidl/'>
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<meta property='og:description' content="AIDL Android 接口定义语言 (AIDL) 与您可能使用过的其他接口语言 (IDL) 类似。您可以利用它定义客户端与服务均认可的编程接口，以便二者使用进程间通信 (IPC) 进行相互通信。在 Android 中，一个进程通常无法访问另一个进程的内存。因此，为进行通信，进程需将其对象分解成可供操作系统理解的原语，并将其编组为可供您操作的对象。编写执行该编组操作的代码较为繁琐，因此 Android 会使用 AIDL 为您处理此问题。 {% hint style=&ldquo;info&rdquo; %} **注意：**只有在需要不同应用的客户端通过 IPC 方式访问服务，并且希望在服务中进行多线程处理时，您才有必要使用 AIDL。如果您无需跨不同应用执行并发 IPC，则应通过实现 Binder 来创建接口；或者，如果您想执行 IPC，但_不_需要处理多线程，请使用 Messenger 来实现接口。无论如何，在实现 AIDL 之前，请您务必理解绑定服务。 {% endhint %} 在开始设计 AIDL 接口之前，请注意，AIDL 接口的调用是直接函数调用。您无需对发生调用的线程做任何假设。实际情况的差异取决于调用是来自本地进程中的线程，还是远程进程中的线程。具体而言： 来自本地进程的调用在发起调用的同一线程内执行。如果该线程是您的主界面线程，则其将继续在 AIDL 接口中执行。如果该线程是其他线程，则其便是在服务中执行代码的线程。因此，只有在本地线程访问服务时，您才能完全控制哪些线程在服务中执行（但若出现此情况，您根本无需使用 AIDL，而应通过实现 Binder 类来创建接口）。 远程进程的调用分派自线程池，且平台会在您自己的进程内部维护该线程池。您必须为来自未知线程，且多次调用同时发生的传入调用做好准备。换言之，AIDL 接口的实现必须基于完全的线程安全。如果调用来自同一远程对象上的某个线程，则该调用将依次抵达接收器端。 oneway 关键字用于修改远程调用的行为。使用此关键字后，远程调用不会屏蔽，而只是发送事务数据并立即返回。最终接收该数据时，接口的实现会将其视为来自 Binder 线程池的常规调用（普通的远程调用）。如果 oneway 用于本地调用，则不会有任何影响，且调用仍为同步调用。 定义 AIDL 接口 您必须在 .aidl 文件中使用 Java 编程语言的语法定义 AIDL 接口，然后将其保存至应用的源代码（在 src/ 目录中）内，这类应用会托管服务或与服务进行绑定。 在构建每个包含 .aidl 文件的应用时，Android SDK 工具会生成基于该 .aidl 文件的 IBinder 接口，并将其保存到项目的 gen/ 目录中。服务必须视情况实现 IBinder 接口。然后，客户端应用便可绑定到该服务，并调用 IBinder 中的方法来执行 IPC。">
+<meta property='og:url' content='http://localhost:1313/android/components/services/aidl/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="AIDL Android 接口定义语言 (AIDL) 与您可能使用过的其他接口语言 (IDL) 类似。您可以利用它定义客户端与服务均认可的编程接口，以便二者使用进程间通信 (IPC) 进行相互通信。在 Android 中，一个进程通常无法访问另一个进程的内存。因此，为进行通信，进程需将其对象分解成可供操作系统理解的原语，并将其编组为可供您操作的对象。编写执行该编组操作的代码较为繁琐，因此 Android 会使用 AIDL 为您处理此问题。
-{% hint style=&amp;ldquo;info&amp;rdquo; %} **注意：**只有在需要不同应用的客户端通过 IPC 方式访问服务，并且希望在服务中进行多线程处理时，您才有必要使用 AIDL。如果您无需跨不同应用执行并发 IPC，则应通过实现 Binder 来创建接口；或者，如果您想执行 IPC，但_不_需要处理多线程，请使用 Messenger 来实现接口。无论如何，在实现 AIDL 之前，请您务必理解绑定服务。 {% endhint %}
-在开始设计 AIDL 接口之前，请注意，AIDL 接口的调用是直接函数调用。您无需对发生调用的线程做任何假设。实际情况的差异取决于调用是来自本地进程中的线程，还是远程进程中的线程。具体而言：
-来自本地进程的调用在发起调用的同一线程内执行。如果该线程是您的主界面线程，则其将继续在 AIDL 接口中执行。如果该线程是其他线程，则其便是在服务中执行代码的线程。因此，只有在本地线程访问服务时，您才能完全控制哪些线程在服务中执行（但若出现此情况，您根本无需使用 AIDL，而应通过实现 Binder 类来创建接口）。 远程进程的调用分派自线程池，且平台会在您自己的进程内部维护该线程池。您必须为来自未知线程，且多次调用同时发生的传入调用做好准备。换言之，AIDL 接口的实现必须基于完全的线程安全。如果调用来自同一远程对象上的某个线程，则该调用将依次抵达接收器端。 oneway 关键字用于修改远程调用的行为。使用此关键字后，远程调用不会屏蔽，而只是发送事务数据并立即返回。最终接收该数据时，接口的实现会将其视为来自 Binder 线程池的常规调用（普通的远程调用）。如果 oneway 用于本地调用，则不会有任何影响，且调用仍为同步调用。 定义 AIDL 接口 您必须在 .aidl 文件中使用 Java 编程语言的语法定义 AIDL 接口，然后将其保存至应用的源代码（在 src/ 目录中）内，这类应用会托管服务或与服务进行绑定。
-在构建每个包含 .aidl 文件的应用时，Android SDK 工具会生成基于该 .aidl 文件的 IBinder 接口，并将其保存到项目的 gen/ 目录中。服务必须视情况实现 IBinder 接口。然后，客户端应用便可绑定到该服务，并调用 IBinder 中的方法来执行 IPC。">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
-}
-</script>
-<style>
-    :root {
-      --sys-font-family: "Noto Serif SC";
-      --zh-font-family: "Noto Serif SC";
-      --base-font-family: "Noto Serif SC";
-      --code-font-family: "Noto Serif SC";
-      --article-font-family: "Noto Serif SC";
-    }
-  </style>
+<meta name="twitter:description" content="AIDL Android 接口定义语言 (AIDL) 与您可能使用过的其他接口语言 (IDL) 类似。您可以利用它定义客户端与服务均认可的编程接口，以便二者使用进程间通信 (IPC) 进行相互通信。在 Android 中，一个进程通常无法访问另一个进程的内存。因此，为进行通信，进程需将其对象分解成可供操作系统理解的原语，并将其编组为可供您操作的对象。编写执行该编组操作的代码较为繁琐，因此 Android 会使用 AIDL 为您处理此问题。 {% hint style=&ldquo;info&rdquo; %} **注意：**只有在需要不同应用的客户端通过 IPC 方式访问服务，并且希望在服务中进行多线程处理时，您才有必要使用 AIDL。如果您无需跨不同应用执行并发 IPC，则应通过实现 Binder 来创建接口；或者，如果您想执行 IPC，但_不_需要处理多线程，请使用 Messenger 来实现接口。无论如何，在实现 AIDL 之前，请您务必理解绑定服务。 {% endhint %} 在开始设计 AIDL 接口之前，请注意，AIDL 接口的调用是直接函数调用。您无需对发生调用的线程做任何假设。实际情况的差异取决于调用是来自本地进程中的线程，还是远程进程中的线程。具体而言： 来自本地进程的调用在发起调用的同一线程内执行。如果该线程是您的主界面线程，则其将继续在 AIDL 接口中执行。如果该线程是其他线程，则其便是在服务中执行代码的线程。因此，只有在本地线程访问服务时，您才能完全控制哪些线程在服务中执行（但若出现此情况，您根本无需使用 AIDL，而应通过实现 Binder 类来创建接口）。 远程进程的调用分派自线程池，且平台会在您自己的进程内部维护该线程池。您必须为来自未知线程，且多次调用同时发生的传入调用做好准备。换言之，AIDL 接口的实现必须基于完全的线程安全。如果调用来自同一远程对象上的某个线程，则该调用将依次抵达接收器端。 oneway 关键字用于修改远程调用的行为。使用此关键字后，远程调用不会屏蔽，而只是发送事务数据并立即返回。最终接收该数据时，接口的实现会将其视为来自 Binder 线程池的常规调用（普通的远程调用）。如果 oneway 用于本地调用，则不会有任何影响，且调用仍为同步调用。 定义 AIDL 接口 您必须在 .aidl 文件中使用 Java 编程语言的语法定义 AIDL 接口，然后将其保存至应用的源代码（在 src/ 目录中）内，这类应用会托管服务或与服务进行绑定。 在构建每个包含 .aidl 文件的应用时，Android SDK 工具会生成基于该 .aidl 文件的 IBinder 接口，并将其保存到项目的 gen/ 目录中。服务必须视情况实现 IBinder 接口。然后，客户端应用便可绑定到该服务，并调用 IBinder 中的方法来执行 IPC。">
   
-  <script>
-    (function () {
-      const customFont = document.createElement("link");
-      customFont.href =
-        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
   
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-  
-      document.head.appendChild(customFont);
-    })();
-  </script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
-     crossorigin="anonymous"></script>
-  
-
-<script>
-    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
 
 
     </head>
@@ -131,7 +92,7 @@ if (!doNotTrack) {
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
             <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -192,13 +153,32 @@ if (!doNotTrack) {
 
 
                 
-                <span>主页</span>
+                <span>Home</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/archives' >
+            <a href='/pages/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/archives/' >
                 
                 
                 
@@ -212,16 +192,54 @@ if (!doNotTrack) {
 
 
                 
-                <span>归档</span>
+                <span>Archives</span>
             </a>
         </li>
         
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -229,7 +247,7 @@ if (!doNotTrack) {
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -237,10 +255,11 @@ if (!doNotTrack) {
 
 
 
-                    <span>Dark Mode</span>
-                </li>
-            
-        </div>
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -343,8 +362,8 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="aidl">AIDL</h1>
-<p>Android 接口定义语言 (AIDL) 与您可能使用过的其他接口语言 (IDL) 类似。您可以利用它定义客户端与服务均认可的编程接口，以便二者使用进程间通信 (IPC) 进行相互通信。在 Android 中，一个进程通常无法访问另一个进程的内存。因此，为进行通信，进程需将其对象分解成可供操作系统理解的原语，并将其编组为可供您操作的对象。编写执行该编组操作的代码较为繁琐，因此 Android 会使用 AIDL 为您处理此问题。</p>
+    <h1 id="aidl">AIDL
+</h1><p>Android 接口定义语言 (AIDL) 与您可能使用过的其他接口语言 (IDL) 类似。您可以利用它定义客户端与服务均认可的编程接口，以便二者使用进程间通信 (IPC) 进行相互通信。在 Android 中，一个进程通常无法访问另一个进程的内存。因此，为进行通信，进程需将其对象分解成可供操作系统理解的原语，并将其编组为可供您操作的对象。编写执行该编组操作的代码较为繁琐，因此 Android 会使用 AIDL 为您处理此问题。</p>
 <p>{% hint style=&ldquo;info&rdquo; %}
 **注意：**只有在需要不同应用的客户端通过 IPC 方式访问服务，并且希望在服务中进行多线程处理时，您才有必要使用 AIDL。如果您无需跨不同应用执行并发 IPC，则应通过<a class="link" href="https://developer.android.com/guide/components/bound-services#Binder"  target="_blank" rel="noopener"
     >实现 Binder</a> 来创建接口；或者，如果您想执行 IPC，但_不_需要处理多线程，请<a class="link" href="https://developer.android.com/guide/components/bound-services#Messenger"  target="_blank" rel="noopener"
@@ -359,8 +378,8 @@ if (!doNotTrack) {
 <li><code>oneway</code> 关键字用于修改远程调用的行为。使用此关键字后，远程调用不会屏蔽，而只是发送事务数据并立即返回。最终接收该数据时，接口的实现会将其视为来自 <a class="link" href="https://developer.android.com/reference/android/os/Binder"  target="_blank" rel="noopener"
     ><code>Binder</code></a> 线程池的常规调用（普通的远程调用）。如果 <code>oneway</code> 用于本地调用，则不会有任何影响，且调用仍为同步调用。</li>
 </ul>
-<h2 id="定义-aidl-接口-a-iddefininga">定义 AIDL 接口 <a id="Defining"></a></h2>
-<p>您必须在 <code>.aidl</code> 文件中使用 Java 编程语言的语法定义 AIDL 接口，然后将其保存至应用的源代码（在 <code>src/</code> 目录中）内，这类应用会托管服务或与服务进行绑定。</p>
+<h2 id="定义-aidl-接口-a-iddefininga">定义 AIDL 接口 <a id="Defining"></a>
+</h2><p>您必须在 <code>.aidl</code> 文件中使用 Java 编程语言的语法定义 AIDL 接口，然后将其保存至应用的源代码（在 <code>src/</code> 目录中）内，这类应用会托管服务或与服务进行绑定。</p>
 <p>在构建每个包含 <code>.aidl</code> 文件的应用时，Android SDK 工具会生成基于该 <code>.aidl</code> 文件的 <a class="link" href="https://developer.android.com/reference/android/os/IBinder"  target="_blank" rel="noopener"
     ><code>IBinder</code></a> 接口，并将其保存到项目的 <code>gen/</code> 目录中。服务必须视情况实现 <a class="link" href="https://developer.android.com/reference/android/os/IBinder"  target="_blank" rel="noopener"
     ><code>IBinder</code></a> 接口。然后，客户端应用便可绑定到该服务，并调用 <a class="link" href="https://developer.android.com/reference/android/os/IBinder"  target="_blank" rel="noopener"
@@ -389,8 +408,8 @@ if (!doNotTrack) {
 <p>{% hint style=&ldquo;info&rdquo; %}
 **注意：**如果您在首次发布 AIDL 接口后对其进行更改，则每次更改必须保持向后兼容性，以免中断其他应用使用您的服务。换言之，由于只有在将您的 <code>.aidl</code> 文件复制到其他应用后，才能使其访问服务接口，因而您必须保留对原始接口的支持。
 {% endhint %}</p>
-<h3 id="1-创建-aidl-文件-a-idcreatea">1. 创建 .aidl 文件 <a id="Create"></a></h3>
-<p>AIDL 使用一种简单语法，允许您通过一个或多个方法（可接收参数和返回值）来声明接口。参数和返回值可为任意类型，甚至是 AIDL 生成的其他接口。</p>
+<h3 id="1-创建-aidl-文件-a-idcreatea">1. 创建 .aidl 文件 <a id="Create"></a>
+</h3><p>AIDL 使用一种简单语法，允许您通过一个或多个方法（可接收参数和返回值）来声明接口。参数和返回值可为任意类型，甚至是 AIDL 生成的其他接口。</p>
 <p>您必须使用 Java 编程语言构建 <code>.aidl</code> 文件。每个 <code>.aidl</code> 文件均须定义单个接口，并且只需要接口声明和方法签名。</p>
 <p>默认情况下，AIDL 支持下列数据类型：</p>
 <ul>
@@ -489,8 +508,8 @@ if (!doNotTrack) {
 </div><p>您只需将 <code>.aidl</code> 文件保存至项目的 <code>src/</code> 目录内，这样在构建应用时，SDK 工具便会在项目的 <code>gen/</code> 目录中生成 <a class="link" href="https://developer.android.com/reference/android/os/IBinder"  target="_blank" rel="noopener"
     ><code>IBinder</code></a> 接口文件。生成文件的名称与 <code>.aidl</code> 文件的名称保持一致，区别在于其使用 <code>.java</code> 扩展名（例如，<code>IRemoteService.aidl</code> 生成的文件名是 <code>IRemoteService.java</code>）。</p>
 <p>如果您使用 Android Studio，增量构建几乎会立即生成 Binder 类。如果您不使用 Android Studio，则 Gradle 工具会在您下一次开发应用时生成 Binder 类。因此，在编写完 <code>.aidl</code> 文件后，您应立即使用 <code>gradle assembleDebug</code>（或 <code>gradle assembleRelease</code>）构建项目，以便您的代码能够链接到生成的类。</p>
-<h3 id="2-实现接口-a-idimplementa">2. 实现接口 <a id="Implement"></a></h3>
-<p>当您构建应用时，Android SDK 工具会生成以 <code>.aidl</code> 文件命名的 <code>.java</code> 接口文件。生成的接口包含一个名为 <code>Stub</code> 的子类（例如，<code>YourInterface.Stub</code>），该子类是其父接口的抽象实现，并且会声明 <code>.aidl</code> 文件中的所有方法。</p>
+<h3 id="2-实现接口-a-idimplementa">2. 实现接口 <a id="Implement"></a>
+</h3><p>当您构建应用时，Android SDK 工具会生成以 <code>.aidl</code> 文件命名的 <code>.java</code> 接口文件。生成的接口包含一个名为 <code>Stub</code> 的子类（例如，<code>YourInterface.Stub</code>），该子类是其父接口的抽象实现，并且会声明 <code>.aidl</code> 文件中的所有方法。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">  1
@@ -865,16 +884,16 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="descriptor">DESCRIPTOR</h4>
-<p>Binder的唯一标识，一般用当前Binder的类名表示，比如本例中的<code>cn.malinkang.servicesamples.IRemoteService</code>。</p>
-<h4 id="asinterface">asInterface</h4>
-<p>asInterface(android.os.IBinder obj)用于将服务端的Binder对象转换成客户端所需的AIDL接口类型的对象，这种转换过程是区分进程的，如果客户端和服务端位于同一进程，那么此方法返回的就是服务端的Stub对象本身，否则返回的是系统封装后的Stub.proxy对象。</p>
-<h4 id="asbinder">asBinder</h4>
-<p>asBinder此方法用于返回当前Binder对象。</p>
-<h4 id="ontransact">onTransact</h4>
-<p>onTransact这个方法运行在服务端中的Binder线程池中，当客户端发起跨进程请求时，远程请求会通过系统底层封装后交由此方法来处理。服务端通过code可以确定客户端所请求的目标方法是什么，接着从data中取出目标方法所需的参数（如果目标方法有参数的话），然后执行目标方法。当目标方法执行完毕后，就向reply中写入返回值（如果目标方法有返回值的话）,onTransact方法的执行过程就是这样的。需要注意的是，如果此方法返回false，那么客户端的请求会失败，因此我们可以利用这个特性来做权限验证，毕竟我们也不希望随便一个进程都能远程调用我们的服务。</p>
-<h4 id="registercallback">registerCallback</h4>
-<p>这个方法运行在客户端，当客户端远程调用此方法时，它的内部实现是这样的：首先创建该方法所需要的输入型Parcel对象_data、输出型Parcel对象_reply；然后把该方法的参数信息写入_data中（如果有参数的话）；接着调用transact方法来发起RPC（远程过程调用）请求，同时当前线程挂起；然后服务端的onTransact方法会被调用，直到RPC过程返回后，当前线程继续执行，并从_reply中取出RPC过程的返回结果；最后返回_reply中的数据。</p>
+</div><h4 id="descriptor">DESCRIPTOR
+</h4><p>Binder的唯一标识，一般用当前Binder的类名表示，比如本例中的<code>cn.malinkang.servicesamples.IRemoteService</code>。</p>
+<h4 id="asinterface">asInterface
+</h4><p>asInterface(android.os.IBinder obj)用于将服务端的Binder对象转换成客户端所需的AIDL接口类型的对象，这种转换过程是区分进程的，如果客户端和服务端位于同一进程，那么此方法返回的就是服务端的Stub对象本身，否则返回的是系统封装后的Stub.proxy对象。</p>
+<h4 id="asbinder">asBinder
+</h4><p>asBinder此方法用于返回当前Binder对象。</p>
+<h4 id="ontransact">onTransact
+</h4><p>onTransact这个方法运行在服务端中的Binder线程池中，当客户端发起跨进程请求时，远程请求会通过系统底层封装后交由此方法来处理。服务端通过code可以确定客户端所请求的目标方法是什么，接着从data中取出目标方法所需的参数（如果目标方法有参数的话），然后执行目标方法。当目标方法执行完毕后，就向reply中写入返回值（如果目标方法有返回值的话）,onTransact方法的执行过程就是这样的。需要注意的是，如果此方法返回false，那么客户端的请求会失败，因此我们可以利用这个特性来做权限验证，毕竟我们也不希望随便一个进程都能远程调用我们的服务。</p>
+<h4 id="registercallback">registerCallback
+</h4><p>这个方法运行在客户端，当客户端远程调用此方法时，它的内部实现是这样的：首先创建该方法所需要的输入型Parcel对象_data、输出型Parcel对象_reply；然后把该方法的参数信息写入_data中（如果有参数的话）；接着调用transact方法来发起RPC（远程过程调用）请求，同时当前线程挂起；然后服务端的onTransact方法会被调用，直到RPC过程返回后，当前线程继续执行，并从_reply中取出RPC过程的返回结果；最后返回_reply中的数据。</p>
 <p>****</p>
 <p>如要实现 <code>.aidl</code> 生成的接口，请扩展生成的 <a class="link" href="https://developer.android.com/reference/android/os/Binder"  target="_blank" rel="noopener"
     ><code>Binder</code></a> 接口（例如，<code>YourInterface.Stub</code>），并实现继承自 <code>.aidl</code> 文件的方法。</p>
@@ -915,8 +934,8 @@ if (!doNotTrack) {
 <li>默认情况下，RPC 调用是同步调用。如果您知道服务完成请求的时间不止几毫秒，则不应从 Activity 的主线程调用该服务，因为这可能会使应用挂起（Android 可能会显示“Application is Not Responding”对话框）— 通常，您应从客户端内的单独线程调用服务。</li>
 <li>您引发的任何异常都不会回传给调用方。</li>
 </ul>
-<h3 id="3-向客户端公开接口-a-idexposea">3. 向客户端公开接口 <a id="Expose"></a></h3>
-<p>在为服务实现接口后，您需要向客户端公开该接口，以便客户端进行绑定。如要为您的服务公开该接口，请扩展 <a class="link" href="https://developer.android.com/reference/android/app/Service"  target="_blank" rel="noopener"
+<h3 id="3-向客户端公开接口-a-idexposea">3. 向客户端公开接口 <a id="Expose"></a>
+</h3><p>在为服务实现接口后，您需要向客户端公开该接口，以便客户端进行绑定。如要为您的服务公开该接口，请扩展 <a class="link" href="https://developer.android.com/reference/android/app/Service"  target="_blank" rel="noopener"
     ><code>Service</code></a> 并实现 <a class="link" href="https://developer.android.com/reference/android/app/Service#onBind%28android.content.Intent%29"  target="_blank" rel="noopener"
     ><code>onBind()</code></a>，从而返回实现生成的 <code>Stub</code> 的类实例（如前文所述）。以下是向客户端公开 <code>IRemoteService</code> 示例接口的服务示例。</p>
 <div class="highlight"><div class="chroma">
@@ -1016,8 +1035,8 @@ if (!doNotTrack) {
 </div><p>如需查看更多示例代码，请参阅 <a class="link" href="https://android.googlesource.com/platform/development/&#43;/master/samples/ApiDemos"  target="_blank" rel="noopener"
     >ApiDemos</a> 中的 <a class="link" href="https://android.googlesource.com/platform/development/&#43;/master/samples/ApiDemos/src/com/example/android/apis/app/RemoteService.java"  target="_blank" rel="noopener"
     ><code>RemoteService.java</code></a> 类。</p>
-<h2 id="通过-ipc-传递对象">通过 IPC 传递对象</h2>
-<p>您可以通过 IPC 接口，将某个类从一个进程发送至另一个进程。不过，您必须确保 IPC 通道的另一端可使用该类的代码，并且该类必须支持 <a class="link" href="https://developer.android.com/reference/android/os/Parcelable"  target="_blank" rel="noopener"
+<h2 id="通过-ipc-传递对象">通过 IPC 传递对象
+</h2><p>您可以通过 IPC 接口，将某个类从一个进程发送至另一个进程。不过，您必须确保 IPC 通道的另一端可使用该类的代码，并且该类必须支持 <a class="link" href="https://developer.android.com/reference/android/os/Parcelable"  target="_blank" rel="noopener"
     ><code>Parcelable</code></a> 接口。支持 <a class="link" href="https://developer.android.com/reference/android/os/Parcelable"  target="_blank" rel="noopener"
     ><code>Parcelable</code></a> 接口很重要，因为 Android 系统能通过该接口将对象分解成可编组至各进程的原语。</p>
 <p>如要创建支持 <a class="link" href="https://developer.android.com/reference/android/os/Parcelable"  target="_blank" rel="noopener"
@@ -1163,8 +1182,8 @@ if (!doNotTrack) {
     ><code>Parcel</code></a> 读取四个数字，但您需确保：无论调用方目的为何，这些数字均在可接受的值范围内。如需详细了解如何防止应用受到恶意软件侵害、保证应用安全，请参阅<a class="link" href="https://developer.android.com/guide/topics/security/security"  target="_blank" rel="noopener"
     >安全与权限</a>。
 {% endhint %}</p>
-<h2 id="带软件包参数包含-parcelable-类型的方法-a-idbundlesa">带软件包参数（包含 Parcelable 类型）的方法 <a id="Bundles"></a></h2>
-<p>如果您的 AIDL 接口包含接收软件包作为参数（预计包含 Parcelable 类型）的方法，则在尝试从软件包读取之前，请务必通过调用 <a class="link" href="https://developer.android.com/reference/android/os/Bundle?hl=en#setClassLoader%28java.lang.ClassLoader%29"  target="_blank" rel="noopener"
+<h2 id="带软件包参数包含-parcelable-类型的方法-a-idbundlesa">带软件包参数（包含 Parcelable 类型）的方法 <a id="Bundles"></a>
+</h2><p>如果您的 AIDL 接口包含接收软件包作为参数（预计包含 Parcelable 类型）的方法，则在尝试从软件包读取之前，请务必通过调用 <a class="link" href="https://developer.android.com/reference/android/os/Bundle?hl=en#setClassLoader%28java.lang.ClassLoader%29"  target="_blank" rel="noopener"
     ><code>Bundle.setClassLoader(ClassLoader)</code></a> 设置软件包的类加载器。否则，即使您在应用中正确定义 Parcelable 类型，也会遇到 <a class="link" href="https://developer.android.com/reference/java/lang/ClassNotFoundException"  target="_blank" rel="noopener"
     ><code>ClassNotFoundException</code></a>。例如，</p>
 <p>如果您有 <code>.aidl</code> 文件：</p>
@@ -1211,8 +1230,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">};</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="调用-ipc-方法-a-idcallinga">调用 IPC 方法 <a id="Calling"></a></h2>
-<p>如要调用通过 AIDL 定义的远程接口，调用类必须执行以下步骤：</p>
+</div><h2 id="调用-ipc-方法-a-idcallinga">调用 IPC 方法 <a id="Calling"></a>
+</h2><p>如要调用通过 AIDL 定义的远程接口，调用类必须执行以下步骤：</p>
 <ol>
 <li>在项目的 <code>src/</code> 目录中加入 <code>.aidl</code> 文件。</li>
 <li>声明一个 <a class="link" href="https://developer.android.com/reference/android/os/IBinder"  target="_blank" rel="noopener"
@@ -1238,8 +1257,8 @@ if (!doNotTrack) {
 </ul>
 <p>如需了解有关绑定服务的详细信息，请阅读<a class="link" href="https://developer.android.com/guide/components/bound-services#Binding"  target="_blank" rel="noopener"
     >绑定服务</a>文档。</p>
-<h2 id="参考">参考</h2>
-<ul>
+<h2 id="参考">参考
+</h2><ul>
 <li><a class="link" href="https://developer.android.com/guide/components/aidl"  target="_blank" rel="noopener"
     >Android 接口定义语言 (AIDL)</a></li>
 </ul>
@@ -1338,7 +1357,7 @@ if (!doNotTrack) {
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 

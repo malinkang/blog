@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html><head>
+	<meta name="generator" content="Hugo 0.128.2"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<title>Malinkang&#39;s Blog</title>
+
+
+
+  
+
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+    <link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="/scss/dark-mode.min.c6e68b913da16a092755d6c22435d1331fd1af82c857538edbdca3203413fe72.css" integrity="sha256-xuaLkT2hagknVdbCJDXRMx/Rr4LIV1OO29yjIDQT/nI=" media="screen">
+
+
+<link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Material+Icons">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+
+
+
+</head>
+<body>
+    	<div id="app"><div class="single-column-drawer-container" id="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+                
+                
+                
+                    
+                
+                
+                
+                <a class="a-block drawer-menu-item active" href="/">
+                    Home
+                </a>
+                
+            
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div id="drawer-mask" v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav id="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div id="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a id="navTitle" class="navbar-brand" href="http://localhost:1313/">
+            Malinkang&#39;s Blog
+        </a>
+        
+        <button type="button" class="nav-darkmode-toggle" id="darkModeToggleButton2">
+            <i class="material-icons" id="darkModeToggleIcon2">
+                dark_mode
+            </i>
+        </button>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" id="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="http://localhost:1313/">
+        <div class="single-column-header-title">Malinkang&#39;s Blog</div>
+        
+
+    </a>
+</div>
+
+            <div id="content">
+                <div id="streamContainer" class="stream-container">
+
+    <div class="post-list-container post-list-container-no-background">
+        
+        
+            <a href="/android/tools/command-line/zipalign/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                
+                            </div>
+                            <div class="post-item-summary">
+                                
+                                    zipalign是一个归档对齐工具，可为Android应用程序（APK）文件提供重要优化。目的是确保所有未压缩的数据以相对于文件开头的特定对齐开始。特别地，它会使APK内的所有未压缩数据（如图像或原始文件）在4字节边界上对齐。这允许使用mmap（）直接访问所有部分，即使它们包含具有对齐限制的二进制数据。这有利于是减少运行应用程序时使用的RAM量。
+通过修改zip本地文件头部分中的“额外”字段的大小来进行调整。Android构建工具可以为您处理。 Android Studio会自动对齐您的APK。
+注意：您必须在应用程序构建过程的两个特定点之一使用zipalign，具体取决于您使用的是哪个应用程序签名工具： 如果您使用apksigner，则只能在APK文件签名之前执行zipalign。如果您使用apksigner签名APK并对APK进行进一步更改，则其签名将无效。 如果您使用jarsigner，则只能在APK文件签名后执行zipalign。
+https://developer.android.com/studio/command-line/zipalign.html
+                                
+                            </div>
+                            <div class="post-item-meta">
+    0001-01-01
+    &emsp;
+    
+    
+    
+    &emsp;
+    
+</div>
+
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+        
+            <a href="/android/tools/static-analysis/findbugs/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                
+                            </div>
+                            <div class="post-item-summary">
+                                
+                                    
+                                
+                            </div>
+                            <div class="post-item-meta">
+    0001-01-01
+    &emsp;
+    
+    
+    
+    &emsp;
+    
+</div>
+
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+        
+            <a href="/android/tools/static-analysis/lint/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                
+                            </div>
+                            <div class="post-item-summary">
+                                
+                                    参考 使用 Lint 改进您的代码 Android自定义Lint实践 Android自定义Lint实践2——改进原生Detector Configuring Android Project — Static Code Analysis Tools 使用 CheckStyle 检查代码 
+                                
+                            </div>
+                            <div class="post-item-meta">
+    0001-01-01
+    &emsp;
+    
+    
+    
+    &emsp;
+    
+</div>
+
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+        
+            <a href="/android/tools/static-analysis/pmd/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                
+                            </div>
+                            <div class="post-item-summary">
+                                
+                                    
+                                
+                            </div>
+                            <div class="post-item-meta">
+    0001-01-01
+    &emsp;
+    
+    
+    
+    &emsp;
+    
+</div>
+
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+        
+            <a href="/android/tu-xing-he-tu-xiang/canvas/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                
+                            </div>
+                            <div class="post-item-summary">
+                                
+                                    Canvas使用 Canvas我们可以称之为画布，我们可以使用画笔在上面绘制颜色，也可以绘制点、线以及矩形、扇形等各种形状，还可以绘制图片文本路径等，下面我们一一进行介绍
+绘制颜色 Canvas提供了三个绘制颜色的方法。
+drawColor drawRGB drawARGB 绘制基本形状 想要在画布上进行绘制，就需要一个画笔Paint。这里我们只简单介绍画笔的使用，关于画笔的详细使用将在画笔这一章详细介绍。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 public class CanvasView extends View { public CanvasView(Context context, @Nullable AttributeSet attrs) { super(context, attrs); initPaint(); } //1.创建Paint对象 private Paint mPaint = new Paint(); //2.初始化Paint private void initPaint(){ mPaint.setColor(getResources().getColor(R.color.purple));//设置画笔颜色 mPaint.setStyle(Paint.Style.FILL);//设置画笔样式为填充 mPaint.setStrokeWidth(10f); //设置画笔宽度为10px } @Override protected void onDraw(Canvas canvas) { super.onDraw(canvas); } } 绘制点 绘制一个点需要这个点的坐标。
+                                
+                            </div>
+                            <div class="post-item-meta">
+    0001-01-01
+    &emsp;
+    
+    
+    
+    &emsp;
+    
+</div>
+
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+        
+        </a>
+    </div>
+
+
+                    </div>
+            </div><div id="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head active" href="http://localhost:1313/">
+    
+        <div class="nav-title">
+            Malinkang&#39;s Blog
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+            
+            
+                
+            
+            
+            
+            <a class="a-block nav-link-item active" href="/">
+                Home
+            </a>
+            
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://risehere.net/">Rise</a>
+<br>
+Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	malinkang
+	
+
+    </div>
+    
+</div><div id="extraContainer" class="extra-container">
+    <div class="toc-wrapper">
+        
+
+        
+    </div>
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top"
+            :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        <a type="button" class="pagination-action" id="darkModeToggleButton">
+            <span class="material-icons pagination-action-icon" id="darkModeToggleIcon">
+                dark_mode
+            </span>
+        </a>
+        
+        
+        
+
+        <a class="pagination-action"  href="/page/35/">
+            
+            <i class="material-icons pagination-action-icon">
+                chevron_left
+            </i>
+        </a>
+
+        <div class="pagination-indicator">
+            <span style="text-align: center">
+                36<br>
+                <div style="display: inline-block; transform: rotate(-28deg)">-</div><br>53
+            </span>
+        </div>
+
+
+        <a class="pagination-action"  href="/page/37/">
+            
+            <i class="material-icons pagination-action-icon">
+                chevron_right
+            </i>
+        </a>
+        
+        
+    </div>
+</div>
+
+
+<div class="pagination">
+    
+    <a class="pagination-action" href="/page/35/" style="opacity:1">
+    
+        <i class="material-icons pagination-action-icon">
+            chevron_left
+        </i>
+    </a>
+
+        <div class="pagination-indicator">
+            <span>36/53</span>
+        </div>
+
+        
+        <a class="pagination-action" href="/page/37/"
+           style="opacity:1">
+        
+                <i class="material-icons pagination-action-icon">
+                    chevron_right
+                </i>
+            </a>
+</div>
+
+
+
+<div id="single-column-footer">
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://risehere.net/">Rise</a>
+<br>
+Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	malinkang
+	
+</div>
+            </div>
+    
+    <script src="/js/journal.js"></script></body>
+</html>

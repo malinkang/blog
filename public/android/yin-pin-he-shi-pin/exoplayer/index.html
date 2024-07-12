@@ -1,90 +1,36 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='ExoPlayer 1.介绍 Android提供了MediaPlayer可以使用少量的代码快速实现媒体播放功能。同时还提供了偏向底层的媒体api如MediaCodec、AudioTrack和MediaDrm，可以利用这些去构建自定义媒体播放方案。
-ExoPlayer是构建在Android底层媒体api之上的应用级别的开源项目。
-2.特点 ExoPlayer对比MediaPlayer具有以下优点： 1. 支持基于HTTP的动态自适应流 (DASH) 和SmoothStreaming，任何目前MediaPlayer 支持的视频格式，同时它还支持 HTTP 直播(HLS)，MP4，MP3，WebM，M4A，MPEG-TS 和 AAC。 2. 支持高级的 HLS 特性，例如正确处理 EXT-X-DISCONTINUITY 标签。 3. 能够无缝地合并，连接和循环媒体。 4. 具有自定义和扩展播放器以适应您的用例的能力。ExoPlayer专门设计了这一点，并允许许多组件被替换为自定义实现。 5. 便于随着 App 的升级而升级。因为 ExoPlayer 是一个包含在你的应用中的库，对于你使用哪个版本有完全的控制权，并且你可以简单的跟随应用的升级而升级； 6. 更少的适配性问题。 7. 支持Android 4.4（API等级19）以上的Widevine通用加密。
-缺点： 1. ExoPlayer的标准视频和音频组件依赖Android的MediaCodec,该接口发布于Android4.1，因此不能再Android4.1之前的版本使用ExoPlayer。
-3.库介绍 ExoPlayer库的核心是ExoPlayer接口。ExoPlayer提供传统的媒体播放功能例如媒体缓冲、播放，暂停和快进等。ExoPlayer实现不是直接实现媒体的加载和呈现，而是委托给其他组件来完成。常用的组件包括如下。
-一个MediaSource表示一个媒体资源，当调用ExoPlayer的prepare方法时，传入MediaSource。 Renderer渲染媒体的独立组件，当player创建时Renderer被注入。 TrackSelector选择由MediaSource提供的轨道，以供每个可用渲染器使用。当播放器创建时，TrackSelector将被注入。 LoadControl用于控制媒体的加载。在创建播放器时注入LoadControl。 这些组件提供了默认的实现以满足常见的用例。用户也可以自定义组件。
-4.基本使用 1.添加ExoPlayer的依赖 首先确保工程根目录下build.gradle文件包含jcenter repository。
-1 2 3 repositories { jcenter() } 添加一个gradle compile dependency到你的app下的build.gradle文件中。
-1 compile &amp;#39;com.google.android.exoplayer:exoplayer:r2.X.X&amp;#39; 你也可以只添加你需要的库。例如要开发一个只支持DASH内容播放的应用程序，则只需添加依赖Core，DASH和UI库模块。
-1 2 3 compile &amp;#39;com.google.android.exoplayer:exoplayer-core:r2.X.X&amp;#39; compile &amp;#39;com.'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="ExoPlayer 1.介绍 Android提供了MediaPlayer可以使用少量的代码快速实现媒体播放功能。同时还提供了偏向底层的媒体api如MediaCodec、AudioTrack和MediaDrm，可以利用这些去构建自定义媒体播放方案。 ExoPlayer是构建在Android底层媒体api之上的应用级别的开源项目。 2.特点 ExoPlayer对比MediaPlayer具有以下优点： 1. 支持基于HTTP的动态自适应流 (DASH) 和SmoothStreaming，任何目前MediaPlayer 支持的视频格式，同时它还支持 HTTP 直播(HLS)，MP4，MP3，WebM，M4A，MPEG-TS 和 AAC。 2. 支持高级的 HLS 特性，例如正确处理 EXT-X-DISCONTINUITY 标签。 3. 能够无缝地合并，连接和循环媒体。 4. 具有自定义和扩展播放器以适应您的用例的能力。ExoPlayer专门设计了这一点，并允许许多组件被替换为自定义实现。 5. 便于随着 App 的升级而升级。因为 ExoPlayer 是一个包含在你的应用中的库，对于你使用哪个版本有完全的控制权，并且你可以简单的跟随应用的升级而升级； 6. 更少的适配性问题。 7. 支持Android 4.4（API等级19）以上的Widevine通用加密。 缺点： 1. ExoPlayer的标准视频和音频组件依赖Android的MediaCodec,该接口发布于Android4.1，因此不能再Android4.1之前的版本使用ExoPlayer。 3.库介绍 ExoPlayer库的核心是ExoPlayer接口。ExoPlayer提供传统的媒体播放功能例如媒体缓冲、播放，暂停和快进等。ExoPlayer实现不是直接实现媒体的加载和呈现，而是委托给其他组件来完成。常用的组件包括如下。 一个MediaSource表示一个媒体资源，当调用ExoPlayer的prepare方法时，传入MediaSource。 Renderer渲染媒体的独立组件，当player创建时Renderer被注入。 TrackSelector选择由MediaSource提供的轨道，以供每个可用渲染器使用。当播放器创建时，TrackSelector将被注入。 LoadControl用于控制媒体的加载。在创建播放器时注入LoadControl。 这些组件提供了默认的实现以满足常见的用例。用户也可以自定义组件。 4.基本使用 1.添加ExoPlayer的依赖 首先确保工程根目录下build.gradle文件包含jcenter repository。 1 2 3 repositories { jcenter() } 添加一个gradle compile dependency到你的app下的build.gradle文件中。 1 compile &#39;com.google.android.exoplayer:exoplayer:r2.X.X&#39; 你也可以只添加你需要的库。例如要开发一个只支持DASH内容播放的应用程序，则只需添加依赖Core，DASH和UI库模块。 1 2 3 compile &#39;com.google.android.exoplayer:exoplayer-core:r2.X.X&#39; compile &#39;com.">
 <title></title>
 
-<link rel='canonical' href='https://example.com/android/yin-pin-he-shi-pin/exoplayer/'>
+<link rel='canonical' href='http://localhost:1313/android/yin-pin-he-shi-pin/exoplayer/'>
 
-<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
-<meta property='og:description' content='ExoPlayer 1.介绍 Android提供了MediaPlayer可以使用少量的代码快速实现媒体播放功能。同时还提供了偏向底层的媒体api如MediaCodec、AudioTrack和MediaDrm，可以利用这些去构建自定义媒体播放方案。
-ExoPlayer是构建在Android底层媒体api之上的应用级别的开源项目。
-2.特点 ExoPlayer对比MediaPlayer具有以下优点： 1. 支持基于HTTP的动态自适应流 (DASH) 和SmoothStreaming，任何目前MediaPlayer 支持的视频格式，同时它还支持 HTTP 直播(HLS)，MP4，MP3，WebM，M4A，MPEG-TS 和 AAC。 2. 支持高级的 HLS 特性，例如正确处理 EXT-X-DISCONTINUITY 标签。 3. 能够无缝地合并，连接和循环媒体。 4. 具有自定义和扩展播放器以适应您的用例的能力。ExoPlayer专门设计了这一点，并允许许多组件被替换为自定义实现。 5. 便于随着 App 的升级而升级。因为 ExoPlayer 是一个包含在你的应用中的库，对于你使用哪个版本有完全的控制权，并且你可以简单的跟随应用的升级而升级； 6. 更少的适配性问题。 7. 支持Android 4.4（API等级19）以上的Widevine通用加密。
-缺点： 1. ExoPlayer的标准视频和音频组件依赖Android的MediaCodec,该接口发布于Android4.1，因此不能再Android4.1之前的版本使用ExoPlayer。
-3.库介绍 ExoPlayer库的核心是ExoPlayer接口。ExoPlayer提供传统的媒体播放功能例如媒体缓冲、播放，暂停和快进等。ExoPlayer实现不是直接实现媒体的加载和呈现，而是委托给其他组件来完成。常用的组件包括如下。
-一个MediaSource表示一个媒体资源，当调用ExoPlayer的prepare方法时，传入MediaSource。 Renderer渲染媒体的独立组件，当player创建时Renderer被注入。 TrackSelector选择由MediaSource提供的轨道，以供每个可用渲染器使用。当播放器创建时，TrackSelector将被注入。 LoadControl用于控制媒体的加载。在创建播放器时注入LoadControl。 这些组件提供了默认的实现以满足常见的用例。用户也可以自定义组件。
-4.基本使用 1.添加ExoPlayer的依赖 首先确保工程根目录下build.gradle文件包含jcenter repository。
-1 2 3 repositories { jcenter() } 添加一个gradle compile dependency到你的app下的build.gradle文件中。
-1 compile &amp;#39;com.google.android.exoplayer:exoplayer:r2.X.X&amp;#39; 你也可以只添加你需要的库。例如要开发一个只支持DASH内容播放的应用程序，则只需添加依赖Core，DASH和UI库模块。
-1 2 3 compile &amp;#39;com.google.android.exoplayer:exoplayer-core:r2.X.X&amp;#39; compile &amp;#39;com.'>
-<meta property='og:url' content='https://example.com/android/yin-pin-he-shi-pin/exoplayer/'>
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<meta property='og:description' content="ExoPlayer 1.介绍 Android提供了MediaPlayer可以使用少量的代码快速实现媒体播放功能。同时还提供了偏向底层的媒体api如MediaCodec、AudioTrack和MediaDrm，可以利用这些去构建自定义媒体播放方案。 ExoPlayer是构建在Android底层媒体api之上的应用级别的开源项目。 2.特点 ExoPlayer对比MediaPlayer具有以下优点： 1. 支持基于HTTP的动态自适应流 (DASH) 和SmoothStreaming，任何目前MediaPlayer 支持的视频格式，同时它还支持 HTTP 直播(HLS)，MP4，MP3，WebM，M4A，MPEG-TS 和 AAC。 2. 支持高级的 HLS 特性，例如正确处理 EXT-X-DISCONTINUITY 标签。 3. 能够无缝地合并，连接和循环媒体。 4. 具有自定义和扩展播放器以适应您的用例的能力。ExoPlayer专门设计了这一点，并允许许多组件被替换为自定义实现。 5. 便于随着 App 的升级而升级。因为 ExoPlayer 是一个包含在你的应用中的库，对于你使用哪个版本有完全的控制权，并且你可以简单的跟随应用的升级而升级； 6. 更少的适配性问题。 7. 支持Android 4.4（API等级19）以上的Widevine通用加密。 缺点： 1. ExoPlayer的标准视频和音频组件依赖Android的MediaCodec,该接口发布于Android4.1，因此不能再Android4.1之前的版本使用ExoPlayer。 3.库介绍 ExoPlayer库的核心是ExoPlayer接口。ExoPlayer提供传统的媒体播放功能例如媒体缓冲、播放，暂停和快进等。ExoPlayer实现不是直接实现媒体的加载和呈现，而是委托给其他组件来完成。常用的组件包括如下。 一个MediaSource表示一个媒体资源，当调用ExoPlayer的prepare方法时，传入MediaSource。 Renderer渲染媒体的独立组件，当player创建时Renderer被注入。 TrackSelector选择由MediaSource提供的轨道，以供每个可用渲染器使用。当播放器创建时，TrackSelector将被注入。 LoadControl用于控制媒体的加载。在创建播放器时注入LoadControl。 这些组件提供了默认的实现以满足常见的用例。用户也可以自定义组件。 4.基本使用 1.添加ExoPlayer的依赖 首先确保工程根目录下build.gradle文件包含jcenter repository。 1 2 3 repositories { jcenter() } 添加一个gradle compile dependency到你的app下的build.gradle文件中。 1 compile &#39;com.google.android.exoplayer:exoplayer:r2.X.X&#39; 你也可以只添加你需要的库。例如要开发一个只支持DASH内容播放的应用程序，则只需添加依赖Core，DASH和UI库模块。 1 2 3 compile &#39;com.google.android.exoplayer:exoplayer-core:r2.X.X&#39; compile &#39;com.">
+<meta property='og:url' content='http://localhost:1313/android/yin-pin-he-shi-pin/exoplayer/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="ExoPlayer 1.介绍 Android提供了MediaPlayer可以使用少量的代码快速实现媒体播放功能。同时还提供了偏向底层的媒体api如MediaCodec、AudioTrack和MediaDrm，可以利用这些去构建自定义媒体播放方案。
-ExoPlayer是构建在Android底层媒体api之上的应用级别的开源项目。
-2.特点 ExoPlayer对比MediaPlayer具有以下优点： 1. 支持基于HTTP的动态自适应流 (DASH) 和SmoothStreaming，任何目前MediaPlayer 支持的视频格式，同时它还支持 HTTP 直播(HLS)，MP4，MP3，WebM，M4A，MPEG-TS 和 AAC。 2. 支持高级的 HLS 特性，例如正确处理 EXT-X-DISCONTINUITY 标签。 3. 能够无缝地合并，连接和循环媒体。 4. 具有自定义和扩展播放器以适应您的用例的能力。ExoPlayer专门设计了这一点，并允许许多组件被替换为自定义实现。 5. 便于随着 App 的升级而升级。因为 ExoPlayer 是一个包含在你的应用中的库，对于你使用哪个版本有完全的控制权，并且你可以简单的跟随应用的升级而升级； 6. 更少的适配性问题。 7. 支持Android 4.4（API等级19）以上的Widevine通用加密。
-缺点： 1. ExoPlayer的标准视频和音频组件依赖Android的MediaCodec,该接口发布于Android4.1，因此不能再Android4.1之前的版本使用ExoPlayer。
-3.库介绍 ExoPlayer库的核心是ExoPlayer接口。ExoPlayer提供传统的媒体播放功能例如媒体缓冲、播放，暂停和快进等。ExoPlayer实现不是直接实现媒体的加载和呈现，而是委托给其他组件来完成。常用的组件包括如下。
-一个MediaSource表示一个媒体资源，当调用ExoPlayer的prepare方法时，传入MediaSource。 Renderer渲染媒体的独立组件，当player创建时Renderer被注入。 TrackSelector选择由MediaSource提供的轨道，以供每个可用渲染器使用。当播放器创建时，TrackSelector将被注入。 LoadControl用于控制媒体的加载。在创建播放器时注入LoadControl。 这些组件提供了默认的实现以满足常见的用例。用户也可以自定义组件。
-4.基本使用 1.添加ExoPlayer的依赖 首先确保工程根目录下build.gradle文件包含jcenter repository。
-1 2 3 repositories { jcenter() } 添加一个gradle compile dependency到你的app下的build.gradle文件中。
-1 compile &amp;#39;com.google.android.exoplayer:exoplayer:r2.X.X&amp;#39; 你也可以只添加你需要的库。例如要开发一个只支持DASH内容播放的应用程序，则只需添加依赖Core，DASH和UI库模块。
-1 2 3 compile &amp;#39;com.google.android.exoplayer:exoplayer-core:r2.X.X&amp;#39; compile &amp;#39;com.">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
-}
-</script>
-<style>
-    :root {
-      --sys-font-family: "Noto Serif SC";
-      --zh-font-family: "Noto Serif SC";
-      --base-font-family: "Noto Serif SC";
-      --code-font-family: "Noto Serif SC";
-      --article-font-family: "Noto Serif SC";
-    }
-  </style>
+<meta name="twitter:description" content="ExoPlayer 1.介绍 Android提供了MediaPlayer可以使用少量的代码快速实现媒体播放功能。同时还提供了偏向底层的媒体api如MediaCodec、AudioTrack和MediaDrm，可以利用这些去构建自定义媒体播放方案。 ExoPlayer是构建在Android底层媒体api之上的应用级别的开源项目。 2.特点 ExoPlayer对比MediaPlayer具有以下优点： 1. 支持基于HTTP的动态自适应流 (DASH) 和SmoothStreaming，任何目前MediaPlayer 支持的视频格式，同时它还支持 HTTP 直播(HLS)，MP4，MP3，WebM，M4A，MPEG-TS 和 AAC。 2. 支持高级的 HLS 特性，例如正确处理 EXT-X-DISCONTINUITY 标签。 3. 能够无缝地合并，连接和循环媒体。 4. 具有自定义和扩展播放器以适应您的用例的能力。ExoPlayer专门设计了这一点，并允许许多组件被替换为自定义实现。 5. 便于随着 App 的升级而升级。因为 ExoPlayer 是一个包含在你的应用中的库，对于你使用哪个版本有完全的控制权，并且你可以简单的跟随应用的升级而升级； 6. 更少的适配性问题。 7. 支持Android 4.4（API等级19）以上的Widevine通用加密。 缺点： 1. ExoPlayer的标准视频和音频组件依赖Android的MediaCodec,该接口发布于Android4.1，因此不能再Android4.1之前的版本使用ExoPlayer。 3.库介绍 ExoPlayer库的核心是ExoPlayer接口。ExoPlayer提供传统的媒体播放功能例如媒体缓冲、播放，暂停和快进等。ExoPlayer实现不是直接实现媒体的加载和呈现，而是委托给其他组件来完成。常用的组件包括如下。 一个MediaSource表示一个媒体资源，当调用ExoPlayer的prepare方法时，传入MediaSource。 Renderer渲染媒体的独立组件，当player创建时Renderer被注入。 TrackSelector选择由MediaSource提供的轨道，以供每个可用渲染器使用。当播放器创建时，TrackSelector将被注入。 LoadControl用于控制媒体的加载。在创建播放器时注入LoadControl。 这些组件提供了默认的实现以满足常见的用例。用户也可以自定义组件。 4.基本使用 1.添加ExoPlayer的依赖 首先确保工程根目录下build.gradle文件包含jcenter repository。 1 2 3 repositories { jcenter() } 添加一个gradle compile dependency到你的app下的build.gradle文件中。 1 compile &#39;com.google.android.exoplayer:exoplayer:r2.X.X&#39; 你也可以只添加你需要的库。例如要开发一个只支持DASH内容播放的应用程序，则只需添加依赖Core，DASH和UI库模块。 1 2 3 compile &#39;com.google.android.exoplayer:exoplayer-core:r2.X.X&#39; compile &#39;com.">
   
-  <script>
-    (function () {
-      const customFont = document.createElement("link");
-      customFont.href =
-        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
   
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-  
-      document.head.appendChild(customFont);
-    })();
-  </script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
-     crossorigin="anonymous"></script>
-  
-
-<script>
-    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
 
 
     </head>
@@ -146,7 +92,7 @@ if (!doNotTrack) {
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
             <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -207,13 +153,32 @@ if (!doNotTrack) {
 
 
                 
-                <span>主页</span>
+                <span>Home</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/archives' >
+            <a href='/pages/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/archives/' >
                 
                 
                 
@@ -227,16 +192,54 @@ if (!doNotTrack) {
 
 
                 
-                <span>归档</span>
+                <span>Archives</span>
             </a>
         </li>
         
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -244,7 +247,7 @@ if (!doNotTrack) {
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -252,10 +255,11 @@ if (!doNotTrack) {
 
 
 
-                    <span>Dark Mode</span>
-                </li>
-            
-        </div>
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -351,15 +355,15 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="exoplayer">ExoPlayer</h1>
-<h2 id="1介绍">1.介绍</h2>
-<p>Android提供了MediaPlayer可以使用少量的代码快速实现媒体播放功能。同时还提供了偏向底层的媒体api如MediaCodec、AudioTrack和MediaDrm，可以利用这些去构建自定义媒体播放方案。</p>
+    <h1 id="exoplayer">ExoPlayer
+</h1><h2 id="1介绍">1.介绍
+</h2><p>Android提供了MediaPlayer可以使用少量的代码快速实现媒体播放功能。同时还提供了偏向底层的媒体api如MediaCodec、AudioTrack和MediaDrm，可以利用这些去构建自定义媒体播放方案。</p>
 <p>ExoPlayer是构建在Android底层媒体api之上的应用级别的开源项目。</p>
-<h2 id="2特点">2.特点</h2>
-<p>ExoPlayer对比MediaPlayer具有以下优点： 1. 支持基于HTTP的动态自适应流 (DASH) 和SmoothStreaming，任何目前MediaPlayer 支持的视频格式，同时它还支持 HTTP 直播(HLS)，MP4，MP3，WebM，M4A，MPEG-TS 和 AAC。 2. 支持高级的 HLS 特性，例如正确处理 EXT-X-DISCONTINUITY 标签。 3. 能够无缝地合并，连接和循环媒体。 4. 具有自定义和扩展播放器以适应您的用例的能力。ExoPlayer专门设计了这一点，并允许许多组件被替换为自定义实现。 5. 便于随着 App 的升级而升级。因为 ExoPlayer 是一个包含在你的应用中的库，对于你使用哪个版本有完全的控制权，并且你可以简单的跟随应用的升级而升级； 6. 更少的适配性问题。 7. 支持Android 4.4（API等级19）以上的Widevine通用加密。</p>
+<h2 id="2特点">2.特点
+</h2><p>ExoPlayer对比MediaPlayer具有以下优点： 1. 支持基于HTTP的动态自适应流 (DASH) 和SmoothStreaming，任何目前MediaPlayer 支持的视频格式，同时它还支持 HTTP 直播(HLS)，MP4，MP3，WebM，M4A，MPEG-TS 和 AAC。 2. 支持高级的 HLS 特性，例如正确处理 EXT-X-DISCONTINUITY 标签。 3. 能够无缝地合并，连接和循环媒体。 4. 具有自定义和扩展播放器以适应您的用例的能力。ExoPlayer专门设计了这一点，并允许许多组件被替换为自定义实现。 5. 便于随着 App 的升级而升级。因为 ExoPlayer 是一个包含在你的应用中的库，对于你使用哪个版本有完全的控制权，并且你可以简单的跟随应用的升级而升级； 6. 更少的适配性问题。 7. 支持Android 4.4（API等级19）以上的Widevine通用加密。</p>
 <p>缺点： 1. ExoPlayer的标准视频和音频组件依赖Android的MediaCodec,该接口发布于Android4.1，因此不能再Android4.1之前的版本使用ExoPlayer。</p>
-<h2 id="3库介绍">3.库介绍</h2>
-<p><code>ExoPlayer</code>库的核心是ExoPlayer接口。ExoPlayer提供传统的媒体播放功能例如媒体缓冲、播放，暂停和快进等。ExoPlayer实现不是直接实现媒体的加载和呈现，而是委托给其他组件来完成。常用的组件包括如下。</p>
+<h2 id="3库介绍">3.库介绍
+</h2><p><code>ExoPlayer</code>库的核心是ExoPlayer接口。ExoPlayer提供传统的媒体播放功能例如媒体缓冲、播放，暂停和快进等。ExoPlayer实现不是直接实现媒体的加载和呈现，而是委托给其他组件来完成。常用的组件包括如下。</p>
 <ul>
 <li>一个MediaSource表示一个媒体资源，当调用<code>ExoPlayer</code>的prepare方法时，传入MediaSource。</li>
 <li>Renderer渲染媒体的独立组件，当player创建时Renderer被注入。</li>
@@ -367,9 +371,9 @@ if (!doNotTrack) {
 <li>LoadControl用于控制媒体的加载。在创建播放器时注入LoadControl。</li>
 </ul>
 <p>这些组件提供了默认的实现以满足常见的用例。用户也可以自定义组件。</p>
-<h2 id="4基本使用">4.基本使用</h2>
-<h3 id="1添加exoplayer的依赖">1.添加ExoPlayer的依赖</h3>
-<ol>
+<h2 id="4基本使用">4.基本使用
+</h2><h3 id="1添加exoplayer的依赖">1.添加ExoPlayer的依赖
+</h3><ol>
 <li>
 <p>首先确保工程根目录下build.gradle文件包含jcenter repository。</p>
 <div class="highlight"><div class="chroma">
@@ -422,8 +426,8 @@ if (!doNotTrack) {
 </ul>
 <p>可以查看<a class="link" href="https://bintray.com/google/exoplayer"  target="_blank" rel="noopener"
     >Bintray</a>上的工程,了解更多的信息。</p>
-<h3 id="2创建exoplayer实例">2.创建ExoPlayer实例</h3>
-<p>ExoPlayerFactory提供了多个创建ExoPlayer实例的方法。大多数情况下ExoPlayerFactory.newSimpleInstance方法，该方法返回一个SimpleExoPlayer对象。</p>
+<h3 id="2创建exoplayer实例">2.创建ExoPlayer实例
+</h3><p>ExoPlayerFactory提供了多个创建ExoPlayer实例的方法。大多数情况下ExoPlayerFactory.newSimpleInstance方法，该方法返回一个SimpleExoPlayer对象。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -442,8 +446,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">final</span><span class="w"> </span><span class="n">SimpleExoPlayer</span><span class="w"> </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ExoPlayerFactory</span><span class="p">.</span><span class="na">newSimpleInstance</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">trackSelector</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="3将player关联到view上">3.将player关联到view上</h3>
-<p>ExoPlayer提供了一个SimpleExoPlayerView包含了一个<code>PlaybackControlView</code>和用于渲染视频的<code>Surface</code>。</p>
+</div><h3 id="3将player关联到view上">3.将player关联到view上
+</h3><p>ExoPlayer提供了一个SimpleExoPlayerView包含了一个<code>PlaybackControlView</code>和用于渲染视频的<code>Surface</code>。</p>
 <p>在xml中添加<code>SimpleExoPlayerView</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -486,8 +490,8 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">simpleExoPlayerView</span><span class="p">.</span><span class="na">setPlayer</span><span class="p">(</span><span class="n">player</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="4准备player">4.准备Player</h3>
-<p>在ExoPlayer中，每一块媒体均由MediaSource表示。要播放一块媒体，您必须先创建一个相应的MediaSource，然后将此对象传递给ExoPlayer.prepare。 ExoPlayer库为DASH（DashMediaSource），SmoothStreaming（SsMediaSource），HLS（HlsMediaSource）和常规媒体文件（ExtractorMediaSource）都提供了MediaSource的实现。以下代码显示如何使用适合播放MP4文件的MediaSource准备播放器。</p>
+</div><h3 id="4准备player">4.准备Player
+</h3><p>在ExoPlayer中，每一块媒体均由MediaSource表示。要播放一块媒体，您必须先创建一个相应的MediaSource，然后将此对象传递给ExoPlayer.prepare。 ExoPlayer库为DASH（DashMediaSource），SmoothStreaming（SsMediaSource），HLS（HlsMediaSource）和常规媒体文件（ExtractorMediaSource）都提供了MediaSource的实现。以下代码显示如何使用适合播放MP4文件的MediaSource准备播放器。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -521,7 +525,7 @@ if (!doNotTrack) {
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>按照上面的步骤，我们可以实现一个视频播放的功能。</p>
-<p><img src="/../.gitbook/assets/exoplayer-1%20%282%29%20%282%29%20%282%29%20%281%29%20%282%29%20%282%29%20%282%29%20%281%29.png"
+<p><img src="/.gitbook/assets/exoplayer-1%20%282%29%20%282%29%20%282%29%20%281%29%20%282%29%20%282%29%20%282%29%20%281%29.png"
 	
 	
 	
@@ -529,8 +533,8 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h2 id="扩展阅读">扩展阅读</h2>
-<ul>
+<h2 id="扩展阅读">扩展阅读
+</h2><ul>
 <li><a class="link" href="https://google.github.io/ExoPlayer/"  target="_blank" rel="noopener"
     >项目主页</a></li>
 <li><a class="link" href="https://medium.com/google-exoplayer"  target="_blank" rel="noopener"
@@ -633,7 +637,7 @@ if (!doNotTrack) {
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 

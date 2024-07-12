@@ -1,78 +1,36 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='JavaPoet 文档翻译 原文
-JavaPoet 是一套生成.java源文件的Java接口。
-当做一些比如注解处理或者和元数据文件（比如数据库的schemas，协议格式）交互的事情时，源文件生成非常有用。通过生成代码，你不用写模板代码同时也保证了元数据的唯一来源。
-Example 下面是样板式的 HelloWorld class:
-1 2 3 4 5 6 7 package com.example.helloworld; public final class HelloWorld { public static void main(String[] args) { System.out.println(&amp;#34;Hello, JavaPoet!&amp;#34;); } } 而下面是通过JavaPoet生成的（令人兴奋的）代码:
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 MethodSpec main = MethodSpec.methodBuilder(&amp;#34;main&amp;#34;) .addModifiers(Modifier.PUBLIC, Modifier.STATIC) .returns(void.class) .addParameter(String[].class, &amp;#34;args&amp;#34;) .addStatement(&amp;#34;$T.out.println($S)&amp;#34;, System.class, &amp;#34;Hello, JavaPoet!&amp;#34;) .build(); TypeSpec helloWorld = TypeSpec.classBuilder(&amp;#34;HelloWorld&amp;#34;) .addModifiers(Modifier.PUBLIC, Modifier.'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="JavaPoet 文档翻译 原文 JavaPoet 是一套生成.java源文件的Java接口。 当做一些比如注解处理或者和元数据文件（比如数据库的schemas，协议格式）交互的事情时，源文件生成非常有用。通过生成代码，你不用写模板代码同时也保证了元数据的唯一来源。 Example 下面是样板式的 HelloWorld class: 1 2 3 4 5 6 7 package com.example.helloworld; public final class HelloWorld { public static void main(String[] args) { System.out.println(&#34;Hello, JavaPoet!&#34;); } } 而下面是通过JavaPoet生成的（令人兴奋的）代码: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 MethodSpec main = MethodSpec.methodBuilder(&#34;main&#34;) .addModifiers(Modifier.PUBLIC, Modifier.STATIC) .returns(void.class) .addParameter(String[].class, &#34;args&#34;) .addStatement(&#34;$T.out.println($S)&#34;, System.class, &#34;Hello, JavaPoet!&#34;) .build(); TypeSpec helloWorld = TypeSpec.classBuilder(&#34;HelloWorld&#34;) .addModifiers(Modifier.PUBLIC, Modifier.">
 <title></title>
 
-<link rel='canonical' href='https://example.com/android/annotation/javapoet-wen-dang-fan-yi/'>
+<link rel='canonical' href='http://localhost:1313/android/annotation/javapoet-wen-dang-fan-yi/'>
 
-<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
-<meta property='og:description' content='JavaPoet 文档翻译 原文
-JavaPoet 是一套生成.java源文件的Java接口。
-当做一些比如注解处理或者和元数据文件（比如数据库的schemas，协议格式）交互的事情时，源文件生成非常有用。通过生成代码，你不用写模板代码同时也保证了元数据的唯一来源。
-Example 下面是样板式的 HelloWorld class:
-1 2 3 4 5 6 7 package com.example.helloworld; public final class HelloWorld { public static void main(String[] args) { System.out.println(&amp;#34;Hello, JavaPoet!&amp;#34;); } } 而下面是通过JavaPoet生成的（令人兴奋的）代码:
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 MethodSpec main = MethodSpec.methodBuilder(&amp;#34;main&amp;#34;) .addModifiers(Modifier.PUBLIC, Modifier.STATIC) .returns(void.class) .addParameter(String[].class, &amp;#34;args&amp;#34;) .addStatement(&amp;#34;$T.out.println($S)&amp;#34;, System.class, &amp;#34;Hello, JavaPoet!&amp;#34;) .build(); TypeSpec helloWorld = TypeSpec.classBuilder(&amp;#34;HelloWorld&amp;#34;) .addModifiers(Modifier.PUBLIC, Modifier.'>
-<meta property='og:url' content='https://example.com/android/annotation/javapoet-wen-dang-fan-yi/'>
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<meta property='og:description' content="JavaPoet 文档翻译 原文 JavaPoet 是一套生成.java源文件的Java接口。 当做一些比如注解处理或者和元数据文件（比如数据库的schemas，协议格式）交互的事情时，源文件生成非常有用。通过生成代码，你不用写模板代码同时也保证了元数据的唯一来源。 Example 下面是样板式的 HelloWorld class: 1 2 3 4 5 6 7 package com.example.helloworld; public final class HelloWorld { public static void main(String[] args) { System.out.println(&#34;Hello, JavaPoet!&#34;); } } 而下面是通过JavaPoet生成的（令人兴奋的）代码: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 MethodSpec main = MethodSpec.methodBuilder(&#34;main&#34;) .addModifiers(Modifier.PUBLIC, Modifier.STATIC) .returns(void.class) .addParameter(String[].class, &#34;args&#34;) .addStatement(&#34;$T.out.println($S)&#34;, System.class, &#34;Hello, JavaPoet!&#34;) .build(); TypeSpec helloWorld = TypeSpec.classBuilder(&#34;HelloWorld&#34;) .addModifiers(Modifier.PUBLIC, Modifier.">
+<meta property='og:url' content='http://localhost:1313/android/annotation/javapoet-wen-dang-fan-yi/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="JavaPoet 文档翻译 原文
-JavaPoet 是一套生成.java源文件的Java接口。
-当做一些比如注解处理或者和元数据文件（比如数据库的schemas，协议格式）交互的事情时，源文件生成非常有用。通过生成代码，你不用写模板代码同时也保证了元数据的唯一来源。
-Example 下面是样板式的 HelloWorld class:
-1 2 3 4 5 6 7 package com.example.helloworld; public final class HelloWorld { public static void main(String[] args) { System.out.println(&amp;#34;Hello, JavaPoet!&amp;#34;); } } 而下面是通过JavaPoet生成的（令人兴奋的）代码:
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 MethodSpec main = MethodSpec.methodBuilder(&amp;#34;main&amp;#34;) .addModifiers(Modifier.PUBLIC, Modifier.STATIC) .returns(void.class) .addParameter(String[].class, &amp;#34;args&amp;#34;) .addStatement(&amp;#34;$T.out.println($S)&amp;#34;, System.class, &amp;#34;Hello, JavaPoet!&amp;#34;) .build(); TypeSpec helloWorld = TypeSpec.classBuilder(&amp;#34;HelloWorld&amp;#34;) .addModifiers(Modifier.PUBLIC, Modifier.">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
-}
-</script>
-<style>
-    :root {
-      --sys-font-family: "Noto Serif SC";
-      --zh-font-family: "Noto Serif SC";
-      --base-font-family: "Noto Serif SC";
-      --code-font-family: "Noto Serif SC";
-      --article-font-family: "Noto Serif SC";
-    }
-  </style>
+<meta name="twitter:description" content="JavaPoet 文档翻译 原文 JavaPoet 是一套生成.java源文件的Java接口。 当做一些比如注解处理或者和元数据文件（比如数据库的schemas，协议格式）交互的事情时，源文件生成非常有用。通过生成代码，你不用写模板代码同时也保证了元数据的唯一来源。 Example 下面是样板式的 HelloWorld class: 1 2 3 4 5 6 7 package com.example.helloworld; public final class HelloWorld { public static void main(String[] args) { System.out.println(&#34;Hello, JavaPoet!&#34;); } } 而下面是通过JavaPoet生成的（令人兴奋的）代码: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 MethodSpec main = MethodSpec.methodBuilder(&#34;main&#34;) .addModifiers(Modifier.PUBLIC, Modifier.STATIC) .returns(void.class) .addParameter(String[].class, &#34;args&#34;) .addStatement(&#34;$T.out.println($S)&#34;, System.class, &#34;Hello, JavaPoet!&#34;) .build(); TypeSpec helloWorld = TypeSpec.classBuilder(&#34;HelloWorld&#34;) .addModifiers(Modifier.PUBLIC, Modifier.">
   
-  <script>
-    (function () {
-      const customFont = document.createElement("link");
-      customFont.href =
-        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
   
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-  
-      document.head.appendChild(customFont);
-    })();
-  </script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
-     crossorigin="anonymous"></script>
-  
-
-<script>
-    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
 
 
     </head>
@@ -134,7 +92,7 @@ if (!doNotTrack) {
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
             <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -195,13 +153,32 @@ if (!doNotTrack) {
 
 
                 
-                <span>主页</span>
+                <span>Home</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/archives' >
+            <a href='/pages/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/archives/' >
                 
                 
                 
@@ -215,16 +192,54 @@ if (!doNotTrack) {
 
 
                 
-                <span>归档</span>
+                <span>Archives</span>
             </a>
         </li>
         
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -232,7 +247,7 @@ if (!doNotTrack) {
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -240,10 +255,11 @@ if (!doNotTrack) {
 
 
 
-                    <span>Dark Mode</span>
-                </li>
-            
-        </div>
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -353,13 +369,13 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="javapoet-文档翻译">JavaPoet 文档翻译</h1>
-<p><a class="link" href="https://github.com/square/javapoet"  target="_blank" rel="noopener"
+    <h1 id="javapoet-文档翻译">JavaPoet 文档翻译
+</h1><p><a class="link" href="https://github.com/square/javapoet"  target="_blank" rel="noopener"
     >原文</a><br>
 <code>JavaPoet</code> 是一套生成<code>.java</code>源文件的Java接口。</p>
 <p>当做一些比如注解处理或者和元数据文件（比如数据库的schemas，协议格式）交互的事情时，源文件生成非常有用。通过生成代码，你不用写模板代码同时也保证了元数据的唯一来源。</p>
-<h2 id="example">Example</h2>
-<p>下面是样板式的 <code>HelloWorld</code> class:</p>
+<h2 id="example">Example
+</h2><p>下面是样板式的 <code>HelloWorld</code> class:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -423,8 +439,8 @@ if (!doNotTrack) {
 <p>在这个例子中我们把文件写到<code>System.out</code>中，但我们也能得到文件的字符串(<code>JavaFile.toString()</code>) 或把它写到文件系统里(<code>JavaPoet.writeTo()</code>)。</p>
 <p><a class="link" href="https://square.github.io/javapoet/1.x/javapoet/"  target="_blank" rel="noopener"
     >Javadoc</a>是全部的JavaPoet API，我们接下来看一下。</p>
-<h2 id="代码和控制流">代码和控制流</h2>
-<p>大多数的JavaPoet的API用简单的不可变的Java对象。也有builders，方法链和可变参数来使API友好。JavaPoet 提供类和接口的模型(<code>TypeSpec</code>)，属性的模型(<code>FieldSpec</code>)，方法和构造函数的模型(<code>MethodSpec</code>)，参数的模型(<code>ParameterSpec</code>) 和注解的模型(<code>AnnotationSpec</code>)。</p>
+<h2 id="代码和控制流">代码和控制流
+</h2><p>大多数的JavaPoet的API用简单的不可变的Java对象。也有builders，方法链和可变参数来使API友好。JavaPoet 提供类和接口的模型(<code>TypeSpec</code>)，属性的模型(<code>FieldSpec</code>)，方法和构造函数的模型(<code>MethodSpec</code>)，参数的模型(<code>ParameterSpec</code>) 和注解的模型(<code>AnnotationSpec</code>)。</p>
 <p>但是方法和构造函数的函数体没有被模型化。没有表达式类，没有语句类也没有语法树。取而代之的是，JavaPoet使用字符串来表示代码块:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -533,8 +549,8 @@ if (!doNotTrack) {
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>方法生成方法！并且由于JavaPoet生成源代码而不是字节码，你可以通过阅读它来确保正确性。</p>
-<h2 id="l-用于表示字面量">$L 用于表示字面量</h2>
-<p>在调用<code>beginControlFlow()</code> 和 <code>addStatement</code>时字符串连接是令人分心的。太多的操作符。为了解决这个问题，JavaPoet提供了一个受<a class="link" href="http://developer.android.com/reference/java/util/Formatter.html"  target="_blank" rel="noopener"
+<h2 id="l-用于表示字面量">$L 用于表示字面量
+</h2><p>在调用<code>beginControlFlow()</code> 和 <code>addStatement</code>时字符串连接是令人分心的。太多的操作符。为了解决这个问题，JavaPoet提供了一个受<a class="link" href="http://developer.android.com/reference/java/util/Formatter.html"  target="_blank" rel="noopener"
     ><code>String.format()</code></a>启发而又不兼容的语法。该语法接收**<code>$L</code>**来发出一个字面值到输出中。行为类似<code>Formatter</code>&rsquo;s <code>%s</code>:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -563,8 +579,8 @@ if (!doNotTrack) {
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>字面量被直接不经过转义地写到输出代码中。字面量的参数可能是字符串原始类型，和一些后文描述的JavaPoet类型。</p>
-<h2 id="s-用于表示字符串">$S 用于表示字符串</h2>
-<p>当发送包含字符串的代码时，我们可以用**<code>$S</code>** 来发送一个<strong>string</strong>，包含双引号的包裹和转义。下面是一个发送三个方法的程序，每个都返回它自己的名字:</p>
+<h2 id="s-用于表示字符串">$S 用于表示字符串
+</h2><p>当发送包含字符串的代码时，我们可以用**<code>$S</code>** 来发送一个<strong>string</strong>，包含双引号的包裹和转义。下面是一个发送三个方法的程序，每个都返回它自己的名字:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -644,8 +660,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="t-用来表示类型">$T 用来表示类型</h2>
-<p>我们Java程序员喜欢我们的类型:类型使我们的代码易于理解。并且JavaPoet也是同理。它有丰富的内建支持类型，包含自动生成<code>import</code>语句。使用**<code>$T</code>** 来引用 <strong>types</strong>:</p>
+</div><h2 id="t-用来表示类型">$T 用来表示类型
+</h2><p>我们Java程序员喜欢我们的类型:类型使我们的代码易于理解。并且JavaPoet也是同理。它有丰富的内建支持类型，包含自动生成<code>import</code>语句。使用**<code>$T</code>** 来引用 <strong>types</strong>:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -819,8 +835,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="import-static"><strong>Import static</strong></h3>
-<p>JavaPoet支持<code>import static</code>。它通过明确地收集类型成员名字来完成的。让我们使用一些静态语法糖来完善前一个例子:</p>
+</div><h3 id="import-static"><strong>Import static</strong>
+</h3><p>JavaPoet支持<code>import static</code>。它通过明确地收集类型成员名字来完成的。让我们使用一些静态语法糖来完善前一个例子:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -919,8 +935,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="n-用于表示名字">$N 用于表示名字</h2>
-<p>生成的代码经常是自我参考的。使用 <strong><code>$N</code></strong> 来通过它的名字来指代另一个生成的声明。这是一个方法调用另一个方法:</p>
+</div><h2 id="n-用于表示名字">$N 用于表示名字
+</h2><p>生成的代码经常是自我参考的。使用 <strong><code>$N</code></strong> 来通过它的名字来指代另一个生成的声明。这是一个方法调用另一个方法:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -982,10 +998,10 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">build</span><span class="p">();</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="代码块格式字符串">代码块格式字符串</h2>
-<p>代码块也许有多种方法指定他们的占位符的值。在代码块中只有一种形式也许被用于每个操作。（没读懂什么意思）</p>
-<h3 id="相对参数按顺序的参数"><strong>相对参数(按顺序的参数)</strong></h3>
-<p>给每个在格式化字符串中的占位符传递一个参数值到<code>CodeBlock.add()</code>。在每个例子中，我们生成代码来说&quot;I ate 3 tacos&quot;</p>
+</div><h2 id="代码块格式字符串">代码块格式字符串
+</h2><p>代码块也许有多种方法指定他们的占位符的值。在代码块中只有一种形式也许被用于每个操作。（没读懂什么意思）</p>
+<h3 id="相对参数按顺序的参数"><strong>相对参数(按顺序的参数)</strong>
+</h3><p>给每个在格式化字符串中的占位符传递一个参数值到<code>CodeBlock.add()</code>。在每个例子中，我们生成代码来说&quot;I ate 3 tacos&quot;</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -994,8 +1010,8 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">CodeBlock</span><span class="p">.</span><span class="na">builder</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="s">&#34;I ate $L $L&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">3</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;tacos&#34;</span><span class="p">)</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="位置参数指定位置的参数"><strong>位置参数(指定位置的参数)</strong></h3>
-<p>传入一个整数索引(从1开始)到格式化字符串占位符之前来指定要使用的参数。</p>
+</div><h3 id="位置参数指定位置的参数"><strong>位置参数(指定位置的参数)</strong>
+</h3><p>传入一个整数索引(从1开始)到格式化字符串占位符之前来指定要使用的参数。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1004,8 +1020,8 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">CodeBlock</span><span class="p">.</span><span class="na">builder</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="s">&#34;I ate $2L $1L&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;tacos&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">3</span><span class="p">)</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="命名参数指定名字的参数"><strong>命名参数(指定名字的参数)</strong></h3>
-<p>使用语法<code>$argumentName:X</code>其中<code>X</code>是格式化字符并调用<code>CodeBlock.addNamed()</code>使用一个包含所有格式化字符串中的参数键的字典。参数名使用<code>a-z</code>, <code>A-Z</code>, <code>0-9</code>, 和 <code>_</code>，并且必须以小写字符开头。</p>
+</div><h3 id="命名参数指定名字的参数"><strong>命名参数(指定名字的参数)</strong>
+</h3><p>使用语法<code>$argumentName:X</code>其中<code>X</code>是格式化字符并调用<code>CodeBlock.addNamed()</code>使用一个包含所有格式化字符串中的参数键的字典。参数名使用<code>a-z</code>, <code>A-Z</code>, <code>0-9</code>, 和 <code>_</code>，并且必须以小写字符开头。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1020,8 +1036,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">CodeBlock</span><span class="p">.</span><span class="na">builder</span><span class="p">().</span><span class="na">addNamed</span><span class="p">(</span><span class="s">&#34;I ate $count:L $food:L&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">map</span><span class="p">)</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="方法">方法</h2>
-<p>以上所有方法都有方法体。使用<code>Modifiers.ABSTRACT</code>可以获取一个没有方法体的方法。如果是抽象类或者接口的话则是合法的。</p>
+</div><h2 id="方法">方法
+</h2><p>以上所有方法都有方法体。使用<code>Modifiers.ABSTRACT</code>可以获取一个没有方法体的方法。如果是抽象类或者接口的话则是合法的。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1060,8 +1076,8 @@ if (!doNotTrack) {
 </div><p>其他修饰符在允许的地方工作。记住当指定修饰符，JavaPoet使用<a class="link" href="http://docs.oracle.com/javase/8/docs/api/javax/lang/model/element/Modifier.html"  target="_blank" rel="noopener"
     ><code>javax.lang.model.element.Modifier</code></a>,这个类在Android不可用。这个限制只在代码生成的代码中有效；输出的代码可以运行在各种地方:JVM，Android和GWT。</p>
 <p>方法也有参数，异常，可变参数，Java文档，注解，类型变量和一个返回类型。所有这些都可以在<code>MethodSpec.Builder</code>中配置。</p>
-<h2 id="构造器">构造器</h2>
-<p><code>MethodSpec</code> （当做构造器）稍有不妥；它也可以用作构造函数:</p>
+<h2 id="构造器">构造器
+</h2><p><code>MethodSpec</code> （当做构造器）稍有不妥；它也可以用作构造函数:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1112,8 +1128,8 @@ if (!doNotTrack) {
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>对于多数部分（情况），构造器类似方法一样。当发送代码时，JavaPoet将把构造器放到普通方法之前输出到输出文件。</p>
-<h2 id="参数">参数</h2>
-<p>声明方法和构造器中的参数使用<code>ParameterSpec.builder()</code>或者<code>MethodSpec</code>的简便方法 <code>addParameter()</code>:</p>
+<h2 id="参数">参数
+</h2><p>声明方法和构造器中的参数使用<code>ParameterSpec.builder()</code>或者<code>MethodSpec</code>的简便方法 <code>addParameter()</code>:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1148,8 +1164,8 @@ if (!doNotTrack) {
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>当参数有注解(例如 <code>@Nullable</code>)时扩展的<code>Builder</code>类型是必要的。</p>
-<h2 id="成员变量">成员变量</h2>
-<p>与参数类似，成员变量也是既能使用builder创建也能使用方便的帮助方法创建:</p>
+<h2 id="成员变量">成员变量
+</h2><p>与参数类似，成员变量也是既能使用builder创建也能使用方便的帮助方法创建:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1216,8 +1232,8 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">android</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;Lollipop v.&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">5</span><span class="p">.</span><span class="na">0</span><span class="p">;</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="接口">接口</h2>
-<p>JavaPoet处理接口没有问题。记住接口放必须总是使用<code>PUBLIC ABSTRACT</code>并且接口的成员变量必须总是<code>PUBLIC STATIC FINAL</code>。当定义接口时这些修饰符总是必要的:</p>
+</div><h2 id="接口">接口
+</h2><p>JavaPoet处理接口没有问题。记住接口放必须总是使用<code>PUBLIC ABSTRACT</code>并且接口的成员变量必须总是<code>PUBLIC STATIC FINAL</code>。当定义接口时这些修饰符总是必要的:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1261,8 +1277,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="枚举">枚举</h2>
-<p>使用<code>enumBuilder</code>创建枚举类型，并且 <code>addEnumConstant()</code> 用于添加每个值:</p>
+</div><h2 id="枚举">枚举
+</h2><p>使用<code>enumBuilder</code>创建枚举类型，并且 <code>addEnumConstant()</code> 用于添加每个值:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1390,8 +1406,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="匿名内部类">匿名内部类</h2>
-<p>在枚举代码中，我们使用<code>Types.anonymousInnerClass()</code>。匿名内部类也能被用于代码块中。它们可以被<code>$L</code>引用的值:</p>
+</div><h2 id="匿名内部类">匿名内部类
+</h2><p>在枚举代码中，我们使用<code>Types.anonymousInnerClass()</code>。匿名内部类也能被用于代码块中。它们可以被<code>$L</code>引用的值:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1458,8 +1474,8 @@ if (!doNotTrack) {
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>定义匿名内部类的一个棘手的部分是超类构造器的参数。在上述代码中我们传递空字符串带包没有参数:<code>TypeSpec.anonymousClassBuilder(&quot;&quot;)</code>。用JavaPoet代码块语法用逗号来分隔参数类传递不同参数。</p>
-<h2 id="注解">注解</h2>
-<p>简单注解很容易:</p>
+<h2 id="注解">注解
+</h2><p>简单注解很容易:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1590,8 +1606,8 @@ if (!doNotTrack) {
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>记住你可以用相同的属性名多次调用<code>addMember()</code> 来填充列表该属性的值。</p>
-<h2 id="javadoc">Javadoc</h2>
-<p>成员变量，方法和类型可以使用Javadoc来生成文档:</p>
+<h2 id="javadoc">Javadoc
+</h2><p>成员变量，方法和类型可以使用Javadoc来生成文档:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1739,7 +1755,7 @@ if (!doNotTrack) {
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 

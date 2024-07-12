@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html><head>
+	<meta name="generator" content="Hugo 0.128.2"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<title>Malinkang&#39;s Blog</title>
+
+
+
+  
+
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+    <link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="/scss/dark-mode.min.c6e68b913da16a092755d6c22435d1331fd1af82c857538edbdca3203413fe72.css" integrity="sha256-xuaLkT2hagknVdbCJDXRMx/Rr4LIV1OO29yjIDQT/nI=" media="screen">
+
+
+<link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Material+Icons">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+
+
+
+</head>
+<body>
+    	<div id="app"><div class="single-column-drawer-container" id="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+                
+                
+                
+                    
+                
+                
+                
+                <a class="a-block drawer-menu-item active" href="/">
+                    Home
+                </a>
+                
+            
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div id="drawer-mask" v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav id="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div id="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a id="navTitle" class="navbar-brand" href="http://localhost:1313/">
+            Malinkang&#39;s Blog
+        </a>
+        
+        <button type="button" class="nav-darkmode-toggle" id="darkModeToggleButton2">
+            <i class="material-icons" id="darkModeToggleIcon2">
+                dark_mode
+            </i>
+        </button>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" id="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="http://localhost:1313/">
+        <div class="single-column-header-title">Malinkang&#39;s Blog</div>
+        
+
+    </a>
+</div>
+
+            <div id="content">
+                <div id="streamContainer" class="stream-container">
+
+    <div class="post-list-container post-list-container-no-background">
+        
+        
+            <a href="/android/%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6/service/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                
+                            </div>
+                            <div class="post-item-summary">
+                                
+                                    服务类型 服务有三种类型
+前台服务
+后台服务
+绑定服务
+参考：
+服务概览
+前台服务
+绑定服务 当客户端取消绑定时，系统不会调用onServiceDisconnected()方法。
+在Activity中绑定的服务，Activity销毁时绑定的服务也会随之销毁。
+AIDL oneway和非oneway区别。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 override fun onServiceConnected(name: ComponentName?, service: IBinder?) { val start =System.currentTimeMillis() mService=Operator.Stub.asInterface(service) mService?.add(10,20,object:Callback.Stub(){ override fun onSuccess(result: Int) { Log.d(TAG,&#34;onSuccess = $result&#34;) } }) val end = System.currentTimeMillis() Log.d(TAG,&#34;cost ${end -start} ms&#34;) } //远程服务 private val mBinder =object : Operator.
+                                
+                            </div>
+                            <div class="post-item-meta">
+    0001-01-01
+    &emsp;
+    
+    
+    
+    &emsp;
+    
+</div>
+
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+        
+            <a href="/android/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/matrix/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                
+                            </div>
+                            <div class="post-item-summary">
+                                
+                                    LooperMonitor classDiagram class IdleHandler{ boolean queueIdle() } IdleHandler<|--LooperMonitor 构造函数 1 2 3 4 5 6 private LooperMonitor(Looper looper) { Objects.requireNonNull(looper); this.looper = looper; resetPrinter(); addIdleHandler(looper); } register() 1 2 3 4 5 private static final LooperMonitor sMainMonitor = LooperMonitor.of(Looper.getMainLooper()); static void register(LooperDispatchListener listener) { sMainMonitor.addListener(listener); } of() 1 2 3 4 5 6 7 8 9 10 11 12 //保证一个线程只有一个LooperMonitor对象 private static final Map&lt;Looper, LooperMonitor&gt; sLooperMonitorMap = new ConcurrentHashMap&lt;&gt;(); public static LooperMonitor of(@NonNull Looper looper) { LooperMonitor looperMonitor = sLooperMonitorMap.
+                                
+                            </div>
+                            <div class="post-item-meta">
+    0001-01-01
+    &emsp;
+    
+    
+    
+    &emsp;
+    
+</div>
+
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+        
+            <a href="/android/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/sharedpreference/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                
+                            </div>
+                            <div class="post-item-summary">
+                                
+                                    获取SharedPreferences对象 getPreferences() 1 2 3 4 5 6 7 8 //frameworks/base/core/java/android/app/Activity.java public SharedPreferences getPreferences(@Context.PreferencesMode int mode) { return getSharedPreferences(getLocalClassName(), mode); } //frameworks/base/core/java/android/content/ContextWrapper.java public SharedPreferences getSharedPreferences(String name, int mode) { return mBase.getSharedPreferences(name, mode); } getLocalClassName() 1 2 3 4 5 6 7 8 9 10 11 //frameworks/base/core/java/android/app/Activity.java public String getLocalClassName() { final String pkg = getPackageName(); final String cls = mComponent.getClassName(); int packageLen = pkg.length(); if (!cls.startsWith(pkg) || cls.length() &lt;= packageLen || cls.
+                                
+                            </div>
+                            <div class="post-item-meta">
+    0001-01-01
+    &emsp;
+    
+    
+    
+    &emsp;
+    
+</div>
+
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+        
+            <a href="/android/%E8%A7%A6%E6%91%B8%E5%92%8C%E6%89%8B%E5%8A%BF/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                
+                            </div>
+                            <div class="post-item-summary">
+                                
+                                    在Android中，所有的Touch事件都会被封装成一个MotionEvent对象。Touch的事件类型包括ACTION_DOWN、ACTION_UP、ACTION_MOVE、ACTION_CANCEL等。每一个触摸事件都是以ACTION_DOWN开始，以ACTION_UP结束。
+Android提供了非常多的API来帮助我们创建和检测手势。
+                                
+                            </div>
+                            <div class="post-item-meta">
+    0001-01-01
+    &emsp;
+    
+    
+    
+    &emsp;
+    
+</div>
+
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+        
+            <a href="/archives/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                
+                            </div>
+                            <div class="post-item-summary">
+                                
+                                    
+                                
+                            </div>
+                            <div class="post-item-meta">
+    0001-01-01
+    &emsp;
+    
+    
+    
+    &emsp;
+    
+</div>
+
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+        
+        </a>
+    </div>
+
+
+                    </div>
+            </div><div id="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head active" href="http://localhost:1313/">
+    
+        <div class="nav-title">
+            Malinkang&#39;s Blog
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+            
+            
+                
+            
+            
+            
+            <a class="a-block nav-link-item active" href="/">
+                Home
+            </a>
+            
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://risehere.net/">Rise</a>
+<br>
+Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	malinkang
+	
+
+    </div>
+    
+</div><div id="extraContainer" class="extra-container">
+    <div class="toc-wrapper">
+        
+
+        
+    </div>
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top"
+            :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        <a type="button" class="pagination-action" id="darkModeToggleButton">
+            <span class="material-icons pagination-action-icon" id="darkModeToggleIcon">
+                dark_mode
+            </span>
+        </a>
+        
+        
+        
+
+        <a class="pagination-action"  href="/page/50/">
+            
+            <i class="material-icons pagination-action-icon">
+                chevron_left
+            </i>
+        </a>
+
+        <div class="pagination-indicator">
+            <span style="text-align: center">
+                51<br>
+                <div style="display: inline-block; transform: rotate(-28deg)">-</div><br>53
+            </span>
+        </div>
+
+
+        <a class="pagination-action"  href="/page/52/">
+            
+            <i class="material-icons pagination-action-icon">
+                chevron_right
+            </i>
+        </a>
+        
+        
+    </div>
+</div>
+
+
+<div class="pagination">
+    
+    <a class="pagination-action" href="/page/50/" style="opacity:1">
+    
+        <i class="material-icons pagination-action-icon">
+            chevron_left
+        </i>
+    </a>
+
+        <div class="pagination-indicator">
+            <span>51/53</span>
+        </div>
+
+        
+        <a class="pagination-action" href="/page/52/"
+           style="opacity:1">
+        
+                <i class="material-icons pagination-action-icon">
+                    chevron_right
+                </i>
+            </a>
+</div>
+
+
+
+<div id="single-column-footer">
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://risehere.net/">Rise</a>
+<br>
+Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	malinkang
+	
+</div>
+            </div>
+    
+    <script src="/js/journal.js"></script></body>
+</html>

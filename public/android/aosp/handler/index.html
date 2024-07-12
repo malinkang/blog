@@ -1,72 +1,36 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Handler源码分析 Looper 我们知道一个线程是一段可执行的代码，当可执行代码执行完成后，线程生命周期便会终止，线程就会退出，那么作为App的主线程，如果代码段执行完了会怎样？，那么就会出现App启动后执行一段代码后就自动退出了，这是很不合理的。所以为了防止代码段被执行完，只能在代码中插入一个死循环，那么代码就不会被执行完，然后自动退出，怎么在在代码中插入一个死循环呢？那么Looper出现了，在主线程中调用Looper.prepare()&amp;hellip;Looper.loop()就会变当前线程变成Looper线程（可以先简单理解：无限循环不退出的线程），Looper.loop()方法里面有一段死循环的代码，所以主线程会进入while(true){&amp;hellip;}的代码段跳不出来，但是主线程也不能什么都不做吧？其实所有做的事情都在while(true){&amp;hellip;}里面做了，主线程会在死循环中不断等其他线程给它发消息（消息包括：Activity启动，生命周期，更新UI，控件事件等），一有消息就根据消息做相应的处理，Looper的另外一部分工作就是在循环代码中会不断从消息队列挨个拿出消息给主线程处理。
-在Looper的loop()方法中循环从MessageQueue中取出Message，然后通过Handler来处理消息。假若队列为空，那么它会进入休眠。
-Handler方法提供接收一个Looper对象的构造函数。但是在UI线程中创建调用不带参数的构造函数也不会报错，那么UI线程的Looper是何时创建的呢？其实在程序启动时，系统就为UI线程创建了一个Looper对象。
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 //ActivityThread的main方法 public static void main(String[] args) { //... Looper.prepareMainLooper(); // Find the value for {@link #PROC_START_SEQ_IDENT} if provided on the command line. // It will be in the format &amp;#34;seq=114&amp;#34; long startSeq = 0; if (args !'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Handler源码分析 Looper 我们知道一个线程是一段可执行的代码，当可执行代码执行完成后，线程生命周期便会终止，线程就会退出，那么作为App的主线程，如果代码段执行完了会怎样？，那么就会出现App启动后执行一段代码后就自动退出了，这是很不合理的。所以为了防止代码段被执行完，只能在代码中插入一个死循环，那么代码就不会被执行完，然后自动退出，怎么在在代码中插入一个死循环呢？那么Looper出现了，在主线程中调用Looper.prepare()&hellip;Looper.loop()就会变当前线程变成Looper线程（可以先简单理解：无限循环不退出的线程），Looper.loop()方法里面有一段死循环的代码，所以主线程会进入while(true){&hellip;}的代码段跳不出来，但是主线程也不能什么都不做吧？其实所有做的事情都在while(true){&hellip;}里面做了，主线程会在死循环中不断等其他线程给它发消息（消息包括：Activity启动，生命周期，更新UI，控件事件等），一有消息就根据消息做相应的处理，Looper的另外一部分工作就是在循环代码中会不断从消息队列挨个拿出消息给主线程处理。 在Looper的loop()方法中循环从MessageQueue中取出Message，然后通过Handler来处理消息。假若队列为空，那么它会进入休眠。 Handler方法提供接收一个Looper对象的构造函数。但是在UI线程中创建调用不带参数的构造函数也不会报错，那么UI线程的Looper是何时创建的呢？其实在程序启动时，系统就为UI线程创建了一个Looper对象。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 //ActivityThread的main方法 public static void main(String[] args) { //... Looper.prepareMainLooper(); // Find the value for {@link #PROC_START_SEQ_IDENT} if provided on the command line. // It will be in the format &#34;seq=114&#34; long startSeq = 0; if (args !">
 <title></title>
 
-<link rel='canonical' href='https://example.com/android/aosp/handler/'>
+<link rel='canonical' href='http://localhost:1313/android/aosp/handler/'>
 
-<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
-<meta property='og:description' content='Handler源码分析 Looper 我们知道一个线程是一段可执行的代码，当可执行代码执行完成后，线程生命周期便会终止，线程就会退出，那么作为App的主线程，如果代码段执行完了会怎样？，那么就会出现App启动后执行一段代码后就自动退出了，这是很不合理的。所以为了防止代码段被执行完，只能在代码中插入一个死循环，那么代码就不会被执行完，然后自动退出，怎么在在代码中插入一个死循环呢？那么Looper出现了，在主线程中调用Looper.prepare()&amp;hellip;Looper.loop()就会变当前线程变成Looper线程（可以先简单理解：无限循环不退出的线程），Looper.loop()方法里面有一段死循环的代码，所以主线程会进入while(true){&amp;hellip;}的代码段跳不出来，但是主线程也不能什么都不做吧？其实所有做的事情都在while(true){&amp;hellip;}里面做了，主线程会在死循环中不断等其他线程给它发消息（消息包括：Activity启动，生命周期，更新UI，控件事件等），一有消息就根据消息做相应的处理，Looper的另外一部分工作就是在循环代码中会不断从消息队列挨个拿出消息给主线程处理。
-在Looper的loop()方法中循环从MessageQueue中取出Message，然后通过Handler来处理消息。假若队列为空，那么它会进入休眠。
-Handler方法提供接收一个Looper对象的构造函数。但是在UI线程中创建调用不带参数的构造函数也不会报错，那么UI线程的Looper是何时创建的呢？其实在程序启动时，系统就为UI线程创建了一个Looper对象。
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 //ActivityThread的main方法 public static void main(String[] args) { //... Looper.prepareMainLooper(); // Find the value for {@link #PROC_START_SEQ_IDENT} if provided on the command line. // It will be in the format &amp;#34;seq=114&amp;#34; long startSeq = 0; if (args !'>
-<meta property='og:url' content='https://example.com/android/aosp/handler/'>
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<meta property='og:description' content="Handler源码分析 Looper 我们知道一个线程是一段可执行的代码，当可执行代码执行完成后，线程生命周期便会终止，线程就会退出，那么作为App的主线程，如果代码段执行完了会怎样？，那么就会出现App启动后执行一段代码后就自动退出了，这是很不合理的。所以为了防止代码段被执行完，只能在代码中插入一个死循环，那么代码就不会被执行完，然后自动退出，怎么在在代码中插入一个死循环呢？那么Looper出现了，在主线程中调用Looper.prepare()&hellip;Looper.loop()就会变当前线程变成Looper线程（可以先简单理解：无限循环不退出的线程），Looper.loop()方法里面有一段死循环的代码，所以主线程会进入while(true){&hellip;}的代码段跳不出来，但是主线程也不能什么都不做吧？其实所有做的事情都在while(true){&hellip;}里面做了，主线程会在死循环中不断等其他线程给它发消息（消息包括：Activity启动，生命周期，更新UI，控件事件等），一有消息就根据消息做相应的处理，Looper的另外一部分工作就是在循环代码中会不断从消息队列挨个拿出消息给主线程处理。 在Looper的loop()方法中循环从MessageQueue中取出Message，然后通过Handler来处理消息。假若队列为空，那么它会进入休眠。 Handler方法提供接收一个Looper对象的构造函数。但是在UI线程中创建调用不带参数的构造函数也不会报错，那么UI线程的Looper是何时创建的呢？其实在程序启动时，系统就为UI线程创建了一个Looper对象。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 //ActivityThread的main方法 public static void main(String[] args) { //... Looper.prepareMainLooper(); // Find the value for {@link #PROC_START_SEQ_IDENT} if provided on the command line. // It will be in the format &#34;seq=114&#34; long startSeq = 0; if (args !">
+<meta property='og:url' content='http://localhost:1313/android/aosp/handler/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="Handler源码分析 Looper 我们知道一个线程是一段可执行的代码，当可执行代码执行完成后，线程生命周期便会终止，线程就会退出，那么作为App的主线程，如果代码段执行完了会怎样？，那么就会出现App启动后执行一段代码后就自动退出了，这是很不合理的。所以为了防止代码段被执行完，只能在代码中插入一个死循环，那么代码就不会被执行完，然后自动退出，怎么在在代码中插入一个死循环呢？那么Looper出现了，在主线程中调用Looper.prepare()&amp;hellip;Looper.loop()就会变当前线程变成Looper线程（可以先简单理解：无限循环不退出的线程），Looper.loop()方法里面有一段死循环的代码，所以主线程会进入while(true){&amp;hellip;}的代码段跳不出来，但是主线程也不能什么都不做吧？其实所有做的事情都在while(true){&amp;hellip;}里面做了，主线程会在死循环中不断等其他线程给它发消息（消息包括：Activity启动，生命周期，更新UI，控件事件等），一有消息就根据消息做相应的处理，Looper的另外一部分工作就是在循环代码中会不断从消息队列挨个拿出消息给主线程处理。
-在Looper的loop()方法中循环从MessageQueue中取出Message，然后通过Handler来处理消息。假若队列为空，那么它会进入休眠。
-Handler方法提供接收一个Looper对象的构造函数。但是在UI线程中创建调用不带参数的构造函数也不会报错，那么UI线程的Looper是何时创建的呢？其实在程序启动时，系统就为UI线程创建了一个Looper对象。
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 //ActivityThread的main方法 public static void main(String[] args) { //... Looper.prepareMainLooper(); // Find the value for {@link #PROC_START_SEQ_IDENT} if provided on the command line. // It will be in the format &amp;#34;seq=114&amp;#34; long startSeq = 0; if (args !">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
-}
-</script>
-<style>
-    :root {
-      --sys-font-family: "Noto Serif SC";
-      --zh-font-family: "Noto Serif SC";
-      --base-font-family: "Noto Serif SC";
-      --code-font-family: "Noto Serif SC";
-      --article-font-family: "Noto Serif SC";
-    }
-  </style>
+<meta name="twitter:description" content="Handler源码分析 Looper 我们知道一个线程是一段可执行的代码，当可执行代码执行完成后，线程生命周期便会终止，线程就会退出，那么作为App的主线程，如果代码段执行完了会怎样？，那么就会出现App启动后执行一段代码后就自动退出了，这是很不合理的。所以为了防止代码段被执行完，只能在代码中插入一个死循环，那么代码就不会被执行完，然后自动退出，怎么在在代码中插入一个死循环呢？那么Looper出现了，在主线程中调用Looper.prepare()&hellip;Looper.loop()就会变当前线程变成Looper线程（可以先简单理解：无限循环不退出的线程），Looper.loop()方法里面有一段死循环的代码，所以主线程会进入while(true){&hellip;}的代码段跳不出来，但是主线程也不能什么都不做吧？其实所有做的事情都在while(true){&hellip;}里面做了，主线程会在死循环中不断等其他线程给它发消息（消息包括：Activity启动，生命周期，更新UI，控件事件等），一有消息就根据消息做相应的处理，Looper的另外一部分工作就是在循环代码中会不断从消息队列挨个拿出消息给主线程处理。 在Looper的loop()方法中循环从MessageQueue中取出Message，然后通过Handler来处理消息。假若队列为空，那么它会进入休眠。 Handler方法提供接收一个Looper对象的构造函数。但是在UI线程中创建调用不带参数的构造函数也不会报错，那么UI线程的Looper是何时创建的呢？其实在程序启动时，系统就为UI线程创建了一个Looper对象。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 //ActivityThread的main方法 public static void main(String[] args) { //... Looper.prepareMainLooper(); // Find the value for {@link #PROC_START_SEQ_IDENT} if provided on the command line. // It will be in the format &#34;seq=114&#34; long startSeq = 0; if (args !">
   
-  <script>
-    (function () {
-      const customFont = document.createElement("link");
-      customFont.href =
-        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
   
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-  
-      document.head.appendChild(customFont);
-    })();
-  </script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
-     crossorigin="anonymous"></script>
-  
-
-<script>
-    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
 
 
     </head>
@@ -128,7 +92,7 @@ if (!doNotTrack) {
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
             <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -189,13 +153,32 @@ if (!doNotTrack) {
 
 
                 
-                <span>主页</span>
+                <span>Home</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/archives' >
+            <a href='/pages/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/archives/' >
                 
                 
                 
@@ -209,16 +192,54 @@ if (!doNotTrack) {
 
 
                 
-                <span>归档</span>
+                <span>Archives</span>
             </a>
         </li>
         
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -226,7 +247,7 @@ if (!doNotTrack) {
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -234,10 +255,11 @@ if (!doNotTrack) {
 
 
 
-                    <span>Dark Mode</span>
-                </li>
-            
-        </div>
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -356,9 +378,9 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="handler源码分析">Handler源码分析</h1>
-<h2 id="looper">Looper</h2>
-<p>我们知道一个线程是一段可执行的代码，当可执行代码执行完成后，线程生命周期便会终止，线程就会退出，那么作为App的主线程，如果代码段执行完了会怎样？，那么就会出现App启动后执行一段代码后就自动退出了，这是很不合理的。所以为了防止代码段被执行完，只能在代码中插入一个死循环，那么代码就不会被执行完，然后自动退出，怎么在在代码中插入一个死循环呢？那么Looper出现了，在主线程中调用Looper.prepare()&hellip;Looper.loop()就会变当前线程变成Looper线程（可以先简单理解：无限循环不退出的线程），Looper.loop()方法里面有一段死循环的代码，所以主线程会进入while(true){&hellip;}的代码段跳不出来，但是主线程也不能什么都不做吧？其实所有做的事情都在while(true){&hellip;}里面做了，主线程会在死循环中不断等其他线程给它发消息（消息包括：Activity启动，生命周期，更新UI，控件事件等），一有消息就根据消息做相应的处理，Looper的另外一部分工作就是在循环代码中会不断从消息队列挨个拿出消息给主线程处理。</p>
+    <h1 id="handler源码分析">Handler源码分析
+</h1><h2 id="looper">Looper
+</h2><p>我们知道一个线程是一段可执行的代码，当可执行代码执行完成后，线程生命周期便会终止，线程就会退出，那么作为App的主线程，如果代码段执行完了会怎样？，那么就会出现App启动后执行一段代码后就自动退出了，这是很不合理的。所以为了防止代码段被执行完，只能在代码中插入一个死循环，那么代码就不会被执行完，然后自动退出，怎么在在代码中插入一个死循环呢？那么Looper出现了，在主线程中调用Looper.prepare()&hellip;Looper.loop()就会变当前线程变成Looper线程（可以先简单理解：无限循环不退出的线程），Looper.loop()方法里面有一段死循环的代码，所以主线程会进入while(true){&hellip;}的代码段跳不出来，但是主线程也不能什么都不做吧？其实所有做的事情都在while(true){&hellip;}里面做了，主线程会在死循环中不断等其他线程给它发消息（消息包括：Activity启动，生命周期，更新UI，控件事件等），一有消息就根据消息做相应的处理，Looper的另外一部分工作就是在循环代码中会不断从消息队列挨个拿出消息给主线程处理。</p>
 <p>在<code>Looper</code>的<code>loop()</code>方法中循环从<code>MessageQueue</code>中取出<code>Message</code>，然后通过<code>Handler</code>来处理消息。假若队列为空，那么它会进入休眠。</p>
 <p>Handler方法提供接收一个Looper对象的构造函数。但是在UI线程中创建调用不带参数的构造函数也不会报错，那么UI线程的Looper是何时创建的呢？其实在程序启动时，系统就为UI线程创建了一个Looper对象。</p>
 <div class="highlight"><div class="chroma">
@@ -444,8 +466,8 @@ if (!doNotTrack) {
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>Looper的<code>prepareMainLooper</code>方法会创建一个<code>Looper</code>实例然后放入到<code>ThreadLocal</code>中，然后创建<code>Handler</code>时会获取该实例。</p>
-<h3 id="prepare">prepare()</h3>
-<p>对于无参的情况，默认调用<code>prepare(true)</code>，表示的是这个Looper允许退出，而对于false的情况则表示当前Looper不允许退出。</p>
+<h3 id="prepare">prepare()
+</h3><p>对于无参的情况，默认调用<code>prepare(true)</code>，表示的是这个Looper允许退出，而对于false的情况则表示当前Looper不允许退出。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -528,8 +550,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="loop">loop()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="loop">loop()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -596,8 +618,8 @@ if (!doNotTrack) {
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>在<code>loop()</code>中，调用<code>msg.target</code>的<code>dispatchMessage</code>方法来分发消息。<code>msg.target</code> 是一个<code>Handler</code>对象，哪个<code>Handler</code>把这个<code>Message</code>发到队列里，这个Message会持有这个Handler的引用，并放到自己的target变量中,这样就可以回调我们重写的handler的handleMessage方法。</p>
-<h3 id="quit">quit()</h3>
-<div class="highlight"><div class="chroma">
+<h3 id="quit">quit()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -671,10 +693,10 @@ if (!doNotTrack) {
 <li>当safe =true时，只移除尚未触发的所有消息，对于正在触发的消息并不移除；</li>
 <li>当safe =flase时，移除所有的消息</li>
 </ul>
-<h2 id="handler">Handler</h2>
-<p>简单说<code>Handler</code>用于同一个进程的线程间通信。<code>Looper</code>让主线程无限循环地从自己的<code>MessageQueue</code>拿出消息处理，既然这样我们就知道处理消息肯定是在主线程中处理的，那么怎样在其他的线程往主线程的队列里放入消息呢？其实很简单，我们知道在同一进程中线程和线程之间资源是共享的，也就是对于任何变量在任何线程都是可以访问和修改的，只要考虑并发性做好同步就行了，那么只要拿到<code>MessageQueue</code>的实例，就可以往主线程的<code>MessageQueue</code>放入消息，主线程在轮询的时候就会在主线程处理这个消息。</p>
-<h3 id="构造函数">构造函数</h3>
-<div class="highlight"><div class="chroma">
+<h2 id="handler">Handler
+</h2><p>简单说<code>Handler</code>用于同一个进程的线程间通信。<code>Looper</code>让主线程无限循环地从自己的<code>MessageQueue</code>拿出消息处理，既然这样我们就知道处理消息肯定是在主线程中处理的，那么怎样在其他的线程往主线程的队列里放入消息呢？其实很简单，我们知道在同一进程中线程和线程之间资源是共享的，也就是对于任何变量在任何线程都是可以访问和修改的，只要考虑并发性做好同步就行了，那么只要拿到<code>MessageQueue</code>的实例，就可以往主线程的<code>MessageQueue</code>放入消息，主线程在轮询的时候就会在主线程处理这个消息。</p>
+<h3 id="构造函数">构造函数
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -740,8 +762,8 @@ if (!doNotTrack) {
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>ThreadLocal</code>即线程本地存储区（Thread Local Storage，简称为TLS），每个线程都有自己的私有的本地存储区域，不同线程之间彼此不能访问对方的TLS区域。这里线程自己的本地存储区域存放是线程自己的Looper。</p>
-<h3 id="消息分发">消息分发</h3>
-<p>在<code>Looper.loop()</code>中，当发现有消息时，调用消息的目标<code>handler</code>，执行<code>dispatchMessage()</code>方法来分发消息。</p>
+<h3 id="消息分发">消息分发
+</h3><p>在<code>Looper.loop()</code>中，当发现有消息时，调用消息的目标<code>handler</code>，执行<code>dispatchMessage()</code>方法来分发消息。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -785,9 +807,9 @@ if (!doNotTrack) {
 <li>调用<code>Handler</code>自身的回调方法<code>handleMessage()</code>，该方法默认为空，Handler子类通过覆写该方法来完成具体的逻辑。</li>
 </ol>
 <p>对于很多情况下，消息分发后的处理方法是第3种情况，即Handler.handleMessage()，一般地往往通过覆写该方法从而实现自己的业务逻辑。</p>
-<h3 id="消息发送">消息发送</h3>
-<p>发送消息调用链：</p>
-<p><img src="/../.gitbook/assets/image%20%2869%29.png"
+<h3 id="消息发送">消息发送
+</h3><p>发送消息调用链：</p>
+<p><img src="/.gitbook/assets/image%20%2869%29.png"
 	
 	
 	
@@ -866,9 +888,9 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="message">Message</h2>
-<h3 id="消息对象">消息对象</h3>
-<p>每个消息用<code>Message</code>表示，<code>Message</code>主要包含以下内容：</p>
+</div><h2 id="message">Message
+</h2><h3 id="消息对象">消息对象
+</h3><p>每个消息用<code>Message</code>表示，<code>Message</code>主要包含以下内容：</p>
 <div class="table-wrapper"><table>
 <thead>
 <tr>
@@ -926,8 +948,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl">Message next;
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="消息池">消息池</h3>
-<p>在代码中，可能经常看到recycle()方法，咋一看，可能是在做虚拟机的gc()相关的工作，其实不然，这是用于把消息加入到消息池的作用。这样的好处是，当消息池不为空时，可以直接从消息池中获取Message对象，而不是直接创建，提高效率。</p>
+</div><h3 id="消息池">消息池
+</h3><p>在代码中，可能经常看到recycle()方法，咋一看，可能是在做虚拟机的gc()相关的工作，其实不然，这是用于把消息加入到消息池的作用。这样的好处是，当消息池不为空时，可以直接从消息池中获取Message对象，而不是直接创建，提高效率。</p>
 <p>静态变量<code>sPool</code>的数据类型为Message，通过next成员变量，维护一个消息池；静态变量<code>MAX_POOL_SIZE</code>代表消息池的可用大小；消息池的默认大小为50。</p>
 <p>消息池常用的操作方法是obtain()和recycle()。</p>
 <div class="highlight"><div class="chroma">
@@ -1042,9 +1064,9 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="messagequeue">MessageQueue</h2>
-<h3 id="idlehandler">IdleHandler</h3>
-<p>IdleHandler是MessageQueue内部接口</p>
+</div><h2 id="messagequeue">MessageQueue
+</h2><h3 id="idlehandler">IdleHandler
+</h3><p>IdleHandler是MessageQueue内部接口</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1119,8 +1141,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="next">next()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="next">next()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
@@ -1356,8 +1378,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="enqueuemessage">enqueueMessage</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="enqueuemessage">enqueueMessage
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1482,8 +1504,8 @@ if (!doNotTrack) {
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>MessageQueue</code>是按照Message触发时间的先后顺序排列的，队头的消息是将要最早触发的消息。当有消息需要加入消息队列时，会从队列头开始遍历，直到找到消息应该插入的合适位置，以保证所有消息的时间顺序。</p>
-<h3 id="removemessages">removeMessages</h3>
-<div class="highlight"><div class="chroma">
+<h3 id="removemessages">removeMessages
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1550,8 +1572,8 @@ if (!doNotTrack) {
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>这个移除消息的方法，采用了两个while循环，第一个循环是从队头开始，移除符合条件的消息，第二个循环是从头部移除完连续的满足条件的消息之后，再从队列后面继续查询是否有满足条件的消息需要被移除。</p>
-<h4 id="postsyncbarrier-a-id45-postsyncbarriera">postSyncBarrier <a id="45-postsyncbarrier"></a></h4>
-<div class="highlight"><div class="chroma">
+<h4 id="postsyncbarrier-a-id45-postsyncbarriera">postSyncBarrier <a id="45-postsyncbarrier"></a>
+</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1673,8 +1695,8 @@ if (!doNotTrack) {
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>postSyncBarrier只对同步消息产生影响，对于异步消息没有任何差别。</p>
-<h2 id="activityrunonuithread">Activity#runOnUiThread</h2>
-<div class="highlight"><div class="chroma">
+<h2 id="activityrunonuithread">Activity#runOnUiThread
+</h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1700,8 +1722,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="viewpost">View#post</h2>
-<div class="highlight"><div class="chroma">
+</div><h2 id="viewpost">View#post
+</h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1983,8 +2005,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="扩展阅读">扩展阅读</h2>
-<ul>
+</div><h2 id="扩展阅读">扩展阅读
+</h2><ul>
 <li><a class="link" href="https://www.jianshu.com/p/02962454adf7"  target="_blank" rel="noopener"
     >Android 消息处理机制（Looper、Handler、MessageQueue,Message）</a></li>
 <li><a class="link" href="http://www.cnblogs.com/plokmju/p/android_Handler.html"  target="_blank" rel="noopener"
@@ -2097,7 +2119,7 @@ if (!doNotTrack) {
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 

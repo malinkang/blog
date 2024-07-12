@@ -1,87 +1,36 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='ViewPager 布局：
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 &amp;lt;LinearLayout android:layout_width=&amp;#34;match_parent&amp;#34; android:layout_height=&amp;#34;match_parent&amp;#34; android:orientation=&amp;#34;vertical&amp;#34;&amp;gt; &amp;lt;android.support.design.widget.TabLayout android:id=&amp;#34;@&#43;id/tablayout&amp;#34; android:layout_width=&amp;#34;match_parent&amp;#34; android:layout_height=&amp;#34;wrap_content&amp;#34; app:tabGravity=&amp;#34;center&amp;#34; app:tabIndicatorColor=&amp;#34;@color/colorAccent&amp;#34; app:tabMode=&amp;#34;fixed&amp;#34; app:tabTextColor=&amp;#34;#FF000000&amp;#34;/&amp;gt; &amp;lt;android.support.v4.view.ViewPager android:id=&amp;#34;@&#43;id/viewpager&amp;#34; android:layout_width=&amp;#34;match_parent&amp;#34; android:layout_height=&amp;#34;match_parent&amp;#34;/&amp;gt; &amp;lt;/LinearLayout&amp;gt; Java代码：
-1 mTablayout.setupWithViewPager(mViewpager); 属性： tabMode：可选值scrollable和fixed
-当设置为scrollable条目过多可以进行滚动，条目过少则会居左显示。:
-当设置为fixed，则不会进行滚动，tabGravity只有当tabMode是fixed时候起作用，tabGravity可选是是fill和center。 当设置为center时居中。
-当设置为fill时将会占满所有的位置。
-tabIndicatorColor：设置指示器颜色。
-tabTextColor：设置文本颜色。
-扩展更多 Great animations with PageTransformer 为什么调用 FragmentPagerAdapter.notifyDataSetChanged() 并不能更新其 Fragment？ '>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="ViewPager 布局： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 &lt;LinearLayout android:layout_width=&#34;match_parent&#34; android:layout_height=&#34;match_parent&#34; android:orientation=&#34;vertical&#34;&gt; &lt;android.support.design.widget.TabLayout android:id=&#34;@+id/tablayout&#34; android:layout_width=&#34;match_parent&#34; android:layout_height=&#34;wrap_content&#34; app:tabGravity=&#34;center&#34; app:tabIndicatorColor=&#34;@color/colorAccent&#34; app:tabMode=&#34;fixed&#34; app:tabTextColor=&#34;#FF000000&#34;/&gt; &lt;android.support.v4.view.ViewPager android:id=&#34;@+id/viewpager&#34; android:layout_width=&#34;match_parent&#34; android:layout_height=&#34;match_parent&#34;/&gt; &lt;/LinearLayout&gt; Java代码： 1 mTablayout.setupWithViewPager(mViewpager); 属性： tabMode：可选值scrollable和fixed 当设置为scrollable条目过多可以进行滚动，条目过少则会居左显示。: 当设置为fixed，则不会进行滚动，tabGravity只有当tabMode是fixed时候起作用，tabGravity可选是是fill和center。 当设置为center时居中。 当设置为fill时将会占满所有的位置。 tabIndicatorColor：设置指示器颜色。 tabTextColor：设置文本颜色。 扩展更多 Great animations with PageTransformer 为什么调用 FragmentPagerAdapter.notifyDataSetChanged() 并不能更新其 Fragment？ ">
 <title></title>
 
-<link rel='canonical' href='https://example.com/android/ui/viewpager/'>
+<link rel='canonical' href='http://localhost:1313/android/ui/viewpager/'>
 
-<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
-<meta property='og:description' content='ViewPager 布局：
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 &amp;lt;LinearLayout android:layout_width=&amp;#34;match_parent&amp;#34; android:layout_height=&amp;#34;match_parent&amp;#34; android:orientation=&amp;#34;vertical&amp;#34;&amp;gt; &amp;lt;android.support.design.widget.TabLayout android:id=&amp;#34;@&#43;id/tablayout&amp;#34; android:layout_width=&amp;#34;match_parent&amp;#34; android:layout_height=&amp;#34;wrap_content&amp;#34; app:tabGravity=&amp;#34;center&amp;#34; app:tabIndicatorColor=&amp;#34;@color/colorAccent&amp;#34; app:tabMode=&amp;#34;fixed&amp;#34; app:tabTextColor=&amp;#34;#FF000000&amp;#34;/&amp;gt; &amp;lt;android.support.v4.view.ViewPager android:id=&amp;#34;@&#43;id/viewpager&amp;#34; android:layout_width=&amp;#34;match_parent&amp;#34; android:layout_height=&amp;#34;match_parent&amp;#34;/&amp;gt; &amp;lt;/LinearLayout&amp;gt; Java代码：
-1 mTablayout.setupWithViewPager(mViewpager); 属性： tabMode：可选值scrollable和fixed
-当设置为scrollable条目过多可以进行滚动，条目过少则会居左显示。:
-当设置为fixed，则不会进行滚动，tabGravity只有当tabMode是fixed时候起作用，tabGravity可选是是fill和center。 当设置为center时居中。
-当设置为fill时将会占满所有的位置。
-tabIndicatorColor：设置指示器颜色。
-tabTextColor：设置文本颜色。
-扩展更多 Great animations with PageTransformer 为什么调用 FragmentPagerAdapter.notifyDataSetChanged() 并不能更新其 Fragment？ '>
-<meta property='og:url' content='https://example.com/android/ui/viewpager/'>
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<meta property='og:description' content="ViewPager 布局： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 &lt;LinearLayout android:layout_width=&#34;match_parent&#34; android:layout_height=&#34;match_parent&#34; android:orientation=&#34;vertical&#34;&gt; &lt;android.support.design.widget.TabLayout android:id=&#34;@+id/tablayout&#34; android:layout_width=&#34;match_parent&#34; android:layout_height=&#34;wrap_content&#34; app:tabGravity=&#34;center&#34; app:tabIndicatorColor=&#34;@color/colorAccent&#34; app:tabMode=&#34;fixed&#34; app:tabTextColor=&#34;#FF000000&#34;/&gt; &lt;android.support.v4.view.ViewPager android:id=&#34;@+id/viewpager&#34; android:layout_width=&#34;match_parent&#34; android:layout_height=&#34;match_parent&#34;/&gt; &lt;/LinearLayout&gt; Java代码： 1 mTablayout.setupWithViewPager(mViewpager); 属性： tabMode：可选值scrollable和fixed 当设置为scrollable条目过多可以进行滚动，条目过少则会居左显示。: 当设置为fixed，则不会进行滚动，tabGravity只有当tabMode是fixed时候起作用，tabGravity可选是是fill和center。 当设置为center时居中。 当设置为fill时将会占满所有的位置。 tabIndicatorColor：设置指示器颜色。 tabTextColor：设置文本颜色。 扩展更多 Great animations with PageTransformer 为什么调用 FragmentPagerAdapter.notifyDataSetChanged() 并不能更新其 Fragment？ ">
+<meta property='og:url' content='http://localhost:1313/android/ui/viewpager/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="ViewPager 布局：
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 &amp;lt;LinearLayout android:layout_width=&amp;#34;match_parent&amp;#34; android:layout_height=&amp;#34;match_parent&amp;#34; android:orientation=&amp;#34;vertical&amp;#34;&amp;gt; &amp;lt;android.support.design.widget.TabLayout android:id=&amp;#34;@&#43;id/tablayout&amp;#34; android:layout_width=&amp;#34;match_parent&amp;#34; android:layout_height=&amp;#34;wrap_content&amp;#34; app:tabGravity=&amp;#34;center&amp;#34; app:tabIndicatorColor=&amp;#34;@color/colorAccent&amp;#34; app:tabMode=&amp;#34;fixed&amp;#34; app:tabTextColor=&amp;#34;#FF000000&amp;#34;/&amp;gt; &amp;lt;android.support.v4.view.ViewPager android:id=&amp;#34;@&#43;id/viewpager&amp;#34; android:layout_width=&amp;#34;match_parent&amp;#34; android:layout_height=&amp;#34;match_parent&amp;#34;/&amp;gt; &amp;lt;/LinearLayout&amp;gt; Java代码：
-1 mTablayout.setupWithViewPager(mViewpager); 属性： tabMode：可选值scrollable和fixed
-当设置为scrollable条目过多可以进行滚动，条目过少则会居左显示。:
-当设置为fixed，则不会进行滚动，tabGravity只有当tabMode是fixed时候起作用，tabGravity可选是是fill和center。 当设置为center时居中。
-当设置为fill时将会占满所有的位置。
-tabIndicatorColor：设置指示器颜色。
-tabTextColor：设置文本颜色。
-扩展更多 Great animations with PageTransformer 为什么调用 FragmentPagerAdapter.notifyDataSetChanged() 并不能更新其 Fragment？ ">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
-}
-</script>
-<style>
-    :root {
-      --sys-font-family: "Noto Serif SC";
-      --zh-font-family: "Noto Serif SC";
-      --base-font-family: "Noto Serif SC";
-      --code-font-family: "Noto Serif SC";
-      --article-font-family: "Noto Serif SC";
-    }
-  </style>
+<meta name="twitter:description" content="ViewPager 布局： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 &lt;LinearLayout android:layout_width=&#34;match_parent&#34; android:layout_height=&#34;match_parent&#34; android:orientation=&#34;vertical&#34;&gt; &lt;android.support.design.widget.TabLayout android:id=&#34;@+id/tablayout&#34; android:layout_width=&#34;match_parent&#34; android:layout_height=&#34;wrap_content&#34; app:tabGravity=&#34;center&#34; app:tabIndicatorColor=&#34;@color/colorAccent&#34; app:tabMode=&#34;fixed&#34; app:tabTextColor=&#34;#FF000000&#34;/&gt; &lt;android.support.v4.view.ViewPager android:id=&#34;@+id/viewpager&#34; android:layout_width=&#34;match_parent&#34; android:layout_height=&#34;match_parent&#34;/&gt; &lt;/LinearLayout&gt; Java代码： 1 mTablayout.setupWithViewPager(mViewpager); 属性： tabMode：可选值scrollable和fixed 当设置为scrollable条目过多可以进行滚动，条目过少则会居左显示。: 当设置为fixed，则不会进行滚动，tabGravity只有当tabMode是fixed时候起作用，tabGravity可选是是fill和center。 当设置为center时居中。 当设置为fill时将会占满所有的位置。 tabIndicatorColor：设置指示器颜色。 tabTextColor：设置文本颜色。 扩展更多 Great animations with PageTransformer 为什么调用 FragmentPagerAdapter.notifyDataSetChanged() 并不能更新其 Fragment？ ">
   
-  <script>
-    (function () {
-      const customFont = document.createElement("link");
-      customFont.href =
-        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
   
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-  
-      document.head.appendChild(customFont);
-    })();
-  </script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
-     crossorigin="anonymous"></script>
-  
-
-<script>
-    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
 
 
     </head>
@@ -143,7 +92,7 @@ if (!doNotTrack) {
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
             <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -204,13 +153,32 @@ if (!doNotTrack) {
 
 
                 
-                <span>主页</span>
+                <span>Home</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/archives' >
+            <a href='/pages/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/archives/' >
                 
                 
                 
@@ -224,16 +192,54 @@ if (!doNotTrack) {
 
 
                 
-                <span>归档</span>
+                <span>Archives</span>
             </a>
         </li>
         
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -241,7 +247,7 @@ if (!doNotTrack) {
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -249,10 +255,11 @@ if (!doNotTrack) {
 
 
 
-                    <span>Dark Mode</span>
-                </li>
-            
-        </div>
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -337,8 +344,8 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="viewpager">ViewPager</h1>
-<p>布局：</p>
+    <h1 id="viewpager">ViewPager
+</h1><p>布局：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -394,7 +401,7 @@ if (!doNotTrack) {
 </div>
 </div><p>属性： tabMode：可选值scrollable和fixed</p>
 <p>当设置为scrollable条目过多可以进行滚动，条目过少则会居左显示。:</p>
-<p><img src="/../.gitbook/assets/tablayout-1.gif"
+<p><img src="/.gitbook/assets/tablayout-1.gif"
 	
 	
 	
@@ -403,7 +410,7 @@ if (!doNotTrack) {
 	
 ></p>
 <p>当设置为fixed，则不会进行滚动，tabGravity只有当tabMode是fixed时候起作用，tabGravity可选是是fill和center。 当设置为center时居中。</p>
-<p><img src="/../.gitbook/assets/tablayout-2%20%281%29%20%281%29%20%281%29%20%281%29%20%281%29.gif"
+<p><img src="/.gitbook/assets/tablayout-2%20%281%29%20%281%29%20%281%29%20%281%29%20%281%29.gif"
 	
 	
 	
@@ -412,7 +419,7 @@ if (!doNotTrack) {
 	
 ></p>
 <p>当设置为fill时将会占满所有的位置。</p>
-<p><img src="/../.gitbook/assets/tablayout-3%20%281%29%20%281%29%20%281%29.gif"
+<p><img src="/.gitbook/assets/tablayout-3%20%281%29%20%281%29%20%281%29.gif"
 	
 	
 	
@@ -422,8 +429,8 @@ if (!doNotTrack) {
 ></p>
 <p>tabIndicatorColor：设置指示器颜色。</p>
 <p>tabTextColor：设置文本颜色。</p>
-<h2 id="扩展更多">扩展更多</h2>
-<ul>
+<h2 id="扩展更多">扩展更多
+</h2><ul>
 <li><a class="link" href="https://medium.com/@BashaChris/the-android-viewpager-has-become-a-fairly-popular-component-among-android-apps-its-simple-6bca403b16d4"  target="_blank" rel="noopener"
     >Great animations with PageTransformer</a></li>
 <li><a class="link" href="http://www.cnblogs.com/dancefire/archive/2013/01/02/why-notifyDataSetChanged-does-not-work.html"  target="_blank" rel="noopener"
@@ -524,7 +531,7 @@ if (!doNotTrack) {
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 

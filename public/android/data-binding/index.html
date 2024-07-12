@@ -1,81 +1,36 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='构建环境 要使用Data Binding，需要添加dataBinding元素到app模块下的build.gradle文件下。
-1 2 3 4 5 6 android { .... dataBinding { enabled = true } } 创建数据绑定布局文件 数据绑定的布局文件和普通的布局文件对比有如下不同：根标签是layout，接下来是一个data元素和一个view的根元素。
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 &amp;lt;layout xmlns:android=&amp;#34;http://schemas.android.com/apk/res/android&amp;#34;&amp;gt; &amp;lt;data&amp;gt; &amp;lt;variable name=&amp;#34;user&amp;#34; type=&amp;#34;cn.malinkang.databinding.User&amp;#34;/&amp;gt; &amp;lt;/data&amp;gt; &amp;lt;LinearLayout android:orientation=&amp;#34;vertical&amp;#34; android:layout_width=&amp;#34;match_parent&amp;#34; android:layout_height=&amp;#34;match_parent&amp;#34;&amp;gt; &amp;lt;TextView android:layout_width=&amp;#34;wrap_content&amp;#34; android:layout_height=&amp;#34;wrap_content&amp;#34; android:text=&amp;#34;@{user.firstName}&amp;#34;/&amp;gt; &amp;lt;TextView android:layout_width=&amp;#34;wrap_content&amp;#34; android:layout_height=&amp;#34;wrap_content&amp;#34; android:text=&amp;#34;@{user.lastName}&amp;#34;/&amp;gt; &amp;lt;/LinearLayout&amp;gt; &amp;lt;/layout&amp;gt; variable元素用来定义变量，type是变量类型，name是变量名。
-在布局中通过@{}语法将变量的属性值设置给View的属性。
-数据绑定中的data可以是POJO对象，也可以是JavaBean对象。在POJO对象中@{}获取的值是直接调用属性的值，而JavaBean则是通过属性的get方法获取值。例如上面的例子中android:text=&amp;quot;@{user.firstName}，如果User是POJO对象，则访问的是firstName属性，如果是JavaBean，则是通过调用getFirstName()方法获取值。
-POJO对象：
-1 2 3 4 5 6 7 8 public class User { public final String firstName; public final String lastName; public User(String firstName, String lastName) { this.'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="构建环境 要使用Data Binding，需要添加dataBinding元素到app模块下的build.gradle文件下。 1 2 3 4 5 6 android { .... dataBinding { enabled = true } } 创建数据绑定布局文件 数据绑定的布局文件和普通的布局文件对比有如下不同：根标签是layout，接下来是一个data元素和一个view的根元素。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 &lt;layout xmlns:android=&#34;http://schemas.android.com/apk/res/android&#34;&gt; &lt;data&gt; &lt;variable name=&#34;user&#34; type=&#34;cn.malinkang.databinding.User&#34;/&gt; &lt;/data&gt; &lt;LinearLayout android:orientation=&#34;vertical&#34; android:layout_width=&#34;match_parent&#34; android:layout_height=&#34;match_parent&#34;&gt; &lt;TextView android:layout_width=&#34;wrap_content&#34; android:layout_height=&#34;wrap_content&#34; android:text=&#34;@{user.firstName}&#34;/&gt; &lt;TextView android:layout_width=&#34;wrap_content&#34; android:layout_height=&#34;wrap_content&#34; android:text=&#34;@{user.lastName}&#34;/&gt; &lt;/LinearLayout&gt; &lt;/layout&gt; variable元素用来定义变量，type是变量类型，name是变量名。 在布局中通过@{}语法将变量的属性值设置给View的属性。 数据绑定中的data可以是POJO对象，也可以是JavaBean对象。在POJO对象中@{}获取的值是直接调用属性的值，而JavaBean则是通过属性的get方法获取值。例如上面的例子中android:text=&quot;@{user.firstName}，如果User是POJO对象，则访问的是firstName属性，如果是JavaBean，则是通过调用getFirstName()方法获取值。 POJO对象： 1 2 3 4 5 6 7 8 public class User { public final String firstName; public final String lastName; public User(String firstName, String lastName) { this.">
 <title></title>
 
-<link rel='canonical' href='https://example.com/android/data-binding/'>
+<link rel='canonical' href='http://localhost:1313/android/data-binding/'>
 
-<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
-<meta property='og:description' content='构建环境 要使用Data Binding，需要添加dataBinding元素到app模块下的build.gradle文件下。
-1 2 3 4 5 6 android { .... dataBinding { enabled = true } } 创建数据绑定布局文件 数据绑定的布局文件和普通的布局文件对比有如下不同：根标签是layout，接下来是一个data元素和一个view的根元素。
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 &amp;lt;layout xmlns:android=&amp;#34;http://schemas.android.com/apk/res/android&amp;#34;&amp;gt; &amp;lt;data&amp;gt; &amp;lt;variable name=&amp;#34;user&amp;#34; type=&amp;#34;cn.malinkang.databinding.User&amp;#34;/&amp;gt; &amp;lt;/data&amp;gt; &amp;lt;LinearLayout android:orientation=&amp;#34;vertical&amp;#34; android:layout_width=&amp;#34;match_parent&amp;#34; android:layout_height=&amp;#34;match_parent&amp;#34;&amp;gt; &amp;lt;TextView android:layout_width=&amp;#34;wrap_content&amp;#34; android:layout_height=&amp;#34;wrap_content&amp;#34; android:text=&amp;#34;@{user.firstName}&amp;#34;/&amp;gt; &amp;lt;TextView android:layout_width=&amp;#34;wrap_content&amp;#34; android:layout_height=&amp;#34;wrap_content&amp;#34; android:text=&amp;#34;@{user.lastName}&amp;#34;/&amp;gt; &amp;lt;/LinearLayout&amp;gt; &amp;lt;/layout&amp;gt; variable元素用来定义变量，type是变量类型，name是变量名。
-在布局中通过@{}语法将变量的属性值设置给View的属性。
-数据绑定中的data可以是POJO对象，也可以是JavaBean对象。在POJO对象中@{}获取的值是直接调用属性的值，而JavaBean则是通过属性的get方法获取值。例如上面的例子中android:text=&amp;quot;@{user.firstName}，如果User是POJO对象，则访问的是firstName属性，如果是JavaBean，则是通过调用getFirstName()方法获取值。
-POJO对象：
-1 2 3 4 5 6 7 8 public class User { public final String firstName; public final String lastName; public User(String firstName, String lastName) { this.'>
-<meta property='og:url' content='https://example.com/android/data-binding/'>
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<meta property='og:description' content="构建环境 要使用Data Binding，需要添加dataBinding元素到app模块下的build.gradle文件下。 1 2 3 4 5 6 android { .... dataBinding { enabled = true } } 创建数据绑定布局文件 数据绑定的布局文件和普通的布局文件对比有如下不同：根标签是layout，接下来是一个data元素和一个view的根元素。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 &lt;layout xmlns:android=&#34;http://schemas.android.com/apk/res/android&#34;&gt; &lt;data&gt; &lt;variable name=&#34;user&#34; type=&#34;cn.malinkang.databinding.User&#34;/&gt; &lt;/data&gt; &lt;LinearLayout android:orientation=&#34;vertical&#34; android:layout_width=&#34;match_parent&#34; android:layout_height=&#34;match_parent&#34;&gt; &lt;TextView android:layout_width=&#34;wrap_content&#34; android:layout_height=&#34;wrap_content&#34; android:text=&#34;@{user.firstName}&#34;/&gt; &lt;TextView android:layout_width=&#34;wrap_content&#34; android:layout_height=&#34;wrap_content&#34; android:text=&#34;@{user.lastName}&#34;/&gt; &lt;/LinearLayout&gt; &lt;/layout&gt; variable元素用来定义变量，type是变量类型，name是变量名。 在布局中通过@{}语法将变量的属性值设置给View的属性。 数据绑定中的data可以是POJO对象，也可以是JavaBean对象。在POJO对象中@{}获取的值是直接调用属性的值，而JavaBean则是通过属性的get方法获取值。例如上面的例子中android:text=&quot;@{user.firstName}，如果User是POJO对象，则访问的是firstName属性，如果是JavaBean，则是通过调用getFirstName()方法获取值。 POJO对象： 1 2 3 4 5 6 7 8 public class User { public final String firstName; public final String lastName; public User(String firstName, String lastName) { this.">
+<meta property='og:url' content='http://localhost:1313/android/data-binding/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="构建环境 要使用Data Binding，需要添加dataBinding元素到app模块下的build.gradle文件下。
-1 2 3 4 5 6 android { .... dataBinding { enabled = true } } 创建数据绑定布局文件 数据绑定的布局文件和普通的布局文件对比有如下不同：根标签是layout，接下来是一个data元素和一个view的根元素。
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 &amp;lt;layout xmlns:android=&amp;#34;http://schemas.android.com/apk/res/android&amp;#34;&amp;gt; &amp;lt;data&amp;gt; &amp;lt;variable name=&amp;#34;user&amp;#34; type=&amp;#34;cn.malinkang.databinding.User&amp;#34;/&amp;gt; &amp;lt;/data&amp;gt; &amp;lt;LinearLayout android:orientation=&amp;#34;vertical&amp;#34; android:layout_width=&amp;#34;match_parent&amp;#34; android:layout_height=&amp;#34;match_parent&amp;#34;&amp;gt; &amp;lt;TextView android:layout_width=&amp;#34;wrap_content&amp;#34; android:layout_height=&amp;#34;wrap_content&amp;#34; android:text=&amp;#34;@{user.firstName}&amp;#34;/&amp;gt; &amp;lt;TextView android:layout_width=&amp;#34;wrap_content&amp;#34; android:layout_height=&amp;#34;wrap_content&amp;#34; android:text=&amp;#34;@{user.lastName}&amp;#34;/&amp;gt; &amp;lt;/LinearLayout&amp;gt; &amp;lt;/layout&amp;gt; variable元素用来定义变量，type是变量类型，name是变量名。
-在布局中通过@{}语法将变量的属性值设置给View的属性。
-数据绑定中的data可以是POJO对象，也可以是JavaBean对象。在POJO对象中@{}获取的值是直接调用属性的值，而JavaBean则是通过属性的get方法获取值。例如上面的例子中android:text=&amp;quot;@{user.firstName}，如果User是POJO对象，则访问的是firstName属性，如果是JavaBean，则是通过调用getFirstName()方法获取值。
-POJO对象：
-1 2 3 4 5 6 7 8 public class User { public final String firstName; public final String lastName; public User(String firstName, String lastName) { this.">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
-}
-</script>
-<style>
-    :root {
-      --sys-font-family: "Noto Serif SC";
-      --zh-font-family: "Noto Serif SC";
-      --base-font-family: "Noto Serif SC";
-      --code-font-family: "Noto Serif SC";
-      --article-font-family: "Noto Serif SC";
-    }
-  </style>
+<meta name="twitter:description" content="构建环境 要使用Data Binding，需要添加dataBinding元素到app模块下的build.gradle文件下。 1 2 3 4 5 6 android { .... dataBinding { enabled = true } } 创建数据绑定布局文件 数据绑定的布局文件和普通的布局文件对比有如下不同：根标签是layout，接下来是一个data元素和一个view的根元素。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 &lt;layout xmlns:android=&#34;http://schemas.android.com/apk/res/android&#34;&gt; &lt;data&gt; &lt;variable name=&#34;user&#34; type=&#34;cn.malinkang.databinding.User&#34;/&gt; &lt;/data&gt; &lt;LinearLayout android:orientation=&#34;vertical&#34; android:layout_width=&#34;match_parent&#34; android:layout_height=&#34;match_parent&#34;&gt; &lt;TextView android:layout_width=&#34;wrap_content&#34; android:layout_height=&#34;wrap_content&#34; android:text=&#34;@{user.firstName}&#34;/&gt; &lt;TextView android:layout_width=&#34;wrap_content&#34; android:layout_height=&#34;wrap_content&#34; android:text=&#34;@{user.lastName}&#34;/&gt; &lt;/LinearLayout&gt; &lt;/layout&gt; variable元素用来定义变量，type是变量类型，name是变量名。 在布局中通过@{}语法将变量的属性值设置给View的属性。 数据绑定中的data可以是POJO对象，也可以是JavaBean对象。在POJO对象中@{}获取的值是直接调用属性的值，而JavaBean则是通过属性的get方法获取值。例如上面的例子中android:text=&quot;@{user.firstName}，如果User是POJO对象，则访问的是firstName属性，如果是JavaBean，则是通过调用getFirstName()方法获取值。 POJO对象： 1 2 3 4 5 6 7 8 public class User { public final String firstName; public final String lastName; public User(String firstName, String lastName) { this.">
   
-  <script>
-    (function () {
-      const customFont = document.createElement("link");
-      customFont.href =
-        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
   
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-  
-      document.head.appendChild(customFont);
-    })();
-  </script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
-     crossorigin="anonymous"></script>
-  
-
-<script>
-    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
 
 
     </head>
@@ -137,7 +92,7 @@ if (!doNotTrack) {
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
             <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -198,13 +153,32 @@ if (!doNotTrack) {
 
 
                 
-                <span>主页</span>
+                <span>Home</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/archives' >
+            <a href='/pages/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/archives/' >
                 
                 
                 
@@ -218,16 +192,54 @@ if (!doNotTrack) {
 
 
                 
-                <span>归档</span>
+                <span>Archives</span>
             </a>
         </li>
         
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -235,7 +247,7 @@ if (!doNotTrack) {
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -243,10 +255,11 @@ if (!doNotTrack) {
 
 
 
-                    <span>Dark Mode</span>
-                </li>
-            
-        </div>
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -380,8 +393,8 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h6 id="构建环境">构建环境</h6>
-<p>要使用Data Binding，需要添加<code>dataBinding</code>元素到app模块下的<code>build.gradle</code>文件下。</p>
+    <h6 id="构建环境">构建环境
+</h6><p>要使用Data Binding，需要添加<code>dataBinding</code>元素到app模块下的<code>build.gradle</code>文件下。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -400,8 +413,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="创建数据绑定布局文件">创建数据绑定布局文件</h3>
-<p>数据绑定的布局文件和普通的布局文件对比有如下不同：根标签是<code>layout</code>，接下来是一个<code>data</code>元素和一个view的根元素。</p>
+</div><h3 id="创建数据绑定布局文件">创建数据绑定布局文件
+</h3><p>数据绑定的布局文件和普通的布局文件对比有如下不同：根标签是<code>layout</code>，接下来是一个<code>data</code>元素和一个view的根元素。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -501,8 +514,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="导入">导入</h4>
-<p>数据绑定的布局文件允许利用<code>import</code>元素像Java一样导入其他数据类型。例如下面代码就导入一个View。</p>
+</div><h4 id="导入">导入
+</h4><p>数据绑定的布局文件允许利用<code>import</code>元素像Java一样导入其他数据类型。例如下面代码就导入一个View。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -589,8 +602,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl">   <span class="na">android:layout_height=</span><span class="s">&#34;wrap_content&#34;</span><span class="nt">/&gt;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="引入">引入</h4>
-<p>如果相同的布局被重复使用，我们会把他单独放在一个布局文件中使用<code>include</code>标签引入。数据绑定可以使用应用命名空间和变量名将变量从容器布局中传递到被包含的布局中。</p>
+</div><h4 id="引入">引入
+</h4><p>如果相同的布局被重复使用，我们会把他单独放在一个布局文件中使用<code>include</code>标签引入。数据绑定可以使用应用命名空间和变量名将变量从容器布局中传递到被包含的布局中。</p>
 <p>被包含的布局文件<code>user.xml</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -707,8 +720,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="nt">&lt;/layout&gt;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="绑定数据">绑定数据</h3>
-<p>数据绑定是通过<code>Binding</code>类进行绑定的，创建一个数据绑定布局，编译器会自动生成一个<code>Binding</code>类。该类包含了设置变量的方法，比如上面的布局生成的绑定类会有一个<code>setUser(User User)</code>方法。</p>
+</div><h3 id="绑定数据">绑定数据
+</h3><p>数据绑定是通过<code>Binding</code>类进行绑定的，创建一个数据绑定布局，编译器会自动生成一个<code>Binding</code>类。该类包含了设置变量的方法，比如上面的布局生成的绑定类会有一个<code>setUser(User User)</code>方法。</p>
 <p>默认情况下，一个Binding类会基于布局文件的名称而产生，将布局文件名改为驼峰命名，并添加“Binding”后缀。例如布局文件为<code>activity_main.xml</code>，则会生的类名为<code>ActivityMainBinding</code>。</p>
 <p>在Activity中创建<code>Binding</code>类的实例可以通过<code>DataBindingUtil</code>的<code>setContentView</code>方法来创建。</p>
 <div class="highlight"><div class="chroma">
@@ -800,15 +813,15 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="s">&lt;/data&gt;
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="事件处理">事件处理</h3>
-<p>数据绑定允许写表达式来处理views分发的事件，比如<code>onClick</code>事件。事件属性名称与监听器方法的名称一致，例如<code>View.OnLongClickListener</code>监听器方法为<code>onLongClick()</code>，对应属性为<code>android:onLongClick</code>。</p>
+</div><h3 id="事件处理">事件处理
+</h3><p>数据绑定允许写表达式来处理views分发的事件，比如<code>onClick</code>事件。事件属性名称与监听器方法的名称一致，例如<code>View.OnLongClickListener</code>监听器方法为<code>onLongClick()</code>，对应属性为<code>android:onLongClick</code>。</p>
 <p>有两种处理事件的方法：</p>
 <ul>
 <li>方法引用</li>
 <li>监听器绑定</li>
 </ul>
-<h4 id="方法引用">方法引用</h4>
-<p>当设置的方法的参数签名和监听器实现方法的签名一致时，则采用方法引用。数据绑定将方法引用和当前View对象一起传递给一个监听器，并将这个监听器设置给当前View对象。</p>
+<h4 id="方法引用">方法引用
+</h4><p>当设置的方法的参数签名和监听器实现方法的签名一致时，则采用方法引用。数据绑定将方法引用和当前View对象一起传递给一个监听器，并将这个监听器设置给当前View对象。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -888,8 +901,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="nt">&lt;/layout&gt;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="监听器绑定">监听器绑定</h4>
-<p>监听器绑定是当事件发生时运行的绑定表达式。它们与方法引用类似，但它们允许你运行任意数据绑定表达式。</p>
+</div><h4 id="监听器绑定">监听器绑定
+</h4><p>监听器绑定是当事件发生时运行的绑定表达式。它们与方法引用类似，但它们允许你运行任意数据绑定表达式。</p>
 <p>在方法引用中，方法的参数必须与事件监听器的参数匹配。当方法签名与监听器方法签名不一致时，采用监听器绑定。上面的showToast方法与方法签名不一致，则采用监听器绑定。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -945,9 +958,9 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="nt">&lt;/layout&gt;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="表达语言">表达语言</h3>
-<h4 id="常见特性">常见特性</h4>
-<p>表达式语言看起来很像Java表达式。下面这些表达式用法是一样的：</p>
+</div><h3 id="表达语言">表达语言
+</h3><h4 id="常见特性">常见特性
+</h4><p>表达式语言看起来很像Java表达式。下面这些表达式用法是一样的：</p>
 <ul>
 <li>数学运算符<code>+``-``*``/``%</code></li>
 <li>字符串连接符 <code>+</code></li>
@@ -964,15 +977,15 @@ if (!doNotTrack) {
 <li>数组访问 <code>[]</code></li>
 <li>三元运算 <code>?:</code></li>
 </ul>
-<h4 id="不支持的操作">不支持的操作</h4>
-<ul>
+<h4 id="不支持的操作">不支持的操作
+</h4><ul>
 <li>this</li>
 <li>super</li>
 <li>new</li>
 <li>显式泛型调用</li>
 </ul>
-<h4 id="null合并操作">Null合并操作</h4>
-<p><code>??</code>- 左边的对象如果它不是<code>null</code>，选择左边的对象；或者如果它是<code>null</code>，选择右边的对象。例如下面的例子中如果displayName不为空则将user.displayName设置给text属性，如果为空则将user.lastName设置给text属性。</p>
+<h4 id="null合并操作">Null合并操作
+</h4><p><code>??</code>- 左边的对象如果它不是<code>null</code>，选择左边的对象；或者如果它是<code>null</code>，选择右边的对象。例如下面的例子中如果displayName不为空则将user.displayName设置给text属性，如果为空则将user.lastName设置给text属性。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -990,10 +1003,10 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nl">android</span><span class="p">:</span><span class="n">text</span><span class="o">=</span><span class="s">&#34;@{user.displayName != null ? user.displayName : user.lastName}&#34;</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="避免空指针">避免空指针</h4>
-<p>Data Binding代码生成时自动检查是否为nulls来避免出现空指针错误。例如，在表达式@{user.name}中，如果user是null，user.name会赋予它的默认值（null）。如果你引用user.age，age是int类型，那么它的默认值是0。</p>
-<h4 id="集合">集合</h4>
-<p>常用的集合包括<code>Arrays</code>、<code>List</code>、<code>SparseArray</code>和<code>Map</code>，这些都可以使用<code>[]</code>操作符来访问</p>
+</div><h4 id="避免空指针">避免空指针
+</h4><p>Data Binding代码生成时自动检查是否为nulls来避免出现空指针错误。例如，在表达式@{user.name}中，如果user是null，user.name会赋予它的默认值（null）。如果你引用user.age，age是int类型，那么它的默认值是0。</p>
+<h4 id="集合">集合
+</h4><p>常用的集合包括<code>Arrays</code>、<code>List</code>、<code>SparseArray</code>和<code>Map</code>，这些都可以使用<code>[]</code>操作符来访问</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1032,8 +1045,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl">android:text=&#34;@{map[key]}&#34;
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="字符串字面量">字符串字面量</h4>
-<p>如果想要在表达式中使用字符串字面量，则属性值需要设置成单引号</p>
+</div><h4 id="字符串字面量">字符串字面量
+</h4><p>如果想要在表达式中使用字符串字面量，则属性值需要设置成单引号</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1053,8 +1066,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl">android:text=&#34;@{map[&#39;firstName&#39;]}&#34;
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="资源">资源</h4>
-<p>也可以在表达式中访问资源</p>
+</div><h4 id="资源">资源
+</h4><p>也可以在表达式中访问资源</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1131,16 +1144,16 @@ if (!doNotTrack) {
 </tr>
 </tbody>
 </table></div>
-<h3 id="数据对象">数据对象</h3>
-<p>前面已经介绍了如何将绑定对象，但是当数据发生改变时，不会导致UI更新。</p>
+<h3 id="数据对象">数据对象
+</h3><p>前面已经介绍了如何将绑定对象，但是当数据发生改变时，不会导致UI更新。</p>
 <p>数据绑定可以通过以下三种方式实现数据变化通知：</p>
 <ul>
 <li>Observable对象</li>
 <li>Observable字段</li>
 <li>Observable集合</li>
 </ul>
-<h4 id="observable对象">Observable对象</h4>
-<p>实现android.databinding.Observable接口的类可以允许附加一个监听器到绑定对象以便监听对象上的所有属性的变化。</p>
+<h4 id="observable对象">Observable对象
+</h4><p>实现android.databinding.Observable接口的类可以允许附加一个监听器到绑定对象以便监听对象上的所有属性的变化。</p>
 <p>Observable接口负责添加和删除监听器，但通知与否由开发人员管理。为了简化开发，创建了一个基类BaseObservable，以实现侦听器注册机制。数据类实现者仍然负责通知属性何时改变。这是通过将Bindable注释分配给getter并在setter中通知的。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1314,8 +1327,8 @@ if (!doNotTrack) {
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>在编译期间，Bindable注解在BR类文件中生成一个Entry。BR类文件会在模块包内生成。如果数据类的基类不能改变，Observable接口通过方便的PropertyChangeRegistry来实现用于储存和有效地通知监听器。</p>
-<h4 id="observable字段">Observable字段</h4>
-<p>ObservableField用于将字段包装成一个可观察的对象。数据绑定提供了如下类 ObservableBoolean, ObservableByte, ObservableChar, ObservableShort, ObservableInt, ObservableLong, ObservableFloat, ObservableDouble, and ObservableParcelable.这些类中都持有一个基本类型，当内部的基本类型发生改变，ui将进行刷新。</p>
+<h4 id="observable字段">Observable字段
+</h4><p>ObservableField用于将字段包装成一个可观察的对象。数据绑定提供了如下类 ObservableBoolean, ObservableByte, ObservableChar, ObservableShort, ObservableInt, ObservableLong, ObservableFloat, ObservableDouble, and ObservableParcelable.这些类中都持有一个基本类型，当内部的基本类型发生改变，ui将进行刷新。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1362,10 +1375,10 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="observable集合">Observable集合</h4>
-<p>数据绑定提供了<code>ObservableArrayList</code>、<code>ObservableArrayMap</code>等可观察的集合类，当集合中数据发生改变，则自动刷新数据。</p>
-<h3 id="动态参数">动态参数</h3>
-<p>RecyclerView的Adapter的Data Binding需要动态生成。因此我们可以在 onCreateViewHolder 的时候创建这个 DataBinding，然后在 onBindViewHolder 中获取这个 DataBinding。</p>
+</div><h4 id="observable集合">Observable集合
+</h4><p>数据绑定提供了<code>ObservableArrayList</code>、<code>ObservableArrayMap</code>等可观察的集合类，当集合中数据发生改变，则自动刷新数据。</p>
+<h3 id="动态参数">动态参数
+</h3><p>RecyclerView的Adapter的Data Binding需要动态生成。因此我们可以在 onCreateViewHolder 的时候创建这个 DataBinding，然后在 onBindViewHolder 中获取这个 DataBinding。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1444,10 +1457,10 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="属性-setters">属性 Setters</h3>
-<p>无论何时绑定值改变，生成的binding类必须调用一个setter方法。Data binding框架有一些方法来定制调用哪个方法来设置值。</p>
-<h4 id="自动-setters">自动 Setters</h4>
-<p>对于一个属性，Data Binding会试图寻找属性相对应的set方法。例如TextView的android:text属性的表达式会寻找一个setText的方法。如果相关的set方法没有相应的属性，您可以通过Data Binding轻松地为任何setter“创造”属性。例如，DrawerLayout没有任何属性，但大量的setters。您可以自定义属性来调用相应的set方法。</p>
+</div><h3 id="属性-setters">属性 Setters
+</h3><p>无论何时绑定值改变，生成的binding类必须调用一个setter方法。Data binding框架有一些方法来定制调用哪个方法来设置值。</p>
+<h4 id="自动-setters">自动 Setters
+</h4><p>对于一个属性，Data Binding会试图寻找属性相对应的set方法。例如TextView的android:text属性的表达式会寻找一个setText的方法。如果相关的set方法没有相应的属性，您可以通过Data Binding轻松地为任何setter“创造”属性。例如，DrawerLayout没有任何属性，但大量的setters。您可以自定义属性来调用相应的set方法。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1464,8 +1477,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl">    <span class="na">app:drawerListener=</span><span class="s">&#34;@{fragment.drawerListener}&#34;</span><span class="nt">/&gt;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="重命名的setters">重命名的Setters</h4>
-<p>一些有setters的属性按名称并不匹配,例如<code>android:tint</code>属性与setImageTintList相关联，而不与setTint相关。<code>BindingMethods</code>可以重新为属性指定方法。</p>
+</div><h4 id="重命名的setters">重命名的Setters
+</h4><p>一些有setters的属性按名称并不匹配,例如<code>android:tint</code>属性与setImageTintList相关联，而不与setTint相关。<code>BindingMethods</code>可以重新为属性指定方法。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1482,8 +1495,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">})</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="自定义setters">自定义Setters</h4>
-<p>有些属性需要自定义绑定逻辑。例如，对于android:paddingLeft属性并没有相关setter。相反，setPadding(left, top, right, bottom)是存在在。<code>BindingAdapter</code>注解允许开发者自定义setter方法。</p>
+</div><h4 id="自定义setters">自定义Setters
+</h4><p>有些属性需要自定义绑定逻辑。例如，对于android:paddingLeft属性并没有相关setter。相反，setPadding(left, top, right, bottom)是存在在。<code>BindingAdapter</code>注解允许开发者自定义setter方法。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1530,13 +1543,13 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="na">app:error=</span><span class="s">“@{@drawable/venueError}”/</span><span class="nt">&gt;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="常见问题">常见问题</h3>
-<ul>
+</div><h3 id="常见问题">常见问题
+</h3><ul>
 <li><a class="link" href="https://stackoverflow.com/questions/35313466/android-databinding-custom-binding-adapter-warning"  target="_blank" rel="noopener"
     >Android DataBinding Custom Binding Adapter Warning</a></li>
 </ul>
-<h3 id="参考">参考</h3>
-<ul>
+<h3 id="参考">参考
+</h3><ul>
 <li><a class="link" href="https://developer.android.com/tools/data-binding/guide.html"  target="_blank" rel="noopener"
     >Data Binding Guide</a></li>
 <li><a class="link" href="https://medium.com/@georgemount007"  target="_blank" rel="noopener"
@@ -1641,7 +1654,7 @@ if (!doNotTrack) {
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 

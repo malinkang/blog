@@ -1,84 +1,36 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Volley使用 Volley是一个HTTP库，可简化Android应用程序的联网，最重要的是，可以更快地联网。Volley在GitHub上可用。
-Volley有以下好处：
-自动安排网络请求。 多个并发网络连接。 具有标准HTTP 缓存一致性的透明磁盘和内存响应缓存 。 支持请求优先级。 取消请求API。您可以取消单个请求，也可以将请求的阻止或范围设置为取消。 易于定制，例如重试和退避。 强大的排序功能使您可以轻松地使用从网络异步获取的数据正确填充UI。 调试和跟踪工具。 Volley在用于填充UI的RPC类型操作方面表现出色，例如将搜索结果页面作为结构化数据来获取。它可以轻松地与任何协议集成，并且开箱即用，支持原始字符串，图像和JSON。通过提供对所需功能的内置支持，Volley使您无需编写样板代码，而使您可以专注于特定于应用程序的逻辑。
-Volley不适合大型下载或流式传输操作，因为Volley在解析期间会将所有响应都保存在内存中。对于大型下载操作，请考虑使用替代方法DownloadManager。
-Volley核心库是在GitHub上开发的，它包含主要的请求分发管道以及在Volley“工具箱”中可用的一组通用工具。将Volley添加到项目中最简单的方法是将以下依赖项添加到应用程序的build.gradle文件中：
-1 2 3 4 dependencies { ... implementation &amp;#39;com.android.volley:volley:1.1.1&amp;#39; } 您还可以克隆Volley存储库并将其设置为库项目：
-通过在命令行中键入以下命令，Git克隆存储库：
-1 git clone https://github.com/google/volley 如创建 Android库中所述，将下载的源作为Android库模块导入到您的应用程序项目中。'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Volley使用 Volley是一个HTTP库，可简化Android应用程序的联网，最重要的是，可以更快地联网。Volley在GitHub上可用。 Volley有以下好处： 自动安排网络请求。 多个并发网络连接。 具有标准HTTP 缓存一致性的透明磁盘和内存响应缓存 。 支持请求优先级。 取消请求API。您可以取消单个请求，也可以将请求的阻止或范围设置为取消。 易于定制，例如重试和退避。 强大的排序功能使您可以轻松地使用从网络异步获取的数据正确填充UI。 调试和跟踪工具。 Volley在用于填充UI的RPC类型操作方面表现出色，例如将搜索结果页面作为结构化数据来获取。它可以轻松地与任何协议集成，并且开箱即用，支持原始字符串，图像和JSON。通过提供对所需功能的内置支持，Volley使您无需编写样板代码，而使您可以专注于特定于应用程序的逻辑。 Volley不适合大型下载或流式传输操作，因为Volley在解析期间会将所有响应都保存在内存中。对于大型下载操作，请考虑使用替代方法DownloadManager。 Volley核心库是在GitHub上开发的，它包含主要的请求分发管道以及在Volley“工具箱”中可用的一组通用工具。将Volley添加到项目中最简单的方法是将以下依赖项添加到应用程序的build.gradle文件中： 1 2 3 4 dependencies { ... implementation &#39;com.android.volley:volley:1.1.1&#39; } 您还可以克隆Volley存储库并将其设置为库项目： 通过在命令行中键入以下命令，Git克隆存储库： 1 git clone https://github.com/google/volley 如创建 Android库中所述，将下载的源作为Android库模块导入到您的应用程序项目中。">
 <title></title>
 
-<link rel='canonical' href='https://example.com/android/network/volley/'>
+<link rel='canonical' href='http://localhost:1313/android/network/volley/'>
 
-<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
-<meta property='og:description' content='Volley使用 Volley是一个HTTP库，可简化Android应用程序的联网，最重要的是，可以更快地联网。Volley在GitHub上可用。
-Volley有以下好处：
-自动安排网络请求。 多个并发网络连接。 具有标准HTTP 缓存一致性的透明磁盘和内存响应缓存 。 支持请求优先级。 取消请求API。您可以取消单个请求，也可以将请求的阻止或范围设置为取消。 易于定制，例如重试和退避。 强大的排序功能使您可以轻松地使用从网络异步获取的数据正确填充UI。 调试和跟踪工具。 Volley在用于填充UI的RPC类型操作方面表现出色，例如将搜索结果页面作为结构化数据来获取。它可以轻松地与任何协议集成，并且开箱即用，支持原始字符串，图像和JSON。通过提供对所需功能的内置支持，Volley使您无需编写样板代码，而使您可以专注于特定于应用程序的逻辑。
-Volley不适合大型下载或流式传输操作，因为Volley在解析期间会将所有响应都保存在内存中。对于大型下载操作，请考虑使用替代方法DownloadManager。
-Volley核心库是在GitHub上开发的，它包含主要的请求分发管道以及在Volley“工具箱”中可用的一组通用工具。将Volley添加到项目中最简单的方法是将以下依赖项添加到应用程序的build.gradle文件中：
-1 2 3 4 dependencies { ... implementation &amp;#39;com.android.volley:volley:1.1.1&amp;#39; } 您还可以克隆Volley存储库并将其设置为库项目：
-通过在命令行中键入以下命令，Git克隆存储库：
-1 git clone https://github.com/google/volley 如创建 Android库中所述，将下载的源作为Android库模块导入到您的应用程序项目中。'>
-<meta property='og:url' content='https://example.com/android/network/volley/'>
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<meta property='og:description' content="Volley使用 Volley是一个HTTP库，可简化Android应用程序的联网，最重要的是，可以更快地联网。Volley在GitHub上可用。 Volley有以下好处： 自动安排网络请求。 多个并发网络连接。 具有标准HTTP 缓存一致性的透明磁盘和内存响应缓存 。 支持请求优先级。 取消请求API。您可以取消单个请求，也可以将请求的阻止或范围设置为取消。 易于定制，例如重试和退避。 强大的排序功能使您可以轻松地使用从网络异步获取的数据正确填充UI。 调试和跟踪工具。 Volley在用于填充UI的RPC类型操作方面表现出色，例如将搜索结果页面作为结构化数据来获取。它可以轻松地与任何协议集成，并且开箱即用，支持原始字符串，图像和JSON。通过提供对所需功能的内置支持，Volley使您无需编写样板代码，而使您可以专注于特定于应用程序的逻辑。 Volley不适合大型下载或流式传输操作，因为Volley在解析期间会将所有响应都保存在内存中。对于大型下载操作，请考虑使用替代方法DownloadManager。 Volley核心库是在GitHub上开发的，它包含主要的请求分发管道以及在Volley“工具箱”中可用的一组通用工具。将Volley添加到项目中最简单的方法是将以下依赖项添加到应用程序的build.gradle文件中： 1 2 3 4 dependencies { ... implementation &#39;com.android.volley:volley:1.1.1&#39; } 您还可以克隆Volley存储库并将其设置为库项目： 通过在命令行中键入以下命令，Git克隆存储库： 1 git clone https://github.com/google/volley 如创建 Android库中所述，将下载的源作为Android库模块导入到您的应用程序项目中。">
+<meta property='og:url' content='http://localhost:1313/android/network/volley/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="Volley使用 Volley是一个HTTP库，可简化Android应用程序的联网，最重要的是，可以更快地联网。Volley在GitHub上可用。
-Volley有以下好处：
-自动安排网络请求。 多个并发网络连接。 具有标准HTTP 缓存一致性的透明磁盘和内存响应缓存 。 支持请求优先级。 取消请求API。您可以取消单个请求，也可以将请求的阻止或范围设置为取消。 易于定制，例如重试和退避。 强大的排序功能使您可以轻松地使用从网络异步获取的数据正确填充UI。 调试和跟踪工具。 Volley在用于填充UI的RPC类型操作方面表现出色，例如将搜索结果页面作为结构化数据来获取。它可以轻松地与任何协议集成，并且开箱即用，支持原始字符串，图像和JSON。通过提供对所需功能的内置支持，Volley使您无需编写样板代码，而使您可以专注于特定于应用程序的逻辑。
-Volley不适合大型下载或流式传输操作，因为Volley在解析期间会将所有响应都保存在内存中。对于大型下载操作，请考虑使用替代方法DownloadManager。
-Volley核心库是在GitHub上开发的，它包含主要的请求分发管道以及在Volley“工具箱”中可用的一组通用工具。将Volley添加到项目中最简单的方法是将以下依赖项添加到应用程序的build.gradle文件中：
-1 2 3 4 dependencies { ... implementation &amp;#39;com.android.volley:volley:1.1.1&amp;#39; } 您还可以克隆Volley存储库并将其设置为库项目：
-通过在命令行中键入以下命令，Git克隆存储库：
-1 git clone https://github.com/google/volley 如创建 Android库中所述，将下载的源作为Android库模块导入到您的应用程序项目中。">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
-}
-</script>
-<style>
-    :root {
-      --sys-font-family: "Noto Serif SC";
-      --zh-font-family: "Noto Serif SC";
-      --base-font-family: "Noto Serif SC";
-      --code-font-family: "Noto Serif SC";
-      --article-font-family: "Noto Serif SC";
-    }
-  </style>
+<meta name="twitter:description" content="Volley使用 Volley是一个HTTP库，可简化Android应用程序的联网，最重要的是，可以更快地联网。Volley在GitHub上可用。 Volley有以下好处： 自动安排网络请求。 多个并发网络连接。 具有标准HTTP 缓存一致性的透明磁盘和内存响应缓存 。 支持请求优先级。 取消请求API。您可以取消单个请求，也可以将请求的阻止或范围设置为取消。 易于定制，例如重试和退避。 强大的排序功能使您可以轻松地使用从网络异步获取的数据正确填充UI。 调试和跟踪工具。 Volley在用于填充UI的RPC类型操作方面表现出色，例如将搜索结果页面作为结构化数据来获取。它可以轻松地与任何协议集成，并且开箱即用，支持原始字符串，图像和JSON。通过提供对所需功能的内置支持，Volley使您无需编写样板代码，而使您可以专注于特定于应用程序的逻辑。 Volley不适合大型下载或流式传输操作，因为Volley在解析期间会将所有响应都保存在内存中。对于大型下载操作，请考虑使用替代方法DownloadManager。 Volley核心库是在GitHub上开发的，它包含主要的请求分发管道以及在Volley“工具箱”中可用的一组通用工具。将Volley添加到项目中最简单的方法是将以下依赖项添加到应用程序的build.gradle文件中： 1 2 3 4 dependencies { ... implementation &#39;com.android.volley:volley:1.1.1&#39; } 您还可以克隆Volley存储库并将其设置为库项目： 通过在命令行中键入以下命令，Git克隆存储库： 1 git clone https://github.com/google/volley 如创建 Android库中所述，将下载的源作为Android库模块导入到您的应用程序项目中。">
   
-  <script>
-    (function () {
-      const customFont = document.createElement("link");
-      customFont.href =
-        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
   
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-  
-      document.head.appendChild(customFont);
-    })();
-  </script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
-     crossorigin="anonymous"></script>
-  
-
-<script>
-    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
 
 
     </head>
@@ -140,7 +92,7 @@ if (!doNotTrack) {
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
             <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -201,13 +153,32 @@ if (!doNotTrack) {
 
 
                 
-                <span>主页</span>
+                <span>Home</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/archives' >
+            <a href='/pages/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/archives/' >
                 
                 
                 
@@ -221,16 +192,54 @@ if (!doNotTrack) {
 
 
                 
-                <span>归档</span>
+                <span>Archives</span>
             </a>
         </li>
         
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -238,7 +247,7 @@ if (!doNotTrack) {
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -246,10 +255,11 @@ if (!doNotTrack) {
 
 
 
-                    <span>Dark Mode</span>
-                </li>
-            
-        </div>
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -303,8 +313,8 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="volley使用">Volley使用</h1>
-<p>Volley是一个HTTP库，可简化Android应用程序的联网，最重要的是，可以更快地联网。Volley在<a class="link" href="https://github.com/google/volley"  target="_blank" rel="noopener"
+    <h1 id="volley使用">Volley使用
+</h1><p>Volley是一个HTTP库，可简化Android应用程序的联网，最重要的是，可以更快地联网。Volley在<a class="link" href="https://github.com/google/volley"  target="_blank" rel="noopener"
     >GitHub</a>上<a class="link" href="https://github.com/google/volley"  target="_blank" rel="noopener"
     >可用</a>。</p>
 <p>Volley有以下好处：</p>
@@ -450,7 +460,7 @@ if (!doNotTrack) {
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 

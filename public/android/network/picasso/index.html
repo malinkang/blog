@@ -1,87 +1,36 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Picasso使用 1. 介绍 Picasso 具有以下特性：
-处理Adapter中的 ImageView 回收和取消已经回收ImageView的下载进程 使用最少的内存完成复杂的图片转换，比如把下载的图片转换为圆角等 自动添加磁盘和内存缓存 2.快速入门 2.1 构建项目 Jar包下载地址：https://github.com/square/picasso
-Gradle构建
-1 compile &amp;#39;com.squareup.picasso:picasso:2.3.4&amp;#39; Maven
-1 2 3 4 5 6 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.squareup.picasso&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;picasso&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;2.3.4&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; 2.2 混淆 在ProGuard中添加下列选项
-1 -dontwarn com.squareup.okhttp.** 2.3 使用 Picasso加载网络图片非常简单
-1 Picasso.with(context).load(&amp;#34;http://i.imgur.com/DvpvklR.png&amp;#34;).into(imageView); 3 特性介绍 3.1 图片转换 转换图片更好的适应布局并且减少内存占用量。
-1 2 3 4 5 6 Picasso.with(context) .load(url) .resize(50, 50) .centerCrop() .into(imageView) 用户也可以自己指定转换器，如下例子将图片转换为方形
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 public class CropSquareTransformation implements Transformation { @Override public Bitmap transform(Bitmap source) { int size = Math.'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Picasso使用 1. 介绍 Picasso 具有以下特性： 处理Adapter中的 ImageView 回收和取消已经回收ImageView的下载进程 使用最少的内存完成复杂的图片转换，比如把下载的图片转换为圆角等 自动添加磁盘和内存缓存 2.快速入门 2.1 构建项目 Jar包下载地址：https://github.com/square/picasso Gradle构建 1 compile &#39;com.squareup.picasso:picasso:2.3.4&#39; Maven 1 2 3 4 5 6 &lt;dependency&gt; &lt;groupId&gt;com.squareup.picasso&lt;/groupId&gt; &lt;artifactId&gt;picasso&lt;/artifactId&gt; &lt;version&gt;2.3.4&lt;/version&gt; &lt;/dependency&gt; 2.2 混淆 在ProGuard中添加下列选项 1 -dontwarn com.squareup.okhttp.** 2.3 使用 Picasso加载网络图片非常简单 1 Picasso.with(context).load(&#34;http://i.imgur.com/DvpvklR.png&#34;).into(imageView); 3 特性介绍 3.1 图片转换 转换图片更好的适应布局并且减少内存占用量。 1 2 3 4 5 6 Picasso.with(context) .load(url) .resize(50, 50) .centerCrop() .into(imageView) 用户也可以自己指定转换器，如下例子将图片转换为方形 1 2 3 4 5 6 7 8 9 10 11 12 13 14 public class CropSquareTransformation implements Transformation { @Override public Bitmap transform(Bitmap source) { int size = Math.">
 <title></title>
 
-<link rel='canonical' href='https://example.com/android/network/picasso/'>
+<link rel='canonical' href='http://localhost:1313/android/network/picasso/'>
 
-<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
-<meta property='og:description' content='Picasso使用 1. 介绍 Picasso 具有以下特性：
-处理Adapter中的 ImageView 回收和取消已经回收ImageView的下载进程 使用最少的内存完成复杂的图片转换，比如把下载的图片转换为圆角等 自动添加磁盘和内存缓存 2.快速入门 2.1 构建项目 Jar包下载地址：https://github.com/square/picasso
-Gradle构建
-1 compile &amp;#39;com.squareup.picasso:picasso:2.3.4&amp;#39; Maven
-1 2 3 4 5 6 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.squareup.picasso&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;picasso&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;2.3.4&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; 2.2 混淆 在ProGuard中添加下列选项
-1 -dontwarn com.squareup.okhttp.** 2.3 使用 Picasso加载网络图片非常简单
-1 Picasso.with(context).load(&amp;#34;http://i.imgur.com/DvpvklR.png&amp;#34;).into(imageView); 3 特性介绍 3.1 图片转换 转换图片更好的适应布局并且减少内存占用量。
-1 2 3 4 5 6 Picasso.with(context) .load(url) .resize(50, 50) .centerCrop() .into(imageView) 用户也可以自己指定转换器，如下例子将图片转换为方形
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 public class CropSquareTransformation implements Transformation { @Override public Bitmap transform(Bitmap source) { int size = Math.'>
-<meta property='og:url' content='https://example.com/android/network/picasso/'>
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<meta property='og:description' content="Picasso使用 1. 介绍 Picasso 具有以下特性： 处理Adapter中的 ImageView 回收和取消已经回收ImageView的下载进程 使用最少的内存完成复杂的图片转换，比如把下载的图片转换为圆角等 自动添加磁盘和内存缓存 2.快速入门 2.1 构建项目 Jar包下载地址：https://github.com/square/picasso Gradle构建 1 compile &#39;com.squareup.picasso:picasso:2.3.4&#39; Maven 1 2 3 4 5 6 &lt;dependency&gt; &lt;groupId&gt;com.squareup.picasso&lt;/groupId&gt; &lt;artifactId&gt;picasso&lt;/artifactId&gt; &lt;version&gt;2.3.4&lt;/version&gt; &lt;/dependency&gt; 2.2 混淆 在ProGuard中添加下列选项 1 -dontwarn com.squareup.okhttp.** 2.3 使用 Picasso加载网络图片非常简单 1 Picasso.with(context).load(&#34;http://i.imgur.com/DvpvklR.png&#34;).into(imageView); 3 特性介绍 3.1 图片转换 转换图片更好的适应布局并且减少内存占用量。 1 2 3 4 5 6 Picasso.with(context) .load(url) .resize(50, 50) .centerCrop() .into(imageView) 用户也可以自己指定转换器，如下例子将图片转换为方形 1 2 3 4 5 6 7 8 9 10 11 12 13 14 public class CropSquareTransformation implements Transformation { @Override public Bitmap transform(Bitmap source) { int size = Math.">
+<meta property='og:url' content='http://localhost:1313/android/network/picasso/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="Picasso使用 1. 介绍 Picasso 具有以下特性：
-处理Adapter中的 ImageView 回收和取消已经回收ImageView的下载进程 使用最少的内存完成复杂的图片转换，比如把下载的图片转换为圆角等 自动添加磁盘和内存缓存 2.快速入门 2.1 构建项目 Jar包下载地址：https://github.com/square/picasso
-Gradle构建
-1 compile &amp;#39;com.squareup.picasso:picasso:2.3.4&amp;#39; Maven
-1 2 3 4 5 6 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.squareup.picasso&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;picasso&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;2.3.4&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; 2.2 混淆 在ProGuard中添加下列选项
-1 -dontwarn com.squareup.okhttp.** 2.3 使用 Picasso加载网络图片非常简单
-1 Picasso.with(context).load(&amp;#34;http://i.imgur.com/DvpvklR.png&amp;#34;).into(imageView); 3 特性介绍 3.1 图片转换 转换图片更好的适应布局并且减少内存占用量。
-1 2 3 4 5 6 Picasso.with(context) .load(url) .resize(50, 50) .centerCrop() .into(imageView) 用户也可以自己指定转换器，如下例子将图片转换为方形
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 public class CropSquareTransformation implements Transformation { @Override public Bitmap transform(Bitmap source) { int size = Math.">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
-}
-</script>
-<style>
-    :root {
-      --sys-font-family: "Noto Serif SC";
-      --zh-font-family: "Noto Serif SC";
-      --base-font-family: "Noto Serif SC";
-      --code-font-family: "Noto Serif SC";
-      --article-font-family: "Noto Serif SC";
-    }
-  </style>
+<meta name="twitter:description" content="Picasso使用 1. 介绍 Picasso 具有以下特性： 处理Adapter中的 ImageView 回收和取消已经回收ImageView的下载进程 使用最少的内存完成复杂的图片转换，比如把下载的图片转换为圆角等 自动添加磁盘和内存缓存 2.快速入门 2.1 构建项目 Jar包下载地址：https://github.com/square/picasso Gradle构建 1 compile &#39;com.squareup.picasso:picasso:2.3.4&#39; Maven 1 2 3 4 5 6 &lt;dependency&gt; &lt;groupId&gt;com.squareup.picasso&lt;/groupId&gt; &lt;artifactId&gt;picasso&lt;/artifactId&gt; &lt;version&gt;2.3.4&lt;/version&gt; &lt;/dependency&gt; 2.2 混淆 在ProGuard中添加下列选项 1 -dontwarn com.squareup.okhttp.** 2.3 使用 Picasso加载网络图片非常简单 1 Picasso.with(context).load(&#34;http://i.imgur.com/DvpvklR.png&#34;).into(imageView); 3 特性介绍 3.1 图片转换 转换图片更好的适应布局并且减少内存占用量。 1 2 3 4 5 6 Picasso.with(context) .load(url) .resize(50, 50) .centerCrop() .into(imageView) 用户也可以自己指定转换器，如下例子将图片转换为方形 1 2 3 4 5 6 7 8 9 10 11 12 13 14 public class CropSquareTransformation implements Transformation { @Override public Bitmap transform(Bitmap source) { int size = Math.">
   
-  <script>
-    (function () {
-      const customFont = document.createElement("link");
-      customFont.href =
-        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
   
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-  
-      document.head.appendChild(customFont);
-    })();
-  </script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
-     crossorigin="anonymous"></script>
-  
-
-<script>
-    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
 
 
     </head>
@@ -143,7 +92,7 @@ if (!doNotTrack) {
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
             <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -204,13 +153,32 @@ if (!doNotTrack) {
 
 
                 
-                <span>主页</span>
+                <span>Home</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/archives' >
+            <a href='/pages/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/archives/' >
                 
                 
                 
@@ -224,16 +192,54 @@ if (!doNotTrack) {
 
 
                 
-                <span>归档</span>
+                <span>Archives</span>
             </a>
         </li>
         
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -241,7 +247,7 @@ if (!doNotTrack) {
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -249,10 +255,11 @@ if (!doNotTrack) {
 
 
 
-                    <span>Dark Mode</span>
-                </li>
-            
-        </div>
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -352,18 +359,18 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="picasso使用">Picasso使用</h1>
-<h2 id="1-介绍">1. 介绍</h2>
-<p><a class="link" href="http://square.github.io/picasso/"  target="_blank" rel="noopener"
+    <h1 id="picasso使用">Picasso使用
+</h1><h2 id="1-介绍">1. 介绍
+</h2><p><a class="link" href="http://square.github.io/picasso/"  target="_blank" rel="noopener"
     >Picasso</a> 具有以下特性：</p>
 <ul>
 <li>处理Adapter中的 ImageView 回收和取消已经回收ImageView的下载进程</li>
 <li>使用最少的内存完成复杂的图片转换，比如把下载的图片转换为圆角等</li>
 <li>自动添加磁盘和内存缓存</li>
 </ul>
-<h2 id="2快速入门">2.快速入门</h2>
-<h3 id="21-构建项目">2.1 构建项目</h3>
-<p>Jar包下载地址：<a class="link" href="https://github.com/square/picasso"  target="_blank" rel="noopener"
+<h2 id="2快速入门">2.快速入门
+</h2><h3 id="21-构建项目">2.1 构建项目
+</h3><p>Jar包下载地址：<a class="link" href="https://github.com/square/picasso"  target="_blank" rel="noopener"
     >https://github.com/square/picasso</a></p>
 <p>Gradle构建</p>
 <div class="highlight"><div class="chroma">
@@ -393,8 +400,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl">&lt;/dependency&gt;
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="22-混淆">2.2 混淆</h3>
-<p>在<code>ProGuard</code>中添加下列选项</p>
+</div><h3 id="22-混淆">2.2 混淆
+</h3><p>在<code>ProGuard</code>中添加下列选项</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -403,8 +410,8 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">-dontwarn com.squareup.okhttp.**
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="23-使用">2.3 使用</h3>
-<p><code>Picasso</code>加载网络图片非常简单</p>
+</div><h3 id="23-使用">2.3 使用
+</h3><p><code>Picasso</code>加载网络图片非常简单</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -413,9 +420,9 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Picasso</span><span class="p">.</span><span class="na">with</span><span class="p">(</span><span class="n">context</span><span class="p">).</span><span class="na">load</span><span class="p">(</span><span class="s">&#34;http://i.imgur.com/DvpvklR.png&#34;</span><span class="p">).</span><span class="na">into</span><span class="p">(</span><span class="n">imageView</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="3-特性介绍">3 特性介绍</h2>
-<h3 id="31-图片转换">3.1 图片转换</h3>
-<p>转换图片更好的适应布局并且减少内存占用量。</p>
+</div><h2 id="3-特性介绍">3 特性介绍
+</h2><h3 id="31-图片转换">3.1 图片转换
+</h3><p>转换图片更好的适应布局并且减少内存占用量。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -593,8 +600,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="32-占位">3.2 占位</h3>
-<p>当图片还未加载出来或者加载错误，我们可以设置一张图片来标识不同的状态</p>
+</div><h3 id="32-占位">3.2 占位
+</h3><p>当图片还未加载出来或者加载错误，我们可以设置一张图片来标识不同的状态</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -611,8 +618,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">into</span><span class="p">(</span><span class="n">imageView</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="33-加载其他资源图片">3.3 加载其他资源图片</h3>
-<p><code>Picasso</code>不仅可以加载网络图片，还可以资源文件，assets目录下文件，内存卡文件等等</p>
+</div><h3 id="33-加载其他资源图片">3.3 加载其他资源图片
+</h3><p><code>Picasso</code>不仅可以加载网络图片，还可以资源文件，assets目录下文件，内存卡文件等等</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -625,8 +632,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Picasso</span><span class="p">.</span><span class="na">with</span><span class="p">(</span><span class="n">context</span><span class="p">).</span><span class="na">load</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">File</span><span class="p">(...)).</span><span class="na">into</span><span class="p">(</span><span class="n">imageView2</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="34-debug标识">3.4 Debug标识</h3>
-<p>在开发状态下，调用<code>setIndicatorsEnabled(true)</code>方法会在图片的左上角现实一个的小三角，不同的颜色表示图片的不同来源</p>
+</div><h3 id="34-debug标识">3.4 Debug标识
+</h3><p>在开发状态下，调用<code>setIndicatorsEnabled(true)</code>方法会在图片的左上角现实一个的小三角，不同的颜色表示图片的不同来源</p>
 <p><img src="http://square.github.io/picasso/static/debug.png"
 	
 	
@@ -639,8 +646,8 @@ if (!doNotTrack) {
 <p>黄色：代表从磁盘缓存加载的图片</p>
 <p>绿色：代表从内存中加载的图片</p>
 <p>如果项目中使用了OkHttp库的话，默认会使用OkHttp来下载图片。否则使用HttpUrlConnection来下载图片。</p>
-<h1 id="扩展阅读">扩展阅读</h1>
-<p><a class="link" href="http://blog.jpardogo.com/requesthandler-api-for-picasso-library/"  target="_blank" rel="noopener"
+<h1 id="扩展阅读">扩展阅读
+</h1><p><a class="link" href="http://blog.jpardogo.com/requesthandler-api-for-picasso-library/"  target="_blank" rel="noopener"
     >RequestHandler API for Picasso library</a></p>
 <p><a class="link" href="http://blog.jpardogo.com/custom-picasso-downloader/"  target="_blank" rel="noopener"
     >Custom Picasso Downloader</a></p>
@@ -743,7 +750,7 @@ if (!doNotTrack) {
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 

@@ -1,108 +1,36 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='服务 Service 是一种可在后台执行长时间运行操作而不提供界面的应用组件。服务可由其他应用组件启动，而且即使用户切换到其他应用，服务仍将在后台继续运行。此外，组件可通过绑定到服务与之进行交互，甚至是执行进程间通信 (IPC)。例如，服务可在后台处理网络事务、播放音乐，执行文件 I/O 或与内容提供程序进行交互。
-以下是三种不同的服务类型：
-前台
-前台服务执行一些用户能注意到的操作。例如，音频应用会使用前台服务来播放音频曲目。前台服务必须显示通知。即使用户停止与应用的交互，前台服务仍会继续运行。
-后台
-后台服务执行用户不会直接注意到的操作。例如，如果应用使用某个服务来压缩其存储空间，则此服务通常是后台服务。
-{% hint style=&amp;ldquo;success&amp;rdquo; %} 注意：如果您的应用面向 API 级别 26 或更高版本，当应用本身未在前台运行时，系统会对运行后台服务施加限制。在诸如此类的大多数情况下，您的应用应改为使用计划作业。 {% endhint %}
-绑定
-当应用组件通过调用 bindService() 绑定到服务时，服务即处于_绑定_状态。绑定服务会提供客户端-服务器接口，以便组件与服务进行交互、发送请求、接收结果，甚至是利用进程间通信 (IPC) 跨进程执行这些操作。仅当与另一个应用组件绑定时，绑定服务才会运行。多个组件可同时绑定到该服务，但全部取消绑定后，该服务即会被销毁。
-虽然本文档分开概括讨论启动服务和绑定服务，但您的服务可同时以这两种方式运行，换言之，它既可以是启动服务（以无限期运行），亦支持绑定。唯一的问题在于您是否实现一组回调方法：onStartCommand()（让组件启动服务）和 onBind()（实现服务绑定）。
-无论服务是处于启动状态还是绑定状态（或同时处于这两种状态），任何应用组件均可像使用 Activity 那样，通过调用 Intent 来使用服务（即使此服务来自另一应用）。不过，您可以通过清单文件将服务声明为_私有_服务，并阻止其他应用访问该服务。使用清单文件声明服务部分将对此做更详尽的阐述。
-{% hint style=&amp;ldquo;success&amp;rdquo; %} 注意：服务在其托管进程的主线程中运行，它既不创建自己的线程，也不在单独的进程中运行（除非另行指定）。如果服务将执行任何 CPU 密集型工作或阻止性操作（例如 MP3 播放或联网），则应通过在服务内创建新线程来完成这项工作。通过使用单独的线程，您可以降低发生“应用无响应”(ANR) 错误的风险，而应用的主线程仍可继续专注于运行用户与 Activity 之间的交互。 {% endhint %}
-在服务和线程之间进行选择 简单地说，服务是一种即使用户未与应用交互也可在后台运行的组件，因此，只有在需要服务时才应创建服务。
-如果您必须在主线程之外执行操作，但只在用户与您的应用交互时执行此操作，则应创建新线程。例如，如果您只是想在 Activity 运行的同时播放一些音乐，则可在 onCreate() 中创建线程，在 onStart() 中启动线程运行，然后在 onStop() 中停止线程。您还可考虑使用 AsyncTask 或 HandlerThread，而非传统的 Thread 类。如需了解有关线程的详细信息，请参阅进程和线程文档。
-请记住，如果您确实要使用服务，则默认情况下，它仍会在应用的主线程中运行，因此，如果服务执行的是密集型或阻止性操作，则您仍应在服务内创建新线程。
-基础知识 如要创建服务，您必须创建 Service 的子类（或使用它的一个现有子类）。在实现中，您必须重写一些回调方法，从而处理服务生命周期的某些关键方面，并提供一种机制将组件绑定到服务（如适用）。以下是您应重写的最重要的回调方法：'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="服务 Service 是一种可在后台执行长时间运行操作而不提供界面的应用组件。服务可由其他应用组件启动，而且即使用户切换到其他应用，服务仍将在后台继续运行。此外，组件可通过绑定到服务与之进行交互，甚至是执行进程间通信 (IPC)。例如，服务可在后台处理网络事务、播放音乐，执行文件 I/O 或与内容提供程序进行交互。 以下是三种不同的服务类型： 前台 前台服务执行一些用户能注意到的操作。例如，音频应用会使用前台服务来播放音频曲目。前台服务必须显示通知。即使用户停止与应用的交互，前台服务仍会继续运行。 后台 后台服务执行用户不会直接注意到的操作。例如，如果应用使用某个服务来压缩其存储空间，则此服务通常是后台服务。 {% hint style=&ldquo;success&rdquo; %} 注意：如果您的应用面向 API 级别 26 或更高版本，当应用本身未在前台运行时，系统会对运行后台服务施加限制。在诸如此类的大多数情况下，您的应用应改为使用计划作业。 {% endhint %} 绑定 当应用组件通过调用 bindService() 绑定到服务时，服务即处于_绑定_状态。绑定服务会提供客户端-服务器接口，以便组件与服务进行交互、发送请求、接收结果，甚至是利用进程间通信 (IPC) 跨进程执行这些操作。仅当与另一个应用组件绑定时，绑定服务才会运行。多个组件可同时绑定到该服务，但全部取消绑定后，该服务即会被销毁。 虽然本文档分开概括讨论启动服务和绑定服务，但您的服务可同时以这两种方式运行，换言之，它既可以是启动服务（以无限期运行），亦支持绑定。唯一的问题在于您是否实现一组回调方法：onStartCommand()（让组件启动服务）和 onBind()（实现服务绑定）。 无论服务是处于启动状态还是绑定状态（或同时处于这两种状态），任何应用组件均可像使用 Activity 那样，通过调用 Intent 来使用服务（即使此服务来自另一应用）。不过，您可以通过清单文件将服务声明为_私有_服务，并阻止其他应用访问该服务。使用清单文件声明服务部分将对此做更详尽的阐述。 {% hint style=&ldquo;success&rdquo; %} 注意：服务在其托管进程的主线程中运行，它既不创建自己的线程，也不在单独的进程中运行（除非另行指定）。如果服务将执行任何 CPU 密集型工作或阻止性操作（例如 MP3 播放或联网），则应通过在服务内创建新线程来完成这项工作。通过使用单独的线程，您可以降低发生“应用无响应”(ANR) 错误的风险，而应用的主线程仍可继续专注于运行用户与 Activity 之间的交互。 {% endhint %} 在服务和线程之间进行选择 简单地说，服务是一种即使用户未与应用交互也可在后台运行的组件，因此，只有在需要服务时才应创建服务。 如果您必须在主线程之外执行操作，但只在用户与您的应用交互时执行此操作，则应创建新线程。例如，如果您只是想在 Activity 运行的同时播放一些音乐，则可在 onCreate() 中创建线程，在 onStart() 中启动线程运行，然后在 onStop() 中停止线程。您还可考虑使用 AsyncTask 或 HandlerThread，而非传统的 Thread 类。如需了解有关线程的详细信息，请参阅进程和线程文档。 请记住，如果您确实要使用服务，则默认情况下，它仍会在应用的主线程中运行，因此，如果服务执行的是密集型或阻止性操作，则您仍应在服务内创建新线程。 基础知识 如要创建服务，您必须创建 Service 的子类（或使用它的一个现有子类）。在实现中，您必须重写一些回调方法，从而处理服务生命周期的某些关键方面，并提供一种机制将组件绑定到服务（如适用）。以下是您应重写的最重要的回调方法：">
 <title></title>
 
-<link rel='canonical' href='https://example.com/android/components/services/services/'>
+<link rel='canonical' href='http://localhost:1313/android/components/services/services/'>
 
-<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
-<meta property='og:description' content='服务 Service 是一种可在后台执行长时间运行操作而不提供界面的应用组件。服务可由其他应用组件启动，而且即使用户切换到其他应用，服务仍将在后台继续运行。此外，组件可通过绑定到服务与之进行交互，甚至是执行进程间通信 (IPC)。例如，服务可在后台处理网络事务、播放音乐，执行文件 I/O 或与内容提供程序进行交互。
-以下是三种不同的服务类型：
-前台
-前台服务执行一些用户能注意到的操作。例如，音频应用会使用前台服务来播放音频曲目。前台服务必须显示通知。即使用户停止与应用的交互，前台服务仍会继续运行。
-后台
-后台服务执行用户不会直接注意到的操作。例如，如果应用使用某个服务来压缩其存储空间，则此服务通常是后台服务。
-{% hint style=&amp;ldquo;success&amp;rdquo; %} 注意：如果您的应用面向 API 级别 26 或更高版本，当应用本身未在前台运行时，系统会对运行后台服务施加限制。在诸如此类的大多数情况下，您的应用应改为使用计划作业。 {% endhint %}
-绑定
-当应用组件通过调用 bindService() 绑定到服务时，服务即处于_绑定_状态。绑定服务会提供客户端-服务器接口，以便组件与服务进行交互、发送请求、接收结果，甚至是利用进程间通信 (IPC) 跨进程执行这些操作。仅当与另一个应用组件绑定时，绑定服务才会运行。多个组件可同时绑定到该服务，但全部取消绑定后，该服务即会被销毁。
-虽然本文档分开概括讨论启动服务和绑定服务，但您的服务可同时以这两种方式运行，换言之，它既可以是启动服务（以无限期运行），亦支持绑定。唯一的问题在于您是否实现一组回调方法：onStartCommand()（让组件启动服务）和 onBind()（实现服务绑定）。
-无论服务是处于启动状态还是绑定状态（或同时处于这两种状态），任何应用组件均可像使用 Activity 那样，通过调用 Intent 来使用服务（即使此服务来自另一应用）。不过，您可以通过清单文件将服务声明为_私有_服务，并阻止其他应用访问该服务。使用清单文件声明服务部分将对此做更详尽的阐述。
-{% hint style=&amp;ldquo;success&amp;rdquo; %} 注意：服务在其托管进程的主线程中运行，它既不创建自己的线程，也不在单独的进程中运行（除非另行指定）。如果服务将执行任何 CPU 密集型工作或阻止性操作（例如 MP3 播放或联网），则应通过在服务内创建新线程来完成这项工作。通过使用单独的线程，您可以降低发生“应用无响应”(ANR) 错误的风险，而应用的主线程仍可继续专注于运行用户与 Activity 之间的交互。 {% endhint %}
-在服务和线程之间进行选择 简单地说，服务是一种即使用户未与应用交互也可在后台运行的组件，因此，只有在需要服务时才应创建服务。
-如果您必须在主线程之外执行操作，但只在用户与您的应用交互时执行此操作，则应创建新线程。例如，如果您只是想在 Activity 运行的同时播放一些音乐，则可在 onCreate() 中创建线程，在 onStart() 中启动线程运行，然后在 onStop() 中停止线程。您还可考虑使用 AsyncTask 或 HandlerThread，而非传统的 Thread 类。如需了解有关线程的详细信息，请参阅进程和线程文档。
-请记住，如果您确实要使用服务，则默认情况下，它仍会在应用的主线程中运行，因此，如果服务执行的是密集型或阻止性操作，则您仍应在服务内创建新线程。
-基础知识 如要创建服务，您必须创建 Service 的子类（或使用它的一个现有子类）。在实现中，您必须重写一些回调方法，从而处理服务生命周期的某些关键方面，并提供一种机制将组件绑定到服务（如适用）。以下是您应重写的最重要的回调方法：'>
-<meta property='og:url' content='https://example.com/android/components/services/services/'>
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<meta property='og:description' content="服务 Service 是一种可在后台执行长时间运行操作而不提供界面的应用组件。服务可由其他应用组件启动，而且即使用户切换到其他应用，服务仍将在后台继续运行。此外，组件可通过绑定到服务与之进行交互，甚至是执行进程间通信 (IPC)。例如，服务可在后台处理网络事务、播放音乐，执行文件 I/O 或与内容提供程序进行交互。 以下是三种不同的服务类型： 前台 前台服务执行一些用户能注意到的操作。例如，音频应用会使用前台服务来播放音频曲目。前台服务必须显示通知。即使用户停止与应用的交互，前台服务仍会继续运行。 后台 后台服务执行用户不会直接注意到的操作。例如，如果应用使用某个服务来压缩其存储空间，则此服务通常是后台服务。 {% hint style=&ldquo;success&rdquo; %} 注意：如果您的应用面向 API 级别 26 或更高版本，当应用本身未在前台运行时，系统会对运行后台服务施加限制。在诸如此类的大多数情况下，您的应用应改为使用计划作业。 {% endhint %} 绑定 当应用组件通过调用 bindService() 绑定到服务时，服务即处于_绑定_状态。绑定服务会提供客户端-服务器接口，以便组件与服务进行交互、发送请求、接收结果，甚至是利用进程间通信 (IPC) 跨进程执行这些操作。仅当与另一个应用组件绑定时，绑定服务才会运行。多个组件可同时绑定到该服务，但全部取消绑定后，该服务即会被销毁。 虽然本文档分开概括讨论启动服务和绑定服务，但您的服务可同时以这两种方式运行，换言之，它既可以是启动服务（以无限期运行），亦支持绑定。唯一的问题在于您是否实现一组回调方法：onStartCommand()（让组件启动服务）和 onBind()（实现服务绑定）。 无论服务是处于启动状态还是绑定状态（或同时处于这两种状态），任何应用组件均可像使用 Activity 那样，通过调用 Intent 来使用服务（即使此服务来自另一应用）。不过，您可以通过清单文件将服务声明为_私有_服务，并阻止其他应用访问该服务。使用清单文件声明服务部分将对此做更详尽的阐述。 {% hint style=&ldquo;success&rdquo; %} 注意：服务在其托管进程的主线程中运行，它既不创建自己的线程，也不在单独的进程中运行（除非另行指定）。如果服务将执行任何 CPU 密集型工作或阻止性操作（例如 MP3 播放或联网），则应通过在服务内创建新线程来完成这项工作。通过使用单独的线程，您可以降低发生“应用无响应”(ANR) 错误的风险，而应用的主线程仍可继续专注于运行用户与 Activity 之间的交互。 {% endhint %} 在服务和线程之间进行选择 简单地说，服务是一种即使用户未与应用交互也可在后台运行的组件，因此，只有在需要服务时才应创建服务。 如果您必须在主线程之外执行操作，但只在用户与您的应用交互时执行此操作，则应创建新线程。例如，如果您只是想在 Activity 运行的同时播放一些音乐，则可在 onCreate() 中创建线程，在 onStart() 中启动线程运行，然后在 onStop() 中停止线程。您还可考虑使用 AsyncTask 或 HandlerThread，而非传统的 Thread 类。如需了解有关线程的详细信息，请参阅进程和线程文档。 请记住，如果您确实要使用服务，则默认情况下，它仍会在应用的主线程中运行，因此，如果服务执行的是密集型或阻止性操作，则您仍应在服务内创建新线程。 基础知识 如要创建服务，您必须创建 Service 的子类（或使用它的一个现有子类）。在实现中，您必须重写一些回调方法，从而处理服务生命周期的某些关键方面，并提供一种机制将组件绑定到服务（如适用）。以下是您应重写的最重要的回调方法：">
+<meta property='og:url' content='http://localhost:1313/android/components/services/services/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="服务 Service 是一种可在后台执行长时间运行操作而不提供界面的应用组件。服务可由其他应用组件启动，而且即使用户切换到其他应用，服务仍将在后台继续运行。此外，组件可通过绑定到服务与之进行交互，甚至是执行进程间通信 (IPC)。例如，服务可在后台处理网络事务、播放音乐，执行文件 I/O 或与内容提供程序进行交互。
-以下是三种不同的服务类型：
-前台
-前台服务执行一些用户能注意到的操作。例如，音频应用会使用前台服务来播放音频曲目。前台服务必须显示通知。即使用户停止与应用的交互，前台服务仍会继续运行。
-后台
-后台服务执行用户不会直接注意到的操作。例如，如果应用使用某个服务来压缩其存储空间，则此服务通常是后台服务。
-{% hint style=&amp;ldquo;success&amp;rdquo; %} 注意：如果您的应用面向 API 级别 26 或更高版本，当应用本身未在前台运行时，系统会对运行后台服务施加限制。在诸如此类的大多数情况下，您的应用应改为使用计划作业。 {% endhint %}
-绑定
-当应用组件通过调用 bindService() 绑定到服务时，服务即处于_绑定_状态。绑定服务会提供客户端-服务器接口，以便组件与服务进行交互、发送请求、接收结果，甚至是利用进程间通信 (IPC) 跨进程执行这些操作。仅当与另一个应用组件绑定时，绑定服务才会运行。多个组件可同时绑定到该服务，但全部取消绑定后，该服务即会被销毁。
-虽然本文档分开概括讨论启动服务和绑定服务，但您的服务可同时以这两种方式运行，换言之，它既可以是启动服务（以无限期运行），亦支持绑定。唯一的问题在于您是否实现一组回调方法：onStartCommand()（让组件启动服务）和 onBind()（实现服务绑定）。
-无论服务是处于启动状态还是绑定状态（或同时处于这两种状态），任何应用组件均可像使用 Activity 那样，通过调用 Intent 来使用服务（即使此服务来自另一应用）。不过，您可以通过清单文件将服务声明为_私有_服务，并阻止其他应用访问该服务。使用清单文件声明服务部分将对此做更详尽的阐述。
-{% hint style=&amp;ldquo;success&amp;rdquo; %} 注意：服务在其托管进程的主线程中运行，它既不创建自己的线程，也不在单独的进程中运行（除非另行指定）。如果服务将执行任何 CPU 密集型工作或阻止性操作（例如 MP3 播放或联网），则应通过在服务内创建新线程来完成这项工作。通过使用单独的线程，您可以降低发生“应用无响应”(ANR) 错误的风险，而应用的主线程仍可继续专注于运行用户与 Activity 之间的交互。 {% endhint %}
-在服务和线程之间进行选择 简单地说，服务是一种即使用户未与应用交互也可在后台运行的组件，因此，只有在需要服务时才应创建服务。
-如果您必须在主线程之外执行操作，但只在用户与您的应用交互时执行此操作，则应创建新线程。例如，如果您只是想在 Activity 运行的同时播放一些音乐，则可在 onCreate() 中创建线程，在 onStart() 中启动线程运行，然后在 onStop() 中停止线程。您还可考虑使用 AsyncTask 或 HandlerThread，而非传统的 Thread 类。如需了解有关线程的详细信息，请参阅进程和线程文档。
-请记住，如果您确实要使用服务，则默认情况下，它仍会在应用的主线程中运行，因此，如果服务执行的是密集型或阻止性操作，则您仍应在服务内创建新线程。
-基础知识 如要创建服务，您必须创建 Service 的子类（或使用它的一个现有子类）。在实现中，您必须重写一些回调方法，从而处理服务生命周期的某些关键方面，并提供一种机制将组件绑定到服务（如适用）。以下是您应重写的最重要的回调方法：">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
-}
-</script>
-<style>
-    :root {
-      --sys-font-family: "Noto Serif SC";
-      --zh-font-family: "Noto Serif SC";
-      --base-font-family: "Noto Serif SC";
-      --code-font-family: "Noto Serif SC";
-      --article-font-family: "Noto Serif SC";
-    }
-  </style>
+<meta name="twitter:description" content="服务 Service 是一种可在后台执行长时间运行操作而不提供界面的应用组件。服务可由其他应用组件启动，而且即使用户切换到其他应用，服务仍将在后台继续运行。此外，组件可通过绑定到服务与之进行交互，甚至是执行进程间通信 (IPC)。例如，服务可在后台处理网络事务、播放音乐，执行文件 I/O 或与内容提供程序进行交互。 以下是三种不同的服务类型： 前台 前台服务执行一些用户能注意到的操作。例如，音频应用会使用前台服务来播放音频曲目。前台服务必须显示通知。即使用户停止与应用的交互，前台服务仍会继续运行。 后台 后台服务执行用户不会直接注意到的操作。例如，如果应用使用某个服务来压缩其存储空间，则此服务通常是后台服务。 {% hint style=&ldquo;success&rdquo; %} 注意：如果您的应用面向 API 级别 26 或更高版本，当应用本身未在前台运行时，系统会对运行后台服务施加限制。在诸如此类的大多数情况下，您的应用应改为使用计划作业。 {% endhint %} 绑定 当应用组件通过调用 bindService() 绑定到服务时，服务即处于_绑定_状态。绑定服务会提供客户端-服务器接口，以便组件与服务进行交互、发送请求、接收结果，甚至是利用进程间通信 (IPC) 跨进程执行这些操作。仅当与另一个应用组件绑定时，绑定服务才会运行。多个组件可同时绑定到该服务，但全部取消绑定后，该服务即会被销毁。 虽然本文档分开概括讨论启动服务和绑定服务，但您的服务可同时以这两种方式运行，换言之，它既可以是启动服务（以无限期运行），亦支持绑定。唯一的问题在于您是否实现一组回调方法：onStartCommand()（让组件启动服务）和 onBind()（实现服务绑定）。 无论服务是处于启动状态还是绑定状态（或同时处于这两种状态），任何应用组件均可像使用 Activity 那样，通过调用 Intent 来使用服务（即使此服务来自另一应用）。不过，您可以通过清单文件将服务声明为_私有_服务，并阻止其他应用访问该服务。使用清单文件声明服务部分将对此做更详尽的阐述。 {% hint style=&ldquo;success&rdquo; %} 注意：服务在其托管进程的主线程中运行，它既不创建自己的线程，也不在单独的进程中运行（除非另行指定）。如果服务将执行任何 CPU 密集型工作或阻止性操作（例如 MP3 播放或联网），则应通过在服务内创建新线程来完成这项工作。通过使用单独的线程，您可以降低发生“应用无响应”(ANR) 错误的风险，而应用的主线程仍可继续专注于运行用户与 Activity 之间的交互。 {% endhint %} 在服务和线程之间进行选择 简单地说，服务是一种即使用户未与应用交互也可在后台运行的组件，因此，只有在需要服务时才应创建服务。 如果您必须在主线程之外执行操作，但只在用户与您的应用交互时执行此操作，则应创建新线程。例如，如果您只是想在 Activity 运行的同时播放一些音乐，则可在 onCreate() 中创建线程，在 onStart() 中启动线程运行，然后在 onStop() 中停止线程。您还可考虑使用 AsyncTask 或 HandlerThread，而非传统的 Thread 类。如需了解有关线程的详细信息，请参阅进程和线程文档。 请记住，如果您确实要使用服务，则默认情况下，它仍会在应用的主线程中运行，因此，如果服务执行的是密集型或阻止性操作，则您仍应在服务内创建新线程。 基础知识 如要创建服务，您必须创建 Service 的子类（或使用它的一个现有子类）。在实现中，您必须重写一些回调方法，从而处理服务生命周期的某些关键方面，并提供一种机制将组件绑定到服务（如适用）。以下是您应重写的最重要的回调方法：">
   
-  <script>
-    (function () {
-      const customFont = document.createElement("link");
-      customFont.href =
-        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
   
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-  
-      document.head.appendChild(customFont);
-    })();
-  </script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
-     crossorigin="anonymous"></script>
-  
-
-<script>
-    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
 
 
     </head>
@@ -164,7 +92,7 @@ if (!doNotTrack) {
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
             <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -225,13 +153,32 @@ if (!doNotTrack) {
 
 
                 
-                <span>主页</span>
+                <span>Home</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/archives' >
+            <a href='/pages/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/archives/' >
                 
                 
                 
@@ -245,16 +192,54 @@ if (!doNotTrack) {
 
 
                 
-                <span>归档</span>
+                <span>Archives</span>
             </a>
         </li>
         
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -262,7 +247,7 @@ if (!doNotTrack) {
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -270,10 +255,11 @@ if (!doNotTrack) {
 
 
 
-                    <span>Dark Mode</span>
-                </li>
-            
-        </div>
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -376,8 +362,8 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="服务">服务</h1>
-<p><a class="link" href="https://developer.android.com/reference/android/app/Service"  target="_blank" rel="noopener"
+    <h1 id="服务">服务
+</h1><p><a class="link" href="https://developer.android.com/reference/android/app/Service"  target="_blank" rel="noopener"
     ><code>Service</code></a> 是一种可在后台执行长时间运行操作而不提供界面的应用组件。服务可由其他应用组件启动，而且即使用户切换到其他应用，服务仍将在后台继续运行。此外，组件可通过绑定到服务与之进行交互，甚至是执行进程间通信 (IPC)。例如，服务可在后台处理网络事务、播放音乐，执行文件 I/O 或与内容提供程序进行交互。</p>
 <p>以下是<strong>三种</strong>不同的服务类型：</p>
 <p><strong>前台</strong></p>
@@ -402,8 +388,8 @@ if (!doNotTrack) {
 <p>{% hint style=&ldquo;success&rdquo; %}
 <strong>注意：服务在其托管进程的主线程中运行，它既不</strong>创建自己的线程，也<strong>不</strong>在单独的进程中运行（除非另行指定）。如果服务将执行任何 CPU 密集型工作或阻止性操作（例如 MP3 播放或联网），则应通过在服务内创建新线程来完成这项工作。通过使用单独的线程，您可以降低发生“应用无响应”(ANR) 错误的风险，而应用的主线程仍可继续专注于运行用户与 Activity 之间的交互。
 {% endhint %}</p>
-<h2 id="在服务和线程之间进行选择">在服务和线程之间进行选择</h2>
-<p>简单地说，服务是一种即使用户未与应用交互也可在后台运行的组件，因此，只有在需要服务时才应创建服务。</p>
+<h2 id="在服务和线程之间进行选择">在服务和线程之间进行选择
+</h2><p>简单地说，服务是一种即使用户未与应用交互也可在后台运行的组件，因此，只有在需要服务时才应创建服务。</p>
 <p>如果您必须在主线程之外执行操作，但只在用户与您的应用交互时执行此操作，则应创建新线程。例如，如果您只是想在 Activity 运行的同时播放一些音乐，则可在 <a class="link" href="https://developer.android.com/reference/android/app/Activity#onCreate%28android.os.Bundle%29"  target="_blank" rel="noopener"
     ><code>onCreate()</code></a> 中创建线程，在 <a class="link" href="https://developer.android.com/reference/android/app/Activity#onStart%28%29"  target="_blank" rel="noopener"
     ><code>onStart()</code></a> 中启动线程运行，然后在 <a class="link" href="https://developer.android.com/reference/android/app/Activity#onStop%28%29"  target="_blank" rel="noopener"
@@ -413,8 +399,8 @@ if (!doNotTrack) {
     ><code>Thread</code></a> 类。如需了解有关线程的详细信息，请参阅<a class="link" href="https://developer.android.com/guide/components/processes-and-threads#Threads"  target="_blank" rel="noopener"
     >进程和线程</a>文档。</p>
 <p>请记住，如果您确实要使用服务，则默认情况下，它仍会在应用的主线程中运行，因此，如果服务执行的是密集型或阻止性操作，则您仍应在服务内创建新线程。</p>
-<h2 id="基础知识">基础知识</h2>
-<p>如要创建服务，您必须创建 <a class="link" href="https://developer.android.com/reference/android/app/Service?hl=zh-cn"  target="_blank" rel="noopener"
+<h2 id="基础知识">基础知识
+</h2><p>如要创建服务，您必须创建 <a class="link" href="https://developer.android.com/reference/android/app/Service?hl=zh-cn"  target="_blank" rel="noopener"
     ><code>Service</code></a> 的子类（或使用它的一个现有子类）。在实现中，您必须重写一些回调方法，从而处理服务生命周期的某些关键方面，并提供一种机制将组件绑定到服务（如适用）。以下是您应重写的最重要的回调方法：</p>
 <p><a class="link" href="https://developer.android.com/reference/android/app/Service?hl=zh-cn#onStartCommand%28android.content.Intent,%20int,%20int%29"  target="_blank" rel="noopener"
     ><code>onStartCommand()</code></a></p>
@@ -450,8 +436,8 @@ if (!doNotTrack) {
 <p>下文将介绍如何创建 <a class="link" href="https://developer.android.com/reference/android/content/Context?hl=zh-cn#startService%28android.content.Intent%29"  target="_blank" rel="noopener"
     ><code>startService()</code></a> 和 <a class="link" href="https://developer.android.com/reference/android/content/Context?hl=zh-cn#bindService%28android.content.Intent,%20android.content.ServiceConnection,%20int%29"  target="_blank" rel="noopener"
     ><code>bindService()</code></a> 服务方法，以及如何通过其他应用组件使用这些方法。</p>
-<h2 id="使用清单文件声明服务">使用清单文件声明服务</h2>
-<p>如同 Activity（以及其他组件）一样，您必须在应用的清单文件中声明所有服务。</p>
+<h2 id="使用清单文件声明服务">使用清单文件声明服务
+</h2><p>如同 Activity（以及其他组件）一样，您必须在应用的清单文件中声明所有服务。</p>
 <p>要声明服务，请添加 元素作为 元素的子元素。例如：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -483,8 +469,8 @@ if (!doNotTrack) {
     ><code>&lt;service&gt;</code></a> 元素中添加 <a class="link" href="https://developer.android.com/guide/topics/manifest/service-element#desc"  target="_blank" rel="noopener"
     ><code>android:description</code></a>。请在描述中用一个短句解释服务的作用及其提供的好处。
 {% endhint %}</p>
-<h2 id="创建启动服务">创建启动服务</h2>
-<p>启动服务由另一个组件通过调用 startService() 启动，这会导致调用服务的 onStartCommand() 方法。</p>
+<h2 id="创建启动服务">创建启动服务
+</h2><p>启动服务由另一个组件通过调用 startService() 启动，这会导致调用服务的 onStartCommand() 方法。</p>
 <p>服务启动之后，其生命周期即独立于启动它的组件，并且可以在后台无限期地运行，即使启动服务的组件已被销毁也不受影响。 因此，服务应通过调用 stopSelf() 结束工作来自行停止运行，或者由另一个组件通过调用 stopService() 来停止它。</p>
 <p>应用组件（如 Activity）可以通过调用 startService() 方法并传递 Intent 对象（指定服务并包含待使用服务的所有数据）来启动服务。服务通过 onStartCommand() 方法接收此 Intent。</p>
 <p>例如，假设某 Activity 需要将一些数据保存到在线数据库中。该 Activity 可以启动一个协同服务，并通过向 startService() 传递一个 Intent，为该服务提供要保存的数据。服务通过 onStartCommand() 接收 Intent，连接到互联网并执行数据库事务。事务完成之后，服务会自行停止运行并随即被销毁。</p>
@@ -500,8 +486,8 @@ if (!doNotTrack) {
 <p>这是 Service 的子类，它使用工作线程逐一处理所有启动请求。如果您不要求服务同时处理多个请求，这是最好的选择。 您只需实现 onHandleIntent() 方法即可，该方法会接收每个启动请求的 Intent，使您能够执行后台工作。</p>
 </li>
 </ul>
-<h3 id="扩展-intentservice-类">扩展 IntentService 类</h3>
-<p>该类已经被标记为过期。IntentService受制于Android 8.0规定的所有<a class="link" href="https://developer.android.com/about/versions/oreo/background"  target="_blank" rel="noopener"
+<h3 id="扩展-intentservice-类">扩展 IntentService 类
+</h3><p>该类已经被标记为过期。IntentService受制于Android 8.0规定的所有<a class="link" href="https://developer.android.com/about/versions/oreo/background"  target="_blank" rel="noopener"
     >后台执行限制</a>（API级别26）。 当在<code>Android 8.0</code>或更高版本上运行时，可以考虑使用<code>WorkManager</code>或<code>JobIntentService</code>，它使用作业而不是服务。</p>
 <p>由于大多数启动服务都不必同时处理多个请求（实际上，这种多线程情况可能很危险），因此使用 <code>IntentService</code> 类实现服务也许是最好的选择。</p>
 <p><code>IntentService</code>执行以下操作：</p>
@@ -664,8 +650,8 @@ if (!doNotTrack) {
 </div>
 </div><p>除 <code>onHandleIntent()</code> 之外，您无需从中调用超类的唯一方法就是 <code>onBind()</code>（仅当服务允许绑定时，才需要实现该方法）。</p>
 <p>在下一部分中，您将了解如何在扩展 <code>Service</code> 基类时实现同类服务。该基类包含更多代码，但如需同时处理多个启动请求，则更适合使用该基类。</p>
-<h3 id="扩展服务类">扩展服务类</h3>
-<p>借助 <a class="link" href="https://developer.android.com/reference/android/app/IntentService"  target="_blank" rel="noopener"
+<h3 id="扩展服务类">扩展服务类
+</h3><p>借助 <a class="link" href="https://developer.android.com/reference/android/app/IntentService"  target="_blank" rel="noopener"
     ><code>IntentService</code></a>，您可以非常轻松地实现启动服务。但是，若要求服务执行多线程（而非通过工作队列处理启动请求），则可通过扩展 <a class="link" href="https://developer.android.com/reference/android/app/Service"  target="_blank" rel="noopener"
     ><code>Service</code></a> 类来处理每个 Intent。</p>
 <p>为进行比较，以下示例代码展示了 <a class="link" href="https://developer.android.com/reference/android/app/Service"  target="_blank" rel="noopener"
@@ -824,8 +810,8 @@ if (!doNotTrack) {
 <p>如果系统在 onStartCommand() 返回后终止服务，则会重建服务，并通过传递给服务的最后一个 Intent 调用 onStartCommand()。任何挂起 Intent 均依次传递。这适用于主动执行应该立即恢复的作业（例如下载文件）的服务。</p>
 </li>
 </ul>
-<h3 id="启动服务">启动服务</h3>
-<p>您可以通过将 Intent（指定要启动的服务）传递给 startService()，从 Activity 或其他应用组件启动服务。Android 系统调用服务的 onStartCommand() 方法，并向其传递 Intent。（切勿直接调用 onStartCommand()。）</p>
+<h3 id="启动服务">启动服务
+</h3><p>您可以通过将 Intent（指定要启动的服务）传递给 startService()，从 Activity 或其他应用组件启动服务。Android 系统调用服务的 onStartCommand() 方法，并向其传递 Intent。（切勿直接调用 onStartCommand()。）</p>
 <p>例如，Activity 可以结合使用显式 Intent 与 startService()，启动上文中的示例服务 (HelloService)：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -840,15 +826,15 @@ if (!doNotTrack) {
 </div><p>startService() 方法将立即返回，且 Android 系统调用服务的 onStartCommand() 方法。如果服务尚未运行，则系统会先调用 onCreate()，然后再调用 onStartCommand()。</p>
 <p>如果服务亦未提供绑定，则使用 startService() 传递的 Intent 是应用组件与服务之间唯一的通信模式。但是，如果您希望服务返回结果，则启动服务的客户端可以为广播创建一个 PendingIntent （使用 getBroadcast()），并通过启动服务的 Intent 传递给服务。然后，服务就可以使用广播传递结果。</p>
 <p>多个服务启动请求会导致多次对服务的 onStartCommand() 进行相应的调用。但是，要停止服务，只需一个服务停止请求（使用 stopSelf() 或 stopService()）即可。</p>
-<h3 id="停止服务">停止服务</h3>
-<p>启动服务必须管理自己的生命周期。也就是说，除非系统必须回收内存资源，否则系统不会停止或销毁服务，而且服务在 onStartCommand() 返回后会继续运行。因此，服务必须通过调用 stopSelf() 自行停止运行，或者由另一个组件通过调用 stopService() 来停止它。</p>
+<h3 id="停止服务">停止服务
+</h3><p>启动服务必须管理自己的生命周期。也就是说，除非系统必须回收内存资源，否则系统不会停止或销毁服务，而且服务在 onStartCommand() 返回后会继续运行。因此，服务必须通过调用 stopSelf() 自行停止运行，或者由另一个组件通过调用 stopService() 来停止它。</p>
 <p>一旦请求使用 stopSelf() 或 stopService() 停止服务，系统就会尽快销毁服务。</p>
 <p>但是，如果服务同时处理多个 onStartCommand() 请求，则您不应在处理完一个启动请求之后停止服务，因为您可能已经收到了新的启动请求（在第一个请求结束时停止服务会终止第二个请求）。为了避免这一问题，您可以使用 stopSelf(int) 确保服务停止请求始终基于最近的启动请求。也就说，在调用 stopSelf(int) 时，传递与停止请求的 ID 对应的启动请求的 ID（传递给 onStartCommand() 的 startId）。然后，如果在您能够调用 stopSelf(int) 之前服务收到了新的启动请求，ID 就不匹配，服务也就不会停止。</p>
 <p>{% hint style=&ldquo;info&rdquo; %}
 注意：为了避免浪费系统资源和消耗电池电量，应用必须在工作完成之后停止其服务。 如有必要，其他组件可以通过调用 stopService() 来停止服务。即使为服务启用了绑定，一旦服务收到对 onStartCommand() 的调用，您始终仍须亲自停止服务。
 {% endhint %}</p>
-<h2 id="创建绑定服务">创建绑定服务</h2>
-<p>绑定服务允许应用组件通过调用 <a class="link" href="https://developer.android.com/reference/android/content/Context#bindService%28android.content.Intent,%20android.content.ServiceConnection,%20int%29"  target="_blank" rel="noopener"
+<h2 id="创建绑定服务">创建绑定服务
+</h2><p>绑定服务允许应用组件通过调用 <a class="link" href="https://developer.android.com/reference/android/content/Context#bindService%28android.content.Intent,%20android.content.ServiceConnection,%20int%29"  target="_blank" rel="noopener"
     ><code>bindService()</code></a> 与其绑定，从而创建长期连接。此服务通常不允许组件通过调用 <a class="link" href="https://developer.android.com/reference/android/content/Context#startService%28android.content.Intent%29"  target="_blank" rel="noopener"
     ><code>startService()</code></a> 来_启动_它。</p>
 <p>如需与 Activity 和其他应用组件中的服务进行交互，或需要通过进程间通信 (IPC) 向其他应用公开某些应用功能，则应创建绑定服务。</p>
@@ -866,8 +852,8 @@ if (!doNotTrack) {
 <p>实现绑定服务有多种方法，并且此实现比启动服务更为复杂。出于这些原因，请参阅另一份文档<a class="link" href="https://developer.android.com/guide/components/bound-services"  target="_blank" rel="noopener"
     >绑定服务</a>，了解关于绑定服务的详细介绍。</p>
 <p>绑定服务是客户端-服务器接口中的服务器。绑定服务可让组件（例如 Activity）绑定到服务、发送请求、接收响应，甚至执行进程间通信 (IPC)。 绑定服务通常只在为其他应用组件服务时处于活动状态，不会无限期在后台运行。</p>
-<h2 id="向用户发送通知">向用户发送通知</h2>
-<p>处于运行状态时，服务可以使用 <a class="link" href="https://developer.android.com/guide/topics/ui/notifiers/toasts"  target="_blank" rel="noopener"
+<h2 id="向用户发送通知">向用户发送通知
+</h2><p>处于运行状态时，服务可以使用 <a class="link" href="https://developer.android.com/guide/topics/ui/notifiers/toasts"  target="_blank" rel="noopener"
     >Toast 通知</a>或<a class="link" href="https://developer.android.com/guide/topics/ui/notifiers/notifications"  target="_blank" rel="noopener"
     >状态栏通知</a>来通知用户所发生的事件。</p>
 <p>Toast 通知是指仅在当前窗口界面显示片刻的消息。状态栏通知在状态栏中提供内含消息的图标，用户可通过选择该图标来执行操作（例如启动 Activity）。</p>
@@ -875,8 +861,8 @@ if (!doNotTrack) {
 <p>如需了解详细信息，请参阅 <a class="link" href="https://developer.android.com/guide/topics/ui/notifiers/toasts"  target="_blank" rel="noopener"
     >Toast 通知</a>或<a class="link" href="https://developer.android.com/guide/topics/ui/notifiers/notifications"  target="_blank" rel="noopener"
     >状态栏通知</a>开发者指南。</p>
-<h2 id="在前台运行服务">在前台运行服务</h2>
-<p>前台服务是用户主动意识到的一种服务，因此在内存不足时，系统也不会考虑将其终止。前台服务必须为状态栏提供通知，将其放在_运行中的_标题下方。这意味着除非将服务停止或从前台移除，否则不能清除该通知。</p>
+<h2 id="在前台运行服务">在前台运行服务
+</h2><p>前台服务是用户主动意识到的一种服务，因此在内存不足时，系统也不会考虑将其终止。前台服务必须为状态栏提供通知，将其放在_运行中的_标题下方。这意味着除非将服务停止或从前台移除，否则不能清除该通知。</p>
 <p>{% hint style=&ldquo;info&rdquo; %}
 **注意：**请限制应用使用前台服务。</p>
 <p>只有当应用执行的任务需供用户查看（即使该任务未直接与应用交互）时，您才应使用前台服务。因此，前台服务必须显示优先级为 <a class="link" href="https://developer.android.com/reference/androidx/core/app/NotificationCompat#PRIORITY%5c_LOW"  target="_blank" rel="noopener"
@@ -935,8 +921,8 @@ if (!doNotTrack) {
     ><code>stopForeground()</code></a>。此方法采用布尔值，指示是否需同时移除状态栏通知。此方法_不会_停止服务。但是，如果您在服务仍运行于前台时将其停止，则通知也会随之移除。</p>
 <p>如需了解有关通知的详细信息，请参阅<a class="link" href="https://developer.android.com/guide/topics/ui/notifiers/notifications"  target="_blank" rel="noopener"
     >创建状态栏通知</a>。</p>
-<h2 id="管理服务的生命周期">管理服务的生命周期</h2>
-<p>服务的生命周期比 Activity 的生命周期要简单得多。但是，密切关注如何创建和销毁服务反而更加重要，因为服务可以在用户未意识到的情况下运行于后台。</p>
+<h2 id="管理服务的生命周期">管理服务的生命周期
+</h2><p>服务的生命周期比 Activity 的生命周期要简单得多。但是，密切关注如何创建和销毁服务反而更加重要，因为服务可以在用户未意识到的情况下运行于后台。</p>
 <p>服务生命周期（从创建到销毁）可遵循以下任一路径：</p>
 <ul>
 <li>
@@ -961,8 +947,8 @@ if (!doNotTrack) {
     ><code>bindService()</code></a> 绑定到服务。此类情况下，在所有客户端取消绑定之前，<a class="link" href="https://developer.android.com/reference/android/content/Context#stopService%28android.content.Intent%29"  target="_blank" rel="noopener"
     ><code>stopService()</code></a> 或 <a class="link" href="https://developer.android.com/reference/android/app/Service#stopSelf%28%29"  target="_blank" rel="noopener"
     ><code>stopSelf()</code></a> 实际不会停止服务。</p>
-<h3 id="实现生命周期回调">实现生命周期回调</h3>
-<p>与 Activity 类似，服务也拥有生命周期回调方法，您可通过实现这些方法来监控服务状态的变化并适时执行工作。以下框架服务展示了每种生命周期方法：</p>
+<h3 id="实现生命周期回调">实现生命周期回调
+</h3><p>与 Activity 类似，服务也拥有生命周期回调方法，您可通过实现这些方法来监控服务状态的变化并适时执行工作。以下框架服务展示了每种生命周期方法：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1038,7 +1024,7 @@ if (!doNotTrack) {
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>**注意：**与 Activity 生命周期回调方法不同，您_不_需要调用这些回调方法的超类实现。</p>
-<p><img src="/../../.gitbook/assets/service%5c_lifecycle.png"
+<p><img src="/.gitbook/assets/service%5c_lifecycle.png"
 	
 	
 	
@@ -1184,7 +1170,7 @@ if (!doNotTrack) {
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 

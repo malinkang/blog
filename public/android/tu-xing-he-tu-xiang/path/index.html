@@ -1,69 +1,36 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Path使用 Path封装了由直线和曲线(二次，三次贝塞尔曲线)构成的几何路径。你能用Canvas中的drawPath来把这条路径画出来(同样支持Paint的不同绘制模式)，也可以用于剪裁画布和根据路径绘制文字。我们有时会用Path来描述一个图像的轮廓，所以也会称为轮廓线(轮廓线仅是Path的一种使用方法，两者并不等价)。
-canvas只能绘制出常见的形状，但是无法绘制出复杂的形状。
-moveTo、 setLastPoint、 lineTo 和 close moveTo：移动下一次操作的起点位置 setLastPoint：重置当前path中最后一个点位置，如果在绘制之前调用，效果和moveTo相同 lineTo：添加上一个点到当前点之间的直线到Path close：连接第一个点连接到最后一个点，形成一个闭合区域 1 2 3 4 Paint mPaint = new Paint(); // 创建画笔 mPaint.setColor(getResources().getColor(R.color.green));//设置画笔颜色 mPaint.setStyle(Paint.Style.STROKE);//设置画笔样式 mPaint.setStrokeWidth(10f); //设置画笔宽度为10px 1 2 3 4 5 Path path = new Path(); // 创建Path path.lineTo(400, 400); // 添加(0,0)到(400,400)之间的直线 path.moveTo(400, 200); // 移动到(400,200) path.lineTo(200, 0); // 添加(200,0)到(400,400)之间的直线 canvas.drawPath(path, mPaint); // 绘制Path 1 2 3 4 5 6 Path path = new Path(); // 创建Path path.lineTo(400, 400); // 添加(0,0)到(400,400)之间的直线 path.'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Path使用 Path封装了由直线和曲线(二次，三次贝塞尔曲线)构成的几何路径。你能用Canvas中的drawPath来把这条路径画出来(同样支持Paint的不同绘制模式)，也可以用于剪裁画布和根据路径绘制文字。我们有时会用Path来描述一个图像的轮廓，所以也会称为轮廓线(轮廓线仅是Path的一种使用方法，两者并不等价)。 canvas只能绘制出常见的形状，但是无法绘制出复杂的形状。 moveTo、 setLastPoint、 lineTo 和 close moveTo：移动下一次操作的起点位置 setLastPoint：重置当前path中最后一个点位置，如果在绘制之前调用，效果和moveTo相同 lineTo：添加上一个点到当前点之间的直线到Path close：连接第一个点连接到最后一个点，形成一个闭合区域 1 2 3 4 Paint mPaint = new Paint(); // 创建画笔 mPaint.setColor(getResources().getColor(R.color.green));//设置画笔颜色 mPaint.setStyle(Paint.Style.STROKE);//设置画笔样式 mPaint.setStrokeWidth(10f); //设置画笔宽度为10px 1 2 3 4 5 Path path = new Path(); // 创建Path path.lineTo(400, 400); // 添加(0,0)到(400,400)之间的直线 path.moveTo(400, 200); // 移动到(400,200) path.lineTo(200, 0); // 添加(200,0)到(400,400)之间的直线 canvas.drawPath(path, mPaint); // 绘制Path 1 2 3 4 5 6 Path path = new Path(); // 创建Path path.lineTo(400, 400); // 添加(0,0)到(400,400)之间的直线 path.">
 <title></title>
 
-<link rel='canonical' href='https://example.com/android/tu-xing-he-tu-xiang/path/'>
+<link rel='canonical' href='http://localhost:1313/android/tu-xing-he-tu-xiang/path/'>
 
-<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
-<meta property='og:description' content='Path使用 Path封装了由直线和曲线(二次，三次贝塞尔曲线)构成的几何路径。你能用Canvas中的drawPath来把这条路径画出来(同样支持Paint的不同绘制模式)，也可以用于剪裁画布和根据路径绘制文字。我们有时会用Path来描述一个图像的轮廓，所以也会称为轮廓线(轮廓线仅是Path的一种使用方法，两者并不等价)。
-canvas只能绘制出常见的形状，但是无法绘制出复杂的形状。
-moveTo、 setLastPoint、 lineTo 和 close moveTo：移动下一次操作的起点位置 setLastPoint：重置当前path中最后一个点位置，如果在绘制之前调用，效果和moveTo相同 lineTo：添加上一个点到当前点之间的直线到Path close：连接第一个点连接到最后一个点，形成一个闭合区域 1 2 3 4 Paint mPaint = new Paint(); // 创建画笔 mPaint.setColor(getResources().getColor(R.color.green));//设置画笔颜色 mPaint.setStyle(Paint.Style.STROKE);//设置画笔样式 mPaint.setStrokeWidth(10f); //设置画笔宽度为10px 1 2 3 4 5 Path path = new Path(); // 创建Path path.lineTo(400, 400); // 添加(0,0)到(400,400)之间的直线 path.moveTo(400, 200); // 移动到(400,200) path.lineTo(200, 0); // 添加(200,0)到(400,400)之间的直线 canvas.drawPath(path, mPaint); // 绘制Path 1 2 3 4 5 6 Path path = new Path(); // 创建Path path.lineTo(400, 400); // 添加(0,0)到(400,400)之间的直线 path.'>
-<meta property='og:url' content='https://example.com/android/tu-xing-he-tu-xiang/path/'>
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<meta property='og:description' content="Path使用 Path封装了由直线和曲线(二次，三次贝塞尔曲线)构成的几何路径。你能用Canvas中的drawPath来把这条路径画出来(同样支持Paint的不同绘制模式)，也可以用于剪裁画布和根据路径绘制文字。我们有时会用Path来描述一个图像的轮廓，所以也会称为轮廓线(轮廓线仅是Path的一种使用方法，两者并不等价)。 canvas只能绘制出常见的形状，但是无法绘制出复杂的形状。 moveTo、 setLastPoint、 lineTo 和 close moveTo：移动下一次操作的起点位置 setLastPoint：重置当前path中最后一个点位置，如果在绘制之前调用，效果和moveTo相同 lineTo：添加上一个点到当前点之间的直线到Path close：连接第一个点连接到最后一个点，形成一个闭合区域 1 2 3 4 Paint mPaint = new Paint(); // 创建画笔 mPaint.setColor(getResources().getColor(R.color.green));//设置画笔颜色 mPaint.setStyle(Paint.Style.STROKE);//设置画笔样式 mPaint.setStrokeWidth(10f); //设置画笔宽度为10px 1 2 3 4 5 Path path = new Path(); // 创建Path path.lineTo(400, 400); // 添加(0,0)到(400,400)之间的直线 path.moveTo(400, 200); // 移动到(400,200) path.lineTo(200, 0); // 添加(200,0)到(400,400)之间的直线 canvas.drawPath(path, mPaint); // 绘制Path 1 2 3 4 5 6 Path path = new Path(); // 创建Path path.lineTo(400, 400); // 添加(0,0)到(400,400)之间的直线 path.">
+<meta property='og:url' content='http://localhost:1313/android/tu-xing-he-tu-xiang/path/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="Path使用 Path封装了由直线和曲线(二次，三次贝塞尔曲线)构成的几何路径。你能用Canvas中的drawPath来把这条路径画出来(同样支持Paint的不同绘制模式)，也可以用于剪裁画布和根据路径绘制文字。我们有时会用Path来描述一个图像的轮廓，所以也会称为轮廓线(轮廓线仅是Path的一种使用方法，两者并不等价)。
-canvas只能绘制出常见的形状，但是无法绘制出复杂的形状。
-moveTo、 setLastPoint、 lineTo 和 close moveTo：移动下一次操作的起点位置 setLastPoint：重置当前path中最后一个点位置，如果在绘制之前调用，效果和moveTo相同 lineTo：添加上一个点到当前点之间的直线到Path close：连接第一个点连接到最后一个点，形成一个闭合区域 1 2 3 4 Paint mPaint = new Paint(); // 创建画笔 mPaint.setColor(getResources().getColor(R.color.green));//设置画笔颜色 mPaint.setStyle(Paint.Style.STROKE);//设置画笔样式 mPaint.setStrokeWidth(10f); //设置画笔宽度为10px 1 2 3 4 5 Path path = new Path(); // 创建Path path.lineTo(400, 400); // 添加(0,0)到(400,400)之间的直线 path.moveTo(400, 200); // 移动到(400,200) path.lineTo(200, 0); // 添加(200,0)到(400,400)之间的直线 canvas.drawPath(path, mPaint); // 绘制Path 1 2 3 4 5 6 Path path = new Path(); // 创建Path path.lineTo(400, 400); // 添加(0,0)到(400,400)之间的直线 path.">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
-}
-</script>
-<style>
-    :root {
-      --sys-font-family: "Noto Serif SC";
-      --zh-font-family: "Noto Serif SC";
-      --base-font-family: "Noto Serif SC";
-      --code-font-family: "Noto Serif SC";
-      --article-font-family: "Noto Serif SC";
-    }
-  </style>
+<meta name="twitter:description" content="Path使用 Path封装了由直线和曲线(二次，三次贝塞尔曲线)构成的几何路径。你能用Canvas中的drawPath来把这条路径画出来(同样支持Paint的不同绘制模式)，也可以用于剪裁画布和根据路径绘制文字。我们有时会用Path来描述一个图像的轮廓，所以也会称为轮廓线(轮廓线仅是Path的一种使用方法，两者并不等价)。 canvas只能绘制出常见的形状，但是无法绘制出复杂的形状。 moveTo、 setLastPoint、 lineTo 和 close moveTo：移动下一次操作的起点位置 setLastPoint：重置当前path中最后一个点位置，如果在绘制之前调用，效果和moveTo相同 lineTo：添加上一个点到当前点之间的直线到Path close：连接第一个点连接到最后一个点，形成一个闭合区域 1 2 3 4 Paint mPaint = new Paint(); // 创建画笔 mPaint.setColor(getResources().getColor(R.color.green));//设置画笔颜色 mPaint.setStyle(Paint.Style.STROKE);//设置画笔样式 mPaint.setStrokeWidth(10f); //设置画笔宽度为10px 1 2 3 4 5 Path path = new Path(); // 创建Path path.lineTo(400, 400); // 添加(0,0)到(400,400)之间的直线 path.moveTo(400, 200); // 移动到(400,200) path.lineTo(200, 0); // 添加(200,0)到(400,400)之间的直线 canvas.drawPath(path, mPaint); // 绘制Path 1 2 3 4 5 6 Path path = new Path(); // 创建Path path.lineTo(400, 400); // 添加(0,0)到(400,400)之间的直线 path.">
   
-  <script>
-    (function () {
-      const customFont = document.createElement("link");
-      customFont.href =
-        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
   
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-  
-      document.head.appendChild(customFont);
-    })();
-  </script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
-     crossorigin="anonymous"></script>
-  
-
-<script>
-    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
 
 
     </head>
@@ -125,7 +92,7 @@ if (!doNotTrack) {
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
             <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -186,13 +153,32 @@ if (!doNotTrack) {
 
 
                 
-                <span>主页</span>
+                <span>Home</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/archives' >
+            <a href='/pages/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/archives/' >
                 
                 
                 
@@ -206,16 +192,54 @@ if (!doNotTrack) {
 
 
                 
-                <span>归档</span>
+                <span>Archives</span>
             </a>
         </li>
         
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -223,7 +247,7 @@ if (!doNotTrack) {
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -231,10 +255,11 @@ if (!doNotTrack) {
 
 
 
-                    <span>Dark Mode</span>
-                </li>
-            
-        </div>
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -332,11 +357,11 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="path使用">Path使用</h1>
-<p>Path封装了由直线和曲线(二次，三次贝塞尔曲线)构成的几何路径。你能用Canvas中的drawPath来把这条路径画出来(同样支持Paint的不同绘制模式)，也可以用于剪裁画布和根据路径绘制文字。我们有时会用Path来描述一个图像的轮廓，所以也会称为轮廓线(轮廓线仅是Path的一种使用方法，两者并不等价)。</p>
+    <h1 id="path使用">Path使用
+</h1><p>Path封装了由直线和曲线(二次，三次贝塞尔曲线)构成的几何路径。你能用Canvas中的drawPath来把这条路径画出来(同样支持Paint的不同绘制模式)，也可以用于剪裁画布和根据路径绘制文字。我们有时会用Path来描述一个图像的轮廓，所以也会称为轮廓线(轮廓线仅是Path的一种使用方法，两者并不等价)。</p>
 <p>canvas只能绘制出常见的形状，但是无法绘制出复杂的形状。</p>
-<h2 id="moveto-setlastpoint-lineto-和-close">moveTo、 setLastPoint、 lineTo 和 close</h2>
-<ul>
+<h2 id="moveto-setlastpoint-lineto-和-close">moveTo、 setLastPoint、 lineTo 和 close
+</h2><ul>
 <li>moveTo：移动下一次操作的起点位置</li>
 <li>setLastPoint：重置当前path中最后一个点位置，如果在绘制之前调用，效果和moveTo相同</li>
 <li>lineTo：添加上一个点到当前点之间的直线到Path</li>
@@ -372,7 +397,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawPath</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">mPaint</span><span class="p">);</span><span class="w">              </span><span class="c1">// 绘制Path</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/../.gitbook/assets/path-1%20%281%29.jpeg"
+</div><p><img src="/.gitbook/assets/path-1%20%281%29.jpeg"
 	
 	
 	
@@ -398,7 +423,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawPath</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">mPaint</span><span class="p">);</span><span class="w">              </span><span class="c1">// 绘制Path</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/../.gitbook/assets/path-2%20%281%29.jpeg"
+</div><p><img src="/.gitbook/assets/path-2%20%281%29.jpeg"
 	
 	
 	
@@ -406,8 +431,8 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h2 id="添加基本图形">添加基本图形</h2>
-<p>Path提供了如下方法来添加基本图形</p>
+<h2 id="添加基本图形">添加基本图形
+</h2><p>Path提供了如下方法来添加基本图形</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -438,8 +463,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">addRoundRect</span><span class="w"> </span><span class="p">(</span><span class="n">RectF</span><span class="w"> </span><span class="n">rect</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">rx</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">ry</span><span class="p">,</span><span class="w"> </span><span class="n">Path</span><span class="p">.</span><span class="na">Direction</span><span class="w"> </span><span class="n">dir</span><span class="p">)</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="添加弧形">添加弧形</h2>
-<div class="highlight"><div class="chroma">
+</div><h2 id="添加弧形">添加弧形
+</h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -455,15 +480,15 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">arcTo</span><span class="w"> </span><span class="p">(</span><span class="n">RectF</span><span class="w"> </span><span class="n">oval</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">startAngle</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">sweepAngle</span><span class="p">,</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">forceMoveTo</span><span class="p">)</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="其他方法">其他方法</h2>
-<ul>
+</div><h2 id="其他方法">其他方法
+</h2><ul>
 <li>isEmpty：判断path中是否包含内容</li>
 <li>isRect：判断是否是矩形</li>
 <li>set:将新的path赋值到现有path。</li>
 <li>offset：将path平移一段</li>
 </ul>
-<h2 id="填充规则">填充规则</h2>
-<p>我们要做一个同心圆，我们的代码如下：</p>
+<h2 id="填充规则">填充规则
+</h2><p>我们要做一个同心圆，我们的代码如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -478,7 +503,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawPath</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/../.gitbook/assets/path-3%20%281%29.jpeg"
+</div><p><img src="/.gitbook/assets/path-3%20%281%29.jpeg"
 	
 	
 	
@@ -529,7 +554,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawPath</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/../.gitbook/assets/path-4%20%281%29.jpeg"
+</div><p><img src="/.gitbook/assets/path-4%20%281%29.jpeg"
 	
 	
 	
@@ -537,7 +562,7 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<p><img src="/../.gitbook/assets/even-odd-winding%20%281%29.png"
+<p><img src="/.gitbook/assets/even-odd-winding%20%281%29.png"
 	
 	
 	
@@ -564,7 +589,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawPath</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/../.gitbook/assets/path-filltype-INVERSE_EVEN_ODD.jpeg"
+</div><p><img src="/.gitbook/assets/path-filltype-INVERSE_EVEN_ODD.jpeg"
 	
 	
 	
@@ -572,9 +597,9 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h3 id="非零环绕数规则">非零环绕数规则</h3>
-<p>WINDING遵从非零环绕数规则，即首先使图形的边变为矢量（具有方向）。将环绕数初始化为零。再从任意位置p作一条射线。当从p点沿射线方向移动时，对在每个方向上穿过射线的边计数，每当图形的边从右到左穿过射线时，环绕数加1，从左到右时，环绕数减1。处理完图形的所有相关边之后，若环绕数为非零，则p为内部点，否则，p是外部点。</p>
-<p><img src="/../.gitbook/assets/non-zero-winding-1%20%281%29.png"
+<h3 id="非零环绕数规则">非零环绕数规则
+</h3><p>WINDING遵从非零环绕数规则，即首先使图形的边变为矢量（具有方向）。将环绕数初始化为零。再从任意位置p作一条射线。当从p点沿射线方向移动时，对在每个方向上穿过射线的边计数，每当图形的边从右到左穿过射线时，环绕数加1，从左到右时，环绕数减1。处理完图形的所有相关边之后，若环绕数为非零，则p为内部点，否则，p是外部点。</p>
+<p><img src="/.gitbook/assets/non-zero-winding-1%20%281%29.png"
 	
 	
 	
@@ -600,7 +625,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawPath</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/../.gitbook/assets/non-zero-winding-3%20%281%29.jpeg"
+</div><p><img src="/.gitbook/assets/non-zero-winding-3%20%281%29.jpeg"
 	
 	
 	
@@ -609,7 +634,7 @@ if (!doNotTrack) {
 	
 ></p>
 <p>改变内圈的方向</p>
-<p><img src="/../.gitbook/assets/non-zero-winding-2%20%281%29.png"
+<p><img src="/.gitbook/assets/non-zero-winding-2%20%281%29.png"
 	
 	
 	
@@ -635,7 +660,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawPath</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/../.gitbook/assets/non-zero-winding-4%20%281%29.jpeg"
+</div><p><img src="/.gitbook/assets/non-zero-winding-4%20%281%29.jpeg"
 	
 	
 	
@@ -660,7 +685,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawPath</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/../.gitbook/assets/inverse_winding-1%20%281%29.jpeg"
+</div><p><img src="/.gitbook/assets/inverse_winding-1%20%281%29.jpeg"
 	
 	
 	
@@ -684,7 +709,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawPath</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/../.gitbook/assets/inverse_winding-2%20%281%29.jpeg"
+</div><p><img src="/.gitbook/assets/inverse_winding-2%20%281%29.jpeg"
 	
 	
 	
@@ -692,8 +717,8 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h3 id="其他与填充模式相关的方法">其他与填充模式相关的方法</h3>
-<p>除了上面提到的setFillType方法，Path还提供了下面3个与填充模式相关的方法：</p>
+<h3 id="其他与填充模式相关的方法">其他与填充模式相关的方法
+</h3><p>除了上面提到的setFillType方法，Path还提供了下面3个与填充模式相关的方法：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -712,8 +737,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">toggleInverseFillType</span><span class="p">()</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="布尔操作apigt19">布尔操作（API&gt;19)</h2>
-<p>布尔操作是两个Path之间的运算，主要作用是用一些简单的图形通过一些规则合成一些相对比较复杂，或难以直接得到的图形。</p>
+</div><h2 id="布尔操作apigt19">布尔操作（API&gt;19)
+</h2><p>布尔操作是两个Path之间的运算，主要作用是用一些简单的图形通过一些规则合成一些相对比较复杂，或难以直接得到的图形。</p>
 <p>在Path中的布尔运算有两个方法：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -885,7 +910,7 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">canvas</span><span class="p">.</span><span class="na">drawPath</span><span class="p">(</span><span class="n">pathOpResult</span><span class="p">,</span><span class="n">mPaint</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><img src="/../.gitbook/assets/path-op%20%281%29.jpeg"
+</div><p><img src="/.gitbook/assets/path-op%20%281%29.jpeg"
 	
 	
 	
@@ -893,8 +918,8 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h2 id="计算边界">计算边界</h2>
-<div class="highlight"><div class="chroma">
+<h2 id="计算边界">计算边界
+</h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -907,8 +932,8 @@ if (!doNotTrack) {
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>这个方法主要作用是计算Path所占用的空间以及所在位置。</p>
-<h2 id="重置path">重置path</h2>
-<p>重置Path有两个方法，分别是reset和rewind，两者区别主要有以下两点：</p>
+<h2 id="重置path">重置path
+</h2><p>重置Path有两个方法，分别是reset和rewind，两者区别主要有以下两点：</p>
 <div class="table-wrapper"><table>
 <thead>
 <tr>
@@ -933,8 +958,8 @@ if (!doNotTrack) {
 <p>这个两个方法应该何时选择呢？</p>
 <p>选择权重: FillType &gt; 数据结构</p>
 <p>因为“FillType”影响的是显示效果，而“数据结构”影响的是重建速度。</p>
-<h2 id="参考">参考</h2>
-<ul>
+<h2 id="参考">参考
+</h2><ul>
 <li><a class="link" href="https://blog.stylingandroid.com/vectordrawable-fill-windings/"  target="_blank" rel="noopener"
     >VectorDrawable Fill Windings</a></li>
 </ul>
@@ -1033,7 +1058,7 @@ if (!doNotTrack) {
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 

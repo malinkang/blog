@@ -1,78 +1,36 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='???&#43; 原文
-We’ve written some recipes that demonstrate how to solve common problems with Okio. Read through them to learn about how everything works together. Cut-and-paste these examples freely; that’s what they’re for. 我们写了一些菜谱，演示如何用Okio解决常见问题。阅读它们，了解一切是如何运作的。自由地剪切和粘贴这些例子；这就是它们的用处。
-???&#43; 原文
-These recipes work on all platforms: Java, Android, Kotlin/Native, and Kotlin/JS. See [java.io Recipes](https://square.github.io/okio/java_io_recipes/) for samples that integrate Java APIs. 这些配方可以在所有平台上使用。Java、Android、Kotlin/Native和Kotlin/JS。请参阅java.io Recipes，了解集成了Java APIs的样本。
-逐行读取一个文本文件 ???&#43; 原文
-Use FileSystem.source(Path) to open a source stream to read a file.'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="???+ 原文 We’ve written some recipes that demonstrate how to solve common problems with Okio. Read through them to learn about how everything works together. Cut-and-paste these examples freely; that’s what they’re for. 我们写了一些菜谱，演示如何用Okio解决常见问题。阅读它们，了解一切是如何运作的。自由地剪切和粘贴这些例子；这就是它们的用处。 ???+ 原文 These recipes work on all platforms: Java, Android, Kotlin/Native, and Kotlin/JS. See [java.io Recipes](https://square.github.io/okio/java_io_recipes/) for samples that integrate Java APIs. 这些配方可以在所有平台上使用。Java、Android、Kotlin/Native和Kotlin/JS。请参阅java.io Recipes，了解集成了Java APIs的样本。 逐行读取一个文本文件 ???+ 原文 Use FileSystem.source(Path) to open a source stream to read a file.">
 <title></title>
 
-<link rel='canonical' href='https://example.com/android/thirdparty/okio-recipes/'>
+<link rel='canonical' href='http://localhost:1313/android/thirdparty/okio-recipes/'>
 
-<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
-<meta property='og:description' content='???&#43; 原文
-We’ve written some recipes that demonstrate how to solve common problems with Okio. Read through them to learn about how everything works together. Cut-and-paste these examples freely; that’s what they’re for. 我们写了一些菜谱，演示如何用Okio解决常见问题。阅读它们，了解一切是如何运作的。自由地剪切和粘贴这些例子；这就是它们的用处。
-???&#43; 原文
-These recipes work on all platforms: Java, Android, Kotlin/Native, and Kotlin/JS. See [java.io Recipes](https://square.github.io/okio/java_io_recipes/) for samples that integrate Java APIs. 这些配方可以在所有平台上使用。Java、Android、Kotlin/Native和Kotlin/JS。请参阅java.io Recipes，了解集成了Java APIs的样本。
-逐行读取一个文本文件 ???&#43; 原文
-Use FileSystem.source(Path) to open a source stream to read a file.'>
-<meta property='og:url' content='https://example.com/android/thirdparty/okio-recipes/'>
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<meta property='og:description' content="???+ 原文 We’ve written some recipes that demonstrate how to solve common problems with Okio. Read through them to learn about how everything works together. Cut-and-paste these examples freely; that’s what they’re for. 我们写了一些菜谱，演示如何用Okio解决常见问题。阅读它们，了解一切是如何运作的。自由地剪切和粘贴这些例子；这就是它们的用处。 ???+ 原文 These recipes work on all platforms: Java, Android, Kotlin/Native, and Kotlin/JS. See [java.io Recipes](https://square.github.io/okio/java_io_recipes/) for samples that integrate Java APIs. 这些配方可以在所有平台上使用。Java、Android、Kotlin/Native和Kotlin/JS。请参阅java.io Recipes，了解集成了Java APIs的样本。 逐行读取一个文本文件 ???+ 原文 Use FileSystem.source(Path) to open a source stream to read a file.">
+<meta property='og:url' content='http://localhost:1313/android/thirdparty/okio-recipes/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="???&#43; 原文
-We’ve written some recipes that demonstrate how to solve common problems with Okio. Read through them to learn about how everything works together. Cut-and-paste these examples freely; that’s what they’re for. 我们写了一些菜谱，演示如何用Okio解决常见问题。阅读它们，了解一切是如何运作的。自由地剪切和粘贴这些例子；这就是它们的用处。
-???&#43; 原文
-These recipes work on all platforms: Java, Android, Kotlin/Native, and Kotlin/JS. See [java.io Recipes](https://square.github.io/okio/java_io_recipes/) for samples that integrate Java APIs. 这些配方可以在所有平台上使用。Java、Android、Kotlin/Native和Kotlin/JS。请参阅java.io Recipes，了解集成了Java APIs的样本。
-逐行读取一个文本文件 ???&#43; 原文
-Use FileSystem.source(Path) to open a source stream to read a file.">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
-}
-</script>
-<style>
-    :root {
-      --sys-font-family: "Noto Serif SC";
-      --zh-font-family: "Noto Serif SC";
-      --base-font-family: "Noto Serif SC";
-      --code-font-family: "Noto Serif SC";
-      --article-font-family: "Noto Serif SC";
-    }
-  </style>
+<meta name="twitter:description" content="???+ 原文 We’ve written some recipes that demonstrate how to solve common problems with Okio. Read through them to learn about how everything works together. Cut-and-paste these examples freely; that’s what they’re for. 我们写了一些菜谱，演示如何用Okio解决常见问题。阅读它们，了解一切是如何运作的。自由地剪切和粘贴这些例子；这就是它们的用处。 ???+ 原文 These recipes work on all platforms: Java, Android, Kotlin/Native, and Kotlin/JS. See [java.io Recipes](https://square.github.io/okio/java_io_recipes/) for samples that integrate Java APIs. 这些配方可以在所有平台上使用。Java、Android、Kotlin/Native和Kotlin/JS。请参阅java.io Recipes，了解集成了Java APIs的样本。 逐行读取一个文本文件 ???+ 原文 Use FileSystem.source(Path) to open a source stream to read a file.">
   
-  <script>
-    (function () {
-      const customFont = document.createElement("link");
-      customFont.href =
-        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
   
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-  
-      document.head.appendChild(customFont);
-    })();
-  </script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
-     crossorigin="anonymous"></script>
-  
-
-<script>
-    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
 
 
     </head>
@@ -134,7 +92,7 @@ if (!doNotTrack) {
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
             <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -195,13 +153,32 @@ if (!doNotTrack) {
 
 
                 
-                <span>主页</span>
+                <span>Home</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/archives' >
+            <a href='/pages/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/archives/' >
                 
                 
                 
@@ -215,16 +192,54 @@ if (!doNotTrack) {
 
 
                 
-                <span>归档</span>
+                <span>Archives</span>
             </a>
         </li>
         
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -232,7 +247,7 @@ if (!doNotTrack) {
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -240,10 +255,11 @@ if (!doNotTrack) {
 
 
 
-                    <span>Dark Mode</span>
-                </li>
-            
-        </div>
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -337,8 +353,8 @@ if (!doNotTrack) {
 <pre><code>These recipes work on all platforms: Java, Android, Kotlin/Native, and Kotlin/JS. See [java.io Recipes](https://square.github.io/okio/java_io_recipes/) for samples that integrate Java APIs.
 </code></pre>
 <p>这些配方可以在所有平台上使用。Java、Android、Kotlin/Native和Kotlin/JS。请参阅java.io Recipes，了解集成了Java APIs的样本。</p>
-<h2 id="逐行读取一个文本文件">逐行读取一个文本文件</h2>
-<p>???+ 原文</p>
+<h2 id="逐行读取一个文本文件">逐行读取一个文本文件
+</h2><p>???+ 原文</p>
 <pre><code>Use FileSystem.source(Path) to open a source stream to read a file. The returned Source interface is very small and has limited uses. Instead we wrap the source with a buffer. This has two benefits:
 </code></pre>
 <p>使用FileSystem.source(Path)打开一个源流以读取文件。返回的Source接口非常小，用途有限。相反，我们用一个缓冲区来包装源。这有两个好处。</p>
@@ -426,8 +442,8 @@ if (!doNotTrack) {
 <pre><code>The `readUtf8Line()` method is suitable for parsing most files. For certain use-cases you may also consider `readUtf8LineStrict()`. It is similar but it requires that each line is terminated by `\n` or `\r\n`. If it encounters the end of the file before that it will throw an `EOFException`. The strict variant also permits a byte limit to defend against malformed input.
 </code></pre>
 <p>readUtf8Line()方法适用于解析大多数文件。对于某些使用情况，你也可以考虑readUtf8LineStrict()。它与此类似，但它要求每一行以 \n 或 \r\n 结尾。如果它在这之前遇到了文件的结尾，它将抛出一个EOFException。严格的变体还允许有一个字节限制，以防御畸形的输入。</p>
-<h2 id="写入一个文本文件">写入一个文本文件</h2>
-<p>???+ 原文</p>
+<h2 id="写入一个文本文件">写入一个文本文件
+</h2><p>???+ 原文</p>
 <pre><code>Above we used a `Source` and a `BufferedSource` to read a file. To write, we use a `Sink` and a `BufferedSink`. The advantages of buffering are the same: a more capable API and better performance.
 </code></pre>
 <p>上面我们用一个Source和一个BufferedSource来读一个文件。写入时，我们使用一个Sink和一个BufferedSink。缓冲的优点是一样的：一个更有能力的API和更好的性能。</p>
@@ -588,7 +604,7 @@ if (!doNotTrack) {
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 

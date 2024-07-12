@@ -1,120 +1,57 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='预览效果 使用 Warning
-Weread2Notion和Weread2Notion-Pro是两个不同的项目，模板也不相同，切勿用错模板。
-Weread2Notion教程：https://malinkang.com/posts/weread2notion/ 热力图使用教程：https://malinkang.com/posts/github_heatmap/ Fork工程 打开Weread2Notion-Pro，点击右上角的Fork（顺便点个star谢谢）
-权限 确保你打开了读写权限。
-依次选择Settings-&amp;gt;Actions-&amp;gt;General，然后下拉，找到Workflow permissions，如果没有选中Read and write permissions，请选中，然后点下面的save保存。
-获取微信读书Cookie 浏览器打开网页版微信读书扫码登录 按F12进入开发者模式，依次点网络-&amp;gt;文档，然后选中weread.qq.com，下拉找到Cookie，复制Cookie值 Tip
-如果没有内容显示，请刷新下浏览器。
-建议使用Chrome浏览器，有的小伙伴使用QQ浏览器拿到的Cookie一直不能用。
-获取NotionToken 浏览器打开https://www.notion.so/my-integrations点击New integration按钮，输入name后点Submit。 提交完成后，进入Secrets页面，先点击Show，然后点击Copy复制，后面需要用到 复制Notion模板 浏览器打开模板https://malinkang.notion.site/13d2e1548f024687a42ec68a79a01c62?pvs=4，点击右上角的Duplicate复制。 打开你刚复制的模板，点击右上角的三个点，找到Connections，然后添加你创建的Integration。 点击右上角的Share，然后点击Copy link获取页面的链接。 Warning
-这里是通过数据库的名字来自动获取对应的ID的，所以请先不要修改数据库的名字。
-在Github的Secrets中添加变量 打开你fork的工程，点击Settings-&amp;gt;Secrets and variables-&amp;gt;New repository secret Name输入WEREAD_COOKIE，Secret输入框中填入你前面获取的微信读书Cookie，然后点击Add secret 同理，继续点击New repository secret，分别增加变量名NOTION_TOKEN和NOTION_PAGE。NOTION_TOKEN的值为前面获取的NOTION_TOKEN值，NOTION_PAGE值为前面获取的页面链接，最终的结果如下图所示。 Warning
-注意这三个变量名一定要填写正确，一个字母都不能错，否则会同步失败。之前遇到过有的同学NOTION_DATABASE_ID写成NOTION_DATEBASE_ID。
-运行 上面配置完成之后，打开你Fork的项目，依次点击Actions-&amp;gt;weread note sync-&amp;gt; Run workflow，就可以运行了。
-以相同的方式运行read time sync。weread note sync主要用来同步书籍、笔记和划线。read time sync 用来生成热力图和同步阅读时长。
-问题排查 可以点击你Fork项目的Action，查看运行状态，绿色是成功，红色是失败。 Warning
-运行成功，只代表程序没有出错，不代表就一定同步数据，比如微信Cookie过期就不会报错。所以如果运行成功，Notion中没有数据的话，也可以通过下面第2步来查看日志
-2.可以点进去查日志，来自行排查问题。
-问题解答 为什么有的书没有同步过来 本项目只会同步划线或者做了笔记的书，书架里的书如果没有划线或者做笔记是不会同步的。后续可能会考虑增加同步书架中的书。
-每天何时同步 本项目设置的是utc时间的0点，如果你在中国，那就是每天8点同步。不过据我观察，Github这个可能有延迟，会在每天8点零几分同步。你也可以自行修改同步时间，具体参考这里。'>
-<title>WeRead2Notion-Pro使用文档</title>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Warning Weread2Notion和Weread2Notion-Pro是两个不同的项目，模板也不相同，切勿用错模板。 Weread2Notion教程：https://malinkang.com/posts/weread2notion/ 热力图使用教程：https://malinkang.com/posts/github_heatmap/ WeRead2Notion-Pro不仅仅是将微信读书笔记同步到Notion，它是一个强大的管理系统。 WeRead2Notion和WeRead2Notion-Pro有什么区别主要有如下 WeRead2Notion不支持在笔记中添加自己的笔记，每次有新笔记会删除原有的笔记。WeRead2Notion-Pro支持添加自己的笔记，每次更新不会覆盖笔记。 WeRead2Notion功能更加简洁，同步速度更快。 WeRead2Notion-Pro支持按照年、月、周、日的阅读时长、笔记数阅读数的时间统计，支持数据可视化。所以选用哪个看个人喜好，也可以两个都用。 预览 也可以打开网页版本查看效果：https://malinkang.notion.site/9a311b7413b74c8788752249edd0b256?pvs=74 下面给大家讲解一下如何使用： Fork工程 打开Weread2Notion-Pro，点击右上角的Fork（顺便点个star谢谢） 获取微信读书Cookie 浏览器打开网页版微信读书扫码登录 按F12进入开发者模式，依次点网络-&gt;文档，然后选中weread.qq.com，下拉找到Cookie，复制Cookie值 Tip 如果没有内容显示，请刷新下浏览器。 建议使用Chrome浏览器，有的小伙伴使用QQ浏览器拿到的Cookie一直不能用。 授权 浏览器打开 https://api.notion.com/v1/oauth/authorize?client_id=f86ce456-f9cb-4cd5-8e4b-07bd9e18a8f8&response_type=code&owner=user&redirect_uri=https%3A%2F%2Fnotion-auth.malinkang.com%2Fweread2notionpro-oauth-callback 然后点击Next-&gt;Allow access 点击复制按钮，复制NOTION_TOKEN和NOTION_PAGE的值。 在Github的Secrets中添加变量 打开你fork的工程，点击Settings-&gt;Secrets and variables-&gt;New repository secret Name输入WEREAD_COOKIE，Secret输入框中填入你前面获取的微信读书Cookie，然后点击Add secret 同理，继续点击New repository secret，分别增加变量NOTION_TOKEN和NOTION_PAGE。最终的结果如下图所示。 Warning 注意这三个变量名一定要填写正确，一个字母都不能错，否则会同步失败。 运行 上面配置完成之后，打开你Fork的项目，依次点击Actions-&gt;weread note sync-&gt; Run workflow，就可以运行了。 以相同的方式运行read time sync。weread note sync主要用来同步书籍、笔记和划线。read time sync 用来生成热力图和同步阅读时长。 问题排查 可以点击你Fork项目的Action，查看运行状态，绿色是成功，红色是失败。 Warning 运行成功，只代表程序没有出错，不代表就一定同步数据，比如微信Cookie过期就不会报错。所以如果运行成功，Notion中没有数据的话，也可以通过下面第2步来查看日志 2.可以点进去查日志，来自行排查问题。 问题解答 如何自动运行 Github Action提供每日定时自动运行程序的功能。之前有的朋友会问，我关了电脑会同步吗，该脚本运行在Github的服务器上，并不是运行在你的电脑上，所以你关机并不会影响程序自动运行。 每天何时同步 笔记设置的是utc时间的0点同步，如果你在中国，那就是每天8点同步。不过据我观察，Github这个可能有延迟。时间同步是每3个小时运行一次。你也可以自行修改同步时间，具体参考这里。需要注意的是Github每个月2000分钟有免费的额度，如果改的过于频繁可能会导致额度不够。 模板中哪些可以修改 Database中的Formula和Rollup类型的属性名可以修改，其他的属性名不支持修改，因为代码中是通过属性的名字来增加修改这个属性的，修改了名字程序就无法正常运行。要修改数据库的名字需要按照以下步骤。 依次选择Settings-&gt;Secrets and variables -&gt; variables-&gt; New repository variable。">
+<title>WeRead2NotionPro使用文档</title>
 
-<link rel='canonical' href='https://example.com/posts/weread2notion-pro/'>
+<link rel='canonical' href='http://localhost:1313/posts/weread2notion-pro/'>
 
-<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content='WeRead2Notion-Pro使用文档'>
-<meta property='og:description' content='预览效果 使用 Warning
-Weread2Notion和Weread2Notion-Pro是两个不同的项目，模板也不相同，切勿用错模板。
-Weread2Notion教程：https://malinkang.com/posts/weread2notion/ 热力图使用教程：https://malinkang.com/posts/github_heatmap/ Fork工程 打开Weread2Notion-Pro，点击右上角的Fork（顺便点个star谢谢）
-权限 确保你打开了读写权限。
-依次选择Settings-&amp;gt;Actions-&amp;gt;General，然后下拉，找到Workflow permissions，如果没有选中Read and write permissions，请选中，然后点下面的save保存。
-获取微信读书Cookie 浏览器打开网页版微信读书扫码登录 按F12进入开发者模式，依次点网络-&amp;gt;文档，然后选中weread.qq.com，下拉找到Cookie，复制Cookie值 Tip
-如果没有内容显示，请刷新下浏览器。
-建议使用Chrome浏览器，有的小伙伴使用QQ浏览器拿到的Cookie一直不能用。
-获取NotionToken 浏览器打开https://www.notion.so/my-integrations点击New integration按钮，输入name后点Submit。 提交完成后，进入Secrets页面，先点击Show，然后点击Copy复制，后面需要用到 复制Notion模板 浏览器打开模板https://malinkang.notion.site/13d2e1548f024687a42ec68a79a01c62?pvs=4，点击右上角的Duplicate复制。 打开你刚复制的模板，点击右上角的三个点，找到Connections，然后添加你创建的Integration。 点击右上角的Share，然后点击Copy link获取页面的链接。 Warning
-这里是通过数据库的名字来自动获取对应的ID的，所以请先不要修改数据库的名字。
-在Github的Secrets中添加变量 打开你fork的工程，点击Settings-&amp;gt;Secrets and variables-&amp;gt;New repository secret Name输入WEREAD_COOKIE，Secret输入框中填入你前面获取的微信读书Cookie，然后点击Add secret 同理，继续点击New repository secret，分别增加变量名NOTION_TOKEN和NOTION_PAGE。NOTION_TOKEN的值为前面获取的NOTION_TOKEN值，NOTION_PAGE值为前面获取的页面链接，最终的结果如下图所示。 Warning
-注意这三个变量名一定要填写正确，一个字母都不能错，否则会同步失败。之前遇到过有的同学NOTION_DATABASE_ID写成NOTION_DATEBASE_ID。
-运行 上面配置完成之后，打开你Fork的项目，依次点击Actions-&amp;gt;weread note sync-&amp;gt; Run workflow，就可以运行了。
-以相同的方式运行read time sync。weread note sync主要用来同步书籍、笔记和划线。read time sync 用来生成热力图和同步阅读时长。
-问题排查 可以点击你Fork项目的Action，查看运行状态，绿色是成功，红色是失败。 Warning
-运行成功，只代表程序没有出错，不代表就一定同步数据，比如微信Cookie过期就不会报错。所以如果运行成功，Notion中没有数据的话，也可以通过下面第2步来查看日志
-2.可以点进去查日志，来自行排查问题。
-问题解答 为什么有的书没有同步过来 本项目只会同步划线或者做了笔记的书，书架里的书如果没有划线或者做笔记是不会同步的。后续可能会考虑增加同步书架中的书。
-每天何时同步 本项目设置的是utc时间的0点，如果你在中国，那就是每天8点同步。不过据我观察，Github这个可能有延迟，会在每天8点零几分同步。你也可以自行修改同步时间，具体参考这里。'>
-<meta property='og:url' content='https://example.com/posts/weread2notion-pro/'>
+<link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="WeRead2NotionPro使用文档">
+<meta property='og:description' content="Warning Weread2Notion和Weread2Notion-Pro是两个不同的项目，模板也不相同，切勿用错模板。 Weread2Notion教程：https://malinkang.com/posts/weread2notion/ 热力图使用教程：https://malinkang.com/posts/github_heatmap/ WeRead2Notion-Pro不仅仅是将微信读书笔记同步到Notion，它是一个强大的管理系统。 WeRead2Notion和WeRead2Notion-Pro有什么区别主要有如下 WeRead2Notion不支持在笔记中添加自己的笔记，每次有新笔记会删除原有的笔记。WeRead2Notion-Pro支持添加自己的笔记，每次更新不会覆盖笔记。 WeRead2Notion功能更加简洁，同步速度更快。 WeRead2Notion-Pro支持按照年、月、周、日的阅读时长、笔记数阅读数的时间统计，支持数据可视化。所以选用哪个看个人喜好，也可以两个都用。 预览 也可以打开网页版本查看效果：https://malinkang.notion.site/9a311b7413b74c8788752249edd0b256?pvs=74 下面给大家讲解一下如何使用： Fork工程 打开Weread2Notion-Pro，点击右上角的Fork（顺便点个star谢谢） 获取微信读书Cookie 浏览器打开网页版微信读书扫码登录 按F12进入开发者模式，依次点网络-&gt;文档，然后选中weread.qq.com，下拉找到Cookie，复制Cookie值 Tip 如果没有内容显示，请刷新下浏览器。 建议使用Chrome浏览器，有的小伙伴使用QQ浏览器拿到的Cookie一直不能用。 授权 浏览器打开 https://api.notion.com/v1/oauth/authorize?client_id=f86ce456-f9cb-4cd5-8e4b-07bd9e18a8f8&response_type=code&owner=user&redirect_uri=https%3A%2F%2Fnotion-auth.malinkang.com%2Fweread2notionpro-oauth-callback 然后点击Next-&gt;Allow access 点击复制按钮，复制NOTION_TOKEN和NOTION_PAGE的值。 在Github的Secrets中添加变量 打开你fork的工程，点击Settings-&gt;Secrets and variables-&gt;New repository secret Name输入WEREAD_COOKIE，Secret输入框中填入你前面获取的微信读书Cookie，然后点击Add secret 同理，继续点击New repository secret，分别增加变量NOTION_TOKEN和NOTION_PAGE。最终的结果如下图所示。 Warning 注意这三个变量名一定要填写正确，一个字母都不能错，否则会同步失败。 运行 上面配置完成之后，打开你Fork的项目，依次点击Actions-&gt;weread note sync-&gt; Run workflow，就可以运行了。 以相同的方式运行read time sync。weread note sync主要用来同步书籍、笔记和划线。read time sync 用来生成热力图和同步阅读时长。 问题排查 可以点击你Fork项目的Action，查看运行状态，绿色是成功，红色是失败。 Warning 运行成功，只代表程序没有出错，不代表就一定同步数据，比如微信Cookie过期就不会报错。所以如果运行成功，Notion中没有数据的话，也可以通过下面第2步来查看日志 2.可以点进去查日志，来自行排查问题。 问题解答 如何自动运行 Github Action提供每日定时自动运行程序的功能。之前有的朋友会问，我关了电脑会同步吗，该脚本运行在Github的服务器上，并不是运行在你的电脑上，所以你关机并不会影响程序自动运行。 每天何时同步 笔记设置的是utc时间的0点同步，如果你在中国，那就是每天8点同步。不过据我观察，Github这个可能有延迟。时间同步是每3个小时运行一次。你也可以自行修改同步时间，具体参考这里。需要注意的是Github每个月2000分钟有免费的额度，如果改的过于频繁可能会导致额度不够。 模板中哪些可以修改 Database中的Formula和Rollup类型的属性名可以修改，其他的属性名不支持修改，因为代码中是通过属性的名字来增加修改这个属性的，修改了名字程序就无法正常运行。要修改数据库的名字需要按照以下步骤。 依次选择Settings-&gt;Secrets and variables -&gt; variables-&gt; New repository variable。">
+<meta property='og:url' content='http://localhost:1313/posts/weread2notion-pro/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='微信读书' /><meta property='article:tag' content='Notion' /><meta property='article:tag' content='WeRead' /><meta property='article:published_time' content='2024-01-03T15:28:05&#43;08:00'/><meta property='article:modified_time' content='2024-01-03T15:28:05&#43;08:00'/><meta property='og:image' content='https://images.unsplash.com/photo-1663813251302-e5d2c7199e86?q=80&amp;w=2660&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' />
-<meta name="twitter:title" content="WeRead2Notion-Pro使用文档">
-<meta name="twitter:description" content="预览效果 使用 Warning
-Weread2Notion和Weread2Notion-Pro是两个不同的项目，模板也不相同，切勿用错模板。
-Weread2Notion教程：https://malinkang.com/posts/weread2notion/ 热力图使用教程：https://malinkang.com/posts/github_heatmap/ Fork工程 打开Weread2Notion-Pro，点击右上角的Fork（顺便点个star谢谢）
-权限 确保你打开了读写权限。
-依次选择Settings-&amp;gt;Actions-&amp;gt;General，然后下拉，找到Workflow permissions，如果没有选中Read and write permissions，请选中，然后点下面的save保存。
-获取微信读书Cookie 浏览器打开网页版微信读书扫码登录 按F12进入开发者模式，依次点网络-&amp;gt;文档，然后选中weread.qq.com，下拉找到Cookie，复制Cookie值 Tip
-如果没有内容显示，请刷新下浏览器。
-建议使用Chrome浏览器，有的小伙伴使用QQ浏览器拿到的Cookie一直不能用。
-获取NotionToken 浏览器打开https://www.notion.so/my-integrations点击New integration按钮，输入name后点Submit。 提交完成后，进入Secrets页面，先点击Show，然后点击Copy复制，后面需要用到 复制Notion模板 浏览器打开模板https://malinkang.notion.site/13d2e1548f024687a42ec68a79a01c62?pvs=4，点击右上角的Duplicate复制。 打开你刚复制的模板，点击右上角的三个点，找到Connections，然后添加你创建的Integration。 点击右上角的Share，然后点击Copy link获取页面的链接。 Warning
-这里是通过数据库的名字来自动获取对应的ID的，所以请先不要修改数据库的名字。
-在Github的Secrets中添加变量 打开你fork的工程，点击Settings-&amp;gt;Secrets and variables-&amp;gt;New repository secret Name输入WEREAD_COOKIE，Secret输入框中填入你前面获取的微信读书Cookie，然后点击Add secret 同理，继续点击New repository secret，分别增加变量名NOTION_TOKEN和NOTION_PAGE。NOTION_TOKEN的值为前面获取的NOTION_TOKEN值，NOTION_PAGE值为前面获取的页面链接，最终的结果如下图所示。 Warning
-注意这三个变量名一定要填写正确，一个字母都不能错，否则会同步失败。之前遇到过有的同学NOTION_DATABASE_ID写成NOTION_DATEBASE_ID。
-运行 上面配置完成之后，打开你Fork的项目，依次点击Actions-&amp;gt;weread note sync-&amp;gt; Run workflow，就可以运行了。
-以相同的方式运行read time sync。weread note sync主要用来同步书籍、笔记和划线。read time sync 用来生成热力图和同步阅读时长。
-问题排查 可以点击你Fork项目的Action，查看运行状态，绿色是成功，红色是失败。 Warning
-运行成功，只代表程序没有出错，不代表就一定同步数据，比如微信Cookie过期就不会报错。所以如果运行成功，Notion中没有数据的话，也可以通过下面第2步来查看日志
-2.可以点进去查日志，来自行排查问题。
-问题解答 为什么有的书没有同步过来 本项目只会同步划线或者做了笔记的书，书架里的书如果没有划线或者做笔记是不会同步的。后续可能会考虑增加同步书架中的书。
-每天何时同步 本项目设置的是utc时间的0点，如果你在中国，那就是每天8点同步。不过据我观察，Github这个可能有延迟，会在每天8点零几分同步。你也可以自行修改同步时间，具体参考这里。"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://images.unsplash.com/photo-1663813251302-e5d2c7199e86?q=80&amp;w=2660&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' />
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
-}
-</script>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='微信读书' /><meta property='article:tag' content='Notion' /><meta property='article:tag' content='WeRead' /><meta property='article:published_time' content='2024-01-03T15:28:05&#43;08:00'/><meta property='article:modified_time' content='2024-01-03T15:28:05&#43;08:00'/><meta property='og:image' content='https://images.malinkang.com/2024/03/19dd1580dd991c7985abea7724c87043.png' />
+<meta name="twitter:title" content="WeRead2NotionPro使用文档">
+<meta name="twitter:description" content="Warning Weread2Notion和Weread2Notion-Pro是两个不同的项目，模板也不相同，切勿用错模板。 Weread2Notion教程：https://malinkang.com/posts/weread2notion/ 热力图使用教程：https://malinkang.com/posts/github_heatmap/ WeRead2Notion-Pro不仅仅是将微信读书笔记同步到Notion，它是一个强大的管理系统。 WeRead2Notion和WeRead2Notion-Pro有什么区别主要有如下 WeRead2Notion不支持在笔记中添加自己的笔记，每次有新笔记会删除原有的笔记。WeRead2Notion-Pro支持添加自己的笔记，每次更新不会覆盖笔记。 WeRead2Notion功能更加简洁，同步速度更快。 WeRead2Notion-Pro支持按照年、月、周、日的阅读时长、笔记数阅读数的时间统计，支持数据可视化。所以选用哪个看个人喜好，也可以两个都用。 预览 也可以打开网页版本查看效果：https://malinkang.notion.site/9a311b7413b74c8788752249edd0b256?pvs=74 下面给大家讲解一下如何使用： Fork工程 打开Weread2Notion-Pro，点击右上角的Fork（顺便点个star谢谢） 获取微信读书Cookie 浏览器打开网页版微信读书扫码登录 按F12进入开发者模式，依次点网络-&gt;文档，然后选中weread.qq.com，下拉找到Cookie，复制Cookie值 Tip 如果没有内容显示，请刷新下浏览器。 建议使用Chrome浏览器，有的小伙伴使用QQ浏览器拿到的Cookie一直不能用。 授权 浏览器打开 https://api.notion.com/v1/oauth/authorize?client_id=f86ce456-f9cb-4cd5-8e4b-07bd9e18a8f8&response_type=code&owner=user&redirect_uri=https%3A%2F%2Fnotion-auth.malinkang.com%2Fweread2notionpro-oauth-callback 然后点击Next-&gt;Allow access 点击复制按钮，复制NOTION_TOKEN和NOTION_PAGE的值。 在Github的Secrets中添加变量 打开你fork的工程，点击Settings-&gt;Secrets and variables-&gt;New repository secret Name输入WEREAD_COOKIE，Secret输入框中填入你前面获取的微信读书Cookie，然后点击Add secret 同理，继续点击New repository secret，分别增加变量NOTION_TOKEN和NOTION_PAGE。最终的结果如下图所示。 Warning 注意这三个变量名一定要填写正确，一个字母都不能错，否则会同步失败。 运行 上面配置完成之后，打开你Fork的项目，依次点击Actions-&gt;weread note sync-&gt; Run workflow，就可以运行了。 以相同的方式运行read time sync。weread note sync主要用来同步书籍、笔记和划线。read time sync 用来生成热力图和同步阅读时长。 问题排查 可以点击你Fork项目的Action，查看运行状态，绿色是成功，红色是失败。 Warning 运行成功，只代表程序没有出错，不代表就一定同步数据，比如微信Cookie过期就不会报错。所以如果运行成功，Notion中没有数据的话，也可以通过下面第2步来查看日志 2.可以点进去查日志，来自行排查问题。 问题解答 如何自动运行 Github Action提供每日定时自动运行程序的功能。之前有的朋友会问，我关了电脑会同步吗，该脚本运行在Github的服务器上，并不是运行在你的电脑上，所以你关机并不会影响程序自动运行。 每天何时同步 笔记设置的是utc时间的0点同步，如果你在中国，那就是每天8点同步。不过据我观察，Github这个可能有延迟。时间同步是每3个小时运行一次。你也可以自行修改同步时间，具体参考这里。需要注意的是Github每个月2000分钟有免费的额度，如果改的过于频繁可能会导致额度不够。 模板中哪些可以修改 Database中的Formula和Rollup类型的属性名可以修改，其他的属性名不支持修改，因为代码中是通过属性的名字来增加修改这个属性的，修改了名字程序就无法正常运行。要修改数据库的名字需要按照以下步骤。 依次选择Settings-&gt;Secrets and variables -&gt; variables-&gt; New repository variable。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://images.malinkang.com/2024/03/19dd1580dd991c7985abea7724c87043.png' />
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
+  
+
 <style>
     :root {
-      --sys-font-family: "Noto Serif SC";
-      --zh-font-family: "Noto Serif SC";
-      --base-font-family: "Noto Serif SC";
-      --code-font-family: "Noto Serif SC";
-      --article-font-family: "Noto Serif SC";
+        --sys-font-family: "LXGW WenKai TC";
+        --zh-font-family: "LXGW WenKai TC";
+        --base-font-family: "LXGW WenKai TC";
+        --code-font-family: "LXGW WenKai TC";
+        --article-font-family: "LXGW WenKai TC";
     }
-  </style>
-  
-  <script>
-    (function () {
-      const customFont = document.createElement("link");
-      customFont.href =
-        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
-  
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-  
-      document.head.appendChild(customFont);
-    })();
-  </script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
-     crossorigin="anonymous"></script>
-  
+</style>
 
 <script>
-    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
+    (function () {
+        const customFont = document.createElement("link");
+        customFont.href = "https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&display=swap";
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+        document.head.appendChild(customFont);
+    })();
 </script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
-
-
     </head>
     <body class="
     article-page
@@ -174,7 +111,7 @@ if (!doNotTrack) {
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
             <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -235,13 +172,32 @@ if (!doNotTrack) {
 
 
                 
-                <span>主页</span>
+                <span>Home</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/archives' >
+            <a href='/pages/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/archives/' >
                 
                 
                 
@@ -259,12 +215,31 @@ if (!doNotTrack) {
             </a>
         </li>
         
+        
+        <li >
+            <a href='/pages/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+
+                
+                <span>好友</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -272,7 +247,7 @@ if (!doNotTrack) {
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -280,10 +255,11 @@ if (!doNotTrack) {
 
 
 
-                    <span>Dark Mode</span>
-                </li>
-            
-        </div>
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -309,19 +285,20 @@ if (!doNotTrack) {
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#使用">使用</a>
+    <li><a href="#预览">预览</a>
       <ol>
         <li><a href="#fork工程">Fork工程</a></li>
-        <li><a href="#权限">权限</a></li>
         <li><a href="#获取微信读书cookie">获取微信读书Cookie</a></li>
-        <li><a href="#获取notiontoken">获取NotionToken</a></li>
-        <li><a href="#复制notion模板">复制Notion模板</a></li>
+        <li><a href="#授权">授权</a></li>
         <li><a href="#在github的secrets中添加变量">在Github的Secrets中添加变量</a></li>
         <li><a href="#运行">运行</a></li>
       </ol>
     </li>
-    <li><a href="#问题排查">问题排查</a></li>
-    <li><a href="#问题解答">问题解答</a></li>
+    <li><a href="#问题排查">问题排查</a>
+      <ol>
+        <li><a href="#问题解答">问题解答</a></li>
+      </ol>
+    </li>
     <li><a href="#升级">升级</a></li>
     <li><a href="#捐赠">捐赠</a>
       <ol>
@@ -347,7 +324,7 @@ if (!doNotTrack) {
         <div class="article-image">
             <a href="/posts/weread2notion-pro/">
                 
-                    <img src="https://images.unsplash.com/photo-1663813251302-e5d2c7199e86?q=80&amp;w=2660&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" loading="lazy" alt="Featured image of post WeRead2Notion-Pro使用文档" />
+                    <img src="https://images.malinkang.com/2024/03/19dd1580dd991c7985abea7724c87043.png" loading="lazy" alt="Featured image of post WeRead2NotionPro使用文档" />
                 
             </a>
         </div>
@@ -358,7 +335,7 @@ if (!doNotTrack) {
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/posts/weread2notion-pro/">WeRead2Notion-Pro使用文档</a>
+            <a href="/posts/weread2notion-pro/">WeRead2NotionPro使用文档</a>
         </h2>
     
         
@@ -410,12 +387,7 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <ul>
-<li><a class="link" href="https://malinkang.notion.site/534a7684b30e4a879269313f437f2185?pvs=4"  target="_blank" rel="noopener"
-    >预览效果</a></li>
-</ul>
-<h2 id="使用">使用</h2>
-<style type="text/css">.notice{--root-color:#444;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#c33;--warning-content:#fee;--info-title:#fb7;--info-content:#fec;--note-title:#6be;--note-content:#e7f2fa;--tip-title:#5a5;--tip-content:#efe}@media (prefers-color-scheme:dark){.notice{--root-color:#ddd;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#800;--warning-content:#400;--info-title:#a50;--info-content:#420;--note-title:#069;--note-content:#023;--tip-title:#363;--tip-content:#121}}body.dark .notice{--root-color:#ddd;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#800;--warning-content:#400;--info-title:#a50;--info-content:#420;--note-title:#069;--note-content:#023;--tip-title:#363;--tip-content:#121}.notice{padding:18px;line-height:24px;margin-bottom:24px;border-radius:4px;color:var(--root-color);background:var(--root-background)}.notice p:last-child{margin-bottom:0}.notice-title{margin:-18px -18px 12px;padding:4px 18px;border-radius:4px 4px 0 0;font-weight:700;color:var(--title-color);background:var(--title-background)}.notice.warning .notice-title{background:var(--warning-title)}.notice.warning{background:var(--warning-content)}.notice.info .notice-title{background:var(--info-title)}.notice.info{background:var(--info-content)}.notice.note .notice-title{background:var(--note-title)}.notice.note{background:var(--note-content)}.notice.tip .notice-title{background:var(--tip-title)}.notice.tip{background:var(--tip-content)}.icon-notice{display:inline-flex;align-self:center;margin-right:8px}.icon-notice img,.icon-notice svg{height:1em;width:1em;fill:currentColor}.icon-notice img,.icon-notice.baseline svg{top:.125em;position:relative}</style>
+    <style type="text/css">.notice{--root-color:#444;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#c33;--warning-content:#fee;--info-title:#fb7;--info-content:#fec;--note-title:#6be;--note-content:#e7f2fa;--tip-title:#5a5;--tip-content:#efe}@media (prefers-color-scheme:dark){.notice{--root-color:#ddd;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#800;--warning-content:#400;--info-title:#a50;--info-content:#420;--note-title:#069;--note-content:#023;--tip-title:#363;--tip-content:#121}}body.dark .notice{--root-color:#ddd;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#800;--warning-content:#400;--info-title:#a50;--info-content:#420;--note-title:#069;--note-content:#023;--tip-title:#363;--tip-content:#121}.notice{padding:18px;line-height:24px;margin-bottom:24px;border-radius:4px;color:var(--root-color);background:var(--root-background)}.notice p:last-child{margin-bottom:0}.notice-title{margin:-18px -18px 12px;padding:4px 18px;border-radius:4px 4px 0 0;font-weight:700;color:var(--title-color);background:var(--title-background)}.notice.warning .notice-title{background:var(--warning-title)}.notice.warning{background:var(--warning-content)}.notice.info .notice-title{background:var(--info-title)}.notice.info{background:var(--info-content)}.notice.note .notice-title{background:var(--note-title)}.notice.note{background:var(--note-content)}.notice.tip .notice-title{background:var(--tip-title)}.notice.tip{background:var(--tip-content)}.icon-notice{display:inline-flex;align-self:center;margin-right:8px}.icon-notice img,.icon-notice svg{height:1em;width:1em;fill:currentColor}.icon-notice img,.icon-notice.baseline svg{top:.125em;position:relative}</style>
 <div><svg width="0" height="0" display="none" xmlns="http://www.w3.org/2000/svg"><symbol id="tip-notice" viewBox="0 0 512 512" preserveAspectRatio="xMidYMid meet"><path d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"/></symbol><symbol id="note-notice" viewBox="0 0 512 512" preserveAspectRatio="xMidYMid meet"><path d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"/></symbol><symbol id="warning-notice" viewBox="0 0 576 512" preserveAspectRatio="xMidYMid meet"><path d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"/></symbol><symbol id="info-notice" viewBox="0 0 512 512" preserveAspectRatio="xMidYMid meet"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></symbol></svg></div><div class="notice warning" >
 <p class="first notice-title"><span class="icon-notice baseline"><svg><use href="#warning-notice"></use></svg></span>Warning</p><p>Weread2Notion和Weread2Notion-Pro是两个不同的项目，模板也不相同，切勿用错模板。</p>
 <ul>
@@ -425,50 +397,39 @@ if (!doNotTrack) {
     >https://malinkang.com/posts/github_heatmap/</a></li>
 </ul></div>
 
-<h3 id="fork工程">Fork工程</h3>
-<p>打开<a class="link" href="https://github.com/malinkang/weread2notion-pro"  target="_blank" rel="noopener"
+<p>WeRead2Notion-Pro不仅仅是将微信读书笔记同步到Notion，它是一个强大的管理系统。</p>
+<p>WeRead2Notion和WeRead2Notion-Pro有什么区别主要有如下</p>
+<ul>
+<li>WeRead2Notion不支持在笔记中添加自己的笔记，每次有新笔记会删除原有的笔记。WeRead2Notion-Pro支持添加自己的笔记，每次更新不会覆盖笔记。</li>
+<li>WeRead2Notion功能更加简洁，同步速度更快。</li>
+<li>WeRead2Notion-Pro支持按照年、月、周、日的阅读时长、笔记数阅读数的时间统计，支持数据可视化。所以选用哪个看个人喜好，也可以两个都用。</li>
+</ul>
+<h2 id="预览">预览
+</h2><p><img src="https://images.malinkang.com/2024/03/f4a77735439de22884a999c6a0671162.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="预览"
+	
+	
+></p>
+<p>也可以打开网页版本查看效果：https://malinkang.notion.site/9a311b7413b74c8788752249edd0b256?pvs=74</p>
+<p>下面给大家讲解一下如何使用：</p>
+<h3 id="fork工程">Fork工程
+</h3><p>打开<a class="link" href="https://github.com/malinkang/weread2notion-pro"  target="_blank" rel="noopener"
     >Weread2Notion-Pro</a>，点击右上角的Fork（顺便点个star谢谢）</p>
-<p><img src="/posts/weread2notion-pro/images/fork.jpg"
-	width="1210"
-	height="166"
-	srcset="/posts/weread2notion-pro/images/fork_huc82d7b839fc53b7a5c86bd3cdfedcac6_31913_480x0_resize_q75_box.jpg 480w, /posts/weread2notion-pro/images/fork_huc82d7b839fc53b7a5c86bd3cdfedcac6_31913_1024x0_resize_q75_box.jpg 1024w"
+<p><img src="https://images.malinkang.com/2024/03/fc6be407e45f0e3a3067252dd2c51c73.jpg"
+	
+	
+	
 	loading="lazy"
 	
 	
-		class="gallery-image" 
-		data-flex-grow="728"
-		data-flex-basis="1749px"
-	
 ></p>
-<h3 id="权限">权限</h3>
-<p>确保你打开了读写权限。</p>
-<p>依次选择Settings-&gt;Actions-&gt;General，然后下拉，找到Workflow permissions，如果没有选中Read and write permissions，请选中，然后点下面的save保存。</p>
-<p><img src="/posts/weread2notion-pro/images/permissions1.jpg"
-	width="2282"
-	height="1632"
-	srcset="/posts/weread2notion-pro/images/permissions1_huc82d7b839fc53b7a5c86bd3cdfedcac6_427539_480x0_resize_q75_box.jpg 480w, /posts/weread2notion-pro/images/permissions1_huc82d7b839fc53b7a5c86bd3cdfedcac6_427539_1024x0_resize_q75_box.jpg 1024w"
-	loading="lazy"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="139"
-		data-flex-basis="335px"
-	
-></p>
-<p><img src="/posts/weread2notion-pro/images/permissions2.jpg"
-	width="1698"
-	height="694"
-	srcset="/posts/weread2notion-pro/images/permissions2_huc82d7b839fc53b7a5c86bd3cdfedcac6_171566_480x0_resize_q75_box.jpg 480w, /posts/weread2notion-pro/images/permissions2_huc82d7b839fc53b7a5c86bd3cdfedcac6_171566_1024x0_resize_q75_box.jpg 1024w"
-	loading="lazy"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="244"
-		data-flex-basis="587px"
-	
-></p>
-<h3 id="获取微信读书cookie">获取微信读书Cookie</h3>
-<ol>
+<h3 id="获取微信读书cookie">获取微信读书Cookie
+</h3><ol>
 <li>浏览器打开<a class="link" href="https://weread.qq.com/"  target="_blank" rel="noopener"
     >网页版微信读书</a>扫码登录</li>
 <li>按F12进入开发者模式，依次点网络-&gt;文档，然后选中weread.qq.com，下拉找到Cookie，复制Cookie值</li>
@@ -477,237 +438,246 @@ if (!doNotTrack) {
 <p class="first notice-title"><span class="icon-notice baseline"><svg><use href="#tip-notice"></use></svg></span>Tip</p><p>如果没有内容显示，请刷新下浏览器。</p>
 <p>建议使用Chrome浏览器，有的小伙伴使用QQ浏览器拿到的Cookie一直不能用。</p></div>
 
-<p><img src="/posts/weread2notion-pro/images/weread.jpg"
-	width="1424"
-	height="1658"
-	srcset="/posts/weread2notion-pro/images/weread_huc82d7b839fc53b7a5c86bd3cdfedcac6_366001_480x0_resize_q75_box.jpg 480w, /posts/weread2notion-pro/images/weread_huc82d7b839fc53b7a5c86bd3cdfedcac6_366001_1024x0_resize_q75_box.jpg 1024w"
+<p><img src="https://images.malinkang.com/2024/03/2a26e0b6d2a5a3b36711e91037b837f3.jpg"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="85"
-		data-flex-basis="206px"
 	
 ></p>
-<h3 id="获取notiontoken">获取NotionToken</h3>
-<ol>
-<li>浏览器打开<a class="link" href="https://www.notion.so/my-integrations"  target="_blank" rel="noopener"
-    >https://www.notion.so/my-integrations</a>点击New integration按钮，输入name后点Submit。</li>
+<h3 id="授权">授权
+</h3><ol>
+<li>
+<p>浏览器打开 <a class="link" href="https://api.notion.com/v1/oauth/authorize?client_id=f86ce456-f9cb-4cd5-8e4b-07bd9e18a8f8&amp;response_type=code&amp;owner=user&amp;redirect_uri=https%3A%2F%2Fnotion-auth.malinkang.com%2Fweread2notionpro-oauth-callback"  target="_blank" rel="noopener"
+    >https://api.notion.com/v1/oauth/authorize?client_id=f86ce456-f9cb-4cd5-8e4b-07bd9e18a8f8&response_type=code&owner=user&redirect_uri=https%3A%2F%2Fnotion-auth.malinkang.com%2Fweread2notionpro-oauth-callback</a></p>
+</li>
+<li>
+<p>然后点击Next-&gt;Allow access</p>
+</li>
 </ol>
-<p><img src="/posts/weread2notion-pro/images/integrations.jpg"
-	width="1132"
-	height="1486"
-	srcset="/posts/weread2notion-pro/images/integrations_huc82d7b839fc53b7a5c86bd3cdfedcac6_156997_480x0_resize_q75_box.jpg 480w, /posts/weread2notion-pro/images/integrations_huc82d7b839fc53b7a5c86bd3cdfedcac6_156997_1024x0_resize_q75_box.jpg 1024w"
+<p><img src="https://images.malinkang.com/2024/03/6e8adeccaf9fddef746300c3458b1967.png"
+	
+	
+	
 	loading="lazy"
 	
+		alt="授权"
 	
-		class="gallery-image" 
-		data-flex-grow="76"
-		data-flex-basis="182px"
 	
 ></p>
-<ol start="2">
-<li>提交完成后，进入Secrets页面，先点击Show，然后点击Copy复制，后面需要用到</li>
-</ol>
-<p><img src="/posts/weread2notion-pro/images/integrations2.jpg"
-	width="994"
-	height="448"
-	srcset="/posts/weread2notion-pro/images/integrations2_huc82d7b839fc53b7a5c86bd3cdfedcac6_51038_480x0_resize_q75_box.jpg 480w, /posts/weread2notion-pro/images/integrations2_huc82d7b839fc53b7a5c86bd3cdfedcac6_51038_1024x0_resize_q75_box.jpg 1024w"
+<p><img src="https://images.malinkang.com/2024/03/9ddc65490e193f00d4f29fbeb70b24fe.png"
+	
+	
+	
 	loading="lazy"
 	
+		alt="授权"
 	
-		class="gallery-image" 
-		data-flex-grow="221"
-		data-flex-basis="532px"
-	
-></p>
-<h3 id="复制notion模板">复制Notion模板</h3>
-<ol>
-<li>浏览器打开模板<a class="link" href="https://malinkang.notion.site/13d2e1548f024687a42ec68a79a01c62?pvs=4"  target="_blank" rel="noopener"
-    >https://malinkang.notion.site/13d2e1548f024687a42ec68a79a01c62?pvs=4</a>，点击右上角的Duplicate复制。</li>
-</ol>
-<p><img src="/posts/weread2notion-pro/images/duplicate.jpg"
-	width="3022"
-	height="1656"
-	srcset="/posts/weread2notion-pro/images/duplicate_hud582f78e3113bf7709f7fb2e1939cc7a_3168035_480x0_resize_q75_box.jpg 480w, /posts/weread2notion-pro/images/duplicate_hud582f78e3113bf7709f7fb2e1939cc7a_3168035_1024x0_resize_q75_box.jpg 1024w"
-	loading="lazy"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="182"
-		data-flex-basis="437px"
-	
-></p>
-<ol start="2">
-<li>打开你刚复制的模板，点击右上角的三个点，找到<code>Connections</code>，然后添加你创建的Integration。</li>
-</ol>
-<p><img src="/posts/weread2notion-pro/images/connections.jpg"
-	width="1000"
-	height="625"
-	srcset="/posts/weread2notion-pro/images/connections_huc82d7b839fc53b7a5c86bd3cdfedcac6_136561_480x0_resize_q75_box.jpg 480w, /posts/weread2notion-pro/images/connections_huc82d7b839fc53b7a5c86bd3cdfedcac6_136561_1024x0_resize_q75_box.jpg 1024w"
-	loading="lazy"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="160"
-		data-flex-basis="384px"
 	
 ></p>
 <ol start="3">
-<li>点击右上角的Share，然后点击Copy link获取页面的链接。
-<img src="/posts/weread2notion-pro/images/copy.jpg"
-	width="1000"
-	height="548"
-	srcset="/posts/weread2notion-pro/images/copy_huc82d7b839fc53b7a5c86bd3cdfedcac6_111841_480x0_resize_q75_box.jpg 480w, /posts/weread2notion-pro/images/copy_huc82d7b839fc53b7a5c86bd3cdfedcac6_111841_1024x0_resize_q75_box.jpg 1024w"
+<li>点击复制按钮，复制NOTION_TOKEN和NOTION_PAGE的值。</li>
+</ol>
+<p><img src="https://images.malinkang.com/2024/03/42c04cb1e6ab95eed832f33462c96831.jpg"
+	
+	
+	
 	loading="lazy"
 	
+		alt="复制"
 	
-		class="gallery-image" 
-		data-flex-grow="182"
-		data-flex-basis="437px"
 	
-></li>
-</ol>
-<div class="notice warning" >
-<p class="first notice-title"><span class="icon-notice baseline"><svg><use href="#warning-notice"></use></svg></span>Warning</p><p>这里是通过数据库的名字来自动获取对应的ID的，所以请先不要修改数据库的名字。</p></div>
-
-<h3 id="在github的secrets中添加变量">在Github的Secrets中添加变量</h3>
-<ol>
+></p>
+<h3 id="在github的secrets中添加变量">在Github的Secrets中添加变量
+</h3><ol>
 <li>打开你fork的工程，点击Settings-&gt;Secrets and variables-&gt;New repository secret</li>
 </ol>
-<p><img src="/posts/weread2notion-pro/images/secret.jpg"
-	width="3024"
-	height="1890"
-	srcset="/posts/weread2notion-pro/images/secret_huc82d7b839fc53b7a5c86bd3cdfedcac6_490890_480x0_resize_q75_box.jpg 480w, /posts/weread2notion-pro/images/secret_huc82d7b839fc53b7a5c86bd3cdfedcac6_490890_1024x0_resize_q75_box.jpg 1024w"
+<p><img src="https://images.malinkang.com/2024/03/660acb8a4038af66e27fe0f993ef3aad.jpg"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="160"
-		data-flex-basis="384px"
 	
 ></p>
 <ol start="2">
 <li>Name输入WEREAD_COOKIE，Secret输入框中填入你前面获取的微信读书Cookie，然后点击Add secret</li>
 </ol>
-<p><img src="/posts/weread2notion-pro/images/secret2.jpg"
-	width="3024"
-	height="1890"
-	srcset="/posts/weread2notion-pro/images/secret2_huc82d7b839fc53b7a5c86bd3cdfedcac6_334963_480x0_resize_q75_box.jpg 480w, /posts/weread2notion-pro/images/secret2_huc82d7b839fc53b7a5c86bd3cdfedcac6_334963_1024x0_resize_q75_box.jpg 1024w"
+<p><img src="https://images.malinkang.com/2024/03/bd1bb31f901d9920bb1135c19e1ef304.jpg"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="160"
-		data-flex-basis="384px"
 	
 ></p>
 <ol start="3">
-<li>同理，继续点击New repository secret，分别增加变量名NOTION_TOKEN和NOTION_PAGE。NOTION_TOKEN的值为前面获取的NOTION_TOKEN值，NOTION_PAGE值为前面获取的页面链接，最终的结果如下图所示。</li>
+<li>同理，继续点击New repository secret，分别增加变量NOTION_TOKEN和NOTION_PAGE。最终的结果如下图所示。</li>
 </ol>
-<p><img src="/posts/weread2notion-pro/images/secret3.jpg"
-	width="1650"
-	height="606"
-	srcset="/posts/weread2notion-pro/images/secret3_huc82d7b839fc53b7a5c86bd3cdfedcac6_83449_480x0_resize_q75_box.jpg 480w, /posts/weread2notion-pro/images/secret3_huc82d7b839fc53b7a5c86bd3cdfedcac6_83449_1024x0_resize_q75_box.jpg 1024w"
+<p><img src="https://images.malinkang.com/2024/03/cc1a34e23e251dec7f8fedc8d710912a.jpg"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="272"
-		data-flex-basis="653px"
 	
 ></p>
 <div class="notice warning" >
-<p class="first notice-title"><span class="icon-notice baseline"><svg><use href="#warning-notice"></use></svg></span>Warning</p><p>注意这三个变量名一定要填写正确，一个字母都不能错，否则会同步失败。之前遇到过有的同学NOTION_DATABASE_ID写成NOTION_DATEBASE_ID。</p></div>
+<p class="first notice-title"><span class="icon-notice baseline"><svg><use href="#warning-notice"></use></svg></span>Warning</p><p>注意这三个变量名一定要填写正确，一个字母都不能错，否则会同步失败。</p></div>
 
-<h3 id="运行">运行</h3>
-<p>上面配置完成之后，打开你Fork的项目，依次点击Actions-&gt;weread note sync-&gt; Run workflow，就可以运行了。</p>
-<p><img src="/posts/weread2notion-pro/images/run.jpg"
-	width="1000"
-	height="547"
-	srcset="/posts/weread2notion-pro/images/run_huc82d7b839fc53b7a5c86bd3cdfedcac6_82846_480x0_resize_q75_box.jpg 480w, /posts/weread2notion-pro/images/run_huc82d7b839fc53b7a5c86bd3cdfedcac6_82846_1024x0_resize_q75_box.jpg 1024w"
+<h3 id="运行">运行
+</h3><p>上面配置完成之后，打开你Fork的项目，依次点击Actions-&gt;weread note sync-&gt; Run workflow，就可以运行了。</p>
+<p><img src="https://images.malinkang.com/2024/03/41ba7acfac4c8de1cfd4ee40443644b8.jpg"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="182"
-		data-flex-basis="438px"
 	
 ></p>
 <p>以相同的方式运行read time sync。weread note sync主要用来同步书籍、笔记和划线。read time sync 用来生成热力图和同步阅读时长。</p>
-<p><img src="/posts/weread2notion-pro/images/run2.jpg"
-	width="3024"
-	height="1586"
-	srcset="/posts/weread2notion-pro/images/run2_huc82d7b839fc53b7a5c86bd3cdfedcac6_373140_480x0_resize_q75_box.jpg 480w, /posts/weread2notion-pro/images/run2_huc82d7b839fc53b7a5c86bd3cdfedcac6_373140_1024x0_resize_q75_box.jpg 1024w"
+<p><img src="https://images.malinkang.com/2024/03/6534d66107f248ffa2c2381da7490659.jpg"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="190"
-		data-flex-basis="457px"
 	
 ></p>
-<h2 id="问题排查">问题排查</h2>
-<ol>
+<h2 id="问题排查">问题排查
+</h2><ol>
 <li>可以点击你Fork项目的Action，查看运行状态，绿色是成功，红色是失败。</li>
 </ol>
-<p><img src="/posts/weread2notion-pro/images/action.jpg"
-	width="2256"
-	height="718"
-	srcset="/posts/weread2notion-pro/images/action_huc82d7b839fc53b7a5c86bd3cdfedcac6_125349_480x0_resize_q75_box.jpg 480w, /posts/weread2notion-pro/images/action_huc82d7b839fc53b7a5c86bd3cdfedcac6_125349_1024x0_resize_q75_box.jpg 1024w"
+<p><img src="https://images.malinkang.com/2024/03/ee23baaf257d9fa16f6f95950cd1e585.jpg"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="314"
-		data-flex-basis="754px"
 	
 ></p>
 <div class="notice warning" >
 <p class="first notice-title"><span class="icon-notice baseline"><svg><use href="#warning-notice"></use></svg></span>Warning</p><p>运行成功，只代表程序没有出错，不代表就一定同步数据，比如微信Cookie过期就不会报错。所以如果运行成功，Notion中没有数据的话，也可以通过下面第2步来查看日志</p></div>
 
 <p>2.可以点进去查日志，来自行排查问题。</p>
-<p><img src="/posts/weread2notion-pro/images/action2.jpg"
-	width="3024"
-	height="1890"
-	srcset="/posts/weread2notion-pro/images/action2_huc82d7b839fc53b7a5c86bd3cdfedcac6_331726_480x0_resize_q75_box.jpg 480w, /posts/weread2notion-pro/images/action2_huc82d7b839fc53b7a5c86bd3cdfedcac6_331726_1024x0_resize_q75_box.jpg 1024w"
+<p><img src="https://images.malinkang.com/2024/03/34089868d5569f92c9138ade3ba99428.jpg"
+	
+	
+	
 	loading="lazy"
 	
 	
-		class="gallery-image" 
-		data-flex-grow="160"
-		data-flex-basis="384px"
-	
 ></p>
-<p><img src="/posts/weread2notion-pro/images/action3.jpg"
-	width="3024"
-	height="1890"
-	srcset="/posts/weread2notion-pro/images/action3_huc82d7b839fc53b7a5c86bd3cdfedcac6_524766_480x0_resize_q75_box.jpg 480w, /posts/weread2notion-pro/images/action3_huc82d7b839fc53b7a5c86bd3cdfedcac6_524766_1024x0_resize_q75_box.jpg 1024w"
+<p><img src="https://images.malinkang.com/2024/03/27ab73fed87b15a3a55d05423bd90167.jpg"
+	
+	
+	
 	loading="lazy"
 	
 	
-		class="gallery-image" 
-		data-flex-grow="160"
-		data-flex-basis="384px"
-	
 ></p>
-<h2 id="问题解答">问题解答</h2>
-<ol>
-<li>为什么有的书没有同步过来</li>
+<h3 id="问题解答">问题解答
+</h3><ol>
+<li>如何自动运行</li>
 </ol>
 <blockquote>
-<p>本项目只会同步划线或者做了笔记的书，书架里的书如果没有划线或者做笔记是不会同步的。后续可能会考虑增加同步书架中的书。</p>
+<p>Github Action提供每日定时自动运行程序的功能。之前有的朋友会问，我关了电脑会同步吗，该脚本运行在Github的服务器上，并不是运行在你的电脑上，所以你关机并不会影响程序自动运行。</p>
 </blockquote>
 <ol start="2">
 <li>每天何时同步</li>
 </ol>
 <blockquote>
-<p>本项目设置的是utc时间的0点，如果你在中国，那就是每天8点同步。不过据我观察，Github这个可能有延迟，会在每天8点零几分同步。你也可以自行修改同步时间，具体参考<a class="link" href="https://docs.github.com/zh/actions/using-workflows/events-that-trigger-workflows#schedule"  target="_blank" rel="noopener"
-    >这里</a>。</p>
+<p>笔记设置的是utc时间的0点同步，如果你在中国，那就是每天8点同步。不过据我观察，Github这个可能有延迟。时间同步是每3个小时运行一次。你也可以自行修改同步时间，具体参考<a class="link" href="https://docs.github.com/zh/actions/using-workflows/events-that-trigger-workflows#schedule"  target="_blank" rel="noopener"
+    >这里</a>。需要注意的是Github每个月2000分钟有免费的额度，如果改的过于频繁可能会导致额度不够。</p>
 </blockquote>
-<h2 id="升级">升级</h2>
-<p>打开你Fork的项目，点击Sync fork进行同步
-<img src="https://docs.github.com/assets/cb-75616/mw-1440/images/help/repository/sync-fork-dropdown.webp"
+<ol start="3">
+<li>模板中哪些可以修改</li>
+</ol>
+<blockquote>
+<p>Database中的Formula和Rollup类型的属性名可以修改，其他的属性名不支持修改，因为代码中是通过属性的名字来增加修改这个属性的，修改了名字程序就无法正常运行。要修改数据库的名字需要按照以下步骤。
+依次选择Settings-&gt;Secrets and variables -&gt; variables-&gt; New repository variable。</p>
+</blockquote>
+<p>具体的变量名可以参考下表中的变量名，值为你想要修改的名字。</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>变量名</th>
+<th>当前数据库的名字</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BOOK_DATABASE_NAME</td>
+<td>书架</td>
+</tr>
+<tr>
+<td>REVIEW_DATABASE_NAME</td>
+<td>笔记</td>
+</tr>
+<tr>
+<td>BOOKMARK_DATABASE_NAME</td>
+<td>划线</td>
+</tr>
+<tr>
+<td>DAY_DATABASE_NAME</td>
+<td>日</td>
+</tr>
+<tr>
+<td>WEEK_DATABASE_NAME</td>
+<td>周</td>
+</tr>
+<tr>
+<td>MONTH_DATABASE_NAME</td>
+<td>月</td>
+</tr>
+<tr>
+<td>YEAR_DATABASE_NAME</td>
+<td>年</td>
+</tr>
+<tr>
+<td>CATEGORY_DATABASE_NAME</td>
+<td>分类</td>
+</tr>
+<tr>
+<td>AUTHOR_DATABASE_NAME</td>
+<td>作者</td>
+</tr>
+<tr>
+<td>CHAPTER_DATABASE_NAME</td>
+<td>章节</td>
+</tr>
+</tbody>
+</table></div>
+<p>除此之外，其他数据可以任意修改，包括页面的布局都不会影响程序运行。</p>
+<ol start="4">
+<li>年月周天中的进度是什么</li>
+</ol>
+<blockquote>
+<p>这里的进度我设置的是每天1小时，每周7小时，每月30小时，每年365小时。你可以自行修改公式设置你的进度。</p>
+</blockquote>
+<ol start="5">
+<li>表中的时间是什么</li>
+</ol>
+<blockquote>
+<p>如果这本书你读完了，时间是读完的时间，如果没有读完，就是你最后阅读的时间。表中的日，周，月，年都是根据这个时间来设置的。</p>
+</blockquote>
+<h2 id="升级">升级
+</h2><p>如果我添加了新功能，你需要将自己的代码与我的代码进行同步。打开你Fork的项目，点击Sync fork进行同步，如果有冲突可以点击Discard那个按钮
+<img src="https://images.malinkang.com/2024/03/53c917e4bcfd70d0509a05680a2f10b4.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240326113307149"
+	
+	
+></p>
+<h2 id="捐赠">捐赠
+</h2><p>如果你觉得项目对你有帮助，可以捐赠。我也会不断的优化项目，并做出其他开源的项目。</p>
+<h3 id="微信">微信
+</h3><p><img src="https://images.malinkang.com/2024/03/d34f577490a32d4440c8a22f57af41da.jpg"
 	
 	
 	
@@ -715,61 +685,35 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<p>当然你也可以上面使用中提到的步骤重新来一遍。</p>
-<h2 id="捐赠">捐赠</h2>
-<p>如果你觉得项目对你有帮助，可以捐赠。我也会不断的优化项目，并做出其他开源的项目。</p>
-<h3 id="微信">微信</h3>
-<p><img src="/posts/weread2notion-pro/images/wechat.jpg"
-	width="559"
-	height="762"
-	srcset="/posts/weread2notion-pro/images/wechat_hu86c5030def4996e44fc5513e01906a85_51841_480x0_resize_q75_box.jpg 480w, /posts/weread2notion-pro/images/wechat_hu86c5030def4996e44fc5513e01906a85_51841_1024x0_resize_q75_box.jpg 1024w"
+<h3 id="支付宝">支付宝
+</h3><p><img src="https://images.malinkang.com/2024/03/7fd0feb1145f19fab3821ff1d4631f85.jpg"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="73"
-		data-flex-basis="176px"
 	
 ></p>
-<h3 id="支付宝">支付宝</h3>
-<p><img src="/posts/weread2notion-pro/images/alipay.jpg"
-	width="540"
-	height="840"
-	srcset="/posts/weread2notion-pro/images/alipay_hu1d6a72323eb6e409b77b09aed15a1c1a_76025_480x0_resize_q75_box.jpg 480w, /posts/weread2notion-pro/images/alipay_hu1d6a72323eb6e409b77b09aed15a1c1a_76025_1024x0_resize_q75_box.jpg 1024w"
+<h2 id="付费解答">付费解答
+</h2><p>有问题先自行解决，往往失败都是一些小细节没注意导致的。我的文档写的已经足够详细，按照文档来操作基本都能成功。你也可以尝试在群里咨询。不要直接加我微信来让我来解答，这个项目我已经投入了大量时间来开发维护，实在没有更多的精力来一对一解答。如果实在解决不了，可以付费一对一咨询，30元一位。付完款可以微信私聊我。</p>
+<p><img src="https://images.malinkang.com/2024/03/ca34d2b8c111f23126d94d3aaf55f5f3.jpg"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="64"
-		data-flex-basis="154px"
 	
 ></p>
-<h2 id="付费解答">付费解答</h2>
-<p>有问题先自行解决，往往失败都是一些小细节没注意导致的。我的文档写的已经足够详细，按照文档来操作基本都能成功。你也可以尝试在群里咨询。不要直接加我微信来让我来解答，这个项目我已经投入了大量时间来开发维护，实在没有更多的精力来一对一解答。如果实在解决不了，可以付费一对一咨询，30元一位。付完款可以微信私聊我。</p>
-<p><img src="/posts/weread2notion-pro/images/wexin.jpg"
-	width="475"
-	height="648"
-	srcset="/posts/weread2notion-pro/images/wexin_hudde04df3fb5300de607ebdb5fb2602cf_52403_480x0_resize_q75_box.jpg 480w, /posts/weread2notion-pro/images/wexin_hudde04df3fb5300de607ebdb5fb2602cf_52403_1024x0_resize_q75_box.jpg 1024w"
+<h2 id="群">群
+</h2><p>欢迎加入微信群讨论。使用中遇到的任何问题，包括Notion的使用，微信读书组队打卡，后续的更新都会在群里讨论。</p>
+<p><img src="https://images.malinkang.com/group.jpg"
+	
+	
+	
 	loading="lazy"
 	
+		alt="群"
 	
-		class="gallery-image" 
-		data-flex-grow="73"
-		data-flex-basis="175px"
-	
-></p>
-<h2 id="群">群</h2>
-<p>欢迎加入微信群讨论。使用中遇到的任何问题，包括Notion的使用，微信读书组队打卡，后续的更新都会在群里讨论。</p>
-<p><img src="/posts/weread2notion-pro/images/group.jpg"
-	width="1031"
-	height="1440"
-	srcset="/posts/weread2notion-pro/images/group_hu92c04046da3d4074953cad185e3935e5_145995_480x0_resize_q75_box.jpg 480w, /posts/weread2notion-pro/images/group_hu92c04046da3d4074953cad185e3935e5_145995_1024x0_resize_q75_box.jpg 1024w"
-	loading="lazy"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="71"
-		data-flex-basis="171px"
 	
 ></p>
 
@@ -784,7 +728,7 @@ if (!doNotTrack) {
         
             <a href="/tags/notion/">Notion</a>
         
-            <a href="/tags/weread/">Weread</a>
+            <a href="/tags/weread/">WeRead</a>
         
     </section>
 
@@ -823,7 +767,7 @@ if (!doNotTrack) {
         
             <div class="article-image">
                 
-                    <img src="https://images.unsplash.com/photo-1663813251302-e5d2c7199e86?q=80&amp;w=2660&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" loading="lazy" data-key="" data-hash="https://images.unsplash.com/photo-1663813251302-e5d2c7199e86?q=80&amp;w=2660&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"/>
+                    <img src="https://images.malinkang.com/2024/03/e1bc45eb87ec93a249edf163a9115874.png" loading="lazy" data-key="" data-hash="https://images.malinkang.com/2024/03/e1bc45eb87ec93a249edf163a9115874.png"/>
                 
             </div>
         
@@ -924,9 +868,17 @@ if (!doNotTrack) {
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
+<script>
+    var s1 = '2014-01-01';
+    s1 = new Date(s1.replace(/-/g, "/"));
+    s2 = new Date();
+    var days = s2.getTime() - s1.getTime();
+    var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+    document.getElementById('days').innerHTML = number_of_days;
+</script>
 
 
     

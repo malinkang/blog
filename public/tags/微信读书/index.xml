@@ -1,0 +1,779 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>微信读书 on Malinkang&#39;s Blog</title>
+        <link>http://localhost:1313/tags/%E5%BE%AE%E4%BF%A1%E8%AF%BB%E4%B9%A6/</link>
+        <description>Recent content in 微信读书 on Malinkang&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <copyright>malinkang</copyright>
+        <lastBuildDate>Wed, 03 Jan 2024 15:28:05 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/%E5%BE%AE%E4%BF%A1%E8%AF%BB%E4%B9%A6/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>WeRead2NotionPro使用文档</title>
+        <link>http://localhost:1313/posts/weread2notion-pro/</link>
+        <pubDate>Wed, 03 Jan 2024 15:28:05 +0800</pubDate>
+        
+        <guid>http://localhost:1313/posts/weread2notion-pro/</guid>
+        <description>&lt;img src="https://images.malinkang.com/2024/03/19dd1580dd991c7985abea7724c87043.png" alt="Featured image of post WeRead2NotionPro使用文档" /&gt;&lt;style type=&#34;text/css&#34;&gt;.notice{--root-color:#444;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#c33;--warning-content:#fee;--info-title:#fb7;--info-content:#fec;--note-title:#6be;--note-content:#e7f2fa;--tip-title:#5a5;--tip-content:#efe}@media (prefers-color-scheme:dark){.notice{--root-color:#ddd;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#800;--warning-content:#400;--info-title:#a50;--info-content:#420;--note-title:#069;--note-content:#023;--tip-title:#363;--tip-content:#121}}body.dark .notice{--root-color:#ddd;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#800;--warning-content:#400;--info-title:#a50;--info-content:#420;--note-title:#069;--note-content:#023;--tip-title:#363;--tip-content:#121}.notice{padding:18px;line-height:24px;margin-bottom:24px;border-radius:4px;color:var(--root-color);background:var(--root-background)}.notice p:last-child{margin-bottom:0}.notice-title{margin:-18px -18px 12px;padding:4px 18px;border-radius:4px 4px 0 0;font-weight:700;color:var(--title-color);background:var(--title-background)}.notice.warning .notice-title{background:var(--warning-title)}.notice.warning{background:var(--warning-content)}.notice.info .notice-title{background:var(--info-title)}.notice.info{background:var(--info-content)}.notice.note .notice-title{background:var(--note-title)}.notice.note{background:var(--note-content)}.notice.tip .notice-title{background:var(--tip-title)}.notice.tip{background:var(--tip-content)}.icon-notice{display:inline-flex;align-self:center;margin-right:8px}.icon-notice img,.icon-notice svg{height:1em;width:1em;fill:currentColor}.icon-notice img,.icon-notice.baseline svg{top:.125em;position:relative}&lt;/style&gt;
+&lt;div&gt;&lt;svg width=&#34;0&#34; height=&#34;0&#34; display=&#34;none&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;&lt;symbol id=&#34;tip-notice&#34; viewBox=&#34;0 0 512 512&#34; preserveAspectRatio=&#34;xMidYMid meet&#34;&gt;&lt;path d=&#34;M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z&#34;/&gt;&lt;/symbol&gt;&lt;symbol id=&#34;note-notice&#34; viewBox=&#34;0 0 512 512&#34; preserveAspectRatio=&#34;xMidYMid meet&#34;&gt;&lt;path d=&#34;M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z&#34;/&gt;&lt;/symbol&gt;&lt;symbol id=&#34;warning-notice&#34; viewBox=&#34;0 0 576 512&#34; preserveAspectRatio=&#34;xMidYMid meet&#34;&gt;&lt;path d=&#34;M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z&#34;/&gt;&lt;/symbol&gt;&lt;symbol id=&#34;info-notice&#34; viewBox=&#34;0 0 512 512&#34; preserveAspectRatio=&#34;xMidYMid meet&#34;&gt;&lt;path d=&#34;M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z&#34;/&gt;&lt;/symbol&gt;&lt;/svg&gt;&lt;/div&gt;&lt;div class=&#34;notice warning&#34; &gt;
+&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#warning-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;Warning&lt;/p&gt;&lt;p&gt;Weread2Notion和Weread2Notion-Pro是两个不同的项目，模板也不相同，切勿用错模板。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Weread2Notion教程：&lt;a class=&#34;link&#34; href=&#34;https://malinkang.com/posts/weread2notion/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://malinkang.com/posts/weread2notion/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;热力图使用教程：&lt;a class=&#34;link&#34; href=&#34;https://malinkang.com/posts/github_heatmap/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://malinkang.com/posts/github_heatmap/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;
+
+&lt;p&gt;WeRead2Notion-Pro不仅仅是将微信读书笔记同步到Notion，它是一个强大的管理系统。&lt;/p&gt;
+&lt;p&gt;WeRead2Notion和WeRead2Notion-Pro有什么区别主要有如下&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;WeRead2Notion不支持在笔记中添加自己的笔记，每次有新笔记会删除原有的笔记。WeRead2Notion-Pro支持添加自己的笔记，每次更新不会覆盖笔记。&lt;/li&gt;
+&lt;li&gt;WeRead2Notion功能更加简洁，同步速度更快。&lt;/li&gt;
+&lt;li&gt;WeRead2Notion-Pro支持按照年、月、周、日的阅读时长、笔记数阅读数的时间统计，支持数据可视化。所以选用哪个看个人喜好，也可以两个都用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;预览&#34;&gt;预览
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/f4a77735439de22884a999c6a0671162.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;预览&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;也可以打开网页版本查看效果：https://malinkang.notion.site/9a311b7413b74c8788752249edd0b256?pvs=74&lt;/p&gt;
+&lt;p&gt;下面给大家讲解一下如何使用：&lt;/p&gt;
+&lt;h3 id=&#34;fork工程&#34;&gt;Fork工程
+&lt;/h3&gt;&lt;p&gt;打开&lt;a class=&#34;link&#34; href=&#34;https://github.com/malinkang/weread2notion-pro&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Weread2Notion-Pro&lt;/a&gt;，点击右上角的Fork（顺便点个star谢谢）&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/fc6be407e45f0e3a3067252dd2c51c73.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;获取微信读书cookie&#34;&gt;获取微信读书Cookie
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;浏览器打开&lt;a class=&#34;link&#34; href=&#34;https://weread.qq.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;网页版微信读书&lt;/a&gt;扫码登录&lt;/li&gt;
+&lt;li&gt;按F12进入开发者模式，依次点网络-&amp;gt;文档，然后选中weread.qq.com，下拉找到Cookie，复制Cookie值&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;notice tip&#34; &gt;
+&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#tip-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;Tip&lt;/p&gt;&lt;p&gt;如果没有内容显示，请刷新下浏览器。&lt;/p&gt;
+&lt;p&gt;建议使用Chrome浏览器，有的小伙伴使用QQ浏览器拿到的Cookie一直不能用。&lt;/p&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/2a26e0b6d2a5a3b36711e91037b837f3.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;授权&#34;&gt;授权
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;浏览器打开 &lt;a class=&#34;link&#34; href=&#34;https://api.notion.com/v1/oauth/authorize?client_id=f86ce456-f9cb-4cd5-8e4b-07bd9e18a8f8&amp;amp;response_type=code&amp;amp;owner=user&amp;amp;redirect_uri=https%3A%2F%2Fnotion-auth.malinkang.com%2Fweread2notionpro-oauth-callback&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://api.notion.com/v1/oauth/authorize?client_id=f86ce456-f9cb-4cd5-8e4b-07bd9e18a8f8&amp;response_type=code&amp;owner=user&amp;redirect_uri=https%3A%2F%2Fnotion-auth.malinkang.com%2Fweread2notionpro-oauth-callback&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;然后点击Next-&amp;gt;Allow access&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/6e8adeccaf9fddef746300c3458b1967.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;授权&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/9ddc65490e193f00d4f29fbeb70b24fe.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;授权&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;点击复制按钮，复制NOTION_TOKEN和NOTION_PAGE的值。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/42c04cb1e6ab95eed832f33462c96831.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;复制&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;在github的secrets中添加变量&#34;&gt;在Github的Secrets中添加变量
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;打开你fork的工程，点击Settings-&amp;gt;Secrets and variables-&amp;gt;New repository secret&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/660acb8a4038af66e27fe0f993ef3aad.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;Name输入WEREAD_COOKIE，Secret输入框中填入你前面获取的微信读书Cookie，然后点击Add secret&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/bd1bb31f901d9920bb1135c19e1ef304.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;同理，继续点击New repository secret，分别增加变量NOTION_TOKEN和NOTION_PAGE。最终的结果如下图所示。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/cc1a34e23e251dec7f8fedc8d710912a.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;div class=&#34;notice warning&#34; &gt;
+&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#warning-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;Warning&lt;/p&gt;&lt;p&gt;注意这三个变量名一定要填写正确，一个字母都不能错，否则会同步失败。&lt;/p&gt;&lt;/div&gt;
+
+&lt;h3 id=&#34;运行&#34;&gt;运行
+&lt;/h3&gt;&lt;p&gt;上面配置完成之后，打开你Fork的项目，依次点击Actions-&amp;gt;weread note sync-&amp;gt; Run workflow，就可以运行了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/41ba7acfac4c8de1cfd4ee40443644b8.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;以相同的方式运行read time sync。weread note sync主要用来同步书籍、笔记和划线。read time sync 用来生成热力图和同步阅读时长。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/6534d66107f248ffa2c2381da7490659.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;问题排查&#34;&gt;问题排查
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;可以点击你Fork项目的Action，查看运行状态，绿色是成功，红色是失败。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/ee23baaf257d9fa16f6f95950cd1e585.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;div class=&#34;notice warning&#34; &gt;
+&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#warning-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;Warning&lt;/p&gt;&lt;p&gt;运行成功，只代表程序没有出错，不代表就一定同步数据，比如微信Cookie过期就不会报错。所以如果运行成功，Notion中没有数据的话，也可以通过下面第2步来查看日志&lt;/p&gt;&lt;/div&gt;
+
+&lt;p&gt;2.可以点进去查日志，来自行排查问题。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/34089868d5569f92c9138ade3ba99428.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/27ab73fed87b15a3a55d05423bd90167.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;问题解答&#34;&gt;问题解答
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;如何自动运行&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Github Action提供每日定时自动运行程序的功能。之前有的朋友会问，我关了电脑会同步吗，该脚本运行在Github的服务器上，并不是运行在你的电脑上，所以你关机并不会影响程序自动运行。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;每天何时同步&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;笔记设置的是utc时间的0点同步，如果你在中国，那就是每天8点同步。不过据我观察，Github这个可能有延迟。时间同步是每3个小时运行一次。你也可以自行修改同步时间，具体参考&lt;a class=&#34;link&#34; href=&#34;https://docs.github.com/zh/actions/using-workflows/events-that-trigger-workflows#schedule&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;这里&lt;/a&gt;。需要注意的是Github每个月2000分钟有免费的额度，如果改的过于频繁可能会导致额度不够。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;模板中哪些可以修改&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Database中的Formula和Rollup类型的属性名可以修改，其他的属性名不支持修改，因为代码中是通过属性的名字来增加修改这个属性的，修改了名字程序就无法正常运行。要修改数据库的名字需要按照以下步骤。
+依次选择Settings-&amp;gt;Secrets and variables -&amp;gt; variables-&amp;gt; New repository variable。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;具体的变量名可以参考下表中的变量名，值为你想要修改的名字。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;变量名&lt;/th&gt;
+&lt;th&gt;当前数据库的名字&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;BOOK_DATABASE_NAME&lt;/td&gt;
+&lt;td&gt;书架&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;REVIEW_DATABASE_NAME&lt;/td&gt;
+&lt;td&gt;笔记&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;BOOKMARK_DATABASE_NAME&lt;/td&gt;
+&lt;td&gt;划线&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;DAY_DATABASE_NAME&lt;/td&gt;
+&lt;td&gt;日&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;WEEK_DATABASE_NAME&lt;/td&gt;
+&lt;td&gt;周&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;MONTH_DATABASE_NAME&lt;/td&gt;
+&lt;td&gt;月&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;YEAR_DATABASE_NAME&lt;/td&gt;
+&lt;td&gt;年&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;CATEGORY_DATABASE_NAME&lt;/td&gt;
+&lt;td&gt;分类&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;AUTHOR_DATABASE_NAME&lt;/td&gt;
+&lt;td&gt;作者&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;CHAPTER_DATABASE_NAME&lt;/td&gt;
+&lt;td&gt;章节&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;除此之外，其他数据可以任意修改，包括页面的布局都不会影响程序运行。&lt;/p&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;年月周天中的进度是什么&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这里的进度我设置的是每天1小时，每周7小时，每月30小时，每年365小时。你可以自行修改公式设置你的进度。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol start=&#34;5&#34;&gt;
+&lt;li&gt;表中的时间是什么&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如果这本书你读完了，时间是读完的时间，如果没有读完，就是你最后阅读的时间。表中的日，周，月，年都是根据这个时间来设置的。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;升级&#34;&gt;升级
+&lt;/h2&gt;&lt;p&gt;如果我添加了新功能，你需要将自己的代码与我的代码进行同步。打开你Fork的项目，点击Sync fork进行同步，如果有冲突可以点击Discard那个按钮
+&lt;img src=&#34;https://images.malinkang.com/2024/03/53c917e4bcfd70d0509a05680a2f10b4.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240326113307149&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;捐赠&#34;&gt;捐赠
+&lt;/h2&gt;&lt;p&gt;如果你觉得项目对你有帮助，可以捐赠。我也会不断的优化项目，并做出其他开源的项目。&lt;/p&gt;
+&lt;h3 id=&#34;微信&#34;&gt;微信
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/d34f577490a32d4440c8a22f57af41da.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;支付宝&#34;&gt;支付宝
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/7fd0feb1145f19fab3821ff1d4631f85.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;付费解答&#34;&gt;付费解答
+&lt;/h2&gt;&lt;p&gt;有问题先自行解决，往往失败都是一些小细节没注意导致的。我的文档写的已经足够详细，按照文档来操作基本都能成功。你也可以尝试在群里咨询。不要直接加我微信来让我来解答，这个项目我已经投入了大量时间来开发维护，实在没有更多的精力来一对一解答。如果实在解决不了，可以付费一对一咨询，30元一位。付完款可以微信私聊我。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/ca34d2b8c111f23126d94d3aaf55f5f3.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;群&#34;&gt;群
+&lt;/h2&gt;&lt;p&gt;欢迎加入微信群讨论。使用中遇到的任何问题，包括Notion的使用，微信读书组队打卡，后续的更新都会在群里讨论。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/group.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;群&#34;
+	
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>微信读书热力图使用指南</title>
+        <link>http://localhost:1313/posts/github_heatmap/</link>
+        <pubDate>Fri, 22 Dec 2023 14:28:05 +0800</pubDate>
+        
+        <guid>http://localhost:1313/posts/github_heatmap/</guid>
+        <description>&lt;img src="https://images.unsplash.com/photo-1702277854835-0f25f1565ae1?w=800&amp;auto=format&amp;fit=crop&amp;q=60&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDN8Ym84alFLVGFFMFl8fGVufDB8fHx8fA%3D%3D" alt="Featured image of post 微信读书热力图使用指南" /&gt;&lt;h2 id=&#34;升级&#34;&gt;升级
+&lt;/h2&gt;&lt;p&gt;如果你是新用户，可以直接跳过这一步。&lt;/p&gt;
+&lt;p&gt;打开你Fork的项目，点击Sync fork进行同步&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://docs.github.com/assets/cb-75616/mw-1440/images/help/repository/sync-fork-dropdown.webp&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;权限&#34;&gt;权限
+&lt;/h2&gt;&lt;p&gt;确保你打开了读写权限。&lt;/p&gt;
+&lt;p&gt;依次选择Settings-&amp;gt;Actions-&amp;gt;General，然后下拉，找到Workflow permissions，如果没有选中Read and write permissions，请选中，然后点下面的save保存。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/04/01c28b0dd2e8c2629a22e7f68db6216d.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/04/d7824c3488e6e1d1c9e6b75d6aba86f3.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;设置name&#34;&gt;设置NAME
+&lt;/h2&gt;&lt;p&gt;设置这个Name用来展示在热力图上。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/posts/github_heatmap/images/5.jpg&#34;
+	width=&#34;1466&#34;
+	height=&#34;390&#34;
+	srcset=&#34;http://localhost:1313/posts/github_heatmap/images/5_huc82d7b839fc53b7a5c86bd3cdfedcac6_120027_480x0_resize_q75_box.jpg 480w, http://localhost:1313/posts/github_heatmap/images/5_huc82d7b839fc53b7a5c86bd3cdfedcac6_120027_1024x0_resize_q75_box.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;375&#34;
+		data-flex-basis=&#34;902px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;依次选择Settings-&amp;gt;Secrets and variables -&amp;gt; New repository secret.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/04/c28135ce7ec0a597cd008e75ab645d14.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;输NAME和Secret，然后点 Add secret保存即可。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/04/e45b89ece1816660b2f5e35f8a72acb7.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;设置年&#34;&gt;设置年
+&lt;/h2&gt;&lt;p&gt;依次选择Settings-&amp;gt;Secrets and variables -&amp;gt; variables-&amp;gt; New repository variable.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/04/4c2578f3dd27c7db4d8d2403c2e25ecb.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;添加变量名为year，值为年份。如果要显示多个年份，比如2018到2024年的就输入2018-2024。主要微信读书只能拿到2018年之后的数据，所以如果输入2016-2024，还是只会显示2018-2024的数据。&lt;/p&gt;
+&lt;h2 id=&#34;设置颜色&#34;&gt;设置颜色
+&lt;/h2&gt;&lt;p&gt;和上面设置Year一样依次选择Settings-&amp;gt;Secrets and variables -&amp;gt; variables-&amp;gt; New repository variable。
+具体的变量名可以参考下表中的变量名，值为色值。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;变量名&lt;/th&gt;
+&lt;th&gt;变量说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;BACKGROUND_COLOR&lt;/td&gt;
+&lt;td&gt;背景颜色&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;DOM_COLOR&lt;/td&gt;
+&lt;td&gt;未填充的色块&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;TRACK_COLOR&lt;/td&gt;
+&lt;td&gt;一级颜色&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SPECIAL_COLOR&lt;/td&gt;
+&lt;td&gt;二级颜色&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SPECIAL_COLOR2&lt;/td&gt;
+&lt;td&gt;三级级颜色&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;TEXT_COLOR&lt;/td&gt;
+&lt;td&gt;文字颜色&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/04/521ec621b6acebc297d9700f9bfac1eb.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;variables示例&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/04/e250d7e9952047eb327f7b0a397211d3.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;手动运行&#34;&gt;手动运行
+&lt;/h2&gt;&lt;p&gt;配置完成之后，你就可以手动运行一下。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/posts/github_heatmap/images/6.jpg&#34;
+	width=&#34;3022&#34;
+	height=&#34;1270&#34;
+	srcset=&#34;http://localhost:1313/posts/github_heatmap/images/6_huc82d7b839fc53b7a5c86bd3cdfedcac6_301544_480x0_resize_q75_box.jpg 480w, http://localhost:1313/posts/github_heatmap/images/6_huc82d7b839fc53b7a5c86bd3cdfedcac6_301544_1024x0_resize_q75_box.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;237&#34;
+		data-flex-basis=&#34;571px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;最终生成的图保存在OUT_FOLDER文件夹下。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/04/75c38b036cce0ff8cc23d3459defbcb7.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>WeRead2Notion使用文档</title>
+        <link>http://localhost:1313/posts/weread2notion/</link>
+        <pubDate>Sun, 10 Sep 2023 15:28:05 +0800</pubDate>
+        
+        <guid>http://localhost:1313/posts/weread2notion/</guid>
+        <description>&lt;img src="https://images.malinkang.com/2024/03/e1bc45eb87ec93a249edf163a9115874.png" alt="Featured image of post WeRead2Notion使用文档" /&gt;&lt;p&gt;WeRead2Notion用于将微信读书的笔记自动同步到Notion。该项目不支持在Notion中添加自己的笔记，每次有笔记更新会删除原有笔记，需要添加自己的笔记可以使用&lt;a class=&#34;link&#34; href=&#34;https://malinkang.com/posts/weread2notion-pro/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;WeRead2Notion-Pro&lt;/a&gt;。&lt;/p&gt;
+&lt;style type=&#34;text/css&#34;&gt;.notice{--root-color:#444;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#c33;--warning-content:#fee;--info-title:#fb7;--info-content:#fec;--note-title:#6be;--note-content:#e7f2fa;--tip-title:#5a5;--tip-content:#efe}@media (prefers-color-scheme:dark){.notice{--root-color:#ddd;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#800;--warning-content:#400;--info-title:#a50;--info-content:#420;--note-title:#069;--note-content:#023;--tip-title:#363;--tip-content:#121}}body.dark .notice{--root-color:#ddd;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#800;--warning-content:#400;--info-title:#a50;--info-content:#420;--note-title:#069;--note-content:#023;--tip-title:#363;--tip-content:#121}.notice{padding:18px;line-height:24px;margin-bottom:24px;border-radius:4px;color:var(--root-color);background:var(--root-background)}.notice p:last-child{margin-bottom:0}.notice-title{margin:-18px -18px 12px;padding:4px 18px;border-radius:4px 4px 0 0;font-weight:700;color:var(--title-color);background:var(--title-background)}.notice.warning .notice-title{background:var(--warning-title)}.notice.warning{background:var(--warning-content)}.notice.info .notice-title{background:var(--info-title)}.notice.info{background:var(--info-content)}.notice.note .notice-title{background:var(--note-title)}.notice.note{background:var(--note-content)}.notice.tip .notice-title{background:var(--tip-title)}.notice.tip{background:var(--tip-content)}.icon-notice{display:inline-flex;align-self:center;margin-right:8px}.icon-notice img,.icon-notice svg{height:1em;width:1em;fill:currentColor}.icon-notice img,.icon-notice.baseline svg{top:.125em;position:relative}&lt;/style&gt;
+&lt;div&gt;&lt;svg width=&#34;0&#34; height=&#34;0&#34; display=&#34;none&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;&lt;symbol id=&#34;tip-notice&#34; viewBox=&#34;0 0 512 512&#34; preserveAspectRatio=&#34;xMidYMid meet&#34;&gt;&lt;path d=&#34;M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z&#34;/&gt;&lt;/symbol&gt;&lt;symbol id=&#34;note-notice&#34; viewBox=&#34;0 0 512 512&#34; preserveAspectRatio=&#34;xMidYMid meet&#34;&gt;&lt;path d=&#34;M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z&#34;/&gt;&lt;/symbol&gt;&lt;symbol id=&#34;warning-notice&#34; viewBox=&#34;0 0 576 512&#34; preserveAspectRatio=&#34;xMidYMid meet&#34;&gt;&lt;path d=&#34;M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z&#34;/&gt;&lt;/symbol&gt;&lt;symbol id=&#34;info-notice&#34; viewBox=&#34;0 0 512 512&#34; preserveAspectRatio=&#34;xMidYMid meet&#34;&gt;&lt;path d=&#34;M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z&#34;/&gt;&lt;/symbol&gt;&lt;/svg&gt;&lt;/div&gt;&lt;div class=&#34;notice warning&#34; &gt;
+&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#warning-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;Warning&lt;/p&gt;&lt;p&gt;Weread2Notion和Weread2Notion-Pro是两个不同的项目，模板也不相同，切勿用错模板。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Weread2Notion-Pro教程：&lt;a class=&#34;link&#34; href=&#34;https://malinkang.com/posts/weread2notion-pro/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://malinkang.com/posts/weread2notion-pro/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;热力图使用教程：&lt;a class=&#34;link&#34; href=&#34;https://malinkang.com/posts/github_heatmap/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://malinkang.com/posts/github_heatmap/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;
+
+&lt;h2 id=&#34;预览&#34;&gt;预览
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/7403ee39bcd57097005697d3c4a06841.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;3e54d178-4e8d-4a06-a36d-664a861b364c&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;也可以打开网页版本查看效果：https://book.malinkang.com/&lt;/p&gt;
+&lt;h3 id=&#34;fork工程&#34;&gt;Fork工程
+&lt;/h3&gt;&lt;p&gt;打开&lt;a class=&#34;link&#34; href=&#34;https://github.com/malinkang/weread2notion&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Weread2Notion&lt;/a&gt;，点击右上角的Fork（顺便点个star谢谢）&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/fc6be407e45f0e3a3067252dd2c51c73.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;权限&#34;&gt;权限
+&lt;/h3&gt;&lt;p&gt;确保你打开了读写权限。&lt;/p&gt;
+&lt;p&gt;依次选择Settings-&amp;gt;Actions-&amp;gt;General，然后下拉，找到Workflow permissions，如果没有选中Read and write permissions，请选中，然后点下面的save保存。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/01c28b0dd2e8c2629a22e7f68db6216d.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/d7824c3488e6e1d1c9e6b75d6aba86f3.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;获取微信读书cookie&#34;&gt;获取微信读书Cookie
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;浏览器打开&lt;a class=&#34;link&#34; href=&#34;https://weread.qq.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;网页版微信读书&lt;/a&gt;扫码登录&lt;/li&gt;
+&lt;li&gt;按F12进入开发者模式，依次点网络-&amp;gt;文档，然后选中weread.qq.com，下拉找到Cookie，复制Cookie值&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;notice tip&#34; &gt;
+&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#tip-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;Tip&lt;/p&gt;&lt;p&gt;如果没有内容显示，请刷新下浏览器。&lt;/p&gt;
+&lt;p&gt;建议使用Chrome浏览器，有的小伙伴使用QQ浏览器拿到的Cookie一直不能用。&lt;/p&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/2a26e0b6d2a5a3b36711e91037b837f3.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;授权&#34;&gt;授权
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;浏览器打开 &lt;a class=&#34;link&#34; href=&#34;https://api.notion.com/v1/oauth/authorize?client_id=801fd03a-a44f-41af-9a17-feb048b4bbdd&amp;amp;response_type=code&amp;amp;owner=user&amp;amp;redirect_uri=https%3A%2F%2Fnotion-auth.malinkang.com%2Fweread2notion-oauth-callback&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://api.notion.com/v1/oauth/authorize?client_id=801fd03a-a44f-41af-9a17-feb048b4bbdd&amp;response_type=code&amp;owner=user&amp;redirect_uri=https%3A%2F%2Fnotion-auth.malinkang.com%2Fweread2notion-oauth-callback&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;然后点击Next-&amp;gt;Allow access&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/6e8adeccaf9fddef746300c3458b1967.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240326111124731&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/9ddc65490e193f00d4f29fbeb70b24fe.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240326111250623&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;点击复制按钮，复制NOTION_TOKEN和NOTION_PAGE的值。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/42c04cb1e6ab95eed832f33462c96831.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;复制&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;在github的secrets中添加变量&#34;&gt;在Github的Secrets中添加变量
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;打开你fork的工程，点击Settings-&amp;gt;Secrets and variables-&amp;gt;New repository secret&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/660acb8a4038af66e27fe0f993ef3aad.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;Name输入WEREAD_COOKIE，Secret输入框中填入你前面获取的微信读书Cookie，然后点击Add secret&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/bd1bb31f901d9920bb1135c19e1ef304.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;同理，继续点击New repository secret，分别增加变量NOTION_TOKEN和NOTION_PAGE。最终的结果如下图所示。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/cc1a34e23e251dec7f8fedc8d710912a.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;div class=&#34;notice warning&#34; &gt;
+&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#warning-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;Warning&lt;/p&gt;&lt;p&gt;注意这三个变量名一定要填写正确，一个字母都不能错，否则会同步失败。&lt;/p&gt;&lt;/div&gt;
+
+&lt;h3 id=&#34;运行&#34;&gt;运行
+&lt;/h3&gt;&lt;p&gt;上面配置完成之后，打开你Fork的项目，依次点击Actions-&amp;gt;weread sync-&amp;gt; Run workflow，就可以运行了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/58a654118607156d8a7dde7f6470504f.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;问题排查&#34;&gt;问题排查
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;可以点击你Fork项目的Action，查看运行状态，绿色是成功，红色是失败。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/ee23baaf257d9fa16f6f95950cd1e585.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;div class=&#34;notice warning&#34; &gt;
+&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#warning-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;Warning&lt;/p&gt;&lt;p&gt;运行成功，只代表程序没有出错，不代表就一定同步数据，比如微信Cookie过期就不会报错。所以如果运行成功，Notion中没有数据的话，也可以通过下面第2步来查看日志&lt;/p&gt;&lt;/div&gt;
+
+&lt;p&gt;2.可以点进去查日志，来自行排查问题。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/34089868d5569f92c9138ade3ba99428.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/27ab73fed87b15a3a55d05423bd90167.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;问题解答&#34;&gt;问题解答
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;为什么有的书没有同步过来&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;本项目只会同步划线或者做了笔记的书，书架里的书如果没有划线或者做笔记是不会同步的。后续可能会考虑增加同步书架中的书。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;每天何时同步&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;本项目设置的是utc时间的0点，如果你在中国，那就是每天8点同步。不过据我观察，Github这个可能有延迟，会在每天8点零几分同步。你也可以自行修改同步时间，具体参考&lt;a class=&#34;link&#34; href=&#34;https://docs.github.com/zh/actions/using-workflows/events-that-trigger-workflows#schedule&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;这里&lt;/a&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;升级&#34;&gt;升级
+&lt;/h2&gt;&lt;p&gt;如果我添加了新功能，你需要将自己的代码与我的代码进行同步。打开你Fork的项目，点击Sync fork进行同步，如果有冲突可以点击Discard那个按钮
+&lt;img src=&#34;https://images.malinkang.com/2024/03/53c917e4bcfd70d0509a05680a2f10b4.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240326113307149&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;捐赠&#34;&gt;捐赠
+&lt;/h2&gt;&lt;p&gt;如果你觉得项目对你有帮助，可以捐赠。我也会不断的优化项目，并做出其他开源的项目。&lt;/p&gt;
+&lt;h3 id=&#34;微信&#34;&gt;微信
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/d34f577490a32d4440c8a22f57af41da.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;支付宝&#34;&gt;支付宝
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/7fd0feb1145f19fab3821ff1d4631f85.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;付费解答&#34;&gt;付费解答
+&lt;/h2&gt;&lt;p&gt;有问题先自行解决，往往失败都是一些小细节没注意导致的。我的文档写的已经足够详细，按照文档来操作基本都能成功。你也可以尝试在群里咨询。不要直接加我微信来让我来解答，这个项目我已经投入了大量时间来开发维护，实在没有更多的精力来一对一解答。如果实在解决不了，可以付费一对一咨询，30元一位。付完款可以微信私聊我。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/ca34d2b8c111f23126d94d3aaf55f5f3.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;群&#34;&gt;群
+&lt;/h2&gt;&lt;p&gt;欢迎加入微信群讨论。使用中遇到的任何问题，包括Notion的使用，微信读书组队打卡，后续的更新都会在群里讨论。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/group.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;群&#34;
+	
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

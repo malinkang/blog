@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html><head>
+	<meta name="generator" content="Hugo 0.128.2"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<title>Malinkang&#39;s Blog</title>
+
+
+
+  
+
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+    <link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="/scss/dark-mode.min.c6e68b913da16a092755d6c22435d1331fd1af82c857538edbdca3203413fe72.css" integrity="sha256-xuaLkT2hagknVdbCJDXRMx/Rr4LIV1OO29yjIDQT/nI=" media="screen">
+
+
+<link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Material+Icons">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+
+
+
+</head>
+<body>
+    	<div id="app"><div class="single-column-drawer-container" id="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+                
+                
+                
+                    
+                
+                
+                
+                <a class="a-block drawer-menu-item active" href="/">
+                    Home
+                </a>
+                
+            
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div id="drawer-mask" v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav id="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div id="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a id="navTitle" class="navbar-brand" href="http://localhost:1313/">
+            Malinkang&#39;s Blog
+        </a>
+        
+        <button type="button" class="nav-darkmode-toggle" id="darkModeToggleButton2">
+            <i class="material-icons" id="darkModeToggleIcon2">
+                dark_mode
+            </i>
+        </button>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" id="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="http://localhost:1313/">
+        <div class="single-column-header-title">Malinkang&#39;s Blog</div>
+        
+
+    </a>
+</div>
+
+            <div id="content">
+                <div id="streamContainer" class="stream-container">
+
+    <div class="post-list-container post-list-container-no-background">
+        
+        
+            <a href="/android/network/okhttp/okhttp-shi-yong/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                
+                            </div>
+                            <div class="post-item-summary">
+                                
+                                    OkHttp使用 简介 HTTP是现代应用程序的网络请求方式。它是我们交换数据和媒体的方式。高效地执行HTTP可以让你的东西加载得更快，并节省带宽。
+OkHttp是一个默认高效的HTTP客户端：
+HTTP/2支持允许向同一主机发出的所有请求共享一个套接字。 连接池降低了请求延迟（如果HTTP/2不可用）。 透明的GZIP缩小了下载大小。 响应缓存可以完全避免重复请求的网络。 当网络出现问题时，OkHttp会坚持不懈：它会默默地从常见的连接问题中恢复。如果您的服务有多个IP地址，如果第一次连接失败，OkHttp会尝试更换地址。这对于IPv4+IPv6和冗余数据中心的服务是必要的。OkHttp支持现代的TLS功能（TLS 1.3，ALPN，证书引脚）。它可以被配置为广泛的连接。
+使用OkHttp很简单。它的请求/响应API被设计成具有流畅的构建器和不可更改性。它既支持同步阻塞调用，也支持带回调的异步调用。
+添加依赖 Get请求 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 private final OkHttpClient client = new OkHttpClient(); public void run() throws Exception { Request request = new Request.Builder() .url(&#34;https://publicobject.com/helloworld.txt&#34;) .build(); try (Response response = client.newCall(request).execute()) { if (!response.isSuccessful()) throw new IOException(&#34;Unexpected code &#34; + response); Headers responseHeaders = response.headers(); for (int i = 0; i &lt; responseHeaders.
+                                
+                            </div>
+                            <div class="post-item-meta">
+    0001-01-01
+    &emsp;
+    
+    
+    
+    &emsp;
+    
+</div>
+
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+        
+            <a href="/android/network/okhttp/readme/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                
+                            </div>
+                            <div class="post-item-summary">
+                                
+                                    OkHttp文档翻译 
+                                
+                            </div>
+                            <div class="post-item-meta">
+    0001-01-01
+    &emsp;
+    
+    
+    
+    &emsp;
+    
+</div>
+
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+        
+            <a href="/android/network/picasso/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                
+                            </div>
+                            <div class="post-item-summary">
+                                
+                                    Picasso使用 1. 介绍 Picasso 具有以下特性：
+处理Adapter中的 ImageView 回收和取消已经回收ImageView的下载进程 使用最少的内存完成复杂的图片转换，比如把下载的图片转换为圆角等 自动添加磁盘和内存缓存 2.快速入门 2.1 构建项目 Jar包下载地址：https://github.com/square/picasso
+Gradle构建
+1 compile &#39;com.squareup.picasso:picasso:2.3.4&#39; Maven
+1 2 3 4 5 6 &lt;dependency&gt; &lt;groupId&gt;com.squareup.picasso&lt;/groupId&gt; &lt;artifactId&gt;picasso&lt;/artifactId&gt; &lt;version&gt;2.3.4&lt;/version&gt; &lt;/dependency&gt; 2.2 混淆 在ProGuard中添加下列选项
+1 -dontwarn com.squareup.okhttp.** 2.3 使用 Picasso加载网络图片非常简单
+1 Picasso.with(context).load(&#34;http://i.imgur.com/DvpvklR.png&#34;).into(imageView); 3 特性介绍 3.1 图片转换 转换图片更好的适应布局并且减少内存占用量。
+1 2 3 4 5 6 Picasso.with(context) .load(url) .resize(50, 50) .centerCrop() .into(imageView) 用户也可以自己指定转换器，如下例子将图片转换为方形
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 public class CropSquareTransformation implements Transformation { @Override public Bitmap transform(Bitmap source) { int size = Math.
+                                
+                            </div>
+                            <div class="post-item-meta">
+    0001-01-01
+    &emsp;
+    
+    
+    
+    &emsp;
+    
+</div>
+
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+        
+            <a href="/android/network/readme/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                
+                            </div>
+                            <div class="post-item-summary">
+                                
+                                    网络 TCP 为什么是三次握手，而不是两次或四次？ HTTP 2.0与OkHttp 懂了，原来 OkHttp 是这样建立 HTTPS 连接的 一文读懂 HTTP/1HTTP/2HTTP/3 面试官：听说你熟悉OkHttp原理？ 轻松理解HTTP缓存策略 一个OkHttp的bug引发的血案 源码分析三：OkHttp—RetryAndFollowUpInterceptor 15 | 网络优化（上）：移动开发工程师必备的网络优化知识 HTTPS 温故知新（一） —— 开篇 The New Illustrated TLS Connection 百度App网络深度优化系列《一》DNS优化 携程 App 的网络性能优化实践 减少网络耗电量 Android性能优化典范 - 第4季 Android Performance Patterns Season 4 网络优化 DNS优化 连接优化 Facebook是如何大幅提升TLS连接效率的？ 基于TLS1.3的微信安全通信协议mmtls介绍 资源压缩 https://github.com/google/brotli https://github.com/facebook/zstd 有非对称加密为什么还要数字证书？数字证书有权威机构发布，钓鱼网站也可能使用非对称加密但是没有证书。
+                                
+                            </div>
+                            <div class="post-item-meta">
+    0001-01-01
+    &emsp;
+    
+    
+    
+    &emsp;
+    
+</div>
+
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+        
+            <a href="/android/network/retrofit-source/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                
+                            </div>
+                            <div class="post-item-summary">
+                                
+                                    Retrofit源码分析 基本流程： 1.通过ServiceMethod获取请求参数和请求信息 2.创建OkhttpCall 3.获取对应的CallAdapter，然后调用adapt方法并将OkhttpCall传入。 4.在CallAdapter的adapt方法中执行OkhttpCall的execute方法，并调用ServiceMethod中的ConvertAdapter将返回结果转换为相应的实体。
+ServiceMethod ServiceMethod主要用来解析我们声明的方法。 1.Builder构造函数中获取方法上的注解和注解里的值。 2.调用createCallAdapter方法获取CallAdapter。 3.调用createResponseConverter方法获取Converter。 4.调用parseMethodAnnotation来解析方法上的注解 5.调用parseParameterAnnotation来解析参数上的注解，并将这些注解包含的信息封装成一个ParameterHandler对象。 6.在OkHttpCall中调用toRequest的方法来获取请求的参数。
+1 2 3 4 5 6 7 public Builder(Retrofit retrofit, Method method) { this.retrofit = retrofit; this.method = method; this.methodAnnotations = method.getAnnotations();//获取方法上的注解 this.parameterTypes = method.getGenericParameterTypes();//获取参数类型 this.parameterAnnotationsArray = method.getParameterAnnotations();//获取参数上的注解 这里是一个二维数组，每个参数可能有多个注解 } createCallAdapter方法获取方法的返回值和注解，根据注解和返回值获取对应的CallAdapter。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 private CallAdapter&lt;T, R&gt; createCallAdapter() { Type returnType = method.
+                                
+                            </div>
+                            <div class="post-item-meta">
+    0001-01-01
+    &emsp;
+    
+    
+    
+    &emsp;
+    
+</div>
+
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+        
+        </a>
+    </div>
+
+
+                    </div>
+            </div><div id="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head active" href="http://localhost:1313/">
+    
+        <div class="nav-title">
+            Malinkang&#39;s Blog
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+            
+            
+                
+            
+            
+            
+            <a class="a-block nav-link-item active" href="/">
+                Home
+            </a>
+            
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://risehere.net/">Rise</a>
+<br>
+Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	malinkang
+	
+
+    </div>
+    
+</div><div id="extraContainer" class="extra-container">
+    <div class="toc-wrapper">
+        
+
+        
+    </div>
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top"
+            :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        <a type="button" class="pagination-action" id="darkModeToggleButton">
+            <span class="material-icons pagination-action-icon" id="darkModeToggleIcon">
+                dark_mode
+            </span>
+        </a>
+        
+        
+        
+
+        <a class="pagination-action"  href="/page/25/">
+            
+            <i class="material-icons pagination-action-icon">
+                chevron_left
+            </i>
+        </a>
+
+        <div class="pagination-indicator">
+            <span style="text-align: center">
+                26<br>
+                <div style="display: inline-block; transform: rotate(-28deg)">-</div><br>53
+            </span>
+        </div>
+
+
+        <a class="pagination-action"  href="/page/27/">
+            
+            <i class="material-icons pagination-action-icon">
+                chevron_right
+            </i>
+        </a>
+        
+        
+    </div>
+</div>
+
+
+<div class="pagination">
+    
+    <a class="pagination-action" href="/page/25/" style="opacity:1">
+    
+        <i class="material-icons pagination-action-icon">
+            chevron_left
+        </i>
+    </a>
+
+        <div class="pagination-indicator">
+            <span>26/53</span>
+        </div>
+
+        
+        <a class="pagination-action" href="/page/27/"
+           style="opacity:1">
+        
+                <i class="material-icons pagination-action-icon">
+                    chevron_right
+                </i>
+            </a>
+</div>
+
+
+
+<div id="single-column-footer">
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://risehere.net/">Rise</a>
+<br>
+Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	malinkang
+	
+</div>
+            </div>
+    
+    <script src="/js/journal.js"></script></body>
+</html>

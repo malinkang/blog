@@ -1,90 +1,57 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='升级 如果你是新用户，可以直接跳过这一步。
-打开你Fork的项目，点击Sync fork进行同步
-权限 确保你打开了读写权限。
-依次选择Settings-&amp;gt;Actions-&amp;gt;General，然后下拉，找到Workflow permissions，如果没有选中Read and write permissions，请选中，然后点下面的save保存。
-设置NAME 设置这个Name用来展示在热力图上。
-依次选择Settings-&amp;gt;Secrets and variables -&amp;gt; New repository secret.
-输NAME和Secret，然后点 Add secret保存即可。
-手动运行 配置完成之后，你就可以手动运行一下。
-最终生成的图保存在OUT_FOLDER文件夹下。'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="升级 如果你是新用户，可以直接跳过这一步。 打开你Fork的项目，点击Sync fork进行同步 权限 确保你打开了读写权限。 依次选择Settings-&gt;Actions-&gt;General，然后下拉，找到Workflow permissions，如果没有选中Read and write permissions，请选中，然后点下面的save保存。 设置NAME 设置这个Name用来展示在热力图上。 依次选择Settings-&gt;Secrets and variables -&gt; New repository secret. 输NAME和Secret，然后点 Add secret保存即可。 设置年 依次选择Settings-&gt;Secrets and variables -&gt; variables-&gt; New repository variable. 添加变量名为year，值为年份。如果要显示多个年份，比如2018到2024年的就输入2018-2024。主要微信读书只能拿到2018年之后的数据，所以如果输入2016-2024，还是只会显示2018-2024的数据。 设置颜色 和上面设置Year一样依次选择Settings-&gt;Secrets and variables -&gt; variables-&gt; New repository variable。 具体的变量名可以参考下表中的变量名，值为色值。 变量名 变量说明 BACKGROUND_COLOR 背景颜色 DOM_COLOR 未填充的色块 TRACK_COLOR 一级颜色 SPECIAL_COLOR 二级颜色 SPECIAL_COLOR2 三级级颜色 TEXT_COLOR 文字颜色 variables示例 手动运行 配置完成之后，你就可以手动运行一下。 最终生成的图保存在OUT_FOLDER文件夹下。">
 <title>微信读书热力图使用指南</title>
 
-<link rel='canonical' href='https://example.com/posts/github_heatmap/'>
+<link rel='canonical' href='http://localhost:1313/posts/github_heatmap/'>
 
-<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content='微信读书热力图使用指南'>
-<meta property='og:description' content='升级 如果你是新用户，可以直接跳过这一步。
-打开你Fork的项目，点击Sync fork进行同步
-权限 确保你打开了读写权限。
-依次选择Settings-&amp;gt;Actions-&amp;gt;General，然后下拉，找到Workflow permissions，如果没有选中Read and write permissions，请选中，然后点下面的save保存。
-设置NAME 设置这个Name用来展示在热力图上。
-依次选择Settings-&amp;gt;Secrets and variables -&amp;gt; New repository secret.
-输NAME和Secret，然后点 Add secret保存即可。
-手动运行 配置完成之后，你就可以手动运行一下。
-最终生成的图保存在OUT_FOLDER文件夹下。'>
-<meta property='og:url' content='https://example.com/posts/github_heatmap/'>
+<link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="微信读书热力图使用指南">
+<meta property='og:description' content="升级 如果你是新用户，可以直接跳过这一步。 打开你Fork的项目，点击Sync fork进行同步 权限 确保你打开了读写权限。 依次选择Settings-&gt;Actions-&gt;General，然后下拉，找到Workflow permissions，如果没有选中Read and write permissions，请选中，然后点下面的save保存。 设置NAME 设置这个Name用来展示在热力图上。 依次选择Settings-&gt;Secrets and variables -&gt; New repository secret. 输NAME和Secret，然后点 Add secret保存即可。 设置年 依次选择Settings-&gt;Secrets and variables -&gt; variables-&gt; New repository variable. 添加变量名为year，值为年份。如果要显示多个年份，比如2018到2024年的就输入2018-2024。主要微信读书只能拿到2018年之后的数据，所以如果输入2016-2024，还是只会显示2018-2024的数据。 设置颜色 和上面设置Year一样依次选择Settings-&gt;Secrets and variables -&gt; variables-&gt; New repository variable。 具体的变量名可以参考下表中的变量名，值为色值。 变量名 变量说明 BACKGROUND_COLOR 背景颜色 DOM_COLOR 未填充的色块 TRACK_COLOR 一级颜色 SPECIAL_COLOR 二级颜色 SPECIAL_COLOR2 三级级颜色 TEXT_COLOR 文字颜色 variables示例 手动运行 配置完成之后，你就可以手动运行一下。 最终生成的图保存在OUT_FOLDER文件夹下。">
+<meta property='og:url' content='http://localhost:1313/posts/github_heatmap/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='Weread' /><meta property='article:tag' content='微信读书' /><meta property='article:tag' content='Notion' /><meta property='article:published_time' content='2023-12-22T14:28:05&#43;08:00'/><meta property='article:modified_time' content='2023-12-22T14:28:05&#43;08:00'/><meta property='og:image' content='https://images.unsplash.com/photo-1702277854835-0f25f1565ae1?w=800&amp;auto=format&amp;fit=crop&amp;q=60&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDN8Ym84alFLVGFFMFl8fGVufDB8fHx8fA%3D%3D' />
 <meta name="twitter:title" content="微信读书热力图使用指南">
-<meta name="twitter:description" content="升级 如果你是新用户，可以直接跳过这一步。
-打开你Fork的项目，点击Sync fork进行同步
-权限 确保你打开了读写权限。
-依次选择Settings-&amp;gt;Actions-&amp;gt;General，然后下拉，找到Workflow permissions，如果没有选中Read and write permissions，请选中，然后点下面的save保存。
-设置NAME 设置这个Name用来展示在热力图上。
-依次选择Settings-&amp;gt;Secrets and variables -&amp;gt; New repository secret.
-输NAME和Secret，然后点 Add secret保存即可。
-手动运行 配置完成之后，你就可以手动运行一下。
-最终生成的图保存在OUT_FOLDER文件夹下。"><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="升级 如果你是新用户，可以直接跳过这一步。 打开你Fork的项目，点击Sync fork进行同步 权限 确保你打开了读写权限。 依次选择Settings-&gt;Actions-&gt;General，然后下拉，找到Workflow permissions，如果没有选中Read and write permissions，请选中，然后点下面的save保存。 设置NAME 设置这个Name用来展示在热力图上。 依次选择Settings-&gt;Secrets and variables -&gt; New repository secret. 输NAME和Secret，然后点 Add secret保存即可。 设置年 依次选择Settings-&gt;Secrets and variables -&gt; variables-&gt; New repository variable. 添加变量名为year，值为年份。如果要显示多个年份，比如2018到2024年的就输入2018-2024。主要微信读书只能拿到2018年之后的数据，所以如果输入2016-2024，还是只会显示2018-2024的数据。 设置颜色 和上面设置Year一样依次选择Settings-&gt;Secrets and variables -&gt; variables-&gt; New repository variable。 具体的变量名可以参考下表中的变量名，值为色值。 变量名 变量说明 BACKGROUND_COLOR 背景颜色 DOM_COLOR 未填充的色块 TRACK_COLOR 一级颜色 SPECIAL_COLOR 二级颜色 SPECIAL_COLOR2 三级级颜色 TEXT_COLOR 文字颜色 variables示例 手动运行 配置完成之后，你就可以手动运行一下。 最终生成的图保存在OUT_FOLDER文件夹下。"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://images.unsplash.com/photo-1702277854835-0f25f1565ae1?w=800&amp;auto=format&amp;fit=crop&amp;q=60&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDN8Ym84alFLVGFFMFl8fGVufDB8fHx8fA%3D%3D' />
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
-}
-</script>
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
+  
+
 <style>
     :root {
-      --sys-font-family: "Noto Serif SC";
-      --zh-font-family: "Noto Serif SC";
-      --base-font-family: "Noto Serif SC";
-      --code-font-family: "Noto Serif SC";
-      --article-font-family: "Noto Serif SC";
+        --sys-font-family: "LXGW WenKai TC";
+        --zh-font-family: "LXGW WenKai TC";
+        --base-font-family: "LXGW WenKai TC";
+        --code-font-family: "LXGW WenKai TC";
+        --article-font-family: "LXGW WenKai TC";
     }
-  </style>
-  
-  <script>
-    (function () {
-      const customFont = document.createElement("link");
-      customFont.href =
-        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
-  
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-  
-      document.head.appendChild(customFont);
-    })();
-  </script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
-     crossorigin="anonymous"></script>
-  
+</style>
 
 <script>
-    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
+    (function () {
+        const customFont = document.createElement("link");
+        customFont.href = "https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&display=swap";
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+        document.head.appendChild(customFont);
+    })();
 </script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
-
-
     </head>
     <body class="
     article-page
@@ -144,7 +111,7 @@ if (!doNotTrack) {
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
             <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -205,13 +172,32 @@ if (!doNotTrack) {
 
 
                 
-                <span>主页</span>
+                <span>Home</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/archives' >
+            <a href='/pages/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/archives/' >
                 
                 
                 
@@ -229,12 +215,31 @@ if (!doNotTrack) {
             </a>
         </li>
         
+        
+        <li >
+            <a href='/pages/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+
+                
+                <span>好友</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -242,7 +247,7 @@ if (!doNotTrack) {
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -250,10 +255,11 @@ if (!doNotTrack) {
 
 
 
-                    <span>Dark Mode</span>
-                </li>
-            
-        </div>
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -282,6 +288,8 @@ if (!doNotTrack) {
     <li><a href="#升级">升级</a></li>
     <li><a href="#权限">权限</a></li>
     <li><a href="#设置name">设置NAME</a></li>
+    <li><a href="#设置年">设置年</a></li>
+    <li><a href="#设置颜色">设置颜色</a></li>
     <li><a href="#手动运行">手动运行</a></li>
   </ol>
 </nav>
@@ -362,8 +370,8 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h2 id="升级">升级</h2>
-<p>如果你是新用户，可以直接跳过这一步。</p>
+    <h2 id="升级">升级
+</h2><p>如果你是新用户，可以直接跳过这一步。</p>
 <p>打开你Fork的项目，点击Sync fork进行同步</p>
 <p><img src="https://docs.github.com/assets/cb-75616/mw-1440/images/help/repository/sync-fork-dropdown.webp"
 	
@@ -373,35 +381,27 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h2 id="权限">权限</h2>
-<p>确保你打开了读写权限。</p>
+<h2 id="权限">权限
+</h2><p>确保你打开了读写权限。</p>
 <p>依次选择Settings-&gt;Actions-&gt;General，然后下拉，找到Workflow permissions，如果没有选中Read and write permissions，请选中，然后点下面的save保存。</p>
-<p><img src="/posts/github_heatmap/images/1.jpg"
-	width="2282"
-	height="1632"
-	srcset="/posts/github_heatmap/images/1_huc82d7b839fc53b7a5c86bd3cdfedcac6_427539_480x0_resize_q75_box.jpg 480w, /posts/github_heatmap/images/1_huc82d7b839fc53b7a5c86bd3cdfedcac6_427539_1024x0_resize_q75_box.jpg 1024w"
+<p><img src="https://images.malinkang.com/2024/04/01c28b0dd2e8c2629a22e7f68db6216d.jpg"
+	
+	
+	
 	loading="lazy"
 	
 	
-		class="gallery-image" 
-		data-flex-grow="139"
-		data-flex-basis="335px"
-	
 ></p>
-<p><img src="/posts/github_heatmap/images/2.jpg"
-	width="1698"
-	height="694"
-	srcset="/posts/github_heatmap/images/2_huc82d7b839fc53b7a5c86bd3cdfedcac6_171566_480x0_resize_q75_box.jpg 480w, /posts/github_heatmap/images/2_huc82d7b839fc53b7a5c86bd3cdfedcac6_171566_1024x0_resize_q75_box.jpg 1024w"
+<p><img src="https://images.malinkang.com/2024/04/d7824c3488e6e1d1c9e6b75d6aba86f3.jpg"
+	
+	
+	
 	loading="lazy"
 	
 	
-		class="gallery-image" 
-		data-flex-grow="244"
-		data-flex-basis="587px"
-	
 ></p>
-<h2 id="设置name">设置NAME</h2>
-<p>设置这个Name用来展示在热力图上。</p>
+<h2 id="设置name">设置NAME
+</h2><p>设置这个Name用来展示在热力图上。</p>
 <p><img src="/posts/github_heatmap/images/5.jpg"
 	width="1466"
 	height="390"
@@ -415,33 +415,90 @@ if (!doNotTrack) {
 	
 ></p>
 <p>依次选择Settings-&gt;Secrets and variables -&gt; New repository secret.</p>
-<p><img src="/posts/github_heatmap/images/3.jpg"
-	width="2570"
-	height="1646"
-	srcset="/posts/github_heatmap/images/3_huc82d7b839fc53b7a5c86bd3cdfedcac6_394862_480x0_resize_q75_box.jpg 480w, /posts/github_heatmap/images/3_huc82d7b839fc53b7a5c86bd3cdfedcac6_394862_1024x0_resize_q75_box.jpg 1024w"
+<p><img src="https://images.malinkang.com/2024/04/c28135ce7ec0a597cd008e75ab645d14.jpg"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="156"
-		data-flex-basis="374px"
 	
 ></p>
 <p>输NAME和Secret，然后点 Add secret保存即可。</p>
-<p><img src="/posts/github_heatmap/images/4.jpg"
-	width="2576"
-	height="1284"
-	srcset="/posts/github_heatmap/images/4_huc82d7b839fc53b7a5c86bd3cdfedcac6_207926_480x0_resize_q75_box.jpg 480w, /posts/github_heatmap/images/4_huc82d7b839fc53b7a5c86bd3cdfedcac6_207926_1024x0_resize_q75_box.jpg 1024w"
+<p><img src="https://images.malinkang.com/2024/04/e45b89ece1816660b2f5e35f8a72acb7.jpg"
+	
+	
+	
 	loading="lazy"
 	
 	
-		class="gallery-image" 
-		data-flex-grow="200"
-		data-flex-basis="481px"
+></p>
+<h2 id="设置年">设置年
+</h2><p>依次选择Settings-&gt;Secrets and variables -&gt; variables-&gt; New repository variable.</p>
+<p><img src="https://images.malinkang.com/2024/04/4c2578f3dd27c7db4d8d2403c2e25ecb.jpg"
+	
+	
+	
+	loading="lazy"
+	
 	
 ></p>
-<h2 id="手动运行">手动运行</h2>
-<p>配置完成之后，你就可以手动运行一下。</p>
+<p>添加变量名为year，值为年份。如果要显示多个年份，比如2018到2024年的就输入2018-2024。主要微信读书只能拿到2018年之后的数据，所以如果输入2016-2024，还是只会显示2018-2024的数据。</p>
+<h2 id="设置颜色">设置颜色
+</h2><p>和上面设置Year一样依次选择Settings-&gt;Secrets and variables -&gt; variables-&gt; New repository variable。
+具体的变量名可以参考下表中的变量名，值为色值。</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>变量名</th>
+<th>变量说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BACKGROUND_COLOR</td>
+<td>背景颜色</td>
+</tr>
+<tr>
+<td>DOM_COLOR</td>
+<td>未填充的色块</td>
+</tr>
+<tr>
+<td>TRACK_COLOR</td>
+<td>一级颜色</td>
+</tr>
+<tr>
+<td>SPECIAL_COLOR</td>
+<td>二级颜色</td>
+</tr>
+<tr>
+<td>SPECIAL_COLOR2</td>
+<td>三级级颜色</td>
+</tr>
+<tr>
+<td>TEXT_COLOR</td>
+<td>文字颜色</td>
+</tr>
+</tbody>
+</table></div>
+<p><img src="https://images.malinkang.com/2024/04/521ec621b6acebc297d9700f9bfac1eb.jpg"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>variables示例</p>
+<p><img src="https://images.malinkang.com/2024/04/e250d7e9952047eb327f7b0a397211d3.jpg"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="手动运行">手动运行
+</h2><p>配置完成之后，你就可以手动运行一下。</p>
 <p><img src="/posts/github_heatmap/images/6.jpg"
 	width="3022"
 	height="1270"
@@ -455,16 +512,12 @@ if (!doNotTrack) {
 	
 ></p>
 <p>最终生成的图保存在OUT_FOLDER文件夹下。</p>
-<p><img src="/posts/github_heatmap/images/7.jpg"
-	width="2996"
-	height="1252"
-	srcset="/posts/github_heatmap/images/7_huc82d7b839fc53b7a5c86bd3cdfedcac6_317719_480x0_resize_q75_box.jpg 480w, /posts/github_heatmap/images/7_huc82d7b839fc53b7a5c86bd3cdfedcac6_317719_1024x0_resize_q75_box.jpg 1024w"
+<p><img src="https://images.malinkang.com/2024/04/75c38b036cce0ff8cc23d3459defbcb7.jpg"
+	
+	
+	
 	loading="lazy"
 	
-	
-		class="gallery-image" 
-		data-flex-grow="239"
-		data-flex-basis="574px"
 	
 ></p>
 
@@ -475,7 +528,7 @@ if (!doNotTrack) {
     
     <section class="article-tags">
         
-            <a href="/tags/weread/">Weread</a>
+            <a href="/tags/weread/">WeRead</a>
         
             <a href="/tags/%E5%BE%AE%E4%BF%A1%E8%AF%BB%E4%B9%A6/">微信读书</a>
         
@@ -518,13 +571,13 @@ if (!doNotTrack) {
         
             <div class="article-image">
                 
-                    <img src="https://images.unsplash.com/photo-1663813251302-e5d2c7199e86?q=80&amp;w=2660&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" loading="lazy" data-key="" data-hash="https://images.unsplash.com/photo-1663813251302-e5d2c7199e86?q=80&amp;w=2660&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"/>
+                    <img src="https://images.malinkang.com/2024/03/19dd1580dd991c7985abea7724c87043.png" loading="lazy" data-key="" data-hash="https://images.malinkang.com/2024/03/19dd1580dd991c7985abea7724c87043.png"/>
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">WeRead2Notion-Pro使用文档</h2>
+            <h2 class="article-title">WeRead2NotionPro使用文档</h2>
         </div>
     </a>
 </article>
@@ -537,7 +590,7 @@ if (!doNotTrack) {
         
             <div class="article-image">
                 
-                    <img src="https://images.unsplash.com/photo-1663813251302-e5d2c7199e86?q=80&amp;w=2660&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" loading="lazy" data-key="" data-hash="https://images.unsplash.com/photo-1663813251302-e5d2c7199e86?q=80&amp;w=2660&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"/>
+                    <img src="https://images.malinkang.com/2024/03/e1bc45eb87ec93a249edf163a9115874.png" loading="lazy" data-key="" data-hash="https://images.malinkang.com/2024/03/e1bc45eb87ec93a249edf163a9115874.png"/>
                 
             </div>
         
@@ -619,9 +672,17 @@ if (!doNotTrack) {
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
+<script>
+    var s1 = '2014-01-01';
+    s1 = new Date(s1.replace(/-/g, "/"));
+    s2 = new Date();
+    var days = s2.getTime() - s1.getTime();
+    var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+    document.getElementById('days').innerHTML = number_of_days;
+</script>
 
 
     

@@ -1,78 +1,36 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Gson是Google开发的能够将对象转化为Json并且能够将Json转化为对象的Java库。
-1.基本使用 使用Android Studio，我们可以使用Gradle进行构建:
-1 compile &amp;#39;com.google.code.gson:gson:2.7&amp;#39; Gson提供了两个方法fromJson() 和toJson() 进行反序列化和序列化。
-1.1基本数据类型 反序列化操作
-1 2 3 4 5 Gson gson = new Gson(); gson.fromJson(&amp;#34;abc&amp;#34;, String.class);//abc gson.fromJson(&amp;#34;0123&amp;#34;, int.class);//123 gson.fromJson(&amp;#34;false&amp;#34;, boolean.class);//false gson.fromJson(&amp;#34;0.123&amp;#34;, float.class);//0.123 序列化操作
-1 2 3 4 5 Gson gson = new Gson(); gson.toJson(&amp;#34;abc&amp;#34;);//&amp;#34;abc&amp;#34; gson.toJson(0xa);//10 gson.toJson(false);//false gson.toJson(0.123);//0.123 1.2对象 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 public String name; public int age; public String emailAddress; public User(String name, int age, String emailAddress) { this.'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Gson是Google开发的能够将对象转化为Json并且能够将Json转化为对象的Java库。 1.基本使用 使用Android Studio，我们可以使用Gradle进行构建: 1 compile &#39;com.google.code.gson:gson:2.7&#39; Gson提供了两个方法fromJson() 和toJson() 进行反序列化和序列化。 1.1基本数据类型 反序列化操作 1 2 3 4 5 Gson gson = new Gson(); gson.fromJson(&#34;abc&#34;, String.class);//abc gson.fromJson(&#34;0123&#34;, int.class);//123 gson.fromJson(&#34;false&#34;, boolean.class);//false gson.fromJson(&#34;0.123&#34;, float.class);//0.123 序列化操作 1 2 3 4 5 Gson gson = new Gson(); gson.toJson(&#34;abc&#34;);//&#34;abc&#34; gson.toJson(0xa);//10 gson.toJson(false);//false gson.toJson(0.123);//0.123 1.2对象 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 public String name; public int age; public String emailAddress; public User(String name, int age, String emailAddress) { this.">
 <title></title>
 
-<link rel='canonical' href='https://example.com/android/network/gson/'>
+<link rel='canonical' href='http://localhost:1313/android/network/gson/'>
 
-<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
-<meta property='og:description' content='Gson是Google开发的能够将对象转化为Json并且能够将Json转化为对象的Java库。
-1.基本使用 使用Android Studio，我们可以使用Gradle进行构建:
-1 compile &amp;#39;com.google.code.gson:gson:2.7&amp;#39; Gson提供了两个方法fromJson() 和toJson() 进行反序列化和序列化。
-1.1基本数据类型 反序列化操作
-1 2 3 4 5 Gson gson = new Gson(); gson.fromJson(&amp;#34;abc&amp;#34;, String.class);//abc gson.fromJson(&amp;#34;0123&amp;#34;, int.class);//123 gson.fromJson(&amp;#34;false&amp;#34;, boolean.class);//false gson.fromJson(&amp;#34;0.123&amp;#34;, float.class);//0.123 序列化操作
-1 2 3 4 5 Gson gson = new Gson(); gson.toJson(&amp;#34;abc&amp;#34;);//&amp;#34;abc&amp;#34; gson.toJson(0xa);//10 gson.toJson(false);//false gson.toJson(0.123);//0.123 1.2对象 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 public String name; public int age; public String emailAddress; public User(String name, int age, String emailAddress) { this.'>
-<meta property='og:url' content='https://example.com/android/network/gson/'>
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<meta property='og:description' content="Gson是Google开发的能够将对象转化为Json并且能够将Json转化为对象的Java库。 1.基本使用 使用Android Studio，我们可以使用Gradle进行构建: 1 compile &#39;com.google.code.gson:gson:2.7&#39; Gson提供了两个方法fromJson() 和toJson() 进行反序列化和序列化。 1.1基本数据类型 反序列化操作 1 2 3 4 5 Gson gson = new Gson(); gson.fromJson(&#34;abc&#34;, String.class);//abc gson.fromJson(&#34;0123&#34;, int.class);//123 gson.fromJson(&#34;false&#34;, boolean.class);//false gson.fromJson(&#34;0.123&#34;, float.class);//0.123 序列化操作 1 2 3 4 5 Gson gson = new Gson(); gson.toJson(&#34;abc&#34;);//&#34;abc&#34; gson.toJson(0xa);//10 gson.toJson(false);//false gson.toJson(0.123);//0.123 1.2对象 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 public String name; public int age; public String emailAddress; public User(String name, int age, String emailAddress) { this.">
+<meta property='og:url' content='http://localhost:1313/android/network/gson/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="Gson是Google开发的能够将对象转化为Json并且能够将Json转化为对象的Java库。
-1.基本使用 使用Android Studio，我们可以使用Gradle进行构建:
-1 compile &amp;#39;com.google.code.gson:gson:2.7&amp;#39; Gson提供了两个方法fromJson() 和toJson() 进行反序列化和序列化。
-1.1基本数据类型 反序列化操作
-1 2 3 4 5 Gson gson = new Gson(); gson.fromJson(&amp;#34;abc&amp;#34;, String.class);//abc gson.fromJson(&amp;#34;0123&amp;#34;, int.class);//123 gson.fromJson(&amp;#34;false&amp;#34;, boolean.class);//false gson.fromJson(&amp;#34;0.123&amp;#34;, float.class);//0.123 序列化操作
-1 2 3 4 5 Gson gson = new Gson(); gson.toJson(&amp;#34;abc&amp;#34;);//&amp;#34;abc&amp;#34; gson.toJson(0xa);//10 gson.toJson(false);//false gson.toJson(0.123);//0.123 1.2对象 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 public String name; public int age; public String emailAddress; public User(String name, int age, String emailAddress) { this.">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
-}
-</script>
-<style>
-    :root {
-      --sys-font-family: "Noto Serif SC";
-      --zh-font-family: "Noto Serif SC";
-      --base-font-family: "Noto Serif SC";
-      --code-font-family: "Noto Serif SC";
-      --article-font-family: "Noto Serif SC";
-    }
-  </style>
+<meta name="twitter:description" content="Gson是Google开发的能够将对象转化为Json并且能够将Json转化为对象的Java库。 1.基本使用 使用Android Studio，我们可以使用Gradle进行构建: 1 compile &#39;com.google.code.gson:gson:2.7&#39; Gson提供了两个方法fromJson() 和toJson() 进行反序列化和序列化。 1.1基本数据类型 反序列化操作 1 2 3 4 5 Gson gson = new Gson(); gson.fromJson(&#34;abc&#34;, String.class);//abc gson.fromJson(&#34;0123&#34;, int.class);//123 gson.fromJson(&#34;false&#34;, boolean.class);//false gson.fromJson(&#34;0.123&#34;, float.class);//0.123 序列化操作 1 2 3 4 5 Gson gson = new Gson(); gson.toJson(&#34;abc&#34;);//&#34;abc&#34; gson.toJson(0xa);//10 gson.toJson(false);//false gson.toJson(0.123);//0.123 1.2对象 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 public String name; public int age; public String emailAddress; public User(String name, int age, String emailAddress) { this.">
   
-  <script>
-    (function () {
-      const customFont = document.createElement("link");
-      customFont.href =
-        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
   
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-  
-      document.head.appendChild(customFont);
-    })();
-  </script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
-     crossorigin="anonymous"></script>
-  
-
-<script>
-    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
 
 
     </head>
@@ -134,7 +92,7 @@ if (!doNotTrack) {
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
             <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -195,13 +153,32 @@ if (!doNotTrack) {
 
 
                 
-                <span>主页</span>
+                <span>Home</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/archives' >
+            <a href='/pages/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/archives/' >
                 
                 
                 
@@ -215,16 +192,54 @@ if (!doNotTrack) {
 
 
                 
-                <span>归档</span>
+                <span>Archives</span>
             </a>
         </li>
         
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -232,7 +247,7 @@ if (!doNotTrack) {
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -240,10 +255,11 @@ if (!doNotTrack) {
 
 
 
-                    <span>Dark Mode</span>
-                </li>
-            
-        </div>
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -343,8 +359,8 @@ if (!doNotTrack) {
     
     <p><a class="link" href="https://github.com/google/gson"  target="_blank" rel="noopener"
     >Gson</a>是Google开发的能够将对象转化为Json并且能够将Json转化为对象的Java库。</p>
-<h4 id="1基本使用">1.基本使用</h4>
-<p>使用Android Studio，我们可以使用Gradle进行构建:</p>
+<h4 id="1基本使用">1.基本使用
+</h4><p>使用Android Studio，我们可以使用Gradle进行构建:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -354,8 +370,8 @@ if (!doNotTrack) {
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>Gson提供了两个方法fromJson() 和toJson() 进行反序列化和序列化。</p>
-<h5 id="11基本数据类型">1.1基本数据类型</h5>
-<p>反序列化操作</p>
+<h5 id="11基本数据类型">1.1基本数据类型
+</h5><p>反序列化操作</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -389,8 +405,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">gson</span><span class="p">.</span><span class="na">toJson</span><span class="p">(</span><span class="n">0</span><span class="p">.</span><span class="na">123</span><span class="p">);</span><span class="c1">//0.123</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h5 id="12对象">1.2对象</h5>
-<div class="highlight"><div class="chroma">
+</div><h5 id="12对象">1.2对象
+</h5><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -528,8 +544,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">//{&#34;name&#34;:&#34;mlk&#34;,&#34;age&#34;:26,&#34;email&#34;:&#34;test@qq.com&#34;}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h5 id="13数组的序列化和反序列化">1.3数组的序列化和反序列化</h5>
-<div class="highlight"><div class="chroma">
+</div><h5 id="13数组的序列化和反序列化">1.3数组的序列化和反序列化
+</h5><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -549,8 +565,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">//[abc, def, hij]</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h5 id="14-集合">1.4 集合</h5>
-<p>使用集合，涉及到泛型我们就不能像上面一样<code>gson.fromJson(json,List&lt;String&gt;.class)</code>来解析json，因为对于Java来说List<String>和List<User>这俩个的字节码文件都是List.class。
+</div><h5 id="14-集合">1.4 集合
+</h5><p>使用集合，涉及到泛型我们就不能像上面一样<code>gson.fromJson(json,List&lt;String&gt;.class)</code>来解析json，因为对于Java来说List<String>和List<User>这俩个的字节码文件都是List.class。
 为了解决的上面的问题，Gson为我们提供了TypeToken来实现对泛型的支持，所以当我们希望使用将以上的数据解析为List<String>时需要这样写。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -580,8 +596,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">//[abc, def, hij]</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="2流解析">2.流解析</h4>
-<p>Gson还支持流解析，通过这种方式不需要把整个json串加载到内存中，可以边加载边解析效率更高。</p>
+</div><h4 id="2流解析">2.流解析
+</h4><p>Gson还支持流解析，通过这种方式不需要把整个json串加载到内存中，可以边加载边解析效率更高。</p>
 <p>序列化：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -656,8 +672,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">//{&#34;name&#34;:&#34;mlk&#34;,&#34;age&#34;:27,&#34;emailAddress&#34;:null}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="3自定义配置">3.自定义配置</h4>
-<p>一般情况下Gson类提供的API已经能满足大部分的使用场景，但我们需要更多更特殊、更强大的功能时，这时候就引入一个新的类GsonBuilder。GsonBuilder用于构建一个自定义的Gson对象。</p>
+</div><h4 id="3自定义配置">3.自定义配置
+</h4><p>一般情况下Gson类提供的API已经能满足大部分的使用场景，但我们需要更多更特殊、更强大的功能时，这时候就引入一个新的类GsonBuilder。GsonBuilder用于构建一个自定义的Gson对象。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -666,8 +682,8 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Gson</span><span class="w"> </span><span class="n">gson</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">GsonBuilder</span><span class="p">().</span><span class="na">create</span><span class="p">();</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h5 id="31null">3.1Null</h5>
-<p>默认情况下，null值将被忽略。</p>
+</div><h5 id="31null">3.1Null
+</h5><p>默认情况下，null值将被忽略。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -689,8 +705,8 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Gson</span><span class="w"> </span><span class="n">gson</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">GsonBuilder</span><span class="p">().</span><span class="na">serializeNulls</span><span class="p">().</span><span class="na">create</span><span class="p">();</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h5 id="32时间日期格式化">3.2时间日期格式化</h5>
-<p>我们给User增加一个Date类型的字段birthday。</p>
+</div><h5 id="32时间日期格式化">3.2时间日期格式化
+</h5><p>我们给User增加一个Date类型的字段birthday。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -743,8 +759,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">//2016年09月01日</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h5 id="33设置字段映射规则">3.3设置字段映射规则</h5>
-<p>上面例子已经提到使用@SerializedName注解字段名的映射规则。GsonBuilder提供了setFieldNamingPolicy接收一个枚举FieldNamingPolicy，来设置字段的映射规则。</p>
+</div><h5 id="33设置字段映射规则">3.3设置字段映射规则
+</h5><p>上面例子已经提到使用@SerializedName注解字段名的映射规则。GsonBuilder提供了setFieldNamingPolicy接收一个枚举FieldNamingPolicy，来设置字段的映射规则。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -806,8 +822,8 @@ if (!doNotTrack) {
 </div>
 </div><p>FieldNamingPolicy也实现了FieldNamingStrategy接口，所以也可一个给setFieldNamingStrategy方法传入一个FieldNamingPolicy对象。</p>
 <p>@SerializedName注解拥有最高优先级，在加有@SerializedName注解的字段上FieldNamingStrategy不生效。</p>
-<h5 id="34其他配置">3.4其他配置</h5>
-<p>GsonBuilder还提供了许多其他的配置：</p>
+<h5 id="34其他配置">3.4其他配置
+</h5><p>GsonBuilder还提供了许多其他的配置：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -833,16 +849,16 @@ if (!doNotTrack) {
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>这里就不一一举例说明了。</p>
-<h4 id="4字段过滤">4.字段过滤</h4>
-<p>在实际的开发中，Model中定义的一些字段可能不需要序列化，所以我们需要想办法来过滤这些字段。常用的字段过滤的方法包括：</p>
+<h4 id="4字段过滤">4.字段过滤
+</h4><p>在实际的开发中，Model中定义的一些字段可能不需要序列化，所以我们需要想办法来过滤这些字段。常用的字段过滤的方法包括：</p>
 <ul>
 <li>使用@Expose注解</li>
 <li>基于版本</li>
 <li>基于访问修饰符</li>
 <li>基于策略</li>
 </ul>
-<h5 id="41expose">4.1@Expose</h5>
-<p>@Expose用于暴露字段。@Expose有两个属性deserialize和serialize，值为boolean值，当deserialize设置为true的时候反序列化时暴露，反之则不暴露。serialize同理。</p>
+<h5 id="41expose">4.1@Expose
+</h5><p>@Expose用于暴露字段。@Expose有两个属性deserialize和serialize，值为boolean值，当deserialize设置为true的时候反序列化时暴露，反之则不暴露。serialize同理。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -882,8 +898,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">//User{name=&#39;null&#39;, age=20, emailAddress=&#39;test@qq.com&#39;, birthday=null}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h5 id="42版本支持">4.2版本支持</h5>
-<p>Gson提供了两个注解 @Since和@Until,@Since和@Until都接收一个Double值。我们通过GsonBuilder的setVersion()方法来设置版本号。@Since用于设置开始的版本号，@Until用于设置截止的版本号。只有当版本号大于等于@Since指定的版本号，小于@Until指定的版本号才进行序列化。</p>
+</div><h5 id="42版本支持">4.2版本支持
+</h5><p>Gson提供了两个注解 @Since和@Until,@Since和@Until都接收一个Double值。我们通过GsonBuilder的setVersion()方法来设置版本号。@Since用于设置开始的版本号，@Until用于设置截止的版本号。只有当版本号大于等于@Since指定的版本号，小于@Until指定的版本号才进行序列化。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -924,8 +940,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">//User{name=&#39;mlk&#39;, age=0, emailAddress=&#39;null&#39;, birthday=null}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h5 id="43基于修饰符进行过滤">4.3基于修饰符进行过滤</h5>
-<p>GsonBuilder提供方法excludeFieldsWithModifiers，向该方法传入指定的修饰符，即可过滤掉相应修饰符修饰的字段。</p>
+</div><h5 id="43基于修饰符进行过滤">4.3基于修饰符进行过滤
+</h5><p>GsonBuilder提供方法excludeFieldsWithModifiers，向该方法传入指定的修饰符，即可过滤掉相应修饰符修饰的字段。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -966,8 +982,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">//{&#34;publicField&#34;:&#34;public&#34;,&#34;protectedField&#34;:&#34;protected&#34;,&#34;defaultField&#34;:&#34;default&#34;}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h5 id="44自定义规则">4.4自定义规则</h5>
-<p>除了上述3种方式之外，Gson还允许我们自定义规则来过滤字段。我们定义规则只需要通过实现ExclusionStrategy接口即可。GsonBuilder的两个方法addSerializationExclusionStrategy和addDeserializationExclusionStrategy用于添加序列化和反序列化的规则。</p>
+</div><h5 id="44自定义规则">4.4自定义规则
+</h5><p>除了上述3种方式之外，Gson还允许我们自定义规则来过滤字段。我们定义规则只需要通过实现ExclusionStrategy接口即可。GsonBuilder的两个方法addSerializationExclusionStrategy和addDeserializationExclusionStrategy用于添加序列化和反序列化的规则。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1002,9 +1018,9 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">//{&#34;emailAddress&#34;:&#34;test@qq.com&#34;,&#34;birthday&#34;:&#34;Sep 1, 2016 3:26:11 PM&#34;}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="5自定义序列化和反序列化">5.自定义序列化和反序列化</h4>
-<h5 id="51-jsonserializer与jsondeserializer">5.1 JsonSerializer与JsonDeserializer</h5>
-<p>在上面的例子中我们通过@SerializedName来改变映射规则。除此之外，我们还可以通过自定义我们自己的Serializer和Deserializer来实现相同的结果。</p>
+</div><h4 id="5自定义序列化和反序列化">5.自定义序列化和反序列化
+</h4><h5 id="51-jsonserializer与jsondeserializer">5.1 JsonSerializer与JsonDeserializer
+</h5><p>在上面的例子中我们通过@SerializedName来改变映射规则。除此之外，我们还可以通过自定义我们自己的Serializer和Deserializer来实现相同的结果。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1126,8 +1142,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h5 id="52-typeadapter">5.2 TypeAdapter</h5>
-<p>JsonSerializer
+</div><h5 id="52-typeadapter">5.2 TypeAdapter
+</h5><p>JsonSerializer
 和JsonDeserializer解析的时候都利用到了一个中间件-JsonElement。而TypeAdapter的使用正是去掉了这个中间层，直接用流来解析数据，极大程度上提高了解析效率。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1272,8 +1288,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">//User{name=&#39;mlk&#39;, age=27, emailAddress=&#39;test@qq.com&#39;}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="扩展阅读">扩展阅读</h4>
-<ul>
+</div><h4 id="扩展阅读">扩展阅读
+</h4><ul>
 <li><a class="link" href="https://github.com/google/gson/blob/master/UserGuide.md#TOC-Custom-Serialization-and-Deserialization"  target="_blank" rel="noopener"
     >Gson User Guide</a></li>
 <li><a class="link" href="http://blog.csdn.net/lk_blog/article/details/7685169"  target="_blank" rel="noopener"
@@ -1380,7 +1396,7 @@ if (!doNotTrack) {
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 

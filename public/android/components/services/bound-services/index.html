@@ -1,102 +1,36 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='绑定服务 绑定服务是客户端-服务器接口中的服务器。借助绑定服务，组件（例如 Activity）可以绑定到服务、发送请求、接收响应，以及执行进程间通信 (IPC)。绑定服务通常只在为其他应用组件提供服务时处于活动状态，不会无限期在后台运行。
-本文介绍如何创建绑定服务，包括如何绑定到来自其他应用组件的服务。如需了解一般服务的更多信息（例如：如何利用服务传送通知、如何将服务设置为在前台运行等），请参阅服务文档。
-基础知识 绑定服务是 Service 类的实现，可让其他应用与其进行绑定和交互。如要为服务提供绑定，您必须实现 onBind() 回调方法。该方法会返回 IBinder 对象，该对象定义的编程接口可供客户端用来与服务进行交互。
-绑定到已启动服务 如服务文档中所述，您可以创建同时具有已启动和已绑定两种状态的服务。换言之，可通过调用 startService() 启动服务，让服务无限期运行；此外，还可通过调用 bindService() 让客户端绑定到该服务。
-如果您确实允许服务同时具有已启动和已绑定状态，则在启动服务后，如果所有客户端均解绑服务，则系统_不会_销毁该服务。为此，您必须通过调用 stopSelf() 或 stopService() 显式停止服务。
-尽管您通常应实现 onBind() 或 onStartCommand()，但有时需同时实现这两种方法。例如，音乐播放器可能认为，让其服务无限期运行并同时提供绑定会很有用处。如此一来，Activity 便可通过启动服务来播放音乐，并且即使用户离开应用，音乐也不会停止。然后，当用户返回应用时，Activity 便能绑定到服务，重新获得回放控制权。
-如需详细了解为已启动服务添加绑定时的服务生命周期，请参阅管理绑定服务的生命周期部分。
-客户端通过调用 bindService() 绑定到服务。调用时，它必须提供 ServiceConnection 的实现，后者会监控与服务的连接。bindService() 的返回值表明所请求的服务是否存在，以及是否允许客户端访问该服务。当创建客户端与服务之间的连接时，Android 系统会调用 ServiceConnection 上的 onServiceConnected()。onServiceConnected() 方法包含 IBinder 参数，客户端随后会使用该参数与绑定服务进行通信。
-您可以同时将多个客户端连接到服务。但是，系统会缓存 IBinder 服务通信通道。换言之，只有在第一个客户端绑定服务时，系统才会调用服务的 onBind() 方法来生成 IBinder。然后，系统会将同一 IBinder 传递至绑定到相同服务的所有其他客户端，无需再次调用 onBind()。
-当最后一个客户端取消与服务的绑定时，系统会销毁服务（除非 startService() 也启动了该服务）。
-针对您的绑定服务实现，其最重要的环节是定义 onBind() 回调方法所返回的接口。下文将为您介绍几种不同方法，以便您定义服务的 IBinder 接口。
-创建绑定服务 创建提供绑定的服务时，您必须提供 IBinder，进而提供编程接口，以便客户端使用此接口与服务进行交互。您可以通过三种方法定义接口：
-扩展 Binder 类
-如果服务是供您的自有应用专用，并且在与客户端相同的进程中运行（常见情况），则应通过扩展 Binder 类并从 onBind() 返回该类的实例来创建接口。收到 Binder 后，客户端可利用其直接访问 Binder 实现或 Service 中可用的公共方法。'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="绑定服务 绑定服务是客户端-服务器接口中的服务器。借助绑定服务，组件（例如 Activity）可以绑定到服务、发送请求、接收响应，以及执行进程间通信 (IPC)。绑定服务通常只在为其他应用组件提供服务时处于活动状态，不会无限期在后台运行。 本文介绍如何创建绑定服务，包括如何绑定到来自其他应用组件的服务。如需了解一般服务的更多信息（例如：如何利用服务传送通知、如何将服务设置为在前台运行等），请参阅服务文档。 基础知识 绑定服务是 Service 类的实现，可让其他应用与其进行绑定和交互。如要为服务提供绑定，您必须实现 onBind() 回调方法。该方法会返回 IBinder 对象，该对象定义的编程接口可供客户端用来与服务进行交互。 绑定到已启动服务 如服务文档中所述，您可以创建同时具有已启动和已绑定两种状态的服务。换言之，可通过调用 startService() 启动服务，让服务无限期运行；此外，还可通过调用 bindService() 让客户端绑定到该服务。 如果您确实允许服务同时具有已启动和已绑定状态，则在启动服务后，如果所有客户端均解绑服务，则系统_不会_销毁该服务。为此，您必须通过调用 stopSelf() 或 stopService() 显式停止服务。 尽管您通常应实现 onBind() 或 onStartCommand()，但有时需同时实现这两种方法。例如，音乐播放器可能认为，让其服务无限期运行并同时提供绑定会很有用处。如此一来，Activity 便可通过启动服务来播放音乐，并且即使用户离开应用，音乐也不会停止。然后，当用户返回应用时，Activity 便能绑定到服务，重新获得回放控制权。 如需详细了解为已启动服务添加绑定时的服务生命周期，请参阅管理绑定服务的生命周期部分。 客户端通过调用 bindService() 绑定到服务。调用时，它必须提供 ServiceConnection 的实现，后者会监控与服务的连接。bindService() 的返回值表明所请求的服务是否存在，以及是否允许客户端访问该服务。当创建客户端与服务之间的连接时，Android 系统会调用 ServiceConnection 上的 onServiceConnected()。onServiceConnected() 方法包含 IBinder 参数，客户端随后会使用该参数与绑定服务进行通信。 您可以同时将多个客户端连接到服务。但是，系统会缓存 IBinder 服务通信通道。换言之，只有在第一个客户端绑定服务时，系统才会调用服务的 onBind() 方法来生成 IBinder。然后，系统会将同一 IBinder 传递至绑定到相同服务的所有其他客户端，无需再次调用 onBind()。 当最后一个客户端取消与服务的绑定时，系统会销毁服务（除非 startService() 也启动了该服务）。 针对您的绑定服务实现，其最重要的环节是定义 onBind() 回调方法所返回的接口。下文将为您介绍几种不同方法，以便您定义服务的 IBinder 接口。 创建绑定服务 创建提供绑定的服务时，您必须提供 IBinder，进而提供编程接口，以便客户端使用此接口与服务进行交互。您可以通过三种方法定义接口： 扩展 Binder 类 如果服务是供您的自有应用专用，并且在与客户端相同的进程中运行（常见情况），则应通过扩展 Binder 类并从 onBind() 返回该类的实例来创建接口。收到 Binder 后，客户端可利用其直接访问 Binder 实现或 Service 中可用的公共方法。">
 <title></title>
 
-<link rel='canonical' href='https://example.com/android/components/services/bound-services/'>
+<link rel='canonical' href='http://localhost:1313/android/components/services/bound-services/'>
 
-<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
-<meta property='og:description' content='绑定服务 绑定服务是客户端-服务器接口中的服务器。借助绑定服务，组件（例如 Activity）可以绑定到服务、发送请求、接收响应，以及执行进程间通信 (IPC)。绑定服务通常只在为其他应用组件提供服务时处于活动状态，不会无限期在后台运行。
-本文介绍如何创建绑定服务，包括如何绑定到来自其他应用组件的服务。如需了解一般服务的更多信息（例如：如何利用服务传送通知、如何将服务设置为在前台运行等），请参阅服务文档。
-基础知识 绑定服务是 Service 类的实现，可让其他应用与其进行绑定和交互。如要为服务提供绑定，您必须实现 onBind() 回调方法。该方法会返回 IBinder 对象，该对象定义的编程接口可供客户端用来与服务进行交互。
-绑定到已启动服务 如服务文档中所述，您可以创建同时具有已启动和已绑定两种状态的服务。换言之，可通过调用 startService() 启动服务，让服务无限期运行；此外，还可通过调用 bindService() 让客户端绑定到该服务。
-如果您确实允许服务同时具有已启动和已绑定状态，则在启动服务后，如果所有客户端均解绑服务，则系统_不会_销毁该服务。为此，您必须通过调用 stopSelf() 或 stopService() 显式停止服务。
-尽管您通常应实现 onBind() 或 onStartCommand()，但有时需同时实现这两种方法。例如，音乐播放器可能认为，让其服务无限期运行并同时提供绑定会很有用处。如此一来，Activity 便可通过启动服务来播放音乐，并且即使用户离开应用，音乐也不会停止。然后，当用户返回应用时，Activity 便能绑定到服务，重新获得回放控制权。
-如需详细了解为已启动服务添加绑定时的服务生命周期，请参阅管理绑定服务的生命周期部分。
-客户端通过调用 bindService() 绑定到服务。调用时，它必须提供 ServiceConnection 的实现，后者会监控与服务的连接。bindService() 的返回值表明所请求的服务是否存在，以及是否允许客户端访问该服务。当创建客户端与服务之间的连接时，Android 系统会调用 ServiceConnection 上的 onServiceConnected()。onServiceConnected() 方法包含 IBinder 参数，客户端随后会使用该参数与绑定服务进行通信。
-您可以同时将多个客户端连接到服务。但是，系统会缓存 IBinder 服务通信通道。换言之，只有在第一个客户端绑定服务时，系统才会调用服务的 onBind() 方法来生成 IBinder。然后，系统会将同一 IBinder 传递至绑定到相同服务的所有其他客户端，无需再次调用 onBind()。
-当最后一个客户端取消与服务的绑定时，系统会销毁服务（除非 startService() 也启动了该服务）。
-针对您的绑定服务实现，其最重要的环节是定义 onBind() 回调方法所返回的接口。下文将为您介绍几种不同方法，以便您定义服务的 IBinder 接口。
-创建绑定服务 创建提供绑定的服务时，您必须提供 IBinder，进而提供编程接口，以便客户端使用此接口与服务进行交互。您可以通过三种方法定义接口：
-扩展 Binder 类
-如果服务是供您的自有应用专用，并且在与客户端相同的进程中运行（常见情况），则应通过扩展 Binder 类并从 onBind() 返回该类的实例来创建接口。收到 Binder 后，客户端可利用其直接访问 Binder 实现或 Service 中可用的公共方法。'>
-<meta property='og:url' content='https://example.com/android/components/services/bound-services/'>
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<meta property='og:description' content="绑定服务 绑定服务是客户端-服务器接口中的服务器。借助绑定服务，组件（例如 Activity）可以绑定到服务、发送请求、接收响应，以及执行进程间通信 (IPC)。绑定服务通常只在为其他应用组件提供服务时处于活动状态，不会无限期在后台运行。 本文介绍如何创建绑定服务，包括如何绑定到来自其他应用组件的服务。如需了解一般服务的更多信息（例如：如何利用服务传送通知、如何将服务设置为在前台运行等），请参阅服务文档。 基础知识 绑定服务是 Service 类的实现，可让其他应用与其进行绑定和交互。如要为服务提供绑定，您必须实现 onBind() 回调方法。该方法会返回 IBinder 对象，该对象定义的编程接口可供客户端用来与服务进行交互。 绑定到已启动服务 如服务文档中所述，您可以创建同时具有已启动和已绑定两种状态的服务。换言之，可通过调用 startService() 启动服务，让服务无限期运行；此外，还可通过调用 bindService() 让客户端绑定到该服务。 如果您确实允许服务同时具有已启动和已绑定状态，则在启动服务后，如果所有客户端均解绑服务，则系统_不会_销毁该服务。为此，您必须通过调用 stopSelf() 或 stopService() 显式停止服务。 尽管您通常应实现 onBind() 或 onStartCommand()，但有时需同时实现这两种方法。例如，音乐播放器可能认为，让其服务无限期运行并同时提供绑定会很有用处。如此一来，Activity 便可通过启动服务来播放音乐，并且即使用户离开应用，音乐也不会停止。然后，当用户返回应用时，Activity 便能绑定到服务，重新获得回放控制权。 如需详细了解为已启动服务添加绑定时的服务生命周期，请参阅管理绑定服务的生命周期部分。 客户端通过调用 bindService() 绑定到服务。调用时，它必须提供 ServiceConnection 的实现，后者会监控与服务的连接。bindService() 的返回值表明所请求的服务是否存在，以及是否允许客户端访问该服务。当创建客户端与服务之间的连接时，Android 系统会调用 ServiceConnection 上的 onServiceConnected()。onServiceConnected() 方法包含 IBinder 参数，客户端随后会使用该参数与绑定服务进行通信。 您可以同时将多个客户端连接到服务。但是，系统会缓存 IBinder 服务通信通道。换言之，只有在第一个客户端绑定服务时，系统才会调用服务的 onBind() 方法来生成 IBinder。然后，系统会将同一 IBinder 传递至绑定到相同服务的所有其他客户端，无需再次调用 onBind()。 当最后一个客户端取消与服务的绑定时，系统会销毁服务（除非 startService() 也启动了该服务）。 针对您的绑定服务实现，其最重要的环节是定义 onBind() 回调方法所返回的接口。下文将为您介绍几种不同方法，以便您定义服务的 IBinder 接口。 创建绑定服务 创建提供绑定的服务时，您必须提供 IBinder，进而提供编程接口，以便客户端使用此接口与服务进行交互。您可以通过三种方法定义接口： 扩展 Binder 类 如果服务是供您的自有应用专用，并且在与客户端相同的进程中运行（常见情况），则应通过扩展 Binder 类并从 onBind() 返回该类的实例来创建接口。收到 Binder 后，客户端可利用其直接访问 Binder 实现或 Service 中可用的公共方法。">
+<meta property='og:url' content='http://localhost:1313/android/components/services/bound-services/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="绑定服务 绑定服务是客户端-服务器接口中的服务器。借助绑定服务，组件（例如 Activity）可以绑定到服务、发送请求、接收响应，以及执行进程间通信 (IPC)。绑定服务通常只在为其他应用组件提供服务时处于活动状态，不会无限期在后台运行。
-本文介绍如何创建绑定服务，包括如何绑定到来自其他应用组件的服务。如需了解一般服务的更多信息（例如：如何利用服务传送通知、如何将服务设置为在前台运行等），请参阅服务文档。
-基础知识 绑定服务是 Service 类的实现，可让其他应用与其进行绑定和交互。如要为服务提供绑定，您必须实现 onBind() 回调方法。该方法会返回 IBinder 对象，该对象定义的编程接口可供客户端用来与服务进行交互。
-绑定到已启动服务 如服务文档中所述，您可以创建同时具有已启动和已绑定两种状态的服务。换言之，可通过调用 startService() 启动服务，让服务无限期运行；此外，还可通过调用 bindService() 让客户端绑定到该服务。
-如果您确实允许服务同时具有已启动和已绑定状态，则在启动服务后，如果所有客户端均解绑服务，则系统_不会_销毁该服务。为此，您必须通过调用 stopSelf() 或 stopService() 显式停止服务。
-尽管您通常应实现 onBind() 或 onStartCommand()，但有时需同时实现这两种方法。例如，音乐播放器可能认为，让其服务无限期运行并同时提供绑定会很有用处。如此一来，Activity 便可通过启动服务来播放音乐，并且即使用户离开应用，音乐也不会停止。然后，当用户返回应用时，Activity 便能绑定到服务，重新获得回放控制权。
-如需详细了解为已启动服务添加绑定时的服务生命周期，请参阅管理绑定服务的生命周期部分。
-客户端通过调用 bindService() 绑定到服务。调用时，它必须提供 ServiceConnection 的实现，后者会监控与服务的连接。bindService() 的返回值表明所请求的服务是否存在，以及是否允许客户端访问该服务。当创建客户端与服务之间的连接时，Android 系统会调用 ServiceConnection 上的 onServiceConnected()。onServiceConnected() 方法包含 IBinder 参数，客户端随后会使用该参数与绑定服务进行通信。
-您可以同时将多个客户端连接到服务。但是，系统会缓存 IBinder 服务通信通道。换言之，只有在第一个客户端绑定服务时，系统才会调用服务的 onBind() 方法来生成 IBinder。然后，系统会将同一 IBinder 传递至绑定到相同服务的所有其他客户端，无需再次调用 onBind()。
-当最后一个客户端取消与服务的绑定时，系统会销毁服务（除非 startService() 也启动了该服务）。
-针对您的绑定服务实现，其最重要的环节是定义 onBind() 回调方法所返回的接口。下文将为您介绍几种不同方法，以便您定义服务的 IBinder 接口。
-创建绑定服务 创建提供绑定的服务时，您必须提供 IBinder，进而提供编程接口，以便客户端使用此接口与服务进行交互。您可以通过三种方法定义接口：
-扩展 Binder 类
-如果服务是供您的自有应用专用，并且在与客户端相同的进程中运行（常见情况），则应通过扩展 Binder 类并从 onBind() 返回该类的实例来创建接口。收到 Binder 后，客户端可利用其直接访问 Binder 实现或 Service 中可用的公共方法。">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
-}
-</script>
-<style>
-    :root {
-      --sys-font-family: "Noto Serif SC";
-      --zh-font-family: "Noto Serif SC";
-      --base-font-family: "Noto Serif SC";
-      --code-font-family: "Noto Serif SC";
-      --article-font-family: "Noto Serif SC";
-    }
-  </style>
+<meta name="twitter:description" content="绑定服务 绑定服务是客户端-服务器接口中的服务器。借助绑定服务，组件（例如 Activity）可以绑定到服务、发送请求、接收响应，以及执行进程间通信 (IPC)。绑定服务通常只在为其他应用组件提供服务时处于活动状态，不会无限期在后台运行。 本文介绍如何创建绑定服务，包括如何绑定到来自其他应用组件的服务。如需了解一般服务的更多信息（例如：如何利用服务传送通知、如何将服务设置为在前台运行等），请参阅服务文档。 基础知识 绑定服务是 Service 类的实现，可让其他应用与其进行绑定和交互。如要为服务提供绑定，您必须实现 onBind() 回调方法。该方法会返回 IBinder 对象，该对象定义的编程接口可供客户端用来与服务进行交互。 绑定到已启动服务 如服务文档中所述，您可以创建同时具有已启动和已绑定两种状态的服务。换言之，可通过调用 startService() 启动服务，让服务无限期运行；此外，还可通过调用 bindService() 让客户端绑定到该服务。 如果您确实允许服务同时具有已启动和已绑定状态，则在启动服务后，如果所有客户端均解绑服务，则系统_不会_销毁该服务。为此，您必须通过调用 stopSelf() 或 stopService() 显式停止服务。 尽管您通常应实现 onBind() 或 onStartCommand()，但有时需同时实现这两种方法。例如，音乐播放器可能认为，让其服务无限期运行并同时提供绑定会很有用处。如此一来，Activity 便可通过启动服务来播放音乐，并且即使用户离开应用，音乐也不会停止。然后，当用户返回应用时，Activity 便能绑定到服务，重新获得回放控制权。 如需详细了解为已启动服务添加绑定时的服务生命周期，请参阅管理绑定服务的生命周期部分。 客户端通过调用 bindService() 绑定到服务。调用时，它必须提供 ServiceConnection 的实现，后者会监控与服务的连接。bindService() 的返回值表明所请求的服务是否存在，以及是否允许客户端访问该服务。当创建客户端与服务之间的连接时，Android 系统会调用 ServiceConnection 上的 onServiceConnected()。onServiceConnected() 方法包含 IBinder 参数，客户端随后会使用该参数与绑定服务进行通信。 您可以同时将多个客户端连接到服务。但是，系统会缓存 IBinder 服务通信通道。换言之，只有在第一个客户端绑定服务时，系统才会调用服务的 onBind() 方法来生成 IBinder。然后，系统会将同一 IBinder 传递至绑定到相同服务的所有其他客户端，无需再次调用 onBind()。 当最后一个客户端取消与服务的绑定时，系统会销毁服务（除非 startService() 也启动了该服务）。 针对您的绑定服务实现，其最重要的环节是定义 onBind() 回调方法所返回的接口。下文将为您介绍几种不同方法，以便您定义服务的 IBinder 接口。 创建绑定服务 创建提供绑定的服务时，您必须提供 IBinder，进而提供编程接口，以便客户端使用此接口与服务进行交互。您可以通过三种方法定义接口： 扩展 Binder 类 如果服务是供您的自有应用专用，并且在与客户端相同的进程中运行（常见情况），则应通过扩展 Binder 类并从 onBind() 返回该类的实例来创建接口。收到 Binder 后，客户端可利用其直接访问 Binder 实现或 Service 中可用的公共方法。">
   
-  <script>
-    (function () {
-      const customFont = document.createElement("link");
-      customFont.href =
-        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
   
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-  
-      document.head.appendChild(customFont);
-    })();
-  </script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
-     crossorigin="anonymous"></script>
-  
-
-<script>
-    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
 
 
     </head>
@@ -158,7 +92,7 @@ if (!doNotTrack) {
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
             <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -219,13 +153,32 @@ if (!doNotTrack) {
 
 
                 
-                <span>主页</span>
+                <span>Home</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/archives' >
+            <a href='/pages/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/archives/' >
                 
                 
                 
@@ -239,16 +192,54 @@ if (!doNotTrack) {
 
 
                 
-                <span>归档</span>
+                <span>Archives</span>
             </a>
         </li>
         
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -256,7 +247,7 @@ if (!doNotTrack) {
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -264,10 +255,11 @@ if (!doNotTrack) {
 
 
 
-                    <span>Dark Mode</span>
-                </li>
-            
-        </div>
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -368,17 +360,17 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="绑定服务">绑定服务</h1>
-<p>绑定服务是客户端-服务器接口中的服务器。借助绑定服务，组件（例如 Activity）可以绑定到服务、发送请求、接收响应，以及执行进程间通信 (IPC)。绑定服务通常只在为其他应用组件提供服务时处于活动状态，不会无限期在后台运行。</p>
+    <h1 id="绑定服务">绑定服务
+</h1><p>绑定服务是客户端-服务器接口中的服务器。借助绑定服务，组件（例如 Activity）可以绑定到服务、发送请求、接收响应，以及执行进程间通信 (IPC)。绑定服务通常只在为其他应用组件提供服务时处于活动状态，不会无限期在后台运行。</p>
 <p>本文介绍如何创建绑定服务，包括如何绑定到来自其他应用组件的服务。如需了解一般服务的更多信息（例如：如何利用服务传送通知、如何将服务设置为在前台运行等），请参阅<a class="link" href="https://developer.android.com/guide/components/services"  target="_blank" rel="noopener"
     >服务</a>文档。</p>
-<h2 id="基础知识">基础知识</h2>
-<p>绑定服务是 <a class="link" href="https://developer.android.com/reference/android/app/Service?hl=zh-cn"  target="_blank" rel="noopener"
+<h2 id="基础知识">基础知识
+</h2><p>绑定服务是 <a class="link" href="https://developer.android.com/reference/android/app/Service?hl=zh-cn"  target="_blank" rel="noopener"
     ><code>Service</code></a> 类的实现，可让其他应用与其进行绑定和交互。如要为服务提供绑定，您必须实现 <a class="link" href="https://developer.android.com/reference/android/app/Service?hl=zh-cn#onBind%28android.content.Intent%29"  target="_blank" rel="noopener"
     ><code>onBind()</code></a> 回调方法。该方法会返回 <a class="link" href="https://developer.android.com/reference/android/os/IBinder?hl=zh-cn"  target="_blank" rel="noopener"
     ><code>IBinder</code></a> 对象，该对象定义的编程接口可供客户端用来与服务进行交互。</p>
-<h3 id="绑定到已启动服务">绑定到已启动服务</h3>
-<p>如<a class="link" href="https://developer.android.com/guide/components/services"  target="_blank" rel="noopener"
+<h3 id="绑定到已启动服务">绑定到已启动服务
+</h3><p>如<a class="link" href="https://developer.android.com/guide/components/services"  target="_blank" rel="noopener"
     >服务</a>文档中所述，您可以创建同时具有已启动和已绑定两种状态的服务。换言之，可通过调用 <a class="link" href="https://developer.android.com/reference/android/content/Context#startService%28android.content.Intent%29"  target="_blank" rel="noopener"
     ><code>startService()</code></a> 启动服务，让服务无限期运行；此外，还可通过调用 <a class="link" href="https://developer.android.com/reference/android/content/Context#bindService%28android.content.Intent,%20android.content.ServiceConnection,%20int%29"  target="_blank" rel="noopener"
     ><code>bindService()</code></a> 让客户端绑定到该服务。</p>
@@ -408,8 +400,8 @@ if (!doNotTrack) {
 <p>针对您的绑定服务实现，其最重要的环节是定义 <a class="link" href="https://developer.android.com/reference/android/app/Service#onBind%28android.content.Intent%29"  target="_blank" rel="noopener"
     ><code>onBind()</code></a> 回调方法所返回的接口。下文将为您介绍几种不同方法，以便您定义服务的 <a class="link" href="https://developer.android.com/reference/android/os/IBinder"  target="_blank" rel="noopener"
     ><code>IBinder</code></a> 接口。</p>
-<h2 id="创建绑定服务">创建绑定服务</h2>
-<p>创建提供绑定的服务时，您必须提供 <a class="link" href="https://developer.android.com/reference/android/os/IBinder?hl=zh-cn"  target="_blank" rel="noopener"
+<h2 id="创建绑定服务">创建绑定服务
+</h2><p>创建提供绑定的服务时，您必须提供 <a class="link" href="https://developer.android.com/reference/android/os/IBinder?hl=zh-cn"  target="_blank" rel="noopener"
     ><code>IBinder</code></a>，进而提供编程接口，以便客户端使用此接口与服务进行交互。您可以通过三种方法定义接口：</p>
 <p><a class="link" href="https://developer.android.com/guide/components/bound-services?hl=zh-cn#Binder"  target="_blank" rel="noopener"
     >扩展 Binder 类</a></p>
@@ -439,8 +431,8 @@ if (!doNotTrack) {
     ><code>Messenger</code></a> 的方法而言，其实际上是以 AIDL 作为其底层结构。如上所述，<a class="link" href="https://developer.android.com/reference/android/os/Messenger?hl=zh-cn"  target="_blank" rel="noopener"
     ><code>Messenger</code></a> 会在单个线程中创建包含所有客户端请求的队列，以便服务一次接收一个请求。不过，如果您想让服务同时处理多个请求，则可直接使用 AIDL。在此情况下，您的服务必须达到线程安全的要求，并且能够进行多线程处理。</p>
 <p>如要直接使用 AIDL，您必须创建定义编程接口的 <code>.aidl</code> 文件。Android SDK 工具会利用该文件生成实现接口和处理 IPC 的抽象类，您随后可在服务内对该类进行扩展。</p>
-<h3 id="扩展binder类">扩展Binder类</h3>
-<p>如果您的服务仅供本地应用使用，不需要跨进程工作，则可以实现自有 Binder 类，让您的客户端通过该类直接访问服务中的公共方法。</p>
+<h3 id="扩展binder类">扩展Binder类
+</h3><p>如果您的服务仅供本地应用使用，不需要跨进程工作，则可以实现自有 Binder 类，让您的客户端通过该类直接访问服务中的公共方法。</p>
 <blockquote>
 <p>注：此方法只有在客户端和服务位于同一应用和进程内这一最常见的情况下方才有效。 例如，对于需要将 Activity 绑定到在后台播放音乐的自有服务的音乐应用，此方法非常有效。</p>
 </blockquote>
@@ -644,8 +636,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="使用-messenger">使用 Messenger</h3>
-<p>如需让服务与远程进程通信，则可使用 <a class="link" href="https://developer.android.com/reference/android/os/Messenger?hl=zh-cn"  target="_blank" rel="noopener"
+</div><h3 id="使用-messenger">使用 Messenger
+</h3><p>如需让服务与远程进程通信，则可使用 <a class="link" href="https://developer.android.com/reference/android/os/Messenger?hl=zh-cn"  target="_blank" rel="noopener"
     ><code>Messenger</code></a> 为您的服务提供接口。借助此方法，您无需使用 AIDL 便可执行进程间通信 (IPC)。</p>
 <p>为接口使用 <a class="link" href="https://developer.android.com/reference/android/os/Messenger?hl=zh-cn"  target="_blank" rel="noopener"
     ><code>Messenger</code></a> 比使用 AIDL 更简单，因为 <a class="link" href="https://developer.android.com/reference/android/os/Messenger?hl=zh-cn"  target="_blank" rel="noopener"
@@ -1077,8 +1069,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="绑定到服务">绑定到服务</h2>
-<p>应用组件（客户端）可通过调用 <a class="link" href="https://developer.android.com/reference/android/content/Context?hl=zh-cn#bindService%28android.content.Intent,%20android.content.ServiceConnection,%20int%29"  target="_blank" rel="noopener"
+</div><h2 id="绑定到服务">绑定到服务
+</h2><p>应用组件（客户端）可通过调用 <a class="link" href="https://developer.android.com/reference/android/content/Context?hl=zh-cn#bindService%28android.content.Intent,%20android.content.ServiceConnection,%20int%29"  target="_blank" rel="noopener"
     ><code>bindService()</code></a> 绑定到服务。然后，Android 系统会调用服务的 <a class="link" href="https://developer.android.com/reference/android/app/Service?hl=zh-cn#onBind%28android.content.Intent%29"  target="_blank" rel="noopener"
     ><code>onBind()</code></a> 方法，该方法会返回用于与服务交互的 <a class="link" href="https://developer.android.com/reference/android/os/IBinder?hl=zh-cn"  target="_blank" rel="noopener"
     ><code>IBinder</code></a>。</p>
@@ -1144,8 +1136,8 @@ if (!doNotTrack) {
     ><code>BIND_NOT_FOREGROUND</code></a>，或者 <code>0</code>（表示无此参数）。</li>
 </ul>
 <p>以下是一些有关绑定到服务的重要说明：</p>
-<h3 id="附加说明">附加说明</h3>
-<ul>
+<h3 id="附加说明">附加说明
+</h3><ul>
 <li>您应该始终捕获 <a class="link" href="https://developer.android.com/reference/android/os/DeadObjectException?hl=zh-cn"  target="_blank" rel="noopener"
     ><code>DeadObjectException</code></a> 异常，系统会在连接中断时抛出此异常。这是远程方法抛出的唯一异常。</li>
 <li>对象是跨进程计数的引用。</li>
@@ -1166,8 +1158,8 @@ if (!doNotTrack) {
     ><code>onPause()</code></a> 期间绑定和取消绑定，因为每次切换生命周期状态时都会发生这些回调，并且您应让这些转换期间的处理工作保持最少。此外，如果您将应用内的多个 Activity 绑定到同一个 Service，并且其中两个 Activity 之间发生了转换，则如果当前 Activity 在下一个 Activity 绑定（恢复期间）之前取消绑定（暂停期间），则系统可能会销毁并重建服务。如需了解 Activity 如何协调其生命周期的 Activity 转换，请参阅 <a class="link" href="https://developer.android.com/guide/components/activities?hl=zh-cn#CoordinatingActivities"  target="_blank" rel="noopener"
     >Activity</a> 文档。
 {% endhint %}</p>
-<h2 id="管理绑定服务的生命周期">管理绑定服务的生命周期</h2>
-<p>当取消服务与所有客户端之间的绑定时，Android 系统会销毁该服务（除非您还使用 <a class="link" href="https://developer.android.com/reference/android/app/Service?hl=zh-cn#onStartCommand%28android.content.Intent,%20int,%20int%29"  target="_blank" rel="noopener"
+<h2 id="管理绑定服务的生命周期">管理绑定服务的生命周期
+</h2><p>当取消服务与所有客户端之间的绑定时，Android 系统会销毁该服务（除非您还使用 <a class="link" href="https://developer.android.com/reference/android/app/Service?hl=zh-cn#onStartCommand%28android.content.Intent,%20int,%20int%29"  target="_blank" rel="noopener"
     ><code>onStartCommand()</code></a> 启动了该服务）。因此，如果您的服务完全是绑定服务，则您无需管理其生命周期，Android 系统会根据它是否绑定到任何客户端代您管理。</p>
 <p>不过，如果您选择实现 <a class="link" href="https://developer.android.com/reference/android/app/Service?hl=zh-cn#onStartCommand%28android.content.Intent,%20int,%20int%29"  target="_blank" rel="noopener"
     ><code>onStartCommand()</code></a> 回调方法，则您必须显式停止服务，因为系统现已将其视为_已启动_状态。在此情况下，服务将一直运行，直到其通过 <a class="link" href="https://developer.android.com/reference/android/app/Service?hl=zh-cn#stopSelf%28%29"  target="_blank" rel="noopener"
@@ -1179,7 +1171,7 @@ if (!doNotTrack) {
     ><code>onRebind()</code></a> 返回空值，但客户端仍在其 <a class="link" href="https://developer.android.com/reference/android/content/ServiceConnection?hl=zh-cn#onServiceConnected%28android.content.ComponentName,%20android.os.IBinder%29"  target="_blank" rel="noopener"
     ><code>onServiceConnected()</code></a> 回调中接收 <a class="link" href="https://developer.android.com/reference/android/os/IBinder?hl=zh-cn"  target="_blank" rel="noopener"
     ><code>IBinder</code></a>。下图说明这种生命周期的逻辑。</p>
-<p><img src="/../../assets/images/service%5c_binding%5c_tree%5c_lifecycle.png"
+<p><img src="/assets/images/service%5c_binding%5c_tree%5c_lifecycle.png"
 	
 	
 	
@@ -1284,7 +1276,7 @@ if (!doNotTrack) {
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 

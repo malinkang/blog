@@ -1,78 +1,36 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Lifecycle源码分析 Lifecycle Lifecycle代表生命周期，是一个抽象类，我们经常使用它的子类LifecycleRegistry。
-Lifecycle提供了三个抽象方法用来添加、删除LifecycleObserver和获取当前Lifecycle状态。
-1 2 3 4 5 6 7 @MainThread public abstract void addObserver(@NonNull LifecycleObserver observer); @MainThread public abstract void removeObserver(@NonNull LifecycleObserver observer); @MainThread @NonNull public abstract State getCurrentState(); Lifecycle还提供了两个内部枚举Event和State。
-Event Event代表生命周期发生变化时发送的事件。
-1 2 3 4 5 6 7 8 9 10 @SuppressWarnings(&amp;#34;WeakerAccess&amp;#34;) public enum Event { ON_CREATE, //onCreate发送该事件 ON_START, ON_RESUME, ON_PAUSE, ON_STOP, ON_DESTROY, ON_ANY } State State代表当前生命周期状态。
-1 2 3 4 5 6 7 8 9 10 11 12 public enum State { //处于Destoryed状态，Lifecycle将不会发送任何事件 DESTROYED, INITIALIZED, CREATED, STARTED, RESUMED; //比较当前状态大于或等于给定状态 public boolean isAtLeast(@NonNull State state) { return compareTo(state) &amp;gt;= 0; } } LifecycleOwner LifecycleOwner即生命周期拥有者，是一个接口，只提供了一个获取生命周期的方法。'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Lifecycle源码分析 Lifecycle Lifecycle代表生命周期，是一个抽象类，我们经常使用它的子类LifecycleRegistry。 Lifecycle提供了三个抽象方法用来添加、删除LifecycleObserver和获取当前Lifecycle状态。 1 2 3 4 5 6 7 @MainThread public abstract void addObserver(@NonNull LifecycleObserver observer); @MainThread public abstract void removeObserver(@NonNull LifecycleObserver observer); @MainThread @NonNull public abstract State getCurrentState(); Lifecycle还提供了两个内部枚举Event和State。 Event Event代表生命周期发生变化时发送的事件。 1 2 3 4 5 6 7 8 9 10 @SuppressWarnings(&#34;WeakerAccess&#34;) public enum Event { ON_CREATE, //onCreate发送该事件 ON_START, ON_RESUME, ON_PAUSE, ON_STOP, ON_DESTROY, ON_ANY } State State代表当前生命周期状态。 1 2 3 4 5 6 7 8 9 10 11 12 public enum State { //处于Destoryed状态，Lifecycle将不会发送任何事件 DESTROYED, INITIALIZED, CREATED, STARTED, RESUMED; //比较当前状态大于或等于给定状态 public boolean isAtLeast(@NonNull State state) { return compareTo(state) &gt;= 0; } } LifecycleOwner LifecycleOwner即生命周期拥有者，是一个接口，只提供了一个获取生命周期的方法。">
 <title></title>
 
-<link rel='canonical' href='https://example.com/android/jetpacket/lifecycle-source-analysis/'>
+<link rel='canonical' href='http://localhost:1313/android/jetpacket/lifecycle-source-analysis/'>
 
-<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
-<meta property='og:description' content='Lifecycle源码分析 Lifecycle Lifecycle代表生命周期，是一个抽象类，我们经常使用它的子类LifecycleRegistry。
-Lifecycle提供了三个抽象方法用来添加、删除LifecycleObserver和获取当前Lifecycle状态。
-1 2 3 4 5 6 7 @MainThread public abstract void addObserver(@NonNull LifecycleObserver observer); @MainThread public abstract void removeObserver(@NonNull LifecycleObserver observer); @MainThread @NonNull public abstract State getCurrentState(); Lifecycle还提供了两个内部枚举Event和State。
-Event Event代表生命周期发生变化时发送的事件。
-1 2 3 4 5 6 7 8 9 10 @SuppressWarnings(&amp;#34;WeakerAccess&amp;#34;) public enum Event { ON_CREATE, //onCreate发送该事件 ON_START, ON_RESUME, ON_PAUSE, ON_STOP, ON_DESTROY, ON_ANY } State State代表当前生命周期状态。
-1 2 3 4 5 6 7 8 9 10 11 12 public enum State { //处于Destoryed状态，Lifecycle将不会发送任何事件 DESTROYED, INITIALIZED, CREATED, STARTED, RESUMED; //比较当前状态大于或等于给定状态 public boolean isAtLeast(@NonNull State state) { return compareTo(state) &amp;gt;= 0; } } LifecycleOwner LifecycleOwner即生命周期拥有者，是一个接口，只提供了一个获取生命周期的方法。'>
-<meta property='og:url' content='https://example.com/android/jetpacket/lifecycle-source-analysis/'>
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<meta property='og:description' content="Lifecycle源码分析 Lifecycle Lifecycle代表生命周期，是一个抽象类，我们经常使用它的子类LifecycleRegistry。 Lifecycle提供了三个抽象方法用来添加、删除LifecycleObserver和获取当前Lifecycle状态。 1 2 3 4 5 6 7 @MainThread public abstract void addObserver(@NonNull LifecycleObserver observer); @MainThread public abstract void removeObserver(@NonNull LifecycleObserver observer); @MainThread @NonNull public abstract State getCurrentState(); Lifecycle还提供了两个内部枚举Event和State。 Event Event代表生命周期发生变化时发送的事件。 1 2 3 4 5 6 7 8 9 10 @SuppressWarnings(&#34;WeakerAccess&#34;) public enum Event { ON_CREATE, //onCreate发送该事件 ON_START, ON_RESUME, ON_PAUSE, ON_STOP, ON_DESTROY, ON_ANY } State State代表当前生命周期状态。 1 2 3 4 5 6 7 8 9 10 11 12 public enum State { //处于Destoryed状态，Lifecycle将不会发送任何事件 DESTROYED, INITIALIZED, CREATED, STARTED, RESUMED; //比较当前状态大于或等于给定状态 public boolean isAtLeast(@NonNull State state) { return compareTo(state) &gt;= 0; } } LifecycleOwner LifecycleOwner即生命周期拥有者，是一个接口，只提供了一个获取生命周期的方法。">
+<meta property='og:url' content='http://localhost:1313/android/jetpacket/lifecycle-source-analysis/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="Lifecycle源码分析 Lifecycle Lifecycle代表生命周期，是一个抽象类，我们经常使用它的子类LifecycleRegistry。
-Lifecycle提供了三个抽象方法用来添加、删除LifecycleObserver和获取当前Lifecycle状态。
-1 2 3 4 5 6 7 @MainThread public abstract void addObserver(@NonNull LifecycleObserver observer); @MainThread public abstract void removeObserver(@NonNull LifecycleObserver observer); @MainThread @NonNull public abstract State getCurrentState(); Lifecycle还提供了两个内部枚举Event和State。
-Event Event代表生命周期发生变化时发送的事件。
-1 2 3 4 5 6 7 8 9 10 @SuppressWarnings(&amp;#34;WeakerAccess&amp;#34;) public enum Event { ON_CREATE, //onCreate发送该事件 ON_START, ON_RESUME, ON_PAUSE, ON_STOP, ON_DESTROY, ON_ANY } State State代表当前生命周期状态。
-1 2 3 4 5 6 7 8 9 10 11 12 public enum State { //处于Destoryed状态，Lifecycle将不会发送任何事件 DESTROYED, INITIALIZED, CREATED, STARTED, RESUMED; //比较当前状态大于或等于给定状态 public boolean isAtLeast(@NonNull State state) { return compareTo(state) &amp;gt;= 0; } } LifecycleOwner LifecycleOwner即生命周期拥有者，是一个接口，只提供了一个获取生命周期的方法。">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
-}
-</script>
-<style>
-    :root {
-      --sys-font-family: "Noto Serif SC";
-      --zh-font-family: "Noto Serif SC";
-      --base-font-family: "Noto Serif SC";
-      --code-font-family: "Noto Serif SC";
-      --article-font-family: "Noto Serif SC";
-    }
-  </style>
+<meta name="twitter:description" content="Lifecycle源码分析 Lifecycle Lifecycle代表生命周期，是一个抽象类，我们经常使用它的子类LifecycleRegistry。 Lifecycle提供了三个抽象方法用来添加、删除LifecycleObserver和获取当前Lifecycle状态。 1 2 3 4 5 6 7 @MainThread public abstract void addObserver(@NonNull LifecycleObserver observer); @MainThread public abstract void removeObserver(@NonNull LifecycleObserver observer); @MainThread @NonNull public abstract State getCurrentState(); Lifecycle还提供了两个内部枚举Event和State。 Event Event代表生命周期发生变化时发送的事件。 1 2 3 4 5 6 7 8 9 10 @SuppressWarnings(&#34;WeakerAccess&#34;) public enum Event { ON_CREATE, //onCreate发送该事件 ON_START, ON_RESUME, ON_PAUSE, ON_STOP, ON_DESTROY, ON_ANY } State State代表当前生命周期状态。 1 2 3 4 5 6 7 8 9 10 11 12 public enum State { //处于Destoryed状态，Lifecycle将不会发送任何事件 DESTROYED, INITIALIZED, CREATED, STARTED, RESUMED; //比较当前状态大于或等于给定状态 public boolean isAtLeast(@NonNull State state) { return compareTo(state) &gt;= 0; } } LifecycleOwner LifecycleOwner即生命周期拥有者，是一个接口，只提供了一个获取生命周期的方法。">
   
-  <script>
-    (function () {
-      const customFont = document.createElement("link");
-      customFont.href =
-        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
   
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-  
-      document.head.appendChild(customFont);
-    })();
-  </script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
-     crossorigin="anonymous"></script>
-  
-
-<script>
-    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
 
 
     </head>
@@ -134,7 +92,7 @@ if (!doNotTrack) {
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
             <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -195,13 +153,32 @@ if (!doNotTrack) {
 
 
                 
-                <span>主页</span>
+                <span>Home</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/archives' >
+            <a href='/pages/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/archives/' >
                 
                 
                 
@@ -215,16 +192,54 @@ if (!doNotTrack) {
 
 
                 
-                <span>归档</span>
+                <span>Archives</span>
             </a>
         </li>
         
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -232,7 +247,7 @@ if (!doNotTrack) {
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -240,10 +255,11 @@ if (!doNotTrack) {
 
 
 
-                    <span>Dark Mode</span>
-                </li>
-            
-        </div>
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -365,9 +381,9 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="lifecycle源码分析">Lifecycle源码分析</h1>
-<h2 id="lifecycle">Lifecycle</h2>
-<p><code>Lifecycle</code>代表生命周期，是一个抽象类，我们经常使用它的子类<code>LifecycleRegistry</code>。</p>
+    <h1 id="lifecycle源码分析">Lifecycle源码分析
+</h1><h2 id="lifecycle">Lifecycle
+</h2><p><code>Lifecycle</code>代表生命周期，是一个抽象类，我们经常使用它的子类<code>LifecycleRegistry</code>。</p>
 <p><img src="https://malinkang-1253444926.cos.ap-beijing.myqcloud.com/images/android/Lifecycle.png"
 	
 	
@@ -398,8 +414,8 @@ if (!doNotTrack) {
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>Lifecycle</code>还提供了两个内部枚举<code>Event</code>和<code>State</code>。</p>
-<h3 id="event">Event</h3>
-<p><code>Event</code>代表生命周期发生变化时发送的事件。</p>
+<h3 id="event">Event
+</h3><p><code>Event</code>代表生命周期发生变化时发送的事件。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -426,8 +442,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="state">State</h3>
-<p><code>State</code>代表当前生命周期状态。</p>
+</div><h3 id="state">State
+</h3><p><code>State</code>代表当前生命周期状态。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -466,8 +482,8 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h2 id="lifecycleowner">LifecycleOwner</h2>
-<p><code>LifecycleOwner</code>即生命周期拥有者，是一个接口，只提供了一个获取生命周期的方法。</p>
+<h2 id="lifecycleowner">LifecycleOwner
+</h2><p><code>LifecycleOwner</code>即生命周期拥有者，是一个接口，只提供了一个获取生命周期的方法。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -490,8 +506,8 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h2 id="lifecycleobserver">LifecycleObserver</h2>
-<p><code>LifecycleObserver</code>即生命周期的观察者，是一个空接口，里面没有任何方法。</p>
+<h2 id="lifecycleobserver">LifecycleObserver
+</h2><p><code>LifecycleObserver</code>即生命周期的观察者，是一个空接口，里面没有任何方法。</p>
 <p><img src="https://malinkang-1253444926.cos.ap-beijing.myqcloud.com/images/android/LifecycleObserver.png"
 	
 	
@@ -500,8 +516,8 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h3 id="lifecycleeventobserver">LifecycleEventObserver</h3>
-<p><code>LifecycleEventObserver</code>接口提供了<code>onStateChanged</code>方法。当生命周期发生改变会触发<code>onStateChanged</code>方法。</p>
+<h3 id="lifecycleeventobserver">LifecycleEventObserver
+</h3><p><code>LifecycleEventObserver</code>接口提供了<code>onStateChanged</code>方法。当生命周期发生改变会触发<code>onStateChanged</code>方法。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -510,8 +526,8 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">void</span><span class="w"> </span><span class="nf">onStateChanged</span><span class="p">(</span><span class="nd">@NonNull</span><span class="w"> </span><span class="n">LifecycleOwner</span><span class="w"> </span><span class="n">source</span><span class="p">,</span><span class="w"> </span><span class="nd">@NonNull</span><span class="w"> </span><span class="n">Lifecycle</span><span class="p">.</span><span class="na">Event</span><span class="w"> </span><span class="n">event</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="fulllifecycleobserver">FullLifecycleObserver</h3>
-<p><code>FullLifecycleObserver</code>接口提供了与<code>Activity</code>和<code>Fragment</code>生命周期同名方法，当触发生命周期，会触发同名方法调用。</p>
+</div><h3 id="fulllifecycleobserver">FullLifecycleObserver
+</h3><p><code>FullLifecycleObserver</code>接口提供了与<code>Activity</code>和<code>Fragment</code>生命周期同名方法，当触发生命周期，会触发同名方法调用。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -546,8 +562,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="generatedadapterobserver">GeneratedAdapterObserver</h3>
-<p><code>SingleGeneratedAdapterObserver</code>内部包含一个<code>GeneratedAdapter</code>对象。<code>CompositeGeneratedAdaptersObserver</code>内部包含一个<code>GeneratedAdapter</code>数组，当<code>onStateChanged</code>调用时会调用<code>GeneratedAdapter</code>的<code>callMethods</code>方法。</p>
+</div><h3 id="generatedadapterobserver">GeneratedAdapterObserver
+</h3><p><code>SingleGeneratedAdapterObserver</code>内部包含一个<code>GeneratedAdapter</code>对象。<code>CompositeGeneratedAdaptersObserver</code>内部包含一个<code>GeneratedAdapter</code>数组，当<code>onStateChanged</code>调用时会调用<code>GeneratedAdapter</code>的<code>callMethods</code>方法。</p>
 <p>当我们自定义<code>Observer</code>对象时，会根据<code>@OnLifecycleEvent</code>注解生成对应的<code>GeneratedAdapter</code>子类。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -647,8 +663,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="reportfragment">ReportFragment</h2>
-<p><code>ReportFragment</code>负责在生命周期发生变化时，调用<code>LifecycleEventObserver</code>的<code>onStateChanged</code>方法。<code>ComponentActivity</code>通过在<code>onCreate</code>方法中调用<code>ReportFragment</code>的静态方法<code>injectIfNeededIn</code>与<code>ReportFragment</code>进行关联。</p>
+</div><h2 id="reportfragment">ReportFragment
+</h2><p><code>ReportFragment</code>负责在生命周期发生变化时，调用<code>LifecycleEventObserver</code>的<code>onStateChanged</code>方法。<code>ComponentActivity</code>通过在<code>onCreate</code>方法中调用<code>ReportFragment</code>的静态方法<code>injectIfNeededIn</code>与<code>ReportFragment</code>进行关联。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -712,8 +728,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="dispatch">dispatch()</h3>
-<p>当<code>ReportFragment</code>的生命周期方法调用时，会调用<code>dispatch</code>方法。当<code>sdk</code>小于29不会调用该方法，而是在<code>LifecycleCallbacks</code>的回调方法中调用它的重载方法。</p>
+</div><h3 id="dispatch">dispatch()
+</h3><p>当<code>ReportFragment</code>的生命周期方法调用时，会调用<code>dispatch</code>方法。当<code>sdk</code>小于29不会调用该方法，而是在<code>LifecycleCallbacks</code>的回调方法中调用它的重载方法。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -774,8 +790,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="safeiterablemap">SafeIterableMap</h2>
-<p><img src="https://malinkang-1253444926.cos.ap-beijing.myqcloud.com/images/android/SafeIterableMap.png"
+</div><h2 id="safeiterablemap">SafeIterableMap
+</h2><p><img src="https://malinkang-1253444926.cos.ap-beijing.myqcloud.com/images/android/SafeIterableMap.png"
 	
 	
 	
@@ -1051,8 +1067,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="lifecycleregistry">LifecycleRegistry</h2>
-<p><code>LifecycleRegistry</code>是<code>Lifecycle</code>的子类，实现了具体的添加、删除<code>LifecycleObserver</code>和处理<code>Event</code>的操作。<code>ComponentActivity</code>就是直接调用<code>LifecycleRegistry</code>的构造函数创建<code>Lifecycle</code>实例。</p>
+</div><h2 id="lifecycleregistry">LifecycleRegistry
+</h2><p><code>LifecycleRegistry</code>是<code>Lifecycle</code>的子类，实现了具体的添加、删除<code>LifecycleObserver</code>和处理<code>Event</code>的操作。<code>ComponentActivity</code>就是直接调用<code>LifecycleRegistry</code>的构造函数创建<code>Lifecycle</code>实例。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1069,8 +1085,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="构造函数">构造函数</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="构造函数">构造函数
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1096,8 +1112,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="addobserver">addObserver()</h3>
-<p><code>addObserver</code>方法中会把传入的<code>Observer</code>对象包装成一个<code>ObserverWithState</code>对象，并存入到<code>mObserverMap</code>中。并且获取当前的状态<code>targetState</code>与<code>Observer</code>的状态进行比较，如果<code>Observer</code>的状态小于目标状态则会循环分发事件，直到<code>Observer</code>的状态和<code>targetState</code>一致。比如<code>targetState</code>是<code>STARTED</code>类，<code>Observer</code>会依次分发<code>ON_CREATE</code>、<code>ON_START</code>和<code>ON_RESUME</code>事件。</p>
+</div><h3 id="addobserver">addObserver()
+</h3><p><code>addObserver</code>方法中会把传入的<code>Observer</code>对象包装成一个<code>ObserverWithState</code>对象，并存入到<code>mObserverMap</code>中。并且获取当前的状态<code>targetState</code>与<code>Observer</code>的状态进行比较，如果<code>Observer</code>的状态小于目标状态则会循环分发事件，直到<code>Observer</code>的状态和<code>targetState</code>一致。比如<code>targetState</code>是<code>STARTED</code>类，<code>Observer</code>会依次分发<code>ON_CREATE</code>、<code>ON_START</code>和<code>ON_RESUME</code>事件。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1210,8 +1226,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="observerwithstate">ObserverWithState</h3>
-<p><code>ObserverWithState</code>是<code>LifecycleRegistry</code>的内部类。通过调用<code>Lifecycling</code>的<code>lifecycleEventObserver</code>方法，将传入的<code>Observer</code>对象转换为<code>LifecycleEventObserver</code>对象。并且添加了一个<code>mState</code>字段来保存<code>Observer</code>的状态。</p>
+</div><h3 id="observerwithstate">ObserverWithState
+</h3><p><code>ObserverWithState</code>是<code>LifecycleRegistry</code>的内部类。通过调用<code>Lifecycling</code>的<code>lifecycleEventObserver</code>方法，将传入的<code>Observer</code>对象转换为<code>LifecycleEventObserver</code>对象。并且添加了一个<code>mState</code>字段来保存<code>Observer</code>的状态。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1250,8 +1266,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="handlelifecycleevent">handleLifecycleEvent()</h3>
-<p><code>ReportFragment</code>的dispatch方法会调用LifecycleRegistry的handleLifecycleEvent方法来处理Event。</p>
+</div><h3 id="handlelifecycleevent">handleLifecycleEvent()
+</h3><p><code>ReportFragment</code>的dispatch方法会调用LifecycleRegistry的handleLifecycleEvent方法来处理Event。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1359,8 +1375,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="backwardpass">backwardPass()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="backwardpass">backwardPass()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1436,9 +1452,9 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="lifecycling">Lifecycling</h2>
-<h3 id="lifecycleeventobserver-1">lifecycleEventObserver()</h3>
-<p><code>lifecycleEventObserver</code>方法负责通过传入<code>LifecycleObserver</code>对象构建一个<code>LifecycleEventObserver</code>对象。</p>
+</div><h2 id="lifecycling">Lifecycling
+</h2><h3 id="lifecycleeventobserver-1">lifecycleEventObserver()
+</h3><p><code>lifecycleEventObserver</code>方法负责通过传入<code>LifecycleObserver</code>对象构建一个<code>LifecycleEventObserver</code>对象。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1533,8 +1549,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="getobserverconstructortype">getObserverConstructorType</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="getobserverconstructortype">getObserverConstructorType
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1562,8 +1578,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="resolveobservercallbacktype">resolveObserverCallbackType</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="resolveobservercallbacktype">resolveObserverCallbackType
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1655,8 +1671,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="generatedconstructor">generatedConstructor()</h3>
-<p><code>generatedConstructor</code>方法获取生成的<code>GeneratedAdapter</code>的构造函数。</p>
+</div><h3 id="generatedconstructor">generatedConstructor()
+</h3><p><code>generatedConstructor</code>方法获取生成的<code>GeneratedAdapter</code>的构造函数。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1719,8 +1735,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="参考">参考</h2>
-<ul>
+</div><h2 id="参考">参考
+</h2><ul>
 <li><a class="link" href="https://juejin.im/post/6847902220755992589"  target="_blank" rel="noopener"
     >从源码看 Jetpack（1） -Lifecycle源码解析</a></li>
 </ul>
@@ -1819,7 +1835,7 @@ if (!doNotTrack) {
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 

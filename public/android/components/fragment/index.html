@@ -1,75 +1,36 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Fragment Fragment 表示 Activity 中的行为或用户界面部分。您可以将多个片段组合在一个 Activity 中来构建多窗格 UI，以及在多个 Activity 中重复使用某个片段。您可以将片段视为 Activity 的模块化组成部分，它具有自己的生命周期，能接收自己的输入事件，并且您可以在 Activity 运行时添加或移除片段（有点像您可以在不同 Activity 中重复使用的“子 Activity”）。
-片段必须始终嵌入在 Activity 中，其生命周期直接受宿主 Activity 生命周期的影响。 例如，当 Activity 暂停时，其中的所有片段也会暂停；当 Activity 被销毁时，所有片段也会被销毁。 不过，当 Activity 正在运行（处于已恢复生命周期状态）时，您可以独立操纵每个片段，如添加或移除它们。 当您执行此类片段事务时，您也可以将其添加到由 Activity 管理的返回栈 — Activity 中的每个返回栈条目都是一条已发生片段事务的记录。 返回栈让用户可以通过按返回按钮撤消片段事务（后退）。
-当您将片段作为 Activity 布局的一部分添加时，它存在于 Activity 视图层次结构的某个 ViewGroup 内部，并且片段会定义其自己的视图布局。您可以通过在 Activity 的布局文件中声明片段，将其作为 元素插入您的 Activity 布局中，或者通过将其添加到某个现有 ViewGroup，利用应用代码进行插入。不过，片段并非必须成为 Activity 布局的一部分；
-本文描述如何在开发您的应用时使用片段，包括将片段添加到 Activity 返回栈时如何保持其状态、如何与 Activity 及 Activity 中的其他片段共享事件、如何为 Activity 的操作栏发挥作用等等。
-1. 设计原理 Android 在 Android 3.0（API 级别 11）中引入了片段，主要是为了给大屏幕（如平板电脑）上更加动态和灵活的 UI 设计提供支持。由于平板电脑的屏幕比手机屏幕大得多，因此可用于组合和交换 UI 组件的空间更大。利用片段实现此类设计时，您无需管理对视图层次结构的复杂更改。 通过将 Activity 布局分成片段，您可以在运行时修改 Activity 的外观，并在由 Activity 管理的返回栈中保留这些更改。'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Fragment Fragment 表示 Activity 中的行为或用户界面部分。您可以将多个片段组合在一个 Activity 中来构建多窗格 UI，以及在多个 Activity 中重复使用某个片段。您可以将片段视为 Activity 的模块化组成部分，它具有自己的生命周期，能接收自己的输入事件，并且您可以在 Activity 运行时添加或移除片段（有点像您可以在不同 Activity 中重复使用的“子 Activity”）。 片段必须始终嵌入在 Activity 中，其生命周期直接受宿主 Activity 生命周期的影响。 例如，当 Activity 暂停时，其中的所有片段也会暂停；当 Activity 被销毁时，所有片段也会被销毁。 不过，当 Activity 正在运行（处于已恢复生命周期状态）时，您可以独立操纵每个片段，如添加或移除它们。 当您执行此类片段事务时，您也可以将其添加到由 Activity 管理的返回栈 — Activity 中的每个返回栈条目都是一条已发生片段事务的记录。 返回栈让用户可以通过按返回按钮撤消片段事务（后退）。 当您将片段作为 Activity 布局的一部分添加时，它存在于 Activity 视图层次结构的某个 ViewGroup 内部，并且片段会定义其自己的视图布局。您可以通过在 Activity 的布局文件中声明片段，将其作为 元素插入您的 Activity 布局中，或者通过将其添加到某个现有 ViewGroup，利用应用代码进行插入。不过，片段并非必须成为 Activity 布局的一部分； 本文描述如何在开发您的应用时使用片段，包括将片段添加到 Activity 返回栈时如何保持其状态、如何与 Activity 及 Activity 中的其他片段共享事件、如何为 Activity 的操作栏发挥作用等等。 1. 设计原理 Android 在 Android 3.0（API 级别 11）中引入了片段，主要是为了给大屏幕（如平板电脑）上更加动态和灵活的 UI 设计提供支持。由于平板电脑的屏幕比手机屏幕大得多，因此可用于组合和交换 UI 组件的空间更大。利用片段实现此类设计时，您无需管理对视图层次结构的复杂更改。 通过将 Activity 布局分成片段，您可以在运行时修改 Activity 的外观，并在由 Activity 管理的返回栈中保留这些更改。">
 <title></title>
 
-<link rel='canonical' href='https://example.com/android/components/fragment/'>
+<link rel='canonical' href='http://localhost:1313/android/components/fragment/'>
 
-<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
-<meta property='og:description' content='Fragment Fragment 表示 Activity 中的行为或用户界面部分。您可以将多个片段组合在一个 Activity 中来构建多窗格 UI，以及在多个 Activity 中重复使用某个片段。您可以将片段视为 Activity 的模块化组成部分，它具有自己的生命周期，能接收自己的输入事件，并且您可以在 Activity 运行时添加或移除片段（有点像您可以在不同 Activity 中重复使用的“子 Activity”）。
-片段必须始终嵌入在 Activity 中，其生命周期直接受宿主 Activity 生命周期的影响。 例如，当 Activity 暂停时，其中的所有片段也会暂停；当 Activity 被销毁时，所有片段也会被销毁。 不过，当 Activity 正在运行（处于已恢复生命周期状态）时，您可以独立操纵每个片段，如添加或移除它们。 当您执行此类片段事务时，您也可以将其添加到由 Activity 管理的返回栈 — Activity 中的每个返回栈条目都是一条已发生片段事务的记录。 返回栈让用户可以通过按返回按钮撤消片段事务（后退）。
-当您将片段作为 Activity 布局的一部分添加时，它存在于 Activity 视图层次结构的某个 ViewGroup 内部，并且片段会定义其自己的视图布局。您可以通过在 Activity 的布局文件中声明片段，将其作为 元素插入您的 Activity 布局中，或者通过将其添加到某个现有 ViewGroup，利用应用代码进行插入。不过，片段并非必须成为 Activity 布局的一部分；
-本文描述如何在开发您的应用时使用片段，包括将片段添加到 Activity 返回栈时如何保持其状态、如何与 Activity 及 Activity 中的其他片段共享事件、如何为 Activity 的操作栏发挥作用等等。
-1. 设计原理 Android 在 Android 3.0（API 级别 11）中引入了片段，主要是为了给大屏幕（如平板电脑）上更加动态和灵活的 UI 设计提供支持。由于平板电脑的屏幕比手机屏幕大得多，因此可用于组合和交换 UI 组件的空间更大。利用片段实现此类设计时，您无需管理对视图层次结构的复杂更改。 通过将 Activity 布局分成片段，您可以在运行时修改 Activity 的外观，并在由 Activity 管理的返回栈中保留这些更改。'>
-<meta property='og:url' content='https://example.com/android/components/fragment/'>
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<meta property='og:description' content="Fragment Fragment 表示 Activity 中的行为或用户界面部分。您可以将多个片段组合在一个 Activity 中来构建多窗格 UI，以及在多个 Activity 中重复使用某个片段。您可以将片段视为 Activity 的模块化组成部分，它具有自己的生命周期，能接收自己的输入事件，并且您可以在 Activity 运行时添加或移除片段（有点像您可以在不同 Activity 中重复使用的“子 Activity”）。 片段必须始终嵌入在 Activity 中，其生命周期直接受宿主 Activity 生命周期的影响。 例如，当 Activity 暂停时，其中的所有片段也会暂停；当 Activity 被销毁时，所有片段也会被销毁。 不过，当 Activity 正在运行（处于已恢复生命周期状态）时，您可以独立操纵每个片段，如添加或移除它们。 当您执行此类片段事务时，您也可以将其添加到由 Activity 管理的返回栈 — Activity 中的每个返回栈条目都是一条已发生片段事务的记录。 返回栈让用户可以通过按返回按钮撤消片段事务（后退）。 当您将片段作为 Activity 布局的一部分添加时，它存在于 Activity 视图层次结构的某个 ViewGroup 内部，并且片段会定义其自己的视图布局。您可以通过在 Activity 的布局文件中声明片段，将其作为 元素插入您的 Activity 布局中，或者通过将其添加到某个现有 ViewGroup，利用应用代码进行插入。不过，片段并非必须成为 Activity 布局的一部分； 本文描述如何在开发您的应用时使用片段，包括将片段添加到 Activity 返回栈时如何保持其状态、如何与 Activity 及 Activity 中的其他片段共享事件、如何为 Activity 的操作栏发挥作用等等。 1. 设计原理 Android 在 Android 3.0（API 级别 11）中引入了片段，主要是为了给大屏幕（如平板电脑）上更加动态和灵活的 UI 设计提供支持。由于平板电脑的屏幕比手机屏幕大得多，因此可用于组合和交换 UI 组件的空间更大。利用片段实现此类设计时，您无需管理对视图层次结构的复杂更改。 通过将 Activity 布局分成片段，您可以在运行时修改 Activity 的外观，并在由 Activity 管理的返回栈中保留这些更改。">
+<meta property='og:url' content='http://localhost:1313/android/components/fragment/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="Fragment Fragment 表示 Activity 中的行为或用户界面部分。您可以将多个片段组合在一个 Activity 中来构建多窗格 UI，以及在多个 Activity 中重复使用某个片段。您可以将片段视为 Activity 的模块化组成部分，它具有自己的生命周期，能接收自己的输入事件，并且您可以在 Activity 运行时添加或移除片段（有点像您可以在不同 Activity 中重复使用的“子 Activity”）。
-片段必须始终嵌入在 Activity 中，其生命周期直接受宿主 Activity 生命周期的影响。 例如，当 Activity 暂停时，其中的所有片段也会暂停；当 Activity 被销毁时，所有片段也会被销毁。 不过，当 Activity 正在运行（处于已恢复生命周期状态）时，您可以独立操纵每个片段，如添加或移除它们。 当您执行此类片段事务时，您也可以将其添加到由 Activity 管理的返回栈 — Activity 中的每个返回栈条目都是一条已发生片段事务的记录。 返回栈让用户可以通过按返回按钮撤消片段事务（后退）。
-当您将片段作为 Activity 布局的一部分添加时，它存在于 Activity 视图层次结构的某个 ViewGroup 内部，并且片段会定义其自己的视图布局。您可以通过在 Activity 的布局文件中声明片段，将其作为 元素插入您的 Activity 布局中，或者通过将其添加到某个现有 ViewGroup，利用应用代码进行插入。不过，片段并非必须成为 Activity 布局的一部分；
-本文描述如何在开发您的应用时使用片段，包括将片段添加到 Activity 返回栈时如何保持其状态、如何与 Activity 及 Activity 中的其他片段共享事件、如何为 Activity 的操作栏发挥作用等等。
-1. 设计原理 Android 在 Android 3.0（API 级别 11）中引入了片段，主要是为了给大屏幕（如平板电脑）上更加动态和灵活的 UI 设计提供支持。由于平板电脑的屏幕比手机屏幕大得多，因此可用于组合和交换 UI 组件的空间更大。利用片段实现此类设计时，您无需管理对视图层次结构的复杂更改。 通过将 Activity 布局分成片段，您可以在运行时修改 Activity 的外观，并在由 Activity 管理的返回栈中保留这些更改。">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
-}
-</script>
-<style>
-    :root {
-      --sys-font-family: "Noto Serif SC";
-      --zh-font-family: "Noto Serif SC";
-      --base-font-family: "Noto Serif SC";
-      --code-font-family: "Noto Serif SC";
-      --article-font-family: "Noto Serif SC";
-    }
-  </style>
+<meta name="twitter:description" content="Fragment Fragment 表示 Activity 中的行为或用户界面部分。您可以将多个片段组合在一个 Activity 中来构建多窗格 UI，以及在多个 Activity 中重复使用某个片段。您可以将片段视为 Activity 的模块化组成部分，它具有自己的生命周期，能接收自己的输入事件，并且您可以在 Activity 运行时添加或移除片段（有点像您可以在不同 Activity 中重复使用的“子 Activity”）。 片段必须始终嵌入在 Activity 中，其生命周期直接受宿主 Activity 生命周期的影响。 例如，当 Activity 暂停时，其中的所有片段也会暂停；当 Activity 被销毁时，所有片段也会被销毁。 不过，当 Activity 正在运行（处于已恢复生命周期状态）时，您可以独立操纵每个片段，如添加或移除它们。 当您执行此类片段事务时，您也可以将其添加到由 Activity 管理的返回栈 — Activity 中的每个返回栈条目都是一条已发生片段事务的记录。 返回栈让用户可以通过按返回按钮撤消片段事务（后退）。 当您将片段作为 Activity 布局的一部分添加时，它存在于 Activity 视图层次结构的某个 ViewGroup 内部，并且片段会定义其自己的视图布局。您可以通过在 Activity 的布局文件中声明片段，将其作为 元素插入您的 Activity 布局中，或者通过将其添加到某个现有 ViewGroup，利用应用代码进行插入。不过，片段并非必须成为 Activity 布局的一部分； 本文描述如何在开发您的应用时使用片段，包括将片段添加到 Activity 返回栈时如何保持其状态、如何与 Activity 及 Activity 中的其他片段共享事件、如何为 Activity 的操作栏发挥作用等等。 1. 设计原理 Android 在 Android 3.0（API 级别 11）中引入了片段，主要是为了给大屏幕（如平板电脑）上更加动态和灵活的 UI 设计提供支持。由于平板电脑的屏幕比手机屏幕大得多，因此可用于组合和交换 UI 组件的空间更大。利用片段实现此类设计时，您无需管理对视图层次结构的复杂更改。 通过将 Activity 布局分成片段，您可以在运行时修改 Activity 的外观，并在由 Activity 管理的返回栈中保留这些更改。">
   
-  <script>
-    (function () {
-      const customFont = document.createElement("link");
-      customFont.href =
-        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
   
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-  
-      document.head.appendChild(customFont);
-    })();
-  </script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
-     crossorigin="anonymous"></script>
-  
-
-<script>
-    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
 
 
     </head>
@@ -131,7 +92,7 @@ if (!doNotTrack) {
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
             <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -192,13 +153,32 @@ if (!doNotTrack) {
 
 
                 
-                <span>主页</span>
+                <span>Home</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/archives' >
+            <a href='/pages/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/archives/' >
                 
                 
                 
@@ -212,16 +192,54 @@ if (!doNotTrack) {
 
 
                 
-                <span>归档</span>
+                <span>Archives</span>
             </a>
         </li>
         
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -229,7 +247,7 @@ if (!doNotTrack) {
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -237,10 +255,11 @@ if (!doNotTrack) {
 
 
 
-                    <span>Dark Mode</span>
-                </li>
-            
-        </div>
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -351,16 +370,16 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="fragment">Fragment</h1>
-<p>Fragment 表示 Activity 中的行为或用户界面部分。您可以将多个片段组合在一个 Activity 中来构建多窗格 UI，以及在多个 Activity 中重复使用某个片段。您可以将片段视为 Activity 的模块化组成部分，它具有自己的生命周期，能接收自己的输入事件，并且您可以在 Activity 运行时添加或移除片段（有点像您可以在不同 Activity 中重复使用的“子 Activity”）。</p>
+    <h1 id="fragment">Fragment
+</h1><p>Fragment 表示 Activity 中的行为或用户界面部分。您可以将多个片段组合在一个 Activity 中来构建多窗格 UI，以及在多个 Activity 中重复使用某个片段。您可以将片段视为 Activity 的模块化组成部分，它具有自己的生命周期，能接收自己的输入事件，并且您可以在 Activity 运行时添加或移除片段（有点像您可以在不同 Activity 中重复使用的“子 Activity”）。</p>
 <p>片段必须始终嵌入在 Activity 中，其生命周期直接受宿主 Activity 生命周期的影响。 例如，当 Activity 暂停时，其中的所有片段也会暂停；当 Activity 被销毁时，所有片段也会被销毁。 不过，当 Activity 正在运行（处于已恢复生命周期状态）时，您可以独立操纵每个片段，如添加或移除它们。 当您执行此类片段事务时，您也可以将其添加到由 Activity 管理的返回栈 — Activity 中的每个返回栈条目都是一条已发生片段事务的记录。 返回栈让用户可以通过按返回按钮撤消片段事务（后退）。</p>
 <p>当您将片段作为 Activity 布局的一部分添加时，它存在于 Activity 视图层次结构的某个 ViewGroup 内部，并且片段会定义其自己的视图布局。您可以通过在 Activity 的布局文件中声明片段，将其作为 元素插入您的 Activity 布局中，或者通过将其添加到某个现有 ViewGroup，利用应用代码进行插入。不过，片段并非必须成为 Activity 布局的一部分；</p>
 <p>本文描述如何在开发您的应用时使用片段，包括将片段添加到 Activity 返回栈时如何保持其状态、如何与 Activity 及 Activity 中的其他片段共享事件、如何为 Activity 的操作栏发挥作用等等。</p>
-<h2 id="1-设计原理">1. 设计原理</h2>
-<p>Android 在 Android 3.0（API 级别 11）中引入了片段，主要是为了给大屏幕（如平板电脑）上更加动态和灵活的 UI 设计提供支持。由于平板电脑的屏幕比手机屏幕大得多，因此可用于组合和交换 UI 组件的空间更大。利用片段实现此类设计时，您无需管理对视图层次结构的复杂更改。 通过将 Activity 布局分成片段，您可以在运行时修改 Activity 的外观，并在由 Activity 管理的返回栈中保留这些更改。</p>
+<h2 id="1-设计原理">1. 设计原理
+</h2><p>Android 在 Android 3.0（API 级别 11）中引入了片段，主要是为了给大屏幕（如平板电脑）上更加动态和灵活的 UI 设计提供支持。由于平板电脑的屏幕比手机屏幕大得多，因此可用于组合和交换 UI 组件的空间更大。利用片段实现此类设计时，您无需管理对视图层次结构的复杂更改。 通过将 Activity 布局分成片段，您可以在运行时修改 Activity 的外观，并在由 Activity 管理的返回栈中保留这些更改。</p>
 <p>例如，新闻应用可以使用一个片段在左侧显示文章列表，使用另一个片段在右侧显示文章 — 两个片段并排显示在一个 Activity 中，每个片段都具有自己的一套生命周期回调方法，并各自处理自己的用户输入事件。 因此，用户不需要使用一个 Activity 来选择文章，然后使用另一个 Activity 来阅读文章，而是可以在同一个 Activity 内选择文章并进行阅读，如图 1 中的平板电脑布局所示。</p>
 <p>您应该将每个片段都设计为可重复使用的模块化 Activity 组件。也就是说，由于每个片段都会通过各自的生命周期回调来定义其自己的布局和行为，您可以将一个片段加入多个 Activity，因此，您应该采用可复用式设计，避免直接从某个片段直接操纵另一个片段。 这特别重要，因为模块化片段让您可以通过更改片段的组合方式来适应不同的屏幕尺寸。 在设计可同时支持平板电脑和手机的应用时，您可以在不同的布局配置中重复使用您的片段，以根据可用的屏幕空间优化用户体验。 例如，在手机上，如果不能在同一 Activity 内储存多个片段，可能必须利用单独片段来实现单窗格 UI。</p>
-<p><img src="/../.gitbook/assets/fragments%20%281%29%20%281%29%20%281%29%20%281%29%20%281%29%20%281%29.png"
+<p><img src="/.gitbook/assets/fragments%20%281%29%20%281%29%20%281%29%20%281%29%20%281%29%20%281%29.png"
 	
 	
 	
@@ -371,8 +390,8 @@ if (!doNotTrack) {
 	
 ></p>
 <p>例如 — 仍然以新闻应用为例 — 在平板电脑尺寸的设备上运行时，该应用可以在 Activity A 中嵌入两个片段。 不过，在手机尺寸的屏幕上，没有足以储存两个片段的空间，因此Activity A 只包括用于显示文章列表的片段，当用户选择文章时，它会启动Activity B，其中包括用于阅读文章的第二个片段。 因此，应用可通过重复使用不同组合的片段来同时支持平板电脑和手机，如图 1 所示。</p>
-<h2 id="2-创建fragment">2. 创建Fragment</h2>
-<p>要想创建片段，您必须创建 Fragment 的子类（或已有其子类）。Fragment 类的代码与 Activity 非常相似。它包含与 Activity 类似的回调方法，如 onCreate()、onStart()、onPause() 和 onStop()。实际上，如果您要将现有 Android 应用转换为使用片段，可能只需将代码从 Activity 的回调方法移入片段相应的回调方法中。</p>
+<h2 id="2-创建fragment">2. 创建Fragment
+</h2><p>要想创建片段，您必须创建 Fragment 的子类（或已有其子类）。Fragment 类的代码与 Activity 非常相似。它包含与 Activity 类似的回调方法，如 onCreate()、onStart()、onPause() 和 onStop()。实际上，如果您要将现有 Android 应用转换为使用片段，可能只需将代码从 Activity 的回调方法移入片段相应的回调方法中。</p>
 <p>通常，您至少应实现以下生命周期方法：</p>
 <ul>
 <li>
@@ -386,7 +405,7 @@ if (!doNotTrack) {
 <p>大多数应用都应该至少为每个片段实现这三个方法，但您还应该使用几种其他回调方法来处理片段生命周期的各个阶段。 处理片段生命周期部分对所有生命周期回调方法做了更详尽的阐述。</p>
 </li>
 </ul>
-<p><img src="/../.gitbook/assets/fragment%5c_lifecycle%20%281%29.png"
+<p><img src="/.gitbook/assets/fragment%5c_lifecycle%20%281%29.png"
 	
 	
 	
@@ -402,8 +421,8 @@ if (!doNotTrack) {
 <li>ListFragment：显示由适配器（如 SimpleCursorAdapter）管理的一系列项目，类似于 ListActivity。它提供了几种管理列表视图的方法，如用于处理点击事件的 onListItemClick() 回调。</li>
 <li>PreferenceFragment：以列表形式显示 Preference 对象的层次结构，类似于 PreferenceActivity。这在为您的应用创建“设置” Activity 时很有用处。</li>
 </ul>
-<h3 id="21-添加用户界面">2.1 添加用户界面</h3>
-<p>fragment通常用作 Activity 用户界面的一部分，将其自己的布局融入 Activity。</p>
+<h3 id="21-添加用户界面">2.1 添加用户界面
+</h3><p>fragment通常用作 Activity 用户界面的一部分，将其自己的布局融入 Activity。</p>
 <p>要想为片段提供布局，您必须实现 onCreateView() 回调方法，Android 系统会在<code>fragment</code>需要绘制其布局时调用该方法。您对此方法的实现返回的 View 必须是片段布局的根视图。</p>
 <blockquote>
 <p>注：如果您的片段是 ListFragment 的子类，则默认实现会从 onCreateView() 返回一个 ListView，因此您无需实现它。</p>
@@ -446,10 +465,10 @@ if (!doNotTrack) {
 <p>现在，您已经了解了如何创建提供布局的片段。接下来，您需要将该片段添加到您的 Activity 中。</p>
 </li>
 </ul>
-<h3 id="22-向-activity-添加片段">2.2 向 Activity 添加片段</h3>
-<p>通常，片段向宿主 Activity 贡献一部分 UI，作为 Activity 总体视图层次结构的一部分嵌入到 Activity 中。可以通过两种方式向 Activity 布局添加片段：</p>
-<h4 id="1-在-activity-的布局文件内声明片段">1. 在 Activity 的布局文件内声明片段</h4>
-<p>在本例中，您可以将片段当作视图来为其指定布局属性。 例如，以下是一个具有两个片段的 Activity 的布局文件：</p>
+<h3 id="22-向-activity-添加片段">2.2 向 Activity 添加片段
+</h3><p>通常，片段向宿主 Activity 贡献一部分 UI，作为 Activity 总体视图层次结构的一部分嵌入到 Activity 中。可以通过两种方式向 Activity 布局添加片段：</p>
+<h4 id="1-在-activity-的布局文件内声明片段">1. 在 Activity 的布局文件内声明片段
+</h4><p>在本例中，您可以将片段当作视图来为其指定布局属性。 例如，以下是一个具有两个片段的 Activity 的布局文件：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -497,8 +516,8 @@ if (!doNotTrack) {
 <li>如果您未给以上两个属性提供值，系统会使用容器视图的 ID。</li>
 </ul>
 </blockquote>
-<h4 id="2或者通过编程方式将片段添加到某个现有-viewgroup">2.或者通过编程方式将片段添加到某个现有 ViewGroup</h4>
-<p>您可以在 Activity 运行期间随时将片段添加到 Activity 布局中。您只需指定要将片段放入哪个 ViewGroup。 要想在您的 Activity 中执行片段事务（如添加、移除或替换片段），您必须使用 FragmentTransaction 中的 API。您可以像下面这样从 Activity 获取一个 FragmentTransaction 实例：</p>
+<h4 id="2或者通过编程方式将片段添加到某个现有-viewgroup">2.或者通过编程方式将片段添加到某个现有 ViewGroup
+</h4><p>您可以在 Activity 运行期间随时将片段添加到 Activity 布局中。您只需指定要将片段放入哪个 ViewGroup。 要想在您的 Activity 中执行片段事务（如添加、移除或替换片段），您必须使用 FragmentTransaction 中的 API。您可以像下面这样从 Activity 获取一个 FragmentTransaction 实例：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -523,18 +542,18 @@ if (!doNotTrack) {
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>传递到 add() 的第一个参数是 ViewGroup，即应该放置片段的位置，由资源 ID 指定，第二个参数是要添加的片段。 一旦您通过 FragmentTransaction 做出了更改，就必须调用 commit() 以使更改生效。</p>
-<h4 id="添加没有-ui-的片段">添加没有 UI 的片段</h4>
-<p>上例展示了如何向您的 Activity 添加片段以提供 UI。不过，您还可以使用片段为 Activity 提供后台行为，而不显示额外 UI。</p>
+<h4 id="添加没有-ui-的片段">添加没有 UI 的片段
+</h4><p>上例展示了如何向您的 Activity 添加片段以提供 UI。不过，您还可以使用片段为 Activity 提供后台行为，而不显示额外 UI。</p>
 <p>要想添加没有 UI 的片段，请使用 add(Fragment, String) 从 Activity 添加片段（为片段提供一个唯一的字符串“标记”，而不是视图 ID）。 这会添加片段，但由于它并不与 Activity 布局中的视图关联，因此不会收到对 onCreateView() 的调用。因此，您不需要实现该方法。</p>
 <p>并非只能为非 UI 片段提供字符串标记 — 您也可以为具有 UI 的片段提供字符串标记 — 但如果片段没有 UI，则字符串标记将是标识它的唯一方式。如果您想稍后从 Activity 中获取片段，则需要使用 findFragmentByTag()。</p>
 <p>如需查看将没有 UI 的片段用作后台工作线程的示例 Activity，请参阅 FragmentRetainInstance.java 示例，该示例包括在 SDK 示例（通过 Android SDK 管理器提供）中，以 /APIDemos/app/src/main/java/com/example/android/apis/app/FragmentRetainInstance.java 形式位于您的系统中。</p>
-<h2 id="3-管理片段">3. 管理片段</h2>
-<p>要想管理您的 Activity 中的片段，您需要使用 FragmentManager。要想获取它，请从您的 Activity 调用 getFragmentManager()。</p>
+<h2 id="3-管理片段">3. 管理片段
+</h2><p>要想管理您的 Activity 中的片段，您需要使用 FragmentManager。要想获取它，请从您的 Activity 调用 getFragmentManager()。</p>
 <p>您可以使用 FragmentManager 执行的操作包括：</p>
 <p>通过 findFragmentById()（对于在 Activity 布局中提供 UI 的片段）或 findFragmentByTag()（对于提供或不提供 UI 的片段）获取 Activity 中存在的片段。 通过 popBackStack()（模拟用户发出的返回命令）将片段从返回栈中弹出。 通过 addOnBackStackChangedListener() 注册一个侦听返回栈变化的侦听器。 如需了解有关这些方法以及其他方法的详细信息，请参阅 FragmentManager 类文档。</p>
 <p>如上文所示，您也可以使用 FragmentManager 打开一个 FragmentTransaction，通过它来执行某些事务，如添加和移除片段。</p>
-<h2 id="4-执行片段事务">4. 执行片段事务</h2>
-<p>在 Activity 中使用片段的一大优点是，可以根据用户行为通过它们执行添加、移除、替换以及其他操作。 您提交给 Activity 的每组更改都称为事务，您可以使用 FragmentTransaction 中的 API 来执行一项事务。您也可以将每个事务保存到由 Activity 管理的返回栈内，从而让用户能够回退片段更改（类似于回退 Activity）。</p>
+<h2 id="4-执行片段事务">4. 执行片段事务
+</h2><p>在 Activity 中使用片段的一大优点是，可以根据用户行为通过它们执行添加、移除、替换以及其他操作。 您提交给 Activity 的每组更改都称为事务，您可以使用 FragmentTransaction 中的 API 来执行一项事务。您也可以将每个事务保存到由 Activity 管理的返回栈内，从而让用户能够回退片段更改（类似于回退 Activity）。</p>
 <p>您可以像下面这样从 FragmentManager 获取一个 FragmentTransaction 实例：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -592,8 +611,8 @@ if (!doNotTrack) {
 <blockquote>
 <p>。</p>
 </blockquote>
-<h2 id="5-与-activity-通信">5. 与 Activity 通信</h2>
-<p>尽管 Fragment 是作为独立于 Activity 的对象实现，并且可在多个 Activity 内使用，但片段的给定实例会直接绑定到包含它的 Activity。</p>
+<h2 id="5-与-activity-通信">5. 与 Activity 通信
+</h2><p>尽管 Fragment 是作为独立于 Activity 的对象实现，并且可在多个 Activity 内使用，但片段的给定实例会直接绑定到包含它的 Activity。</p>
 <p>具体地说，片段可以通过 getActivity() 访问 Activity 实例，并轻松地执行在 Activity 布局中查找视图等任务。</p>
 <p>View listView = getActivity().findViewById(R.id.list); 同样地，您的 Activity 也可以使用 findFragmentById() 或 findFragmentByTag()，通过从 FragmentManager 获取对 Fragment 的引用来调用片段中的方法。例如：</p>
 <p>ExampleFragment fragment = (ExampleFragment) getFragmentManager().findFragmentById(R.id.example_fragment); 创建对 Activity 的事件回调 在某些情况下，您可能需要通过片段与 Activity 共享事件。执行此操作的一个好方法是，在片段内定义一个回调接口，并要求宿主 Activity 实现它。 当 Activity 通过该接口收到回调时，可以根据需要与布局中的其他片段共享这些信息。</p>
@@ -688,16 +707,16 @@ if (!doNotTrack) {
 </div>
 </div><p>传递到 onListItemClick() 的 id 参数是被点击项的行 ID，即 Activity（或其他片段）用来从应用的 ContentProvider 获取文章的 ID。</p>
 <p>内容提供程序文档中提供了有关内容提供程序用法的更多详情。</p>
-<h3 id="向应用栏添加项目">向应用栏添加项目</h3>
-<p>您的片段可以通过实现 onCreateOptionsMenu() 向 Activity 的选项菜单（并因此向应用栏）贡献菜单项。</p>
+<h3 id="向应用栏添加项目">向应用栏添加项目
+</h3><p>您的片段可以通过实现 onCreateOptionsMenu() 向 Activity 的选项菜单（并因此向应用栏）贡献菜单项。</p>
 <p>。</p>
 <p>您之后从片段添加到选项菜单的任何菜单项都将追加到现有菜单项之后。 选定菜单项时，片段还会收到对 onOptionsItemSelected() 的回调。</p>
 <p>您还可以通过调用 registerForContextMenu()，在片段布局中注册一个视图来提供上下文菜单。用户打开上下文菜单时，片段会收到对 onCreateContextMenu() 的调用。当用户选择某个菜单项时，片段会收到对 onContextItemSelected() 的调用。</p>
 <blockquote>
 <p>注：尽管您的片段会收到与其添加的每个菜单项对应的菜单项选定回调，但当用户选择菜单项时，Activity 会首先收到相应的回调。 如果 Activity 对菜单项选定回调的实现不会处理选定的菜单项，则系统会将事件传递到片段的回调。 这适用于选项菜单和上下文菜单。</p>
 </blockquote>
-<h2 id="6-处理片段生命周期">6. 处理片段生命周期</h2>
-<p><img src="https://github.com/malinkang/AndroidNote/tree/0934e36146072be0da558bff25ca14b172cdc515/assets/images/activity%5c_fragment%5c_lifecycle.png"
+<h2 id="6-处理片段生命周期">6. 处理片段生命周期
+</h2><p><img src="https://github.com/malinkang/AndroidNote/tree/0934e36146072be0da558bff25ca14b172cdc515/assets/images/activity%5c_fragment%5c_lifecycle.png"
 	
 	
 	
@@ -719,8 +738,8 @@ if (!doNotTrack) {
 <blockquote>
 <p>注意：如需 Fragment 内的某个 Context 对象，可以调用 getActivity()。但要注意，请仅在片段附加到 Activity 时调用 getActivity()。如果片段尚未附加，或在其生命周期结束期间分离，则 getActivity() 将返回 null。</p>
 </blockquote>
-<h3 id="与-activity-生命周期协调一致">与 Activity 生命周期协调一致</h3>
-<p>片段所在的 Activity 的生命周期会直接影响片段的生命周期，其表现为，Activity 的每次生命周期回调都会引发每个片段的类似回调。 例如，当 Activity 收到 onPause() 时，Activity 中的每个片段也会收到 onPause()。</p>
+<h3 id="与-activity-生命周期协调一致">与 Activity 生命周期协调一致
+</h3><p>片段所在的 Activity 的生命周期会直接影响片段的生命周期，其表现为，Activity 的每次生命周期回调都会引发每个片段的类似回调。 例如，当 Activity 收到 onPause() 时，Activity 中的每个片段也会收到 onPause()。</p>
 <p>不过，片段还有几个额外的生命周期回调，用于处理与 Activity 的唯一交互，以执行构建和销毁片段 UI 等操作。 这些额外的回调方法是：</p>
 <ul>
 <li>
@@ -742,8 +761,8 @@ if (!doNotTrack) {
 </ul>
 <p>一旦 Activity 达到恢复状态，您就可以随意向 Activity 添加片段和移除其中的片段。 因此，只有当 Activity 处于恢复状态时，片段的生命周期才能独立变化。</p>
 <p>不过，当 Activity 离开恢复状态时，片段会在 Activity 的推动下再次经历其生命周期。</p>
-<h2 id="7-示例">7. 示例</h2>
-<p>为了将本文阐述的所有内容融会贯通，以下提供了一个示例，其中的 Activity 使用两个片段来创建一个双窗格布局。 下面的 Activity 包括两个片段：一个用于显示莎士比亚戏剧标题列表，另一个用于从列表中选定戏剧时显示其摘要。 此外，它还展示了如何根据屏幕配置提供不同的片段配置。</p>
+<h2 id="7-示例">7. 示例
+</h2><p>为了将本文阐述的所有内容融会贯通，以下提供了一个示例，其中的 Activity 使用两个片段来创建一个双窗格布局。 下面的 Activity 包括两个片段：一个用于显示莎士比亚戏剧标题列表，另一个用于从列表中选定戏剧时显示其摘要。 此外，它还展示了如何根据屏幕配置提供不同的片段配置。</p>
 <p>注：FragmentLayout.java 中提供了此 Activity 的完整源代码。</p>
 <p>主 Activity 会在 onCreate() 期间以常规方式应用布局：</p>
 <div class="highlight"><div class="chroma">
@@ -1141,8 +1160,8 @@ if (!doNotTrack) {
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>请注意，如果配置为横向，则此 Activity 会自行完成，以便主 Activity 可以接管并沿 TitlesFragment 显示 DetailsFragment。如果用户在纵向显示时启动 DetailsActivity，但随后旋转为横向（这会重启当前 Activity），就可能出现这种情况。</p>
-<h2 id="参考">参考</h2>
-<ul>
+<h2 id="参考">参考
+</h2><ul>
 <li><a class="link" href="http://blog.csdn.net/mobilexu/article/details/11711865"  target="_blank" rel="noopener"
     >大话Fragment管理</a></li>
 </ul>
@@ -1241,7 +1260,7 @@ if (!doNotTrack) {
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 

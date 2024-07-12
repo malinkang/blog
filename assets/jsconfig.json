@@ -3,7 +3,7 @@
   "baseUrl": ".",
   "paths": {
    "*": [
-    "../themes/stack-mod/assets/*"
+    "../themes/stack/assets/*"
    ]
   }
  }

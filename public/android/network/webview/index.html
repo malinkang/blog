@@ -1,78 +1,36 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='WebView WebView常用方法 public void loadUrl (String url)
-1 2 3 4 5 6 7 8 9 10 //打开本包内asset目录下的test.html文件 loadUrl(&amp;#34;file:///android_asset/test.html&amp;#34;); //打开本地sd卡内的kris.html文件 loadUrl(&amp;#34;content://com.android.htmlfileprovider/sdcard/malinkang.html&amp;#34;); //打开指定URL的html文件 loadUrl(&amp;#34;http://malinkang.com/&amp;#34;); //使用loadUrl调用javascript方法 loadUrl(&amp;#34;javascript:test()&amp;#34;); //调用javascript方法传入参数 loadUrl(&amp;#34;javascript:test(\&amp;#34;hello\&amp;#34;)&amp;#34;); 有时候html可能需要从资源文件中加载图片
-1 &amp;lt;img src=&amp;#34;file:///android_res/drawable/a.png&amp;#34;&amp;gt; loadData(String data, String mimeType, String encoding)
-loadDataWithBaseURL(String baseUrl, String data, String mimeType, String encoding, String historyUrl)
-1 2 3 4 //加载字符串 4.0&#43;没有问题，2.3下乱码 loadData(htmlStr, &amp;#34;text/html;charset=utf-8&amp;#34;,null); //4.0&#43;和2.3都没有问题 loadDataWithBaseURL(null, htmlStr,&amp;#34;text/html&amp;#34;, &amp;#34;utf-8&amp;#34;, null); public String getTitle()：获取当前页面的title WebChromeClient WebChromeClient是辅助WebView处理Javascript的对话框,网站图标,网站title等。常用方法如下：
-public void onProgressChanged(WebView view, int newProgress) {}：告诉应用网页加载进度 WebView源码分析 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 //WebView的所有操作都是通过调用Provider相应的方法 private WebViewProvider mProvider; //创建WebViewProvider private void ensureProviderCreated() { checkThread(); if (mProvider == null) { // As this can get called during the base class constructor chain, pass the minimum // number of dependencies here; the rest are deferred to init().'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="WebView WebView常用方法 public void loadUrl (String url) 1 2 3 4 5 6 7 8 9 10 //打开本包内asset目录下的test.html文件 loadUrl(&#34;file:///android_asset/test.html&#34;); //打开本地sd卡内的kris.html文件 loadUrl(&#34;content://com.android.htmlfileprovider/sdcard/malinkang.html&#34;); //打开指定URL的html文件 loadUrl(&#34;http://malinkang.com/&#34;); //使用loadUrl调用javascript方法 loadUrl(&#34;javascript:test()&#34;); //调用javascript方法传入参数 loadUrl(&#34;javascript:test(\\&#34;hello\\&#34;)&#34;); 有时候html可能需要从资源文件中加载图片 1 &lt;img src=&#34;file:///android_res/drawable/a.png&#34;&gt; loadData(String data, String mimeType, String encoding) loadDataWithBaseURL(String baseUrl, String data, String mimeType, String encoding, String historyUrl) 1 2 3 4 //加载字符串 4.0+没有问题，2.3下乱码 loadData(htmlStr, &#34;text/html;charset=utf-8&#34;,null); //4.0+和2.3都没有问题 loadDataWithBaseURL(null, htmlStr,&#34;text/html&#34;, &#34;utf-8&#34;, null); public String getTitle()：获取当前页面的title WebChromeClient WebChromeClient是辅助WebView处理Javascript的对话框,网站图标,网站title等。常用方法如下： public void onProgressChanged(WebView view, int newProgress) {}：告诉应用网页加载进度 WebView源码分析 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 //WebView的所有操作都是通过调用Provider相应的方法 private WebViewProvider mProvider; //创建WebViewProvider private void ensureProviderCreated() { checkThread(); if (mProvider == null) { // As this can get called during the base class constructor chain, pass the minimum // number of dependencies here; the rest are deferred to init().">
 <title></title>
 
-<link rel='canonical' href='https://example.com/android/network/webview/'>
+<link rel='canonical' href='http://localhost:1313/android/network/webview/'>
 
-<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
-<meta property='og:description' content='WebView WebView常用方法 public void loadUrl (String url)
-1 2 3 4 5 6 7 8 9 10 //打开本包内asset目录下的test.html文件 loadUrl(&amp;#34;file:///android_asset/test.html&amp;#34;); //打开本地sd卡内的kris.html文件 loadUrl(&amp;#34;content://com.android.htmlfileprovider/sdcard/malinkang.html&amp;#34;); //打开指定URL的html文件 loadUrl(&amp;#34;http://malinkang.com/&amp;#34;); //使用loadUrl调用javascript方法 loadUrl(&amp;#34;javascript:test()&amp;#34;); //调用javascript方法传入参数 loadUrl(&amp;#34;javascript:test(\&amp;#34;hello\&amp;#34;)&amp;#34;); 有时候html可能需要从资源文件中加载图片
-1 &amp;lt;img src=&amp;#34;file:///android_res/drawable/a.png&amp;#34;&amp;gt; loadData(String data, String mimeType, String encoding)
-loadDataWithBaseURL(String baseUrl, String data, String mimeType, String encoding, String historyUrl)
-1 2 3 4 //加载字符串 4.0&#43;没有问题，2.3下乱码 loadData(htmlStr, &amp;#34;text/html;charset=utf-8&amp;#34;,null); //4.0&#43;和2.3都没有问题 loadDataWithBaseURL(null, htmlStr,&amp;#34;text/html&amp;#34;, &amp;#34;utf-8&amp;#34;, null); public String getTitle()：获取当前页面的title WebChromeClient WebChromeClient是辅助WebView处理Javascript的对话框,网站图标,网站title等。常用方法如下：
-public void onProgressChanged(WebView view, int newProgress) {}：告诉应用网页加载进度 WebView源码分析 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 //WebView的所有操作都是通过调用Provider相应的方法 private WebViewProvider mProvider; //创建WebViewProvider private void ensureProviderCreated() { checkThread(); if (mProvider == null) { // As this can get called during the base class constructor chain, pass the minimum // number of dependencies here; the rest are deferred to init().'>
-<meta property='og:url' content='https://example.com/android/network/webview/'>
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<meta property='og:description' content="WebView WebView常用方法 public void loadUrl (String url) 1 2 3 4 5 6 7 8 9 10 //打开本包内asset目录下的test.html文件 loadUrl(&#34;file:///android_asset/test.html&#34;); //打开本地sd卡内的kris.html文件 loadUrl(&#34;content://com.android.htmlfileprovider/sdcard/malinkang.html&#34;); //打开指定URL的html文件 loadUrl(&#34;http://malinkang.com/&#34;); //使用loadUrl调用javascript方法 loadUrl(&#34;javascript:test()&#34;); //调用javascript方法传入参数 loadUrl(&#34;javascript:test(\\&#34;hello\\&#34;)&#34;); 有时候html可能需要从资源文件中加载图片 1 &lt;img src=&#34;file:///android_res/drawable/a.png&#34;&gt; loadData(String data, String mimeType, String encoding) loadDataWithBaseURL(String baseUrl, String data, String mimeType, String encoding, String historyUrl) 1 2 3 4 //加载字符串 4.0+没有问题，2.3下乱码 loadData(htmlStr, &#34;text/html;charset=utf-8&#34;,null); //4.0+和2.3都没有问题 loadDataWithBaseURL(null, htmlStr,&#34;text/html&#34;, &#34;utf-8&#34;, null); public String getTitle()：获取当前页面的title WebChromeClient WebChromeClient是辅助WebView处理Javascript的对话框,网站图标,网站title等。常用方法如下： public void onProgressChanged(WebView view, int newProgress) {}：告诉应用网页加载进度 WebView源码分析 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 //WebView的所有操作都是通过调用Provider相应的方法 private WebViewProvider mProvider; //创建WebViewProvider private void ensureProviderCreated() { checkThread(); if (mProvider == null) { // As this can get called during the base class constructor chain, pass the minimum // number of dependencies here; the rest are deferred to init().">
+<meta property='og:url' content='http://localhost:1313/android/network/webview/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="WebView WebView常用方法 public void loadUrl (String url)
-1 2 3 4 5 6 7 8 9 10 //打开本包内asset目录下的test.html文件 loadUrl(&amp;#34;file:///android_asset/test.html&amp;#34;); //打开本地sd卡内的kris.html文件 loadUrl(&amp;#34;content://com.android.htmlfileprovider/sdcard/malinkang.html&amp;#34;); //打开指定URL的html文件 loadUrl(&amp;#34;http://malinkang.com/&amp;#34;); //使用loadUrl调用javascript方法 loadUrl(&amp;#34;javascript:test()&amp;#34;); //调用javascript方法传入参数 loadUrl(&amp;#34;javascript:test(\&amp;#34;hello\&amp;#34;)&amp;#34;); 有时候html可能需要从资源文件中加载图片
-1 &amp;lt;img src=&amp;#34;file:///android_res/drawable/a.png&amp;#34;&amp;gt; loadData(String data, String mimeType, String encoding)
-loadDataWithBaseURL(String baseUrl, String data, String mimeType, String encoding, String historyUrl)
-1 2 3 4 //加载字符串 4.0&#43;没有问题，2.3下乱码 loadData(htmlStr, &amp;#34;text/html;charset=utf-8&amp;#34;,null); //4.0&#43;和2.3都没有问题 loadDataWithBaseURL(null, htmlStr,&amp;#34;text/html&amp;#34;, &amp;#34;utf-8&amp;#34;, null); public String getTitle()：获取当前页面的title WebChromeClient WebChromeClient是辅助WebView处理Javascript的对话框,网站图标,网站title等。常用方法如下：
-public void onProgressChanged(WebView view, int newProgress) {}：告诉应用网页加载进度 WebView源码分析 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 //WebView的所有操作都是通过调用Provider相应的方法 private WebViewProvider mProvider; //创建WebViewProvider private void ensureProviderCreated() { checkThread(); if (mProvider == null) { // As this can get called during the base class constructor chain, pass the minimum // number of dependencies here; the rest are deferred to init().">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
-}
-</script>
-<style>
-    :root {
-      --sys-font-family: "Noto Serif SC";
-      --zh-font-family: "Noto Serif SC";
-      --base-font-family: "Noto Serif SC";
-      --code-font-family: "Noto Serif SC";
-      --article-font-family: "Noto Serif SC";
-    }
-  </style>
+<meta name="twitter:description" content="WebView WebView常用方法 public void loadUrl (String url) 1 2 3 4 5 6 7 8 9 10 //打开本包内asset目录下的test.html文件 loadUrl(&#34;file:///android_asset/test.html&#34;); //打开本地sd卡内的kris.html文件 loadUrl(&#34;content://com.android.htmlfileprovider/sdcard/malinkang.html&#34;); //打开指定URL的html文件 loadUrl(&#34;http://malinkang.com/&#34;); //使用loadUrl调用javascript方法 loadUrl(&#34;javascript:test()&#34;); //调用javascript方法传入参数 loadUrl(&#34;javascript:test(\\&#34;hello\\&#34;)&#34;); 有时候html可能需要从资源文件中加载图片 1 &lt;img src=&#34;file:///android_res/drawable/a.png&#34;&gt; loadData(String data, String mimeType, String encoding) loadDataWithBaseURL(String baseUrl, String data, String mimeType, String encoding, String historyUrl) 1 2 3 4 //加载字符串 4.0+没有问题，2.3下乱码 loadData(htmlStr, &#34;text/html;charset=utf-8&#34;,null); //4.0+和2.3都没有问题 loadDataWithBaseURL(null, htmlStr,&#34;text/html&#34;, &#34;utf-8&#34;, null); public String getTitle()：获取当前页面的title WebChromeClient WebChromeClient是辅助WebView处理Javascript的对话框,网站图标,网站title等。常用方法如下： public void onProgressChanged(WebView view, int newProgress) {}：告诉应用网页加载进度 WebView源码分析 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 //WebView的所有操作都是通过调用Provider相应的方法 private WebViewProvider mProvider; //创建WebViewProvider private void ensureProviderCreated() { checkThread(); if (mProvider == null) { // As this can get called during the base class constructor chain, pass the minimum // number of dependencies here; the rest are deferred to init().">
   
-  <script>
-    (function () {
-      const customFont = document.createElement("link");
-      customFont.href =
-        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
   
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-  
-      document.head.appendChild(customFont);
-    })();
-  </script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
-     crossorigin="anonymous"></script>
-  
-
-<script>
-    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
 
 
     </head>
@@ -134,7 +92,7 @@ if (!doNotTrack) {
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
             <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -195,13 +153,32 @@ if (!doNotTrack) {
 
 
                 
-                <span>主页</span>
+                <span>Home</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/archives' >
+            <a href='/pages/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/archives/' >
                 
                 
                 
@@ -215,16 +192,54 @@ if (!doNotTrack) {
 
 
                 
-                <span>归档</span>
+                <span>Archives</span>
             </a>
         </li>
         
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -232,7 +247,7 @@ if (!doNotTrack) {
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -240,10 +255,11 @@ if (!doNotTrack) {
 
 
 
-                    <span>Dark Mode</span>
-                </li>
-            
-        </div>
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -331,9 +347,9 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="webview">WebView</h1>
-<h2 id="webview常用方法">WebView常用方法</h2>
-<ul>
+    <h1 id="webview">WebView
+</h1><h2 id="webview常用方法">WebView常用方法
+</h2><ul>
 <li>
 <p>public void loadUrl (String url)</p>
 <div class="highlight"><div class="chroma">
@@ -396,13 +412,13 @@ if (!doNotTrack) {
 </div><ul>
 <li>public String getTitle()：获取当前页面的title</li>
 </ul>
-<h2 id="webchromeclient">WebChromeClient</h2>
-<p><code>WebChromeClient</code>是辅助<code>WebView</code>处理<code>Javascript</code>的对话框,网站图标,网站title等。常用方法如下：</p>
+<h2 id="webchromeclient">WebChromeClient
+</h2><p><code>WebChromeClient</code>是辅助<code>WebView</code>处理<code>Javascript</code>的对话框,网站图标,网站title等。常用方法如下：</p>
 <ul>
 <li>public void onProgressChanged(WebView view, int newProgress) {}：告诉应用网页加载进度</li>
 </ul>
-<h2 id="webview源码分析">WebView源码分析</h2>
-<div class="highlight"><div class="chroma">
+<h2 id="webview源码分析">WebView源码分析
+</h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -586,8 +602,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="更多阅读">更多阅读</h2>
-<ul>
+</div><h2 id="更多阅读">更多阅读
+</h2><ul>
 <li><a class="link" href="https://tech.meituan.com/2017/06/09/webviewperf.html"  target="_blank" rel="noopener"
     >美团WebView性能、体验分析与优化</a></li>
 <li><a class="link" href="https://mp.weixin.qq.com/s/Xqr6rQBbx7XPoBESEFuXJw"  target="_blank" rel="noopener"
@@ -698,7 +714,7 @@ if (!doNotTrack) {
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 

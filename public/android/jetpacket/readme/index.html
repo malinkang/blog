@@ -1,63 +1,36 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Jetpack 学习资料整理 Android 生命周期备忘录 — 第一部分：单一 Activities Android 生命周期备忘录 — 第二部分：多 Activity Android 生命周期备忘录 — 第三部分：Fragments 来 GitHub 参与 Jetpack 开源协作！ 聚焦 Android 11: Jetpack 划重点 | Android Jetpack 三大重要更新！ Android Jetpack 助推应用开发 | 中文字幕视频介绍 Android Sunflower 带您玩转 Jetpack 把 &amp;ldquo;格子衫&amp;rdquo; 改造得更时尚 | Kotlin &amp;amp; Jetpack 最佳实践技巧 Lifecycle LiveData Android Jetpack: LiveData 和 Lifecycle 介绍 | 中文教学视频 架构组件之 ViewModel | 中文教学视频 Android Jetpack: Room | 中文教学视频 Android Jetpack: 分页库 (Paging Library) | 中文教学视频 Android Jetpack WorkManager | Android 中文教学视频 Android Jetpack 导航组件 | Android 中文教学视频 Android Jetpack: LiveData 和 Lifecycle 介绍 | 中文教学视频 两步使用 LiveData 替换 Observable Field 理解协程、LiveData 和 Flow LiveData with Coroutines and Flow — Part I: Reactive UIs LiveData with Coroutines and Flow — Part II: Launching coroutines with Architecture Components LiveData with Coroutines and Flow — Part III: LiveData and coroutines patterns Jetpack Compose ViewModel Compose 学习计划 现代 Android 开发: 利用 Jetpack Compose 及更多精彩功能！ 深入详解 Jetpack Compose | 实现原理 深入详解 Jetpack Compose | 优化 UI 构建 Jetpack Compose Alpha 版现已发布！ 知识点 | ViewModel 四种集成方式 Android Jetpack: ViewModel | 中文教学视频 Paging Android Jetpack: 分页库 (Paging Library) | 中文教学视频 Room 实战 | 在 Room 中使用 Flow Room 中的数据库关系 Android Jetpack: Room | 中文教学视频 Android Room with a View - Kotlin WorkManager 自定义 WorkManager —— 基础概念 WorkManager: 周期性任务 使用 Dagger 自定义 WorkManager Android Jetpack WorkManager | Android 中文教学视频 Compose What&amp;rsquo;s New in Jetpack Compose (Android Dev Summit &amp;lsquo;19) 深入详解 Jetpack Compose | 实现原理 深入详解 Jetpack Compose | 优化 UI 构建 现代 Android 开发: 利用 Jetpack Compose 及更多精彩功能！ CameraX Android Jetpack CameraX 库 Beta 版正式发布！ Jetpack Security 使用 Jetpack Security 在 Android 上进行数据加密 使用 PreviewView 来展示相机预览 App Startup Android Jetpack组件之App Startup '>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Jetpack 学习资料整理 Android 生命周期备忘录\u200a—\u200a第一部分：单一 Activities Android 生命周期备忘录\u200a—\u200a第二部分：多 Activity Android 生命周期备忘录\u200a—\u200a第三部分：Fragments 来 GitHub 参与 Jetpack 开源协作！ 聚焦 Android 11: Jetpack 划重点 | Android Jetpack 三大重要更新！ Android Jetpack 助推应用开发 | 中文字幕视频介绍 Android Sunflower 带您玩转 Jetpack 把 &ldquo;格子衫&rdquo; 改造得更时尚 | Kotlin &amp; Jetpack 最佳实践技巧 Lifecycle LiveData Android Jetpack: LiveData 和 Lifecycle 介绍 | 中文教学视频 架构组件之 ViewModel | 中文教学视频 Android Jetpack: Room | 中文教学视频 Android Jetpack: 分页库 (Paging Library) | 中文教学视频 Android Jetpack WorkManager | Android 中文教学视频 Android Jetpack 导航组件 | Android 中文教学视频 Android Jetpack: LiveData 和 Lifecycle 介绍 | 中文教学视频 两步使用 LiveData 替换 Observable Field 理解协程、LiveData 和 Flow LiveData with Coroutines and Flow — Part I: Reactive UIs LiveData with Coroutines and Flow — Part II: Launching coroutines with Architecture Components LiveData with Coroutines and Flow — Part III: LiveData and coroutines patterns Jetpack Compose ViewModel Compose 学习计划 现代 Android 开发: 利用 Jetpack Compose 及更多精彩功能！ 深入详解 Jetpack Compose | 实现原理 深入详解 Jetpack Compose | 优化 UI 构建 Jetpack Compose Alpha 版现已发布！ 知识点 | ViewModel 四种集成方式 Android Jetpack: ViewModel | 中文教学视频 Paging Android Jetpack: 分页库 (Paging Library) | 中文教学视频 Room 实战 | 在 Room 中使用 Flow Room 中的数据库关系 Android Jetpack: Room | 中文教学视频 Android Room with a View - Kotlin WorkManager 自定义 WorkManager —— 基础概念 WorkManager: 周期性任务 使用 Dagger 自定义 WorkManager Android Jetpack WorkManager | Android 中文教学视频 Compose What&rsquo;s New in Jetpack Compose (Android Dev Summit &lsquo;19) 深入详解 Jetpack Compose | 实现原理 深入详解 Jetpack Compose | 优化 UI 构建 现代 Android 开发: 利用 Jetpack Compose 及更多精彩功能！ CameraX Android Jetpack CameraX 库 Beta 版正式发布！ Jetpack Security 使用 Jetpack Security 在 Android 上进行数据加密 使用 PreviewView 来展示相机预览 App Startup Android Jetpack组件之App Startup ">
 <title></title>
 
-<link rel='canonical' href='https://example.com/android/jetpacket/readme/'>
+<link rel='canonical' href='http://localhost:1313/android/jetpacket/readme/'>
 
-<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
-<meta property='og:description' content='Jetpack 学习资料整理 Android 生命周期备忘录 — 第一部分：单一 Activities Android 生命周期备忘录 — 第二部分：多 Activity Android 生命周期备忘录 — 第三部分：Fragments 来 GitHub 参与 Jetpack 开源协作！ 聚焦 Android 11: Jetpack 划重点 | Android Jetpack 三大重要更新！ Android Jetpack 助推应用开发 | 中文字幕视频介绍 Android Sunflower 带您玩转 Jetpack 把 &amp;ldquo;格子衫&amp;rdquo; 改造得更时尚 | Kotlin &amp;amp; Jetpack 最佳实践技巧 Lifecycle LiveData Android Jetpack: LiveData 和 Lifecycle 介绍 | 中文教学视频 架构组件之 ViewModel | 中文教学视频 Android Jetpack: Room | 中文教学视频 Android Jetpack: 分页库 (Paging Library) | 中文教学视频 Android Jetpack WorkManager | Android 中文教学视频 Android Jetpack 导航组件 | Android 中文教学视频 Android Jetpack: LiveData 和 Lifecycle 介绍 | 中文教学视频 两步使用 LiveData 替换 Observable Field 理解协程、LiveData 和 Flow LiveData with Coroutines and Flow — Part I: Reactive UIs LiveData with Coroutines and Flow — Part II: Launching coroutines with Architecture Components LiveData with Coroutines and Flow — Part III: LiveData and coroutines patterns Jetpack Compose ViewModel Compose 学习计划 现代 Android 开发: 利用 Jetpack Compose 及更多精彩功能！ 深入详解 Jetpack Compose | 实现原理 深入详解 Jetpack Compose | 优化 UI 构建 Jetpack Compose Alpha 版现已发布！ 知识点 | ViewModel 四种集成方式 Android Jetpack: ViewModel | 中文教学视频 Paging Android Jetpack: 分页库 (Paging Library) | 中文教学视频 Room 实战 | 在 Room 中使用 Flow Room 中的数据库关系 Android Jetpack: Room | 中文教学视频 Android Room with a View - Kotlin WorkManager 自定义 WorkManager —— 基础概念 WorkManager: 周期性任务 使用 Dagger 自定义 WorkManager Android Jetpack WorkManager | Android 中文教学视频 Compose What&amp;rsquo;s New in Jetpack Compose (Android Dev Summit &amp;lsquo;19) 深入详解 Jetpack Compose | 实现原理 深入详解 Jetpack Compose | 优化 UI 构建 现代 Android 开发: 利用 Jetpack Compose 及更多精彩功能！ CameraX Android Jetpack CameraX 库 Beta 版正式发布！ Jetpack Security 使用 Jetpack Security 在 Android 上进行数据加密 使用 PreviewView 来展示相机预览 App Startup Android Jetpack组件之App Startup '>
-<meta property='og:url' content='https://example.com/android/jetpacket/readme/'>
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<meta property='og:description' content="Jetpack 学习资料整理 Android 生命周期备忘录\u200a—\u200a第一部分：单一 Activities Android 生命周期备忘录\u200a—\u200a第二部分：多 Activity Android 生命周期备忘录\u200a—\u200a第三部分：Fragments 来 GitHub 参与 Jetpack 开源协作！ 聚焦 Android 11: Jetpack 划重点 | Android Jetpack 三大重要更新！ Android Jetpack 助推应用开发 | 中文字幕视频介绍 Android Sunflower 带您玩转 Jetpack 把 &ldquo;格子衫&rdquo; 改造得更时尚 | Kotlin &amp; Jetpack 最佳实践技巧 Lifecycle LiveData Android Jetpack: LiveData 和 Lifecycle 介绍 | 中文教学视频 架构组件之 ViewModel | 中文教学视频 Android Jetpack: Room | 中文教学视频 Android Jetpack: 分页库 (Paging Library) | 中文教学视频 Android Jetpack WorkManager | Android 中文教学视频 Android Jetpack 导航组件 | Android 中文教学视频 Android Jetpack: LiveData 和 Lifecycle 介绍 | 中文教学视频 两步使用 LiveData 替换 Observable Field 理解协程、LiveData 和 Flow LiveData with Coroutines and Flow — Part I: Reactive UIs LiveData with Coroutines and Flow — Part II: Launching coroutines with Architecture Components LiveData with Coroutines and Flow — Part III: LiveData and coroutines patterns Jetpack Compose ViewModel Compose 学习计划 现代 Android 开发: 利用 Jetpack Compose 及更多精彩功能！ 深入详解 Jetpack Compose | 实现原理 深入详解 Jetpack Compose | 优化 UI 构建 Jetpack Compose Alpha 版现已发布！ 知识点 | ViewModel 四种集成方式 Android Jetpack: ViewModel | 中文教学视频 Paging Android Jetpack: 分页库 (Paging Library) | 中文教学视频 Room 实战 | 在 Room 中使用 Flow Room 中的数据库关系 Android Jetpack: Room | 中文教学视频 Android Room with a View - Kotlin WorkManager 自定义 WorkManager —— 基础概念 WorkManager: 周期性任务 使用 Dagger 自定义 WorkManager Android Jetpack WorkManager | Android 中文教学视频 Compose What&rsquo;s New in Jetpack Compose (Android Dev Summit &lsquo;19) 深入详解 Jetpack Compose | 实现原理 深入详解 Jetpack Compose | 优化 UI 构建 现代 Android 开发: 利用 Jetpack Compose 及更多精彩功能！ CameraX Android Jetpack CameraX 库 Beta 版正式发布！ Jetpack Security 使用 Jetpack Security 在 Android 上进行数据加密 使用 PreviewView 来展示相机预览 App Startup Android Jetpack组件之App Startup ">
+<meta property='og:url' content='http://localhost:1313/android/jetpacket/readme/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="Jetpack 学习资料整理 Android 生命周期备忘录 — 第一部分：单一 Activities Android 生命周期备忘录 — 第二部分：多 Activity Android 生命周期备忘录 — 第三部分：Fragments 来 GitHub 参与 Jetpack 开源协作！ 聚焦 Android 11: Jetpack 划重点 | Android Jetpack 三大重要更新！ Android Jetpack 助推应用开发 | 中文字幕视频介绍 Android Sunflower 带您玩转 Jetpack 把 &amp;ldquo;格子衫&amp;rdquo; 改造得更时尚 | Kotlin &amp;amp; Jetpack 最佳实践技巧 Lifecycle LiveData Android Jetpack: LiveData 和 Lifecycle 介绍 | 中文教学视频 架构组件之 ViewModel | 中文教学视频 Android Jetpack: Room | 中文教学视频 Android Jetpack: 分页库 (Paging Library) | 中文教学视频 Android Jetpack WorkManager | Android 中文教学视频 Android Jetpack 导航组件 | Android 中文教学视频 Android Jetpack: LiveData 和 Lifecycle 介绍 | 中文教学视频 两步使用 LiveData 替换 Observable Field 理解协程、LiveData 和 Flow LiveData with Coroutines and Flow — Part I: Reactive UIs LiveData with Coroutines and Flow — Part II: Launching coroutines with Architecture Components LiveData with Coroutines and Flow — Part III: LiveData and coroutines patterns Jetpack Compose ViewModel Compose 学习计划 现代 Android 开发: 利用 Jetpack Compose 及更多精彩功能！ 深入详解 Jetpack Compose | 实现原理 深入详解 Jetpack Compose | 优化 UI 构建 Jetpack Compose Alpha 版现已发布！ 知识点 | ViewModel 四种集成方式 Android Jetpack: ViewModel | 中文教学视频 Paging Android Jetpack: 分页库 (Paging Library) | 中文教学视频 Room 实战 | 在 Room 中使用 Flow Room 中的数据库关系 Android Jetpack: Room | 中文教学视频 Android Room with a View - Kotlin WorkManager 自定义 WorkManager —— 基础概念 WorkManager: 周期性任务 使用 Dagger 自定义 WorkManager Android Jetpack WorkManager | Android 中文教学视频 Compose What&amp;rsquo;s New in Jetpack Compose (Android Dev Summit &amp;lsquo;19) 深入详解 Jetpack Compose | 实现原理 深入详解 Jetpack Compose | 优化 UI 构建 现代 Android 开发: 利用 Jetpack Compose 及更多精彩功能！ CameraX Android Jetpack CameraX 库 Beta 版正式发布！ Jetpack Security 使用 Jetpack Security 在 Android 上进行数据加密 使用 PreviewView 来展示相机预览 App Startup Android Jetpack组件之App Startup ">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
-}
-</script>
-<style>
-    :root {
-      --sys-font-family: "Noto Serif SC";
-      --zh-font-family: "Noto Serif SC";
-      --base-font-family: "Noto Serif SC";
-      --code-font-family: "Noto Serif SC";
-      --article-font-family: "Noto Serif SC";
-    }
-  </style>
+<meta name="twitter:description" content="Jetpack 学习资料整理 Android 生命周期备忘录\u200a—\u200a第一部分：单一 Activities Android 生命周期备忘录\u200a—\u200a第二部分：多 Activity Android 生命周期备忘录\u200a—\u200a第三部分：Fragments 来 GitHub 参与 Jetpack 开源协作！ 聚焦 Android 11: Jetpack 划重点 | Android Jetpack 三大重要更新！ Android Jetpack 助推应用开发 | 中文字幕视频介绍 Android Sunflower 带您玩转 Jetpack 把 &ldquo;格子衫&rdquo; 改造得更时尚 | Kotlin &amp; Jetpack 最佳实践技巧 Lifecycle LiveData Android Jetpack: LiveData 和 Lifecycle 介绍 | 中文教学视频 架构组件之 ViewModel | 中文教学视频 Android Jetpack: Room | 中文教学视频 Android Jetpack: 分页库 (Paging Library) | 中文教学视频 Android Jetpack WorkManager | Android 中文教学视频 Android Jetpack 导航组件 | Android 中文教学视频 Android Jetpack: LiveData 和 Lifecycle 介绍 | 中文教学视频 两步使用 LiveData 替换 Observable Field 理解协程、LiveData 和 Flow LiveData with Coroutines and Flow — Part I: Reactive UIs LiveData with Coroutines and Flow — Part II: Launching coroutines with Architecture Components LiveData with Coroutines and Flow — Part III: LiveData and coroutines patterns Jetpack Compose ViewModel Compose 学习计划 现代 Android 开发: 利用 Jetpack Compose 及更多精彩功能！ 深入详解 Jetpack Compose | 实现原理 深入详解 Jetpack Compose | 优化 UI 构建 Jetpack Compose Alpha 版现已发布！ 知识点 | ViewModel 四种集成方式 Android Jetpack: ViewModel | 中文教学视频 Paging Android Jetpack: 分页库 (Paging Library) | 中文教学视频 Room 实战 | 在 Room 中使用 Flow Room 中的数据库关系 Android Jetpack: Room | 中文教学视频 Android Room with a View - Kotlin WorkManager 自定义 WorkManager —— 基础概念 WorkManager: 周期性任务 使用 Dagger 自定义 WorkManager Android Jetpack WorkManager | Android 中文教学视频 Compose What&rsquo;s New in Jetpack Compose (Android Dev Summit &lsquo;19) 深入详解 Jetpack Compose | 实现原理 深入详解 Jetpack Compose | 优化 UI 构建 现代 Android 开发: 利用 Jetpack Compose 及更多精彩功能！ CameraX Android Jetpack CameraX 库 Beta 版正式发布！ Jetpack Security 使用 Jetpack Security 在 Android 上进行数据加密 使用 PreviewView 来展示相机预览 App Startup Android Jetpack组件之App Startup ">
   
-  <script>
-    (function () {
-      const customFont = document.createElement("link");
-      customFont.href =
-        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
   
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-  
-      document.head.appendChild(customFont);
-    })();
-  </script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
-     crossorigin="anonymous"></script>
-  
-
-<script>
-    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
 
 
     </head>
@@ -119,7 +92,7 @@ if (!doNotTrack) {
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
             <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -180,13 +153,32 @@ if (!doNotTrack) {
 
 
                 
-                <span>主页</span>
+                <span>Home</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/archives' >
+            <a href='/pages/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/archives/' >
                 
                 
                 
@@ -200,16 +192,54 @@ if (!doNotTrack) {
 
 
                 
-                <span>归档</span>
+                <span>Archives</span>
             </a>
         </li>
         
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -217,7 +247,7 @@ if (!doNotTrack) {
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -225,10 +255,11 @@ if (!doNotTrack) {
 
 
 
-                    <span>Dark Mode</span>
-                </li>
-            
-        </div>
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -327,9 +358,9 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="jetpack">Jetpack</h1>
-<h2 id="学习资料整理">学习资料整理</h2>
-<ul>
+    <h1 id="jetpack">Jetpack
+</h1><h2 id="学习资料整理">学习资料整理
+</h2><ul>
 <li><a class="link" href="https://github.com/xitu/gold-miner/blob/master/TODO/the-android-lifecycle-cheat-sheet-part-i-single-activities.md"  target="_blank" rel="noopener"
     >Android 生命周期备忘录 — 第一部分：单一 Activities</a></li>
 <li><a class="link" href="https://github.com/xitu/gold-miner/blob/master/TODO1/The-Android-Lifecycle-cheat-sheet-part-II-Multiple-activities.md"  target="_blank" rel="noopener"
@@ -349,9 +380,9 @@ if (!doNotTrack) {
 <li><a class="link" href="https://mp.weixin.qq.com/s/9FyPM-VjgMwZErmEtbj2uQ"  target="_blank" rel="noopener"
     >把 &ldquo;格子衫&rdquo; 改造得更时尚 | Kotlin &amp; Jetpack 最佳实践技巧</a></li>
 </ul>
-<h3 id="lifecycle">Lifecycle</h3>
-<h3 id="livedata">LiveData</h3>
-<ul>
+<h3 id="lifecycle">Lifecycle
+</h3><h3 id="livedata">LiveData
+</h3><ul>
 <li><a class="link" href="https://mp.weixin.qq.com/s/lH1GxtkWnxhr0Fy6LkMP4Q"  target="_blank" rel="noopener"
     >Android Jetpack: LiveData 和 Lifecycle 介绍 | 中文教学视频</a></li>
 <li><a class="link" href="https://mp.weixin.qq.com/s/RcupMal5d-N36rq42Xb0WQ"  target="_blank" rel="noopener"
@@ -377,9 +408,9 @@ if (!doNotTrack) {
 <li><a class="link" href="https://medium.com/androiddevelopers/livedata-with-coroutines-and-flow-part-iii-livedata-and-coroutines-patterns-592485a4a85a"  target="_blank" rel="noopener"
     >LiveData with Coroutines and Flow — Part III: LiveData and coroutines patterns</a></li>
 </ul>
-<h3 id="jetpack-compose-a-idactivity-namea">Jetpack Compose <a id="activity-name"></a></h3>
-<h3 id="viewmodel">ViewModel</h3>
-<ul>
+<h3 id="jetpack-compose-a-idactivity-namea">Jetpack Compose <a id="activity-name"></a>
+</h3><h3 id="viewmodel">ViewModel
+</h3><ul>
 <li><a class="link" href="https://developer.android.google.cn/courses/pathways/compose"  target="_blank" rel="noopener"
     >Compose 学习计划</a></li>
 <li><a class="link" href="https://mp.weixin.qq.com/s/tGKdXls3edCvEf2lhImNXg"  target="_blank" rel="noopener"
@@ -395,13 +426,13 @@ if (!doNotTrack) {
 <li><a class="link" href="https://mp.weixin.qq.com/s/uGWH1os8Kq3Pp6_x5hXI8Q"  target="_blank" rel="noopener"
     >Android Jetpack: ViewModel | 中文教学视频</a></li>
 </ul>
-<h3 id="paging">Paging</h3>
-<ul>
+<h3 id="paging">Paging
+</h3><ul>
 <li><a class="link" href="https://mp.weixin.qq.com/s/s-o3p0fzwrWEXorTXKbUKA"  target="_blank" rel="noopener"
     >Android Jetpack: 分页库 (Paging Library) | 中文教学视频</a></li>
 </ul>
-<h3 id="room">Room</h3>
-<ul>
+<h3 id="room">Room
+</h3><ul>
 <li><a class="link" href="https://mp.weixin.qq.com/s/fwvhfpjW3sWwUdsCjJzt0Q"  target="_blank" rel="noopener"
     >实战 | 在 Room 中使用 Flow</a></li>
 <li><a class="link" href="https://mp.weixin.qq.com/s/5--TmnUAnWtI8Ug97WbohA"  target="_blank" rel="noopener"
@@ -411,8 +442,8 @@ if (!doNotTrack) {
 <li><a class="link" href="https://developer.android.com/codelabs/android-room-with-a-view-kotlin#0"  target="_blank" rel="noopener"
     >Android Room with a View - Kotlin</a></li>
 </ul>
-<h3 id="workmanager">WorkManager</h3>
-<ul>
+<h3 id="workmanager">WorkManager
+</h3><ul>
 <li><a class="link" href="https://mp.weixin.qq.com/s/blwtOS3VAIKj2fqQAV6qhQ"  target="_blank" rel="noopener"
     >自定义 WorkManager —— 基础概念</a></li>
 <li><a class="link" href="https://mp.weixin.qq.com/s/wE2Cf9akWQVesC3cuQpucw"  target="_blank" rel="noopener"
@@ -422,8 +453,8 @@ if (!doNotTrack) {
 <li><a class="link" href="https://mp.weixin.qq.com/s/3YsXrGu2yolFdFuooTr5Fw"  target="_blank" rel="noopener"
     >Android Jetpack WorkManager | Android 中文教学视频</a></li>
 </ul>
-<h3 id="compose">Compose</h3>
-<ul>
+<h3 id="compose">Compose
+</h3><ul>
 <li><a class="link" href="https://www.youtube.com/watch?v=dtm2h-_sNDQ&amp;list=PLWz5rJ2EKKc_xXXubDti2eRnIKU0p7wHd&amp;index=8&amp;t=0s"  target="_blank" rel="noopener"
     >What&rsquo;s New in Jetpack Compose (Android Dev Summit &lsquo;19)</a></li>
 <li><a class="link" href="https://mp.weixin.qq.com/s/cFLDF0CDmRropKLfzNKUiw"  target="_blank" rel="noopener"
@@ -433,20 +464,20 @@ if (!doNotTrack) {
 <li><a class="link" href="https://mp.weixin.qq.com/s/tGKdXls3edCvEf2lhImNXg"  target="_blank" rel="noopener"
     >现代 Android 开发: 利用 Jetpack Compose 及更多精彩功能！</a></li>
 </ul>
-<h3 id="camerax">CameraX</h3>
-<ul>
+<h3 id="camerax">CameraX
+</h3><ul>
 <li><a class="link" href="https://mp.weixin.qq.com/s/dkMZ88NqPCtXyqCsjBpsfA"  target="_blank" rel="noopener"
     >Android Jetpack CameraX 库 Beta 版正式发布！</a></li>
 </ul>
-<h3 id="jetpack-security">Jetpack Security</h3>
-<ul>
+<h3 id="jetpack-security">Jetpack Security
+</h3><ul>
 <li><a class="link" href="https://mp.weixin.qq.com/s/ZP9vHHWdWRUnoz1odu32mA"  target="_blank" rel="noopener"
     >使用 Jetpack Security 在 Android 上进行数据加密</a></li>
 <li><a class="link" href="https://mp.weixin.qq.com/s/hbls80hCCftnFLkO8U5Kbw"  target="_blank" rel="noopener"
     >使用 PreviewView 来展示相机预览</a></li>
 </ul>
-<h3 id="app-startup">App Startup</h3>
-<ul>
+<h3 id="app-startup">App Startup
+</h3><ul>
 <li><a class="link" href="https://mp.weixin.qq.com/s/gl_mHEEXi0q4k4wuQ5m_Ww"  target="_blank" rel="noopener"
     >Android Jetpack组件之App Startup</a></li>
 </ul>
@@ -545,7 +576,7 @@ if (!doNotTrack) {
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 

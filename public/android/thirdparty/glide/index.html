@@ -1,72 +1,36 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Glide源码分析 Glide的使用非常简单只需要调用with、load into三个方法。
-1 2 3 GlideApp.with(this) .load(url) .into(imageView); 接下来，我们依次分析这三个方法。
-with() Glide的with方法主要做了三个事情：
-Glide的初始化 获取RequestManagerRetriever对象 获取RequestManager对象 with() 1 2 3 4 5 6 //Glide.java public static RequestManager with(@NonNull Activity activity) { //先获取RequestManagerRetriever对象 //调用RequestManagerRetriever的get方法获取RequestManager return getRetriever(activity).get(activity); } 1 2 3 4 5 6 7 8 9 10 11 12 private static RequestManagerRetriever getRetriever(@Nullable Context context) { // Context could be null for other reasons (ie the user passes in null), but in practice it will // only occur due to errors with the Fragment lifecycle.'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Glide源码分析 Glide的使用非常简单只需要调用with、load into三个方法。 1 2 3 GlideApp.with(this) .load(url) .into(imageView); 接下来，我们依次分析这三个方法。 with() Glide的with方法主要做了三个事情： Glide的初始化 获取RequestManagerRetriever对象 获取RequestManager对象 with() 1 2 3 4 5 6 //Glide.java public static RequestManager with(@NonNull Activity activity) { //先获取RequestManagerRetriever对象 //调用RequestManagerRetriever的get方法获取RequestManager return getRetriever(activity).get(activity); } 1 2 3 4 5 6 7 8 9 10 11 12 private static RequestManagerRetriever getRetriever(@Nullable Context context) { // Context could be null for other reasons (ie the user passes in null), but in practice it will // only occur due to errors with the Fragment lifecycle.">
 <title></title>
 
-<link rel='canonical' href='https://example.com/android/thirdparty/glide/'>
+<link rel='canonical' href='http://localhost:1313/android/thirdparty/glide/'>
 
-<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
-<meta property='og:description' content='Glide源码分析 Glide的使用非常简单只需要调用with、load into三个方法。
-1 2 3 GlideApp.with(this) .load(url) .into(imageView); 接下来，我们依次分析这三个方法。
-with() Glide的with方法主要做了三个事情：
-Glide的初始化 获取RequestManagerRetriever对象 获取RequestManager对象 with() 1 2 3 4 5 6 //Glide.java public static RequestManager with(@NonNull Activity activity) { //先获取RequestManagerRetriever对象 //调用RequestManagerRetriever的get方法获取RequestManager return getRetriever(activity).get(activity); } 1 2 3 4 5 6 7 8 9 10 11 12 private static RequestManagerRetriever getRetriever(@Nullable Context context) { // Context could be null for other reasons (ie the user passes in null), but in practice it will // only occur due to errors with the Fragment lifecycle.'>
-<meta property='og:url' content='https://example.com/android/thirdparty/glide/'>
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<meta property='og:description' content="Glide源码分析 Glide的使用非常简单只需要调用with、load into三个方法。 1 2 3 GlideApp.with(this) .load(url) .into(imageView); 接下来，我们依次分析这三个方法。 with() Glide的with方法主要做了三个事情： Glide的初始化 获取RequestManagerRetriever对象 获取RequestManager对象 with() 1 2 3 4 5 6 //Glide.java public static RequestManager with(@NonNull Activity activity) { //先获取RequestManagerRetriever对象 //调用RequestManagerRetriever的get方法获取RequestManager return getRetriever(activity).get(activity); } 1 2 3 4 5 6 7 8 9 10 11 12 private static RequestManagerRetriever getRetriever(@Nullable Context context) { // Context could be null for other reasons (ie the user passes in null), but in practice it will // only occur due to errors with the Fragment lifecycle.">
+<meta property='og:url' content='http://localhost:1313/android/thirdparty/glide/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="Glide源码分析 Glide的使用非常简单只需要调用with、load into三个方法。
-1 2 3 GlideApp.with(this) .load(url) .into(imageView); 接下来，我们依次分析这三个方法。
-with() Glide的with方法主要做了三个事情：
-Glide的初始化 获取RequestManagerRetriever对象 获取RequestManager对象 with() 1 2 3 4 5 6 //Glide.java public static RequestManager with(@NonNull Activity activity) { //先获取RequestManagerRetriever对象 //调用RequestManagerRetriever的get方法获取RequestManager return getRetriever(activity).get(activity); } 1 2 3 4 5 6 7 8 9 10 11 12 private static RequestManagerRetriever getRetriever(@Nullable Context context) { // Context could be null for other reasons (ie the user passes in null), but in practice it will // only occur due to errors with the Fragment lifecycle.">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
-}
-</script>
-<style>
-    :root {
-      --sys-font-family: "Noto Serif SC";
-      --zh-font-family: "Noto Serif SC";
-      --base-font-family: "Noto Serif SC";
-      --code-font-family: "Noto Serif SC";
-      --article-font-family: "Noto Serif SC";
-    }
-  </style>
+<meta name="twitter:description" content="Glide源码分析 Glide的使用非常简单只需要调用with、load into三个方法。 1 2 3 GlideApp.with(this) .load(url) .into(imageView); 接下来，我们依次分析这三个方法。 with() Glide的with方法主要做了三个事情： Glide的初始化 获取RequestManagerRetriever对象 获取RequestManager对象 with() 1 2 3 4 5 6 //Glide.java public static RequestManager with(@NonNull Activity activity) { //先获取RequestManagerRetriever对象 //调用RequestManagerRetriever的get方法获取RequestManager return getRetriever(activity).get(activity); } 1 2 3 4 5 6 7 8 9 10 11 12 private static RequestManagerRetriever getRetriever(@Nullable Context context) { // Context could be null for other reasons (ie the user passes in null), but in practice it will // only occur due to errors with the Fragment lifecycle.">
   
-  <script>
-    (function () {
-      const customFont = document.createElement("link");
-      customFont.href =
-        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
   
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-  
-      document.head.appendChild(customFont);
-    })();
-  </script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
-     crossorigin="anonymous"></script>
-  
-
-<script>
-    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
 
 
     </head>
@@ -128,7 +92,7 @@ if (!doNotTrack) {
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
             <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -189,13 +153,32 @@ if (!doNotTrack) {
 
 
                 
-                <span>主页</span>
+                <span>Home</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/archives' >
+            <a href='/pages/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/archives/' >
                 
                 
                 
@@ -209,16 +192,54 @@ if (!doNotTrack) {
 
 
                 
-                <span>归档</span>
+                <span>Archives</span>
             </a>
         </li>
         
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -226,7 +247,7 @@ if (!doNotTrack) {
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -234,10 +255,11 @@ if (!doNotTrack) {
 
 
 
-                    <span>Dark Mode</span>
-                </li>
-            
-        </div>
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -348,8 +370,8 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="glide源码分析">Glide源码分析</h1>
-<p><code>Glide</code>的使用非常简单只需要调用<code>with</code>、<code>load</code> <code>into</code>三个方法。</p>
+    <h1 id="glide源码分析">Glide源码分析
+</h1><p><code>Glide</code>的使用非常简单只需要调用<code>with</code>、<code>load</code> <code>into</code>三个方法。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -363,8 +385,8 @@ if (!doNotTrack) {
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>接下来，我们依次分析这三个方法。</p>
-<h2 id="with">with()</h2>
-<p><code>Glide</code>的<code>with</code>方法主要做了三个事情：</p>
+<h2 id="with">with()
+</h2><p><code>Glide</code>的<code>with</code>方法主要做了三个事情：</p>
 <ol>
 <li><code>Glide</code>的初始化</li>
 <li>获取<code>RequestManagerRetriever</code>对象</li>
@@ -380,8 +402,8 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h3 id="with-1">with()</h3>
-<div class="highlight"><div class="chroma">
+<h3 id="with-1">with()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -429,8 +451,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="get">get()</h3>
-<p><code>get</code>方法是一个双重检验锁来获取<code>Glide</code>的单例对象，如果对象为空则调用<code>getAnnotationGeneratedGlideModules</code>和<code>checkAndInitializeGlide</code>。</p>
+</div><h3 id="get">get()
+</h3><p><code>get</code>方法是一个双重检验锁来获取<code>Glide</code>的单例对象，如果对象为空则调用<code>getAnnotationGeneratedGlideModules</code>和<code>checkAndInitializeGlide</code>。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -465,8 +487,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="getannotationgeneratedglidemodules">getAnnotationGeneratedGlideModules()</h3>
-<p><code>getAnnotationGeneratedGlideModules</code>方法通过反射来获取<code>GeneratedAppGlideModule</code>的实现类<code>GeneratedAppGlideModuleImpl</code>的<code>Class</code>对象，并通过反射创建<code>GeneratedAppGlideModuleImpl</code>的实例。</p>
+</div><h3 id="getannotationgeneratedglidemodules">getAnnotationGeneratedGlideModules()
+</h3><p><code>getAnnotationGeneratedGlideModules</code>方法通过反射来获取<code>GeneratedAppGlideModule</code>的实现类<code>GeneratedAppGlideModuleImpl</code>的<code>Class</code>对象，并通过反射创建<code>GeneratedAppGlideModuleImpl</code>的实例。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -649,8 +671,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="checkandinitializeglide">checkAndInitializeGlide()</h3>
-<p><code>checkAndInitializeGlide</code>方法先检查是否正在进行初始化，如果正在进行初始化则抛出异常，否则调用<code>initializeGlide</code>方法进行初始化。</p>
+</div><h3 id="checkandinitializeglide">checkAndInitializeGlide()
+</h3><p><code>checkAndInitializeGlide</code>方法先检查是否正在进行初始化，如果正在进行初始化则抛出异常，否则调用<code>initializeGlide</code>方法进行初始化。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -685,8 +707,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="initializeglide">initializeGlide()</h3>
-<p><code>initializeGlide</code>创建一个<code>GlideBuilder</code>对象，并传递给他的重载方法。</p>
+</div><h3 id="initializeglide">initializeGlide()
+</h3><p><code>initializeGlide</code>创建一个<code>GlideBuilder</code>对象，并传递给他的重载方法。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -862,8 +884,8 @@ if (!doNotTrack) {
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>注释3会调用<code>GeneratedAppGlideModuleImpl</code>的<code>getRequestManagerFactory</code>方法获取<code>GeneratedRequestManagerFactory</code>对象。</p>
-<h3 id="build">build()</h3>
-<p><code>Glide</code>采用构建模式，来初始化<code>Glide</code>。<code>GlideBuilder</code>的<code>build</code>方法会创建<code>RequestManagerRetriever</code>。</p>
+<h3 id="build">build()
+</h3><p><code>Glide</code>采用构建模式，来初始化<code>Glide</code>。<code>GlideBuilder</code>的<code>build</code>方法会创建<code>RequestManagerRetriever</code>。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1054,8 +1076,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="glide构造函数">Glide构造函数</h3>
-<p>Glide构造函数创建了<code>Registry</code>对象和<code>GlideContext</code>对象，并调用<code>Registry</code>注册各种组件。</p>
+</div><h3 id="glide构造函数">Glide构造函数
+</h3><p>Glide构造函数创建了<code>Registry</code>对象和<code>GlideContext</code>对象，并调用<code>Registry</code>注册各种组件。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1175,8 +1197,8 @@ if (!doNotTrack) {
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>到这里<code>Glide</code>的初始化已经完成了，接着调用<code>Glide</code>的<code>getRequestManagerRetriever</code>方法来获取<code>RequestManagerRetriever</code>对象。<code>RequestManagerRetriever</code>对象负责创建一个新的<code>RequestManager</code>或者获取一个存在的<code>RequestManager</code>。</p>
-<h3 id="requestmanagerretrieverget">RequestManagerRetriever#get</h3>
-<p><img src="https://malinkang.cn/images/jvm/202111152011893.png"
+<h3 id="requestmanagerretrieverget">RequestManagerRetriever#get
+</h3><p><img src="https://malinkang.cn/images/jvm/202111152011893.png"
 	
 	
 	
@@ -1211,8 +1233,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="requestmanagerretrieverfragmentget">RequestManagerRetriever#fragmentGet</h3>
-<p><code>fragmentGet</code>方法会先调用<code>getRequestManagerFragment</code>创建一个<code>RequestManagerFragment</code>对象。然后调用<code>GeneratedRequestManagerFactory</code>的<code>build</code>方法，创建<code>RequestManager</code>。</p>
+</div><h3 id="requestmanagerretrieverfragmentget">RequestManagerRetriever#fragmentGet
+</h3><p><code>fragmentGet</code>方法会先调用<code>getRequestManagerFragment</code>创建一个<code>RequestManagerFragment</code>对象。然后调用<code>GeneratedRequestManagerFactory</code>的<code>build</code>方法，创建<code>RequestManager</code>。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1269,8 +1291,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="getrequestmanagerfragment">getRequestManagerFragment</h3>
-<p><code>getRequestManagerFragment</code>会调用<code>RequestManagerFragment</code>的构造函数创建<code>RequestManagerFragment</code>对象。</p>
+</div><h3 id="getrequestmanagerfragment">getRequestManagerFragment
+</h3><p><code>getRequestManagerFragment</code>会调用<code>RequestManagerFragment</code>的构造函数创建<code>RequestManagerFragment</code>对象。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1315,8 +1337,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="requestmanagerfragment">RequestManagerFragment</h3>
-<p><img src="https://malinkang.cn/images/jvm/202111161126257.png"
+</div><h3 id="requestmanagerfragment">RequestManagerFragment
+</h3><p><img src="https://malinkang.cn/images/jvm/202111161126257.png"
 	
 	
 	
@@ -1387,8 +1409,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="activityfragmentlifecycle">ActivityFragmentLifecycle</h3>
-<p><code>ActivityFragmentLifecycle</code>实现了<code>Lifecycle</code>接口。<code>Lifecycle</code>定义了两个方法<code>addListener</code>，<code>removeListener</code>，分别用来添加和删除<code>LifecycleListener</code>。</p>
+</div><h3 id="activityfragmentlifecycle">ActivityFragmentLifecycle
+</h3><p><code>ActivityFragmentLifecycle</code>实现了<code>Lifecycle</code>接口。<code>Lifecycle</code>定义了两个方法<code>addListener</code>，<code>removeListener</code>，分别用来添加和删除<code>LifecycleListener</code>。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1421,8 +1443,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="lifecyclelistener">LifecycleListener</h3>
-<p><code>LifecycleListener</code>也是一个接口，其定义如下：</p>
+</div><h3 id="lifecyclelistener">LifecycleListener
+</h3><p><code>LifecycleListener</code>也是一个接口，其定义如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1469,8 +1491,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="requestmanager">RequestManager</h3>
-<p><code>RequestManager</code>实现了<code>LifecycleListener</code>，当构建<code>RequestManager</code>对象时，会将<code>RequestManagerFragment</code>的<code>ActivityFragmentLifecycle</code>传递给<code>RequestManager</code>。在<code>RequestManager</code>的构造函数中，调用<code>Lifecycle</code>的<code>addListener</code>方法，将当前对象添加到<code>Lifecycle</code>中。当<code>RequestManagerFragment</code>执行相应的生命周期方法时，会调用<code>RequestManager</code>的相应方法，来管理请求。</p>
+</div><h3 id="requestmanager">RequestManager
+</h3><p><code>RequestManager</code>实现了<code>LifecycleListener</code>，当构建<code>RequestManager</code>对象时，会将<code>RequestManagerFragment</code>的<code>ActivityFragmentLifecycle</code>传递给<code>RequestManager</code>。在<code>RequestManager</code>的构造函数中，调用<code>Lifecycle</code>的<code>addListener</code>方法，将当前对象添加到<code>Lifecycle</code>中。当<code>RequestManagerFragment</code>执行相应的生命周期方法时，会调用<code>RequestManager</code>的相应方法，来管理请求。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1617,8 +1639,8 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h2 id="load">load()</h2>
-<p>通过<code>load()</code>方法返回了一个<code>RequestManager</code>对象，所以<code>into()</code>方法调用的是<code>RequestManager</code>的<code>into()</code>方法。</p>
+<h2 id="load">load()
+</h2><p>通过<code>load()</code>方法返回了一个<code>RequestManager</code>对象，所以<code>into()</code>方法调用的是<code>RequestManager</code>的<code>into()</code>方法。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1651,8 +1673,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="into">into()</h2>
-<p>在<code>into()</code>方法中会调用<code>GlideContext</code>的<code>buildImageViewTarget</code>构建一个<code>Target</code>并传递给它的重载方法。</p>
+</div><h2 id="into">into()
+</h2><p>在<code>into()</code>方法中会调用<code>GlideContext</code>的<code>buildImageViewTarget</code>构建一个<code>Target</code>并传递给它的重载方法。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1741,8 +1763,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="构建target">构建Target</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="构建target">构建Target
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1871,8 +1893,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="构建request">构建Request</h3>
-<p><code>buildRequest</code>会依次调用<code>buildRequestRecursive</code>、<code>buildThumbnailRequestRecursive</code>、<code>obtainRequest</code>方法，并最终调用<code>SingleRequest</code>的<code>obtain</code>方法。</p>
+</div><h3 id="构建request">构建Request
+</h3><p><code>buildRequest</code>会依次调用<code>buildRequestRecursive</code>、<code>buildThumbnailRequestRecursive</code>、<code>obtainRequest</code>方法，并最终调用<code>SingleRequest</code>的<code>obtain</code>方法。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1937,8 +1959,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="执行网络请求">执行网络请求</h3>
-<p><code>RequestManager</code>的<code>track</code>方法会调用<code>Request</code>的<code>begin</code>方法，发起请求。</p>
+</div><h3 id="执行网络请求">执行网络请求
+</h3><p><code>RequestManager</code>的<code>track</code>方法会调用<code>Request</code>的<code>begin</code>方法，发起请求。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1987,8 +2009,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="参考">参考</h2>
-<ul>
+</div><h2 id="参考">参考
+</h2><ul>
 <li><a class="link" href="https://muyangmin.github.io/glide-docs-cn/"  target="_blank" rel="noopener"
     >Glide中文文档</a></li>
 <li><a class="link" href="https://juejin.im/post/6844903986412126216"  target="_blank" rel="noopener"
@@ -2089,7 +2111,7 @@ if (!doNotTrack) {
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 

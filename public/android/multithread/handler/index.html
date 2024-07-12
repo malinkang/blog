@@ -1,96 +1,36 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='在Android中不允许Activity新启动的线程访问该Activity里的UI组件，这样会导致新启动的线程无法改变UI组件的属性值。但实际开发中，很多地方需要在工作线程中改变UI组件的属性值，比如下载网络图片、动画等等。
-Handler，它直接继承自Object，一个Handler允许发送和处理Message或者Runnable对象，并且会关联到主线程的MessageQueue中。每个Handler具有一个单独的线程，并且关联到一个消息队列的线程，就是说一个Handler有一个固有的消息队列。当实例化一个Handler的时候，它就承载在一个线程和消息队列的线程，这个Handler可以把Message或Runnable压入到消息队列，并且从消息队列中取出Message或Runnable，进而操作它们。
-Handler主要有两个作用：
-在工作线程中发送消息。 在UI线程中获取、处理消息。 1.创建Handler Handler具有下列构造函数：
-2.使用Handler 上面介绍到Handler可以把一个Message对象或者Runnable对象压入到消息队列中，进而在UI线程中获取Message或者执行Runnable对象，所以Handler把压入消息队列有两大体系，Post和sendMessage。
-2.1 Post 对于Handler的Post方式来说，它会传递一个Runnable对象到消息队列中，在这个Runnable对象中，重写run()方法。一般在这个run()方法中写入需要在UI线程上的操作。
-Post有下列方法
-public final boolean post (Runnable r)：把一个Runnable入队到消息队列中，UI线程从消息队列中取出这个对象后，立即执行。 public final boolean postAtFrontOfQueue (Runnable r) [public final boolean postAtTime (Runnable r, Object token, long uptimeMillis)](http://developer.android.com/reference/android/os/Handler.html#postAtTime(java.lang.Runnable, java.lang.Object, long)) [public final boolean postAtTime (Runnable r, long uptimeMillis)](http://developer.android.com/reference/android/os/Handler.html#postAtTime(java.lang.Runnable, long))：把一个Runnable入队到消息队列中，UI线程从消息队列中取出这个对象后，在特定的时间执行。 [public final boolean postDelayed (Runnable r, long delayMillis)](http://developer.android.com/reference/android/os/Handler.html#postDelayed(java.lang.Runnable, long))：boolean postDelayed(Runnable r,long delayMillis)：把一个Runnable入队到消息队列中，UI线程从消息队列中取出这个对象后，延迟delayMills秒执行。 public final void removeCallbacks (Runnable r):从消息队列中移除一个Runnable对象。 对于Post方式而言，它其中Runnable对象的run()方法的代码，均执行在UI线程上，所以对于这段代码而言，不能执行在UI线程上的操作，一样无法使用post方式执行，比如说访问网络。
-2.2Message Handler如果使用sendMessage的方式把消息入队到消息队列中，需要传递一个Message对象，而在Handler中，需要重写handleMessage()方法，用于获取工作线程传递过来的消息，此方法运行在UI线程上。下面先介绍一下Message。
-Message是一个final类，所以不可被继承。Message封装了线程中传递的消息，如果对于一般的数据，Message提供了getData()和setData()方法来获取与设置数据，其中操作的数据是一个Bundle对象.
-还有另外一种方式在Message中传递对象，那就是使用Message自带的obj属性传值，它是一个Object类型，所以可以传递任意类型的对象，Message自带的有如下几个属性：
-int arg1：参数一，用于传递不复杂的数据，复杂数据使用setData()传递。 int arg2：参数二，用于传递不复杂的数据，复杂数据使用setData()传递。 Object obj：传递一个任意的对象。 int what：定义的消息码，一般用于设定消息的标志。 对于Message对象，一般并不推荐直接使用它的构造方法得到，而是建议通过使用Message.'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="在Android中不允许Activity新启动的线程访问该Activity里的UI组件，这样会导致新启动的线程无法改变UI组件的属性值。但实际开发中，很多地方需要在工作线程中改变UI组件的属性值，比如下载网络图片、动画等等。 Handler，它直接继承自Object，一个Handler允许发送和处理Message或者Runnable对象，并且会关联到主线程的MessageQueue中。每个Handler具有一个单独的线程，并且关联到一个消息队列的线程，就是说一个Handler有一个固有的消息队列。当实例化一个Handler的时候，它就承载在一个线程和消息队列的线程，这个Handler可以把Message或Runnable压入到消息队列，并且从消息队列中取出Message或Runnable，进而操作它们。 Handler主要有两个作用： 在工作线程中发送消息。 在UI线程中获取、处理消息。 1.创建Handler Handler具有下列构造函数： 2.使用Handler 上面介绍到Handler可以把一个Message对象或者Runnable对象压入到消息队列中，进而在UI线程中获取Message或者执行Runnable对象，所以Handler把压入消息队列有两大体系，Post和sendMessage。 2.1 Post 对于Handler的Post方式来说，它会传递一个Runnable对象到消息队列中，在这个Runnable对象中，重写run()方法。一般在这个run()方法中写入需要在UI线程上的操作。 Post有下列方法 public final boolean post (Runnable r)：把一个Runnable入队到消息队列中，UI线程从消息队列中取出这个对象后，立即执行。 public final boolean postAtFrontOfQueue (Runnable r) [public final boolean postAtTime (Runnable r, Object token, long uptimeMillis)](http://developer.android.com/reference/android/os/Handler.html#postAtTime(java.lang.Runnable, java.lang.Object, long)) [public final boolean postAtTime (Runnable r, long uptimeMillis)](http://developer.android.com/reference/android/os/Handler.html#postAtTime(java.lang.Runnable, long))：把一个Runnable入队到消息队列中，UI线程从消息队列中取出这个对象后，在特定的时间执行。 [public final boolean postDelayed (Runnable r, long delayMillis)](http://developer.android.com/reference/android/os/Handler.html#postDelayed(java.lang.Runnable, long))：boolean postDelayed(Runnable r,long delayMillis)：把一个Runnable入队到消息队列中，UI线程从消息队列中取出这个对象后，延迟delayMills秒执行。 public final void removeCallbacks (Runnable r):从消息队列中移除一个Runnable对象。 对于Post方式而言，它其中Runnable对象的run()方法的代码，均执行在UI线程上，所以对于这段代码而言，不能执行在UI线程上的操作，一样无法使用post方式执行，比如说访问网络。 2.2Message Handler如果使用sendMessage的方式把消息入队到消息队列中，需要传递一个Message对象，而在Handler中，需要重写handleMessage()方法，用于获取工作线程传递过来的消息，此方法运行在UI线程上。下面先介绍一下Message。 Message是一个final类，所以不可被继承。Message封装了线程中传递的消息，如果对于一般的数据，Message提供了getData()和setData()方法来获取与设置数据，其中操作的数据是一个Bundle对象. 还有另外一种方式在Message中传递对象，那就是使用Message自带的obj属性传值，它是一个Object类型，所以可以传递任意类型的对象，Message自带的有如下几个属性： int arg1：参数一，用于传递不复杂的数据，复杂数据使用setData()传递。 int arg2：参数二，用于传递不复杂的数据，复杂数据使用setData()传递。 Object obj：传递一个任意的对象。 int what：定义的消息码，一般用于设定消息的标志。 对于Message对象，一般并不推荐直接使用它的构造方法得到，而是建议通过使用Message.">
 <title></title>
 
-<link rel='canonical' href='https://example.com/android/multithread/handler/'>
+<link rel='canonical' href='http://localhost:1313/android/multithread/handler/'>
 
-<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
-<meta property='og:description' content='在Android中不允许Activity新启动的线程访问该Activity里的UI组件，这样会导致新启动的线程无法改变UI组件的属性值。但实际开发中，很多地方需要在工作线程中改变UI组件的属性值，比如下载网络图片、动画等等。
-Handler，它直接继承自Object，一个Handler允许发送和处理Message或者Runnable对象，并且会关联到主线程的MessageQueue中。每个Handler具有一个单独的线程，并且关联到一个消息队列的线程，就是说一个Handler有一个固有的消息队列。当实例化一个Handler的时候，它就承载在一个线程和消息队列的线程，这个Handler可以把Message或Runnable压入到消息队列，并且从消息队列中取出Message或Runnable，进而操作它们。
-Handler主要有两个作用：
-在工作线程中发送消息。 在UI线程中获取、处理消息。 1.创建Handler Handler具有下列构造函数：
-2.使用Handler 上面介绍到Handler可以把一个Message对象或者Runnable对象压入到消息队列中，进而在UI线程中获取Message或者执行Runnable对象，所以Handler把压入消息队列有两大体系，Post和sendMessage。
-2.1 Post 对于Handler的Post方式来说，它会传递一个Runnable对象到消息队列中，在这个Runnable对象中，重写run()方法。一般在这个run()方法中写入需要在UI线程上的操作。
-Post有下列方法
-public final boolean post (Runnable r)：把一个Runnable入队到消息队列中，UI线程从消息队列中取出这个对象后，立即执行。 public final boolean postAtFrontOfQueue (Runnable r) [public final boolean postAtTime (Runnable r, Object token, long uptimeMillis)](http://developer.android.com/reference/android/os/Handler.html#postAtTime(java.lang.Runnable, java.lang.Object, long)) [public final boolean postAtTime (Runnable r, long uptimeMillis)](http://developer.android.com/reference/android/os/Handler.html#postAtTime(java.lang.Runnable, long))：把一个Runnable入队到消息队列中，UI线程从消息队列中取出这个对象后，在特定的时间执行。 [public final boolean postDelayed (Runnable r, long delayMillis)](http://developer.android.com/reference/android/os/Handler.html#postDelayed(java.lang.Runnable, long))：boolean postDelayed(Runnable r,long delayMillis)：把一个Runnable入队到消息队列中，UI线程从消息队列中取出这个对象后，延迟delayMills秒执行。 public final void removeCallbacks (Runnable r):从消息队列中移除一个Runnable对象。 对于Post方式而言，它其中Runnable对象的run()方法的代码，均执行在UI线程上，所以对于这段代码而言，不能执行在UI线程上的操作，一样无法使用post方式执行，比如说访问网络。
-2.2Message Handler如果使用sendMessage的方式把消息入队到消息队列中，需要传递一个Message对象，而在Handler中，需要重写handleMessage()方法，用于获取工作线程传递过来的消息，此方法运行在UI线程上。下面先介绍一下Message。
-Message是一个final类，所以不可被继承。Message封装了线程中传递的消息，如果对于一般的数据，Message提供了getData()和setData()方法来获取与设置数据，其中操作的数据是一个Bundle对象.
-还有另外一种方式在Message中传递对象，那就是使用Message自带的obj属性传值，它是一个Object类型，所以可以传递任意类型的对象，Message自带的有如下几个属性：
-int arg1：参数一，用于传递不复杂的数据，复杂数据使用setData()传递。 int arg2：参数二，用于传递不复杂的数据，复杂数据使用setData()传递。 Object obj：传递一个任意的对象。 int what：定义的消息码，一般用于设定消息的标志。 对于Message对象，一般并不推荐直接使用它的构造方法得到，而是建议通过使用Message.'>
-<meta property='og:url' content='https://example.com/android/multithread/handler/'>
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<meta property='og:description' content="在Android中不允许Activity新启动的线程访问该Activity里的UI组件，这样会导致新启动的线程无法改变UI组件的属性值。但实际开发中，很多地方需要在工作线程中改变UI组件的属性值，比如下载网络图片、动画等等。 Handler，它直接继承自Object，一个Handler允许发送和处理Message或者Runnable对象，并且会关联到主线程的MessageQueue中。每个Handler具有一个单独的线程，并且关联到一个消息队列的线程，就是说一个Handler有一个固有的消息队列。当实例化一个Handler的时候，它就承载在一个线程和消息队列的线程，这个Handler可以把Message或Runnable压入到消息队列，并且从消息队列中取出Message或Runnable，进而操作它们。 Handler主要有两个作用： 在工作线程中发送消息。 在UI线程中获取、处理消息。 1.创建Handler Handler具有下列构造函数： 2.使用Handler 上面介绍到Handler可以把一个Message对象或者Runnable对象压入到消息队列中，进而在UI线程中获取Message或者执行Runnable对象，所以Handler把压入消息队列有两大体系，Post和sendMessage。 2.1 Post 对于Handler的Post方式来说，它会传递一个Runnable对象到消息队列中，在这个Runnable对象中，重写run()方法。一般在这个run()方法中写入需要在UI线程上的操作。 Post有下列方法 public final boolean post (Runnable r)：把一个Runnable入队到消息队列中，UI线程从消息队列中取出这个对象后，立即执行。 public final boolean postAtFrontOfQueue (Runnable r) [public final boolean postAtTime (Runnable r, Object token, long uptimeMillis)](http://developer.android.com/reference/android/os/Handler.html#postAtTime(java.lang.Runnable, java.lang.Object, long)) [public final boolean postAtTime (Runnable r, long uptimeMillis)](http://developer.android.com/reference/android/os/Handler.html#postAtTime(java.lang.Runnable, long))：把一个Runnable入队到消息队列中，UI线程从消息队列中取出这个对象后，在特定的时间执行。 [public final boolean postDelayed (Runnable r, long delayMillis)](http://developer.android.com/reference/android/os/Handler.html#postDelayed(java.lang.Runnable, long))：boolean postDelayed(Runnable r,long delayMillis)：把一个Runnable入队到消息队列中，UI线程从消息队列中取出这个对象后，延迟delayMills秒执行。 public final void removeCallbacks (Runnable r):从消息队列中移除一个Runnable对象。 对于Post方式而言，它其中Runnable对象的run()方法的代码，均执行在UI线程上，所以对于这段代码而言，不能执行在UI线程上的操作，一样无法使用post方式执行，比如说访问网络。 2.2Message Handler如果使用sendMessage的方式把消息入队到消息队列中，需要传递一个Message对象，而在Handler中，需要重写handleMessage()方法，用于获取工作线程传递过来的消息，此方法运行在UI线程上。下面先介绍一下Message。 Message是一个final类，所以不可被继承。Message封装了线程中传递的消息，如果对于一般的数据，Message提供了getData()和setData()方法来获取与设置数据，其中操作的数据是一个Bundle对象. 还有另外一种方式在Message中传递对象，那就是使用Message自带的obj属性传值，它是一个Object类型，所以可以传递任意类型的对象，Message自带的有如下几个属性： int arg1：参数一，用于传递不复杂的数据，复杂数据使用setData()传递。 int arg2：参数二，用于传递不复杂的数据，复杂数据使用setData()传递。 Object obj：传递一个任意的对象。 int what：定义的消息码，一般用于设定消息的标志。 对于Message对象，一般并不推荐直接使用它的构造方法得到，而是建议通过使用Message.">
+<meta property='og:url' content='http://localhost:1313/android/multithread/handler/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="在Android中不允许Activity新启动的线程访问该Activity里的UI组件，这样会导致新启动的线程无法改变UI组件的属性值。但实际开发中，很多地方需要在工作线程中改变UI组件的属性值，比如下载网络图片、动画等等。
-Handler，它直接继承自Object，一个Handler允许发送和处理Message或者Runnable对象，并且会关联到主线程的MessageQueue中。每个Handler具有一个单独的线程，并且关联到一个消息队列的线程，就是说一个Handler有一个固有的消息队列。当实例化一个Handler的时候，它就承载在一个线程和消息队列的线程，这个Handler可以把Message或Runnable压入到消息队列，并且从消息队列中取出Message或Runnable，进而操作它们。
-Handler主要有两个作用：
-在工作线程中发送消息。 在UI线程中获取、处理消息。 1.创建Handler Handler具有下列构造函数：
-2.使用Handler 上面介绍到Handler可以把一个Message对象或者Runnable对象压入到消息队列中，进而在UI线程中获取Message或者执行Runnable对象，所以Handler把压入消息队列有两大体系，Post和sendMessage。
-2.1 Post 对于Handler的Post方式来说，它会传递一个Runnable对象到消息队列中，在这个Runnable对象中，重写run()方法。一般在这个run()方法中写入需要在UI线程上的操作。
-Post有下列方法
-public final boolean post (Runnable r)：把一个Runnable入队到消息队列中，UI线程从消息队列中取出这个对象后，立即执行。 public final boolean postAtFrontOfQueue (Runnable r) [public final boolean postAtTime (Runnable r, Object token, long uptimeMillis)](http://developer.android.com/reference/android/os/Handler.html#postAtTime(java.lang.Runnable, java.lang.Object, long)) [public final boolean postAtTime (Runnable r, long uptimeMillis)](http://developer.android.com/reference/android/os/Handler.html#postAtTime(java.lang.Runnable, long))：把一个Runnable入队到消息队列中，UI线程从消息队列中取出这个对象后，在特定的时间执行。 [public final boolean postDelayed (Runnable r, long delayMillis)](http://developer.android.com/reference/android/os/Handler.html#postDelayed(java.lang.Runnable, long))：boolean postDelayed(Runnable r,long delayMillis)：把一个Runnable入队到消息队列中，UI线程从消息队列中取出这个对象后，延迟delayMills秒执行。 public final void removeCallbacks (Runnable r):从消息队列中移除一个Runnable对象。 对于Post方式而言，它其中Runnable对象的run()方法的代码，均执行在UI线程上，所以对于这段代码而言，不能执行在UI线程上的操作，一样无法使用post方式执行，比如说访问网络。
-2.2Message Handler如果使用sendMessage的方式把消息入队到消息队列中，需要传递一个Message对象，而在Handler中，需要重写handleMessage()方法，用于获取工作线程传递过来的消息，此方法运行在UI线程上。下面先介绍一下Message。
-Message是一个final类，所以不可被继承。Message封装了线程中传递的消息，如果对于一般的数据，Message提供了getData()和setData()方法来获取与设置数据，其中操作的数据是一个Bundle对象.
-还有另外一种方式在Message中传递对象，那就是使用Message自带的obj属性传值，它是一个Object类型，所以可以传递任意类型的对象，Message自带的有如下几个属性：
-int arg1：参数一，用于传递不复杂的数据，复杂数据使用setData()传递。 int arg2：参数二，用于传递不复杂的数据，复杂数据使用setData()传递。 Object obj：传递一个任意的对象。 int what：定义的消息码，一般用于设定消息的标志。 对于Message对象，一般并不推荐直接使用它的构造方法得到，而是建议通过使用Message.">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
-}
-</script>
-<style>
-    :root {
-      --sys-font-family: "Noto Serif SC";
-      --zh-font-family: "Noto Serif SC";
-      --base-font-family: "Noto Serif SC";
-      --code-font-family: "Noto Serif SC";
-      --article-font-family: "Noto Serif SC";
-    }
-  </style>
+<meta name="twitter:description" content="在Android中不允许Activity新启动的线程访问该Activity里的UI组件，这样会导致新启动的线程无法改变UI组件的属性值。但实际开发中，很多地方需要在工作线程中改变UI组件的属性值，比如下载网络图片、动画等等。 Handler，它直接继承自Object，一个Handler允许发送和处理Message或者Runnable对象，并且会关联到主线程的MessageQueue中。每个Handler具有一个单独的线程，并且关联到一个消息队列的线程，就是说一个Handler有一个固有的消息队列。当实例化一个Handler的时候，它就承载在一个线程和消息队列的线程，这个Handler可以把Message或Runnable压入到消息队列，并且从消息队列中取出Message或Runnable，进而操作它们。 Handler主要有两个作用： 在工作线程中发送消息。 在UI线程中获取、处理消息。 1.创建Handler Handler具有下列构造函数： 2.使用Handler 上面介绍到Handler可以把一个Message对象或者Runnable对象压入到消息队列中，进而在UI线程中获取Message或者执行Runnable对象，所以Handler把压入消息队列有两大体系，Post和sendMessage。 2.1 Post 对于Handler的Post方式来说，它会传递一个Runnable对象到消息队列中，在这个Runnable对象中，重写run()方法。一般在这个run()方法中写入需要在UI线程上的操作。 Post有下列方法 public final boolean post (Runnable r)：把一个Runnable入队到消息队列中，UI线程从消息队列中取出这个对象后，立即执行。 public final boolean postAtFrontOfQueue (Runnable r) [public final boolean postAtTime (Runnable r, Object token, long uptimeMillis)](http://developer.android.com/reference/android/os/Handler.html#postAtTime(java.lang.Runnable, java.lang.Object, long)) [public final boolean postAtTime (Runnable r, long uptimeMillis)](http://developer.android.com/reference/android/os/Handler.html#postAtTime(java.lang.Runnable, long))：把一个Runnable入队到消息队列中，UI线程从消息队列中取出这个对象后，在特定的时间执行。 [public final boolean postDelayed (Runnable r, long delayMillis)](http://developer.android.com/reference/android/os/Handler.html#postDelayed(java.lang.Runnable, long))：boolean postDelayed(Runnable r,long delayMillis)：把一个Runnable入队到消息队列中，UI线程从消息队列中取出这个对象后，延迟delayMills秒执行。 public final void removeCallbacks (Runnable r):从消息队列中移除一个Runnable对象。 对于Post方式而言，它其中Runnable对象的run()方法的代码，均执行在UI线程上，所以对于这段代码而言，不能执行在UI线程上的操作，一样无法使用post方式执行，比如说访问网络。 2.2Message Handler如果使用sendMessage的方式把消息入队到消息队列中，需要传递一个Message对象，而在Handler中，需要重写handleMessage()方法，用于获取工作线程传递过来的消息，此方法运行在UI线程上。下面先介绍一下Message。 Message是一个final类，所以不可被继承。Message封装了线程中传递的消息，如果对于一般的数据，Message提供了getData()和setData()方法来获取与设置数据，其中操作的数据是一个Bundle对象. 还有另外一种方式在Message中传递对象，那就是使用Message自带的obj属性传值，它是一个Object类型，所以可以传递任意类型的对象，Message自带的有如下几个属性： int arg1：参数一，用于传递不复杂的数据，复杂数据使用setData()传递。 int arg2：参数二，用于传递不复杂的数据，复杂数据使用setData()传递。 Object obj：传递一个任意的对象。 int what：定义的消息码，一般用于设定消息的标志。 对于Message对象，一般并不推荐直接使用它的构造方法得到，而是建议通过使用Message.">
   
-  <script>
-    (function () {
-      const customFont = document.createElement("link");
-      customFont.href =
-        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
   
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-  
-      document.head.appendChild(customFont);
-    })();
-  </script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
-     crossorigin="anonymous"></script>
-  
-
-<script>
-    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
 
 
     </head>
@@ -152,7 +92,7 @@ if (!doNotTrack) {
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
             <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -213,13 +153,32 @@ if (!doNotTrack) {
 
 
                 
-                <span>主页</span>
+                <span>Home</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/archives' >
+            <a href='/pages/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/archives/' >
                 
                 
                 
@@ -233,16 +192,54 @@ if (!doNotTrack) {
 
 
                 
-                <span>归档</span>
+                <span>Archives</span>
             </a>
         </li>
         
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -250,7 +247,7 @@ if (!doNotTrack) {
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -258,10 +255,11 @@ if (!doNotTrack) {
 
 
 
-                    <span>Dark Mode</span>
-                </li>
-            
-        </div>
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -367,12 +365,12 @@ if (!doNotTrack) {
 <li>在工作线程中发送消息。</li>
 <li>在UI线程中获取、处理消息。</li>
 </ul>
-<h4 id="1创建handler">1.创建Handler</h4>
-<p>Handler具有下列构造函数：</p>
-<h4 id="2使用handler">2.使用Handler</h4>
-<p>上面介绍到Handler可以把一个Message对象或者Runnable对象压入到消息队列中，进而在UI线程中获取Message或者执行Runnable对象，所以Handler把压入消息队列有两大体系，Post和sendMessage。</p>
-<h4 id="21-post">2.1 Post</h4>
-<p>对于Handler的Post方式来说，它会传递一个Runnable对象到消息队列中，在这个Runnable对象中，重写run()方法。一般在这个run()方法中写入需要在UI线程上的操作。</p>
+<h4 id="1创建handler">1.创建Handler
+</h4><p>Handler具有下列构造函数：</p>
+<h4 id="2使用handler">2.使用Handler
+</h4><p>上面介绍到Handler可以把一个Message对象或者Runnable对象压入到消息队列中，进而在UI线程中获取Message或者执行Runnable对象，所以Handler把压入消息队列有两大体系，Post和sendMessage。</p>
+<h4 id="21-post">2.1 Post
+</h4><p>对于Handler的Post方式来说，它会传递一个Runnable对象到消息队列中，在这个Runnable对象中，重写run()方法。一般在这个run()方法中写入需要在UI线程上的操作。</p>
 <p>Post有下列方法</p>
 <ul>
 <li><a class="link" href="http://developer.android.com/reference/android/os/Handler.html#post%28java.lang.Runnable%29"  target="_blank" rel="noopener"
@@ -389,8 +387,8 @@ if (!doNotTrack) {
     >public final void removeCallbacks (Runnable r)</a>:从消息队列中移除一个Runnable对象。</li>
 </ul>
 <p>对于Post方式而言，它其中Runnable对象的run()方法的代码，均执行在UI线程上，所以对于这段代码而言，不能执行在UI线程上的操作，一样无法使用post方式执行，比如说访问网络。</p>
-<h4 id="22message">2.2Message</h4>
-<p>Handler如果使用sendMessage的方式把消息入队到消息队列中，需要传递一个Message对象，而在Handler中，需要重写handleMessage()方法，用于获取工作线程传递过来的消息，此方法运行在UI线程上。下面先介绍一下Message。</p>
+<h4 id="22message">2.2Message
+</h4><p>Handler如果使用sendMessage的方式把消息入队到消息队列中，需要传递一个Message对象，而在Handler中，需要重写handleMessage()方法，用于获取工作线程传递过来的消息，此方法运行在UI线程上。下面先介绍一下Message。</p>
 <p><a class="link" href="http://developer.android.com/reference/android/os/Message.html"  target="_blank" rel="noopener"
     >Message</a>是一个final类，所以不可被继承。Message封装了线程中传递的消息，如果对于一般的数据，Message提供了getData()和setData()方法来获取与设置数据，其中操作的数据是一个Bundle对象.</p>
 <p>还有另外一种方式在Message中传递对象，那就是使用Message自带的obj属性传值，它是一个Object类型，所以可以传递任意类型的对象，Message自带的有如下几个属性：</p>
@@ -402,8 +400,8 @@ if (!doNotTrack) {
 </ul>
 <p>对于<code>Message</code>对象，一般并不推荐直接使用它的构造方法得到，而是建议通过使用<code>Message.obtain()</code>这个静态的方法或者<code>Handler.obtainMessage()</code>获取。<code>Message.obtain()</code>会从消息池中获取一个<code>Message</code>对象，如果消息池中是空的，才会使用构造方法实例化一个新<code>Message</code>，这样有利于消息资源的利用。并不需要担心消息池中的消息过多，它是有上限的，上限为10个。Handler.obtainMessage()具有多个重载方法，如果查看源码，会发现其实Handler.obtainMessage()在内部也是调用的Message.obtain()。</p>
 <p><code>Message.obtain()</code>方法具有多个重载方法，大致可以分为为两类，一类是无需传递<code>Handler</code>对象，对于这类的方法，当填充好消息后，需要调用<code>Handler.sendMessage()</code>方法来发送消息到消息队列中。第二类需要传递一个<code>Handler</code>对象，这类方法可以直接使用<code>Message.sendToTarget()</code>方法发送消息到消息队列中，这是因为在Message对象中有一个私有的Handler类型的属性Target，当时obtain方法传递进一个Handler对象的时候，会给Target属性赋值，当调用sendToTarget()方法的时候，实际在它内部还是调用的Target.sendMessage()方法。</p>
-<h4 id="23-sendmessage">2.3 sendMessage</h4>
-<p>Handler中，与Message发送消息相关的方法有：</p>
+<h4 id="23-sendmessage">2.3 sendMessage
+</h4><p>Handler中，与Message发送消息相关的方法有：</p>
 <ul>
 <li>Message obtainMessage()：获取一个Message对象。</li>
 <li>boolean sendMessage()：发送一个Message对象到消息队列中，并在UI线程取到消息后，立即执行。</li>
@@ -413,8 +411,8 @@ if (!doNotTrack) {
 <li>void removeMessage()：从消息队列中移除一个未响应的消息</li>
 </ul>
 <p>在Handler中，也定义了一些发送空消息的方法，如：sendEmptyMessage(int what)、sendEmptyMessageDelayed(int what,long delayMillis)，看似这些方法没有使用Message就可以发送一个消息，但是如果查看源码就会发现，其实内部也是从Message.obtain()方法中获取一个Message对象，然后给属性赋值，最后使用sendMessage()发送消息到消息队列中。</p>
-<h2 id="扩展阅读">扩展阅读</h2>
-<ul>
+<h2 id="扩展阅读">扩展阅读
+</h2><ul>
 <li><a class="link" href="http://www.cnblogs.com/plokmju/p/android_Handler.html"  target="_blank" rel="noopener"
     >Android&ndash;多线程之Handler</a></li>
 <li><a class="link" href="http://blog.csdn.net/ahuier/article/details/17013647"  target="_blank" rel="noopener"
@@ -517,7 +515,7 @@ if (!doNotTrack) {
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 

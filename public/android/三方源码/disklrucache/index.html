@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="DiskLruCache使用 1 //1.创建DiskLruCache对象DiskLruCache diskLruCache = DiskLruCache.open(directory, APP_VERSION, VALUE_COUNT, maxSize);//2.获取Editor对象DiskLruCache.Editor editor = diskLruCache.edit(key);//3.获取输出流OutputStream outputStream = editor.newOutputStream(0);//4.向输出流写入数据//...//5.提交editor.commit(); 创建DiskLruCache 1 //构造函数，私有private DiskLruCache(File directory, int appVersion, int valueCount, long maxSize) { this.directory = directory; //存储的目录 this.appVersion = appVersion; //应用版本号 this.journalFile = new File(directory, JOURNAL_FILE); this.journalFileTmp = new File(directory, JOURNAL_FILE_TEMP); this.journalFileBackup = new File(directory, JOURNAL_FILE_BACKUP); this.valueCount = valueCount;//一个key对应value的个数通常为1 this.maxSize = maxSize;//缓存的最大值} 1 public static DiskLruCache open(File directory, int appVersion, int valueCount, long maxSize) throws IOException { if (maxSize &lt;= 0) { throw new IllegalArgumentException(&#34;maxSize &lt;= 0&#34;); } if (valueCount &lt;= 0) { throw new IllegalArgumentException(&#34;valueCount &lt;= 0&#34;); } // If a bkp file exists, use it instead.">
+<title></title>
+
+<link rel='canonical' href='http://localhost:1313/android/%E4%B8%89%E6%96%B9%E6%BA%90%E7%A0%81/disklrucache/'>
+
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<meta property='og:description' content="DiskLruCache使用 1 //1.创建DiskLruCache对象DiskLruCache diskLruCache = DiskLruCache.open(directory, APP_VERSION, VALUE_COUNT, maxSize);//2.获取Editor对象DiskLruCache.Editor editor = diskLruCache.edit(key);//3.获取输出流OutputStream outputStream = editor.newOutputStream(0);//4.向输出流写入数据//...//5.提交editor.commit(); 创建DiskLruCache 1 //构造函数，私有private DiskLruCache(File directory, int appVersion, int valueCount, long maxSize) { this.directory = directory; //存储的目录 this.appVersion = appVersion; //应用版本号 this.journalFile = new File(directory, JOURNAL_FILE); this.journalFileTmp = new File(directory, JOURNAL_FILE_TEMP); this.journalFileBackup = new File(directory, JOURNAL_FILE_BACKUP); this.valueCount = valueCount;//一个key对应value的个数通常为1 this.maxSize = maxSize;//缓存的最大值} 1 public static DiskLruCache open(File directory, int appVersion, int valueCount, long maxSize) throws IOException { if (maxSize &lt;= 0) { throw new IllegalArgumentException(&#34;maxSize &lt;= 0&#34;); } if (valueCount &lt;= 0) { throw new IllegalArgumentException(&#34;valueCount &lt;= 0&#34;); } // If a bkp file exists, use it instead.">
+<meta property='og:url' content='http://localhost:1313/android/%E4%B8%89%E6%96%B9%E6%BA%90%E7%A0%81/disklrucache/'>
+<meta property='og:site_name' content='Malinkang&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Android' />
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="DiskLruCache使用 1 //1.创建DiskLruCache对象DiskLruCache diskLruCache = DiskLruCache.open(directory, APP_VERSION, VALUE_COUNT, maxSize);//2.获取Editor对象DiskLruCache.Editor editor = diskLruCache.edit(key);//3.获取输出流OutputStream outputStream = editor.newOutputStream(0);//4.向输出流写入数据//...//5.提交editor.commit(); 创建DiskLruCache 1 //构造函数，私有private DiskLruCache(File directory, int appVersion, int valueCount, long maxSize) { this.directory = directory; //存储的目录 this.appVersion = appVersion; //应用版本号 this.journalFile = new File(directory, JOURNAL_FILE); this.journalFileTmp = new File(directory, JOURNAL_FILE_TEMP); this.journalFileBackup = new File(directory, JOURNAL_FILE_BACKUP); this.valueCount = valueCount;//一个key对应value的个数通常为1 this.maxSize = maxSize;//缓存的最大值} 1 public static DiskLruCache open(File directory, int appVersion, int valueCount, long maxSize) throws IOException { if (maxSize &lt;= 0) { throw new IllegalArgumentException(&#34;maxSize &lt;= 0&#34;); } if (valueCount &lt;= 0) { throw new IllegalArgumentException(&#34;valueCount &lt;= 0&#34;); } // If a bkp file exists, use it instead.">
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
+  
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/images/avatar_hu74e4307e0baa534a3da4ee0210445065_34446_300x0_resize_q75_box.jpeg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
+            <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/malinkang'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/malinkang'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#disklrucache使用">DiskLruCache使用</a></li>
+    <li><a href="#创建disklrucache">创建DiskLruCache</a>
+      <ol>
+        <li><a href="#rebuildjournal">rebuildJournal()</a></li>
+      </ol>
+    </li>
+    <li><a href="#存入缓存">存入缓存</a>
+      <ol>
+        <li><a href="#entry">Entry</a></li>
+        <li><a href="#newoutputstream">newOutputStream()</a></li>
+      </ol>
+    </li>
+    <li><a href="#获取">获取</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/android/%E4%B8%89%E6%96%B9%E6%BA%90%E7%A0%81/disklrucache/"></a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    7 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="disklrucache使用">DiskLruCache使用
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//1.创建DiskLruCache对象DiskLruCache diskLruCache = DiskLruCache.open(directory, APP_VERSION, VALUE_COUNT, maxSize);//2.获取Editor对象DiskLruCache.Editor editor = diskLruCache.edit(key);//3.获取输出流OutputStream outputStream = editor.newOutputStream(0);//4.向输出流写入数据//...//5.提交editor.commit();</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="创建disklrucache">创建DiskLruCache
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//构造函数，私有private DiskLruCache(File directory, int appVersion, int valueCount, long maxSize) {  this.directory = directory; //存储的目录  this.appVersion = appVersion; //应用版本号  this.journalFile = new File(directory, JOURNAL_FILE);  this.journalFileTmp = new File(directory, JOURNAL_FILE_TEMP);  this.journalFileBackup = new File(directory, JOURNAL_FILE_BACKUP);  this.valueCount = valueCount;//一个key对应value的个数通常为1  this.maxSize = maxSize;//缓存的最大值}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">DiskLruCache</span><span class="w"> </span><span class="nf">open</span><span class="p">(</span><span class="n">File</span><span class="w"> </span><span class="n">directory</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">appVersion</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">valueCount</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">maxSize</span><span class="p">)</span><span class="w">    </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">maxSize</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">IllegalArgumentException</span><span class="p">(</span><span class="s">&#34;maxSize &lt;= 0&#34;</span><span class="p">);</span><span class="w">  </span><span class="p">}</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">valueCount</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">IllegalArgumentException</span><span class="p">(</span><span class="s">&#34;valueCount &lt;= 0&#34;</span><span class="p">);</span><span class="w">  </span><span class="p">}</span><span class="w">  </span><span class="c1">// If a bkp file exists, use it instead.  File backupFile = new File(directory, JOURNAL_FILE_BACKUP);  //判断是否存在journal.bkp文件  if (backupFile.exists()) {    //journal.bkp文件存在 则判断journal是否存在    File journalFile = new File(directory, JOURNAL_FILE);    // If journal file also exists just delete backup file.    //如果journal存在，删除journal.bkp    if (journalFile.exists()) {      backupFile.delete();    } else {      //不存在journal文件，则重命名journal.bkp为journal      renameTo(backupFile, journalFile, false);    }  }  // Prefer to pick up where we left off.  //创建DiskLruCache  DiskLruCache cache = new DiskLruCache(directory, appVersion, valueCount, maxSize);  //如果journalFile存在则调用readJournal读取数据  if (cache.journalFile.exists()) {    try {      cache.readJournal();      cache.processJournal();      return cache;    } catch (IOException journalIsCorrupt) {      System.out          .println(&#34;DiskLruCache &#34;              + directory              + &#34; is corrupt: &#34;              + journalIsCorrupt.getMessage()              + &#34;, removing&#34;);      cache.delete();    }  }  // Create a new empty cache.  directory.mkdirs();  cache = new DiskLruCache(directory, appVersion, valueCount, maxSize);  //如果journalFile不存在调用rebuildJournal方法。  cache.rebuildJournal();  return cache;}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="rebuildjournal">rebuildJournal()
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span><span class="w"> </span><span class="kd">synchronized</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">rebuildJournal</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">journalWriter</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">      </span><span class="n">closeWriter</span><span class="p">(</span><span class="n">journalWriter</span><span class="p">);</span><span class="w">    </span><span class="p">}</span><span class="w">    </span><span class="c1">//向journal.tmp写入    Writer writer = new BufferedWriter(        new OutputStreamWriter(new FileOutputStream(journalFileTmp), Util.US_ASCII));    try {      writer.write(MAGIC); //libcore.io.DiskLruCache 类似于class的魔数吧校验journal文件      writer.write(&#34;\n&#34;);      writer.write(VERSION_1); //1      writer.write(&#34;\n&#34;);      writer.write(Integer.toString(appVersion)); //版本号      writer.write(&#34;\n&#34;);      writer.write(Integer.toString(valueCount));      writer.write(&#34;\n&#34;);      writer.write(&#34;\n&#34;);      //遍历重新写入      for (Entry entry : lruEntries.values()) {        if (entry.currentEditor != null) {          writer.write(DIRTY + &#39; &#39; + entry.key + &#39;\n&#39;);        } else {          writer.write(CLEAN + &#39; &#39; + entry.key + entry.getLengths() + &#39;\n&#39;);        }      }    } finally {      closeWriter(writer);    }    //如果journal存在重命名为journal.bkp    if (journalFile.exists()) {      renameTo(journalFile, journalFileBackup, true);    }    //journal.tmp重命名为journal    renameTo(journalFileTmp, journalFile, false);    //删除备份文件    journalFileBackup.delete();    journalWriter = new BufferedWriter(        new OutputStreamWriter(new FileOutputStream(journalFile, true), Util.US_ASCII));}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://malinkang-1253444926.cos.ap-beijing.myqcloud.com/images/java/image-20210719201140396.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+>
+image-20210719201140396</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">readJournal</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">//创建StrictLineReader  StrictLineReader reader = new StrictLineReader(new FileInputStream(journalFile), Util.US_ASCII);  try {    String magic = reader.readLine();    String version = reader.readLine();    String appVersionString = reader.readLine();    String valueCountString = reader.readLine();    String blank = reader.readLine();    if (!MAGIC.equals(magic)        || !VERSION_1.equals(version)        || !Integer.toString(appVersion).equals(appVersionString)        || !Integer.toString(valueCount).equals(valueCountString)        || !&#34;&#34;.equals(blank)) {      throw new IOException(&#34;unexpected journal header: [&#34; + magic + &#34;, &#34; + version + &#34;, &#34;          + valueCountString + &#34;, &#34; + blank + &#34;]&#34;);    }    int lineCount = 0;    while (true) {      try {        //读取行        readJournalLine(reader.readLine());        lineCount++;      } catch (EOFException endOfJournal) {        break;      }    }    redundantOpCount = lineCount - lruEntries.size();    // If we ended on a truncated line, rebuild the journal before appending to it.    if (reader.hasUnterminatedLine()) {      rebuildJournal();    } else {      journalWriter = new BufferedWriter(new OutputStreamWriter(          new FileOutputStream(journalFile, true), Util.US_ASCII));    }  } finally {    Util.closeQuietly(reader);  }}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">readJournalLine</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">line</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">firstSpace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">line</span><span class="p">.</span><span class="na">indexOf</span><span class="p">(</span><span class="sc">&#39; &#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">//第一个空格的索引  if (firstSpace == -1) {    throw new IOException(&#34;unexpected journal line: &#34; + line);  }  int keyBegin = firstSpace + 1;  int secondSpace = line.indexOf(&#39; &#39;, keyBegin);//第二个空格  final String key;  //不存在第二个空格  if (secondSpace == -1) {    key = line.substring(keyBegin);    //如果是移除 则从Map中移除    if (firstSpace == REMOVE.length() &amp;&amp; line.startsWith(REMOVE)) {      lruEntries.remove(key);      return;    }  } else {    key = line.substring(keyBegin, secondSpace);  }  Entry entry = lruEntries.get(key);  //如果key没有加入到lruEntries中，创建并加入  if (entry == null) {    entry = new Entry(key);    lruEntries.put(key, entry);  }  //如果是CLEAN  if (secondSpace != -1 &amp;&amp; firstSpace == CLEAN.length() &amp;&amp; line.startsWith(CLEAN)) {    String[] parts = line.substring(secondSpace + 1).split(&#34; &#34;);    entry.readable = true;    entry.currentEditor = null;    entry.setLengths(parts);  } else if (secondSpace == -1 &amp;&amp; firstSpace == DIRTY.length() &amp;&amp; line.startsWith(DIRTY)) {    entry.currentEditor = new Editor(entry);  } else if (secondSpace == -1 &amp;&amp; firstSpace == READ.length() &amp;&amp; line.startsWith(READ)) {    // This work was already done by calling lruEntries.get().  } else {    throw new IOException(&#34;unexpected journal line: &#34; + line);  }}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">processJournal</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="n">deleteIfExists</span><span class="p">(</span><span class="n">journalFileTmp</span><span class="p">);</span><span class="w">  </span><span class="c1">//遍历所有文件的大小 并赋值给size  for (Iterator&lt;Entry&gt; i = lruEntries.values().iterator(); i.hasNext(); ) {    Entry entry = i.next();    if (entry.currentEditor == null) {      for (int t = 0; t &lt; valueCount; t++) {        size += entry.lengths[t];      }    } else {      entry.currentEditor = null;      for (int t = 0; t &lt; valueCount; t++) {        deleteIfExists(entry.getCleanFile(t));        deleteIfExists(entry.getDirtyFile(t));      }      i.remove();    }  }}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="存入缓存">存入缓存
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="n">Editor</span><span class="w"> </span><span class="nf">edit</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">edit</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">ANY_SEQUENCE_NUMBER</span><span class="p">);}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span><span class="w"> </span><span class="kd">synchronized</span><span class="w"> </span><span class="n">Editor</span><span class="w"> </span><span class="nf">edit</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">expectedSequenceNumber</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="n">checkNotClosed</span><span class="p">();</span><span class="w">  </span><span class="c1">//从LinkedHashMap中获取Entry  Entry entry = lruEntries.get(key);  if (expectedSequenceNumber != ANY_SEQUENCE_NUMBER &amp;&amp; (entry == null      || entry.sequenceNumber != expectedSequenceNumber)) {    return null; // Value is stale.  }  if (entry == null) {      //如果Entry为null创建Entry    entry = new Entry(key);    lruEntries.put(key, entry);  } else if (entry.currentEditor != null) {    return null; // Another edit is in progress.  }  //创建Editor  Editor editor = new Editor(entry);  entry.currentEditor = editor;  //写入一条DIRTY数据  // Flush the journal before creating files to prevent file leaks.  journalWriter.append(DIRTY);  journalWriter.append(&#39; &#39;);  journalWriter.append(key);  journalWriter.append(&#39;\n&#39;);  flushWriter(journalWriter);  return editor;}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="entry">Entry
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span><span class="w"> </span><span class="nf">Entry</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="na">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">key</span><span class="p">;</span><span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="na">lengths</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">long</span><span class="o">[</span><span class="n">valueCount</span><span class="o">]</span><span class="p">;</span><span class="w">  </span><span class="n">cleanFiles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">File</span><span class="o">[</span><span class="n">valueCount</span><span class="o">]</span><span class="p">;</span><span class="w">  </span><span class="n">dirtyFiles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">File</span><span class="o">[</span><span class="n">valueCount</span><span class="o">]</span><span class="p">;</span><span class="w">  </span><span class="c1">// The names are repetitive so re-use the same builder to avoid allocations.  StringBuilder fileBuilder = new StringBuilder(key).append(&#39;.&#39;);  int truncateTo = fileBuilder.length();  for (int i = 0; i &lt; valueCount; i++) {      fileBuilder.append(i);      //缓存文件名为key.索引      cleanFiles[i] = new File(directory, fileBuilder.toString());      fileBuilder.append(&#34;.tmp&#34;);      dirtyFiles[i] = new File(directory, fileBuilder.toString());      fileBuilder.setLength(truncateTo);  }}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="newoutputstream">newOutputStream()
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="n">OutputStream</span><span class="w"> </span><span class="nf">newOutputStream</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">index</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">valueCount</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">IllegalArgumentException</span><span class="p">(</span><span class="s">&#34;Expected index &#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34; to &#34;</span><span class="w">            </span><span class="o">+</span><span class="w"> </span><span class="s">&#34;be greater than 0 and less than the maximum value count &#34;</span><span class="w">            </span><span class="o">+</span><span class="w"> </span><span class="s">&#34;of &#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">valueCount</span><span class="p">);</span><span class="w">  </span><span class="p">}</span><span class="w">  </span><span class="kd">synchronized</span><span class="w"> </span><span class="p">(</span><span class="n">DiskLruCache</span><span class="p">.</span><span class="na">this</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">entry</span><span class="p">.</span><span class="na">currentEditor</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">this</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">IllegalStateException</span><span class="p">();</span><span class="w">    </span><span class="p">}</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">entry</span><span class="p">.</span><span class="na">readable</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">      </span><span class="n">written</span><span class="o">[</span><span class="n">index</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w">    </span><span class="p">}</span><span class="w">    </span><span class="n">File</span><span class="w"> </span><span class="n">dirtyFile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">entry</span><span class="p">.</span><span class="na">getDirtyFile</span><span class="p">(</span><span class="n">index</span><span class="p">);</span><span class="w">    </span><span class="n">FileOutputStream</span><span class="w"> </span><span class="n">outputStream</span><span class="p">;</span><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w">      </span><span class="n">outputStream</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileOutputStream</span><span class="p">(</span><span class="n">dirtyFile</span><span class="p">);</span><span class="c1">//输出流    } catch (FileNotFoundException e) {      // Attempt to recreate the cache directory.      directory.mkdirs();      try {        outputStream = new FileOutputStream(dirtyFile);      } catch (FileNotFoundException e2) {        // We are unable to recover. Silently eat the writes.        return NULL_OUTPUT_STREAM;      }    }    return new FaultHidingOutputStream(outputStream);  }}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">commit</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">hasErrors</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">    </span><span class="n">completeEdit</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span><span class="w">    </span><span class="n">remove</span><span class="p">(</span><span class="n">entry</span><span class="p">.</span><span class="na">key</span><span class="p">);</span><span class="w"> </span><span class="c1">// The previous entry is stale.  } else {    completeEdit(this, true);  }  committed = true;}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span><span class="w"> </span><span class="kd">synchronized</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">completeEdit</span><span class="p">(</span><span class="n">Editor</span><span class="w"> </span><span class="n">editor</span><span class="p">,</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">success</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="n">Entry</span><span class="w"> </span><span class="n">entry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">editor</span><span class="p">.</span><span class="na">entry</span><span class="p">;</span><span class="w"> </span><span class="c1">//获取Entry  if (entry.currentEditor != editor) {    throw new IllegalStateException();  }  // If this edit is creating the entry for the first time, every index must have a value.  if (success &amp;&amp; !entry.readable) {    for (int i = 0; i &lt; valueCount; i++) {      if (!editor.written[i]) {        editor.abort();        throw new IllegalStateException(&#34;Newly created entry didn&#39;t create value for index &#34; + i);      }      if (!entry.getDirtyFile(i).exists()) {        editor.abort();        return;      }    }  }  for (int i = 0; i &lt; valueCount; i++) {    File dirty = entry.getDirtyFile(i);    if (success) {      //如果文件存在      if (dirty.exists()) {        File clean = entry.getCleanFile(i);        //重命名为clean        dirty.renameTo(clean);        long oldLength = entry.lengths[i];        //获取文件长度        long newLength = clean.length();        entry.lengths[i] = newLength;        size = size - oldLength + newLength;      }    } else {      //如果失败删除dirty文件      deleteIfExists(dirty);    }  }  redundantOpCount++;  //currentEditor设置为null  entry.currentEditor = null;  //写入CLEAN记录  if (entry.readable | success) {    entry.readable = true;    journalWriter.append(CLEAN);    journalWriter.append(&#39; &#39;);    journalWriter.append(entry.key);    journalWriter.append(entry.getLengths());    journalWriter.append(&#39;\n&#39;);    if (success) {      entry.sequenceNumber = nextSequenceNumber++;    }  } else {    lruEntries.remove(entry.key);    journalWriter.append(REMOVE);    journalWriter.append(&#39; &#39;);    journalWriter.append(entry.key);    journalWriter.append(&#39;\n&#39;);  }  flushWriter(journalWriter);  //如果size&gt;maxSize则执行清理任务  if (size &gt; maxSize || journalRebuildRequired()) {    executorService.submit(cleanupCallable);  }}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//只有一个线程final ThreadPoolExecutor executorService =    new ThreadPoolExecutor(0, 1, 60L, TimeUnit.SECONDS, new LinkedBlockingQueue&lt;Runnable&gt;(),        new DiskLruCacheThreadFactory());private final Callable&lt;Void&gt; cleanupCallable = new Callable&lt;Void&gt;() {  public Void call() throws Exception {    synchronized (DiskLruCache.this) {      if (journalWriter == null) {        return null; // Closed.      }      trimToSize();      //重建journal      if (journalRebuildRequired()) {        rebuildJournal();        redundantOpCount = 0;      }    }    return null;  }};</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">journalRebuildRequired</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">redundantOpCompactThreshold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">2000</span><span class="p">;</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">redundantOpCount</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">redundantOpCompactThreshold</span><span class="w"> </span><span class="c1">//大于2000并且大于map的size      &amp;&amp; redundantOpCount &gt;= lruEntries.size();}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="获取">获取
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">synchronized</span><span class="w"> </span><span class="n">Value</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="n">checkNotClosed</span><span class="p">();</span><span class="w">  </span><span class="c1">//获取Entry  Entry entry = lruEntries.get(key);  if (entry == null) {    return null;  }  if (!entry.readable) {    return null;  }  //检查文件是否存在  for (File file : entry.cleanFiles) {      // A file must have been deleted manually!      if (!file.exists()) {          return null;      }  }  redundantOpCount++;  //添加read记录  journalWriter.append(READ);  journalWriter.append(&#39; &#39;);  journalWriter.append(key);  journalWriter.append(&#39;\n&#39;);  if (journalRebuildRequired()) {    executorService.submit(cleanupCallable);  }  return new Value(key, entry.sequenceNumber, entry.cleanFiles, entry.lengths);}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">synchronized</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">remove</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="n">checkNotClosed</span><span class="p">();</span><span class="w">  </span><span class="n">Entry</span><span class="w"> </span><span class="n">entry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lruEntries</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">key</span><span class="p">);</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">entry</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">entry</span><span class="p">.</span><span class="na">currentEditor</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w">  </span><span class="p">}</span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">valueCount</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">    </span><span class="n">File</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">entry</span><span class="p">.</span><span class="na">getCleanFile</span><span class="p">(</span><span class="n">i</span><span class="p">);</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">file</span><span class="p">.</span><span class="na">exists</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">file</span><span class="p">.</span><span class="na">delete</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w">      </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">IOException</span><span class="p">(</span><span class="s">&#34;failed to delete &#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">file</span><span class="p">);</span><span class="w">    </span><span class="p">}</span><span class="w">    </span><span class="n">size</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">entry</span><span class="p">.</span><span class="na">lengths</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span><span class="w">    </span><span class="n">entry</span><span class="p">.</span><span class="na">lengths</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">0</span><span class="p">;</span><span class="w">  </span><span class="p">}</span><span class="w">  </span><span class="c1">//添加REMOVE记录  redundantOpCount++;  journalWriter.append(REMOVE);  journalWriter.append(&#39; &#39;);  journalWriter.append(key);  journalWriter.append(&#39;\n&#39;);  lruEntries.remove(key);  if (journalRebuildRequired()) {    executorService.submit(cleanupCallable);  }  return true;}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script
+    src="https://giscus.app/client.js"
+    data-repo="malinkang/malinkang"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkzMTUwNzEyODU="
+    data-category="General"
+    data-category-id="DIC_kwDOEsebNc4CbSPg"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="en"
+    crossorigin="anonymous"
+    async
+></script>
+<script>
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
+        }
+    }
+
+    (function () {
+        addEventListener("message", (e) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('light');
+            } else {
+                setGiscusTheme('dark');
+            }
+        }
+    })();
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2013 - 
+        
+        2024 malinkang
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

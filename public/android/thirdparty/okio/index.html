@@ -1,66 +1,36 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='核心类 BufferedSource类似InputStream负责读取数据。 BufferedSink类似OutputStream负责写入数据。 读取分析 读取代码示例：
-1 2 3 4 5 6 7 8 9 10 11 12 fun readLines(file: File) { file.source().use { fileSource -&amp;gt; fileSource.buffer().use { bufferedFileSource -&amp;gt; while (true) { val line = bufferedFileSource.readUtf8Line() ?: break if (&amp;#34;square&amp;#34; in line) { println(line) } } } } } 流程图 source() 1 2 3 4 5 //扩展函数获取Source对象 fun File.source(): Source = InputStreamSource(inputStream(), Timeout.NONE) public inline fun File.inputStream(): FileInputStream { return FileInputStream(this) } buffer() 1 fun Source.'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="核心类 BufferedSource类似InputStream负责读取数据。 BufferedSink类似OutputStream负责写入数据。 读取分析 读取代码示例： 1 2 3 4 5 6 7 8 9 10 11 12 fun readLines(file: File) { file.source().use { fileSource -&gt; fileSource.buffer().use { bufferedFileSource -&gt; while (true) { val line = bufferedFileSource.readUtf8Line() ?: break if (&#34;square&#34; in line) { println(line) } } } } } 流程图 1 2 3 4 5 6 7 8 classDiagram class Source &lt;&lt;interface&gt;&gt; Source class BufferedSource &lt;&lt;interface&gt;&gt; BufferedSource Source &lt;|.. BufferedSource class RealBufferedSource BufferedSource &lt;|-- RealBufferedSource source() 1 2 3 4 5 //扩展函数获取Source对象 fun File.">
 <title></title>
 
-<link rel='canonical' href='https://example.com/android/thirdparty/okio/'>
+<link rel='canonical' href='http://localhost:1313/android/thirdparty/okio/'>
 
-<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
-<meta property='og:description' content='核心类 BufferedSource类似InputStream负责读取数据。 BufferedSink类似OutputStream负责写入数据。 读取分析 读取代码示例：
-1 2 3 4 5 6 7 8 9 10 11 12 fun readLines(file: File) { file.source().use { fileSource -&amp;gt; fileSource.buffer().use { bufferedFileSource -&amp;gt; while (true) { val line = bufferedFileSource.readUtf8Line() ?: break if (&amp;#34;square&amp;#34; in line) { println(line) } } } } } 流程图 source() 1 2 3 4 5 //扩展函数获取Source对象 fun File.source(): Source = InputStreamSource(inputStream(), Timeout.NONE) public inline fun File.inputStream(): FileInputStream { return FileInputStream(this) } buffer() 1 fun Source.'>
-<meta property='og:url' content='https://example.com/android/thirdparty/okio/'>
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<meta property='og:description' content="核心类 BufferedSource类似InputStream负责读取数据。 BufferedSink类似OutputStream负责写入数据。 读取分析 读取代码示例： 1 2 3 4 5 6 7 8 9 10 11 12 fun readLines(file: File) { file.source().use { fileSource -&gt; fileSource.buffer().use { bufferedFileSource -&gt; while (true) { val line = bufferedFileSource.readUtf8Line() ?: break if (&#34;square&#34; in line) { println(line) } } } } } 流程图 1 2 3 4 5 6 7 8 classDiagram class Source &lt;&lt;interface&gt;&gt; Source class BufferedSource &lt;&lt;interface&gt;&gt; BufferedSource Source &lt;|.. BufferedSource class RealBufferedSource BufferedSource &lt;|-- RealBufferedSource source() 1 2 3 4 5 //扩展函数获取Source对象 fun File.">
+<meta property='og:url' content='http://localhost:1313/android/thirdparty/okio/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="核心类 BufferedSource类似InputStream负责读取数据。 BufferedSink类似OutputStream负责写入数据。 读取分析 读取代码示例：
-1 2 3 4 5 6 7 8 9 10 11 12 fun readLines(file: File) { file.source().use { fileSource -&amp;gt; fileSource.buffer().use { bufferedFileSource -&amp;gt; while (true) { val line = bufferedFileSource.readUtf8Line() ?: break if (&amp;#34;square&amp;#34; in line) { println(line) } } } } } 流程图 source() 1 2 3 4 5 //扩展函数获取Source对象 fun File.source(): Source = InputStreamSource(inputStream(), Timeout.NONE) public inline fun File.inputStream(): FileInputStream { return FileInputStream(this) } buffer() 1 fun Source.">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
-}
-</script>
-<style>
-    :root {
-      --sys-font-family: "Noto Serif SC";
-      --zh-font-family: "Noto Serif SC";
-      --base-font-family: "Noto Serif SC";
-      --code-font-family: "Noto Serif SC";
-      --article-font-family: "Noto Serif SC";
-    }
-  </style>
+<meta name="twitter:description" content="核心类 BufferedSource类似InputStream负责读取数据。 BufferedSink类似OutputStream负责写入数据。 读取分析 读取代码示例： 1 2 3 4 5 6 7 8 9 10 11 12 fun readLines(file: File) { file.source().use { fileSource -&gt; fileSource.buffer().use { bufferedFileSource -&gt; while (true) { val line = bufferedFileSource.readUtf8Line() ?: break if (&#34;square&#34; in line) { println(line) } } } } } 流程图 1 2 3 4 5 6 7 8 classDiagram class Source &lt;&lt;interface&gt;&gt; Source class BufferedSource &lt;&lt;interface&gt;&gt; BufferedSource Source &lt;|.. BufferedSource class RealBufferedSource BufferedSource &lt;|-- RealBufferedSource source() 1 2 3 4 5 //扩展函数获取Source对象 fun File.">
   
-  <script>
-    (function () {
-      const customFont = document.createElement("link");
-      customFont.href =
-        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
   
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-  
-      document.head.appendChild(customFont);
-    })();
-  </script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
-     crossorigin="anonymous"></script>
-  
-
-<script>
-    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
 
 
     </head>
@@ -122,7 +92,7 @@ if (!doNotTrack) {
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
             <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -183,13 +153,32 @@ if (!doNotTrack) {
 
 
                 
-                <span>主页</span>
+                <span>Home</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/archives' >
+            <a href='/pages/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/archives/' >
                 
                 
                 
@@ -203,16 +192,54 @@ if (!doNotTrack) {
 
 
                 
-                <span>归档</span>
+                <span>Archives</span>
             </a>
         </li>
         
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -220,7 +247,7 @@ if (!doNotTrack) {
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -228,10 +255,11 @@ if (!doNotTrack) {
 
 
 
-                    <span>Dark Mode</span>
-                </li>
-            
-        </div>
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -350,8 +378,8 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h2 id="核心类">核心类</h2>
-<p><img src="https://malinkang.cn/images/jvm/202111121535376.png"
+    <h2 id="核心类">核心类
+</h2><p><img src="https://malinkang.cn/images/jvm/202111121535376.png"
 	
 	
 	
@@ -365,8 +393,8 @@ if (!doNotTrack) {
 <li><code>BufferedSource</code>类似<code>InputStream</code>负责读取数据。</li>
 <li><code>BufferedSink</code>类似<code>OutputStream</code>负责写入数据。</li>
 </ul>
-<h2 id="读取分析">读取分析</h2>
-<p>读取代码示例：</p>
+<h2 id="读取分析">读取分析
+</h2><p>读取代码示例：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -397,19 +425,31 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="流程图">流程图</h3>
-<p><img src="https://malinkang.cn/images/jvm/202111121744513.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20211112174416076"
-	
-	
-></p>
-<h3 id="source">source()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="流程图">流程图
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">classDiagram
+</span></span><span class="line"><span class="cl">  class Source
+</span></span><span class="line"><span class="cl">  &lt;&lt;interface&gt;&gt; Source
+</span></span><span class="line"><span class="cl">  class BufferedSource
+</span></span><span class="line"><span class="cl">  &lt;&lt;interface&gt;&gt; BufferedSource
+</span></span><span class="line"><span class="cl">  Source &lt;|.. BufferedSource
+</span></span><span class="line"><span class="cl">  class RealBufferedSource
+</span></span><span class="line"><span class="cl">  BufferedSource &lt;|-- RealBufferedSource
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="source">source()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -425,8 +465,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="buffer">buffer()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="buffer">buffer()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -480,8 +520,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="indexof">indexOf()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="indexof">indexOf()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -497,8 +537,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl">  <span class="n">commonIndexOf</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">fromIndex</span><span class="p">,</span> <span class="n">toIndex</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="commonindexof">commonIndexOf()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="commonindexof">commonIndexOf()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -544,8 +584,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="buffer的创建">Buffer的创建</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="buffer的创建">Buffer的创建
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -557,8 +597,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl">  <span class="k">inline</span> <span class="k">get</span><span class="p">()</span> <span class="p">=</span> <span class="n">bufferField</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="readutf8line">readUtf8Line()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="readutf8line">readUtf8Line()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -568,8 +608,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">override</span> <span class="k">fun</span> <span class="nf">readUtf8Line</span><span class="p">():</span> <span class="n">String</span><span class="p">?</span> <span class="p">=</span> <span class="n">commonReadUtf8Line</span><span class="p">()</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="commonreadutf8line">commonReadUtf8Line()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="commonreadutf8line">commonReadUtf8Line()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -593,8 +633,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="readutf8">readUtf8()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="readutf8">readUtf8()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -602,8 +642,8 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="k">override</span> <span class="k">fun</span> <span class="nf">readUtf8</span><span class="p">()</span> <span class="p">=</span> <span class="n">readString</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="nc">Charsets</span><span class="p">.</span><span class="n">UTF_8</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="readstring">readString()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="readstring">readString()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -655,8 +695,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="commonreadbytearray">commonReadByteArray()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="commonreadbytearray">commonReadByteArray()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -678,8 +718,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="commonreadfully">commonReadFully()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="commonreadfully">commonReadFully()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -701,8 +741,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="read">read()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="read">read()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -712,8 +752,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"> <span class="n">commonRead</span><span class="p">(</span><span class="n">sink</span><span class="p">,</span> <span class="n">offset</span><span class="p">,</span> <span class="n">byteCount</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="commonread">commonRead()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="commonread">commonRead()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -757,8 +797,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="写入分析">写入分析</h2>
-<div class="highlight"><div class="chroma">
+</div><h2 id="写入分析">写入分析
+</h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -794,8 +834,8 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h3 id="sink">sink()</h3>
-<div class="highlight"><div class="chroma">
+<h3 id="sink">sink()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -805,8 +845,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="k">fun</span> <span class="nf">OutputStream</span><span class="p">.</span><span class="n">sink</span><span class="p">():</span> <span class="n">Sink</span> <span class="p">=</span> <span class="n">OutputStreamSink</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">Timeout</span><span class="p">())</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="buffer-1">buffer()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="buffer-1">buffer()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -814,8 +854,8 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="k">fun</span> <span class="nf">Sink</span><span class="p">.</span><span class="n">buffer</span><span class="p">():</span> <span class="n">BufferedSink</span> <span class="p">=</span> <span class="n">RealBufferedSink</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="writeutf8">writeUtf8()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="writeutf8">writeUtf8()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -823,8 +863,8 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="k">override</span> <span class="k">fun</span> <span class="nf">writeUtf8</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="n">String</span><span class="p">)</span> <span class="p">=</span> <span class="n">commonWriteUtf8</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="commonwriteutf8">commonWriteUtf8()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="commonwriteutf8">commonWriteUtf8()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -840,8 +880,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="write">write()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="write">write()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -853,8 +893,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl">    <span class="n">commonWriteUtf8</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">beginIndex</span><span class="p">,</span> <span class="n">endIndex</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="commonwriteutf8-1">commonWriteUtf8()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="commonwriteutf8-1">commonWriteUtf8()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1040,8 +1080,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="emitcompletesegments">emitCompleteSegments()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="emitcompletesegments">emitCompleteSegments()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1049,8 +1089,8 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="k">override</span> <span class="k">fun</span> <span class="nf">emitCompleteSegments</span><span class="p">()</span> <span class="p">=</span> <span class="n">commonEmitCompleteSegments</span><span class="p">()</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="commonemitcompletesegments">commonEmitCompleteSegments()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="commonemitcompletesegments">commonEmitCompleteSegments()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1068,8 +1108,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="completesegmentbytecount">completeSegmentByteCount()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="completesegmentbytecount">completeSegmentByteCount()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1077,8 +1117,8 @@ if (!doNotTrack) {
 <pre tabindex="0" class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="line"><span class="cl"><span class="k">actual</span> <span class="k">fun</span> <span class="nf">completeSegmentByteCount</span><span class="p">():</span> <span class="n">Long</span> <span class="p">=</span> <span class="n">commonCompleteSegmentByteCount</span><span class="p">()</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="commoncompletesegmentbytecount">commonCompleteSegmentByteCount()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="commoncompletesegmentbytecount">commonCompleteSegmentByteCount()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1108,8 +1148,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="write-1">write()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="write-1">write()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1153,8 +1193,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="参考">参考</h2>
-<ul>
+</div><h2 id="参考">参考
+</h2><ul>
 <li><a class="link" href="https://juejin.cn/post/6844904037196775438"  target="_blank" rel="noopener"
     >Okio 源码解析：轻量而高效的 I/O 库</a></li>
 <li><a class="link" href="https://www.cnblogs.com/huansky/p/14323085.html"  target="_blank" rel="noopener"
@@ -1255,7 +1295,7 @@ if (!doNotTrack) {
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 

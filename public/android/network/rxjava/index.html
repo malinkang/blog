@@ -1,75 +1,36 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='RxJava 目录 1.创建Observable 2.操作符 3.错误处理 4.调度器 5.订阅 参考 RxJava最核心的东西就是Observables和Subscribers。Observables发出一系列事件，Subscribers处理这些事件。如果一个Observables没有任何的Subscribers，那么这个Observables是不会发出任何事件来。
-1.创建Observable RxJava提供了多种创建Observables的方法。create方法创建一实例需要传入一个OnSubscribe,当Subscriber订阅时进行调用。
-创建Subscriber
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 Subscriber&amp;lt;String&amp;gt; mySubscriber = new Subscriber&amp;lt;String&amp;gt;() { @Override public void onCompleted() { } @Override public void onError(Throwable e) { } @Override public void onNext(String s) { System.out.println(s); } }; 创建Observable
-1 2 3 4 5 6 7 8 9 10 11 Observable&amp;lt;String&amp;gt; myObservable=Observable.create( new Observable.'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="RxJava 目录 1.创建Observable 2.操作符 3.错误处理 4.调度器 5.订阅 参考 RxJava最核心的东西就是Observables和Subscribers。Observables发出一系列事件，Subscribers处理这些事件。如果一个Observables没有任何的Subscribers，那么这个Observables是不会发出任何事件来。 1.创建Observable RxJava提供了多种创建Observables的方法。create方法创建一实例需要传入一个OnSubscribe,当Subscriber订阅时进行调用。 创建Subscriber 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 Subscriber&lt;String&gt; mySubscriber = new Subscriber&lt;String&gt;() { @Override public void onCompleted() { } @Override public void onError(Throwable e) { } @Override public void onNext(String s) { System.out.println(s); } }; 创建Observable 1 2 3 4 5 6 7 8 9 10 11 Observable&lt;String&gt; myObservable=Observable.create( new Observable.">
 <title></title>
 
-<link rel='canonical' href='https://example.com/android/network/rxjava/'>
+<link rel='canonical' href='http://localhost:1313/android/network/rxjava/'>
 
-<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
-<meta property='og:description' content='RxJava 目录 1.创建Observable 2.操作符 3.错误处理 4.调度器 5.订阅 参考 RxJava最核心的东西就是Observables和Subscribers。Observables发出一系列事件，Subscribers处理这些事件。如果一个Observables没有任何的Subscribers，那么这个Observables是不会发出任何事件来。
-1.创建Observable RxJava提供了多种创建Observables的方法。create方法创建一实例需要传入一个OnSubscribe,当Subscriber订阅时进行调用。
-创建Subscriber
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 Subscriber&amp;lt;String&amp;gt; mySubscriber = new Subscriber&amp;lt;String&amp;gt;() { @Override public void onCompleted() { } @Override public void onError(Throwable e) { } @Override public void onNext(String s) { System.out.println(s); } }; 创建Observable
-1 2 3 4 5 6 7 8 9 10 11 Observable&amp;lt;String&amp;gt; myObservable=Observable.create( new Observable.'>
-<meta property='og:url' content='https://example.com/android/network/rxjava/'>
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<meta property='og:description' content="RxJava 目录 1.创建Observable 2.操作符 3.错误处理 4.调度器 5.订阅 参考 RxJava最核心的东西就是Observables和Subscribers。Observables发出一系列事件，Subscribers处理这些事件。如果一个Observables没有任何的Subscribers，那么这个Observables是不会发出任何事件来。 1.创建Observable RxJava提供了多种创建Observables的方法。create方法创建一实例需要传入一个OnSubscribe,当Subscriber订阅时进行调用。 创建Subscriber 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 Subscriber&lt;String&gt; mySubscriber = new Subscriber&lt;String&gt;() { @Override public void onCompleted() { } @Override public void onError(Throwable e) { } @Override public void onNext(String s) { System.out.println(s); } }; 创建Observable 1 2 3 4 5 6 7 8 9 10 11 Observable&lt;String&gt; myObservable=Observable.create( new Observable.">
+<meta property='og:url' content='http://localhost:1313/android/network/rxjava/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="RxJava 目录 1.创建Observable 2.操作符 3.错误处理 4.调度器 5.订阅 参考 RxJava最核心的东西就是Observables和Subscribers。Observables发出一系列事件，Subscribers处理这些事件。如果一个Observables没有任何的Subscribers，那么这个Observables是不会发出任何事件来。
-1.创建Observable RxJava提供了多种创建Observables的方法。create方法创建一实例需要传入一个OnSubscribe,当Subscriber订阅时进行调用。
-创建Subscriber
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 Subscriber&amp;lt;String&amp;gt; mySubscriber = new Subscriber&amp;lt;String&amp;gt;() { @Override public void onCompleted() { } @Override public void onError(Throwable e) { } @Override public void onNext(String s) { System.out.println(s); } }; 创建Observable
-1 2 3 4 5 6 7 8 9 10 11 Observable&amp;lt;String&amp;gt; myObservable=Observable.create( new Observable.">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
-}
-</script>
-<style>
-    :root {
-      --sys-font-family: "Noto Serif SC";
-      --zh-font-family: "Noto Serif SC";
-      --base-font-family: "Noto Serif SC";
-      --code-font-family: "Noto Serif SC";
-      --article-font-family: "Noto Serif SC";
-    }
-  </style>
+<meta name="twitter:description" content="RxJava 目录 1.创建Observable 2.操作符 3.错误处理 4.调度器 5.订阅 参考 RxJava最核心的东西就是Observables和Subscribers。Observables发出一系列事件，Subscribers处理这些事件。如果一个Observables没有任何的Subscribers，那么这个Observables是不会发出任何事件来。 1.创建Observable RxJava提供了多种创建Observables的方法。create方法创建一实例需要传入一个OnSubscribe,当Subscriber订阅时进行调用。 创建Subscriber 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 Subscriber&lt;String&gt; mySubscriber = new Subscriber&lt;String&gt;() { @Override public void onCompleted() { } @Override public void onError(Throwable e) { } @Override public void onNext(String s) { System.out.println(s); } }; 创建Observable 1 2 3 4 5 6 7 8 9 10 11 Observable&lt;String&gt; myObservable=Observable.create( new Observable.">
   
-  <script>
-    (function () {
-      const customFont = document.createElement("link");
-      customFont.href =
-        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
   
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-  
-      document.head.appendChild(customFont);
-    })();
-  </script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
-     crossorigin="anonymous"></script>
-  
-
-<script>
-    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
 
 
     </head>
@@ -131,7 +92,7 @@ if (!doNotTrack) {
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
             <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -192,13 +153,32 @@ if (!doNotTrack) {
 
 
                 
-                <span>主页</span>
+                <span>Home</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/archives' >
+            <a href='/pages/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/archives/' >
                 
                 
                 
@@ -212,16 +192,54 @@ if (!doNotTrack) {
 
 
                 
-                <span>归档</span>
+                <span>Archives</span>
             </a>
         </li>
         
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -229,7 +247,7 @@ if (!doNotTrack) {
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -237,10 +255,11 @@ if (!doNotTrack) {
 
 
 
-                    <span>Dark Mode</span>
-                </li>
-            
-        </div>
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -330,9 +349,9 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="rxjava">RxJava</h1>
-<h2 id="目录">目录</h2>
-<ul>
+    <h1 id="rxjava">RxJava
+</h1><h2 id="目录">目录
+</h2><ul>
 <li><a class="link" href="rxjava.md#1.%e5%88%9b%e5%bb%baObservable" >1.创建Observable</a></li>
 <li><a class="link" href="rxjava.md#2.%e6%93%8d%e4%bd%9c%e7%ac%a6" >2.操作符</a></li>
 <li><a class="link" href="rxjava.md#3.%e9%94%99%e8%af%af%e5%a4%84%e7%90%86" >3.错误处理</a></li>
@@ -341,8 +360,8 @@ if (!doNotTrack) {
 <li><a class="link" href="rxjava.md#%e5%8f%82%e8%80%83" >参考</a></li>
 </ul>
 <p><code>RxJava</code>最核心的东西就是<code>Observables</code>和<code>Subscribers</code>。<code>Observables</code>发出一系列事件，<code>Subscribers</code>处理这些事件。如果一个<code>Observables</code>没有任何的<code>Subscribers</code>，那么这个<code>Observables</code>是不会发出任何事件来。</p>
-<h2 id="1创建observable-a-id1x521bx5efaobservablea">1.创建Observable <a id="1.&#x521B;&#x5EFA;Observable"></a></h2>
-<p><code>RxJava</code>提供了多种创建<code>Observables</code>的方法。<code>create</code>方法创建一实例需要传入一个<code>OnSubscribe</code>,当<code>Subscriber</code>订阅时进行调用。</p>
+<h2 id="1创建observable-a-id1x521bx5efaobservablea">1.创建Observable <a id="1.&#x521B;&#x5EFA;Observable"></a>
+</h2><p><code>RxJava</code>提供了多种创建<code>Observables</code>的方法。<code>create</code>方法创建一实例需要传入一个<code>OnSubscribe</code>,当<code>Subscriber</code>订阅时进行调用。</p>
 <p>创建<code>Subscriber</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -461,8 +480,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">});</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="2操作符-a-id2x64cdx4f5cx7b26a">2.操作符 <a id="2.&#x64CD;&#x4F5C;&#x7B26;"></a></h2>
-<p>操作符就是为了解决对<code>Observable</code>对象的变换问题，操作符用于在<code>Observable</code>和最终的<code>Subscriber</code>之间修改<code>Observable</code>发出的事件。<code>RxJava</code>提供了很多很有用的操作符。</p>
+</div><h2 id="2操作符-a-id2x64cdx4f5cx7b26a">2.操作符 <a id="2.&#x64CD;&#x4F5C;&#x7B26;"></a>
+</h2><p>操作符就是为了解决对<code>Observable</code>对象的变换问题，操作符用于在<code>Observable</code>和最终的<code>Subscriber</code>之间修改<code>Observable</code>发出的事件。<code>RxJava</code>提供了很多很有用的操作符。</p>
 <p><code>map</code>操作符，就是用来把一个事件转换为另一个事件的。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -582,11 +601,11 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">};</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="3错误处理-a-id3x9519x8befx5904x7406a">3.错误处理 <a id="3.&#x9519;&#x8BEF;&#x5904;&#x7406;"></a></h2>
-<h2 id="4调度器-a-id4x8c03x5ea6x5668a">4.调度器 <a id="4.&#x8C03;&#x5EA6;&#x5668;"></a></h2>
-<p><code>RxJava</code>可以使用<code>Observable</code>的<code>subscribeOn</code>方法指定观察者代码运行的线程。</p>
-<h2 id="5订阅-a-id5x8ba2x9605a">5.订阅 <a id="5.&#x8BA2;&#x9605;"></a></h2>
-<p>当调用<code>Observable.subscribe()</code>会返回一个<code>Subscription</code>对象。这个对象代表了观察者和订阅者之间的联系。</p>
+</div><h2 id="3错误处理-a-id3x9519x8befx5904x7406a">3.错误处理 <a id="3.&#x9519;&#x8BEF;&#x5904;&#x7406;"></a>
+</h2><h2 id="4调度器-a-id4x8c03x5ea6x5668a">4.调度器 <a id="4.&#x8C03;&#x5EA6;&#x5668;"></a>
+</h2><p><code>RxJava</code>可以使用<code>Observable</code>的<code>subscribeOn</code>方法指定观察者代码运行的线程。</p>
+<h2 id="5订阅-a-id5x8ba2x9605a">5.订阅 <a id="5.&#x8BA2;&#x9605;"></a>
+</h2><p>当调用<code>Observable.subscribe()</code>会返回一个<code>Subscription</code>对象。这个对象代表了观察者和订阅者之间的联系。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -711,7 +730,7 @@ if (!doNotTrack) {
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 

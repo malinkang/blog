@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html><head>
+	<meta name="generator" content="Hugo 0.128.2"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<title>Malinkang&#39;s Blog</title>
+
+
+
+  
+
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+    <link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="/scss/dark-mode.min.c6e68b913da16a092755d6c22435d1331fd1af82c857538edbdca3203413fe72.css" integrity="sha256-xuaLkT2hagknVdbCJDXRMx/Rr4LIV1OO29yjIDQT/nI=" media="screen">
+
+
+<link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Material+Icons">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+
+
+
+</head>
+<body>
+    	<div id="app"><div class="single-column-drawer-container" id="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+                
+                
+                
+                    
+                
+                
+                
+                <a class="a-block drawer-menu-item active" href="/">
+                    Home
+                </a>
+                
+            
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div id="drawer-mask" v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav id="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div id="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a id="navTitle" class="navbar-brand" href="http://localhost:1313/">
+            Malinkang&#39;s Blog
+        </a>
+        
+        <button type="button" class="nav-darkmode-toggle" id="darkModeToggleButton2">
+            <i class="material-icons" id="darkModeToggleIcon2">
+                dark_mode
+            </i>
+        </button>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" id="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="http://localhost:1313/">
+        <div class="single-column-header-title">Malinkang&#39;s Blog</div>
+        
+
+    </a>
+</div>
+
+            <div id="content">
+                <div id="streamContainer" class="stream-container">
+
+    <div class="post-list-container post-list-container-no-background">
+        
+        
+            <a href="/android/components/services/readme/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                
+                            </div>
+                            <div class="post-item-summary">
+                                
+                                    服务 
+                                
+                            </div>
+                            <div class="post-item-meta">
+    0001-01-01
+    &emsp;
+    
+    
+    
+    &emsp;
+    
+</div>
+
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+        
+            <a href="/android/components/services/services/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                
+                            </div>
+                            <div class="post-item-summary">
+                                
+                                    服务 Service 是一种可在后台执行长时间运行操作而不提供界面的应用组件。服务可由其他应用组件启动，而且即使用户切换到其他应用，服务仍将在后台继续运行。此外，组件可通过绑定到服务与之进行交互，甚至是执行进程间通信 (IPC)。例如，服务可在后台处理网络事务、播放音乐，执行文件 I/O 或与内容提供程序进行交互。
+以下是三种不同的服务类型：
+前台
+前台服务执行一些用户能注意到的操作。例如，音频应用会使用前台服务来播放音频曲目。前台服务必须显示通知。即使用户停止与应用的交互，前台服务仍会继续运行。
+后台
+后台服务执行用户不会直接注意到的操作。例如，如果应用使用某个服务来压缩其存储空间，则此服务通常是后台服务。
+{% hint style=&ldquo;success&rdquo; %} 注意：如果您的应用面向 API 级别 26 或更高版本，当应用本身未在前台运行时，系统会对运行后台服务施加限制。在诸如此类的大多数情况下，您的应用应改为使用计划作业。 {% endhint %}
+绑定
+当应用组件通过调用 bindService() 绑定到服务时，服务即处于_绑定_状态。绑定服务会提供客户端-服务器接口，以便组件与服务进行交互、发送请求、接收结果，甚至是利用进程间通信 (IPC) 跨进程执行这些操作。仅当与另一个应用组件绑定时，绑定服务才会运行。多个组件可同时绑定到该服务，但全部取消绑定后，该服务即会被销毁。
+虽然本文档分开概括讨论启动服务和绑定服务，但您的服务可同时以这两种方式运行，换言之，它既可以是启动服务（以无限期运行），亦支持绑定。唯一的问题在于您是否实现一组回调方法：onStartCommand()（让组件启动服务）和 onBind()（实现服务绑定）。
+无论服务是处于启动状态还是绑定状态（或同时处于这两种状态），任何应用组件均可像使用 Activity 那样，通过调用 Intent 来使用服务（即使此服务来自另一应用）。不过，您可以通过清单文件将服务声明为_私有_服务，并阻止其他应用访问该服务。使用清单文件声明服务部分将对此做更详尽的阐述。
+{% hint style=&ldquo;success&rdquo; %} 注意：服务在其托管进程的主线程中运行，它既不创建自己的线程，也不在单独的进程中运行（除非另行指定）。如果服务将执行任何 CPU 密集型工作或阻止性操作（例如 MP3 播放或联网），则应通过在服务内创建新线程来完成这项工作。通过使用单独的线程，您可以降低发生“应用无响应”(ANR) 错误的风险，而应用的主线程仍可继续专注于运行用户与 Activity 之间的交互。 {% endhint %}
+在服务和线程之间进行选择 简单地说，服务是一种即使用户未与应用交互也可在后台运行的组件，因此，只有在需要服务时才应创建服务。
+如果您必须在主线程之外执行操作，但只在用户与您的应用交互时执行此操作，则应创建新线程。例如，如果您只是想在 Activity 运行的同时播放一些音乐，则可在 onCreate() 中创建线程，在 onStart() 中启动线程运行，然后在 onStop() 中停止线程。您还可考虑使用 AsyncTask 或 HandlerThread，而非传统的 Thread 类。如需了解有关线程的详细信息，请参阅进程和线程文档。
+请记住，如果您确实要使用服务，则默认情况下，它仍会在应用的主线程中运行，因此，如果服务执行的是密集型或阻止性操作，则您仍应在服务内创建新线程。
+基础知识 如要创建服务，您必须创建 Service 的子类（或使用它的一个现有子类）。在实现中，您必须重写一些回调方法，从而处理服务生命周期的某些关键方面，并提供一种机制将组件绑定到服务（如适用）。以下是您应重写的最重要的回调方法：
+                                
+                            </div>
+                            <div class="post-item-meta">
+    0001-01-01
+    &emsp;
+    
+    
+    
+    &emsp;
+    
+</div>
+
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+        
+            <a href="/android/data-binding/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                
+                            </div>
+                            <div class="post-item-summary">
+                                
+                                    构建环境 要使用Data Binding，需要添加dataBinding元素到app模块下的build.gradle文件下。
+1 2 3 4 5 6 android { .... dataBinding { enabled = true } } 创建数据绑定布局文件 数据绑定的布局文件和普通的布局文件对比有如下不同：根标签是layout，接下来是一个data元素和一个view的根元素。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 &lt;layout xmlns:android=&#34;http://schemas.android.com/apk/res/android&#34;&gt; &lt;data&gt; &lt;variable name=&#34;user&#34; type=&#34;cn.malinkang.databinding.User&#34;/&gt; &lt;/data&gt; &lt;LinearLayout android:orientation=&#34;vertical&#34; android:layout_width=&#34;match_parent&#34; android:layout_height=&#34;match_parent&#34;&gt; &lt;TextView android:layout_width=&#34;wrap_content&#34; android:layout_height=&#34;wrap_content&#34; android:text=&#34;@{user.firstName}&#34;/&gt; &lt;TextView android:layout_width=&#34;wrap_content&#34; android:layout_height=&#34;wrap_content&#34; android:text=&#34;@{user.lastName}&#34;/&gt; &lt;/LinearLayout&gt; &lt;/layout&gt; variable元素用来定义变量，type是变量类型，name是变量名。
+在布局中通过@{}语法将变量的属性值设置给View的属性。
+数据绑定中的data可以是POJO对象，也可以是JavaBean对象。在POJO对象中@{}获取的值是直接调用属性的值，而JavaBean则是通过属性的get方法获取值。例如上面的例子中android:text=&quot;@{user.firstName}，如果User是POJO对象，则访问的是firstName属性，如果是JavaBean，则是通过调用getFirstName()方法获取值。
+POJO对象：
+1 2 3 4 5 6 7 8 public class User { public final String firstName; public final String lastName; public User(String firstName, String lastName) { this.
+                                
+                            </div>
+                            <div class="post-item-meta">
+    0001-01-01
+    &emsp;
+    
+    
+    
+    &emsp;
+    
+</div>
+
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+        
+            <a href="/android/data-storage/readme/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                
+                            </div>
+                            <div class="post-item-summary">
+                                
+                                    数据存储 管理存储设备上的所有文件 申请权限 1 2 &lt;!--清单文件中注册--&gt; &lt;uses-permission android:name=&#34;android.permission.MANAGE_EXTERNAL_STORAGE&#34;/&gt; 1 2 3 4 5 6 7 //判断是否大于Android11 并且没有权限 if(!Environment.isExternalStorageManager()){ Intent intent = new Intent(android.provider.Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION); Uri uri = Uri.fromParts(&#34;package&#34;, &#34;com.gbwhatsapp&#34;, null); intent.setData(uri); context.startActivity(intent); } 1 2 #通过adb 打开 adb shell am start -a android.settings.MANAGE_ALL_FILES_ACCESS_PERMISSION 
+                                
+                            </div>
+                            <div class="post-item-meta">
+    0001-01-01
+    &emsp;
+    
+    
+    
+    &emsp;
+    
+</div>
+
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+        
+            <a href="/android/data-storage/shared-preferences/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                
+                            </div>
+                            <div class="post-item-summary">
+                                
+                                    保存键值对数据 原文：https://developer.android.com/training/data-storage/shared-preferences
+如果您有想要保存的相对较小键值对集合，则应使用 SharedPreferences API。SharedPreferences 对象指向包含键值对的文件，并提供读写这些键值对的简单方法。每个 SharedPreferences 文件均由框架进行管理，可以是私有文件，也可以是共享文件。
+{% hint style=&ldquo;info&rdquo; %} 注意：SharedPreferences API 用于读写键值对，不要将它们与 Preference API 混淆，后者可帮助您构建用于显示应用设置的界面（虽然它们也使用 SharedPreferences 保存用户设置）。如需了解 Preference API，请参阅设置开发者指南。 {% endhint %}
+获取SharedPreferences 您可以通过调用以下方法之一创建新的共享偏好设置文件或访问已有共享偏好设置文件：
+getSharedPreferences() - 如果您需要多个由名称（使用第一个参数指定）标识的共享偏好设置文件，则使用此方法。您可以从您的应用中的任何 Context 调用此方法。 getPreferences() - 如果您只需使用 Activity 的一个共享首选项，请从 Activity 中使用此方法。由于这会检索属于该 Activity 的默认共享偏好设置文件，因此您无需提供名称。 如果您使用 SharedPreferences API 保存应用设置，则应改用PreferenceManager 的getDefaultSharedPreferences() 方法获取整个应用的默认共享偏好设置文件。如需了解详情，请参阅设置开发者指南。 1 2 3 4 5 6 7 //在私有模式下打开该文件，确保只有您的应用可以访问该文件： val sharedPreferences1 = getSharedPreferences(&#34;file1&#34;, Context.MODE_PRIVATE) sharedPreferences1.edit().putInt(&#34;value1&#34;,1).apply() val sharedPreferences2 = getPreferences(Context.MODE_PRIVATE) sharedPreferences2.edit().putInt(&#34;value2&#34;,2).apply() val sharedPreferences3 = PreferenceManager.getDefaultSharedPreferences(this) sharedPreferences3.
+                                
+                            </div>
+                            <div class="post-item-meta">
+    0001-01-01
+    &emsp;
+    
+    
+    
+    &emsp;
+    
+</div>
+
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+        
+        </a>
+    </div>
+
+
+                    </div>
+            </div><div id="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head active" href="http://localhost:1313/">
+    
+        <div class="nav-title">
+            Malinkang&#39;s Blog
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+            
+            
+                
+            
+            
+            
+            <a class="a-block nav-link-item active" href="/">
+                Home
+            </a>
+            
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://risehere.net/">Rise</a>
+<br>
+Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	malinkang
+	
+
+    </div>
+    
+</div><div id="extraContainer" class="extra-container">
+    <div class="toc-wrapper">
+        
+
+        
+    </div>
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top"
+            :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        <a type="button" class="pagination-action" id="darkModeToggleButton">
+            <span class="material-icons pagination-action-icon" id="darkModeToggleIcon">
+                dark_mode
+            </span>
+        </a>
+        
+        
+        
+
+        <a class="pagination-action"  href="/page/14/">
+            
+            <i class="material-icons pagination-action-icon">
+                chevron_left
+            </i>
+        </a>
+
+        <div class="pagination-indicator">
+            <span style="text-align: center">
+                15<br>
+                <div style="display: inline-block; transform: rotate(-28deg)">-</div><br>53
+            </span>
+        </div>
+
+
+        <a class="pagination-action"  href="/page/16/">
+            
+            <i class="material-icons pagination-action-icon">
+                chevron_right
+            </i>
+        </a>
+        
+        
+    </div>
+</div>
+
+
+<div class="pagination">
+    
+    <a class="pagination-action" href="/page/14/" style="opacity:1">
+    
+        <i class="material-icons pagination-action-icon">
+            chevron_left
+        </i>
+    </a>
+
+        <div class="pagination-indicator">
+            <span>15/53</span>
+        </div>
+
+        
+        <a class="pagination-action" href="/page/16/"
+           style="opacity:1">
+        
+                <i class="material-icons pagination-action-icon">
+                    chevron_right
+                </i>
+            </a>
+</div>
+
+
+
+<div id="single-column-footer">
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://risehere.net/">Rise</a>
+<br>
+Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	malinkang
+	
+</div>
+            </div>
+    
+    <script src="/js/journal.js"></script></body>
+</html>

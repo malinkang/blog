@@ -1,3 +1,3 @@
 ---
-layout: "search"
+layout: "搜索"
 ---

@@ -1,78 +1,36 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Android中，Activity和Fragment之间传递对象，可以通过将对象序列化并存入Bundle或者Intent中进行传递，也可以将对象转化为JSON字符串，进行传递。
-序列化对象可以使用Java的Serializable的接口Parcelable接口。转化成JSON字符串，可以使用Gson等库。
-1.Serializable Model
-1 2 3 4 5 6 public class Author implements Serializable{ private int id; private String name; //... } 1 2 3 4 5 public class Book implements Serializable{ private String title; private Author author; //... } 传递数据
-1 2 3 4 5 6 7 8 9 Book book=new Book(); book.setTitle(&amp;#34;Java编程思想&amp;#34;); Author author=new Author(); author.setId(1); author.setName(&amp;#34;Bruce Eckel&amp;#34;); book.setAuthor(author); Intent intent=new Intent(this,SecondActivity.class); intent.putExtra(&amp;#34;book&amp;#34;,book); startActivity(intent); 接收数据
-1 2 3 Book book= (Book) getIntent().'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Android中，Activity和Fragment之间传递对象，可以通过将对象序列化并存入Bundle或者Intent中进行传递，也可以将对象转化为JSON字符串，进行传递。 序列化对象可以使用Java的Serializable的接口Parcelable接口。转化成JSON字符串，可以使用Gson等库。 1.Serializable Model 1 2 3 4 5 6 public class Author implements Serializable{ private int id; private String name; //... } 1 2 3 4 5 public class Book implements Serializable{ private String title; private Author author; //... } 传递数据 1 2 3 4 5 6 7 8 9 Book book=new Book(); book.setTitle(&#34;Java编程思想&#34;); Author author=new Author(); author.setId(1); author.setName(&#34;Bruce Eckel&#34;); book.setAuthor(author); Intent intent=new Intent(this,SecondActivity.class); intent.putExtra(&#34;book&#34;,book); startActivity(intent); 接收数据 1 2 3 Book book= (Book) getIntent().">
 <title></title>
 
-<link rel='canonical' href='https://example.com/android/components/parceable/'>
+<link rel='canonical' href='http://localhost:1313/android/components/parceable/'>
 
-<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
-<meta property='og:description' content='Android中，Activity和Fragment之间传递对象，可以通过将对象序列化并存入Bundle或者Intent中进行传递，也可以将对象转化为JSON字符串，进行传递。
-序列化对象可以使用Java的Serializable的接口Parcelable接口。转化成JSON字符串，可以使用Gson等库。
-1.Serializable Model
-1 2 3 4 5 6 public class Author implements Serializable{ private int id; private String name; //... } 1 2 3 4 5 public class Book implements Serializable{ private String title; private Author author; //... } 传递数据
-1 2 3 4 5 6 7 8 9 Book book=new Book(); book.setTitle(&amp;#34;Java编程思想&amp;#34;); Author author=new Author(); author.setId(1); author.setName(&amp;#34;Bruce Eckel&amp;#34;); book.setAuthor(author); Intent intent=new Intent(this,SecondActivity.class); intent.putExtra(&amp;#34;book&amp;#34;,book); startActivity(intent); 接收数据
-1 2 3 Book book= (Book) getIntent().'>
-<meta property='og:url' content='https://example.com/android/components/parceable/'>
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<meta property='og:description' content="Android中，Activity和Fragment之间传递对象，可以通过将对象序列化并存入Bundle或者Intent中进行传递，也可以将对象转化为JSON字符串，进行传递。 序列化对象可以使用Java的Serializable的接口Parcelable接口。转化成JSON字符串，可以使用Gson等库。 1.Serializable Model 1 2 3 4 5 6 public class Author implements Serializable{ private int id; private String name; //... } 1 2 3 4 5 public class Book implements Serializable{ private String title; private Author author; //... } 传递数据 1 2 3 4 5 6 7 8 9 Book book=new Book(); book.setTitle(&#34;Java编程思想&#34;); Author author=new Author(); author.setId(1); author.setName(&#34;Bruce Eckel&#34;); book.setAuthor(author); Intent intent=new Intent(this,SecondActivity.class); intent.putExtra(&#34;book&#34;,book); startActivity(intent); 接收数据 1 2 3 Book book= (Book) getIntent().">
+<meta property='og:url' content='http://localhost:1313/android/components/parceable/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="Android中，Activity和Fragment之间传递对象，可以通过将对象序列化并存入Bundle或者Intent中进行传递，也可以将对象转化为JSON字符串，进行传递。
-序列化对象可以使用Java的Serializable的接口Parcelable接口。转化成JSON字符串，可以使用Gson等库。
-1.Serializable Model
-1 2 3 4 5 6 public class Author implements Serializable{ private int id; private String name; //... } 1 2 3 4 5 public class Book implements Serializable{ private String title; private Author author; //... } 传递数据
-1 2 3 4 5 6 7 8 9 Book book=new Book(); book.setTitle(&amp;#34;Java编程思想&amp;#34;); Author author=new Author(); author.setId(1); author.setName(&amp;#34;Bruce Eckel&amp;#34;); book.setAuthor(author); Intent intent=new Intent(this,SecondActivity.class); intent.putExtra(&amp;#34;book&amp;#34;,book); startActivity(intent); 接收数据
-1 2 3 Book book= (Book) getIntent().">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
-}
-</script>
-<style>
-    :root {
-      --sys-font-family: "Noto Serif SC";
-      --zh-font-family: "Noto Serif SC";
-      --base-font-family: "Noto Serif SC";
-      --code-font-family: "Noto Serif SC";
-      --article-font-family: "Noto Serif SC";
-    }
-  </style>
+<meta name="twitter:description" content="Android中，Activity和Fragment之间传递对象，可以通过将对象序列化并存入Bundle或者Intent中进行传递，也可以将对象转化为JSON字符串，进行传递。 序列化对象可以使用Java的Serializable的接口Parcelable接口。转化成JSON字符串，可以使用Gson等库。 1.Serializable Model 1 2 3 4 5 6 public class Author implements Serializable{ private int id; private String name; //... } 1 2 3 4 5 public class Book implements Serializable{ private String title; private Author author; //... } 传递数据 1 2 3 4 5 6 7 8 9 Book book=new Book(); book.setTitle(&#34;Java编程思想&#34;); Author author=new Author(); author.setId(1); author.setName(&#34;Bruce Eckel&#34;); book.setAuthor(author); Intent intent=new Intent(this,SecondActivity.class); intent.putExtra(&#34;book&#34;,book); startActivity(intent); 接收数据 1 2 3 Book book= (Book) getIntent().">
   
-  <script>
-    (function () {
-      const customFont = document.createElement("link");
-      customFont.href =
-        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
   
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-  
-      document.head.appendChild(customFont);
-    })();
-  </script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
-     crossorigin="anonymous"></script>
-  
-
-<script>
-    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
 
 
     </head>
@@ -134,7 +92,7 @@ if (!doNotTrack) {
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
             <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -195,13 +153,32 @@ if (!doNotTrack) {
 
 
                 
-                <span>主页</span>
+                <span>Home</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/archives' >
+            <a href='/pages/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/archives/' >
                 
                 
                 
@@ -215,16 +192,54 @@ if (!doNotTrack) {
 
 
                 
-                <span>归档</span>
+                <span>Archives</span>
             </a>
         </li>
         
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -232,7 +247,7 @@ if (!doNotTrack) {
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -240,10 +255,11 @@ if (!doNotTrack) {
 
 
 
-                    <span>Dark Mode</span>
-                </li>
-            
-        </div>
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -343,8 +359,8 @@ if (!doNotTrack) {
     
     <p>Android中，Activity和Fragment之间传递对象，可以通过将对象序列化并存入Bundle或者Intent中进行传递，也可以将对象转化为JSON字符串，进行传递。</p>
 <p>序列化对象可以使用Java的<code>Serializable</code>的接口<code>Parcelable</code>接口。转化成JSON字符串，可以使用<code>Gson</code>等库。</p>
-<h3 id="1serializable">1.Serializable</h3>
-<p>Model</p>
+<h3 id="1serializable">1.Serializable
+</h3><p>Model</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -417,8 +433,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Log</span><span class="p">.</span><span class="na">d</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span><span class="s">&#34;book author name-&gt;&#34;</span><span class="o">+</span><span class="n">book</span><span class="p">.</span><span class="na">getAuthor</span><span class="p">().</span><span class="na">getName</span><span class="p">());</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="2转化为json字符串">2.转化为JSON字符串</h3>
-<p>Model</p>
+</div><h3 id="2转化为json字符串">2.转化为JSON字符串
+</h3><p>Model</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -491,8 +507,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Log</span><span class="p">.</span><span class="na">d</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span><span class="s">&#34;book author name-&gt;&#34;</span><span class="o">+</span><span class="n">book</span><span class="p">.</span><span class="na">getAuthor</span><span class="p">().</span><span class="na">getName</span><span class="p">());</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="3使用parcelable">3.使用Parcelable</h3>
-<p>实现<code>Parcelable</code>接口需要实现两个方法</p>
+</div><h3 id="3使用parcelable">3.使用Parcelable
+</h3><p>实现<code>Parcelable</code>接口需要实现两个方法</p>
 <ul>
 <li>
 <p>describeContents方法。内容接口描述，默认返回0就可以;</p>
@@ -693,8 +709,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Log</span><span class="p">.</span><span class="na">d</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span><span class="s">&#34;book author name-&gt;&#34;</span><span class="o">+</span><span class="n">book</span><span class="p">.</span><span class="na">getAuthor</span><span class="p">().</span><span class="na">getName</span><span class="p">());</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="4性能分析">4.性能分析</h3>
-<p><a class="link" href="http://prolificinteractive.com/blog/2014/07/18/why-we-love-parcelable/"  target="_blank" rel="noopener"
+</div><h3 id="4性能分析">4.性能分析
+</h3><p><a class="link" href="http://prolificinteractive.com/blog/2014/07/18/why-we-love-parcelable/"  target="_blank" rel="noopener"
     >经过测试</a>，我们得到下图的效果</p>
 <p><img src="/assets/images/parcelable-vs-seralizable.png"
 	
@@ -705,12 +721,12 @@ if (!doNotTrack) {
 	
 ></p>
 <p>可以看出，通过转换为字符串的速度是最慢的。Seralizable次之，Parcelable比Seralizable快10倍。所以从性能上考虑，我们必定优先选择Parcelable。但是Parcelable有大量重复的模板代码，如何简化这些操作，将是下面主要讲解的内容。</p>
-<h3 id="5简化parcel操作">5.简化Parcel操作</h3>
-<p>如果你使用android Studio 可以通过安装<a class="link" href="https://github.com/mcharmas/android-parcelable-intellij-plugin"  target="_blank" rel="noopener"
+<h3 id="5简化parcel操作">5.简化Parcel操作
+</h3><p>如果你使用android Studio 可以通过安装<a class="link" href="https://github.com/mcharmas/android-parcelable-intellij-plugin"  target="_blank" rel="noopener"
     >android-parcelable-intellij-plugin</a>插件，或者自己<a class="link" href="http://dmytrodanylyk.com/pages/blog/templates.html"  target="_blank" rel="noopener"
     >配置模板</a>进行操作。</p>
-<h4 id="51-parceler">5.1 parceler</h4>
-<p>除了上面的操作，还有大量的第三方库来简化Parcelable操作。当然使用这些库也许会降低Parcelable的性能。<a class="link" href="https://github.com/johncarl81/parceler"  target="_blank" rel="noopener"
+<h4 id="51-parceler">5.1 parceler
+</h4><p>除了上面的操作，还有大量的第三方库来简化Parcelable操作。当然使用这些库也许会降低Parcelable的性能。<a class="link" href="https://github.com/johncarl81/parceler"  target="_blank" rel="noopener"
     >Parceler</a>就是这样一个库。</p>
 <p>Parceler使用非常简单，在定义Model时用<code>@Parcel</code>进行注解，在传递数据的时候使用<code>Parcels</code>的<code>wrap</code>方法来包装成一个<code>Parcelable</code>对象。获取数据时用<code>Parcels</code>的<code>unwrap</code>方法来获取对象。</p>
 <p>Model</p>
@@ -792,8 +808,8 @@ if (!doNotTrack) {
     >auto-parcel</a>,<a class="link" href="https://github.com/foxykeep/ParcelableCodeGenerator"  target="_blank" rel="noopener"
     >ParcelableCodeGenerator</a>,<a class="link" href="https://github.com/baoyongzhang/ParcelableGenerator"  target="_blank" rel="noopener"
     >ParcelableGenerator</a>等第三方库，这里我将不进行讲解，有兴趣的朋友，可以自行研究。</p>
-<h3 id="常见问题">常见问题</h3>
-<ul>
+<h3 id="常见问题">常见问题
+</h3><ul>
 <li><a class="link" href="https://stackoverflow.com/questions/10070974/how-to-pass-drawable-using-parcelable"  target="_blank" rel="noopener"
     >Parcelable传递Drawable</a></li>
 </ul>
@@ -892,7 +908,7 @@ if (!doNotTrack) {
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 

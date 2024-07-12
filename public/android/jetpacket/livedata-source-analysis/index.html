@@ -1,81 +1,36 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='LiveData源码分析 LiveData LiveData和RxJava里的Observable类似，可以添加一个订阅者Observer。当LiveData的值发生变化时，Observer可以收到变化的值。所以源码分析主要分析LiveData的订阅和更新数据。
-RxJava并没有提供与生命周期绑定的方法，一般我们可以通过第三方库RxLifecycle或者AutoDispose来实现自动解绑。LiveData的observe()方法要求传递一个LifecycleOwner对象，当生命周期结束时自动解绑，避免内存泄露。
-LiveData是一个抽象类，所以我们只能使用它的子类。
-LiveData内部定义了一个mVersion来管理数据的版本。通过observer()传进来的Observer对象会被包装成一个ObserverWrapper对象，内部同样定义了一个mLastVersion。如果ObserverWrapper的mLastVersion小于mVersion就会分发数据。
-1 2 3 4 5 6 7 public abstract class LiveData&amp;lt;T&amp;gt;{ int mActiveCount = 0; //活跃数 private int mVersion;//版本号 //和LifecycleRegistry一样 内部创建了一个SafeIterableMap来保存Observer private SafeIterableMap&amp;lt;Observer&amp;lt;? super T&amp;gt;, ObserverWrapper&amp;gt; mObservers = new SafeIterableMap&amp;lt;&amp;gt;(); } 订阅数据 我们有三种方式来订阅LiveData
-扩展函数observe() observe() observeForever() 扩展函数observe() 扩展函数允许我们传入一个函数类型，内部还是调用的observe()
-1 2 3 4 5 6 7 8 9 10 11 12 //LiveData.kt //LiveData扩展函数 @MainThread inline fun &amp;lt;T&amp;gt; LiveData&amp;lt;T&amp;gt;.observe( owner: LifecycleOwner, crossinline onChanged: (T) -&amp;gt; Unit ): Observer&amp;lt;T&amp;gt; { //创建Observer对象 val wrappedObserver = Observer&amp;lt;T&amp;gt; { t -&amp;gt; onChanged.'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="LiveData源码分析 LiveData LiveData和RxJava里的Observable类似，可以添加一个订阅者Observer。当LiveData的值发生变化时，Observer可以收到变化的值。所以源码分析主要分析LiveData的订阅和更新数据。 RxJava并没有提供与生命周期绑定的方法，一般我们可以通过第三方库RxLifecycle或者AutoDispose来实现自动解绑。LiveData的observe()方法要求传递一个LifecycleOwner对象，当生命周期结束时自动解绑，避免内存泄露。 LiveData是一个抽象类，所以我们只能使用它的子类。 LiveData内部定义了一个mVersion来管理数据的版本。通过observer()传进来的Observer对象会被包装成一个ObserverWrapper对象，内部同样定义了一个mLastVersion。如果ObserverWrapper的mLastVersion小于mVersion就会分发数据。 1 2 3 4 5 6 7 public abstract class LiveData&lt;T&gt;{ int mActiveCount = 0; //活跃数 private int mVersion;//版本号 //和LifecycleRegistry一样 内部创建了一个SafeIterableMap来保存Observer private SafeIterableMap&lt;Observer&lt;? super T&gt;, ObserverWrapper&gt; mObservers = new SafeIterableMap&lt;&gt;(); } 订阅数据 我们有三种方式来订阅LiveData 扩展函数observe() observe() observeForever() 扩展函数observe() 扩展函数允许我们传入一个函数类型，内部还是调用的observe() 1 2 3 4 5 6 7 8 9 10 11 12 //LiveData.kt //LiveData扩展函数 @MainThread inline fun &lt;T&gt; LiveData&lt;T&gt;.observe( owner: LifecycleOwner, crossinline onChanged: (T) -&gt; Unit ): Observer&lt;T&gt; { //创建Observer对象 val wrappedObserver = Observer&lt;T&gt; { t -&gt; onChanged.">
 <title></title>
 
-<link rel='canonical' href='https://example.com/android/jetpacket/livedata-source-analysis/'>
+<link rel='canonical' href='http://localhost:1313/android/jetpacket/livedata-source-analysis/'>
 
-<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
-<meta property='og:description' content='LiveData源码分析 LiveData LiveData和RxJava里的Observable类似，可以添加一个订阅者Observer。当LiveData的值发生变化时，Observer可以收到变化的值。所以源码分析主要分析LiveData的订阅和更新数据。
-RxJava并没有提供与生命周期绑定的方法，一般我们可以通过第三方库RxLifecycle或者AutoDispose来实现自动解绑。LiveData的observe()方法要求传递一个LifecycleOwner对象，当生命周期结束时自动解绑，避免内存泄露。
-LiveData是一个抽象类，所以我们只能使用它的子类。
-LiveData内部定义了一个mVersion来管理数据的版本。通过observer()传进来的Observer对象会被包装成一个ObserverWrapper对象，内部同样定义了一个mLastVersion。如果ObserverWrapper的mLastVersion小于mVersion就会分发数据。
-1 2 3 4 5 6 7 public abstract class LiveData&amp;lt;T&amp;gt;{ int mActiveCount = 0; //活跃数 private int mVersion;//版本号 //和LifecycleRegistry一样 内部创建了一个SafeIterableMap来保存Observer private SafeIterableMap&amp;lt;Observer&amp;lt;? super T&amp;gt;, ObserverWrapper&amp;gt; mObservers = new SafeIterableMap&amp;lt;&amp;gt;(); } 订阅数据 我们有三种方式来订阅LiveData
-扩展函数observe() observe() observeForever() 扩展函数observe() 扩展函数允许我们传入一个函数类型，内部还是调用的observe()
-1 2 3 4 5 6 7 8 9 10 11 12 //LiveData.kt //LiveData扩展函数 @MainThread inline fun &amp;lt;T&amp;gt; LiveData&amp;lt;T&amp;gt;.observe( owner: LifecycleOwner, crossinline onChanged: (T) -&amp;gt; Unit ): Observer&amp;lt;T&amp;gt; { //创建Observer对象 val wrappedObserver = Observer&amp;lt;T&amp;gt; { t -&amp;gt; onChanged.'>
-<meta property='og:url' content='https://example.com/android/jetpacket/livedata-source-analysis/'>
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<meta property='og:description' content="LiveData源码分析 LiveData LiveData和RxJava里的Observable类似，可以添加一个订阅者Observer。当LiveData的值发生变化时，Observer可以收到变化的值。所以源码分析主要分析LiveData的订阅和更新数据。 RxJava并没有提供与生命周期绑定的方法，一般我们可以通过第三方库RxLifecycle或者AutoDispose来实现自动解绑。LiveData的observe()方法要求传递一个LifecycleOwner对象，当生命周期结束时自动解绑，避免内存泄露。 LiveData是一个抽象类，所以我们只能使用它的子类。 LiveData内部定义了一个mVersion来管理数据的版本。通过observer()传进来的Observer对象会被包装成一个ObserverWrapper对象，内部同样定义了一个mLastVersion。如果ObserverWrapper的mLastVersion小于mVersion就会分发数据。 1 2 3 4 5 6 7 public abstract class LiveData&lt;T&gt;{ int mActiveCount = 0; //活跃数 private int mVersion;//版本号 //和LifecycleRegistry一样 内部创建了一个SafeIterableMap来保存Observer private SafeIterableMap&lt;Observer&lt;? super T&gt;, ObserverWrapper&gt; mObservers = new SafeIterableMap&lt;&gt;(); } 订阅数据 我们有三种方式来订阅LiveData 扩展函数observe() observe() observeForever() 扩展函数observe() 扩展函数允许我们传入一个函数类型，内部还是调用的observe() 1 2 3 4 5 6 7 8 9 10 11 12 //LiveData.kt //LiveData扩展函数 @MainThread inline fun &lt;T&gt; LiveData&lt;T&gt;.observe( owner: LifecycleOwner, crossinline onChanged: (T) -&gt; Unit ): Observer&lt;T&gt; { //创建Observer对象 val wrappedObserver = Observer&lt;T&gt; { t -&gt; onChanged.">
+<meta property='og:url' content='http://localhost:1313/android/jetpacket/livedata-source-analysis/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="LiveData源码分析 LiveData LiveData和RxJava里的Observable类似，可以添加一个订阅者Observer。当LiveData的值发生变化时，Observer可以收到变化的值。所以源码分析主要分析LiveData的订阅和更新数据。
-RxJava并没有提供与生命周期绑定的方法，一般我们可以通过第三方库RxLifecycle或者AutoDispose来实现自动解绑。LiveData的observe()方法要求传递一个LifecycleOwner对象，当生命周期结束时自动解绑，避免内存泄露。
-LiveData是一个抽象类，所以我们只能使用它的子类。
-LiveData内部定义了一个mVersion来管理数据的版本。通过observer()传进来的Observer对象会被包装成一个ObserverWrapper对象，内部同样定义了一个mLastVersion。如果ObserverWrapper的mLastVersion小于mVersion就会分发数据。
-1 2 3 4 5 6 7 public abstract class LiveData&amp;lt;T&amp;gt;{ int mActiveCount = 0; //活跃数 private int mVersion;//版本号 //和LifecycleRegistry一样 内部创建了一个SafeIterableMap来保存Observer private SafeIterableMap&amp;lt;Observer&amp;lt;? super T&amp;gt;, ObserverWrapper&amp;gt; mObservers = new SafeIterableMap&amp;lt;&amp;gt;(); } 订阅数据 我们有三种方式来订阅LiveData
-扩展函数observe() observe() observeForever() 扩展函数observe() 扩展函数允许我们传入一个函数类型，内部还是调用的observe()
-1 2 3 4 5 6 7 8 9 10 11 12 //LiveData.kt //LiveData扩展函数 @MainThread inline fun &amp;lt;T&amp;gt; LiveData&amp;lt;T&amp;gt;.observe( owner: LifecycleOwner, crossinline onChanged: (T) -&amp;gt; Unit ): Observer&amp;lt;T&amp;gt; { //创建Observer对象 val wrappedObserver = Observer&amp;lt;T&amp;gt; { t -&amp;gt; onChanged.">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
-}
-</script>
-<style>
-    :root {
-      --sys-font-family: "Noto Serif SC";
-      --zh-font-family: "Noto Serif SC";
-      --base-font-family: "Noto Serif SC";
-      --code-font-family: "Noto Serif SC";
-      --article-font-family: "Noto Serif SC";
-    }
-  </style>
+<meta name="twitter:description" content="LiveData源码分析 LiveData LiveData和RxJava里的Observable类似，可以添加一个订阅者Observer。当LiveData的值发生变化时，Observer可以收到变化的值。所以源码分析主要分析LiveData的订阅和更新数据。 RxJava并没有提供与生命周期绑定的方法，一般我们可以通过第三方库RxLifecycle或者AutoDispose来实现自动解绑。LiveData的observe()方法要求传递一个LifecycleOwner对象，当生命周期结束时自动解绑，避免内存泄露。 LiveData是一个抽象类，所以我们只能使用它的子类。 LiveData内部定义了一个mVersion来管理数据的版本。通过observer()传进来的Observer对象会被包装成一个ObserverWrapper对象，内部同样定义了一个mLastVersion。如果ObserverWrapper的mLastVersion小于mVersion就会分发数据。 1 2 3 4 5 6 7 public abstract class LiveData&lt;T&gt;{ int mActiveCount = 0; //活跃数 private int mVersion;//版本号 //和LifecycleRegistry一样 内部创建了一个SafeIterableMap来保存Observer private SafeIterableMap&lt;Observer&lt;? super T&gt;, ObserverWrapper&gt; mObservers = new SafeIterableMap&lt;&gt;(); } 订阅数据 我们有三种方式来订阅LiveData 扩展函数observe() observe() observeForever() 扩展函数observe() 扩展函数允许我们传入一个函数类型，内部还是调用的observe() 1 2 3 4 5 6 7 8 9 10 11 12 //LiveData.kt //LiveData扩展函数 @MainThread inline fun &lt;T&gt; LiveData&lt;T&gt;.observe( owner: LifecycleOwner, crossinline onChanged: (T) -&gt; Unit ): Observer&lt;T&gt; { //创建Observer对象 val wrappedObserver = Observer&lt;T&gt; { t -&gt; onChanged.">
   
-  <script>
-    (function () {
-      const customFont = document.createElement("link");
-      customFont.href =
-        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
   
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-  
-      document.head.appendChild(customFont);
-    })();
-  </script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
-     crossorigin="anonymous"></script>
-  
-
-<script>
-    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
 
 
     </head>
@@ -137,7 +92,7 @@ if (!doNotTrack) {
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
             <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -198,13 +153,32 @@ if (!doNotTrack) {
 
 
                 
-                <span>主页</span>
+                <span>Home</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/archives' >
+            <a href='/pages/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/archives/' >
                 
                 
                 
@@ -218,16 +192,54 @@ if (!doNotTrack) {
 
 
                 
-                <span>归档</span>
+                <span>Archives</span>
             </a>
         </li>
         
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -235,7 +247,7 @@ if (!doNotTrack) {
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -243,10 +255,11 @@ if (!doNotTrack) {
 
 
 
-                    <span>Dark Mode</span>
-                </li>
-            
-        </div>
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -351,9 +364,9 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="livedata源码分析">LiveData源码分析</h1>
-<h2 id="livedata">LiveData</h2>
-<p><code>LiveData</code>和<code>RxJava</code>里的<code>Observable</code>类似，可以添加一个订阅者<code>Observer</code>。当<code>LiveData</code>的值发生变化时，<code>Observer</code>可以收到变化的值。所以源码分析主要分析<code>LiveData</code>的订阅和更新数据。</p>
+    <h1 id="livedata源码分析">LiveData源码分析
+</h1><h2 id="livedata">LiveData
+</h2><p><code>LiveData</code>和<code>RxJava</code>里的<code>Observable</code>类似，可以添加一个订阅者<code>Observer</code>。当<code>LiveData</code>的值发生变化时，<code>Observer</code>可以收到变化的值。所以源码分析主要分析<code>LiveData</code>的订阅和更新数据。</p>
 <p><code>RxJava</code>并没有提供与生命周期绑定的方法，一般我们可以通过第三方库<a class="link" href="https://github.com/trello/RxLifecycle"  target="_blank" rel="noopener"
     >RxLifecycle</a>或者<a class="link" href="https://github.com/uber/AutoDispose"  target="_blank" rel="noopener"
     >AutoDispose</a>来实现自动解绑。<code>LiveData</code>的<code>observe()</code>方法要求传递一个<code>LifecycleOwner</code>对象，当生命周期结束时自动解绑，避免内存泄露。</p>
@@ -389,15 +402,15 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="订阅数据">订阅数据</h2>
-<p>我们有三种方式来订阅<code>LiveData</code></p>
+</div><h2 id="订阅数据">订阅数据
+</h2><p>我们有三种方式来订阅<code>LiveData</code></p>
 <ul>
 <li>扩展函数<code>observe()</code></li>
 <li><code>observe()</code></li>
 <li><code>observeForever()</code></li>
 </ul>
-<h3 id="扩展函数observe">扩展函数observe()</h3>
-<p>扩展函数允许我们传入一个函数类型，内部还是调用的<code>observe()</code></p>
+<h3 id="扩展函数observe">扩展函数observe()
+</h3><p>扩展函数允许我们传入一个函数类型，内部还是调用的<code>observe()</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -428,8 +441,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="observe">observe()</h3>
-<p><code>observe()</code>会首先判断是否在主线程中，不在主线程会直接抛异常。然后判断当前<code>LifecycleOwner</code>如果处于<code>DESTORYED</code>状态直接返回。如果以上两个条件都通过的话，传入的<code>Observer</code>会被包装成一个<code>LifecycleBoundObserver</code>对象，这个对象我们后面再进行介绍。然后以传入的<code>Observer</code>为<code>key</code>,创建的```LifecycleBoundObserver``为<code>value</code>存入到<code>mObservers</code>中，如果相同的<code>Observer</code>已经存在，则抛出异常。因此，不允许在不同的生命周期中添加相同的<code>Observer</code>。</p>
+</div><h3 id="observe">observe()
+</h3><p><code>observe()</code>会首先判断是否在主线程中，不在主线程会直接抛异常。然后判断当前<code>LifecycleOwner</code>如果处于<code>DESTORYED</code>状态直接返回。如果以上两个条件都通过的话，传入的<code>Observer</code>会被包装成一个<code>LifecycleBoundObserver</code>对象，这个对象我们后面再进行介绍。然后以传入的<code>Observer</code>为<code>key</code>,创建的```LifecycleBoundObserver``为<code>value</code>存入到<code>mObservers</code>中，如果相同的<code>Observer</code>已经存在，则抛出异常。因此，不允许在不同的生命周期中添加相同的<code>Observer</code>。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -482,8 +495,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="observerwrapper">ObserverWrapper</h3>
-<p><code>ObserverWrapper</code>是<code>LiveData</code>的内部抽象类。有两个子类<code>LifecycleBoundObserver</code>和<code>AlwaysActiveObserver</code>。</p>
+</div><h3 id="observerwrapper">ObserverWrapper
+</h3><p><code>ObserverWrapper</code>是<code>LiveData</code>的内部抽象类。有两个子类<code>LifecycleBoundObserver</code>和<code>AlwaysActiveObserver</code>。</p>
 <p><img src="https://malinkang-1253444926.cos.ap-beijing.myqcloud.com/images/android/ObserverWrapper.png"
 	
 	
@@ -587,8 +600,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="lifecycleboundobserver">LifecycleBoundObserver</h4>
-<p>当 <code>Lifecycle</code>的当前状态是<code>STARTED</code> 或者 <code>RESUMED</code> 时才认为<code>Observer</code> 是处于活跃状态。当调用<code>LifecycleOwner</code>的<code>addObserver()</code>会触发<code>onStateChanged()</code>，我们创建<code>LiveData</code>时赋值的<code>mData</code>就会调用<code>dispatchingValue()</code>发送出去。</p>
+</div><h4 id="lifecycleboundobserver">LifecycleBoundObserver
+</h4><p>当 <code>Lifecycle</code>的当前状态是<code>STARTED</code> 或者 <code>RESUMED</code> 时才认为<code>Observer</code> 是处于活跃状态。当调用<code>LifecycleOwner</code>的<code>addObserver()</code>会触发<code>onStateChanged()</code>，我们创建<code>LiveData</code>时赋值的<code>mData</code>就会调用<code>dispatchingValue()</code>发送出去。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -669,8 +682,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="observeforever">observeForever()</h3>
-<p>通过observeForever()方法订阅，不受生命周期影响，一直处于活跃状态，也不会自动移除Observer。</p>
+</div><h3 id="observeforever">observeForever()
+</h3><p>通过observeForever()方法订阅，不受生命周期影响，一直处于活跃状态，也不会自动移除Observer。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -731,14 +744,14 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="更新livedata值">更新LiveData值</h2>
-<p>更新LiveData的值有两种方式</p>
+</div><h2 id="更新livedata值">更新LiveData值
+</h2><p>更新LiveData的值有两种方式</p>
 <ul>
 <li>setValue()：只能在主线程中更新值</li>
 <li>postValue()：可以在任意线程中更新值</li>
 </ul>
-<h3 id="setvalue">setValue()</h3>
-<p>在<code>setValue()</code>中会将新的值赋值给mData，如果当前<code>Observer</code>不活跃，多次调用<code>setValue()</code>，当<code>Observer</code>切换为活跃状态，只会收到最后一次的值。</p>
+<h3 id="setvalue">setValue()
+</h3><p>在<code>setValue()</code>中会将新的值赋值给mData，如果当前<code>Observer</code>不活跃，多次调用<code>setValue()</code>，当<code>Observer</code>切换为活跃状态，只会收到最后一次的值。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -875,8 +888,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="postvalue">postValue()</h3>
-<p><code>postValue()</code>可以在任意线程中更新数据，其内部其实是把传入的值传递给<code>mPendingData</code>。然后在<code>mPostValueRunnable</code>调用<code>setValue</code>。<code>mPostValueRunnable</code>是一个<code>Runnable</code>对象，通过<code>Handler</code>发送给主线程。<code>mPendingData</code>在<code>mPostValueRunnable</code>中会被再次赋值为<code>NO_SET</code>。如果在<code>mPostValueRunnable</code>的<code>run</code>方法尚未执行时，再次调用<code>postValue()</code>,此时<code>postTask</code>为空，则直接返回。</p>
+</div><h3 id="postvalue">postValue()
+</h3><p><code>postValue()</code>可以在任意线程中更新数据，其内部其实是把传入的值传递给<code>mPendingData</code>。然后在<code>mPostValueRunnable</code>调用<code>setValue</code>。<code>mPostValueRunnable</code>是一个<code>Runnable</code>对象，通过<code>Handler</code>发送给主线程。<code>mPendingData</code>在<code>mPostValueRunnable</code>中会被再次赋值为<code>NO_SET</code>。如果在<code>mPostValueRunnable</code>的<code>run</code>方法尚未执行时，再次调用<code>postValue()</code>,此时<code>postTask</code>为空，则直接返回。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -941,8 +954,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">};</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="taskexecutor">TaskExecutor</h2>
-<p>在<code>postValue()</code>中，调用了<code>ArchTaskExecutor</code>的<code>postToMainThread</code>方法，将<code>mPostValueRunnable</code>传递到主线程，我们简单分析下<code>TaskExecutor</code>。</p>
+</div><h2 id="taskexecutor">TaskExecutor
+</h2><p>在<code>postValue()</code>中，调用了<code>ArchTaskExecutor</code>的<code>postToMainThread</code>方法，将<code>mPostValueRunnable</code>传递到主线程，我们简单分析下<code>TaskExecutor</code>。</p>
 <p><img src="https://malinkang-1253444926.cos.ap-beijing.myqcloud.com/images/android/TaskExecutor.png"
 	
 	
@@ -1095,8 +1108,8 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="参考">参考</h2>
-<ul>
+</div><h2 id="参考">参考
+</h2><ul>
 <li><a class="link" href="https://juejin.cn/post/6847902222345633806"  target="_blank" rel="noopener"
     >从源码看 Jetpack（3）-LiveData 源码解析</a></li>
 <li><a class="link" href="https://tech.meituan.com/2018/07/26/android-livedatabus.html"  target="_blank" rel="noopener"
@@ -1197,7 +1210,7 @@ if (!doNotTrack) {
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html><head>
+	<meta name="generator" content="Hugo 0.128.2"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<title>Malinkang&#39;s Blog</title>
+
+
+
+  
+
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+    <link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="/scss/dark-mode.min.c6e68b913da16a092755d6c22435d1331fd1af82c857538edbdca3203413fe72.css" integrity="sha256-xuaLkT2hagknVdbCJDXRMx/Rr4LIV1OO29yjIDQT/nI=" media="screen">
+
+
+<link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Material+Icons">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+
+
+
+</head>
+<body>
+    	<div id="app"><div class="single-column-drawer-container" id="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+                
+                
+                
+                    
+                
+                
+                
+                <a class="a-block drawer-menu-item active" href="/">
+                    Home
+                </a>
+                
+            
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div id="drawer-mask" v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav id="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div id="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a id="navTitle" class="navbar-brand" href="http://localhost:1313/">
+            Malinkang&#39;s Blog
+        </a>
+        
+        <button type="button" class="nav-darkmode-toggle" id="darkModeToggleButton2">
+            <i class="material-icons" id="darkModeToggleIcon2">
+                dark_mode
+            </i>
+        </button>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" id="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="http://localhost:1313/">
+        <div class="single-column-header-title">Malinkang&#39;s Blog</div>
+        
+
+    </a>
+</div>
+
+            <div id="content">
+                <div id="streamContainer" class="stream-container">
+
+    <div class="post-list-container post-list-container-no-background">
+        
+        
+            <a href="/android/jetpacket/databinding-keng/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                
+                            </div>
+                            <div class="post-item-summary">
+                                
+                                    databinding坑 EditText 1 2 3 4 5 6 7 8 9 10 11 12 13 14 &lt;TextView android:id=&#34;@+id/btn_login&#34; android:onClick=&#34;@{()-&gt;handlers.login(etLoginUsername.text.toString(),etLoginPsw.text.toString())}&#34; android:layout_width=&#34;match_parent&#34; android:layout_height=&#34;@dimen/dp_68&#34; android:layout_below=&#34;@+id/rl_netsetting&#34; android:layout_marginLeft=&#34;@dimen/dp_53&#34; android:layout_marginTop=&#34;@dimen/dp_90&#34; android:layout_marginRight=&#34;@dimen/dp_53&#34; android:background=&#34;@drawable/selector_login_common_btn_bg&#34; android:gravity=&#34;center&#34; android:text=&#34;@string/tpLogin_Login_btn&#34; android:textColor=&#34;@color/color_FFFFFF&#34; android:textSize=&#34;@dimen/sp_27&#34; /&gt; 两个EditText一个报错，另外一个不报错，不报错的EditText，每次输入新内容，获取的值也没变化，解决方案text改成getText()
+https://stackoverflow.com/questions/51678059/how-to-use-android-data-binding-properly
+                                
+                            </div>
+                            <div class="post-item-meta">
+    0001-01-01
+    &emsp;
+    
+    
+    
+    &emsp;
+    
+</div>
+
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+        
+            <a href="/android/jetpacket/databinding-yuan-ma-fen-xi/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                
+                            </div>
+                            <div class="post-item-summary">
+                                
+                                    databinding源码分析 源码地址
+（译）深入理解Data Binding原理 Android Data Binding从抵触到爱不释手 https://android.googlesource.com/platform/tools/base/+/studio-master-dev/build-system/README.md 
+                                
+                            </div>
+                            <div class="post-item-meta">
+    0001-01-01
+    &emsp;
+    
+    
+    
+    &emsp;
+    
+</div>
+
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+        
+            <a href="/android/jetpacket/lifecycle-source-analysis/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                
+                            </div>
+                            <div class="post-item-summary">
+                                
+                                    Lifecycle源码分析 Lifecycle Lifecycle代表生命周期，是一个抽象类，我们经常使用它的子类LifecycleRegistry。
+Lifecycle提供了三个抽象方法用来添加、删除LifecycleObserver和获取当前Lifecycle状态。
+1 2 3 4 5 6 7 @MainThread public abstract void addObserver(@NonNull LifecycleObserver observer); @MainThread public abstract void removeObserver(@NonNull LifecycleObserver observer); @MainThread @NonNull public abstract State getCurrentState(); Lifecycle还提供了两个内部枚举Event和State。
+Event Event代表生命周期发生变化时发送的事件。
+1 2 3 4 5 6 7 8 9 10 @SuppressWarnings(&#34;WeakerAccess&#34;) public enum Event { ON_CREATE, //onCreate发送该事件 ON_START, ON_RESUME, ON_PAUSE, ON_STOP, ON_DESTROY, ON_ANY } State State代表当前生命周期状态。
+1 2 3 4 5 6 7 8 9 10 11 12 public enum State { //处于Destoryed状态，Lifecycle将不会发送任何事件 DESTROYED, INITIALIZED, CREATED, STARTED, RESUMED; //比较当前状态大于或等于给定状态 public boolean isAtLeast(@NonNull State state) { return compareTo(state) &gt;= 0; } } LifecycleOwner LifecycleOwner即生命周期拥有者，是一个接口，只提供了一个获取生命周期的方法。
+                                
+                            </div>
+                            <div class="post-item-meta">
+    0001-01-01
+    &emsp;
+    
+    
+    
+    &emsp;
+    
+</div>
+
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+        
+            <a href="/android/jetpacket/livedata-source-analysis/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                
+                            </div>
+                            <div class="post-item-summary">
+                                
+                                    LiveData源码分析 LiveData LiveData和RxJava里的Observable类似，可以添加一个订阅者Observer。当LiveData的值发生变化时，Observer可以收到变化的值。所以源码分析主要分析LiveData的订阅和更新数据。
+RxJava并没有提供与生命周期绑定的方法，一般我们可以通过第三方库RxLifecycle或者AutoDispose来实现自动解绑。LiveData的observe()方法要求传递一个LifecycleOwner对象，当生命周期结束时自动解绑，避免内存泄露。
+LiveData是一个抽象类，所以我们只能使用它的子类。
+LiveData内部定义了一个mVersion来管理数据的版本。通过observer()传进来的Observer对象会被包装成一个ObserverWrapper对象，内部同样定义了一个mLastVersion。如果ObserverWrapper的mLastVersion小于mVersion就会分发数据。
+1 2 3 4 5 6 7 public abstract class LiveData&lt;T&gt;{ int mActiveCount = 0; //活跃数 private int mVersion;//版本号 //和LifecycleRegistry一样 内部创建了一个SafeIterableMap来保存Observer private SafeIterableMap&lt;Observer&lt;? super T&gt;, ObserverWrapper&gt; mObservers = new SafeIterableMap&lt;&gt;(); } 订阅数据 我们有三种方式来订阅LiveData
+扩展函数observe() observe() observeForever() 扩展函数observe() 扩展函数允许我们传入一个函数类型，内部还是调用的observe()
+1 2 3 4 5 6 7 8 9 10 11 12 //LiveData.kt //LiveData扩展函数 @MainThread inline fun &lt;T&gt; LiveData&lt;T&gt;.observe( owner: LifecycleOwner, crossinline onChanged: (T) -&gt; Unit ): Observer&lt;T&gt; { //创建Observer对象 val wrappedObserver = Observer&lt;T&gt; { t -&gt; onChanged.
+                                
+                            </div>
+                            <div class="post-item-meta">
+    0001-01-01
+    &emsp;
+    
+    
+    
+    &emsp;
+    
+</div>
+
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+        
+            <a href="/android/jetpacket/readme/" class="a-block">
+                <div class="post-item-wrapper">
+                    <div class="post-item post-item-no-divider">
+                        <div class="post-item-info-wrapper">
+                            <div class="post-item-title">
+                                
+                            </div>
+                            <div class="post-item-summary">
+                                
+                                    Jetpack 学习资料整理 Android 生命周期备忘录 — 第一部分：单一 Activities Android 生命周期备忘录 — 第二部分：多 Activity Android 生命周期备忘录 — 第三部分：Fragments 来 GitHub 参与 Jetpack 开源协作！ 聚焦 Android 11: Jetpack 划重点 | Android Jetpack 三大重要更新！ Android Jetpack 助推应用开发 | 中文字幕视频介绍 Android Sunflower 带您玩转 Jetpack 把 &ldquo;格子衫&rdquo; 改造得更时尚 | Kotlin &amp; Jetpack 最佳实践技巧 Lifecycle LiveData Android Jetpack: LiveData 和 Lifecycle 介绍 | 中文教学视频 架构组件之 ViewModel | 中文教学视频 Android Jetpack: Room | 中文教学视频 Android Jetpack: 分页库 (Paging Library) | 中文教学视频 Android Jetpack WorkManager | Android 中文教学视频 Android Jetpack 导航组件 | Android 中文教学视频 Android Jetpack: LiveData 和 Lifecycle 介绍 | 中文教学视频 两步使用 LiveData 替换 Observable Field 理解协程、LiveData 和 Flow LiveData with Coroutines and Flow — Part I: Reactive UIs LiveData with Coroutines and Flow — Part II: Launching coroutines with Architecture Components LiveData with Coroutines and Flow — Part III: LiveData and coroutines patterns Jetpack Compose ViewModel Compose 学习计划 现代 Android 开发: 利用 Jetpack Compose 及更多精彩功能！ 深入详解 Jetpack Compose | 实现原理 深入详解 Jetpack Compose | 优化 UI 构建 Jetpack Compose Alpha 版现已发布！ 知识点 | ViewModel 四种集成方式 Android Jetpack: ViewModel | 中文教学视频 Paging Android Jetpack: 分页库 (Paging Library) | 中文教学视频 Room 实战 | 在 Room 中使用 Flow Room 中的数据库关系 Android Jetpack: Room | 中文教学视频 Android Room with a View - Kotlin WorkManager 自定义 WorkManager —— 基础概念 WorkManager: 周期性任务 使用 Dagger 自定义 WorkManager Android Jetpack WorkManager | Android 中文教学视频 Compose What&rsquo;s New in Jetpack Compose (Android Dev Summit &lsquo;19) 深入详解 Jetpack Compose | 实现原理 深入详解 Jetpack Compose | 优化 UI 构建 现代 Android 开发: 利用 Jetpack Compose 及更多精彩功能！ CameraX Android Jetpack CameraX 库 Beta 版正式发布！ Jetpack Security 使用 Jetpack Security 在 Android 上进行数据加密 使用 PreviewView 来展示相机预览 App Startup Android Jetpack组件之App Startup 
+                                
+                            </div>
+                            <div class="post-item-meta">
+    0001-01-01
+    &emsp;
+    
+    
+    
+    &emsp;
+    
+</div>
+
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+        
+        </a>
+    </div>
+
+
+                    </div>
+            </div><div id="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head active" href="http://localhost:1313/">
+    
+        <div class="nav-title">
+            Malinkang&#39;s Blog
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+            
+            
+                
+            
+            
+            
+            <a class="a-block nav-link-item active" href="/">
+                Home
+            </a>
+            
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://risehere.net/">Rise</a>
+<br>
+Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	malinkang
+	
+
+    </div>
+    
+</div><div id="extraContainer" class="extra-container">
+    <div class="toc-wrapper">
+        
+
+        
+    </div>
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top"
+            :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        <a type="button" class="pagination-action" id="darkModeToggleButton">
+            <span class="material-icons pagination-action-icon" id="darkModeToggleIcon">
+                dark_mode
+            </span>
+        </a>
+        
+        
+        
+
+        <a class="pagination-action"  href="/page/20/">
+            
+            <i class="material-icons pagination-action-icon">
+                chevron_left
+            </i>
+        </a>
+
+        <div class="pagination-indicator">
+            <span style="text-align: center">
+                21<br>
+                <div style="display: inline-block; transform: rotate(-28deg)">-</div><br>53
+            </span>
+        </div>
+
+
+        <a class="pagination-action"  href="/page/22/">
+            
+            <i class="material-icons pagination-action-icon">
+                chevron_right
+            </i>
+        </a>
+        
+        
+    </div>
+</div>
+
+
+<div class="pagination">
+    
+    <a class="pagination-action" href="/page/20/" style="opacity:1">
+    
+        <i class="material-icons pagination-action-icon">
+            chevron_left
+        </i>
+    </a>
+
+        <div class="pagination-indicator">
+            <span>21/53</span>
+        </div>
+
+        
+        <a class="pagination-action" href="/page/22/"
+           style="opacity:1">
+        
+                <i class="material-icons pagination-action-icon">
+                    chevron_right
+                </i>
+            </a>
+</div>
+
+
+
+<div id="single-column-footer">
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://risehere.net/">Rise</a>
+<br>
+Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	malinkang
+	
+</div>
+            </div>
+    
+    <script src="/js/journal.js"></script></body>
+</html>

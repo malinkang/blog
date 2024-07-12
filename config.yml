@@ -1,7 +1,7 @@
 baseurl: https://example.com
 languageCode: en-us
 theme: 
-  - stack-mod
+  - stack
   - gallery
   - hugo-notice
 paginate: 5
@@ -185,21 +185,21 @@ menu:
         url: https://twitter.com/malinkang
         params:
             icon: brand-twitter
-      - identifier: douban
-        name: Douban
-        url: https://twitter.com/malinkang
-        params:
-            icon: brand-douban
-      - identifier: bilibili
-        name: Bilibili
-        url: https://twitter.com/malinkang
-        params:
-            icon: brand-bilibili      
-      - identifier: telegram
-        name: Telegram
-        url: https://t.me/malinkang
-        params:
-            icon: brand-telegram
+      # - identifier: douban
+      #   name: Douban
+      #   url: https://twitter.com/malinkang
+      #   params:
+      #       icon: brand-douban
+      # - identifier: bilibili
+      #   name: Bilibili
+      #   url: https://twitter.com/malinkang
+      #   params:
+      #       icon: brand-bilibili      
+      # - identifier: telegram
+      #   name: Telegram
+      #   url: https://t.me/malinkang
+      #   params:
+      #       icon: brand-telegram
 
 related:
     includeNewer: true

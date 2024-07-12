@@ -1,0 +1,2421 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Posts on Malinkang&#39;s Blog</title>
+        <link>http://localhost:1313/posts/</link>
+        <description>Recent content in Posts on Malinkang&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <copyright>malinkang</copyright>
+        <lastBuildDate>Tue, 27 Feb 2024 09:40:05 +0800</lastBuildDate><atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Keep2Notion使用指南</title>
+        <link>http://localhost:1313/posts/keep2notion/</link>
+        <pubDate>Tue, 27 Feb 2024 09:40:05 +0800</pubDate>
+        
+        <guid>http://localhost:1313/posts/keep2notion/</guid>
+        <description>&lt;img src="https://images.unsplash.com/photo-1663813251302-e5d2c7199e86?q=80&amp;w=2660&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Featured image of post Keep2Notion使用指南" /&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://malinkang.notion.site/7c556041c7fd4e21a6713673b6168fd4?pvs=4&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;预览效果&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;使用&#34;&gt;使用
+&lt;/h2&gt;&lt;h3 id=&#34;fork工程&#34;&gt;Fork工程
+&lt;/h3&gt;&lt;p&gt;打开&lt;a class=&#34;link&#34; href=&#34;https://github.com/malinkang/keep2notion&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Keep2Notion&lt;/a&gt;，点击右上角的Fork（顺便点个star谢谢）&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/posts/keep2notion/images/fork.jpg&#34;
+	width=&#34;1210&#34;
+	height=&#34;166&#34;
+	srcset=&#34;http://localhost:1313/posts/keep2notion/images/fork_huc82d7b839fc53b7a5c86bd3cdfedcac6_31913_480x0_resize_q75_box.jpg 480w, http://localhost:1313/posts/keep2notion/images/fork_huc82d7b839fc53b7a5c86bd3cdfedcac6_31913_1024x0_resize_q75_box.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;728&#34;
+		data-flex-basis=&#34;1749px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;复制notion模板&#34;&gt;复制Notion模板
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;浏览器打开模板&lt;a class=&#34;link&#34; href=&#34;https://malinkang.notion.site/9f43e44a009243b5b0c242e35d83178d?pvs=74&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://malinkang.notion.site/9f43e44a009243b5b0c242e35d83178d?pvs=74&lt;/a&gt;，点击右上角的Duplicate复制。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;打开你刚复制的模板，点击右上角的三个点，找到&lt;code&gt;Connections&lt;/code&gt;，然后添加你创建的Integration。不知道如何创建Integration，可以参考&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;点击右上角的Share，然后点击Copy link获取页面的链接，后面会用到。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;在github的secrets中添加变量&#34;&gt;在Github的Secrets中添加变量
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;打开你fork的工程，点击Settings-&amp;gt;Secrets and variables-&amp;gt;New repository secret&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/posts/keep2notion/images/secret.jpg&#34;
+	width=&#34;2720&#34;
+	height=&#34;1654&#34;
+	srcset=&#34;http://localhost:1313/posts/keep2notion/images/secret_huc82d7b839fc53b7a5c86bd3cdfedcac6_421867_480x0_resize_q75_box.jpg 480w, http://localhost:1313/posts/keep2notion/images/secret_huc82d7b839fc53b7a5c86bd3cdfedcac6_421867_1024x0_resize_q75_box.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;164&#34;
+		data-flex-basis=&#34;394px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;依次输入如下值：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;KEEP_MOBILE：注册Keep的手机号&lt;/li&gt;
+&lt;li&gt;KEEP_PASSWORD：Keep密码&lt;/li&gt;
+&lt;li&gt;NOTION_TOKEN：你创建的Token.&lt;/li&gt;
+&lt;li&gt;NAME：热力图标题&lt;/li&gt;
+&lt;li&gt;NOTION_PAGE：你复制的模板的链接&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;捐赠&#34;&gt;捐赠
+&lt;/h2&gt;&lt;p&gt;如果你觉得项目对你有帮助，可以捐赠。我也会不断的优化项目，并做出其他开源的项目。&lt;/p&gt;
+&lt;h3 id=&#34;微信&#34;&gt;微信
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/posts/keep2notion/images/wechat.jpg&#34;
+	width=&#34;559&#34;
+	height=&#34;762&#34;
+	srcset=&#34;http://localhost:1313/posts/keep2notion/images/wechat_hu86c5030def4996e44fc5513e01906a85_51841_480x0_resize_q75_box.jpg 480w, http://localhost:1313/posts/keep2notion/images/wechat_hu86c5030def4996e44fc5513e01906a85_51841_1024x0_resize_q75_box.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;73&#34;
+		data-flex-basis=&#34;176px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;支付宝&#34;&gt;支付宝
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/posts/keep2notion/images/alipay.jpg&#34;
+	width=&#34;540&#34;
+	height=&#34;840&#34;
+	srcset=&#34;http://localhost:1313/posts/keep2notion/images/alipay_hu1d6a72323eb6e409b77b09aed15a1c1a_76025_480x0_resize_q75_box.jpg 480w, http://localhost:1313/posts/keep2notion/images/alipay_hu1d6a72323eb6e409b77b09aed15a1c1a_76025_1024x0_resize_q75_box.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;64&#34;
+		data-flex-basis=&#34;154px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;付费解答&#34;&gt;付费解答
+&lt;/h2&gt;&lt;p&gt;有问题先自行解决，往往失败都是一些小细节没注意导致的。我的文档写的已经足够详细，按照文档来操作基本都能成功。你也可以尝试在群里咨询。不要直接加我微信来让我来解答，这个项目我已经投入了大量时间来开发维护，实在没有更多的精力来一对一解答。如果实在解决不了，可以付费一对一咨询，30元一位。付完款可以微信私聊我。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/posts/keep2notion/images/wexin.jpg&#34;
+	width=&#34;475&#34;
+	height=&#34;648&#34;
+	srcset=&#34;http://localhost:1313/posts/keep2notion/images/wexin_hudde04df3fb5300de607ebdb5fb2602cf_52403_480x0_resize_q75_box.jpg 480w, http://localhost:1313/posts/keep2notion/images/wexin_hudde04df3fb5300de607ebdb5fb2602cf_52403_1024x0_resize_q75_box.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;73&#34;
+		data-flex-basis=&#34;175px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;群&#34;&gt;群
+&lt;/h2&gt;&lt;p&gt;欢迎加入微信群讨论。使用中遇到的任何问题，包括Notion的使用，微信读书组队打卡，后续的更新都会在群里讨论。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://drive.malinkang.com/api/raw/?path=/Images/group.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>WeRead2NotionPro使用文档</title>
+        <link>http://localhost:1313/posts/weread2notion-pro/</link>
+        <pubDate>Wed, 03 Jan 2024 15:28:05 +0800</pubDate>
+        
+        <guid>http://localhost:1313/posts/weread2notion-pro/</guid>
+        <description>&lt;img src="https://images.malinkang.com/2024/03/19dd1580dd991c7985abea7724c87043.png" alt="Featured image of post WeRead2NotionPro使用文档" /&gt;&lt;style type=&#34;text/css&#34;&gt;.notice{--root-color:#444;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#c33;--warning-content:#fee;--info-title:#fb7;--info-content:#fec;--note-title:#6be;--note-content:#e7f2fa;--tip-title:#5a5;--tip-content:#efe}@media (prefers-color-scheme:dark){.notice{--root-color:#ddd;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#800;--warning-content:#400;--info-title:#a50;--info-content:#420;--note-title:#069;--note-content:#023;--tip-title:#363;--tip-content:#121}}body.dark .notice{--root-color:#ddd;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#800;--warning-content:#400;--info-title:#a50;--info-content:#420;--note-title:#069;--note-content:#023;--tip-title:#363;--tip-content:#121}.notice{padding:18px;line-height:24px;margin-bottom:24px;border-radius:4px;color:var(--root-color);background:var(--root-background)}.notice p:last-child{margin-bottom:0}.notice-title{margin:-18px -18px 12px;padding:4px 18px;border-radius:4px 4px 0 0;font-weight:700;color:var(--title-color);background:var(--title-background)}.notice.warning .notice-title{background:var(--warning-title)}.notice.warning{background:var(--warning-content)}.notice.info .notice-title{background:var(--info-title)}.notice.info{background:var(--info-content)}.notice.note .notice-title{background:var(--note-title)}.notice.note{background:var(--note-content)}.notice.tip .notice-title{background:var(--tip-title)}.notice.tip{background:var(--tip-content)}.icon-notice{display:inline-flex;align-self:center;margin-right:8px}.icon-notice img,.icon-notice svg{height:1em;width:1em;fill:currentColor}.icon-notice img,.icon-notice.baseline svg{top:.125em;position:relative}&lt;/style&gt;
+&lt;div&gt;&lt;svg width=&#34;0&#34; height=&#34;0&#34; display=&#34;none&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;&lt;symbol id=&#34;tip-notice&#34; viewBox=&#34;0 0 512 512&#34; preserveAspectRatio=&#34;xMidYMid meet&#34;&gt;&lt;path d=&#34;M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z&#34;/&gt;&lt;/symbol&gt;&lt;symbol id=&#34;note-notice&#34; viewBox=&#34;0 0 512 512&#34; preserveAspectRatio=&#34;xMidYMid meet&#34;&gt;&lt;path d=&#34;M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z&#34;/&gt;&lt;/symbol&gt;&lt;symbol id=&#34;warning-notice&#34; viewBox=&#34;0 0 576 512&#34; preserveAspectRatio=&#34;xMidYMid meet&#34;&gt;&lt;path d=&#34;M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z&#34;/&gt;&lt;/symbol&gt;&lt;symbol id=&#34;info-notice&#34; viewBox=&#34;0 0 512 512&#34; preserveAspectRatio=&#34;xMidYMid meet&#34;&gt;&lt;path d=&#34;M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z&#34;/&gt;&lt;/symbol&gt;&lt;/svg&gt;&lt;/div&gt;&lt;div class=&#34;notice warning&#34; &gt;
+&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#warning-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;Warning&lt;/p&gt;&lt;p&gt;Weread2Notion和Weread2Notion-Pro是两个不同的项目，模板也不相同，切勿用错模板。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Weread2Notion教程：&lt;a class=&#34;link&#34; href=&#34;https://malinkang.com/posts/weread2notion/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://malinkang.com/posts/weread2notion/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;热力图使用教程：&lt;a class=&#34;link&#34; href=&#34;https://malinkang.com/posts/github_heatmap/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://malinkang.com/posts/github_heatmap/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;
+
+&lt;p&gt;WeRead2Notion-Pro不仅仅是将微信读书笔记同步到Notion，它是一个强大的管理系统。&lt;/p&gt;
+&lt;p&gt;WeRead2Notion和WeRead2Notion-Pro有什么区别主要有如下&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;WeRead2Notion不支持在笔记中添加自己的笔记，每次有新笔记会删除原有的笔记。WeRead2Notion-Pro支持添加自己的笔记，每次更新不会覆盖笔记。&lt;/li&gt;
+&lt;li&gt;WeRead2Notion功能更加简洁，同步速度更快。&lt;/li&gt;
+&lt;li&gt;WeRead2Notion-Pro支持按照年、月、周、日的阅读时长、笔记数阅读数的时间统计，支持数据可视化。所以选用哪个看个人喜好，也可以两个都用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;预览&#34;&gt;预览
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/f4a77735439de22884a999c6a0671162.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;预览&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;也可以打开网页版本查看效果：https://malinkang.notion.site/9a311b7413b74c8788752249edd0b256?pvs=74&lt;/p&gt;
+&lt;p&gt;下面给大家讲解一下如何使用：&lt;/p&gt;
+&lt;h3 id=&#34;fork工程&#34;&gt;Fork工程
+&lt;/h3&gt;&lt;p&gt;打开&lt;a class=&#34;link&#34; href=&#34;https://github.com/malinkang/weread2notion-pro&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Weread2Notion-Pro&lt;/a&gt;，点击右上角的Fork（顺便点个star谢谢）&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/fc6be407e45f0e3a3067252dd2c51c73.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;获取微信读书cookie&#34;&gt;获取微信读书Cookie
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;浏览器打开&lt;a class=&#34;link&#34; href=&#34;https://weread.qq.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;网页版微信读书&lt;/a&gt;扫码登录&lt;/li&gt;
+&lt;li&gt;按F12进入开发者模式，依次点网络-&amp;gt;文档，然后选中weread.qq.com，下拉找到Cookie，复制Cookie值&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;notice tip&#34; &gt;
+&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#tip-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;Tip&lt;/p&gt;&lt;p&gt;如果没有内容显示，请刷新下浏览器。&lt;/p&gt;
+&lt;p&gt;建议使用Chrome浏览器，有的小伙伴使用QQ浏览器拿到的Cookie一直不能用。&lt;/p&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/2a26e0b6d2a5a3b36711e91037b837f3.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;授权&#34;&gt;授权
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;浏览器打开 &lt;a class=&#34;link&#34; href=&#34;https://api.notion.com/v1/oauth/authorize?client_id=f86ce456-f9cb-4cd5-8e4b-07bd9e18a8f8&amp;amp;response_type=code&amp;amp;owner=user&amp;amp;redirect_uri=https%3A%2F%2Fnotion-auth.malinkang.com%2Fweread2notionpro-oauth-callback&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://api.notion.com/v1/oauth/authorize?client_id=f86ce456-f9cb-4cd5-8e4b-07bd9e18a8f8&amp;response_type=code&amp;owner=user&amp;redirect_uri=https%3A%2F%2Fnotion-auth.malinkang.com%2Fweread2notionpro-oauth-callback&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;然后点击Next-&amp;gt;Allow access&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/6e8adeccaf9fddef746300c3458b1967.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;授权&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/9ddc65490e193f00d4f29fbeb70b24fe.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;授权&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;点击复制按钮，复制NOTION_TOKEN和NOTION_PAGE的值。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/42c04cb1e6ab95eed832f33462c96831.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;复制&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;在github的secrets中添加变量&#34;&gt;在Github的Secrets中添加变量
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;打开你fork的工程，点击Settings-&amp;gt;Secrets and variables-&amp;gt;New repository secret&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/660acb8a4038af66e27fe0f993ef3aad.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;Name输入WEREAD_COOKIE，Secret输入框中填入你前面获取的微信读书Cookie，然后点击Add secret&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/bd1bb31f901d9920bb1135c19e1ef304.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;同理，继续点击New repository secret，分别增加变量NOTION_TOKEN和NOTION_PAGE。最终的结果如下图所示。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/cc1a34e23e251dec7f8fedc8d710912a.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;div class=&#34;notice warning&#34; &gt;
+&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#warning-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;Warning&lt;/p&gt;&lt;p&gt;注意这三个变量名一定要填写正确，一个字母都不能错，否则会同步失败。&lt;/p&gt;&lt;/div&gt;
+
+&lt;h3 id=&#34;运行&#34;&gt;运行
+&lt;/h3&gt;&lt;p&gt;上面配置完成之后，打开你Fork的项目，依次点击Actions-&amp;gt;weread note sync-&amp;gt; Run workflow，就可以运行了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/41ba7acfac4c8de1cfd4ee40443644b8.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;以相同的方式运行read time sync。weread note sync主要用来同步书籍、笔记和划线。read time sync 用来生成热力图和同步阅读时长。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/6534d66107f248ffa2c2381da7490659.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;问题排查&#34;&gt;问题排查
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;可以点击你Fork项目的Action，查看运行状态，绿色是成功，红色是失败。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/ee23baaf257d9fa16f6f95950cd1e585.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;div class=&#34;notice warning&#34; &gt;
+&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#warning-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;Warning&lt;/p&gt;&lt;p&gt;运行成功，只代表程序没有出错，不代表就一定同步数据，比如微信Cookie过期就不会报错。所以如果运行成功，Notion中没有数据的话，也可以通过下面第2步来查看日志&lt;/p&gt;&lt;/div&gt;
+
+&lt;p&gt;2.可以点进去查日志，来自行排查问题。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/34089868d5569f92c9138ade3ba99428.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/27ab73fed87b15a3a55d05423bd90167.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;问题解答&#34;&gt;问题解答
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;如何自动运行&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Github Action提供每日定时自动运行程序的功能。之前有的朋友会问，我关了电脑会同步吗，该脚本运行在Github的服务器上，并不是运行在你的电脑上，所以你关机并不会影响程序自动运行。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;每天何时同步&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;笔记设置的是utc时间的0点同步，如果你在中国，那就是每天8点同步。不过据我观察，Github这个可能有延迟。时间同步是每3个小时运行一次。你也可以自行修改同步时间，具体参考&lt;a class=&#34;link&#34; href=&#34;https://docs.github.com/zh/actions/using-workflows/events-that-trigger-workflows#schedule&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;这里&lt;/a&gt;。需要注意的是Github每个月2000分钟有免费的额度，如果改的过于频繁可能会导致额度不够。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;模板中哪些可以修改&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Database中的Formula和Rollup类型的属性名可以修改，其他的属性名不支持修改，因为代码中是通过属性的名字来增加修改这个属性的，修改了名字程序就无法正常运行。要修改数据库的名字需要按照以下步骤。
+依次选择Settings-&amp;gt;Secrets and variables -&amp;gt; variables-&amp;gt; New repository variable。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;具体的变量名可以参考下表中的变量名，值为你想要修改的名字。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;变量名&lt;/th&gt;
+&lt;th&gt;当前数据库的名字&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;BOOK_DATABASE_NAME&lt;/td&gt;
+&lt;td&gt;书架&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;REVIEW_DATABASE_NAME&lt;/td&gt;
+&lt;td&gt;笔记&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;BOOKMARK_DATABASE_NAME&lt;/td&gt;
+&lt;td&gt;划线&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;DAY_DATABASE_NAME&lt;/td&gt;
+&lt;td&gt;日&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;WEEK_DATABASE_NAME&lt;/td&gt;
+&lt;td&gt;周&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;MONTH_DATABASE_NAME&lt;/td&gt;
+&lt;td&gt;月&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;YEAR_DATABASE_NAME&lt;/td&gt;
+&lt;td&gt;年&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;CATEGORY_DATABASE_NAME&lt;/td&gt;
+&lt;td&gt;分类&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;AUTHOR_DATABASE_NAME&lt;/td&gt;
+&lt;td&gt;作者&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;CHAPTER_DATABASE_NAME&lt;/td&gt;
+&lt;td&gt;章节&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;除此之外，其他数据可以任意修改，包括页面的布局都不会影响程序运行。&lt;/p&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;年月周天中的进度是什么&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这里的进度我设置的是每天1小时，每周7小时，每月30小时，每年365小时。你可以自行修改公式设置你的进度。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol start=&#34;5&#34;&gt;
+&lt;li&gt;表中的时间是什么&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如果这本书你读完了，时间是读完的时间，如果没有读完，就是你最后阅读的时间。表中的日，周，月，年都是根据这个时间来设置的。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;升级&#34;&gt;升级
+&lt;/h2&gt;&lt;p&gt;如果我添加了新功能，你需要将自己的代码与我的代码进行同步。打开你Fork的项目，点击Sync fork进行同步，如果有冲突可以点击Discard那个按钮
+&lt;img src=&#34;https://images.malinkang.com/2024/03/53c917e4bcfd70d0509a05680a2f10b4.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240326113307149&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;捐赠&#34;&gt;捐赠
+&lt;/h2&gt;&lt;p&gt;如果你觉得项目对你有帮助，可以捐赠。我也会不断的优化项目，并做出其他开源的项目。&lt;/p&gt;
+&lt;h3 id=&#34;微信&#34;&gt;微信
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/d34f577490a32d4440c8a22f57af41da.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;支付宝&#34;&gt;支付宝
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/7fd0feb1145f19fab3821ff1d4631f85.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;付费解答&#34;&gt;付费解答
+&lt;/h2&gt;&lt;p&gt;有问题先自行解决，往往失败都是一些小细节没注意导致的。我的文档写的已经足够详细，按照文档来操作基本都能成功。你也可以尝试在群里咨询。不要直接加我微信来让我来解答，这个项目我已经投入了大量时间来开发维护，实在没有更多的精力来一对一解答。如果实在解决不了，可以付费一对一咨询，30元一位。付完款可以微信私聊我。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/ca34d2b8c111f23126d94d3aaf55f5f3.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;群&#34;&gt;群
+&lt;/h2&gt;&lt;p&gt;欢迎加入微信群讨论。使用中遇到的任何问题，包括Notion的使用，微信读书组队打卡，后续的更新都会在群里讨论。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/group.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;群&#34;
+	
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>微信读书热力图使用指南</title>
+        <link>http://localhost:1313/posts/github_heatmap/</link>
+        <pubDate>Fri, 22 Dec 2023 14:28:05 +0800</pubDate>
+        
+        <guid>http://localhost:1313/posts/github_heatmap/</guid>
+        <description>&lt;img src="https://images.unsplash.com/photo-1702277854835-0f25f1565ae1?w=800&amp;auto=format&amp;fit=crop&amp;q=60&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDN8Ym84alFLVGFFMFl8fGVufDB8fHx8fA%3D%3D" alt="Featured image of post 微信读书热力图使用指南" /&gt;&lt;h2 id=&#34;升级&#34;&gt;升级
+&lt;/h2&gt;&lt;p&gt;如果你是新用户，可以直接跳过这一步。&lt;/p&gt;
+&lt;p&gt;打开你Fork的项目，点击Sync fork进行同步&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://docs.github.com/assets/cb-75616/mw-1440/images/help/repository/sync-fork-dropdown.webp&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;权限&#34;&gt;权限
+&lt;/h2&gt;&lt;p&gt;确保你打开了读写权限。&lt;/p&gt;
+&lt;p&gt;依次选择Settings-&amp;gt;Actions-&amp;gt;General，然后下拉，找到Workflow permissions，如果没有选中Read and write permissions，请选中，然后点下面的save保存。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/04/01c28b0dd2e8c2629a22e7f68db6216d.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/04/d7824c3488e6e1d1c9e6b75d6aba86f3.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;设置name&#34;&gt;设置NAME
+&lt;/h2&gt;&lt;p&gt;设置这个Name用来展示在热力图上。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/posts/github_heatmap/images/5.jpg&#34;
+	width=&#34;1466&#34;
+	height=&#34;390&#34;
+	srcset=&#34;http://localhost:1313/posts/github_heatmap/images/5_huc82d7b839fc53b7a5c86bd3cdfedcac6_120027_480x0_resize_q75_box.jpg 480w, http://localhost:1313/posts/github_heatmap/images/5_huc82d7b839fc53b7a5c86bd3cdfedcac6_120027_1024x0_resize_q75_box.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;375&#34;
+		data-flex-basis=&#34;902px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;依次选择Settings-&amp;gt;Secrets and variables -&amp;gt; New repository secret.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/04/c28135ce7ec0a597cd008e75ab645d14.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;输NAME和Secret，然后点 Add secret保存即可。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/04/e45b89ece1816660b2f5e35f8a72acb7.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;设置年&#34;&gt;设置年
+&lt;/h2&gt;&lt;p&gt;依次选择Settings-&amp;gt;Secrets and variables -&amp;gt; variables-&amp;gt; New repository variable.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/04/4c2578f3dd27c7db4d8d2403c2e25ecb.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;添加变量名为year，值为年份。如果要显示多个年份，比如2018到2024年的就输入2018-2024。主要微信读书只能拿到2018年之后的数据，所以如果输入2016-2024，还是只会显示2018-2024的数据。&lt;/p&gt;
+&lt;h2 id=&#34;设置颜色&#34;&gt;设置颜色
+&lt;/h2&gt;&lt;p&gt;和上面设置Year一样依次选择Settings-&amp;gt;Secrets and variables -&amp;gt; variables-&amp;gt; New repository variable。
+具体的变量名可以参考下表中的变量名，值为色值。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;变量名&lt;/th&gt;
+&lt;th&gt;变量说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;BACKGROUND_COLOR&lt;/td&gt;
+&lt;td&gt;背景颜色&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;DOM_COLOR&lt;/td&gt;
+&lt;td&gt;未填充的色块&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;TRACK_COLOR&lt;/td&gt;
+&lt;td&gt;一级颜色&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SPECIAL_COLOR&lt;/td&gt;
+&lt;td&gt;二级颜色&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SPECIAL_COLOR2&lt;/td&gt;
+&lt;td&gt;三级级颜色&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;TEXT_COLOR&lt;/td&gt;
+&lt;td&gt;文字颜色&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/04/521ec621b6acebc297d9700f9bfac1eb.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;variables示例&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/04/e250d7e9952047eb327f7b0a397211d3.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;手动运行&#34;&gt;手动运行
+&lt;/h2&gt;&lt;p&gt;配置完成之后，你就可以手动运行一下。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/posts/github_heatmap/images/6.jpg&#34;
+	width=&#34;3022&#34;
+	height=&#34;1270&#34;
+	srcset=&#34;http://localhost:1313/posts/github_heatmap/images/6_huc82d7b839fc53b7a5c86bd3cdfedcac6_301544_480x0_resize_q75_box.jpg 480w, http://localhost:1313/posts/github_heatmap/images/6_huc82d7b839fc53b7a5c86bd3cdfedcac6_301544_1024x0_resize_q75_box.jpg 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;237&#34;
+		data-flex-basis=&#34;571px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;最终生成的图保存在OUT_FOLDER文件夹下。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/04/75c38b036cce0ff8cc23d3459defbcb7.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>WeRead2Notion使用文档</title>
+        <link>http://localhost:1313/posts/weread2notion/</link>
+        <pubDate>Sun, 10 Sep 2023 15:28:05 +0800</pubDate>
+        
+        <guid>http://localhost:1313/posts/weread2notion/</guid>
+        <description>&lt;img src="https://images.malinkang.com/2024/03/e1bc45eb87ec93a249edf163a9115874.png" alt="Featured image of post WeRead2Notion使用文档" /&gt;&lt;p&gt;WeRead2Notion用于将微信读书的笔记自动同步到Notion。该项目不支持在Notion中添加自己的笔记，每次有笔记更新会删除原有笔记，需要添加自己的笔记可以使用&lt;a class=&#34;link&#34; href=&#34;https://malinkang.com/posts/weread2notion-pro/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;WeRead2Notion-Pro&lt;/a&gt;。&lt;/p&gt;
+&lt;style type=&#34;text/css&#34;&gt;.notice{--root-color:#444;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#c33;--warning-content:#fee;--info-title:#fb7;--info-content:#fec;--note-title:#6be;--note-content:#e7f2fa;--tip-title:#5a5;--tip-content:#efe}@media (prefers-color-scheme:dark){.notice{--root-color:#ddd;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#800;--warning-content:#400;--info-title:#a50;--info-content:#420;--note-title:#069;--note-content:#023;--tip-title:#363;--tip-content:#121}}body.dark .notice{--root-color:#ddd;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#800;--warning-content:#400;--info-title:#a50;--info-content:#420;--note-title:#069;--note-content:#023;--tip-title:#363;--tip-content:#121}.notice{padding:18px;line-height:24px;margin-bottom:24px;border-radius:4px;color:var(--root-color);background:var(--root-background)}.notice p:last-child{margin-bottom:0}.notice-title{margin:-18px -18px 12px;padding:4px 18px;border-radius:4px 4px 0 0;font-weight:700;color:var(--title-color);background:var(--title-background)}.notice.warning .notice-title{background:var(--warning-title)}.notice.warning{background:var(--warning-content)}.notice.info .notice-title{background:var(--info-title)}.notice.info{background:var(--info-content)}.notice.note .notice-title{background:var(--note-title)}.notice.note{background:var(--note-content)}.notice.tip .notice-title{background:var(--tip-title)}.notice.tip{background:var(--tip-content)}.icon-notice{display:inline-flex;align-self:center;margin-right:8px}.icon-notice img,.icon-notice svg{height:1em;width:1em;fill:currentColor}.icon-notice img,.icon-notice.baseline svg{top:.125em;position:relative}&lt;/style&gt;
+&lt;div&gt;&lt;svg width=&#34;0&#34; height=&#34;0&#34; display=&#34;none&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;&lt;symbol id=&#34;tip-notice&#34; viewBox=&#34;0 0 512 512&#34; preserveAspectRatio=&#34;xMidYMid meet&#34;&gt;&lt;path d=&#34;M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z&#34;/&gt;&lt;/symbol&gt;&lt;symbol id=&#34;note-notice&#34; viewBox=&#34;0 0 512 512&#34; preserveAspectRatio=&#34;xMidYMid meet&#34;&gt;&lt;path d=&#34;M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z&#34;/&gt;&lt;/symbol&gt;&lt;symbol id=&#34;warning-notice&#34; viewBox=&#34;0 0 576 512&#34; preserveAspectRatio=&#34;xMidYMid meet&#34;&gt;&lt;path d=&#34;M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z&#34;/&gt;&lt;/symbol&gt;&lt;symbol id=&#34;info-notice&#34; viewBox=&#34;0 0 512 512&#34; preserveAspectRatio=&#34;xMidYMid meet&#34;&gt;&lt;path d=&#34;M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z&#34;/&gt;&lt;/symbol&gt;&lt;/svg&gt;&lt;/div&gt;&lt;div class=&#34;notice warning&#34; &gt;
+&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#warning-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;Warning&lt;/p&gt;&lt;p&gt;Weread2Notion和Weread2Notion-Pro是两个不同的项目，模板也不相同，切勿用错模板。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Weread2Notion-Pro教程：&lt;a class=&#34;link&#34; href=&#34;https://malinkang.com/posts/weread2notion-pro/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://malinkang.com/posts/weread2notion-pro/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;热力图使用教程：&lt;a class=&#34;link&#34; href=&#34;https://malinkang.com/posts/github_heatmap/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://malinkang.com/posts/github_heatmap/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;
+
+&lt;h2 id=&#34;预览&#34;&gt;预览
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/7403ee39bcd57097005697d3c4a06841.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;3e54d178-4e8d-4a06-a36d-664a861b364c&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;也可以打开网页版本查看效果：https://book.malinkang.com/&lt;/p&gt;
+&lt;h3 id=&#34;fork工程&#34;&gt;Fork工程
+&lt;/h3&gt;&lt;p&gt;打开&lt;a class=&#34;link&#34; href=&#34;https://github.com/malinkang/weread2notion&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Weread2Notion&lt;/a&gt;，点击右上角的Fork（顺便点个star谢谢）&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/fc6be407e45f0e3a3067252dd2c51c73.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;权限&#34;&gt;权限
+&lt;/h3&gt;&lt;p&gt;确保你打开了读写权限。&lt;/p&gt;
+&lt;p&gt;依次选择Settings-&amp;gt;Actions-&amp;gt;General，然后下拉，找到Workflow permissions，如果没有选中Read and write permissions，请选中，然后点下面的save保存。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/01c28b0dd2e8c2629a22e7f68db6216d.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/d7824c3488e6e1d1c9e6b75d6aba86f3.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;获取微信读书cookie&#34;&gt;获取微信读书Cookie
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;浏览器打开&lt;a class=&#34;link&#34; href=&#34;https://weread.qq.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;网页版微信读书&lt;/a&gt;扫码登录&lt;/li&gt;
+&lt;li&gt;按F12进入开发者模式，依次点网络-&amp;gt;文档，然后选中weread.qq.com，下拉找到Cookie，复制Cookie值&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;notice tip&#34; &gt;
+&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#tip-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;Tip&lt;/p&gt;&lt;p&gt;如果没有内容显示，请刷新下浏览器。&lt;/p&gt;
+&lt;p&gt;建议使用Chrome浏览器，有的小伙伴使用QQ浏览器拿到的Cookie一直不能用。&lt;/p&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/2a26e0b6d2a5a3b36711e91037b837f3.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;授权&#34;&gt;授权
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;浏览器打开 &lt;a class=&#34;link&#34; href=&#34;https://api.notion.com/v1/oauth/authorize?client_id=801fd03a-a44f-41af-9a17-feb048b4bbdd&amp;amp;response_type=code&amp;amp;owner=user&amp;amp;redirect_uri=https%3A%2F%2Fnotion-auth.malinkang.com%2Fweread2notion-oauth-callback&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://api.notion.com/v1/oauth/authorize?client_id=801fd03a-a44f-41af-9a17-feb048b4bbdd&amp;response_type=code&amp;owner=user&amp;redirect_uri=https%3A%2F%2Fnotion-auth.malinkang.com%2Fweread2notion-oauth-callback&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;然后点击Next-&amp;gt;Allow access&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/6e8adeccaf9fddef746300c3458b1967.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240326111124731&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/9ddc65490e193f00d4f29fbeb70b24fe.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240326111250623&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;点击复制按钮，复制NOTION_TOKEN和NOTION_PAGE的值。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/42c04cb1e6ab95eed832f33462c96831.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;复制&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;在github的secrets中添加变量&#34;&gt;在Github的Secrets中添加变量
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;打开你fork的工程，点击Settings-&amp;gt;Secrets and variables-&amp;gt;New repository secret&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/660acb8a4038af66e27fe0f993ef3aad.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;Name输入WEREAD_COOKIE，Secret输入框中填入你前面获取的微信读书Cookie，然后点击Add secret&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/bd1bb31f901d9920bb1135c19e1ef304.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;同理，继续点击New repository secret，分别增加变量NOTION_TOKEN和NOTION_PAGE。最终的结果如下图所示。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/cc1a34e23e251dec7f8fedc8d710912a.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;div class=&#34;notice warning&#34; &gt;
+&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#warning-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;Warning&lt;/p&gt;&lt;p&gt;注意这三个变量名一定要填写正确，一个字母都不能错，否则会同步失败。&lt;/p&gt;&lt;/div&gt;
+
+&lt;h3 id=&#34;运行&#34;&gt;运行
+&lt;/h3&gt;&lt;p&gt;上面配置完成之后，打开你Fork的项目，依次点击Actions-&amp;gt;weread sync-&amp;gt; Run workflow，就可以运行了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/58a654118607156d8a7dde7f6470504f.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;问题排查&#34;&gt;问题排查
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;可以点击你Fork项目的Action，查看运行状态，绿色是成功，红色是失败。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/ee23baaf257d9fa16f6f95950cd1e585.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;div class=&#34;notice warning&#34; &gt;
+&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#warning-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;Warning&lt;/p&gt;&lt;p&gt;运行成功，只代表程序没有出错，不代表就一定同步数据，比如微信Cookie过期就不会报错。所以如果运行成功，Notion中没有数据的话，也可以通过下面第2步来查看日志&lt;/p&gt;&lt;/div&gt;
+
+&lt;p&gt;2.可以点进去查日志，来自行排查问题。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/34089868d5569f92c9138ade3ba99428.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/27ab73fed87b15a3a55d05423bd90167.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;问题解答&#34;&gt;问题解答
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;为什么有的书没有同步过来&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;本项目只会同步划线或者做了笔记的书，书架里的书如果没有划线或者做笔记是不会同步的。后续可能会考虑增加同步书架中的书。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;每天何时同步&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;本项目设置的是utc时间的0点，如果你在中国，那就是每天8点同步。不过据我观察，Github这个可能有延迟，会在每天8点零几分同步。你也可以自行修改同步时间，具体参考&lt;a class=&#34;link&#34; href=&#34;https://docs.github.com/zh/actions/using-workflows/events-that-trigger-workflows#schedule&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;这里&lt;/a&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;升级&#34;&gt;升级
+&lt;/h2&gt;&lt;p&gt;如果我添加了新功能，你需要将自己的代码与我的代码进行同步。打开你Fork的项目，点击Sync fork进行同步，如果有冲突可以点击Discard那个按钮
+&lt;img src=&#34;https://images.malinkang.com/2024/03/53c917e4bcfd70d0509a05680a2f10b4.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240326113307149&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;捐赠&#34;&gt;捐赠
+&lt;/h2&gt;&lt;p&gt;如果你觉得项目对你有帮助，可以捐赠。我也会不断的优化项目，并做出其他开源的项目。&lt;/p&gt;
+&lt;h3 id=&#34;微信&#34;&gt;微信
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/d34f577490a32d4440c8a22f57af41da.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;支付宝&#34;&gt;支付宝
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/7fd0feb1145f19fab3821ff1d4631f85.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;付费解答&#34;&gt;付费解答
+&lt;/h2&gt;&lt;p&gt;有问题先自行解决，往往失败都是一些小细节没注意导致的。我的文档写的已经足够详细，按照文档来操作基本都能成功。你也可以尝试在群里咨询。不要直接加我微信来让我来解答，这个项目我已经投入了大量时间来开发维护，实在没有更多的精力来一对一解答。如果实在解决不了，可以付费一对一咨询，30元一位。付完款可以微信私聊我。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/ca34d2b8c111f23126d94d3aaf55f5f3.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;群&#34;&gt;群
+&lt;/h2&gt;&lt;p&gt;欢迎加入微信群讨论。使用中遇到的任何问题，包括Notion的使用，微信读书组队打卡，后续的更新都会在群里讨论。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/group.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;群&#34;
+	
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>来北京11年</title>
+        <link>http://localhost:1313/posts/beijing/</link>
+        <pubDate>Thu, 10 Aug 2023 15:28:05 +0800</pubDate>
+        
+        <guid>http://localhost:1313/posts/beijing/</guid>
+        <description>&lt;img src="https://images.unsplash.com/photo-1599571234909-29ed5d1321d6?q=80&amp;w=2970&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Featured image of post 来北京11年" /&gt;&lt;p&gt;2012年8月10号，我从郑州坐火车来到了北京，距今已经11年。早在去年的时候就想着写一篇文章来回顾一下自己来北京这些年的生活和经历，但是因为拖延一直没有写，所以今年决定写一写。&lt;/p&gt;
+&lt;p&gt;2011年的7月份，学校安排去格力工厂实习，从此我便成为了一名流水线上的质检工人。每天站在流水线上12个小时，每天的工作就是把空调插上电，然后用遥控器打开看运转是否正常，电笔量一下电线是否通电，显示温度的显示屏是否正常，再看一下过滤网是否插反，标识是否贴正确，闻一下空调里有没有氟泄露，每天这一套动作要重复数千遍。每周上六天，周日休息，每天的工资大概100元左右，每个月到手差不多2500块钱左右。那时候时常想自己要在流水线上干一辈子，然后拿着几千块钱的工资吗？每天对未来都感到迷茫。&lt;/p&gt;
+&lt;p&gt;那时候周末唯一消遣的方式就是去网吧，一天偶然在网上看到了北京黑马Android培训的广告，先培训找到工作再交钱的方式吸引了我。在大学的时候我就对编程有着很大的兴趣，自己学过VB、C和C#，虽然都学的不怎么样。一个想法在我心中产生了，我要去北京参加培训。&lt;/p&gt;
+&lt;p&gt;有了去北京的想法，我在12年4月30号办了离职，然后回到学校，开始准备去北京。黑马培训是先培训找到工作后再还钱，自然也会设置一些门槛，需要自己学习JAVA基础，并参加面试，最后按照分数来决定你是否能参加培训。所以在学校每天就是看视频学习JAVA。六月份的时候办了毕业。有的同学在郑州找工作租了房，我就住在同学租的房子里，继续学习。住了一段时间，感觉在郑州的花销要比家里高，后来就回到老家。然后住在堂哥在纸厂的宿舍里，因为这里有网。当时白天堂哥上班，我就一个人在这里学习。1块钱可以买3个馒头，10块钱可以买五袋泡面，每顿饭就是一个馒头，然后泡一袋泡面。到7月份的时候感觉自己准备的差不多了，就申请了面试。第一次面试因为紧张和准备不充分，然后就没通过。眼看这身边的同学都已经在工作了，自己心里还是挺着急的，当时也没想着放弃，没通过就继续准备。黑马培训有一个论坛，有好多准备参加培训的里面讨论。有一天看到有一个准备培训的说要先来北京，然后租个房一起准备。当时每天都是一个人，确实感觉有点孤独，而且想着有人一起学也可以交流下经验，然后就准备坐火车先到北京，再准备面试。&lt;/p&gt;
+&lt;p&gt;我先到郑州，因为一些东西还留在郑州。然后8月10号坐火车到北京，下了火车因为不会坐地铁，就直接坐928到上地。约好的小伙伴来接我，除了他还有一个小伙伴。晚上我们在西北旺找了个短租的公寓，租了一个月。然后大家一起在这学习。中间我们去达内培训也看了一下，有个小伙伴感觉面试太难就放弃了，直接去了达内。后面就剩下两个人，第二次面试很快来了，和我一起的小伙伴顺利通过，我因为一分之差再次没有通过。那天小伙伴搬走住，晚上留下我一个人，一个人看了一晚上的电影。我不知道要怎么办，继续准备面试还要1个月，如果还是没通过怎么办，而且现在要一个人承担房租。思考了很久，第二天决定去达内，因为没有足够的钱，所以交了一部分押金，后面的等正式培训再补齐。其实我挺不愿意来达内的，因为之前参观过他们的教室，感觉管理不怎么样，后面各种玩手机的没人管，而且学费贵。从达内出来，我听说传智播客可以先交5000学费，后面的学费可以等毕业后分期还，不过也要参加考试，后来顺利通过。然后就去达内要了押金，达内的人不知道从什么渠道知道我去别的培训机构了，然后要钱的时候故意刁难我，去要了好几次才要来。&lt;/p&gt;
+&lt;p&gt;后面就是9月份开始在传智播客培训，培训完之后就快过年了，不想赶到春运回家，就提前买了票回家过年了。&lt;/p&gt;
+&lt;p&gt;2013过了年就开始准备找工作，第一份工作是在找了两周之后找到的。第一家是一家外包公司，名字是北京风华正茂科技有限公司，我是公司的第一名Android开发，面试我的是一个iOS开发。这家公司干了两个月，一家甲方的人接触我问我是否愿意去他们公司，他们准备自己来做这个产品了，犹豫再三，我决定去这家公司。&lt;/p&gt;
+&lt;p&gt;这家公司之前是一家卖绘本的，名字是北京童维教育公司，也是第一次做App，人也不多，但是氛围挺好的。项目大概做了快一年，因为没有拿到融资，所以放弃了，2014年年初我又开始找工作了。不过面试还是挺顺利的，面了一家就面上了。这家公司是一家创业公司，名字是北京掌控优教科技有限公司，做英语教育，两个老板都是从新东方出来的。刚来的时候挺累的，好像要一周上六天班，晚上还要加班，干了两天，觉得太累，就跟老板说我的工资说的是税后工资，后来没同意，我就走了，第二天又给我打电话让我去。这这里过得也算是挺愉快的，而且认识了我的老婆。到16年的时候公司没钱了，所以两个Android只能留一个，另一个Android开发是我老婆，最终我选择让我老婆留下，自己去找工作。&lt;/p&gt;
+&lt;p&gt;16年4月30日，我办了离职，然后过了3天五一假期，开始找工作。这次找工作也还算比较顺利，当时面了几家，那天和小舅子一起去望京面试，我下午西二旗有一场面试，然后我们望京面完一起坐地铁去西二旗。我俩一起去辉煌国际楼下吃了一顿胖哥，我让他先回去，自己去面试，面完让回去等通知。下午就打电话让入职。然后我就入职了北京立达智胜科技有限公司，这是我目前待的最久的一家公司，也是最操蛋的一家公司。公司老板什么事情都要事无巨细的管，小到App上UI的一点偏差，列表滑动卡顿。而且评判人也有自己的一套标准版，想要在公司混得好，就得圆滑世故。我是一个不会左右逢源的人，所以在这里待了四年我也从来没有获得过什么优秀员工之类的奖励。而且在这里想要涨工资就得自己提，根本没有自己的调薪制度，脸皮薄的，不好意思提的，那就别想着涨工资了。疫情期间，我提了几次涨工资，可能觉得形式不好，你不会跳槽，就是不给你涨。后面又招了一个巨傻逼的技术负责人，天天张口骂人，因为一些上线的bug，在群里指桑骂槐，后来我俩就吵起来了，然后我就自己在2020年8月13号从公司离职了。&lt;/p&gt;
+&lt;p&gt;2020年的形势已经没有前几年面试那么容易了，问的东西多而且细，而且很多公司并不是着急用人。自己差的东西也多，从算法到JAVA虚拟机到Android源码都细细看了一遍。面了两个月没找到，后来媳妇前同事内推，然后面试，进入了北京拓普朗宁科技有限公司，入职前一周的周末和媳妇一起又爬了一次香山，准备迎接新的生活。这家也是做英语教育的，主要以卖pad为主，所以主要是开发pad上的应用。这家公司996，其实每天并不算忙，休息的时间也长，上午11:30到14:00，晚上17:30到19:00。因为不想996就边工作，边工作边找工作。&lt;/p&gt;
+&lt;p&gt;21年5月份的时候接到了面试通知，一面是电话面试，过几天通知二面，要去现场面。因为面试公司距离我上班的公司很近，所以下午休息的时候骑自行车过去。第一次跑错了地方，眼看过了约定的时间，就想着算了不去了，后来hr又打电话说面试官等着你呢，然后我又骑车赶过去。过几天通知我入职，然后就进入了北京快乐茄科技有限公司。这也是我待过最Nice的一家公司，上下班不打卡，所有的公积金保险都按照标准的交，其他福利也都不错，而且也不是很忙。2023年8月份因为业务拆分我们整个部门拆分出去独立成一个公司了，也就是现在的深聚科技。&lt;/p&gt;
+&lt;p&gt;以上是我来北京的工作经历，在这里也结识了一些新朋友，最主要的认识了我的老婆。我们从掌控优教相识，相爱，于2017年7月领证，2018年5月2号举行婚礼。2021年的端午节发现老婆怀孕，2022年1月29，女儿出生。11年从孤身一人来到北京，到现在一家人都在这边。自己从23岁到34岁，庆幸自己当初逃离工厂选择了自己还算满意的路，下一个十年继续努力。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>纳瓦尔宝典读书笔记</title>
+        <link>http://localhost:1313/posts/naval/</link>
+        <pubDate>Tue, 16 May 2023 01:04:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/posts/naval/</guid>
+        <description>&lt;blockquote&gt;
+&lt;p&gt;幸福与基因无关，甚至与选择无关，它是一种与个体密切相关、可以后天习得的技能，就像通过锻炼强健体魄、通过吃饭摄取营养一样。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;甲之真理，乙之谬论，反之亦然。我所理解的幸福与你所理解的幸福可能大相径庭。我认为，探索自己对幸福的定义非常重要。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;幸福就是一种毫无缺憾感的充盈状态。当感到生命中并不缺少什么时，大脑就会处于休眠状态，不再追忆昨天，也不再畅想明天，不会悔不当初，也不会谋求未来。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;幸福的含义主要是没有痛苦，没有欲望，不沉溺于对未来或过去的思考，真正拥抱当下，拥抱现状，拥抱现实的一切。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;推荐读物&#34;&gt;推荐读物
+&lt;/h2&gt;</description>
+        </item>
+        <item>
+        <title>2022年终总结</title>
+        <link>http://localhost:1313/posts/2022/</link>
+        <pubDate>Sat, 31 Dec 2022 15:28:05 +0800</pubDate>
+        
+        <guid>http://localhost:1313/posts/2022/</guid>
+        <description>&lt;img src="https://images.unsplash.com/photo-1637653150840-aa4a2f50276b?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=2070&amp;q=80" alt="Featured image of post 2022年终总结" /&gt;&lt;p&gt;2022年真是魔幻的一年，5月中旬北京疫情管控开始变严，经历了第一次长达一个月的居家办公，然后三天做一次核酸成为了常态。11月中旬，小区第一次被封。正在感慨情况正变得更坏的时候，突然全面解封，全家又经历了一次感染变🐑。&lt;/p&gt;
+&lt;p&gt;2022年最幸福的事肯定就是女儿的出生。本来想着会在农历虎年出生，结果却生在了牛年的腊月二十七。当时媳妇还在规划着放假去吃海底捞呢，没想到晚上羊水缺破了。自己在这一年多了一个爸爸的新身份，身上的责任也更加重大。&lt;/p&gt;
+&lt;p&gt;2022年最遗憾的事就是姑奶奶去世，这也意味着妈妈最亲的长辈已经全部去世。姑奶奶之前身体还可以，不曾想因为拔牙去世了，因为疫情的原因没能回去。之前姑奶对我家的帮助很多，刚来北京的时候去姑奶家串亲戚，走的时候还偷偷塞了300块钱。&lt;/p&gt;
+&lt;h2 id=&#34;跑步&#34;&gt;跑步
+&lt;/h2&gt;&lt;p&gt;今年一共跑了1047公里，完成了每年1000公里的目标。12月因为🐑了，不然应该可以跑1100公里，明年目标继续1000公里。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Keep年度报告&lt;/strong&gt;&lt;/p&gt;
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  	
+	
+
+	
+		&lt;script src=&#34;http://localhost:1313/shortcode-gallery/jquery-3.7.1.min.js&#34;&gt;&lt;/script&gt;
+	
+	
+	
+		&lt;script src=&#34;http://localhost:1313/shortcode-gallery/lazy/jquery.lazy.min.js&#34;&gt;&lt;/script&gt;
+	
+
+	&lt;script src=&#34;http://localhost:1313/shortcode-gallery/swipebox/js/jquery.swipebox.min.js&#34;&gt;&lt;/script&gt;
+	&lt;link rel=&#34;stylesheet&#34; href=&#34;http://localhost:1313/shortcode-gallery/swipebox/css/swipebox.min.css&#34;&gt;
+
+	&lt;script src=&#34;http://localhost:1313/shortcode-gallery/justified_gallery/jquery.justifiedGallery.min.js&#34;&gt;&lt;/script&gt;
+	&lt;link rel=&#34;stylesheet&#34; href=&#34;http://localhost:1313/shortcode-gallery/justified_gallery/justifiedGallery.min.css&#34;/&gt;
+
+
+&lt;style&gt;
+	
+
+	
+&lt;/style&gt;
+
+
+
+
+
+&lt;div id=&#34;gallery-825294d2edcaa390ab7c24723256abd4-0-wrapper&#34; class=&#34;gallery-wrapper&#34;&gt;
+&lt;div id=&#34;gallery-825294d2edcaa390ab7c24723256abd4-0&#34; class=&#34;justified-gallery&#34;&gt;
+	
+		
+		
+				
+			
+			
+			
+				
+			
+
+			
+			
+				
+			
+
+
+			
+			
+
+			
+			
+
+
+			&lt;div&gt;
+				
+				
+					
+					
+				
+				&lt;a href=&#34;http://localhost:1313/posts/2022/images/keep01.jpg&#34; 
+					class=&#34;galleryImg&#34;
+					
+					&gt;
+					&lt;img			
+						width=&#34;284&#34; height=&#34;600&#34;
+
+						
+							
+							style=&#34;filter: blur(25px);&#34;
+							
+								src=&#34;data:image/jpeg;base64,/9j/2wCEAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4&amp;#43;JS5ESUM8SDc9PjsBCgsLDg0OHBAQHDsoIig7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O//AABEIACAADwMBIgACEQEDEQH/xAGiAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgsQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5&amp;#43;gEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoLEQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4&amp;#43;Tl5ufo6ery8/T19vf4&amp;#43;fr/2gAMAwEAAhEDEQA/APTftZ80gACQjG4KQfzp7XMpcNtQkDBJqFPIgZpp5EjGcBmyME8dc1LKoVuG3ZHv/Umuq0ea1jb2b7EU9rFdW7RyoGQ8EetEKbIkU8lVAoWGXDb03Md2D5eOB0BqpbW2sCRBcywNGCQwjQrnjgj9KOdHWpJx1kf/2Q==&#34;
+							
+							class=&#34;lazy&#34;
+							data-src=&#34;http://localhost:1313/posts/2022/images/keep01_hu8c8a1bb5a4045f8d3b08b4b8b1c56463_72042_49d60056a73e22cbb75f86487b201ba3.jpg&#34;
+						
+
+						
+					&gt;
+				&lt;/a&gt;
+			&lt;/div&gt;
+		
+	
+		
+		
+				
+			
+			
+			
+				
+			
+
+			
+			
+				
+			
+
+
+			
+			
+
+			
+			
+
+
+			&lt;div&gt;
+				
+				
+					
+					
+				
+				&lt;a href=&#34;http://localhost:1313/posts/2022/images/keep02.jpg&#34; 
+					class=&#34;galleryImg&#34;
+					
+					&gt;
+					&lt;img			
+						width=&#34;284&#34; height=&#34;600&#34;
+
+						
+							
+							style=&#34;filter: blur(25px);&#34;
+							
+								src=&#34;data:image/jpeg;base64,/9j/2wCEAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4&amp;#43;JS5ESUM8SDc9PjsBCgsLDg0OHBAQHDsoIig7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O//AABEIACAADwMBIgACEQEDEQH/xAGiAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgsQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5&amp;#43;gEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoLEQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4&amp;#43;Tl5ufo6ery8/T19vf4&amp;#43;fr/2gAMAwEAAhEDEQA/APVyHDFl27iMbhwalYEbXZVJAwTnrVHziW2pIMg898VK0xI610OmJQkjLkuIxK3HIPP70irCTKUBBB47HP61WSzvgCGw3XBCkYxUFvYa0HX7Q8DLkhtikZ44rZygrHcuVpu6P//Z&#34;
+							
+							class=&#34;lazy&#34;
+							data-src=&#34;http://localhost:1313/posts/2022/images/keep02_huf326646b5c58227d52033706f6a15391_63920_7dc927eb0b0bfd2674ae254c0857234a.jpg&#34;
+						
+
+						
+					&gt;
+				&lt;/a&gt;
+			&lt;/div&gt;
+		
+	
+		
+		
+				
+			
+			
+			
+				
+			
+
+			
+			
+				
+			
+
+
+			
+			
+
+			
+			
+
+
+			&lt;div&gt;
+				
+				
+					
+					
+				
+				&lt;a href=&#34;http://localhost:1313/posts/2022/images/keep03.jpg&#34; 
+					class=&#34;galleryImg&#34;
+					
+					&gt;
+					&lt;img			
+						width=&#34;284&#34; height=&#34;600&#34;
+
+						
+							
+							style=&#34;filter: blur(25px);&#34;
+							
+								src=&#34;data:image/jpeg;base64,/9j/2wCEAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4&amp;#43;JS5ESUM8SDc9PjsBCgsLDg0OHBAQHDsoIig7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O//AABEIACAADwMBIgACEQEDEQH/xAGiAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgsQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5&amp;#43;gEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoLEQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4&amp;#43;Tl5ufo6ery8/T19vf4&amp;#43;fr/2gAMAwEAAhEDEQA/APXf9G80qJVEpGDhhup7xqXVgASBgkn/AOtXMz37fa3XMgG7ht4AHH&amp;#43;&amp;#43;P5VdgumjckxzqcdJZNw/mfT9apRub&amp;#43;wlsZilZJ2aGSQtnrvO0fhV1nZ&amp;#43;XYs3qabb6fPBEUxnrhgpHT1qK3sdYEifaHgZckNsQjPGQRmsm5vZHpOdLdNH/9k=&#34;
+							
+							class=&#34;lazy&#34;
+							data-src=&#34;http://localhost:1313/posts/2022/images/keep03_hu28c8ca91c281e208d40665d0d9cbbd93_87751_0063ea0d60c0fa88bca91bbeadf638b9.jpg&#34;
+						
+
+						
+					&gt;
+				&lt;/a&gt;
+			&lt;/div&gt;
+		
+	
+		
+		
+				
+			
+			
+			
+				
+			
+
+			
+			
+				
+			
+
+
+			
+			
+
+			
+			
+
+
+			&lt;div&gt;
+				
+				
+					
+					
+				
+				&lt;a href=&#34;http://localhost:1313/posts/2022/images/keep04.jpg&#34; 
+					class=&#34;galleryImg&#34;
+					
+					&gt;
+					&lt;img			
+						width=&#34;284&#34; height=&#34;600&#34;
+
+						
+							
+							style=&#34;filter: blur(25px);&#34;
+							
+								src=&#34;data:image/jpeg;base64,/9j/2wCEAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4&amp;#43;JS5ESUM8SDc9PjsBCgsLDg0OHBAQHDsoIig7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O//AABEIACAADwMBIgACEQEDEQH/xAGiAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgsQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5&amp;#43;gEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoLEQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4&amp;#43;Tl5ufo6ery8/T19vf4&amp;#43;fr/2gAMAwEAAhEDEQA/APTTqNus8imaOORBh2J2kD6/jUxmdysiCNuMbvUf1rMmjt3u5hJuT58k8HoOw2mrvyWKxxqkkiuScqB8vfnpW3uiU7uyQ5ltFuXkb5m77sbRzRDDIzbiD06E9fxpqwFWlbDMXJP&amp;#43;rIHB47&amp;#43;9Q2a6wkka3ctvJECQ4jiIzxkEZP0o5ktkZQoylB82jX4&amp;#43;h//Z&#34;
+							
+							class=&#34;lazy&#34;
+							data-src=&#34;http://localhost:1313/posts/2022/images/keep04_hu2f488a0d7115fc957d6d484ec375b351_106174_a49884c3d2e9fc4df5bc2647eb913ce1.jpg&#34;
+						
+
+						
+					&gt;
+				&lt;/a&gt;
+			&lt;/div&gt;
+		
+	
+		
+		
+				
+			
+			
+			
+				
+			
+
+			
+			
+				
+			
+
+
+			
+			
+
+			
+			
+
+
+			&lt;div&gt;
+				
+				
+					
+					
+				
+				&lt;a href=&#34;http://localhost:1313/posts/2022/images/keep05.jpg&#34; 
+					class=&#34;galleryImg&#34;
+					
+					&gt;
+					&lt;img			
+						width=&#34;284&#34; height=&#34;600&#34;
+
+						
+							
+							style=&#34;filter: blur(25px);&#34;
+							
+								src=&#34;data:image/jpeg;base64,/9j/2wCEAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4&amp;#43;JS5ESUM8SDc9PjsBCgsLDg0OHBAQHDsoIig7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O//AABEIACAADwMBIgACEQEDEQH/xAGiAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgsQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5&amp;#43;gEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoLEQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4&amp;#43;Tl5ufo6ery8/T19vf4&amp;#43;fr/2gAMAwEAAhEDEQA/APUGnZNznapxgtjBx9aYl/58n7ponZBhvUfWnXkAeEg45qK1sBby&amp;#43;cFXLrg47AdK41Kfc7lGly3e5HJHu1KRYzh3JHEvPTrjP&amp;#43;cVpwwtGgV23Ed&amp;#43;ajjlK72aMs/zFWEWOB0BqnaPrSzx/a5rd4wSH8uIjPGQRk/Sjkm&amp;#43;hgldN3P/2Q==&#34;
+							
+							class=&#34;lazy&#34;
+							data-src=&#34;http://localhost:1313/posts/2022/images/keep05_hu319caab137bbd704cc529284ed8ee81b_87068_0b0813abbb241da7c9d8de9fe0d27364.jpg&#34;
+						
+
+						
+					&gt;
+				&lt;/a&gt;
+			&lt;/div&gt;
+		
+	
+		
+		
+				
+			
+			
+			
+				
+			
+
+			
+			
+				
+			
+
+
+			
+			
+
+			
+			
+
+
+			&lt;div&gt;
+				
+				
+					
+					
+				
+				&lt;a href=&#34;http://localhost:1313/posts/2022/images/keep06.jpg&#34; 
+					class=&#34;galleryImg&#34;
+					
+					&gt;
+					&lt;img			
+						width=&#34;284&#34; height=&#34;600&#34;
+
+						
+							
+							style=&#34;filter: blur(25px);&#34;
+							
+								src=&#34;data:image/jpeg;base64,/9j/2wCEAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4&amp;#43;JS5ESUM8SDc9PjsBCgsLDg0OHBAQHDsoIig7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O//AABEIACAADwMBIgACEQEDEQH/xAGiAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgsQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5&amp;#43;gEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoLEQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4&amp;#43;Tl5ufo6ery8/T19vf4&amp;#43;fr/2gAMAwEAAhEDEQA/APUTcorsTJGrkYJyAad5zuVkQRtxjd61W1Fba03T3KLiRwqfvnUn2wKtWAgltxLaZaNyepJwe/XpV88extyPl5raHOX2qLfmJHYGSJ9w2tyD7&amp;#43;1TWWqfYYTFCpALFmyeSSck1TXQNRyS6xMckhgCMY/Ckh0HWAVEphbnB25HavO5Kt7nt/7Nycrkrdj/2Q==&#34;
+							
+							class=&#34;lazy&#34;
+							data-src=&#34;http://localhost:1313/posts/2022/images/keep06_hu73957ef2b111a72224f002fbf6d79e7f_78979_9974b4d9b4ffd8b31ad913bf9d64d1ce.jpg&#34;
+						
+
+						
+					&gt;
+				&lt;/a&gt;
+			&lt;/div&gt;
+		
+	
+		
+		
+				
+			
+			
+			
+				
+			
+
+			
+			
+				
+			
+
+
+			
+			
+
+			
+			
+
+
+			&lt;div&gt;
+				
+				
+					
+					
+				
+				&lt;a href=&#34;http://localhost:1313/posts/2022/images/keep07.jpg&#34; 
+					class=&#34;galleryImg&#34;
+					
+					&gt;
+					&lt;img			
+						width=&#34;284&#34; height=&#34;600&#34;
+
+						
+							
+							style=&#34;filter: blur(25px);&#34;
+							
+								src=&#34;data:image/jpeg;base64,/9j/2wCEAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4&amp;#43;JS5ESUM8SDc9PjsBCgsLDg0OHBAQHDsoIig7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O//AABEIACAADwMBIgACEQEDEQH/xAGiAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgsQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5&amp;#43;gEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoLEQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4&amp;#43;Tl5ufo6ery8/T19vf4&amp;#43;fr/2gAMAwEAAhEDEQA/ANQeONbJLrDb5YY3CI5/PNDePNZ3hmjtQwGOYjk/rWVbQXMkTeUMCNNzfu1bvge/U0jadJJZfajMm8sF8vocV9YqGFu04o8bmxFt2Mj1K&amp;#43;iUlEQK/DfKQCKLjVrqeZpCseT7E/1rZTwXrAJBaLBJ5BYYH5U5PBOpbQHSItnBO84/lWLxOETWl79v1PQjGvKL1tbv&amp;#43;h//2Q==&#34;
+							
+							class=&#34;lazy&#34;
+							data-src=&#34;http://localhost:1313/posts/2022/images/keep07_hu9a2e70276a451dce0afa128c075764f6_82903_c04fd8a31f504f3991bd2ec563e87268.jpg&#34;
+						
+
+						
+					&gt;
+				&lt;/a&gt;
+			&lt;/div&gt;
+		
+	
+		
+		
+				
+			
+			
+			
+				
+			
+
+			
+			
+				
+			
+
+
+			
+			
+
+			
+			
+
+
+			&lt;div&gt;
+				
+				
+					
+					
+				
+				&lt;a href=&#34;http://localhost:1313/posts/2022/images/keep08.jpg&#34; 
+					class=&#34;galleryImg&#34;
+					
+					&gt;
+					&lt;img			
+						width=&#34;284&#34; height=&#34;600&#34;
+
+						
+							
+							style=&#34;filter: blur(25px);&#34;
+							
+								src=&#34;data:image/jpeg;base64,/9j/2wCEAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4&amp;#43;JS5ESUM8SDc9PjsBCgsLDg0OHBAQHDsoIig7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O//AABEIACAADwMBIgACEQEDEQH/xAGiAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgsQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5&amp;#43;gEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoLEQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4&amp;#43;Tl5ufo6ery8/T19vf4&amp;#43;fr/2gAMAwEAAhEDEQA/APTmvkWRtqSFwdjNHETj8RTlvGmmG2Fgyryzxlcj6kc1TcpHfyeYwZGOCGcjb9AF/rVizbThN5drIPMZSdu4kkDr1&amp;#43;tVzxOhJPoTtApud4aQBs7gHIB9O9JHcQR3n2VUIfaW3Yz355qNDcANvG4/NtOwjA9KoWttrC3SyXMlu3JDtHGQTxx17dK5eWfY0jCDTuz/2Q==&#34;
+							
+							class=&#34;lazy&#34;
+							data-src=&#34;http://localhost:1313/posts/2022/images/keep08_hu1b80d483dd23a09fb3d12f680941718d_96911_e629238669b785fc9ebd3b431149942a.jpg&#34;
+						
+
+						
+					&gt;
+				&lt;/a&gt;
+			&lt;/div&gt;
+		
+	
+		
+		
+				
+			
+			
+			
+				
+			
+
+			
+			
+				
+			
+
+
+			
+			
+
+			
+			
+
+
+			&lt;div&gt;
+				
+				
+					
+					
+				
+				&lt;a href=&#34;http://localhost:1313/posts/2022/images/keep09.jpg&#34; 
+					class=&#34;galleryImg&#34;
+					
+					&gt;
+					&lt;img			
+						width=&#34;284&#34; height=&#34;600&#34;
+
+						
+							
+							style=&#34;filter: blur(25px);&#34;
+							
+								src=&#34;data:image/jpeg;base64,/9j/2wCEAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4&amp;#43;JS5ESUM8SDc9PjsBCgsLDg0OHBAQHDsoIig7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O//AABEIACAADwMBIgACEQEDEQH/xAGiAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgsQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5&amp;#43;gEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoLEQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4&amp;#43;Tl5ufo6ery8/T19vf4&amp;#43;fr/2gAMAwEAAhEDEQA/APTmvAj54V2GMgc4o&amp;#43;2s7BlCMQMEmmW9nHdMxlZgqDPFNuLZbaUojEqeRmuzlhzctjo5Y3sPiuDbpJtTduXGKSeY3Dhyu3jpUJtJnUiQbjlirBCMAdqrWdlq8UiCd7dkyQ&amp;#43;xCM8ZB5qOdXukdKVPV3R//9k=&#34;
+							
+							class=&#34;lazy&#34;
+							data-src=&#34;http://localhost:1313/posts/2022/images/keep09_hu194bae1b17b7aed1078211d91d4722ac_64834_b676f261394799dadee772ed8c746ade.jpg&#34;
+						
+
+						
+					&gt;
+				&lt;/a&gt;
+			&lt;/div&gt;
+		
+	
+		
+		
+				
+			
+			
+			
+				
+			
+
+			
+			
+				
+			
+
+
+			
+			
+
+			
+			
+
+
+			&lt;div&gt;
+				
+				
+					
+					
+				
+				&lt;a href=&#34;http://localhost:1313/posts/2022/images/keep10.jpg&#34; 
+					class=&#34;galleryImg&#34;
+					
+					&gt;
+					&lt;img			
+						width=&#34;329&#34; height=&#34;600&#34;
+
+						
+							
+							style=&#34;filter: blur(25px);&#34;
+							
+								src=&#34;data:image/jpeg;base64,/9j/2wCEAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4&amp;#43;JS5ESUM8SDc9PjsBCgsLDg0OHBAQHDsoIig7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O//AABEIACAAEgMBIgACEQEDEQH/xAGiAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgsQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5&amp;#43;gEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoLEQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4&amp;#43;Tl5ufo6ery8/T19vf4&amp;#43;fr/2gAMAwEAAhEDEQA/APUmnlW4KPcFRuPV06E8cden41akuDCpzyFHJ71BPHHv3vMI8gdWA7VM0MVwN4O5WxyDwa5JTqyi1FWNUorci/tWH&amp;#43;8R7bTR/asH98/98mnHbuOCcZo49TWPNW/nX3f8Eu0O34/8ArNEslzudI245JhBJ/GrCOWjwrfIOBt6fpVOGfc7ExMhU4y38XuPypZbl4bdmQO5UE7RyW9qxhXi9GxuD3SLBwDj0oyKgjmMkayFShYA7W6jPY07d71g6upoon//2Q==&#34;
+							
+							class=&#34;lazy&#34;
+							data-src=&#34;http://localhost:1313/posts/2022/images/keep10_hud6dc5a2b57a4a81fd5825aad9b835cf2_99121_5bdb4f39e153f7a0d3b718a074e90331.jpg&#34;
+						
+
+						
+					&gt;
+				&lt;/a&gt;
+			&lt;/div&gt;
+		
+	
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+	if (!(&#34;HSCGjQuery&#34; in window)) {
+		if (!window.jQuery) {
+			throw new Error(&#34;jQuery is not loaded, hugo-shortcode-gallery wont work without it!&#34;);
+		}
+		window.HSCGjQuery = window.jQuery.noConflict(true);
+	}
+
+	
+	
+	
+	
+	
+	;(function($) {
+
+		$( document ).ready(() =&gt; {
+			const gallery = $(&#34;#gallery-825294d2edcaa390ab7c24723256abd4-0&#34;);
+			
+
+			
+			let swipeboxInstance = null;
+
+			
+			
+			gallery.on(&#39;jg.complete&#39;, () =&gt; {
+				
+					
+					
+					$(() =&gt; {
+						$(&#39;.lazy&#39;).Lazy({
+							visibleOnly: true,
+							afterLoad: element =&gt; element.css({filter: &#34;none&#34;, transition: &#34;filter 1.0s ease-in-out&#34;})
+						});
+					});
+				
+
+				swipeboxInstance = $(&#39;.galleryImg&#39;).swipebox(
+					$.extend({},
+						{  }
+					)
+				);
+			});
+
+			
+			gallery.justifiedGallery({
+				rowHeight : &#34;250&#34;,
+				margins : &#34;5&#34;,
+				border : 0,
+				randomize :  false ,
+				waitThumbnailsLoad : false,
+				lastRow : &#34;justify&#34;,
+				captions : false,
+				
+				
+			});
+
+			
+			
+		});
+
+	
+	
+	
+	})(window.HSCGjQuery)
+&lt;/script&gt;
+
+&lt;h2 id=&#34;读书&#34;&gt;读书
+&lt;/h2&gt;&lt;p&gt;今年使用微信读书读了130个小时，读了10本书。今年读书缺乏输出，所以书读完之后很快就忘记了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/posts/2022/images/weread.svg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;书名&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;https://book.douban.com/subject/35193035/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;认知觉醒&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;https://book.douban.com/subject/30330181/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;棋王&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;https://book.douban.com/subject/27200257/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;挪威的森林&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;https://book.douban.com/subject/19989296/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;别逗了，费曼先生&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;https://book.douban.com/subject/35594496/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;福格行为模型&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;https://book.douban.com/subject/4908879/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;动物农场&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;https://book.douban.com/subject/30134903/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;鼠疫&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;https://book.douban.com/subject/30468519/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;局外人&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;https://book.douban.com/subject/35989392/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;献给阿尔吉侬的花束&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;https://book.douban.com/subject/30390651/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;时间的礼物&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;微信读书年度报告&lt;/strong&gt;&lt;/p&gt;
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;style&gt;
+	
+
+	
+&lt;/style&gt;
+
+
+
+
+
+&lt;div id=&#34;gallery-825294d2edcaa390ab7c24723256abd4-1-wrapper&#34; class=&#34;gallery-wrapper&#34;&gt;
+&lt;div id=&#34;gallery-825294d2edcaa390ab7c24723256abd4-1&#34; class=&#34;justified-gallery&#34;&gt;
+	
+		
+		
+				
+			
+			
+			
+				
+			
+
+			
+			
+				
+			
+
+
+			
+			
+
+			
+			
+
+
+			&lt;div&gt;
+				
+				
+					
+					
+				
+				&lt;a href=&#34;http://localhost:1313/posts/2022/images/weixin01.jpg&#34; 
+					class=&#34;galleryImg&#34;
+					
+					&gt;
+					&lt;img			
+						width=&#34;284&#34; height=&#34;600&#34;
+
+						
+							
+							style=&#34;filter: blur(25px);&#34;
+							
+								src=&#34;data:image/jpeg;base64,/9j/2wCEAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4&amp;#43;JS5ESUM8SDc9PjsBCgsLDg0OHBAQHDsoIig7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O//AABEIACAADwMBIgACEQEDEQH/xAGiAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgsQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5&amp;#43;gEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoLEQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4&amp;#43;Tl5ufo6ery8/T19vf4&amp;#43;fr/2gAMAwEAAhEDEQA/APRp7hBKy&amp;#43;UoYHBO9c0Jbo53rg5/iFST216s0jQ6dG&amp;#43;WJDGbrzx39zV60glMX76IRsCflDZ4rscko6GKTb1LJkwM9aEmUkKxAYjO3PNVn3sjKSUJBAYdqxrDS7&amp;#43;LUzcyzebsyFxkZJ45rmjGLTbdiYznJ2SP/9k=&#34;
+							
+							class=&#34;lazy&#34;
+							data-src=&#34;http://localhost:1313/posts/2022/images/weixin01_hu73d3d87fddb31a16016a59c8d931393e_47640_44800d78cf93c9c23b4dc9da46f701b8.jpg&#34;
+						
+
+						
+					&gt;
+				&lt;/a&gt;
+			&lt;/div&gt;
+		
+	
+		
+		
+				
+			
+			
+			
+				
+			
+
+			
+			
+				
+			
+
+
+			
+			
+
+			
+			
+
+
+			&lt;div&gt;
+				
+				
+					
+					
+				
+				&lt;a href=&#34;http://localhost:1313/posts/2022/images/weixin02.jpg&#34; 
+					class=&#34;galleryImg&#34;
+					
+					&gt;
+					&lt;img			
+						width=&#34;284&#34; height=&#34;600&#34;
+
+						
+							
+							style=&#34;filter: blur(25px);&#34;
+							
+								src=&#34;data:image/jpeg;base64,/9j/2wCEAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4&amp;#43;JS5ESUM8SDc9PjsBCgsLDg0OHBAQHDsoIig7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O//AABEIACAADwMBIgACEQEDEQH/xAGiAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgsQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5&amp;#43;gEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoLEQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4&amp;#43;Tl5ufo6ery8/T19vf4&amp;#43;fr/2gAMAwEAAhEDEQA/APWGudkjA2&amp;#43;GHG7a3I/75p7orHdtGT3xzTHjikLr/aMil26LIoweOBxx0qaKDyU2eY8nPVzk1pokRqOSCNXLgEk&amp;#43;pyKkVssVKkY79jUQlVR8wYc9kP8AhTpZ1iCEhmDtj5VJxwT2&amp;#43;lQykf/Z&#34;
+							
+							class=&#34;lazy&#34;
+							data-src=&#34;http://localhost:1313/posts/2022/images/weixin02_hu3e379e5d5235589e53d5235d2941c8bd_48154_b1119829cbea0f2399030410452c0203.jpg&#34;
+						
+
+						
+					&gt;
+				&lt;/a&gt;
+			&lt;/div&gt;
+		
+	
+		
+		
+				
+			
+			
+			
+				
+			
+
+			
+			
+				
+			
+
+
+			
+			
+
+			
+			
+
+
+			&lt;div&gt;
+				
+				
+					
+					
+				
+				&lt;a href=&#34;http://localhost:1313/posts/2022/images/weixin03.jpg&#34; 
+					class=&#34;galleryImg&#34;
+					
+					&gt;
+					&lt;img			
+						width=&#34;284&#34; height=&#34;600&#34;
+
+						
+							
+							style=&#34;filter: blur(25px);&#34;
+							
+								src=&#34;data:image/jpeg;base64,/9j/2wCEAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4&amp;#43;JS5ESUM8SDc9PjsBCgsLDg0OHBAQHDsoIig7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O//AABEIACAADwMBIgACEQEDEQH/xAGiAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgsQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5&amp;#43;gEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoLEQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4&amp;#43;Tl5ufo6ery8/T19vf4&amp;#43;fr/2gAMAwEAAhEDEQA/APX90MT/ADFFcjv1P&amp;#43;cVXhvYLi5aMBN4zkjPOPcirT26SMGbdkejkfyNRG22zBvNfGSQvP8AjVrl6k6lYR3ENw8qpIwZ8kbu30q9vyAcEZ7GkaYAfMGHPZG/wqKeQxhG2swdsfKpOOCe30pt33DbY//Z&#34;
+							
+							class=&#34;lazy&#34;
+							data-src=&#34;http://localhost:1313/posts/2022/images/weixin03_hu1bdbf9838c7db7d546044e1e308431af_56512_3f4a43e5659638f25ebd5c9e64205145.jpg&#34;
+						
+
+						
+					&gt;
+				&lt;/a&gt;
+			&lt;/div&gt;
+		
+	
+		
+		
+				
+			
+			
+			
+				
+			
+
+			
+			
+				
+			
+
+
+			
+			
+
+			
+			
+
+
+			&lt;div&gt;
+				
+				
+					
+					
+				
+				&lt;a href=&#34;http://localhost:1313/posts/2022/images/weixin04.jpg&#34; 
+					class=&#34;galleryImg&#34;
+					
+					&gt;
+					&lt;img			
+						width=&#34;284&#34; height=&#34;600&#34;
+
+						
+							
+							style=&#34;filter: blur(25px);&#34;
+							
+								src=&#34;data:image/jpeg;base64,/9j/2wCEAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4&amp;#43;JS5ESUM8SDc9PjsBCgsLDg0OHBAQHDsoIig7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O//AABEIACAADwMBIgACEQEDEQH/xAGiAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgsQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5&amp;#43;gEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoLEQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4&amp;#43;Tl5ufo6ery8/T19vf4&amp;#43;fr/2gAMAwEAAhEDEQA/APYJBFH87bV7bjgVSZ4ZZiqFCy/eOcH&amp;#43;VaEil0wpUH/aXIqAW0gk3mRSMY2iPA&amp;#43;vWpdzSLSWpXktWuHIZ0baeM78jP8AwKrdtHLECHcODyOuf1JqNWK/fBHP901I84hVCVZg7Y&amp;#43;VSccE9vpQkEpO1j//2Q==&#34;
+							
+							class=&#34;lazy&#34;
+							data-src=&#34;http://localhost:1313/posts/2022/images/weixin04_hub043b1c681cb7982f6e13fa54d0d4cbe_48361_22de4dca75b12dac2a3cb8e405c4cac6.jpg&#34;
+						
+
+						
+					&gt;
+				&lt;/a&gt;
+			&lt;/div&gt;
+		
+	
+		
+		
+				
+			
+			
+			
+				
+			
+
+			
+			
+				
+			
+
+
+			
+			
+
+			
+			
+
+
+			&lt;div&gt;
+				
+				
+					
+					
+				
+				&lt;a href=&#34;http://localhost:1313/posts/2022/images/weixin05.jpg&#34; 
+					class=&#34;galleryImg&#34;
+					
+					&gt;
+					&lt;img			
+						width=&#34;284&#34; height=&#34;600&#34;
+
+						
+							
+							style=&#34;filter: blur(25px);&#34;
+							
+								src=&#34;data:image/jpeg;base64,/9j/2wCEAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4&amp;#43;JS5ESUM8SDc9PjsBCgsLDg0OHBAQHDsoIig7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O//AABEIACAADwMBIgACEQEDEQH/xAGiAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgsQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5&amp;#43;gEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoLEQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4&amp;#43;Tl5ufo6ery8/T19vf4&amp;#43;fr/2gAMAwEAAhEDEQA/APQRKN2VXJxyQOaec4DlcE9fl5rKcuACWUA&amp;#43;ppgmIbG4H3Brz/aW3Pf9gnsSMjdNqn6rTEt8Z45rabT3HVT&amp;#43;Rpslk0QUsjEMcDapPbPb6U/ZMn61BLRn/9k=&#34;
+							
+							class=&#34;lazy&#34;
+							data-src=&#34;http://localhost:1313/posts/2022/images/weixin05_hu371cfb3469f33379234a9d4a77e62129_44440_cfb7d7a8e7dad03701b0024a36e2fd08.jpg&#34;
+						
+
+						
+					&gt;
+				&lt;/a&gt;
+			&lt;/div&gt;
+		
+	
+		
+		
+				
+			
+			
+			
+				
+			
+
+			
+			
+				
+			
+
+
+			
+			
+
+			
+			
+
+
+			&lt;div&gt;
+				
+				
+					
+					
+				
+				&lt;a href=&#34;http://localhost:1313/posts/2022/images/weixin06.jpg&#34; 
+					class=&#34;galleryImg&#34;
+					
+					&gt;
+					&lt;img			
+						width=&#34;284&#34; height=&#34;600&#34;
+
+						
+							
+							style=&#34;filter: blur(25px);&#34;
+							
+								src=&#34;data:image/jpeg;base64,/9j/2wCEAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4&amp;#43;JS5ESUM8SDc9PjsBCgsLDg0OHBAQHDsoIig7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O//AABEIACAADwMBIgACEQEDEQH/xAGiAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgsQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5&amp;#43;gEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoLEQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4&amp;#43;Tl5ufo6ery8/T19vf4&amp;#43;fr/2gAMAwEAAhEDEQA/APQi&amp;#43;1sqpJx120jSYOWTaT3I5rPNxIOMsOOPlpgmY5J9fSuB1D3lQ7khteQTG/I9c5qMW&amp;#43;CQFxWy2nuOqn8jTZLJogpZGIY4G1Se2e30o9k&amp;#43;xKxMV1P/2Q==&#34;
+							
+							class=&#34;lazy&#34;
+							data-src=&#34;http://localhost:1313/posts/2022/images/weixin06_hu30b0c4a857266bed8cc888c883171a44_59278_ecaad700d5abf5688bcb0dd384404279.jpg&#34;
+						
+
+						
+					&gt;
+				&lt;/a&gt;
+			&lt;/div&gt;
+		
+	
+		
+		
+				
+			
+			
+			
+				
+			
+
+			
+			
+				
+			
+
+
+			
+			
+
+			
+			
+
+
+			&lt;div&gt;
+				
+				
+					
+					
+				
+				&lt;a href=&#34;http://localhost:1313/posts/2022/images/weixin07.jpg&#34; 
+					class=&#34;galleryImg&#34;
+					
+					&gt;
+					&lt;img			
+						width=&#34;284&#34; height=&#34;600&#34;
+
+						
+							
+							style=&#34;filter: blur(25px);&#34;
+							
+								src=&#34;data:image/jpeg;base64,/9j/2wCEAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4&amp;#43;JS5ESUM8SDc9PjsBCgsLDg0OHBAQHDsoIig7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O//AABEIACAADwMBIgACEQEDEQH/xAGiAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgsQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5&amp;#43;gEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoLEQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4&amp;#43;Tl5ufo6ery8/T19vf4&amp;#43;fr/2gAMAwEAAhEDEQA/APQvNjGGVlzjk45pvnqTnAz61nw3gaNWilJUKVJQZAwTkfnTBch&amp;#43;QWJPXNcDme9GhfcfEkU6BokkVBlcdOQcHGfekNsFPCEH3Oa2WsJF7EfgabJZPEFZkZtxwNoLds9vpTdJvoRHEpdT/9k=&#34;
+							
+							class=&#34;lazy&#34;
+							data-src=&#34;http://localhost:1313/posts/2022/images/weixin07_huabe43314b88d05545706bf73774a3316_64854_4c26c7bdd0cc9de4407e149f6b15fb6d.jpg&#34;
+						
+
+						
+					&gt;
+				&lt;/a&gt;
+			&lt;/div&gt;
+		
+	
+		
+		
+				
+			
+			
+			
+				
+			
+
+			
+			
+				
+			
+
+
+			
+			
+
+			
+			
+
+
+			&lt;div&gt;
+				
+				
+					
+					
+				
+				&lt;a href=&#34;http://localhost:1313/posts/2022/images/weixin08.jpg&#34; 
+					class=&#34;galleryImg&#34;
+					
+					&gt;
+					&lt;img			
+						width=&#34;284&#34; height=&#34;600&#34;
+
+						
+							
+							style=&#34;filter: blur(25px);&#34;
+							
+								src=&#34;data:image/jpeg;base64,/9j/2wCEAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4&amp;#43;JS5ESUM8SDc9PjsBCgsLDg0OHBAQHDsoIig7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O//AABEIACAADwMBIgACEQEDEQH/xAGiAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgsQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5&amp;#43;gEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoLEQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4&amp;#43;Tl5ufo6ery8/T19vf4&amp;#43;fr/2gAMAwEAAhEDEQA/APRN6KA&amp;#43;5ckdRgmo/OUnJAz645rLKyPAs0U8kSRNvKIcbtuQQeOhx096p6frNtc2&amp;#43;&amp;#43;KOVCZNoWRcNjGc/TiuCU7PyPYjBtbGtcom1fJUj93hxuPJ4wfwrFew1ET27RTIse0&amp;#43;euwctzyOPpXStYXA6p&amp;#43;hpslpcRBSYyQxwNoJ7e30quV9h88P5vxP/9k=&#34;
+							
+							class=&#34;lazy&#34;
+							data-src=&#34;http://localhost:1313/posts/2022/images/weixin08_hu38061b6a131055bd30d1e83f59c5dd09_99400_753ca00e5798ff9be22cfa93ac19aff1.jpg&#34;
+						
+
+						
+					&gt;
+				&lt;/a&gt;
+			&lt;/div&gt;
+		
+	
+		
+		
+				
+			
+			
+			
+				
+			
+
+			
+			
+				
+			
+
+
+			
+			
+
+			
+			
+
+
+			&lt;div&gt;
+				
+				
+					
+					
+				
+				&lt;a href=&#34;http://localhost:1313/posts/2022/images/weixin09.jpg&#34; 
+					class=&#34;galleryImg&#34;
+					
+					&gt;
+					&lt;img			
+						width=&#34;284&#34; height=&#34;600&#34;
+
+						
+							
+							style=&#34;filter: blur(25px);&#34;
+							
+								src=&#34;data:image/jpeg;base64,/9j/2wCEAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4&amp;#43;JS5ESUM8SDc9PjsBCgsLDg0OHBAQHDsoIig7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O//AABEIACAADwMBIgACEQEDEQH/xAGiAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgsQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5&amp;#43;gEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoLEQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4&amp;#43;Tl5ufo6ery8/T19vf4&amp;#43;fr/2gAMAwEAAhEDEQA/AN/&amp;#43;zQBuBXdj0FRtYndyoz6iutOnr5QXyxxzuA5o/s8eVt2DGc5xzXtrGHiPDsttZLI7OZduew/z7ClggWOVixycfeK47/Wq7C4Xqjfkf8KbI1xEFLRsQxwNoJ7e30rwfaztax9F7CHc/9k=&#34;
+							
+							class=&#34;lazy&#34;
+							data-src=&#34;http://localhost:1313/posts/2022/images/weixin09_hued49ab7373b763f5518b021093643ebf_60531_4aa327a442f0d3d5ed876dbe8b99d5ba.jpg&#34;
+						
+
+						
+					&gt;
+				&lt;/a&gt;
+			&lt;/div&gt;
+		
+	
+		
+		
+				
+			
+			
+			
+				
+			
+
+			
+			
+				
+			
+
+
+			
+			
+
+			
+			
+
+
+			&lt;div&gt;
+				
+				
+					
+					
+				
+				&lt;a href=&#34;http://localhost:1313/posts/2022/images/weixin10.jpg&#34; 
+					class=&#34;galleryImg&#34;
+					
+					&gt;
+					&lt;img			
+						width=&#34;284&#34; height=&#34;600&#34;
+
+						
+							
+							style=&#34;filter: blur(25px);&#34;
+							
+								src=&#34;data:image/jpeg;base64,/9j/2wCEAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4&amp;#43;JS5ESUM8SDc9PjsBCgsLDg0OHBAQHDsoIig7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O//AABEIACAADwMBIgACEQEDEQH/xAGiAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgsQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5&amp;#43;gEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoLEQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4&amp;#43;Tl5ufo6ery8/T19vf4&amp;#43;fr/2gAMAwEAAhEDEQA/AO/G0EMCMkdcUx2AbJAz6&amp;#43;tU5JpYwuZtoI4ySP6VD9oZmOW3e9cDqHvRoN6itaOedh/KnLCETaYsN61rNpso/hP5GmyWEkQUsjEMcDYCe2e30o9k&amp;#43;wniotas/9k=&#34;
+							
+							class=&#34;lazy&#34;
+							data-src=&#34;http://localhost:1313/posts/2022/images/weixin10_hu50cb61ce37c945b7d59b8439d4bfce15_52847_dd6c097b87309b6b99ad082dcd13506e.jpg&#34;
+						
+
+						
+					&gt;
+				&lt;/a&gt;
+			&lt;/div&gt;
+		
+	
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+	if (!(&#34;HSCGjQuery&#34; in window)) {
+		if (!window.jQuery) {
+			throw new Error(&#34;jQuery is not loaded, hugo-shortcode-gallery wont work without it!&#34;);
+		}
+		window.HSCGjQuery = window.jQuery.noConflict(true);
+	}
+
+	
+	
+	
+	
+	
+	;(function($) {
+
+		$( document ).ready(() =&gt; {
+			const gallery = $(&#34;#gallery-825294d2edcaa390ab7c24723256abd4-1&#34;);
+			
+
+			
+			let swipeboxInstance = null;
+
+			
+			
+			gallery.on(&#39;jg.complete&#39;, () =&gt; {
+				
+					
+					
+					$(() =&gt; {
+						$(&#39;.lazy&#39;).Lazy({
+							visibleOnly: true,
+							afterLoad: element =&gt; element.css({filter: &#34;none&#34;, transition: &#34;filter 1.0s ease-in-out&#34;})
+						});
+					});
+				
+
+				swipeboxInstance = $(&#39;.galleryImg&#39;).swipebox(
+					$.extend({},
+						{  }
+					)
+				);
+			});
+
+			
+			gallery.justifiedGallery({
+				rowHeight : &#34;250&#34;,
+				margins : &#34;5&#34;,
+				border : 0,
+				randomize :  false ,
+				waitThumbnailsLoad : false,
+				lastRow : &#34;justify&#34;,
+				captions : false,
+				
+				
+			});
+
+			
+			
+		});
+
+	
+	
+	
+	})(window.HSCGjQuery)
+&lt;/script&gt;
+
+&lt;h2 id=&#34;英语学习&#34;&gt;英语学习
+&lt;/h2&gt;&lt;p&gt;因为女儿今年出生，想着学英语以后教女儿，今年9月份开始使用多邻国学习英语，也坚持了100多天，新的一年继续坚持。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/posts/2022/images/duolingo.svg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;工作&#34;&gt;工作
+&lt;/h2&gt;&lt;p&gt;今年工作更多的是做逆向相关的工作，学习了Xposed、Frida等。并在工作中大量的使用Python语言。新的一年希望工作一切顺利，在工作中也能获得更多的成长。&lt;/p&gt;
+&lt;h2 id=&#34;新年计划&#34;&gt;新年计划
+&lt;/h2&gt;&lt;p&gt;今年目标：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;跑1000公里。&lt;/li&gt;
+&lt;li&gt;每天在微信读书读30分钟书。&lt;/li&gt;
+&lt;li&gt;每天LeetCode刷一道题。&lt;/li&gt;
+&lt;li&gt;每周看一部电影。&lt;/li&gt;
+&lt;li&gt;每天在多邻国打卡。&lt;/li&gt;
+&lt;li&gt;改掉熬夜的习惯。&lt;/li&gt;
+&lt;li&gt;少刷短视频。&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        </item>
+        <item>
+        <title>悠然</title>
+        <link>http://localhost:1313/posts/youran/</link>
+        <pubDate>Tue, 29 Mar 2022 01:08:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/posts/youran/</guid>
+        <description>&lt;img src="https://drive.malinkang.com/api/raw/?path=/Images/WechatIMG26.jpg" alt="Featured image of post 悠然" /&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;饮酒·其五&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;结庐在人境，而无车马喧。&lt;/p&gt;
+&lt;p&gt;问君何能尔？心远地自偏。&lt;/p&gt;
+&lt;p&gt;采菊东篱下，悠然见南山。&lt;/p&gt;
+&lt;p&gt;山气日夕佳，飞鸟相与还。&lt;/p&gt;
+&lt;p&gt;此中有真意，欲辨已忘言。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;从老婆刚怀孕，起名字的重担就落在了我的身上。我是一个不擅长起名字的人，包括每次给变量起名字，给小动物起名字，我都很纠结。中间想了好多，又总觉得不满意，然后孩子出生了，名字还是没想好。&lt;/p&gt;
+&lt;p&gt;孩子刚出生没几天，我就发现孩子总喜欢头扭到左边睡，右边鼓起个大疙瘩，网上搜了一下是斜颈，然后就去儿童医院看。因为没有名字，所以没法上户口，看病挂号也只能拿大人身份证弄一个某某之女的二维码，而且这个二维码还不敢弄丢，之后可能还要用，非常的麻烦。然后媳妇因此责怪我，这么久了连个名字都想不出来。&lt;/p&gt;
+&lt;p&gt;从医院回家的路上，我就一直在想起名字的事。最近流行了一个词叫内卷，我只想让自己的孩子快乐的生活，将来能做自己喜欢的工作，而不是为了赚钱，做自己不喜欢的事情和不喜欢的人共事。采菊东篱下，悠然见南山，正是我期望她能过上的诗意生活。&lt;/p&gt;
+&lt;p&gt;下了车，因为当天下了大雪，路面很滑。我和老婆小心翼翼的在小区里走着，我说悠然怎么样，老婆说可以。后来老婆有起了个名字叫多乐，谐音英文Doller，我感觉太庸俗。后来又搞了个抓阄，让孩子自己选，抓了三次都选择了悠然。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Git使用</title>
+        <link>http://localhost:1313/posts/git/</link>
+        <pubDate>Fri, 25 Nov 2016 11:22:54 +0000</pubDate>
+        
+        <guid>http://localhost:1313/posts/git/</guid>
+        <description>&lt;img src="https://images.unsplash.com/photo-1700167395210-09d25fdab0f6?q=80&amp;w=3174&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Featured image of post Git使用" /&gt;&lt;h2 id=&#34;git-remote&#34;&gt;git remote
+&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git remote add origin git@gitee.com:malinkang/learngit.git &lt;span class=&#34;c1&#34;&gt;#添加远程仓库&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git remote remove origin &lt;span class=&#34;c1&#34;&gt;#删除远程仓库&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git remote -v &lt;span class=&#34;c1&#34;&gt;#查看远程仓库地址&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;分支&#34;&gt;分支
+&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git checkout -b v2.0.0 &lt;span class=&#34;c1&#34;&gt;#创建分支&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git checkout v1.0.0 &lt;span class=&#34;c1&#34;&gt;#切换分支&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git merge v1.0.0 &lt;span class=&#34;c1&#34;&gt;#合并分支&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git branch -d v1.0.0 &lt;span class=&#34;c1&#34;&gt;#删除分支&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git push origin --delete v2.0.0 &lt;span class=&#34;c1&#34;&gt;#删除远程分支&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git branch &lt;span class=&#34;c1&#34;&gt;#查看分支&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git branch -a &lt;span class=&#34;c1&#34;&gt;#查看所有分支&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;标签&#34;&gt;标签
+&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git tag -a v1.0.0 -m &lt;span class=&#34;s2&#34;&gt;&amp;#34;版本1.0.0&amp;#34;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#创建tag&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git tag &lt;span class=&#34;c1&#34;&gt;#查看所有tag&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git tag -l &lt;span class=&#34;s2&#34;&gt;&amp;#34;v1.*&amp;#34;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#查看v1.开头的标签&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git push origin --tags &lt;span class=&#34;c1&#34;&gt;#推送所有标签&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git push origin tag v1.0.0 &lt;span class=&#34;c1&#34;&gt;#推送单个tag&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git tag -d v1.0.0 &lt;span class=&#34;c1&#34;&gt;#删除tag&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git push origin --delete v2.2.0 &lt;span class=&#34;c1&#34;&gt;#删除远程tag&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;参考&#34;&gt;参考
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://git-scm.com/book/zh/v2&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Pro Git&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://stackoverflow.com/questions/7927230/remove-directory-from-remote-repository-after-adding-them-to-gitignore&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;移除忽略的文件&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title></title>
+        <link>http://localhost:1313/posts/notion_token/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/posts/notion_token/</guid>
+        <description></description>
+        </item>
+        
+    </channel>
+</rss>

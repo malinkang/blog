@@ -1,66 +1,36 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Glide使用 使用 1 2 3 4 5 6 7 8 9 10 11 12 //加载asset目录下的文件 GlideApp.with(imageView) .load(&amp;#34;file:///android_asset/image.png&amp;#34;) .into(imageView); //加载res目录下的图片 GlideApp.with(imageView) .load(&amp;#34;android.resource://&amp;#34; &#43; getPackageName() &#43; &amp;#34;/&amp;#34; &#43; R.drawable.image) .into(imageView); GlideApp.with(imageView) .load(R.drawable.image) .into(imageView); 监听Gif播放完成
-遇到的坑 设置圆角有时候不生效，解决方案。 图片加载不出来，图片地址：http://imgservicepa.suning.cn/uimg1/b2c/image/cvhQElXhldg3mMEbKaImAA.jpg_720h_1280w_4e_0l ，因为请求头里的User-Agent，导致请求被拒。 相关文档 https://bumptech.github.io/glide/ https://github.com/wasabeef/glide-transformations '>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Glide使用 使用 1 2 3 4 5 6 7 8 9 10 11 12 //加载asset目录下的文件 GlideApp.with(imageView) .load(&#34;file:///android_asset/image.png&#34;) .into(imageView); //加载res目录下的图片 GlideApp.with(imageView) .load(&#34;android.resource://&#34; + getPackageName() + &#34;/&#34; + R.drawable.image) .into(imageView); GlideApp.with(imageView) .load(R.drawable.image) .into(imageView); 监听Gif播放完成 遇到的坑 设置圆角有时候不生效，解决方案。 图片加载不出来，图片地址：http://imgservicepa.suning.cn/uimg1/b2c/image/cvhQElXhldg3mMEbKaImAA.jpg_720h_1280w_4e_0l ，因为请求头里的User-Agent，导致请求被拒。 相关文档 https://bumptech.github.io/glide/ https://github.com/wasabeef/glide-transformations ">
 <title></title>
 
-<link rel='canonical' href='https://example.com/android/network/glide/'>
+<link rel='canonical' href='http://localhost:1313/android/network/glide/'>
 
-<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
-<meta property='og:description' content='Glide使用 使用 1 2 3 4 5 6 7 8 9 10 11 12 //加载asset目录下的文件 GlideApp.with(imageView) .load(&amp;#34;file:///android_asset/image.png&amp;#34;) .into(imageView); //加载res目录下的图片 GlideApp.with(imageView) .load(&amp;#34;android.resource://&amp;#34; &#43; getPackageName() &#43; &amp;#34;/&amp;#34; &#43; R.drawable.image) .into(imageView); GlideApp.with(imageView) .load(R.drawable.image) .into(imageView); 监听Gif播放完成
-遇到的坑 设置圆角有时候不生效，解决方案。 图片加载不出来，图片地址：http://imgservicepa.suning.cn/uimg1/b2c/image/cvhQElXhldg3mMEbKaImAA.jpg_720h_1280w_4e_0l ，因为请求头里的User-Agent，导致请求被拒。 相关文档 https://bumptech.github.io/glide/ https://github.com/wasabeef/glide-transformations '>
-<meta property='og:url' content='https://example.com/android/network/glide/'>
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<meta property='og:description' content="Glide使用 使用 1 2 3 4 5 6 7 8 9 10 11 12 //加载asset目录下的文件 GlideApp.with(imageView) .load(&#34;file:///android_asset/image.png&#34;) .into(imageView); //加载res目录下的图片 GlideApp.with(imageView) .load(&#34;android.resource://&#34; + getPackageName() + &#34;/&#34; + R.drawable.image) .into(imageView); GlideApp.with(imageView) .load(R.drawable.image) .into(imageView); 监听Gif播放完成 遇到的坑 设置圆角有时候不生效，解决方案。 图片加载不出来，图片地址：http://imgservicepa.suning.cn/uimg1/b2c/image/cvhQElXhldg3mMEbKaImAA.jpg_720h_1280w_4e_0l ，因为请求头里的User-Agent，导致请求被拒。 相关文档 https://bumptech.github.io/glide/ https://github.com/wasabeef/glide-transformations ">
+<meta property='og:url' content='http://localhost:1313/android/network/glide/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="Glide使用 使用 1 2 3 4 5 6 7 8 9 10 11 12 //加载asset目录下的文件 GlideApp.with(imageView) .load(&amp;#34;file:///android_asset/image.png&amp;#34;) .into(imageView); //加载res目录下的图片 GlideApp.with(imageView) .load(&amp;#34;android.resource://&amp;#34; &#43; getPackageName() &#43; &amp;#34;/&amp;#34; &#43; R.drawable.image) .into(imageView); GlideApp.with(imageView) .load(R.drawable.image) .into(imageView); 监听Gif播放完成
-遇到的坑 设置圆角有时候不生效，解决方案。 图片加载不出来，图片地址：http://imgservicepa.suning.cn/uimg1/b2c/image/cvhQElXhldg3mMEbKaImAA.jpg_720h_1280w_4e_0l ，因为请求头里的User-Agent，导致请求被拒。 相关文档 https://bumptech.github.io/glide/ https://github.com/wasabeef/glide-transformations ">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
-}
-</script>
-<style>
-    :root {
-      --sys-font-family: "Noto Serif SC";
-      --zh-font-family: "Noto Serif SC";
-      --base-font-family: "Noto Serif SC";
-      --code-font-family: "Noto Serif SC";
-      --article-font-family: "Noto Serif SC";
-    }
-  </style>
+<meta name="twitter:description" content="Glide使用 使用 1 2 3 4 5 6 7 8 9 10 11 12 //加载asset目录下的文件 GlideApp.with(imageView) .load(&#34;file:///android_asset/image.png&#34;) .into(imageView); //加载res目录下的图片 GlideApp.with(imageView) .load(&#34;android.resource://&#34; + getPackageName() + &#34;/&#34; + R.drawable.image) .into(imageView); GlideApp.with(imageView) .load(R.drawable.image) .into(imageView); 监听Gif播放完成 遇到的坑 设置圆角有时候不生效，解决方案。 图片加载不出来，图片地址：http://imgservicepa.suning.cn/uimg1/b2c/image/cvhQElXhldg3mMEbKaImAA.jpg_720h_1280w_4e_0l ，因为请求头里的User-Agent，导致请求被拒。 相关文档 https://bumptech.github.io/glide/ https://github.com/wasabeef/glide-transformations ">
   
-  <script>
-    (function () {
-      const customFont = document.createElement("link");
-      customFont.href =
-        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
   
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-  
-      document.head.appendChild(customFont);
-    })();
-  </script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
-     crossorigin="anonymous"></script>
-  
-
-<script>
-    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
 
 
     </head>
@@ -122,7 +92,7 @@ if (!doNotTrack) {
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
             <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -183,13 +153,32 @@ if (!doNotTrack) {
 
 
                 
-                <span>主页</span>
+                <span>Home</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/archives' >
+            <a href='/pages/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/archives/' >
                 
                 
                 
@@ -203,16 +192,54 @@ if (!doNotTrack) {
 
 
                 
-                <span>归档</span>
+                <span>Archives</span>
             </a>
         </li>
         
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -220,7 +247,7 @@ if (!doNotTrack) {
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -228,10 +255,11 @@ if (!doNotTrack) {
 
 
 
-                    <span>Dark Mode</span>
-                </li>
-            
-        </div>
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -318,9 +346,9 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <h1 id="glide使用">Glide使用</h1>
-<h2 id="使用">使用</h2>
-<div class="highlight"><div class="chroma">
+    <h1 id="glide使用">Glide使用
+</h1><h2 id="使用">使用
+</h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -352,15 +380,15 @@ if (!doNotTrack) {
 </div>
 </div><p><a class="link" href="https://stackoverflow.com/questions/35645199/android-gif-animation-cycle-complete-listener"  target="_blank" rel="noopener"
     >监听Gif播放完成</a></p>
-<h2 id="遇到的坑">遇到的坑</h2>
-<ol>
+<h2 id="遇到的坑">遇到的坑
+</h2><ol>
 <li>设置圆角有时候不生效，<a class="link" href="https://github.com/wasabeef/glide-transformations/issues/94"  target="_blank" rel="noopener"
     >解决方案</a>。</li>
 <li>图片加载不出来，图片地址：<a class="link" href="http://imgservicepa.suning.cn/uimg1/b2c/image/cvhQElXhldg3mMEbKaImAA.jpg_720h_1280w_4e_0l"  target="_blank" rel="noopener"
     >http://imgservicepa.suning.cn/uimg1/b2c/image/cvhQElXhldg3mMEbKaImAA.jpg_720h_1280w_4e_0l</a> ，因为请求头里的<code>User-Agent</code>，导致请求被拒。</li>
 </ol>
-<h2 id="相关文档">相关文档</h2>
-<ul>
+<h2 id="相关文档">相关文档
+</h2><ul>
 <li><a class="link" href="https://bumptech.github.io/glide/"  target="_blank" rel="noopener"
     >https://bumptech.github.io/glide/</a></li>
 <li><a class="link" href="https://github.com/wasabeef/glide-transformations"  target="_blank" rel="noopener"
@@ -461,7 +489,7 @@ if (!doNotTrack) {
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 

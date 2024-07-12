@@ -1,72 +1,36 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='根据How LeakCanary works我们可以知道LeakCanary工作流程大致分为4个阶段：
-检测持有对象 存储堆信息 分析堆信息 对泄露进行分类 LeakCanary2.0的安装流程 LeakCanary1.0需要手动在Application进行安装，2.0不需要任何手动安装的代码。AppWatcherInstaller继承ContentProvider,AppWatcherInstaller的onCreate方法会调用安装方法。
-oncreate() 1 2 3 4 5 6 override fun onCreate(): Boolean { val application = context!!.applicationContext as Application //安装 AppWatcher.manualInstall(application) return true } manualInstall() AppWatcher的manualInstall方法。
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 @JvmOverloads fun manualInstall( application: Application, retainedDelayMillis: Long = TimeUnit.'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="根据How LeakCanary works我们可以知道LeakCanary工作流程大致分为4个阶段： 检测持有对象 存储堆信息 分析堆信息 对泄露进行分类 LeakCanary2.0的安装流程 LeakCanary1.0需要手动在Application进行安装，2.0不需要任何手动安装的代码。AppWatcherInstaller继承ContentProvider,AppWatcherInstaller的onCreate方法会调用安装方法。 oncreate() 1 2 3 4 5 6 override fun onCreate(): Boolean { val application = context!!.applicationContext as Application //安装 AppWatcher.manualInstall(application) return true } manualInstall() AppWatcher的manualInstall方法。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 @JvmOverloads fun manualInstall( application: Application, retainedDelayMillis: Long = TimeUnit.">
 <title></title>
 
-<link rel='canonical' href='https://example.com/android/thirdparty/leakcanary-source-analysis/'>
+<link rel='canonical' href='http://localhost:1313/android/thirdparty/leakcanary-source-analysis/'>
 
-<link rel="stylesheet" href="/scss/style.min.61a1ede7f2a394884b18a8a902bab951d8e81c8f33dcdb51d8ef3649ab0c48a9.css"><meta property='og:title' content=''>
-<meta property='og:description' content='根据How LeakCanary works我们可以知道LeakCanary工作流程大致分为4个阶段：
-检测持有对象 存储堆信息 分析堆信息 对泄露进行分类 LeakCanary2.0的安装流程 LeakCanary1.0需要手动在Application进行安装，2.0不需要任何手动安装的代码。AppWatcherInstaller继承ContentProvider,AppWatcherInstaller的onCreate方法会调用安装方法。
-oncreate() 1 2 3 4 5 6 override fun onCreate(): Boolean { val application = context!!.applicationContext as Application //安装 AppWatcher.manualInstall(application) return true } manualInstall() AppWatcher的manualInstall方法。
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 @JvmOverloads fun manualInstall( application: Application, retainedDelayMillis: Long = TimeUnit.'>
-<meta property='og:url' content='https://example.com/android/thirdparty/leakcanary-source-analysis/'>
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<meta property='og:description' content="根据How LeakCanary works我们可以知道LeakCanary工作流程大致分为4个阶段： 检测持有对象 存储堆信息 分析堆信息 对泄露进行分类 LeakCanary2.0的安装流程 LeakCanary1.0需要手动在Application进行安装，2.0不需要任何手动安装的代码。AppWatcherInstaller继承ContentProvider,AppWatcherInstaller的onCreate方法会调用安装方法。 oncreate() 1 2 3 4 5 6 override fun onCreate(): Boolean { val application = context!!.applicationContext as Application //安装 AppWatcher.manualInstall(application) return true } manualInstall() AppWatcher的manualInstall方法。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 @JvmOverloads fun manualInstall( application: Application, retainedDelayMillis: Long = TimeUnit.">
+<meta property='og:url' content='http://localhost:1313/android/thirdparty/leakcanary-source-analysis/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="根据How LeakCanary works我们可以知道LeakCanary工作流程大致分为4个阶段：
-检测持有对象 存储堆信息 分析堆信息 对泄露进行分类 LeakCanary2.0的安装流程 LeakCanary1.0需要手动在Application进行安装，2.0不需要任何手动安装的代码。AppWatcherInstaller继承ContentProvider,AppWatcherInstaller的onCreate方法会调用安装方法。
-oncreate() 1 2 3 4 5 6 override fun onCreate(): Boolean { val application = context!!.applicationContext as Application //安装 AppWatcher.manualInstall(application) return true } manualInstall() AppWatcher的manualInstall方法。
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 @JvmOverloads fun manualInstall( application: Application, retainedDelayMillis: Long = TimeUnit.">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-G84J9N38RL', { 'anonymize_ip': false });
-}
-</script>
-<style>
-    :root {
-      --sys-font-family: "Noto Serif SC";
-      --zh-font-family: "Noto Serif SC";
-      --base-font-family: "Noto Serif SC";
-      --code-font-family: "Noto Serif SC";
-      --article-font-family: "Noto Serif SC";
-    }
-  </style>
+<meta name="twitter:description" content="根据How LeakCanary works我们可以知道LeakCanary工作流程大致分为4个阶段： 检测持有对象 存储堆信息 分析堆信息 对泄露进行分类 LeakCanary2.0的安装流程 LeakCanary1.0需要手动在Application进行安装，2.0不需要任何手动安装的代码。AppWatcherInstaller继承ContentProvider,AppWatcherInstaller的onCreate方法会调用安装方法。 oncreate() 1 2 3 4 5 6 override fun onCreate(): Boolean { val application = context!!.applicationContext as Application //安装 AppWatcher.manualInstall(application) return true } manualInstall() AppWatcher的manualInstall方法。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 @JvmOverloads fun manualInstall( application: Application, retainedDelayMillis: Long = TimeUnit.">
   
-  <script>
-    (function () {
-      const customFont = document.createElement("link");
-      customFont.href =
-        "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap";
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
   
-      customFont.type = "text/css";
-      customFont.rel = "stylesheet";
-  
-      document.head.appendChild(customFont);
-    })();
-  </script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8285094872027916"
-     crossorigin="anonymous"></script>
-  
-
-<script>
-    var meting_api='https://meting-api.malinkang.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r';
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-
 
 
     </head>
@@ -128,7 +92,7 @@ if (!doNotTrack) {
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
             <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
         </div>
-    </header><ol class="social-menu">
+    </header><ol class="menu-social">
             
                 <li>
                     <a 
@@ -189,13 +153,32 @@ if (!doNotTrack) {
 
 
                 
-                <span>主页</span>
+                <span>Home</span>
             </a>
         </li>
         
         
         <li >
-            <a href='/archives' >
+            <a href='/pages/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/archives/' >
                 
                 
                 
@@ -209,16 +192,54 @@ if (!doNotTrack) {
 
 
                 
-                <span>归档</span>
+                <span>Archives</span>
             </a>
         </li>
         
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
 
-        <div class="menu-bottom-section">
-            
-            
-                <li id="dark-mode-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -226,7 +247,7 @@ if (!doNotTrack) {
 
 
 
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -234,10 +255,11 @@ if (!doNotTrack) {
 
 
 
-                    <span>Dark Mode</span>
-                </li>
-            
-        </div>
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
     </ol>
 </aside>
 
@@ -382,10 +404,10 @@ if (!doNotTrack) {
 <li>分析堆信息</li>
 <li>对泄露进行分类</li>
 </ul>
-<h2 id="leakcanary20的安装流程">LeakCanary2.0的安装流程</h2>
-<p><code>LeakCanary</code>1.0需要手动在<code>Application</code>进行安装，2.0不需要任何手动安装的代码。<code>AppWatcherInstaller</code>继承<code>ContentProvider</code>,<code>AppWatcherInstaller</code>的<code>onCreate</code>方法会调用安装方法。</p>
-<h3 id="oncreate">oncreate()</h3>
-<div class="highlight"><div class="chroma">
+<h2 id="leakcanary20的安装流程">LeakCanary2.0的安装流程
+</h2><p><code>LeakCanary</code>1.0需要手动在<code>Application</code>进行安装，2.0不需要任何手动安装的代码。<code>AppWatcherInstaller</code>继承<code>ContentProvider</code>,<code>AppWatcherInstaller</code>的<code>onCreate</code>方法会调用安装方法。</p>
+<h3 id="oncreate">oncreate()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -403,8 +425,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="manualinstall">manualInstall()</h3>
-<p><code>AppWatcher</code>的<code>manualInstall</code>方法。</p>
+</div><h3 id="manualinstall">manualInstall()
+</h3><p><code>AppWatcher</code>的<code>manualInstall</code>方法。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -471,8 +493,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="appdefaultwatchers">appDefaultWatchers()</h3>
-<p><code>appDefaultWatchers</code>获取默认安装列表</p>
+</div><h3 id="appdefaultwatchers">appDefaultWatchers()
+</h3><p><code>appDefaultWatchers</code>获取默认安装列表</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -501,8 +523,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="loadleakcanary">loadLeakCanary</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="loadleakcanary">loadLeakCanary
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -589,8 +611,8 @@ if (!doNotTrack) {
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>所以<code>LeakCanaryDelegate.loadLeakCanary(application)</code>其实调用的<code>InternalLeakCanary</code>的<code>invoke</code>方法。</p>
-<h3 id="invoke">invoke()</h3>
-<div class="highlight"><div class="chroma">
+<h3 id="invoke">invoke()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -688,8 +710,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="install">install()</h3>
-<p><img src="https://malinkang.cn/images/jvm/202111171403054.png"
+</div><h3 id="install">install()
+</h3><p><img src="https://malinkang.cn/images/jvm/202111171403054.png"
 	
 	
 	
@@ -755,9 +777,9 @@ if (!doNotTrack) {
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>![LeakCancary安装流程](/Users/malinkang/Library/Application Support/typora-user-images/image-20211117141155622.png)</p>
-<h2 id="检测持有对象">检测持有对象</h2>
-<h3 id="registervisibilitylistener">registerVisibilityListener()</h3>
-<p>在<code>InternalLeakCanary</code>的<code>invoke</code>方法中会调用<code>application</code>的<code>registerVisibilityListener</code>方法。</p>
+<h2 id="检测持有对象">检测持有对象
+</h2><h3 id="registervisibilitylistener">registerVisibilityListener()
+</h3><p>在<code>InternalLeakCanary</code>的<code>invoke</code>方法中会调用<code>application</code>的<code>registerVisibilityListener</code>方法。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -797,8 +819,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="visibilitytracker">VisibilityTracker</h3>
-<p><code>VisibilityTracker</code>是 一个广播接受者的子类，并实现了<code>ActivityLifecycleCallbacks</code>接口。</p>
+</div><h3 id="visibilitytracker">VisibilityTracker
+</h3><p><code>VisibilityTracker</code>是 一个广播接受者的子类，并实现了<code>ActivityLifecycleCallbacks</code>接口。</p>
 <p><img src="https://malinkang.cn/images/jvm/202111171402501.png"
 	
 	
@@ -809,8 +831,8 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h4 id="onactivitystarted">onActivityStarted()</h4>
-<div class="highlight"><div class="chroma">
+<h4 id="onactivitystarted">onActivityStarted()
+</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -832,8 +854,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="onactivitystopped">onActivityStopped()</h4>
-<div class="highlight"><div class="chroma">
+</div><h4 id="onactivitystopped">onActivityStopped()
+</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -863,8 +885,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="onreceive">onReceive()</h4>
-<div class="highlight"><div class="chroma">
+</div><h4 id="onreceive">onReceive()
+</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -886,8 +908,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="updatevisible">updateVisible()</h4>
-<div class="highlight"><div class="chroma">
+</div><h4 id="updatevisible">updateVisible()
+</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -909,8 +931,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="onapplicationvisibilitychanged">onApplicationVisibilityChanged()</h3>
-<p>可见性回调会调用<code>HeapDumpTrigger</code>的<code>onApplicationVisibilityChanged</code>方法。当不可见时会调用<code>scheduleRetainedObjectCheck</code></p>
+</div><h3 id="onapplicationvisibilitychanged">onApplicationVisibilityChanged()
+</h3><p>可见性回调会调用<code>HeapDumpTrigger</code>的<code>onApplicationVisibilityChanged</code>方法。当不可见时会调用<code>scheduleRetainedObjectCheck</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -943,8 +965,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="scheduleretainedobjectcheck">scheduleRetainedObjectCheck()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="scheduleretainedobjectcheck">scheduleRetainedObjectCheck()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -978,8 +1000,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="checkretainedobjects">checkRetainedObjects()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="checkretainedobjects">checkRetainedObjects()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1139,8 +1161,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="checkretainedcount">checkRetainedCount()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="checkretainedcount">checkRetainedCount()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1299,8 +1321,8 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h3 id="objectwatcher">ObjectWatcher</h3>
-<div class="highlight"><div class="chroma">
+<h3 id="objectwatcher">ObjectWatcher
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1328,8 +1350,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="expectweaklyreach">expectWeaklyReach()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="expectweaklyreach">expectWeaklyReach()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1391,8 +1413,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="movetoretained">moveToRetained()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="movetoretained">moveToRetained()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1416,8 +1438,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="onobjectretained">onObjectRetained()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="onobjectretained">onObjectRetained()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1451,10 +1473,10 @@ if (!doNotTrack) {
 	
 	
 ></p>
-<h2 id="存储堆信息">存储堆信息</h2>
-<p><code>HeapDumpTrigger</code>的<code>dumpHeap</code>方法</p>
-<h3 id="dumpheap">dumpHeap()</h3>
-<div class="highlight"><div class="chroma">
+<h2 id="存储堆信息">存储堆信息
+</h2><p><code>HeapDumpTrigger</code>的<code>dumpHeap</code>方法</p>
+<h3 id="dumpheap">dumpHeap()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1528,8 +1550,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="dumpheap-1">dumpHeap()</h3>
-<p><code>AndroidHeapDumper</code>的<code>dumpHeap</code>方法</p>
+</div><h3 id="dumpheap-1">dumpHeap()
+</h3><p><code>AndroidHeapDumper</code>的<code>dumpHeap</code>方法</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1622,9 +1644,9 @@ if (!doNotTrack) {
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="分析堆信息">分析堆信息</h2>
-<h3 id="runanalysis">runAnalysis()</h3>
-<p><code>HeapAnalyzerService</code>的静态方法<code>runAnalysis</code></p>
+</div><h2 id="分析堆信息">分析堆信息
+</h2><h3 id="runanalysis">runAnalysis()
+</h3><p><code>HeapAnalyzerService</code>的静态方法<code>runAnalysis</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1647,8 +1669,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="onhandleintentinforeground">onHandleIntentInForeground()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="onhandleintentinforeground">onHandleIntentInForeground()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1698,8 +1720,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="analyzeheap">analyzeHeap()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="analyzeheap">analyzeHeap()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1749,8 +1771,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="analyze">analyze()</h3>
-<p><code>HeapAnalyzer</code>的<code>analyze</code>方法</p>
+</div><h3 id="analyze">analyze()
+</h3><p><code>HeapAnalyzer</code>的<code>analyze</code>方法</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1831,8 +1853,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="analyzegraph">analyzeGraph()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="analyzegraph">analyzeGraph()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1884,8 +1906,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="findleaks">findLeaks()</h3>
-<div class="highlight"><div class="chroma">
+</div><h3 id="findleaks">findLeaks()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1909,9 +1931,9 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="分析结果呈现">分析结果呈现</h2>
-<h3 id="onheapanalyzed">onHeapAnalyzed()</h3>
-<div class="highlight"><div class="chroma">
+</div><h2 id="分析结果呈现">分析结果呈现
+</h2><h3 id="onheapanalyzed">onHeapAnalyzed()
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1971,8 +1993,8 @@ if (!doNotTrack) {
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="参考">参考</h2>
-<ul>
+</div><h2 id="参考">参考
+</h2><ul>
 <li><a class="link" href="https://juejin.cn/post/6968084138125590541"  target="_blank" rel="noopener"
     >带着问题学】关于LeakCanary2.0你应该知道的知识点</a></li>
 <li><a class="link" href="https://zhuanlan.zhihu.com/p/360944586"  target="_blank" rel="noopener"
@@ -2075,7 +2097,7 @@ if (!doNotTrack) {
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 
