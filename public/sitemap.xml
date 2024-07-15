@@ -68,14 +68,14 @@
     <loc>http://localhost:1313/android/annotation/butterknife-source-analysis/</loc>
     <lastmod>2020-01-11T15:01:48+00:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/pages/</loc>
+    <lastmod>2019-05-28T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/pages/archives/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/pages/</loc>
-    <lastmod>2020-10-09T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/pages/about/</loc>
-    <lastmod>2020-10-09T00:00:00+00:00</lastmod>
+    <lastmod>2019-02-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/git/</loc>
     <lastmod>2016-11-25T11:22:54+00:00</lastmod>
@@ -585,13 +585,13 @@
   </url><url>
     <loc>http://localhost:1313/android/aosp/choreographer/</loc>
   </url><url>
-    <loc>http://localhost:1313/pages/links/</loc>
-  </url><url>
     <loc>http://localhost:1313/search/</loc>
   </url><url>
     <loc>http://localhost:1313/android/aosp/framework-systemserver/</loc>
   </url><url>
     <loc>http://localhost:1313/android/aosp/android-xi-tong-qi-dong/zygote/</loc>
+  </url><url>
+    <loc>http://localhost:1313/pages/links/</loc>
   </url><url>
     <loc>http://localhost:1313/movies/</loc>
   </url><url>

@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='http://localhost:1313/android/network/webview/'>
 
-<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
 <meta property='og:description' content="WebView WebView常用方法 public void loadUrl (String url) 1 2 3 4 5 6 7 8 9 10 //打开本包内asset目录下的test.html文件 loadUrl(&#34;file:///android_asset/test.html&#34;); //打开本地sd卡内的kris.html文件 loadUrl(&#34;content://com.android.htmlfileprovider/sdcard/malinkang.html&#34;); //打开指定URL的html文件 loadUrl(&#34;http://malinkang.com/&#34;); //使用loadUrl调用javascript方法 loadUrl(&#34;javascript:test()&#34;); //调用javascript方法传入参数 loadUrl(&#34;javascript:test(\\&#34;hello\\&#34;)&#34;); 有时候html可能需要从资源文件中加载图片 1 &lt;img src=&#34;file:///android_res/drawable/a.png&#34;&gt; loadData(String data, String mimeType, String encoding) loadDataWithBaseURL(String baseUrl, String data, String mimeType, String encoding, String historyUrl) 1 2 3 4 //加载字符串 4.0+没有问题，2.3下乱码 loadData(htmlStr, &#34;text/html;charset=utf-8&#34;,null); //4.0+和2.3都没有问题 loadDataWithBaseURL(null, htmlStr,&#34;text/html&#34;, &#34;utf-8&#34;, null); public String getTitle()：获取当前页面的title WebChromeClient WebChromeClient是辅助WebView处理Javascript的对话框,网站图标,网站title等。常用方法如下： public void onProgressChanged(WebView view, int newProgress) {}：告诉应用网页加载进度 WebView源码分析 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 //WebView的所有操作都是通过调用Provider相应的方法 private WebViewProvider mProvider; //创建WebViewProvider private void ensureProviderCreated() { checkThread(); if (mProvider == null) { // As this can get called during the base class constructor chain, pass the minimum // number of dependencies here; the rest are deferred to init().">
 <meta property='og:url' content='http://localhost:1313/android/network/webview/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
@@ -32,7 +32,25 @@
     
   
 
+<style>
+    :root {
+        --sys-font-family: "LXGW WenKai TC";
+        --zh-font-family: "LXGW WenKai TC";
+        --base-font-family: "LXGW WenKai TC";
+        --code-font-family: "LXGW WenKai TC";
+        --article-font-family: "LXGW WenKai TC";
+    }
+</style>
 
+<script>
+    (function () {
+        const customFont = document.createElement("link");
+        customFont.href = "https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&display=swap";
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+        document.head.appendChild(customFont);
+    })();
+</script>
     </head>
     <body class="
     article-page
@@ -172,7 +190,7 @@
 
 
                 
-                <span>About</span>
+                <span>关于</span>
             </a>
         </li>
         
@@ -192,7 +210,7 @@
 
 
                 
-                <span>Archives</span>
+                <span>归档</span>
             </a>
         </li>
         
@@ -230,7 +248,7 @@
 
 
                 
-                <span>Links</span>
+                <span>好友</span>
             </a>
         </li>
         
@@ -717,6 +735,14 @@
         Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
+<script>
+    var s1 = '2014-01-01';
+    s1 = new Date(s1.replace(/-/g, "/"));
+    s2 = new Date();
+    var days = s2.getTime() - s1.getTime();
+    var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+    document.getElementById('days').innerHTML = number_of_days;
+</script>
 
 
     

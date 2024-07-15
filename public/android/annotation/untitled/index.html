@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='http://localhost:1313/android/annotation/untitled/'>
 
-<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
 <meta property='og:description' content="Untitled ProcessingEnvironment 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 public interface ProcessingEnvironment { Map&lt;String, String&gt; getOptions(); Messager getMessager(); Filer getFiler(); //获取Filer Elements getElementUtils(); //Elements Types getTypeUtils(); //获取Types SourceVersion getSourceVersion(); Locale getLocale(); } Elements Elements是一个处理Element的工具类。常用的方法如下： 1 2 3 4 public interface Elements { PackageElement getPackageElement(CharSequence var1); //获取指定Element的PackageElement TypeElement getTypeElement(CharSequence var1);//获取TypeElement } Element 在注解处理过程中，我们扫描所有的Java源文件。源代码的每一个部分都是一个特定类型的Element。换句话说：Element代表程序的元素，例如包、类或者方法。每个Element代表一个静态的、语言级别的构件。在下面的例子中，我们通过注释来说明这个。 1 2 3 4 5 6 7 8 9 10 11 12 13 package com.">
 <meta property='og:url' content='http://localhost:1313/android/annotation/untitled/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
@@ -32,7 +32,25 @@
     
   
 
+<style>
+    :root {
+        --sys-font-family: "LXGW WenKai TC";
+        --zh-font-family: "LXGW WenKai TC";
+        --base-font-family: "LXGW WenKai TC";
+        --code-font-family: "LXGW WenKai TC";
+        --article-font-family: "LXGW WenKai TC";
+    }
+</style>
 
+<script>
+    (function () {
+        const customFont = document.createElement("link");
+        customFont.href = "https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&display=swap";
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+        document.head.appendChild(customFont);
+    })();
+</script>
     </head>
     <body class="
     article-page
@@ -172,7 +190,7 @@
 
 
                 
-                <span>About</span>
+                <span>关于</span>
             </a>
         </li>
         
@@ -192,7 +210,7 @@
 
 
                 
-                <span>Archives</span>
+                <span>归档</span>
             </a>
         </li>
         
@@ -230,7 +248,7 @@
 
 
                 
-                <span>Links</span>
+                <span>好友</span>
             </a>
         </li>
         
@@ -585,6 +603,14 @@
         Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
+<script>
+    var s1 = '2014-01-01';
+    s1 = new Date(s1.replace(/-/g, "/"));
+    s2 = new Date();
+    var days = s2.getTime() - s1.getTime();
+    var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+    document.getElementById('days').innerHTML = number_of_days;
+</script>
 
 
     

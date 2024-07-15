@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='http://localhost:1313/android/jetpacket/readme/'>
 
-<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
 <meta property='og:description' content="Jetpack 学习资料整理 Android 生命周期备忘录\u200a—\u200a第一部分：单一 Activities Android 生命周期备忘录\u200a—\u200a第二部分：多 Activity Android 生命周期备忘录\u200a—\u200a第三部分：Fragments 来 GitHub 参与 Jetpack 开源协作！ 聚焦 Android 11: Jetpack 划重点 | Android Jetpack 三大重要更新！ Android Jetpack 助推应用开发 | 中文字幕视频介绍 Android Sunflower 带您玩转 Jetpack 把 &ldquo;格子衫&rdquo; 改造得更时尚 | Kotlin &amp; Jetpack 最佳实践技巧 Lifecycle LiveData Android Jetpack: LiveData 和 Lifecycle 介绍 | 中文教学视频 架构组件之 ViewModel | 中文教学视频 Android Jetpack: Room | 中文教学视频 Android Jetpack: 分页库 (Paging Library) | 中文教学视频 Android Jetpack WorkManager | Android 中文教学视频 Android Jetpack 导航组件 | Android 中文教学视频 Android Jetpack: LiveData 和 Lifecycle 介绍 | 中文教学视频 两步使用 LiveData 替换 Observable Field 理解协程、LiveData 和 Flow LiveData with Coroutines and Flow — Part I: Reactive UIs LiveData with Coroutines and Flow — Part II: Launching coroutines with Architecture Components LiveData with Coroutines and Flow — Part III: LiveData and coroutines patterns Jetpack Compose ViewModel Compose 学习计划 现代 Android 开发: 利用 Jetpack Compose 及更多精彩功能！ 深入详解 Jetpack Compose | 实现原理 深入详解 Jetpack Compose | 优化 UI 构建 Jetpack Compose Alpha 版现已发布！ 知识点 | ViewModel 四种集成方式 Android Jetpack: ViewModel | 中文教学视频 Paging Android Jetpack: 分页库 (Paging Library) | 中文教学视频 Room 实战 | 在 Room 中使用 Flow Room 中的数据库关系 Android Jetpack: Room | 中文教学视频 Android Room with a View - Kotlin WorkManager 自定义 WorkManager —— 基础概念 WorkManager: 周期性任务 使用 Dagger 自定义 WorkManager Android Jetpack WorkManager | Android 中文教学视频 Compose What&rsquo;s New in Jetpack Compose (Android Dev Summit &lsquo;19) 深入详解 Jetpack Compose | 实现原理 深入详解 Jetpack Compose | 优化 UI 构建 现代 Android 开发: 利用 Jetpack Compose 及更多精彩功能！ CameraX Android Jetpack CameraX 库 Beta 版正式发布！ Jetpack Security 使用 Jetpack Security 在 Android 上进行数据加密 使用 PreviewView 来展示相机预览 App Startup Android Jetpack组件之App Startup ">
 <meta property='og:url' content='http://localhost:1313/android/jetpacket/readme/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
@@ -32,7 +32,25 @@
     
   
 
+<style>
+    :root {
+        --sys-font-family: "LXGW WenKai TC";
+        --zh-font-family: "LXGW WenKai TC";
+        --base-font-family: "LXGW WenKai TC";
+        --code-font-family: "LXGW WenKai TC";
+        --article-font-family: "LXGW WenKai TC";
+    }
+</style>
 
+<script>
+    (function () {
+        const customFont = document.createElement("link");
+        customFont.href = "https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&display=swap";
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+        document.head.appendChild(customFont);
+    })();
+</script>
     </head>
     <body class="
     article-page
@@ -172,7 +190,7 @@
 
 
                 
-                <span>About</span>
+                <span>关于</span>
             </a>
         </li>
         
@@ -192,7 +210,7 @@
 
 
                 
-                <span>Archives</span>
+                <span>归档</span>
             </a>
         </li>
         
@@ -230,7 +248,7 @@
 
 
                 
-                <span>Links</span>
+                <span>好友</span>
             </a>
         </li>
         
@@ -579,6 +597,14 @@
         Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
+<script>
+    var s1 = '2014-01-01';
+    s1 = new Date(s1.replace(/-/g, "/"));
+    s2 = new Date();
+    var days = s2.getTime() - s1.getTime();
+    var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+    document.getElementById('days').innerHTML = number_of_days;
+</script>
 
 
     

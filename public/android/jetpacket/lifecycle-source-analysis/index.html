@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='http://localhost:1313/android/jetpacket/lifecycle-source-analysis/'>
 
-<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
 <meta property='og:description' content="Lifecycle源码分析 Lifecycle Lifecycle代表生命周期，是一个抽象类，我们经常使用它的子类LifecycleRegistry。 Lifecycle提供了三个抽象方法用来添加、删除LifecycleObserver和获取当前Lifecycle状态。 1 2 3 4 5 6 7 @MainThread public abstract void addObserver(@NonNull LifecycleObserver observer); @MainThread public abstract void removeObserver(@NonNull LifecycleObserver observer); @MainThread @NonNull public abstract State getCurrentState(); Lifecycle还提供了两个内部枚举Event和State。 Event Event代表生命周期发生变化时发送的事件。 1 2 3 4 5 6 7 8 9 10 @SuppressWarnings(&#34;WeakerAccess&#34;) public enum Event { ON_CREATE, //onCreate发送该事件 ON_START, ON_RESUME, ON_PAUSE, ON_STOP, ON_DESTROY, ON_ANY } State State代表当前生命周期状态。 1 2 3 4 5 6 7 8 9 10 11 12 public enum State { //处于Destoryed状态，Lifecycle将不会发送任何事件 DESTROYED, INITIALIZED, CREATED, STARTED, RESUMED; //比较当前状态大于或等于给定状态 public boolean isAtLeast(@NonNull State state) { return compareTo(state) &gt;= 0; } } LifecycleOwner LifecycleOwner即生命周期拥有者，是一个接口，只提供了一个获取生命周期的方法。">
 <meta property='og:url' content='http://localhost:1313/android/jetpacket/lifecycle-source-analysis/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
@@ -32,7 +32,25 @@
     
   
 
+<style>
+    :root {
+        --sys-font-family: "LXGW WenKai TC";
+        --zh-font-family: "LXGW WenKai TC";
+        --base-font-family: "LXGW WenKai TC";
+        --code-font-family: "LXGW WenKai TC";
+        --article-font-family: "LXGW WenKai TC";
+    }
+</style>
 
+<script>
+    (function () {
+        const customFont = document.createElement("link");
+        customFont.href = "https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&display=swap";
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+        document.head.appendChild(customFont);
+    })();
+</script>
     </head>
     <body class="
     article-page
@@ -172,7 +190,7 @@
 
 
                 
-                <span>About</span>
+                <span>关于</span>
             </a>
         </li>
         
@@ -192,7 +210,7 @@
 
 
                 
-                <span>Archives</span>
+                <span>归档</span>
             </a>
         </li>
         
@@ -230,7 +248,7 @@
 
 
                 
-                <span>Links</span>
+                <span>好友</span>
             </a>
         </li>
         
@@ -1838,6 +1856,14 @@
         Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
+<script>
+    var s1 = '2014-01-01';
+    s1 = new Date(s1.replace(/-/g, "/"));
+    s2 = new Date();
+    var days = s2.getTime() - s1.getTime();
+    var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+    document.getElementById('days').innerHTML = number_of_days;
+</script>
 
 
     

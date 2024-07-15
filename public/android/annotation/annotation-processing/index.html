@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='http://localhost:1313/android/annotation/annotation-processing/'>
 
-<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
 <meta property='og:description' content="[译]Java注解处理器 翻译参考：Java注解处理器 原文 在这篇文章中，我将阐述怎样写一个注解处理器(Annotation Processor)。在这篇教程中，首先，我将向您解释什么是注解器，你可以利用这个强大的工具做什么以及不能做什么；然后，我将一步一步实现一个简单的注解器。 一些基本概念 在开始之前，我们首先申明一个非常重要的问题：我们并不讨论那些在运行时（Runtime）通过反射机制运行处理的注解，而是讨论在编译时（Compile time）处理的注解。 注解处理器（Annotation Processor）是javac的一个工具，它用来在编译时扫描和处理注解（Annotation）。你可以对自定义注解，并注册相应的注解处理器。到这里，我假设你已经知道什么是注解，并且知道怎么申明的一个注解。如果你不熟悉注解，你可以在这官方文档中得到更多信息。注解处理器在Java 5开始就有了，但是从Java 6（2006年12月发布）开始才有可用的API。过了一些时间，Java世界才意识到注解处理器的强大作用，所以它到最近几年才流行起来。 一个注解的注解处理器，以Java代码（或者编译过的字节码）作为输入，生成文件（通常是.java文件）作为输出。这具体的含义什么呢？你可以生成Java代码！这些生成的Java代码是在生成的.java文件中，所以你不能修改已经存在的Java类，例如向已有的类中添加方法。这些生成的Java文件，会同其他普通的手动编写的Java源代码一样被javac编译。 虚处理器AbstractProcessor 我们首先看一下处理器的API。每一个处理器都是继承于AbstractProcessor，如下所示： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 package com.example; public class MyProcessor extends AbstractProcessor { @Override public synchronized void init(ProcessingEnvironment env){ } @Override public boolean process(Set&lt;? extends TypeElement&gt; annoations, RoundEnvironment env) { } @Override public Set&lt;String&gt; getSupportedAnnotationTypes() { } @Override public SourceVersion getSupportedSourceVersion() { } } init(ProcessingEnvironment env): 每一个注解处理器类都必须有一个空的构造函数。然而，这里有一个特殊的init()方法，它会被注解处理工具调用，并输入ProcessingEnviroment参数。ProcessingEnviroment提供很多有用的工具类Elements, Types和Filer。后面我们将看到详细的内容。 process(Set&lt;?">
 <meta property='og:url' content='http://localhost:1313/android/annotation/annotation-processing/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
@@ -32,7 +32,25 @@
     
   
 
+<style>
+    :root {
+        --sys-font-family: "LXGW WenKai TC";
+        --zh-font-family: "LXGW WenKai TC";
+        --base-font-family: "LXGW WenKai TC";
+        --code-font-family: "LXGW WenKai TC";
+        --article-font-family: "LXGW WenKai TC";
+    }
+</style>
 
+<script>
+    (function () {
+        const customFont = document.createElement("link");
+        customFont.href = "https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&display=swap";
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+        document.head.appendChild(customFont);
+    })();
+</script>
     </head>
     <body class="
     article-page
@@ -172,7 +190,7 @@
 
 
                 
-                <span>About</span>
+                <span>关于</span>
             </a>
         </li>
         
@@ -192,7 +210,7 @@
 
 
                 
-                <span>Archives</span>
+                <span>归档</span>
             </a>
         </li>
         
@@ -230,7 +248,7 @@
 
 
                 
-                <span>Links</span>
+                <span>好友</span>
             </a>
         </li>
         
@@ -2051,6 +2069,14 @@
         Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
+<script>
+    var s1 = '2014-01-01';
+    s1 = new Date(s1.replace(/-/g, "/"));
+    s2 = new Date();
+    var days = s2.getTime() - s1.getTime();
+    var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+    document.getElementById('days').innerHTML = number_of_days;
+</script>
 
 
     

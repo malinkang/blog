@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='http://localhost:1313/android/aosp/zygote/'>
 
-<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
 <meta property='og:description' content="Zygote启动流程 在Android系统中，应用程序进程以及运行系统的关键服务的SystemServer进程都是由Zygote进程来创建的，我们也将它称为孵化器。它通过fork（复制进程）的形式来创建应用程序进程和SystemServer进程。 Zygote进程是在init进程启动时创建的，起初Zygote进程的名称并不是叫“zygote”，而是叫“app_process”，这个名称是在Android.mk中定义的，Zygote进程启动后，Linux系统下的pctrl系统会调用app_process，将其名称换成了“zygote”。 1 2 3 4 5 sequenceDiagram init.rc-&gt;&gt;init.zygote32.rc:调用 init.zygote32.rc-&gt;&gt;app_main.cpp:main() app_main.cpp-&gt;&gt;AndroidRuntime:start() AndroidRuntime-&gt;&gt;ZygoteInit:main() 在init.rc文件中采用了import引入Zygote启动脚本。 1 2 3 4 //system/core/rootdir/init.rc import /init.${ro.hardware}.rc import /init.usb.configfs.rc import /init.${ro.zygote}.rc//导入zygote.rc 可以看出init.rc不会直接引入一个固定的文件，而是根据属性ro.zygote的内容来引入不同的文件。 从Android 5.0开始，Android开始支持64位程序，Zygote也就有了32位和64位的区别，所以在这里用ro.zygote属性来控制使用不同的Zygote启动脚本，从而也就启动了不同版本的Zygote进程，ro.zygote属性的取值有以下4种： init.zygote32.rc init.zygote32_64.rc init.zygote64.rc init.zygote64_32.rc 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 //system/core/rootdir/init.zygote64.rc //启动zygote service 路径/system/bin/app_process64 service zygote /system/bin/app_process64 -Xzygote /system/bin --zygote --start-system-server class main priority -20 user root group root readproc reserved_disk socket zygote stream 660 root system socket usap_pool_primary stream 660 root system onrestart exec_background - system system -- /system/bin/vdc volume abort_fuse onrestart write /sys/power/state on onrestart restart audioserver onrestart restart cameraserver onrestart restart media onrestart restart netd onrestart restart wificond task_profiles ProcessCapacityHigh critical window=${zygote.">
 <meta property='og:url' content='http://localhost:1313/android/aosp/zygote/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
@@ -32,7 +32,25 @@
     
   
 
+<style>
+    :root {
+        --sys-font-family: "LXGW WenKai TC";
+        --zh-font-family: "LXGW WenKai TC";
+        --base-font-family: "LXGW WenKai TC";
+        --code-font-family: "LXGW WenKai TC";
+        --article-font-family: "LXGW WenKai TC";
+    }
+</style>
 
+<script>
+    (function () {
+        const customFont = document.createElement("link");
+        customFont.href = "https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&display=swap";
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+        document.head.appendChild(customFont);
+    })();
+</script>
     </head>
     <body class="
     article-page
@@ -172,7 +190,7 @@
 
 
                 
-                <span>About</span>
+                <span>关于</span>
             </a>
         </li>
         
@@ -192,7 +210,7 @@
 
 
                 
-                <span>Archives</span>
+                <span>归档</span>
             </a>
         </li>
         
@@ -230,7 +248,7 @@
 
 
                 
-                <span>Links</span>
+                <span>好友</span>
             </a>
         </li>
         
@@ -3206,6 +3224,14 @@
         Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
+<script>
+    var s1 = '2014-01-01';
+    s1 = new Date(s1.replace(/-/g, "/"));
+    s2 = new Date();
+    var days = s2.getTime() - s1.getTime();
+    var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+    document.getElementById('days').innerHTML = number_of_days;
+</script>
 
 
     

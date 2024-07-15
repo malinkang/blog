@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='http://localhost:1313/android/ui/toolbar/'>
 
-<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
 <meta property='og:description' content="Toolbar 1.使用ToolBar Toolbar是在Android5.0开始推出的一个MaterialDesign风格的导航控件，用来取代之前的Actionbar。与Actionbar相比，Toolbar更加灵活。它不像Actionbar一样，一定要固定在Activity的顶部，而是可以放到界面的任意位置。 Toobar是Android5.0才引入的，Google也在兼容包appcompat-v7中提供了向下兼容的ToolBar：android.support.v7.widget.Toolbar。 1.1基本使用 首先，我们要在build.gradle中添加依赖。 1 compile &#39;com.android.support:appcompat-v7:24.2.0&#39; 定义NoActionBar的主题，并在AndroidManifest.xml中为Activity指定。 1 2 3 4 5 6 7 &lt;!-- Base application theme. --&gt; &lt;style name=&#34;AppTheme&#34; parent=&#34;Theme.AppCompat.Light.NoActionBar&#34;&gt; &lt;!-- Customize your theme here. --&gt; &lt;item name=&#34;colorPrimary&#34;&gt;@color/colorPrimary&lt;/item&gt; &lt;item name=&#34;colorPrimaryDark&#34;&gt;@color/colorPrimaryDark&lt;/item&gt; &lt;item name=&#34;colorAccent&#34;&gt;@color/colorAccent&lt;/item&gt; &lt;/style&gt; 然后我们就可以在布局文件中添加ToolBar。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 &lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt; &lt;LinearLayout xmlns:android=&#34;http://schemas.android.com/apk/res/android&#34; xmlns:app=&#34;http://schemas.android.com/apk/res-auto&#34; android:layout_width=&#34;match_parent&#34; android:layout_height=&#34;match_parent&#34;&gt; &lt;android.support.v7.widget.Toolbar android:id=&#34;@+id/toolbar&#34; android:layout_width=&#34;match_parent&#34; android:layout_height=&#34;wrap_content&#34; android:background=&#34;?attr/colorPrimary&#34; android:minHeight=&#34;?attr/actionBarSize&#34; app:titleTextColor=&#34;@android:color/white&#34;/&gt; &lt;/LinearLayout&gt; 最后，在Activity或者Fragment中，通过调用setSupportActionBar让ToolBar扮演ActionBar的角色。">
 <meta property='og:url' content='http://localhost:1313/android/ui/toolbar/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
@@ -32,7 +32,25 @@
     
   
 
+<style>
+    :root {
+        --sys-font-family: "LXGW WenKai TC";
+        --zh-font-family: "LXGW WenKai TC";
+        --base-font-family: "LXGW WenKai TC";
+        --code-font-family: "LXGW WenKai TC";
+        --article-font-family: "LXGW WenKai TC";
+    }
+</style>
 
+<script>
+    (function () {
+        const customFont = document.createElement("link");
+        customFont.href = "https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&display=swap";
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+        document.head.appendChild(customFont);
+    })();
+</script>
     </head>
     <body class="
     article-page
@@ -172,7 +190,7 @@
 
 
                 
-                <span>About</span>
+                <span>关于</span>
             </a>
         </li>
         
@@ -192,7 +210,7 @@
 
 
                 
-                <span>Archives</span>
+                <span>归档</span>
             </a>
         </li>
         
@@ -230,7 +248,7 @@
 
 
                 
-                <span>Links</span>
+                <span>好友</span>
             </a>
         </li>
         
@@ -1025,6 +1043,14 @@
         Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
+<script>
+    var s1 = '2014-01-01';
+    s1 = new Date(s1.replace(/-/g, "/"));
+    s2 = new Date();
+    var days = s2.getTime() - s1.getTime();
+    var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+    document.getElementById('days').innerHTML = number_of_days;
+</script>
 
 
     

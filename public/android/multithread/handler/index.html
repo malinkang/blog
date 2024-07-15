@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='http://localhost:1313/android/multithread/handler/'>
 
-<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
 <meta property='og:description' content="在Android中不允许Activity新启动的线程访问该Activity里的UI组件，这样会导致新启动的线程无法改变UI组件的属性值。但实际开发中，很多地方需要在工作线程中改变UI组件的属性值，比如下载网络图片、动画等等。 Handler，它直接继承自Object，一个Handler允许发送和处理Message或者Runnable对象，并且会关联到主线程的MessageQueue中。每个Handler具有一个单独的线程，并且关联到一个消息队列的线程，就是说一个Handler有一个固有的消息队列。当实例化一个Handler的时候，它就承载在一个线程和消息队列的线程，这个Handler可以把Message或Runnable压入到消息队列，并且从消息队列中取出Message或Runnable，进而操作它们。 Handler主要有两个作用： 在工作线程中发送消息。 在UI线程中获取、处理消息。 1.创建Handler Handler具有下列构造函数： 2.使用Handler 上面介绍到Handler可以把一个Message对象或者Runnable对象压入到消息队列中，进而在UI线程中获取Message或者执行Runnable对象，所以Handler把压入消息队列有两大体系，Post和sendMessage。 2.1 Post 对于Handler的Post方式来说，它会传递一个Runnable对象到消息队列中，在这个Runnable对象中，重写run()方法。一般在这个run()方法中写入需要在UI线程上的操作。 Post有下列方法 public final boolean post (Runnable r)：把一个Runnable入队到消息队列中，UI线程从消息队列中取出这个对象后，立即执行。 public final boolean postAtFrontOfQueue (Runnable r) [public final boolean postAtTime (Runnable r, Object token, long uptimeMillis)](http://developer.android.com/reference/android/os/Handler.html#postAtTime(java.lang.Runnable, java.lang.Object, long)) [public final boolean postAtTime (Runnable r, long uptimeMillis)](http://developer.android.com/reference/android/os/Handler.html#postAtTime(java.lang.Runnable, long))：把一个Runnable入队到消息队列中，UI线程从消息队列中取出这个对象后，在特定的时间执行。 [public final boolean postDelayed (Runnable r, long delayMillis)](http://developer.android.com/reference/android/os/Handler.html#postDelayed(java.lang.Runnable, long))：boolean postDelayed(Runnable r,long delayMillis)：把一个Runnable入队到消息队列中，UI线程从消息队列中取出这个对象后，延迟delayMills秒执行。 public final void removeCallbacks (Runnable r):从消息队列中移除一个Runnable对象。 对于Post方式而言，它其中Runnable对象的run()方法的代码，均执行在UI线程上，所以对于这段代码而言，不能执行在UI线程上的操作，一样无法使用post方式执行，比如说访问网络。 2.2Message Handler如果使用sendMessage的方式把消息入队到消息队列中，需要传递一个Message对象，而在Handler中，需要重写handleMessage()方法，用于获取工作线程传递过来的消息，此方法运行在UI线程上。下面先介绍一下Message。 Message是一个final类，所以不可被继承。Message封装了线程中传递的消息，如果对于一般的数据，Message提供了getData()和setData()方法来获取与设置数据，其中操作的数据是一个Bundle对象. 还有另外一种方式在Message中传递对象，那就是使用Message自带的obj属性传值，它是一个Object类型，所以可以传递任意类型的对象，Message自带的有如下几个属性： int arg1：参数一，用于传递不复杂的数据，复杂数据使用setData()传递。 int arg2：参数二，用于传递不复杂的数据，复杂数据使用setData()传递。 Object obj：传递一个任意的对象。 int what：定义的消息码，一般用于设定消息的标志。 对于Message对象，一般并不推荐直接使用它的构造方法得到，而是建议通过使用Message.">
 <meta property='og:url' content='http://localhost:1313/android/multithread/handler/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
@@ -32,7 +32,25 @@
     
   
 
+<style>
+    :root {
+        --sys-font-family: "LXGW WenKai TC";
+        --zh-font-family: "LXGW WenKai TC";
+        --base-font-family: "LXGW WenKai TC";
+        --code-font-family: "LXGW WenKai TC";
+        --article-font-family: "LXGW WenKai TC";
+    }
+</style>
 
+<script>
+    (function () {
+        const customFont = document.createElement("link");
+        customFont.href = "https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&display=swap";
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+        document.head.appendChild(customFont);
+    })();
+</script>
     </head>
     <body class="
     article-page
@@ -172,7 +190,7 @@
 
 
                 
-                <span>About</span>
+                <span>关于</span>
             </a>
         </li>
         
@@ -192,7 +210,7 @@
 
 
                 
-                <span>Archives</span>
+                <span>归档</span>
             </a>
         </li>
         
@@ -230,7 +248,7 @@
 
 
                 
-                <span>Links</span>
+                <span>好友</span>
             </a>
         </li>
         
@@ -518,6 +536,14 @@
         Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
+<script>
+    var s1 = '2014-01-01';
+    s1 = new Date(s1.replace(/-/g, "/"));
+    s2 = new Date();
+    var days = s2.getTime() - s1.getTime();
+    var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+    document.getElementById('days').innerHTML = number_of_days;
+</script>
 
 
     

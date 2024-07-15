@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='http://localhost:1313/android/xing-neng-you-hua/memory/fundamentals-how-leakcanary-works/'>
 
-<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
 <meta property='og:description' content="LeakCanary如何工作 一旦安装了LeakCanary，它就会按照以下4个步骤自动检测和报告内存泄漏 检测持有对象 转储堆。 分析堆。 对泄漏进行分类。 1. 检测持有对象 LeakCanary与Android生命周期想关联，自动检测Activity和Fragment何时被销毁，何时应该被垃圾回收。这些被销毁的对象被传递给ObjectWatcher，该ObjectWatcher持有对它们的弱引用。LeakCanary会自动检测以下对象的泄漏: 销毁的Activity实例 销毁的Fragment实例 销毁的View实例 ViewModel实例 您可以观看任何不再需要的对象，例如一个分离的视图或一个被破坏的演示器。 1 AppWatcher.objectWatcher.watch(myDetachedView, &#34;View was detached&#34;) 如果ObjectWatcher持有的弱引用在等待5秒并运行垃圾回收后没有被清除，被监视的对象就会被认为是被持有，并且有可能泄漏。LeakCanary将此记录到Logcat。 1 2 3 4 5 6 7 D LeakCanary: Watching instance of com.example.leakcanary.MainActivity (Activity received Activity#onDestroy() callback) ... 5 seconds later ... D LeakCanary: Scheduling check for retained objects because found new object retained LeakCanary等待保留对象的计数达到阈值后才会转储堆，并显示最新计数的通知。 1 2 D LeakCanary: Rescheduling check for retained objects in 2000ms because found only 4 retained objects (&lt; 5 while app visible) 默认的阈值是当应用可见时保留5个对象，当应用不可见时保留1个对象。如果您看到保留对象通知，然后将应用程序置于后台（例如按下主页按钮），那么阈值从5变为1，LeakCanary会在5秒内转储堆。点击通知会迫使LeakCanary立即转储堆。">
 <meta property='og:url' content='http://localhost:1313/android/xing-neng-you-hua/memory/fundamentals-how-leakcanary-works/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
@@ -32,7 +32,25 @@
     
   
 
+<style>
+    :root {
+        --sys-font-family: "LXGW WenKai TC";
+        --zh-font-family: "LXGW WenKai TC";
+        --base-font-family: "LXGW WenKai TC";
+        --code-font-family: "LXGW WenKai TC";
+        --article-font-family: "LXGW WenKai TC";
+    }
+</style>
 
+<script>
+    (function () {
+        const customFont = document.createElement("link");
+        customFont.href = "https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&display=swap";
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+        document.head.appendChild(customFont);
+    })();
+</script>
     </head>
     <body class="
     article-page
@@ -172,7 +190,7 @@
 
 
                 
-                <span>About</span>
+                <span>关于</span>
             </a>
         </li>
         
@@ -192,7 +210,7 @@
 
 
                 
-                <span>Archives</span>
+                <span>归档</span>
             </a>
         </li>
         
@@ -230,7 +248,7 @@
 
 
                 
-                <span>Links</span>
+                <span>好友</span>
             </a>
         </li>
         
@@ -769,6 +787,14 @@
         Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
+<script>
+    var s1 = '2014-01-01';
+    s1 = new Date(s1.replace(/-/g, "/"));
+    s2 = new Date();
+    var days = s2.getTime() - s1.getTime();
+    var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+    document.getElementById('days').innerHTML = number_of_days;
+</script>
 
 
     

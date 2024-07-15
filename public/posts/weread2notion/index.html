@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='http://localhost:1313/posts/weread2notion/'>
 
-<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="WeRead2Notion使用文档">
+<link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="WeRead2Notion使用文档">
 <meta property='og:description' content="WeRead2Notion用于将微信读书的笔记自动同步到Notion。该项目不支持在Notion中添加自己的笔记，每次有笔记更新会删除原有笔记，需要添加自己的笔记可以使用WeRead2Notion-Pro。 Warning Weread2Notion和Weread2Notion-Pro是两个不同的项目，模板也不相同，切勿用错模板。 Weread2Notion-Pro教程：https://malinkang.com/posts/weread2notion-pro/ 热力图使用教程：https://malinkang.com/posts/github_heatmap/ 预览 也可以打开网页版本查看效果：https://book.malinkang.com/ Fork工程 打开Weread2Notion，点击右上角的Fork（顺便点个star谢谢） 权限 确保你打开了读写权限。 依次选择Settings-&gt;Actions-&gt;General，然后下拉，找到Workflow permissions，如果没有选中Read and write permissions，请选中，然后点下面的save保存。 获取微信读书Cookie 浏览器打开网页版微信读书扫码登录 按F12进入开发者模式，依次点网络-&gt;文档，然后选中weread.qq.com，下拉找到Cookie，复制Cookie值 Tip 如果没有内容显示，请刷新下浏览器。 建议使用Chrome浏览器，有的小伙伴使用QQ浏览器拿到的Cookie一直不能用。 授权 浏览器打开 https://api.notion.com/v1/oauth/authorize?client_id=801fd03a-a44f-41af-9a17-feb048b4bbdd&response_type=code&owner=user&redirect_uri=https%3A%2F%2Fnotion-auth.malinkang.com%2Fweread2notion-oauth-callback 然后点击Next-&gt;Allow access 点击复制按钮，复制NOTION_TOKEN和NOTION_PAGE的值。 在Github的Secrets中添加变量 打开你fork的工程，点击Settings-&gt;Secrets and variables-&gt;New repository secret Name输入WEREAD_COOKIE，Secret输入框中填入你前面获取的微信读书Cookie，然后点击Add secret 同理，继续点击New repository secret，分别增加变量NOTION_TOKEN和NOTION_PAGE。最终的结果如下图所示。 Warning 注意这三个变量名一定要填写正确，一个字母都不能错，否则会同步失败。 运行 上面配置完成之后，打开你Fork的项目，依次点击Actions-&gt;weread sync-&gt; Run workflow，就可以运行了。 问题排查 可以点击你Fork项目的Action，查看运行状态，绿色是成功，红色是失败。 Warning 运行成功，只代表程序没有出错，不代表就一定同步数据，比如微信Cookie过期就不会报错。所以如果运行成功，Notion中没有数据的话，也可以通过下面第2步来查看日志 2.可以点进去查日志，来自行排查问题。 问题解答 为什么有的书没有同步过来 本项目只会同步划线或者做了笔记的书，书架里的书如果没有划线或者做笔记是不会同步的。后续可能会考虑增加同步书架中的书。 每天何时同步 本项目设置的是utc时间的0点，如果你在中国，那就是每天8点同步。不过据我观察，Github这个可能有延迟，会在每天8点零几分同步。你也可以自行修改同步时间，具体参考这里。 升级 如果我添加了新功能，你需要将自己的代码与我的代码进行同步。打开你Fork的项目，点击Sync fork进行同步，如果有冲突可以点击Discard那个按钮 捐赠 如果你觉得项目对你有帮助，可以捐赠。我也会不断的优化项目，并做出其他开源的项目。 微信 支付宝 付费解答 有问题先自行解决，往往失败都是一些小细节没注意导致的。我的文档写的已经足够详细，按照文档来操作基本都能成功。你也可以尝试在群里咨询。不要直接加我微信来让我来解答，这个项目我已经投入了大量时间来开发维护，实在没有更多的精力来一对一解答。如果实在解决不了，可以付费一对一咨询，30元一位。付完款可以微信私聊我。 群 欢迎加入微信群讨论。使用中遇到的任何问题，包括Notion的使用，微信读书组队打卡，后续的更新都会在群里讨论。">
 <meta property='og:url' content='http://localhost:1313/posts/weread2notion/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
@@ -33,7 +33,25 @@
     
   
 
+<style>
+    :root {
+        --sys-font-family: "LXGW WenKai TC";
+        --zh-font-family: "LXGW WenKai TC";
+        --base-font-family: "LXGW WenKai TC";
+        --code-font-family: "LXGW WenKai TC";
+        --article-font-family: "LXGW WenKai TC";
+    }
+</style>
 
+<script>
+    (function () {
+        const customFont = document.createElement("link");
+        customFont.href = "https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&display=swap";
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+        document.head.appendChild(customFont);
+    })();
+</script>
     </head>
     <body class="
     article-page
@@ -173,7 +191,7 @@
 
 
                 
-                <span>About</span>
+                <span>关于</span>
             </a>
         </li>
         
@@ -193,7 +211,7 @@
 
 
                 
-                <span>Archives</span>
+                <span>归档</span>
             </a>
         </li>
         
@@ -231,7 +249,7 @@
 
 
                 
-                <span>Links</span>
+                <span>好友</span>
             </a>
         </li>
         
@@ -805,6 +823,14 @@
         Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
+<script>
+    var s1 = '2014-01-01';
+    s1 = new Date(s1.replace(/-/g, "/"));
+    s2 = new Date();
+    var days = s2.getTime() - s1.getTime();
+    var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+    document.getElementById('days').innerHTML = number_of_days;
+</script>
 
 
     

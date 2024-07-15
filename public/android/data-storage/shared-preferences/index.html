@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='http://localhost:1313/android/data-storage/shared-preferences/'>
 
-<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
 <meta property='og:description' content="保存键值对数据 原文：https://developer.android.com/training/data-storage/shared-preferences 如果您有想要保存的相对较小键值对集合，则应使用 SharedPreferences API。SharedPreferences 对象指向包含键值对的文件，并提供读写这些键值对的简单方法。每个 SharedPreferences 文件均由框架进行管理，可以是私有文件，也可以是共享文件。 {% hint style=&ldquo;info&rdquo; %} 注意：SharedPreferences API 用于读写键值对，不要将它们与 Preference API 混淆，后者可帮助您构建用于显示应用设置的界面（虽然它们也使用 SharedPreferences 保存用户设置）。如需了解 Preference API，请参阅设置开发者指南。 {% endhint %} 获取SharedPreferences 您可以通过调用以下方法之一创建新的共享偏好设置文件或访问已有共享偏好设置文件： getSharedPreferences() - 如果您需要多个由名称（使用第一个参数指定）标识的共享偏好设置文件，则使用此方法。您可以从您的应用中的任何 Context 调用此方法。 getPreferences() - 如果您只需使用 Activity 的一个共享首选项，请从 Activity 中使用此方法。由于这会检索属于该 Activity 的默认共享偏好设置文件，因此您无需提供名称。 如果您使用 SharedPreferences API 保存应用设置，则应改用PreferenceManager 的getDefaultSharedPreferences() 方法获取整个应用的默认共享偏好设置文件。如需了解详情，请参阅设置开发者指南。 1 2 3 4 5 6 7 //在私有模式下打开该文件，确保只有您的应用可以访问该文件： val sharedPreferences1 = getSharedPreferences(&#34;file1&#34;, Context.MODE_PRIVATE) sharedPreferences1.edit().putInt(&#34;value1&#34;,1).apply() val sharedPreferences2 = getPreferences(Context.MODE_PRIVATE) sharedPreferences2.edit().putInt(&#34;value2&#34;,2).apply() val sharedPreferences3 = PreferenceManager.getDefaultSharedPreferences(this) sharedPreferences3.">
 <meta property='og:url' content='http://localhost:1313/android/data-storage/shared-preferences/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
@@ -32,7 +32,25 @@
     
   
 
+<style>
+    :root {
+        --sys-font-family: "LXGW WenKai TC";
+        --zh-font-family: "LXGW WenKai TC";
+        --base-font-family: "LXGW WenKai TC";
+        --code-font-family: "LXGW WenKai TC";
+        --article-font-family: "LXGW WenKai TC";
+    }
+</style>
 
+<script>
+    (function () {
+        const customFont = document.createElement("link");
+        customFont.href = "https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&display=swap";
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+        document.head.appendChild(customFont);
+    })();
+</script>
     </head>
     <body class="
     article-page
@@ -172,7 +190,7 @@
 
 
                 
-                <span>About</span>
+                <span>关于</span>
             </a>
         </li>
         
@@ -192,7 +210,7 @@
 
 
                 
-                <span>Archives</span>
+                <span>归档</span>
             </a>
         </li>
         
@@ -230,7 +248,7 @@
 
 
                 
-                <span>Links</span>
+                <span>好友</span>
             </a>
         </li>
         
@@ -2122,6 +2140,14 @@
         Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
+<script>
+    var s1 = '2014-01-01';
+    s1 = new Date(s1.replace(/-/g, "/"));
+    s2 = new Date();
+    var days = s2.getTime() - s1.getTime();
+    var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+    document.getElementById('days').innerHTML = number_of_days;
+</script>
 
 
     

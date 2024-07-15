@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='http://localhost:1313/android/annotation/javapoet-wen-dang-fan-yi/'>
 
-<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
 <meta property='og:description' content="JavaPoet 文档翻译 原文 JavaPoet 是一套生成.java源文件的Java接口。 当做一些比如注解处理或者和元数据文件（比如数据库的schemas，协议格式）交互的事情时，源文件生成非常有用。通过生成代码，你不用写模板代码同时也保证了元数据的唯一来源。 Example 下面是样板式的 HelloWorld class: 1 2 3 4 5 6 7 package com.example.helloworld; public final class HelloWorld { public static void main(String[] args) { System.out.println(&#34;Hello, JavaPoet!&#34;); } } 而下面是通过JavaPoet生成的（令人兴奋的）代码: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 MethodSpec main = MethodSpec.methodBuilder(&#34;main&#34;) .addModifiers(Modifier.PUBLIC, Modifier.STATIC) .returns(void.class) .addParameter(String[].class, &#34;args&#34;) .addStatement(&#34;$T.out.println($S)&#34;, System.class, &#34;Hello, JavaPoet!&#34;) .build(); TypeSpec helloWorld = TypeSpec.classBuilder(&#34;HelloWorld&#34;) .addModifiers(Modifier.PUBLIC, Modifier.">
 <meta property='og:url' content='http://localhost:1313/android/annotation/javapoet-wen-dang-fan-yi/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
@@ -32,7 +32,25 @@
     
   
 
+<style>
+    :root {
+        --sys-font-family: "LXGW WenKai TC";
+        --zh-font-family: "LXGW WenKai TC";
+        --base-font-family: "LXGW WenKai TC";
+        --code-font-family: "LXGW WenKai TC";
+        --article-font-family: "LXGW WenKai TC";
+    }
+</style>
 
+<script>
+    (function () {
+        const customFont = document.createElement("link");
+        customFont.href = "https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&display=swap";
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+        document.head.appendChild(customFont);
+    })();
+</script>
     </head>
     <body class="
     article-page
@@ -172,7 +190,7 @@
 
 
                 
-                <span>About</span>
+                <span>关于</span>
             </a>
         </li>
         
@@ -192,7 +210,7 @@
 
 
                 
-                <span>Archives</span>
+                <span>归档</span>
             </a>
         </li>
         
@@ -230,7 +248,7 @@
 
 
                 
-                <span>Links</span>
+                <span>好友</span>
             </a>
         </li>
         
@@ -1758,6 +1776,14 @@
         Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
+<script>
+    var s1 = '2014-01-01';
+    s1 = new Date(s1.replace(/-/g, "/"));
+    s2 = new Date();
+    var days = s2.getTime() - s1.getTime();
+    var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+    document.getElementById('days').innerHTML = number_of_days;
+</script>
 
 
     

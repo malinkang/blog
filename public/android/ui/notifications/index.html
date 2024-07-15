@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='http://localhost:1313/android/ui/notifications/'>
 
-<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
 <meta property='og:description' content="通知 通知是您可以在应用的常规 UI 外部向用户显示的消息。当您告知系统发出通知时，它将先以图标的形式显示在通知区域中。用户可以打开抽屉式通知栏查看通知的详细信息。 通知区域和抽屉式通知栏均是由系统控制的区域，用户可以随时查看。 创建通知 SupportV4包提供了 NotificationCompat.Builder 类。Android 3.0（API 级别 11）中已添加类 Notification.Builder。 您可以在 NotificationCompat.Builder 对象中为通知指定 UI 信息和操作。要创建通知，请调用 NotificationCompat.Builder.build()，它将返回包含您的具体规范的 Notification 对象。要发出通知，请通过调用 NotificationManager.notify() 将 Notification 对象传递给系统。 必需的通知内容 Notification 对象必须包含以下内容： 小图标，由 setSmallIcon() 设置 标题，由 setContentTitle() 设置 详细文本，由 setContentText() 设置 可选通知内容和设置 所有其他通知设置和内容都是可选的。如需了解有关它们的更多详情，请参阅 NotificationCompat.Builder 参考文档。 通知操作 尽管通知操作都是可选的，但是您至少应向通知添加一个操作。 操作允许用户直接从通知转到应用中的 Activity，他们可在其中查看一个或多个事件或执行进一步的操作。 一个通知可以提供多个操作。您应该始终定义一个当用户点击通知时会触发的操作；通常，此操作会在应用中打开 Activity。 您也可以向通知添加按钮来执行其他操作，例如，暂停闹铃或立即答复短信；此功能自 Android 4.1 起可用。如果使用其他操作按钮，则您还必须使这些按钮的功能在应用的 Activity 中可用； 在 Notification 内部，操作本身由 PendingIntent 定义，后者包含在应用中启动 Activity 的 Intent。要将 PendingIntent 与手势相关联，请调用 NotificationCompat.Builder 的适当方法。例如，如果您要在用户点击抽屉式通知栏中的通知文本时启动 Activity，则可通过调用 setContentIntent() 来添加 PendingIntent。 在用户点击通知时启动 Activity 是最常见的操作场景。此外，您还可以在用户清除通知时启动 Activity。在 Android 4.">
 <meta property='og:url' content='http://localhost:1313/android/ui/notifications/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
@@ -32,7 +32,25 @@
     
   
 
+<style>
+    :root {
+        --sys-font-family: "LXGW WenKai TC";
+        --zh-font-family: "LXGW WenKai TC";
+        --base-font-family: "LXGW WenKai TC";
+        --code-font-family: "LXGW WenKai TC";
+        --article-font-family: "LXGW WenKai TC";
+    }
+</style>
 
+<script>
+    (function () {
+        const customFont = document.createElement("link");
+        customFont.href = "https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&display=swap";
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+        document.head.appendChild(customFont);
+    })();
+</script>
     </head>
     <body class="
     article-page
@@ -172,7 +190,7 @@
 
 
                 
-                <span>About</span>
+                <span>关于</span>
             </a>
         </li>
         
@@ -192,7 +210,7 @@
 
 
                 
-                <span>Archives</span>
+                <span>归档</span>
             </a>
         </li>
         
@@ -230,7 +248,7 @@
 
 
                 
-                <span>Links</span>
+                <span>好友</span>
             </a>
         </li>
         
@@ -1218,6 +1236,14 @@
         Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
+<script>
+    var s1 = '2014-01-01';
+    s1 = new Date(s1.replace(/-/g, "/"));
+    s2 = new Date();
+    var days = s2.getTime() - s1.getTime();
+    var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+    document.getElementById('days').innerHTML = number_of_days;
+</script>
 
 
     

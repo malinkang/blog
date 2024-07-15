@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='http://localhost:1313/android/tu-xing-he-tu-xiang/paint/'>
 
-<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
 <meta property='og:description' content="Paint使用 基本方法 1 public void setStrokeWidth(float width) setStrokeWidth方法用来设置边的宽度。该方法只有在Paint的style设置为STROKE或者FILL_AND_STROKE时起作用。STROKE 的宽度均分两半，一半绘制在圆外，一半绘制在圆内。 1 2 3 4 5 6 7 8 Paint mPaint = new Paint(); mPaint.setStyle(Paint.Style.STROKE); mPaint.setStrokeWidth(128); mPaint.setColor(getResources().getColor(R.color.orange));//#FF7F00 canvas.drawCircle(192,192,128,mPaint);//绘制带stroke的圆 mPaint.setColor(getResources().getColor(R.color.green));//半透明绿色#2200FF00 mPaint.setStyle(Paint.Style.FILL); canvas.drawCircle(192,192,128,mPaint);//绘制实心圆 MaskFilter ColorFilter Xfermode Xfermode设置两张图片相交时的模式。Paint提供public Xfermode setXfermode(Xfermode xfermode)来为画笔设置Xfermode。Xfermode有三个子类：AvoidXfermode,PixelXorXfermode和PorterDuffXfermode，前两个类在API 16被遗弃了，所以这里不作介绍。PorterDuffXfermode类主要用于图形合成时的图像过渡模式计算，其概念来自于1984年在ACM SIGGRAPH计算机图形学出版物上发表了“Compositing digital images（合成数字图像）”的Tomas Porter和Tom Duff，合成图像的概念极大地推动了图形图像学的发展，PorterDuffXfermode类名就来源于这俩人的名字组合PorterDuff。 构造函数： 1 public PorterDuffXfermode(PorterDuff.Mode mode) PorterDuff.Mode代表混合模式，是一个枚举类型，他的值包括如下：CLEAR、SRC、DST、SRC_OVER、DST_OVER、SRC_IN、DST_IN、SRC_OUT、DST_OUT、SRC_ATOP、DST_ATOP、XOR、DARKEN、LIGHTEN、MULTIPLY、SCREEN。 PathEffect PathEffect本身是没有实现什么效果的，只是一个简单的基类，不过android.graphics提供了集中常见的效果，系统为了高效的实现不同效果，它们的实现都封装在native中。 CornerPathEffect 线条的交汇角效果 DashPathEffect 线条的虚线效果 DiscretePathEffect 线条的离散 PathDashPathEffect 使用Path做虚线的效果（Path可以画图像） ComposePathEffect 组合两种效果 SumPathEffect 叠加向后纵效果 着色器 Shader即着色器，负责为定义的图形着色。 Paint提供了public Shader setShader(Shader shader)方法为画笔设置着色器。 android.graphics.Shader类有5个子类： BitmapShader LinearGradient RadialGradient SweepGradient ComposeShader BitmapShader BitmapShader就是使用Bitmap对绘制的图形进行着色。">
 <meta property='og:url' content='http://localhost:1313/android/tu-xing-he-tu-xiang/paint/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
@@ -32,7 +32,25 @@
     
   
 
+<style>
+    :root {
+        --sys-font-family: "LXGW WenKai TC";
+        --zh-font-family: "LXGW WenKai TC";
+        --base-font-family: "LXGW WenKai TC";
+        --code-font-family: "LXGW WenKai TC";
+        --article-font-family: "LXGW WenKai TC";
+    }
+</style>
 
+<script>
+    (function () {
+        const customFont = document.createElement("link");
+        customFont.href = "https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&display=swap";
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+        document.head.appendChild(customFont);
+    })();
+</script>
     </head>
     <body class="
     article-page
@@ -172,7 +190,7 @@
 
 
                 
-                <span>About</span>
+                <span>关于</span>
             </a>
         </li>
         
@@ -192,7 +210,7 @@
 
 
                 
-                <span>Archives</span>
+                <span>归档</span>
             </a>
         </li>
         
@@ -230,7 +248,7 @@
 
 
                 
-                <span>Links</span>
+                <span>好友</span>
             </a>
         </li>
         
@@ -881,6 +899,14 @@
         Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
+<script>
+    var s1 = '2014-01-01';
+    s1 = new Date(s1.replace(/-/g, "/"));
+    s2 = new Date();
+    var days = s2.getTime() - s1.getTime();
+    var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+    document.getElementById('days').innerHTML = number_of_days;
+</script>
 
 
     

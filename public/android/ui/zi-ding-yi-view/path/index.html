@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='http://localhost:1313/android/ui/zi-ding-yi-view/path/'>
 
-<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
 <meta property='og:description' content="Path使用 Path封装了由直线和曲线(二次，三次贝塞尔曲线)构成的几何路径。你能用Canvas中的drawPath来把这条路径画出来(同样支持Paint的不同绘制模式)，也可以用于剪裁画布和根据路径绘制文字。我们有时会用Path来描述一个图像的轮廓，所以也会称为轮廓线(轮廓线仅是Path的一种使用方法，两者并不等价)。 canvas只能绘制出常见的形状，但是无法绘制出复杂的形状。 moveTo、 setLastPoint、 lineTo 和 close moveTo：移动下一次操作的起点位置 setLastPoint：重置当前path中最后一个点位置，如果在绘制之前调用，效果和moveTo相同 lineTo：添加上一个点到当前点之间的直线到Path close：连接第一个点连接到最后一个点，形成一个闭合区域 1 2 3 4 Paint mPaint = new Paint(); // 创建画笔 mPaint.setColor(getResources().getColor(R.color.green));//设置画笔颜色 mPaint.setStyle(Paint.Style.STROKE);//设置画笔样式 mPaint.setStrokeWidth(10f); //设置画笔宽度为10px 1 2 3 4 5 Path path = new Path(); // 创建Path path.lineTo(400, 400); // 添加(0,0)到(400,400)之间的直线 path.moveTo(400, 200); // 移动到(400,200) path.lineTo(200, 0); // 添加(200,0)到(400,400)之间的直线 canvas.drawPath(path, mPaint); // 绘制Path 1 2 3 4 5 6 Path path = new Path(); // 创建Path path.lineTo(400, 400); // 添加(0,0)到(400,400)之间的直线 path.">
 <meta property='og:url' content='http://localhost:1313/android/ui/zi-ding-yi-view/path/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
@@ -32,7 +32,25 @@
     
   
 
+<style>
+    :root {
+        --sys-font-family: "LXGW WenKai TC";
+        --zh-font-family: "LXGW WenKai TC";
+        --base-font-family: "LXGW WenKai TC";
+        --code-font-family: "LXGW WenKai TC";
+        --article-font-family: "LXGW WenKai TC";
+    }
+</style>
 
+<script>
+    (function () {
+        const customFont = document.createElement("link");
+        customFont.href = "https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&display=swap";
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+        document.head.appendChild(customFont);
+    })();
+</script>
     </head>
     <body class="
     article-page
@@ -172,7 +190,7 @@
 
 
                 
-                <span>About</span>
+                <span>关于</span>
             </a>
         </li>
         
@@ -192,7 +210,7 @@
 
 
                 
-                <span>Archives</span>
+                <span>归档</span>
             </a>
         </li>
         
@@ -230,7 +248,7 @@
 
 
                 
-                <span>Links</span>
+                <span>好友</span>
             </a>
         </li>
         
@@ -1061,6 +1079,14 @@
         Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
+<script>
+    var s1 = '2014-01-01';
+    s1 = new Date(s1.replace(/-/g, "/"));
+    s2 = new Date();
+    var days = s2.getTime() - s1.getTime();
+    var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+    document.getElementById('days').innerHTML = number_of_days;
+</script>
 
 
     

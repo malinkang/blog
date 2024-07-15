@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='http://localhost:1313/android/components/services/bound-services/'>
 
-<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
 <meta property='og:description' content="绑定服务 绑定服务是客户端-服务器接口中的服务器。借助绑定服务，组件（例如 Activity）可以绑定到服务、发送请求、接收响应，以及执行进程间通信 (IPC)。绑定服务通常只在为其他应用组件提供服务时处于活动状态，不会无限期在后台运行。 本文介绍如何创建绑定服务，包括如何绑定到来自其他应用组件的服务。如需了解一般服务的更多信息（例如：如何利用服务传送通知、如何将服务设置为在前台运行等），请参阅服务文档。 基础知识 绑定服务是 Service 类的实现，可让其他应用与其进行绑定和交互。如要为服务提供绑定，您必须实现 onBind() 回调方法。该方法会返回 IBinder 对象，该对象定义的编程接口可供客户端用来与服务进行交互。 绑定到已启动服务 如服务文档中所述，您可以创建同时具有已启动和已绑定两种状态的服务。换言之，可通过调用 startService() 启动服务，让服务无限期运行；此外，还可通过调用 bindService() 让客户端绑定到该服务。 如果您确实允许服务同时具有已启动和已绑定状态，则在启动服务后，如果所有客户端均解绑服务，则系统_不会_销毁该服务。为此，您必须通过调用 stopSelf() 或 stopService() 显式停止服务。 尽管您通常应实现 onBind() 或 onStartCommand()，但有时需同时实现这两种方法。例如，音乐播放器可能认为，让其服务无限期运行并同时提供绑定会很有用处。如此一来，Activity 便可通过启动服务来播放音乐，并且即使用户离开应用，音乐也不会停止。然后，当用户返回应用时，Activity 便能绑定到服务，重新获得回放控制权。 如需详细了解为已启动服务添加绑定时的服务生命周期，请参阅管理绑定服务的生命周期部分。 客户端通过调用 bindService() 绑定到服务。调用时，它必须提供 ServiceConnection 的实现，后者会监控与服务的连接。bindService() 的返回值表明所请求的服务是否存在，以及是否允许客户端访问该服务。当创建客户端与服务之间的连接时，Android 系统会调用 ServiceConnection 上的 onServiceConnected()。onServiceConnected() 方法包含 IBinder 参数，客户端随后会使用该参数与绑定服务进行通信。 您可以同时将多个客户端连接到服务。但是，系统会缓存 IBinder 服务通信通道。换言之，只有在第一个客户端绑定服务时，系统才会调用服务的 onBind() 方法来生成 IBinder。然后，系统会将同一 IBinder 传递至绑定到相同服务的所有其他客户端，无需再次调用 onBind()。 当最后一个客户端取消与服务的绑定时，系统会销毁服务（除非 startService() 也启动了该服务）。 针对您的绑定服务实现，其最重要的环节是定义 onBind() 回调方法所返回的接口。下文将为您介绍几种不同方法，以便您定义服务的 IBinder 接口。 创建绑定服务 创建提供绑定的服务时，您必须提供 IBinder，进而提供编程接口，以便客户端使用此接口与服务进行交互。您可以通过三种方法定义接口： 扩展 Binder 类 如果服务是供您的自有应用专用，并且在与客户端相同的进程中运行（常见情况），则应通过扩展 Binder 类并从 onBind() 返回该类的实例来创建接口。收到 Binder 后，客户端可利用其直接访问 Binder 实现或 Service 中可用的公共方法。">
 <meta property='og:url' content='http://localhost:1313/android/components/services/bound-services/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
@@ -32,7 +32,25 @@
     
   
 
+<style>
+    :root {
+        --sys-font-family: "LXGW WenKai TC";
+        --zh-font-family: "LXGW WenKai TC";
+        --base-font-family: "LXGW WenKai TC";
+        --code-font-family: "LXGW WenKai TC";
+        --article-font-family: "LXGW WenKai TC";
+    }
+</style>
 
+<script>
+    (function () {
+        const customFont = document.createElement("link");
+        customFont.href = "https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&display=swap";
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+        document.head.appendChild(customFont);
+    })();
+</script>
     </head>
     <body class="
     article-page
@@ -172,7 +190,7 @@
 
 
                 
-                <span>About</span>
+                <span>关于</span>
             </a>
         </li>
         
@@ -192,7 +210,7 @@
 
 
                 
-                <span>Archives</span>
+                <span>归档</span>
             </a>
         </li>
         
@@ -230,7 +248,7 @@
 
 
                 
-                <span>Links</span>
+                <span>好友</span>
             </a>
         </li>
         
@@ -1279,6 +1297,14 @@
         Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
+<script>
+    var s1 = '2014-01-01';
+    s1 = new Date(s1.replace(/-/g, "/"));
+    s2 = new Date();
+    var days = s2.getTime() - s1.getTime();
+    var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+    document.getElementById('days').innerHTML = number_of_days;
+</script>
 
 
     

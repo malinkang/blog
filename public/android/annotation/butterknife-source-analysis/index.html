@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='http://localhost:1313/android/annotation/butterknife-source-analysis/'>
 
-<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="ButterKnife源码分析">
+<link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="ButterKnife源码分析">
 <meta property='og:description' content="本文分析的源码为8.4.0。 项目结构 butterknife包含ButterKnife核心的Api，如ButterKnife。butterknife-annotations包含了所有定义的注解。butterknife-compiler包含了生成模板代码的代码。这里我们重点研究ButterKnife是如何生成模板代码以及在我们的类中是如何调用的。 核心类 ViewBinding是一个接口，有两个直接的子类FieldViewBinding和MethodViewBinding。 FieldViewBinding封装了使用@BindView注解的Field的信息。 1 2 3 private final String name;//字段名 private final TypeName type;//类型 private final boolean required;//是否必须 MethodViewBinding封装了使用@OnClick等注解注解的方法的信息。 1 2 3 private final String name;//方法名 private final List&lt;Parameter&gt; parameters;//方法参数 private final boolean required;//是否必须 注解@ListenerClass代表一个监听器的类，作用在如@OnClick等事件监听的注解上。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 @Retention(RUNTIME) @Target(ANNOTATION_TYPE) public @interface ListenerClass { String targetType();//目标类型 /** Name of the setter method on the {@linkplain #targetType() target type} for the listener.">
 <meta property='og:url' content='http://localhost:1313/android/annotation/butterknife-source-analysis/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
@@ -32,7 +32,25 @@
     
   
 
+<style>
+    :root {
+        --sys-font-family: "LXGW WenKai TC";
+        --zh-font-family: "LXGW WenKai TC";
+        --base-font-family: "LXGW WenKai TC";
+        --code-font-family: "LXGW WenKai TC";
+        --article-font-family: "LXGW WenKai TC";
+    }
+</style>
 
+<script>
+    (function () {
+        const customFont = document.createElement("link");
+        customFont.href = "https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&display=swap";
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+        document.head.appendChild(customFont);
+    })();
+</script>
     </head>
     <body class="
     article-page
@@ -172,7 +190,7 @@
 
 
                 
-                <span>About</span>
+                <span>关于</span>
             </a>
         </li>
         
@@ -192,7 +210,7 @@
 
 
                 
-                <span>Archives</span>
+                <span>归档</span>
             </a>
         </li>
         
@@ -230,7 +248,7 @@
 
 
                 
-                <span>Links</span>
+                <span>好友</span>
             </a>
         </li>
         
@@ -2363,6 +2381,14 @@ ButterKnife解析这些信息的类为<code>ButterKnifeProcessor</code>，解析
         Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
+<script>
+    var s1 = '2014-01-01';
+    s1 = new Date(s1.replace(/-/g, "/"));
+    s2 = new Date();
+    var days = s2.getTime() - s1.getTime();
+    var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+    document.getElementById('days').innerHTML = number_of_days;
+</script>
 
 
     

@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='http://localhost:1313/android/android-studio/'>
 
-<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="AndroidStudio使用">
+<link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="AndroidStudio使用">
 <meta property='og:description' content="提示和技巧 快捷键 操作 Mac 命令查表 cmd+shift+A 快速修复 alt+enter 格式化代码 alt+cmd+L 显示选中API文档 F1 显示选中方法参数 cmd+P 跳到源码 cmd+鼠标左键 或者F4 生成方法 cmd+N 或者 ctrl+enter 删除一行 cmd+delete 复制一行 cmd+D 搜索symbol alt+cmd+O 构建 cmd+F9 构建和运行 ctrl+R 打开一个类 cmd+O 打开一个文件 cmd+shift+O 显示类的变量和方法使用位置 alt+F7 显示类的变量和方法使用位置(以对话框的方式展示) cmd+alt+F7 定位到类、方法或变量的声明 cmd+B 或者cmd+鼠标左键 列出所有实现选中类或接口的类或接口 cmd+alt+B 跳转到父类的方法 cmd+U 移动代码 alt+shift+up/down 显示所有方法和变量 cmd+F12 Sourround With cmd+alt+T 大小写转换 cmd+shift+U 使用模板 cmd+J alt+cmd+F 查找和替换 查找cmd+shift+F 替换cmd+shift+R Surround with cmd+alt+T 布局中Design和Text切换 ⌃+⇧+ ← / → 布局和代码切换 ⌘+⌃+↑ 局部变量抽取为成员变量ctrl + alt + F 多行编辑ctrl+g 显示粘贴板 shift + commd+v">
 <meta property='og:url' content='http://localhost:1313/android/android-studio/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
@@ -32,7 +32,25 @@
     
   
 
+<style>
+    :root {
+        --sys-font-family: "LXGW WenKai TC";
+        --zh-font-family: "LXGW WenKai TC";
+        --base-font-family: "LXGW WenKai TC";
+        --code-font-family: "LXGW WenKai TC";
+        --article-font-family: "LXGW WenKai TC";
+    }
+</style>
 
+<script>
+    (function () {
+        const customFont = document.createElement("link");
+        customFont.href = "https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&display=swap";
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+        document.head.appendChild(customFont);
+    })();
+</script>
     </head>
     <body class="
     article-page
@@ -172,7 +190,7 @@
 
 
                 
-                <span>About</span>
+                <span>关于</span>
             </a>
         </li>
         
@@ -192,7 +210,7 @@
 
 
                 
-                <span>Archives</span>
+                <span>归档</span>
             </a>
         </li>
         
@@ -230,7 +248,7 @@
 
 
                 
-                <span>Links</span>
+                <span>好友</span>
             </a>
         </li>
         
@@ -624,6 +642,14 @@
         Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
+<script>
+    var s1 = '2014-01-01';
+    s1 = new Date(s1.replace(/-/g, "/"));
+    s2 = new Date();
+    var days = s2.getTime() - s1.getTime();
+    var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+    document.getElementById('days').innerHTML = number_of_days;
+</script>
 
 
     

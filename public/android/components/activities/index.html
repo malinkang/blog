@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='http://localhost:1313/android/components/activities/'>
 
-<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
 <meta property='og:description' content="Activity 生命周期 了解 Activity 生命周期 面试题： 如何判断Activity是否在运行？ 显示Dialog会调用onPause方法吗？ 普通Dialog显示不会调用onPause，除非是Activity创建的Dialog 面试官：为什么 Activity.finish() 之后 10s 才 onDestroy ？ 启动模式 官方文档关于singleTask描述错误，可以看深入讲解Android中Activity launchMode singleTask： A和C都为standard B为singleTask A-&gt;B-&gt;C A、B、C在同一个栈内 B设置不同的taskAffinity A-&gt;B-&gt;C A在一个栈内 B、C在同一个栈内 C设置为singleTask、taskAffinity与A一致 A-&gt;B-&gt;C A、C在一个栈内 B在同一个栈内 了解任务和返回堆栈 深入讲解Android中Activity launchMode Understand Android Activity&rsquo;s launchMode: standard, singleTop, singleTask and singleInstance Activity的四种launchMode Activity的task相关 ">
 <meta property='og:url' content='http://localhost:1313/android/components/activities/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
@@ -32,7 +32,25 @@
     
   
 
+<style>
+    :root {
+        --sys-font-family: "LXGW WenKai TC";
+        --zh-font-family: "LXGW WenKai TC";
+        --base-font-family: "LXGW WenKai TC";
+        --code-font-family: "LXGW WenKai TC";
+        --article-font-family: "LXGW WenKai TC";
+    }
+</style>
 
+<script>
+    (function () {
+        const customFont = document.createElement("link");
+        customFont.href = "https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&display=swap";
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+        document.head.appendChild(customFont);
+    })();
+</script>
     </head>
     <body class="
     article-page
@@ -172,7 +190,7 @@
 
 
                 
-                <span>About</span>
+                <span>关于</span>
             </a>
         </li>
         
@@ -192,7 +210,7 @@
 
 
                 
-                <span>Archives</span>
+                <span>归档</span>
             </a>
         </li>
         
@@ -230,7 +248,7 @@
 
 
                 
-                <span>Links</span>
+                <span>好友</span>
             </a>
         </li>
         
@@ -484,6 +502,14 @@
         Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
+<script>
+    var s1 = '2014-01-01';
+    s1 = new Date(s1.replace(/-/g, "/"));
+    s2 = new Date();
+    var days = s2.getTime() - s1.getTime();
+    var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+    document.getElementById('days').innerHTML = number_of_days;
+</script>
 
 
     

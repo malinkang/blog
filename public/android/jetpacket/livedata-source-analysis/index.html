@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='http://localhost:1313/android/jetpacket/livedata-source-analysis/'>
 
-<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
 <meta property='og:description' content="LiveData源码分析 LiveData LiveData和RxJava里的Observable类似，可以添加一个订阅者Observer。当LiveData的值发生变化时，Observer可以收到变化的值。所以源码分析主要分析LiveData的订阅和更新数据。 RxJava并没有提供与生命周期绑定的方法，一般我们可以通过第三方库RxLifecycle或者AutoDispose来实现自动解绑。LiveData的observe()方法要求传递一个LifecycleOwner对象，当生命周期结束时自动解绑，避免内存泄露。 LiveData是一个抽象类，所以我们只能使用它的子类。 LiveData内部定义了一个mVersion来管理数据的版本。通过observer()传进来的Observer对象会被包装成一个ObserverWrapper对象，内部同样定义了一个mLastVersion。如果ObserverWrapper的mLastVersion小于mVersion就会分发数据。 1 2 3 4 5 6 7 public abstract class LiveData&lt;T&gt;{ int mActiveCount = 0; //活跃数 private int mVersion;//版本号 //和LifecycleRegistry一样 内部创建了一个SafeIterableMap来保存Observer private SafeIterableMap&lt;Observer&lt;? super T&gt;, ObserverWrapper&gt; mObservers = new SafeIterableMap&lt;&gt;(); } 订阅数据 我们有三种方式来订阅LiveData 扩展函数observe() observe() observeForever() 扩展函数observe() 扩展函数允许我们传入一个函数类型，内部还是调用的observe() 1 2 3 4 5 6 7 8 9 10 11 12 //LiveData.kt //LiveData扩展函数 @MainThread inline fun &lt;T&gt; LiveData&lt;T&gt;.observe( owner: LifecycleOwner, crossinline onChanged: (T) -&gt; Unit ): Observer&lt;T&gt; { //创建Observer对象 val wrappedObserver = Observer&lt;T&gt; { t -&gt; onChanged.">
 <meta property='og:url' content='http://localhost:1313/android/jetpacket/livedata-source-analysis/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
@@ -32,7 +32,25 @@
     
   
 
+<style>
+    :root {
+        --sys-font-family: "LXGW WenKai TC";
+        --zh-font-family: "LXGW WenKai TC";
+        --base-font-family: "LXGW WenKai TC";
+        --code-font-family: "LXGW WenKai TC";
+        --article-font-family: "LXGW WenKai TC";
+    }
+</style>
 
+<script>
+    (function () {
+        const customFont = document.createElement("link");
+        customFont.href = "https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&display=swap";
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+        document.head.appendChild(customFont);
+    })();
+</script>
     </head>
     <body class="
     article-page
@@ -172,7 +190,7 @@
 
 
                 
-                <span>About</span>
+                <span>关于</span>
             </a>
         </li>
         
@@ -192,7 +210,7 @@
 
 
                 
-                <span>Archives</span>
+                <span>归档</span>
             </a>
         </li>
         
@@ -230,7 +248,7 @@
 
 
                 
-                <span>Links</span>
+                <span>好友</span>
             </a>
         </li>
         
@@ -1213,6 +1231,14 @@
         Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
+<script>
+    var s1 = '2014-01-01';
+    s1 = new Date(s1.replace(/-/g, "/"));
+    s2 = new Date();
+    var days = s2.getTime() - s1.getTime();
+    var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+    document.getElementById('days').innerHTML = number_of_days;
+</script>
 
 
     

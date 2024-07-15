@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='http://localhost:1313/android/ui/customview/'>
 
-<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
 <meta property='og:description' content="自定义控件 目录 1.了解View的绘制流程 1.1测量流程 1.2layout流程 1.3draw流程 2.View事件传递 参考 1.了解View的绘制流程 View绘制流程 1.1测量流程 测量流程由View的measure方法发起，从上到下有序的测量View，测量工作全部完成后，每个视图存储自己的尺寸大小和测量规格。 MeasureSpecs对象：包含测量要求和尺寸的信息，有三种模式： UNSPECIFIED 父View不对子View有任何约束，它可以达到所期望的任意尺寸，比如ListView和ScrollView。 EXACTLY 父View为子View指定一个确切的尺寸，而且无论子View期望多大，它都必须在该指定大小的边界内，对应的属性为match_parent或者具体值。 AT_MOST 父View为子View指定一个最大尺寸。对应的属性wrap_content。这种模式下，父控件无法确定子View的尺寸，只能子控件 ViewGroup绘制流程 measureChildren方法 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 /** * Ask all of the children of this view to measure themselves, taking into * account both the MeasureSpec requirements for this view and its padding. * We skip children that are in the GONE state The heavy lifting is done in * getChildMeasureSpec.">
 <meta property='og:url' content='http://localhost:1313/android/ui/customview/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
@@ -32,7 +32,25 @@
     
   
 
+<style>
+    :root {
+        --sys-font-family: "LXGW WenKai TC";
+        --zh-font-family: "LXGW WenKai TC";
+        --base-font-family: "LXGW WenKai TC";
+        --code-font-family: "LXGW WenKai TC";
+        --article-font-family: "LXGW WenKai TC";
+    }
+</style>
 
+<script>
+    (function () {
+        const customFont = document.createElement("link");
+        customFont.href = "https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&display=swap";
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+        document.head.appendChild(customFont);
+    })();
+</script>
     </head>
     <body class="
     article-page
@@ -172,7 +190,7 @@
 
 
                 
-                <span>About</span>
+                <span>关于</span>
             </a>
         </li>
         
@@ -192,7 +210,7 @@
 
 
                 
-                <span>Archives</span>
+                <span>归档</span>
             </a>
         </li>
         
@@ -230,7 +248,7 @@
 
 
                 
-                <span>Links</span>
+                <span>好友</span>
             </a>
         </li>
         
@@ -1696,6 +1714,14 @@
         Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
+<script>
+    var s1 = '2014-01-01';
+    s1 = new Date(s1.replace(/-/g, "/"));
+    s2 = new Date();
+    var days = s2.getTime() - s1.getTime();
+    var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+    document.getElementById('days').innerHTML = number_of_days;
+</script>
 
 
     

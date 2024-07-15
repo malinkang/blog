@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='http://localhost:1313/android/%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6/activity/'>
 
-<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
 <meta property='og:description' content="生命周期 关于Activity的生命周期，可以参考官方文档： Activity 简介 了解 Activity 生命周期 需要注意的是：onStop()在Activity不可见时会调用，如果打开的是一个透明的Activity，就不会回调onStop()，当关闭透明Activity时，也不会回调onRestart()和onStart()。onStart()在Activity可见时调用，刚好与onStop()相反。当打开一个非Activity的Dialog时，不会触发生命周期方法回调（官方文档上说会弹出Dialog会调用onPause()，实测并没有调用）。 当两个Activity A和B，如果A启动B，然后转屏B会销毁重建，当返回A，A会重建。如果B是一个透明Activity，A和B都会重建，并且A会调用onPause()， 保存和恢复状态 参考文档： 保存和恢复瞬时界面状态 保存界面状态 状态保存 当正常点击返回键和调用finish()不会调用onSaveInstanceState()，其他情况当应用不可见时，就会调用，比如： onSaveInstanceState()的与生命周期方法的调用顺序。9.0及其之后发生在onStop()之后。之前的版本可能发生在onPause()之前或者之后。 状态恢复 [onCreate()](https://developer.android.com/reference/android/app/Activity#onCreate(android.os.Bundle))\u00a0和\u00a0[onRestoreInstanceState()](https://developer.android.com/reference/android/app/Activity#onRestoreInstanceState(android.os.Bundle))\u00a0回调方法均会收到包含实例状态信息的相同\u00a0[Bundle](https://developer.android.com/reference/android/os/Bundle)。无论系统是新建 Activity 实例还是重新创建之前的实例，都会调用\u00a0[onCreate()](https://developer.android.com/reference/android/app/Activity#onCreate(android.os.Bundle))\u00a0方法。官方文档中说仅当存在要恢复的已保存状态时，系统才会调用\u00a0[onRestoreInstanceState()](https://developer.android.com/reference/android/app/Activity#onRestoreInstanceState(android.os.Bundle))。何时需要恢复？假设两个Activity A和B，A打开B，会调用onSaveInstanceState()，然后依次关闭B和A、再次打开A并没有调用onRestoreInstanceState()。如果A打开B，然后强制杀死应用，再次打开A亦然不会调用onRestoreInstanceState()。在转屏的时候会调用onSaveInstanceState()和onRestoreInstanceState()。 启动模式 参考文档： Android 面试黑洞——当我按下 Home 键再切回来，会发生什么？ ">
 <meta property='og:url' content='http://localhost:1313/android/%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6/activity/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
@@ -32,7 +32,25 @@
     
   
 
+<style>
+    :root {
+        --sys-font-family: "LXGW WenKai TC";
+        --zh-font-family: "LXGW WenKai TC";
+        --base-font-family: "LXGW WenKai TC";
+        --code-font-family: "LXGW WenKai TC";
+        --article-font-family: "LXGW WenKai TC";
+    }
+</style>
 
+<script>
+    (function () {
+        const customFont = document.createElement("link");
+        customFont.href = "https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&display=swap";
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+        document.head.appendChild(customFont);
+    })();
+</script>
     </head>
     <body class="
     article-page
@@ -172,7 +190,7 @@
 
 
                 
-                <span>About</span>
+                <span>关于</span>
             </a>
         </li>
         
@@ -192,7 +210,7 @@
 
 
                 
-                <span>Archives</span>
+                <span>归档</span>
             </a>
         </li>
         
@@ -230,7 +248,7 @@
 
 
                 
-                <span>Links</span>
+                <span>好友</span>
             </a>
         </li>
         
@@ -488,6 +506,14 @@
         Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
+<script>
+    var s1 = '2014-01-01';
+    s1 = new Date(s1.replace(/-/g, "/"));
+    s2 = new Date();
+    var days = s2.getTime() - s1.getTime();
+    var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+    document.getElementById('days').innerHTML = number_of_days;
+</script>
 
 
     
