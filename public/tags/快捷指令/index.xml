@@ -13,7 +13,170 @@
         <pubDate>Fri, 12 Jul 2024 09:40:05 +0800</pubDate>
         
         <guid>http://localhost:1313/posts/shortcuts-action/</guid>
-        <description>&lt;img src="https://images.unsplash.com/photo-1663813251302-e5d2c7199e86?q=80&amp;w=2660&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Featured image of post 快捷指令触发Github Action" /&gt;</description>
+        <description>&lt;img src="https://images.unsplash.com/photo-1663813251302-e5d2c7199e86?q=80&amp;w=2660&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Featured image of post 快捷指令触发Github Action" /&gt;&lt;p&gt;之前一直有朋友问我为什么我的Weread2Notion-Pro为什么没有执行同步，因为Github执行Action并不准时，有的时候可能会延迟几个小时。今天就给大家分享一下如何使用快捷指令来准时触发Github Action执行，并且实现比如关闭微信读书同步笔记。&lt;/p&gt;
+&lt;h2 id=&#34;第一步获取快捷指令&#34;&gt;第一步：获取快捷指令
+&lt;/h2&gt;&lt;p&gt;打开链接获取指令：&lt;a class=&#34;link&#34; href=&#34;https://www.icloud.com/shortcuts/8203dc6f09094f9c9c56a32a4f141c2c&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.icloud.com/shortcuts/8203dc6f09094f9c9c56a32a4f141c2c&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;第二步填值&#34;&gt;第二步：填值
+&lt;/h2&gt;&lt;p&gt;打开你获取的快捷指令，会看到这里需要填3个值
+&lt;img src=&#34;http://localhost:1313/image.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;name是你的Github的用户名，repository是你的仓库名。比如我的weread2notion-pro的仓库地址是：&lt;a class=&#34;link&#34; href=&#34;https://github.com/malinkang/weread2notion-pro&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/malinkang/weread2notion-pro&lt;/a&gt;，那么我的name就填malinkang，repository值就填weread2notion-pro。&lt;/p&gt;
+&lt;p&gt;第三个值是token，获取比较麻烦一些。首先打开网页：https://github.com/settings/apps，先点击Personal access tokens，然后点击Tokens。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/image-4.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;依次点击下图所示的两个按钮，进入Token创建页面&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/image-5.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;在Token创建页面我们需要填写和勾选如下三个值：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Note是备注信息，可以根据个人情况填写。&lt;/li&gt;
+&lt;li&gt;Expiration是Token的过期时间，我选择的是No expration，这样Token就不会过期&lt;/li&gt;
+&lt;li&gt;第三个是Token的作用范围，勾选workflow，这样这个Token就有权限触发我们的Github Action.
+&lt;img src=&#34;http://localhost:1313/image-6.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;填写完成之后点击最下面的Generate token创建。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/image-7.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;创建完成会跳转到Token列表，点击复制按钮复制你创建的Token，然后填写到快捷指令中。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/image-8.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;最终的效果如下图所示：
+&lt;img src=&#34;http://localhost:1313/image-9.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;现在我们可以手动运行这个快捷指令触发Github Action了。&lt;/p&gt;
+&lt;h2 id=&#34;第三步自动化设置&#34;&gt;第三步：自动化设置
+&lt;/h2&gt;&lt;p&gt;接下来我们可以通过自动化设置实现关闭微信读书同步微信读书笔记。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;打开手机里的快捷指令，切换到中间的自动化tab，然后点击右上角的+号创建自动化。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/07/5ee22f6ecd09f56d39cfe075a258d8a5.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;点击创建个人自动化，向下滑动找到App，点击进入。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/07/5bbe45c5f4eebf49b3a81f001e6317bd.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240716140946436&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;App选择微信读书，勾选已关闭，点击右上角下一步。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/07/ade2e856d164738843e224cb49c926e6.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;点击添加操作，搜索快捷指令，然后选择打开快捷指令。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/07/224a95a91cdafb65bcb2293d25f076a1.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;5&#34;&gt;
+&lt;li&gt;点击快捷指令，选择第一步我们获取的快捷指令&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/07/60912bfd98a22412252fc0f4adf58b54.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;6. 最后点击下一步，然后关闭运行前询问。如果不关闭的话，每次运行这个自动化都会弹一个对话框询问是否运行这个自动化。关闭之后，可以无感运行这个 自动化。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/07/10ecc3e239a763bd79adf25e42af5ebc.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;这样之后我们就可以在关闭微信读书的时候自动触发笔记同步。&lt;/p&gt;
+&lt;p&gt;同理我们也可以实现如下操作：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;关闭豆瓣时触发Douban2Notion同步&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;关闭Toggl时触发Toggle2Notion同步。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;关闭多邻国时出发Duolingo2Notion同步&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;关闭Keep时出发Keep2Notion同步&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&amp;hellip;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;快捷指令的触发条件有很多，也可以通过设置固定时间来同步，你可以自行研究。&lt;/p&gt;
+</description>
         </item>
         
     </channel>
