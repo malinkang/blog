@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="上次Podcast2Notion发布之后，受到了很多朋友的好评同时也收到了很多朋友捐赠支持。当然，也有很多朋友提出了不足，后面我也在着手开发新的版本，经过一个月的努力Podcast2NotionPro终于和大家见面了。 首先介绍下，Podcast2NotionPro相较于Podcast2Notion有哪些更新： 支持每期播客的收听进度 支持按照年月周日的统计数据 支持热力图 支持通义听悟的语音转文字，AI总结，脑图，笔记同步到Notion。这个功能依赖通义听悟，没有注册的小伙伴可以打开https://tingwu.aliyun.com/进行注册。 预览 打开网页版本查看效果：https://podcast.malinkang.com/ 语音转文字，AI总结，脑图等功能预览：https://podcast.malinkang.com/malinkang/EP38-0d589a71d2a44cb8895d81547786e2b6 接下来我就给讲解一下如何使用。 Fork工程 打开Podcast2Notion:https://github.com/malinkang/Podcast2NotionPro，点击右上角的Fork（顺便点个star谢谢） 获取X-Jike-Access-Token 浏览器打开https://xyzfm.link/ 点击小宇宙账号登录按钮进行登录 登录成功后按F12进入开发者模式，依次点网络-&gt;Fetch/XHR，然后随便找一个请求，切到请求标头，找到X-Jike-Refresh-Token，然后把对应的值复制出来，后面会用到。 获取通义听悟COOKIE 获取方式和上面获取X-Jike-Access-Token方法差不多。 浏览器打开通义听悟官网https://tingwu.aliyun.com/并登录 登录成功，打开https://tongyi.aliyun.com/efficiency/后按F12进入开发者模式，依次点网络-&gt;Fetch/XHR，然后随便找一个请求，切到请求标头，找到Cookie，然后把对应的值复制出来，后面会用到。 授权 浏览器打开：https://api.notion.com/v1/oauth/authorize?client_id=2601d4d6-fae1-4be9-8692-c00c8b0764c2&amp;response_type=code&amp;owner=user&amp;redirect_uri=https%3A%2F%2Fnotion-auth.malinkang.com%2Fpodcastpro-oauth-callback 然后点击Next-&gt;Allow access，这一步会自动复制模板到你的Notion。 点击复制按钮，复制NOTION_TOKEN和NOTION_PAGE的值。 在Github的Secrets中添加变量 打开你fork的工程，点击Settings-&gt;Secrets and variables-&gt;New repository secret Name输入REFRESH_TOKEN，Secret输入框中填入你前面获取的X-Jike-Access-Token，然后点击Add secret 同理，继续点击New repository secret，分别增加变量NOTION_TOKEN和NOTION_PAGE，值为上面授权中复制的值。增加变量TONGYI_COOKIE，值为复制的通义听悟的值。 注意这三个变量名一定要填写正确，一个字母都不能错，否则会同步失败。 运行 Podcast2NotionPro有两个任务： podcast sync 用于同步各种播客数据 speech to text 用于音频转文字 上面配置完成之后，打开你Fork的项目，依次点击Actions-&gt;podcast sync-&gt; Run workflow，就可以运行了。之后每天会自动运行。 如果你觉得项目对你有帮助，可以点击下面的喜欢作者支持一下。我也会不断的优化项目，并做出其他开源的项目。 语音转文字功能使用 语音转文字功能的原理，就是根据播客的标题去搜索通义听悟的文件夹里是否将这期播客语音转文字。要将一期播客语音转成文字同步到Notion，第一步就是就是使用通义听悟转写这期播客。下面我会介绍一下，我是如何使用通义听悟转写播客的。 我会把每个播客的内容单独放到一个文件夹中，这样避免都放到默认文件夹中看起来很混乱。所以第一步点击我的记录旁边的+号，为我们要转写的播客创建一个文件夹。（非必须，可以不创建。） 创建成功之后，选中文件夹，点击新建，然后点击播客链接转写。 接着打开Notion中的Podcast数据库，搜索你要转写的播客。 打开database，复制rss链接。部分播客可能没有rss链接，需要自己想办法。 然后回到通义听悟，将复制的链接粘贴到输入框中，然后点击开始解析，勾选要选择的内容之后，点击开始转写。 接着我们就可以对播客进行摘录和记录笔记，摘录和笔记整理完成之后，打开我们的Notion，找到这期播客，勾选语音转文字，然后手动运行任务进行同步。也可以等下次任务自动运行同步到Notion。 问题解答 每期播客里的日期是什么？ 小宇宙只能拿到最后收听的时间，我这边对于在听和听完分别进行处理。如果是在听则日期是最后收听的时间。如果是听过，第一次同步最后收听的时间，以后就不会更新这个时间。当然如果是听完状态，可以手动修改时间，后期也不会覆盖手动修改的日期。 月统计里当月的收听天数和收听时长是0 月统计是根据小宇宙播客月记的数据获取的，只有这个月过完才能拿到数据，所以会一直显示0。 热力图数据 热力图展示的是每天听完的期数，其他热力图配置可以参考热力图使用指南。 有任何使用问题欢迎联系我微信malinkang进行反馈。 问题排查 有问题先查看日志自行排查。如果实在无法解决，可以打开文档：https://malinkang.notion.site/c4e4cb7b67974377946a01979ca230fc?pvs=4，按照文档将我添加为的Github和Notion的协作者，并在评论区留下你的Notion和Github用户名，我会在24小时之内解决并回复你。 如果你有什么好的建议或者意见，也可以进群讨论。（如果二维码过期的话，可以添加我的微信malinkang，拉你入群）。">
+<title>Keep2Notion使用指南</title>
+
+<link rel='canonical' href='http://localhost:1313/posts/podcast2notionpro/'>
+
+<link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="Keep2Notion使用指南">
+<meta property='og:description' content="上次Podcast2Notion发布之后，受到了很多朋友的好评同时也收到了很多朋友捐赠支持。当然，也有很多朋友提出了不足，后面我也在着手开发新的版本，经过一个月的努力Podcast2NotionPro终于和大家见面了。 首先介绍下，Podcast2NotionPro相较于Podcast2Notion有哪些更新： 支持每期播客的收听进度 支持按照年月周日的统计数据 支持热力图 支持通义听悟的语音转文字，AI总结，脑图，笔记同步到Notion。这个功能依赖通义听悟，没有注册的小伙伴可以打开https://tingwu.aliyun.com/进行注册。 预览 打开网页版本查看效果：https://podcast.malinkang.com/ 语音转文字，AI总结，脑图等功能预览：https://podcast.malinkang.com/malinkang/EP38-0d589a71d2a44cb8895d81547786e2b6 接下来我就给讲解一下如何使用。 Fork工程 打开Podcast2Notion:https://github.com/malinkang/Podcast2NotionPro，点击右上角的Fork（顺便点个star谢谢） 获取X-Jike-Access-Token 浏览器打开https://xyzfm.link/ 点击小宇宙账号登录按钮进行登录 登录成功后按F12进入开发者模式，依次点网络-&gt;Fetch/XHR，然后随便找一个请求，切到请求标头，找到X-Jike-Refresh-Token，然后把对应的值复制出来，后面会用到。 获取通义听悟COOKIE 获取方式和上面获取X-Jike-Access-Token方法差不多。 浏览器打开通义听悟官网https://tingwu.aliyun.com/并登录 登录成功，打开https://tongyi.aliyun.com/efficiency/后按F12进入开发者模式，依次点网络-&gt;Fetch/XHR，然后随便找一个请求，切到请求标头，找到Cookie，然后把对应的值复制出来，后面会用到。 授权 浏览器打开：https://api.notion.com/v1/oauth/authorize?client_id=2601d4d6-fae1-4be9-8692-c00c8b0764c2&amp;response_type=code&amp;owner=user&amp;redirect_uri=https%3A%2F%2Fnotion-auth.malinkang.com%2Fpodcastpro-oauth-callback 然后点击Next-&gt;Allow access，这一步会自动复制模板到你的Notion。 点击复制按钮，复制NOTION_TOKEN和NOTION_PAGE的值。 在Github的Secrets中添加变量 打开你fork的工程，点击Settings-&gt;Secrets and variables-&gt;New repository secret Name输入REFRESH_TOKEN，Secret输入框中填入你前面获取的X-Jike-Access-Token，然后点击Add secret 同理，继续点击New repository secret，分别增加变量NOTION_TOKEN和NOTION_PAGE，值为上面授权中复制的值。增加变量TONGYI_COOKIE，值为复制的通义听悟的值。 注意这三个变量名一定要填写正确，一个字母都不能错，否则会同步失败。 运行 Podcast2NotionPro有两个任务： podcast sync 用于同步各种播客数据 speech to text 用于音频转文字 上面配置完成之后，打开你Fork的项目，依次点击Actions-&gt;podcast sync-&gt; Run workflow，就可以运行了。之后每天会自动运行。 如果你觉得项目对你有帮助，可以点击下面的喜欢作者支持一下。我也会不断的优化项目，并做出其他开源的项目。 语音转文字功能使用 语音转文字功能的原理，就是根据播客的标题去搜索通义听悟的文件夹里是否将这期播客语音转文字。要将一期播客语音转成文字同步到Notion，第一步就是就是使用通义听悟转写这期播客。下面我会介绍一下，我是如何使用通义听悟转写播客的。 我会把每个播客的内容单独放到一个文件夹中，这样避免都放到默认文件夹中看起来很混乱。所以第一步点击我的记录旁边的+号，为我们要转写的播客创建一个文件夹。（非必须，可以不创建。） 创建成功之后，选中文件夹，点击新建，然后点击播客链接转写。 接着打开Notion中的Podcast数据库，搜索你要转写的播客。 打开database，复制rss链接。部分播客可能没有rss链接，需要自己想办法。 然后回到通义听悟，将复制的链接粘贴到输入框中，然后点击开始解析，勾选要选择的内容之后，点击开始转写。 接着我们就可以对播客进行摘录和记录笔记，摘录和笔记整理完成之后，打开我们的Notion，找到这期播客，勾选语音转文字，然后手动运行任务进行同步。也可以等下次任务自动运行同步到Notion。 问题解答 每期播客里的日期是什么？ 小宇宙只能拿到最后收听的时间，我这边对于在听和听完分别进行处理。如果是在听则日期是最后收听的时间。如果是听过，第一次同步最后收听的时间，以后就不会更新这个时间。当然如果是听完状态，可以手动修改时间，后期也不会覆盖手动修改的日期。 月统计里当月的收听天数和收听时长是0 月统计是根据小宇宙播客月记的数据获取的，只有这个月过完才能拿到数据，所以会一直显示0。 热力图数据 热力图展示的是每天听完的期数，其他热力图配置可以参考热力图使用指南。 有任何使用问题欢迎联系我微信malinkang进行反馈。 问题排查 有问题先查看日志自行排查。如果实在无法解决，可以打开文档：https://malinkang.notion.site/c4e4cb7b67974377946a01979ca230fc?pvs=4，按照文档将我添加为的Github和Notion的协作者，并在评论区留下你的Notion和Github用户名，我会在24小时之内解决并回复你。 如果你有什么好的建议或者意见，也可以进群讨论。（如果二维码过期的话，可以添加我的微信malinkang，拉你入群）。">
+<meta property='og:url' content='http://localhost:1313/posts/podcast2notionpro/'>
+<meta property='og:site_name' content='Malinkang&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='Kepp' /><meta property='article:tag' content='Notion' /><meta property='article:published_time' content='2024-07-24T09:40:05&#43;08:00'/><meta property='article:modified_time' content='2024-07-24T09:40:05&#43;08:00'/><meta property='og:image' content='https://images.unsplash.com/photo-1663813251302-e5d2c7199e86?q=80&amp;w=2660&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' />
+<meta name="twitter:title" content="Keep2Notion使用指南">
+<meta name="twitter:description" content="上次Podcast2Notion发布之后，受到了很多朋友的好评同时也收到了很多朋友捐赠支持。当然，也有很多朋友提出了不足，后面我也在着手开发新的版本，经过一个月的努力Podcast2NotionPro终于和大家见面了。 首先介绍下，Podcast2NotionPro相较于Podcast2Notion有哪些更新： 支持每期播客的收听进度 支持按照年月周日的统计数据 支持热力图 支持通义听悟的语音转文字，AI总结，脑图，笔记同步到Notion。这个功能依赖通义听悟，没有注册的小伙伴可以打开https://tingwu.aliyun.com/进行注册。 预览 打开网页版本查看效果：https://podcast.malinkang.com/ 语音转文字，AI总结，脑图等功能预览：https://podcast.malinkang.com/malinkang/EP38-0d589a71d2a44cb8895d81547786e2b6 接下来我就给讲解一下如何使用。 Fork工程 打开Podcast2Notion:https://github.com/malinkang/Podcast2NotionPro，点击右上角的Fork（顺便点个star谢谢） 获取X-Jike-Access-Token 浏览器打开https://xyzfm.link/ 点击小宇宙账号登录按钮进行登录 登录成功后按F12进入开发者模式，依次点网络-&gt;Fetch/XHR，然后随便找一个请求，切到请求标头，找到X-Jike-Refresh-Token，然后把对应的值复制出来，后面会用到。 获取通义听悟COOKIE 获取方式和上面获取X-Jike-Access-Token方法差不多。 浏览器打开通义听悟官网https://tingwu.aliyun.com/并登录 登录成功，打开https://tongyi.aliyun.com/efficiency/后按F12进入开发者模式，依次点网络-&gt;Fetch/XHR，然后随便找一个请求，切到请求标头，找到Cookie，然后把对应的值复制出来，后面会用到。 授权 浏览器打开：https://api.notion.com/v1/oauth/authorize?client_id=2601d4d6-fae1-4be9-8692-c00c8b0764c2&amp;response_type=code&amp;owner=user&amp;redirect_uri=https%3A%2F%2Fnotion-auth.malinkang.com%2Fpodcastpro-oauth-callback 然后点击Next-&gt;Allow access，这一步会自动复制模板到你的Notion。 点击复制按钮，复制NOTION_TOKEN和NOTION_PAGE的值。 在Github的Secrets中添加变量 打开你fork的工程，点击Settings-&gt;Secrets and variables-&gt;New repository secret Name输入REFRESH_TOKEN，Secret输入框中填入你前面获取的X-Jike-Access-Token，然后点击Add secret 同理，继续点击New repository secret，分别增加变量NOTION_TOKEN和NOTION_PAGE，值为上面授权中复制的值。增加变量TONGYI_COOKIE，值为复制的通义听悟的值。 注意这三个变量名一定要填写正确，一个字母都不能错，否则会同步失败。 运行 Podcast2NotionPro有两个任务： podcast sync 用于同步各种播客数据 speech to text 用于音频转文字 上面配置完成之后，打开你Fork的项目，依次点击Actions-&gt;podcast sync-&gt; Run workflow，就可以运行了。之后每天会自动运行。 如果你觉得项目对你有帮助，可以点击下面的喜欢作者支持一下。我也会不断的优化项目，并做出其他开源的项目。 语音转文字功能使用 语音转文字功能的原理，就是根据播客的标题去搜索通义听悟的文件夹里是否将这期播客语音转文字。要将一期播客语音转成文字同步到Notion，第一步就是就是使用通义听悟转写这期播客。下面我会介绍一下，我是如何使用通义听悟转写播客的。 我会把每个播客的内容单独放到一个文件夹中，这样避免都放到默认文件夹中看起来很混乱。所以第一步点击我的记录旁边的+号，为我们要转写的播客创建一个文件夹。（非必须，可以不创建。） 创建成功之后，选中文件夹，点击新建，然后点击播客链接转写。 接着打开Notion中的Podcast数据库，搜索你要转写的播客。 打开database，复制rss链接。部分播客可能没有rss链接，需要自己想办法。 然后回到通义听悟，将复制的链接粘贴到输入框中，然后点击开始解析，勾选要选择的内容之后，点击开始转写。 接着我们就可以对播客进行摘录和记录笔记，摘录和笔记整理完成之后，打开我们的Notion，找到这期播客，勾选语音转文字，然后手动运行任务进行同步。也可以等下次任务自动运行同步到Notion。 问题解答 每期播客里的日期是什么？ 小宇宙只能拿到最后收听的时间，我这边对于在听和听完分别进行处理。如果是在听则日期是最后收听的时间。如果是听过，第一次同步最后收听的时间，以后就不会更新这个时间。当然如果是听完状态，可以手动修改时间，后期也不会覆盖手动修改的日期。 月统计里当月的收听天数和收听时长是0 月统计是根据小宇宙播客月记的数据获取的，只有这个月过完才能拿到数据，所以会一直显示0。 热力图数据 热力图展示的是每天听完的期数，其他热力图配置可以参考热力图使用指南。 有任何使用问题欢迎联系我微信malinkang进行反馈。 问题排查 有问题先查看日志自行排查。如果实在无法解决，可以打开文档：https://malinkang.notion.site/c4e4cb7b67974377946a01979ca230fc?pvs=4，按照文档将我添加为的Github和Notion的协作者，并在评论区留下你的Notion和Github用户名，我会在24小时之内解决并回复你。 如果你有什么好的建议或者意见，也可以进群讨论。（如果二维码过期的话，可以添加我的微信malinkang，拉你入群）。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://images.unsplash.com/photo-1663813251302-e5d2c7199e86?q=80&amp;w=2660&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' />
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-G84J9N38RL');
+        }
+      </script>
+    
+  
+
+<style>
+    :root {
+        --sys-font-family: "LXGW WenKai TC";
+        --zh-font-family: "LXGW WenKai TC";
+        --base-font-family: "LXGW WenKai TC";
+        --code-font-family: "LXGW WenKai TC";
+        --article-font-family: "LXGW WenKai TC";
+    }
+</style>
+
+<script>
+    (function () {
+        const customFont = document.createElement("link");
+        customFont.href = "https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&display=swap";
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+        document.head.appendChild(customFont);
+    })();
+</script>
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/images/avatar_hu74e4307e0baa534a3da4ee0210445065_34446_300x0_resize_q75_box.jpeg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
+            <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/malinkang'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/malinkang'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/pages/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>好友</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#预览">预览</a></li>
+    <li><a href="#fork工程">Fork工程</a></li>
+    <li><a href="#获取x-jike-access-token">获取X-Jike-Access-Token</a></li>
+    <li><a href="#获取通义听悟cookie">获取通义听悟COOKIE</a></li>
+    <li><a href="#授权">授权</a></li>
+    <li><a href="#在github的secrets中添加变量">在Github的Secrets中添加变量</a></li>
+    <li><a href="#运行">运行</a></li>
+    <li><a href="#语音转文字功能使用">语音转文字功能使用</a></li>
+    <li><a href="#问题解答">问题解答</a></li>
+    <li><a href="#问题排查">问题排查</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/posts/podcast2notionpro/">
+                
+                    <img src="https://images.unsplash.com/photo-1663813251302-e5d2c7199e86?q=80&amp;w=2660&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" loading="lazy" alt="Featured image of post Keep2Notion使用指南" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/posts/podcast2notionpro/">Keep2Notion使用指南</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jul 24, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    1 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>上次Podcast2Notion发布之后，受到了很多朋友的好评同时也收到了很多朋友捐赠支持。当然，也有很多朋友提出了不足，后面我也在着手开发新的版本，经过一个月的努力Podcast2NotionPro终于和大家见面了。</p>
+<p>首先介绍下，Podcast2NotionPro相较于Podcast2Notion有哪些更新：</p>
+<ol>
+<li>支持每期播客的收听进度
+<img src="https://images.malinkang.com/2024/07/88a703dc970b7d2d946fe43ab6c80da7.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></li>
+<li>支持按照年月周日的统计数据</li>
+<li>支持热力图</li>
+<li>支持通义听悟的语音转文字，AI总结，脑图，笔记同步到Notion。这个功能依赖通义听悟，没有注册的小伙伴可以打开https://tingwu.aliyun.com/进行注册。</li>
+</ol>
+<h2 id="预览">预览
+</h2><p>打开网页版本查看效果：https://podcast.malinkang.com/</p>
+<p>语音转文字，AI总结，脑图等功能预览：https://podcast.malinkang.com/malinkang/EP38-0d589a71d2a44cb8895d81547786e2b6</p>
+<p>接下来我就给讲解一下如何使用。</p>
+<h2 id="fork工程">Fork工程
+</h2><p>打开Podcast2Notion:https://github.com/malinkang/Podcast2NotionPro，点击右上角的Fork（顺便点个star谢谢）</p>
+<p><img src="https://images.malinkang.com/2024/03/fc6be407e45f0e3a3067252dd2c51c73.jpg"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Fork"
+	
+	
+></p>
+<h2 id="获取x-jike-access-token">获取X-Jike-Access-Token
+</h2><ol>
+<li>浏览器打开https://xyzfm.link/</li>
+<li>点击小宇宙账号登录按钮进行登录</li>
+<li>登录成功后按F12进入开发者模式，依次点网络-&gt;Fetch/XHR，然后随便找一个请求，切到请求标头，找到X-Jike-Refresh-Token，然后把对应的值复制出来，后面会用到。</li>
+</ol>
+<p><img src="https://images.malinkang.com/2024/07/730561e9bf86da682db9a3eec358d311.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="获取通义听悟cookie">获取通义听悟COOKIE
+</h2><p>获取方式和上面获取X-Jike-Access-Token方法差不多。</p>
+<ol>
+<li>浏览器打开通义听悟官网https://tingwu.aliyun.com/并登录</li>
+<li>登录成功，打开https://tongyi.aliyun.com/efficiency/后按F12进入开发者模式，依次点网络-&gt;Fetch/XHR，然后随便找一个请求，切到请求标头，找到Cookie，然后把对应的值复制出来，后面会用到。</li>
+</ol>
+<p><img src="https://images.malinkang.com/2024/07/4ea33b528a55c402a41b03c5e36bd2cf.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="授权">授权
+</h2><ol>
+<li>
+<p>浏览器打开：https://api.notion.com/v1/oauth/authorize?client_id=2601d4d6-fae1-4be9-8692-c00c8b0764c2&amp;response_type=code&amp;owner=user&amp;redirect_uri=https%3A%2F%2Fnotion-auth.malinkang.com%2Fpodcastpro-oauth-callback</p>
+</li>
+<li>
+<p>然后点击Next-&gt;Allow access，这一步会自动复制模板到你的Notion。</p>
+</li>
+</ol>
+<p><img src="https://images.malinkang.com/2024/07/d65dfce8019e2367a4b774ce842d7823.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p><img src="https://images.malinkang.com/2024/07/7fea199ebe787afce23df37854d99f0f.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<ol start="3">
+<li>点击复制按钮，复制NOTION_TOKEN和NOTION_PAGE的值。</li>
+</ol>
+<p><img src="https://images.malinkang.com/2024/07/df4bf21cbd90c28d0a832c0e4cf4e2b6.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="在github的secrets中添加变量">在Github的Secrets中添加变量
+</h2><ol>
+<li>打开你fork的工程，点击Settings-&gt;Secrets and variables-&gt;New repository secret</li>
+</ol>
+<p><img src="https://images.malinkang.com/2024/07/550da28ab28f476ee4985488df636983.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<ol start="2">
+<li>Name输入REFRESH_TOKEN，Secret输入框中填入你前面获取的X-Jike-Access-Token，然后点击Add secret</li>
+</ol>
+<p><img src="https://images.malinkang.com/2024/07/a454fd4d1c6943b390639a82709ee1af.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<ol start="3">
+<li>同理，继续点击New repository secret，分别增加变量NOTION_TOKEN和NOTION_PAGE，值为上面授权中复制的值。增加变量TONGYI_COOKIE，值为复制的通义听悟的值。</li>
+</ol>
+<p><strong>注意这三个变量名一定要填写正确，一个字母都不能错，否则会同步失败。</strong></p>
+<h2 id="运行">运行
+</h2><p>Podcast2NotionPro有两个任务：</p>
+<ol>
+<li>podcast sync 用于同步各种播客数据</li>
+<li>speech to text 用于音频转文字</li>
+</ol>
+<p>上面配置完成之后，打开你Fork的项目，依次点击Actions-&gt;podcast sync-&gt; Run workflow，就可以运行了。之后每天会自动运行。</p>
+<p><img src="https://images.malinkang.com/2024/07/74139009a722887503656edb7b23db84.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>如果你觉得项目对你有帮助，可以点击下面的喜欢作者支持一下。我也会不断的优化项目，并做出其他开源的项目。</p>
+<h2 id="语音转文字功能使用">语音转文字功能使用
+</h2><p>语音转文字功能的原理，就是根据播客的标题去搜索通义听悟的文件夹里是否将这期播客语音转文字。要将一期播客语音转成文字同步到Notion，第一步就是就是使用通义听悟转写这期播客。下面我会介绍一下，我是如何使用通义听悟转写播客的。</p>
+<p>我会把每个播客的内容单独放到一个文件夹中，这样避免都放到默认文件夹中看起来很混乱。所以第一步点击我的记录旁边的+号，为我们要转写的播客创建一个文件夹。（非必须，可以不创建。）</p>
+<p><img src="/posts/podcast2notionpro/image-16.png"
+	width="1920"
+	height="1440"
+	srcset="/posts/podcast2notionpro/image-16_hub4787fc70e7b714b8b9ee96d64284f2f_412358_480x0_resize_box_3.png 480w, /posts/podcast2notionpro/image-16_hub4787fc70e7b714b8b9ee96d64284f2f_412358_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="133"
+		data-flex-basis="320px"
+	
+></p>
+<p>创建成功之后，选中文件夹，点击新建，然后点击播客链接转写。</p>
+<p><img src="/posts/podcast2notionpro/image-17.png"
+	width="1920"
+	height="1440"
+	srcset="/posts/podcast2notionpro/image-17_huecdd95c9abf67d9d0ba4a22120523ebf_798295_480x0_resize_box_3.png 480w, /posts/podcast2notionpro/image-17_huecdd95c9abf67d9d0ba4a22120523ebf_798295_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="133"
+		data-flex-basis="320px"
+	
+></p>
+<p>接着打开Notion中的Podcast数据库，搜索你要转写的播客。</p>
+<p><img src="/posts/podcast2notionpro/image-18.png"
+	width="800"
+	height="380"
+	srcset="/posts/podcast2notionpro/image-18_huad15223c1470fd4cb5c421c9b9a2f0b4_92973_480x0_resize_box_3.png 480w, /posts/podcast2notionpro/image-18_huad15223c1470fd4cb5c421c9b9a2f0b4_92973_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="210"
+		data-flex-basis="505px"
+	
+></p>
+<p>打开database，复制rss链接。部分播客可能没有rss链接，需要自己想办法。</p>
+<p><img src="/posts/podcast2notionpro/image-19.png"
+	width="1816"
+	height="1604"
+	srcset="/posts/podcast2notionpro/image-19_hu9ebe5e5d01e077cd023a40fb6de30d3a_246408_480x0_resize_box_3.png 480w, /posts/podcast2notionpro/image-19_hu9ebe5e5d01e077cd023a40fb6de30d3a_246408_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="113"
+		data-flex-basis="271px"
+	
+></p>
+<p>然后回到通义听悟，将复制的链接粘贴到输入框中，然后点击开始解析，勾选要选择的内容之后，点击开始转写。</p>
+<p><img src="https://images.malinkang.com/2024/07/f3930dfbd194f58873657618c9bd0727.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>接着我们就可以对播客进行摘录和记录笔记，摘录和笔记整理完成之后，打开我们的Notion，找到这期播客，勾选语音转文字，然后手动运行任务进行同步。也可以等下次任务自动运行同步到Notion。</p>
+<p><img src="https://images.malinkang.com/2024/07/5e7db109fd69407b13981836a853faf9.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="问题解答">问题解答
+</h2><ol>
+<li>每期播客里的日期是什么？</li>
+</ol>
+<p>小宇宙只能拿到最后收听的时间，我这边对于在听和听完分别进行处理。如果是在听则日期是最后收听的时间。如果是听过，第一次同步最后收听的时间，以后就不会更新这个时间。当然如果是听完状态，可以手动修改时间，后期也不会覆盖手动修改的日期。</p>
+<ol start="2">
+<li>月统计里当月的收听天数和收听时长是0</li>
+</ol>
+<p>月统计是根据小宇宙播客月记的数据获取的，只有这个月过完才能拿到数据，所以会一直显示0。</p>
+<ol start="3">
+<li>热力图数据</li>
+</ol>
+<p>热力图展示的是每天听完的期数，其他热力图配置可以参考热力图使用指南。</p>
+<p>有任何使用问题欢迎联系我微信malinkang进行反馈。</p>
+<h2 id="问题排查">问题排查
+</h2><p>有问题先查看日志自行排查。如果实在无法解决，可以打开文档：https://malinkang.notion.site/c4e4cb7b67974377946a01979ca230fc?pvs=4，按照文档将我添加为的Github和Notion的协作者，并在评论区留下你的Notion和Github用户名，我会在24小时之内解决并回复你。</p>
+<p>如果你有什么好的建议或者意见，也可以进群讨论。（如果二维码过期的话，可以添加我的微信malinkang，拉你入群）。</p>
+<p><img src="/posts/podcast2notionpro/image-20.png"
+	width="1031"
+	height="1495"
+	srcset="/posts/podcast2notionpro/image-20_hu92c04046da3d4074953cad185e3935e5_149411_480x0_resize_box_3.png 480w, /posts/podcast2notionpro/image-20_hu92c04046da3d4074953cad185e3935e5_149411_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="68"
+		data-flex-basis="165px"
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/kepp/">Kepp</a>
+        
+            <a href="/tags/notion/">Notion</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/posts/keep2notion/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://images.unsplash.com/photo-1663813251302-e5d2c7199e86?q=80&amp;w=2660&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" loading="lazy" data-key="" data-hash="https://images.unsplash.com/photo-1663813251302-e5d2c7199e86?q=80&amp;w=2660&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Keep2Notion使用指南</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script
+    src="https://giscus.app/client.js"
+    data-repo="malinkang/malinkang"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkzMTUwNzEyODU="
+    data-category="General"
+    data-category-id="DIC_kwDOEsebNc4CbSPg"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="en"
+    crossorigin="anonymous"
+    async
+></script>
+<script>
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
+        }
+    }
+
+    (function () {
+        addEventListener("message", (e) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('light');
+            } else {
+                setGiscusTheme('dark');
+            }
+        }
+    })();
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2013 - 
+        
+        2024 malinkang
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<script>
+    var s1 = '2014-01-01';
+    s1 = new Date(s1.replace(/-/g, "/"));
+    s2 = new Date();
+    var days = s2.getTime() - s1.getTime();
+    var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+    document.getElementById('days').innerHTML = number_of_days;
+</script>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
