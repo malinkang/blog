@@ -179,27 +179,41 @@ menu:
         url: https://github.com/malinkang
         params:
             icon: brand-github
-
-      - identifier: twitter
-        name: Twitter
-        url: https://twitter.com/malinkang
+      - identifier: x
+        name: X
+        url: https://x.com/malinkang
         params:
-            icon: brand-twitter
-      # - identifier: douban
-      #   name: Douban
-      #   url: https://twitter.com/malinkang
+            icon: brand-x
+      - identifier: douban
+        name: Douban
+        url: https://www.douban.com/people/malinkang/
+        params:
+            icon: brand-douban
+      - identifier: bilibili
+        name: Bilibili
+        url: https://space.bilibili.com/27440979
+        params:
+            icon: brand-bilibili      
+      - identifier: telegram
+        name: Telegram
+        url: https://t.me/malinkanglife
+        params:
+            icon: brand-telegram
+      - identifier: instagram
+        name: Instagram
+        url: https://www.instagram.com/malinkang
+        params:
+            icon: brand-instagram      
+      - identifier: strava
+        name: Strava
+        url: https://www.strava.com/athletes/20840511
+        params:
+            icon: brand-strava
+      # - identifier: zhihu
+      #   name: Zhihu
+      #   url: https://www.strava.com/athletes/20840511
       #   params:
-      #       icon: brand-douban
-      # - identifier: bilibili
-      #   name: Bilibili
-      #   url: https://twitter.com/malinkang
-      #   params:
-      #       icon: brand-bilibili      
-      # - identifier: telegram
-      #   name: Telegram
-      #   url: https://t.me/malinkang
-      #   params:
-      #       icon: brand-telegram
+      #       icon: brand-zhihu
 
 related:
     includeNewer: true

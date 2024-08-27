@@ -9,6 +9,10 @@ links:
     description: 
     website: https://ygria.site/
     image: https://images.ygria.site/logo.png
+  - title: Mingo
+    description:
+    website: https://blog.mingo99.top/
+    image: https://octodex.github.com/images/privateinvestocat.jpg?t=82849863-1284-400e-a38b-2deae9a58253
 menu:
     main: 
         weight: -50
