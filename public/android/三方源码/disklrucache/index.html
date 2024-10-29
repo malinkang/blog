@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="DiskLruCache使用 1 //1.创建DiskLruCache对象DiskLruCache diskLruCache = DiskLruCache.open(directory, APP_VERSION, VALUE_COUNT, maxSize);//2.获取Editor对象DiskLruCache.Editor editor = diskLruCache.edit(key);//3.获取输出流OutputStream outputStream = editor.newOutputStream(0);//4.向输出流写入数据//...//5.提交editor.commit(); 创建DiskLruCache 1 //构造函数，私有private DiskLruCache(File directory, int appVersion, int valueCount, long maxSize) { this.directory = directory; //存储的目录 this.appVersion = appVersion; //应用版本号 this.journalFile = new File(directory, JOURNAL_FILE); this.journalFileTmp = new File(directory, JOURNAL_FILE_TEMP); this.journalFileBackup = new File(directory, JOURNAL_FILE_BACKUP); this.valueCount = valueCount;//一个key对应value的个数通常为1 this.maxSize = maxSize;//缓存的最大值} 1 public static DiskLruCache open(File directory, int appVersion, int valueCount, long maxSize) throws IOException { if (maxSize &lt;= 0) { throw new IllegalArgumentException(&#34;maxSize &lt;= 0&#34;); } if (valueCount &lt;= 0) { throw new IllegalArgumentException(&#34;valueCount &lt;= 0&#34;); } // If a bkp file exists, use it instead.">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="DiskLruCache使用 1 //1.创建DiskLruCache对象DiskLruCache diskLruCache = DiskLruCache.open(directory, APP_VERSION, VALUE_COUNT, maxSize);//2.获取Editor对象DiskLruCache.Editor editor = diskLruCache.edit(key);//3.获取输出流OutputStream outputStream = editor.newOutputStream(0);//4.向输出流写入数据//...//5.提交editor.commit(); 创建DiskLruCache 1 //构造函数，私有private DiskLruCache(File directory, int appVersion, int valueCount, long maxSize) { this.directory = directory; //存储的目录 this.appVersion = appVersion; //应用版本号 this.journalFile = new File(directory, JOURNAL_FILE); this.journalFileTmp = new File(directory, JOURNAL_FILE_TEMP); this.journalFileBackup = new File(directory, JOURNAL_FILE_BACKUP); this.valueCount = valueCount;//一个key对应value的个数通常为1 this.maxSize = maxSize;//缓存的最大值} ">
 <title></title>
 
 <link rel='canonical' href='http://localhost:1313/android/%E4%B8%89%E6%96%B9%E6%BA%90%E7%A0%81/disklrucache/'>
 
 <link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
-<meta property='og:description' content="DiskLruCache使用 1 //1.创建DiskLruCache对象DiskLruCache diskLruCache = DiskLruCache.open(directory, APP_VERSION, VALUE_COUNT, maxSize);//2.获取Editor对象DiskLruCache.Editor editor = diskLruCache.edit(key);//3.获取输出流OutputStream outputStream = editor.newOutputStream(0);//4.向输出流写入数据//...//5.提交editor.commit(); 创建DiskLruCache 1 //构造函数，私有private DiskLruCache(File directory, int appVersion, int valueCount, long maxSize) { this.directory = directory; //存储的目录 this.appVersion = appVersion; //应用版本号 this.journalFile = new File(directory, JOURNAL_FILE); this.journalFileTmp = new File(directory, JOURNAL_FILE_TEMP); this.journalFileBackup = new File(directory, JOURNAL_FILE_BACKUP); this.valueCount = valueCount;//一个key对应value的个数通常为1 this.maxSize = maxSize;//缓存的最大值} 1 public static DiskLruCache open(File directory, int appVersion, int valueCount, long maxSize) throws IOException { if (maxSize &lt;= 0) { throw new IllegalArgumentException(&#34;maxSize &lt;= 0&#34;); } if (valueCount &lt;= 0) { throw new IllegalArgumentException(&#34;valueCount &lt;= 0&#34;); } // If a bkp file exists, use it instead.">
+<meta property='og:description' content="DiskLruCache使用 1 //1.创建DiskLruCache对象DiskLruCache diskLruCache = DiskLruCache.open(directory, APP_VERSION, VALUE_COUNT, maxSize);//2.获取Editor对象DiskLruCache.Editor editor = diskLruCache.edit(key);//3.获取输出流OutputStream outputStream = editor.newOutputStream(0);//4.向输出流写入数据//...//5.提交editor.commit(); 创建DiskLruCache 1 //构造函数，私有private DiskLruCache(File directory, int appVersion, int valueCount, long maxSize) { this.directory = directory; //存储的目录 this.appVersion = appVersion; //应用版本号 this.journalFile = new File(directory, JOURNAL_FILE); this.journalFileTmp = new File(directory, JOURNAL_FILE_TEMP); this.journalFileBackup = new File(directory, JOURNAL_FILE_BACKUP); this.valueCount = valueCount;//一个key对应value的个数通常为1 this.maxSize = maxSize;//缓存的最大值} ">
 <meta property='og:url' content='http://localhost:1313/android/%E4%B8%89%E6%96%B9%E6%BA%90%E7%A0%81/disklrucache/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="DiskLruCache使用 1 //1.创建DiskLruCache对象DiskLruCache diskLruCache = DiskLruCache.open(directory, APP_VERSION, VALUE_COUNT, maxSize);//2.获取Editor对象DiskLruCache.Editor editor = diskLruCache.edit(key);//3.获取输出流OutputStream outputStream = editor.newOutputStream(0);//4.向输出流写入数据//...//5.提交editor.commit(); 创建DiskLruCache 1 //构造函数，私有private DiskLruCache(File directory, int appVersion, int valueCount, long maxSize) { this.directory = directory; //存储的目录 this.appVersion = appVersion; //应用版本号 this.journalFile = new File(directory, JOURNAL_FILE); this.journalFileTmp = new File(directory, JOURNAL_FILE_TEMP); this.journalFileBackup = new File(directory, JOURNAL_FILE_BACKUP); this.valueCount = valueCount;//一个key对应value的个数通常为1 this.maxSize = maxSize;//缓存的最大值} 1 public static DiskLruCache open(File directory, int appVersion, int valueCount, long maxSize) throws IOException { if (maxSize &lt;= 0) { throw new IllegalArgumentException(&#34;maxSize &lt;= 0&#34;); } if (valueCount &lt;= 0) { throw new IllegalArgumentException(&#34;valueCount &lt;= 0&#34;); } // If a bkp file exists, use it instead.">
-  
-    
+<meta name="twitter:description" content="DiskLruCache使用 1 //1.创建DiskLruCache对象DiskLruCache diskLruCache = DiskLruCache.open(directory, APP_VERSION, VALUE_COUNT, maxSize);//2.获取Editor对象DiskLruCache.Editor editor = diskLruCache.edit(key);//3.获取输出流OutputStream outputStream = editor.newOutputStream(0);//4.向输出流写入数据//...//5.提交editor.commit(); 创建DiskLruCache 1 //构造函数，私有private DiskLruCache(File directory, int appVersion, int valueCount, long maxSize) { this.directory = directory; //存储的目录 this.appVersion = appVersion; //应用版本号 this.journalFile = new File(directory, JOURNAL_FILE); this.journalFileTmp = new File(directory, JOURNAL_FILE_TEMP); this.journalFileBackup = new File(directory, JOURNAL_FILE_BACKUP); this.valueCount = valueCount;//一个key对应value的个数通常为1 this.maxSize = maxSize;//缓存的最大值} ">
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
       <script>
         var doNotTrack = false;
@@ -28,11 +26,7 @@
           gtag('js', new Date());
           gtag('config', 'G-G84J9N38RL');
         }
-      </script>
-    
-  
-
-<style>
+      </script><style>
     :root {
         --sys-font-family: "LXGW WenKai TC";
         --zh-font-family: "LXGW WenKai TC";
@@ -94,7 +88,7 @@
                     
                     
                         
-                        <img src="/images/avatar_hu74e4307e0baa534a3da4ee0210445065_34446_300x0_resize_q75_box.jpeg" width="300"
+                        <img src="/images/avatar_hu15583006483879718621.jpeg" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -114,7 +108,7 @@
             
                 <li>
                     <a 
-                        href='https://twitter.com/malinkang'
+                        href='https://space.bilibili.com/27440979'
                         target="_blank"
                         title="Bilibili"
                         rel="me"
@@ -128,7 +122,7 @@
             
                 <li>
                     <a 
-                        href='https://www.douban.com/people/malinkang/https://space.bilibili.com/27440979'
+                        href='https://www.douban.com/people/malinkang/'
                         target="_blank"
                         title="Douban"
                         rel="me"

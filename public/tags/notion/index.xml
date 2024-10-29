@@ -7,7 +7,384 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>malinkang</copyright>
-        <lastBuildDate>Tue, 27 Feb 2024 09:40:05 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/notion/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 03 Oct 2024 15:28:05 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/notion/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Werad2NotionPro支持自定义设置了</title>
+        <link>http://localhost:1313/posts/weread2notion-pro-settings/</link>
+        <pubDate>Thu, 03 Oct 2024 15:28:05 +0800</pubDate>
+        
+        <guid>http://localhost:1313/posts/weread2notion-pro-settings/</guid>
+        <description>&lt;img src="https://images.malinkang.com/2024/03/19dd1580dd991c7985abea7724c87043.png" alt="Featured image of post Werad2NotionPro支持自定义设置了" /&gt;&lt;h2 id=&#34;自定义设置&#34;&gt;自定义设置
+&lt;/h2&gt;&lt;p&gt;现在Weread2NotionPro支持用户设置同步样式了。接下来就给大家讲解下如何使用。&lt;/p&gt;
+&lt;p&gt;首先就是同步代码。打开你Fork的项目，点击Sync fork进行同步，如果有冲突可以点击Discard那个按钮。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/53c917e4bcfd70d0509a05680a2f10b4.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;同步成功之后，手动运行一下任务。打开你Fork的项目，依次点击Actions-&amp;gt;weread note sync-&amp;gt; Run workflow，就可以运行了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/41ba7acfac4c8de1cfd4ee40443644b8.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;运行完成之后，Notion中会增加一个名为设置的database，点击打开。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/10/cad3dd6dd00b07881d758e4ad16b3ec7.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;接下来依次讲解下每个配置：&lt;/p&gt;
+&lt;p&gt;NotinPage、NotinToken和WeReadCookie三个值用来存储之前填写到Github上的值&lt;/p&gt;
+&lt;h3 id=&#34;同步书签&#34;&gt;同步书签
+&lt;/h3&gt;&lt;p&gt;之前书签和划线都会被同步到Notion，如果不希望同步书签，取消勾选即可，默认是勾选状态。&lt;/p&gt;
+&lt;h3 id=&#34;样式&#34;&gt;样式
+&lt;/h3&gt;&lt;p&gt;样式用于自定义同步到Notion的样式，目前支持如下值：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;callout：默认样式&lt;/li&gt;
+&lt;li&gt;quote：引用样式&lt;/li&gt;
+&lt;li&gt;paragraph：普通段落&lt;/li&gt;
+&lt;li&gt;bulleted_list_item：无序列表&lt;/li&gt;
+&lt;li&gt;numbered_list_item：有序列表&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;根据划线颜色设置文字颜色&#34;&gt;根据划线颜色设置文字颜色
+&lt;/h3&gt;&lt;p&gt;之前同步默认会根据划线颜色设置Notion中文字的颜色，如果不希望根据划线颜色来设置Notion中文字的颜色，取消勾选即可，默认是勾选状态。&lt;/p&gt;
+&lt;p&gt;以上就是所有的配置项。所有的修改只会对后续的同步有效，并不会对之前同步过的数据进行修改。未来会把热力图的配置也迁移到Notion中。你还需要哪些自定义设置，请在评论区里留言。&lt;/p&gt;
+&lt;h2 id=&#34;修复重复bug&#34;&gt;修复重复Bug
+&lt;/h2&gt;&lt;p&gt;国庆节前代码重构，导致同步会有重复的书籍，目前已经修复，之前重复的书籍需要手动删除。&lt;/p&gt;
+&lt;h2 id=&#34;如何新增图表&#34;&gt;如何新增图表
+&lt;/h2&gt;&lt;p&gt;Notion出了图表功能之后，我也给自己的读书模板增加了图表功能，一直有人问如何设置，我也简单讲解下。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/10/5df217cc45d549a276fd54430eceab07.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;在月这个Database中新增一列函数类型，名字为阅读时长（小时）。默认提供的时长单位是秒。所以直接使用公式&lt;code&gt;floor(prop(&amp;quot;时长&amp;quot;)/3600)&lt;/code&gt;对将阅读时长转化为小时格式。&lt;/p&gt;
+&lt;p&gt;在想要放置图表的地方添加数据库的链接视图，选择月这个database。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/10/f7a379427d7552dd9be84cb967dd9fe3.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;X轴显示内容选择日期然后选择月&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/10/a5deb6ae3046d0c36aa61d5a79a6e945.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Y轴显示内容选择阅读时长（小时）然后选择总和&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/10/77050fa1477c95423c20bf3c8701a8f5.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;筛选选择本年&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/10/027fbc8cd62e48078c913991185d8b1c.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;这样就可以看到今年每个月的阅读时长图表了。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>免费申请Notion教育Plus计划白嫖Notion图表</title>
+        <link>http://localhost:1313/posts/notion-custom-domains/</link>
+        <pubDate>Thu, 12 Sep 2024 09:40:05 +0800</pubDate>
+        
+        <guid>http://localhost:1313/posts/notion-custom-domains/</guid>
+        <description>&lt;img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&amp;w=2022&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Featured image of post 免费申请Notion教育Plus计划白嫖Notion图表" /&gt;&lt;p&gt;之前一直用的Notion的免费版本，上个月Notion发布了Notion图表功能，免费用户只能创建一个图表，已经满足不了我的需求，然后就找到低成本的方案，使用ac.cn邮箱免费升级到教育Plus计划。今天我就把这个方案分享给大家。&lt;/p&gt;
+&lt;h2 id=&#34;域名注册&#34;&gt;域名注册
+&lt;/h2&gt;&lt;p&gt;可以选择在腾讯云或者阿里云上或者其他平台上购买域名。&lt;/p&gt;
+&lt;p&gt;腾讯云购买地址：https://buy.cloud.tencent.com/domain/。
+阿里云购买地址：https://wanwang.aliyun.com/&lt;/p&gt;
+&lt;h2 id=&#34;修改dns信息&#34;&gt;修改DNS信息
+&lt;/h2&gt;&lt;p&gt;注册cloudflare： &lt;a class=&#34;link&#34; href=&#34;https://dash.cloudflare.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://dash.cloudflare.com/&lt;/a&gt;，登录成功之后添加点击添加域。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/6d247f00849fea4816b5ec8ba5f641d4.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;输入我们购买的域名，然后点击继续。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/3f476e2164c92e153efe6c31cc6b0f4c.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;进入下一个页面，选择免费计划。这里免费计划在最下面，如果屏幕小的可以会看不到。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/0f888391cc92f7c766a6b6826b6f6c46.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;然后点击继续，会看到我们需要配置的DNS服务器。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/b176e6958691d4c611989b2afead6574.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;打开https://console.cloud.tencent.com/domain/all-domain/all可以看到我们购买的域名，找到要配置的域名，点击管理。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/7af620e6a137d7b11833ac6b1e2229e9.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;进入下一个页面，点击修改DNS服务器。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/d89150e9245af7c38a33def3f1c414d6.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;输入Cloudflare的DNS服务器，点击提交即可。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/34f8855d0b5a5da3d6f7f62255513d5b.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;配置邮件转发&#34;&gt;配置邮件转发
+&lt;/h2&gt;&lt;p&gt;在Cloudflare中，点击我们的域名，然后选择电子邮件路由，输入自定义地址和目标位置。之后所有发送到自定义地址的邮件都会被自动转发到目标位置，然后点击创建并继续。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/04b326d138ee1033a8d02450c0eea69d.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;升级计划&#34;&gt;升级计划
+&lt;/h2&gt;&lt;p&gt;打开Notion，修改邮箱。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/661aaa5c2b7113b4814caba988dc390c.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;修改完成后，点击右下角的Upgrade plan。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/ad302b67832fae717f8fd04d559d5df0.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;然后点击Get the Education Plan，就可以升级为Education Plan了。升级为Education Plan之后，会提示让输入密码，这样即便是我们教育邮箱不能使用，还可以继续使用密码登录Notion。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/00832d2ff5739fa553367303d1f3bd19.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;参考&#34;&gt;参考
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.dajun.info/notion-Education-Plus-Plan&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ac.cn邮箱如何用教育邮箱申请notion Education Plus Plan&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>免费申请Notion教育Plus计划白嫖Notion图表</title>
+        <link>http://localhost:1313/posts/notion-education-plan/</link>
+        <pubDate>Thu, 12 Sep 2024 09:40:05 +0800</pubDate>
+        
+        <guid>http://localhost:1313/posts/notion-education-plan/</guid>
+        <description>&lt;img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&amp;w=2022&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Featured image of post 免费申请Notion教育Plus计划白嫖Notion图表" /&gt;&lt;p&gt;之前一直用的Notion的免费版本，上个月Notion发布了Notion图表功能，免费用户只能创建一个图表，已经满足不了我的需求，然后就找到低成本的方案，使用ac.cn邮箱免费升级到教育Plus计划。今天我就把这个方案分享给大家。&lt;/p&gt;
+&lt;h2 id=&#34;域名注册&#34;&gt;域名注册
+&lt;/h2&gt;&lt;p&gt;可以选择在腾讯云或者阿里云上购买域名。对比了价格，我选择在腾讯云购买，购买地址：https://buy.cloud.tencent.com/domain/。输入自己想要的域名查询，然后点立即购买。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/224855aa31500f3045d2214112230f4f.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;如果没有创建过实名信息模板，需要先创建信息模板，才能购买。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/d1770cb4fdeb500c0bd1100c6b3bfe2f.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/620852f733f34ada42c63498dbccff05.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;填写完信息，然后提交等待审核通过。 然后选择信息模板，点击提交订单支付即可。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/ab1a441162f1f36bac733f95a674bb07.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;修改dns信息&#34;&gt;修改DNS信息
+&lt;/h2&gt;&lt;p&gt;注册cloudflare： &lt;a class=&#34;link&#34; href=&#34;https://dash.cloudflare.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://dash.cloudflare.com/&lt;/a&gt;，登录成功之后添加点击添加域。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/6d247f00849fea4816b5ec8ba5f641d4.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;输入我们购买的域名，然后点击继续。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/3f476e2164c92e153efe6c31cc6b0f4c.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;进入下一个页面，选择免费计划。这里免费计划在最下面，如果屏幕小的可以会看不到。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/0f888391cc92f7c766a6b6826b6f6c46.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;然后点击继续，会看到我们需要配置的DNS服务器。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/b176e6958691d4c611989b2afead6574.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;打开https://console.cloud.tencent.com/domain/all-domain/all可以看到我们购买的域名，找到要配置的域名，点击管理。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/7af620e6a137d7b11833ac6b1e2229e9.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;进入下一个页面，点击修改DNS服务器。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/d89150e9245af7c38a33def3f1c414d6.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;输入Cloudflare的DNS服务器，点击提交即可。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/34f8855d0b5a5da3d6f7f62255513d5b.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;配置邮件转发&#34;&gt;配置邮件转发
+&lt;/h2&gt;&lt;p&gt;在Cloudflare中，点击我们的域名，然后选择电子邮件路由，输入自定义地址和目标位置。之后所有发送到自定义地址的邮件都会被自动转发到目标位置，然后点击创建并继续。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/04b326d138ee1033a8d02450c0eea69d.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;升级计划&#34;&gt;升级计划
+&lt;/h2&gt;&lt;p&gt;打开Notion，修改邮箱。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/661aaa5c2b7113b4814caba988dc390c.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;修改完成后，点击右下角的Upgrade plan。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/ad302b67832fae717f8fd04d559d5df0.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;然后点击Get the Education Plan，就可以升级为Education Plan了。升级为Education Plan之后，会提示让输入密码，这样即便是我们教育邮箱不能使用，还可以继续使用密码登录Notion。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/00832d2ff5739fa553367303d1f3bd19.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;参考&#34;&gt;参考
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.dajun.info/notion-Education-Plus-Plan&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ac.cn邮箱如何用教育邮箱申请notion Education Plus Plan&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
         <title>Keep2Notion使用指南</title>
         <link>http://localhost:1313/posts/keep2notion/</link>
         <pubDate>Tue, 27 Feb 2024 09:40:05 +0800</pubDate>
@@ -24,7 +401,7 @@
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/posts/keep2notion/images/fork.jpg&#34;
 	width=&#34;1210&#34;
 	height=&#34;166&#34;
-	srcset=&#34;http://localhost:1313/posts/keep2notion/images/fork_huc82d7b839fc53b7a5c86bd3cdfedcac6_31913_480x0_resize_q75_box.jpg 480w, http://localhost:1313/posts/keep2notion/images/fork_huc82d7b839fc53b7a5c86bd3cdfedcac6_31913_1024x0_resize_q75_box.jpg 1024w&#34;
+	srcset=&#34;http://localhost:1313/posts/keep2notion/images/fork_hu4602295652819021875.jpg 480w, http://localhost:1313/posts/keep2notion/images/fork_hu8206259885579306544.jpg 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -53,7 +430,7 @@
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/posts/keep2notion/images/secret.jpg&#34;
 	width=&#34;2720&#34;
 	height=&#34;1654&#34;
-	srcset=&#34;http://localhost:1313/posts/keep2notion/images/secret_huc82d7b839fc53b7a5c86bd3cdfedcac6_421867_480x0_resize_q75_box.jpg 480w, http://localhost:1313/posts/keep2notion/images/secret_huc82d7b839fc53b7a5c86bd3cdfedcac6_421867_1024x0_resize_q75_box.jpg 1024w&#34;
+	srcset=&#34;http://localhost:1313/posts/keep2notion/images/secret_hu9193254705817156569.jpg 480w, http://localhost:1313/posts/keep2notion/images/secret_hu18171953166844438916.jpg 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -76,7 +453,7 @@
 &lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/posts/keep2notion/images/wechat.jpg&#34;
 	width=&#34;559&#34;
 	height=&#34;762&#34;
-	srcset=&#34;http://localhost:1313/posts/keep2notion/images/wechat_hu86c5030def4996e44fc5513e01906a85_51841_480x0_resize_q75_box.jpg 480w, http://localhost:1313/posts/keep2notion/images/wechat_hu86c5030def4996e44fc5513e01906a85_51841_1024x0_resize_q75_box.jpg 1024w&#34;
+	srcset=&#34;http://localhost:1313/posts/keep2notion/images/wechat_hu3595234284741726922.jpg 480w, http://localhost:1313/posts/keep2notion/images/wechat_hu13937659219787580131.jpg 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -89,7 +466,7 @@
 &lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/posts/keep2notion/images/alipay.jpg&#34;
 	width=&#34;540&#34;
 	height=&#34;840&#34;
-	srcset=&#34;http://localhost:1313/posts/keep2notion/images/alipay_hu1d6a72323eb6e409b77b09aed15a1c1a_76025_480x0_resize_q75_box.jpg 480w, http://localhost:1313/posts/keep2notion/images/alipay_hu1d6a72323eb6e409b77b09aed15a1c1a_76025_1024x0_resize_q75_box.jpg 1024w&#34;
+	srcset=&#34;http://localhost:1313/posts/keep2notion/images/alipay_hu7340839020198133067.jpg 480w, http://localhost:1313/posts/keep2notion/images/alipay_hu17362895171651341820.jpg 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -103,7 +480,7 @@
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/posts/keep2notion/images/wexin.jpg&#34;
 	width=&#34;475&#34;
 	height=&#34;648&#34;
-	srcset=&#34;http://localhost:1313/posts/keep2notion/images/wexin_hudde04df3fb5300de607ebdb5fb2602cf_52403_480x0_resize_q75_box.jpg 480w, http://localhost:1313/posts/keep2notion/images/wexin_hudde04df3fb5300de607ebdb5fb2602cf_52403_1024x0_resize_q75_box.jpg 1024w&#34;
+	srcset=&#34;http://localhost:1313/posts/keep2notion/images/wexin_hu13484399580718362098.jpg 480w, http://localhost:1313/posts/keep2notion/images/wexin_hu3842367349424335297.jpg 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -343,54 +720,54 @@
 &lt;/blockquote&gt;
 &lt;p&gt;具体的变量名可以参考下表中的变量名，值为你想要修改的名字。&lt;/p&gt;
 &lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;变量名&lt;/th&gt;
-&lt;th&gt;当前数据库的名字&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;BOOK_DATABASE_NAME&lt;/td&gt;
-&lt;td&gt;书架&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;REVIEW_DATABASE_NAME&lt;/td&gt;
-&lt;td&gt;笔记&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;BOOKMARK_DATABASE_NAME&lt;/td&gt;
-&lt;td&gt;划线&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;DAY_DATABASE_NAME&lt;/td&gt;
-&lt;td&gt;日&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;WEEK_DATABASE_NAME&lt;/td&gt;
-&lt;td&gt;周&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;MONTH_DATABASE_NAME&lt;/td&gt;
-&lt;td&gt;月&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;YEAR_DATABASE_NAME&lt;/td&gt;
-&lt;td&gt;年&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;CATEGORY_DATABASE_NAME&lt;/td&gt;
-&lt;td&gt;分类&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;AUTHOR_DATABASE_NAME&lt;/td&gt;
-&lt;td&gt;作者&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;CHAPTER_DATABASE_NAME&lt;/td&gt;
-&lt;td&gt;章节&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;变量名&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;当前数据库的名字&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;BOOK_DATABASE_NAME&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;书架&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;REVIEW_DATABASE_NAME&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;笔记&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;BOOKMARK_DATABASE_NAME&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;划线&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;DAY_DATABASE_NAME&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;日&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;WEEK_DATABASE_NAME&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;周&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;MONTH_DATABASE_NAME&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;月&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;YEAR_DATABASE_NAME&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;年&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;CATEGORY_DATABASE_NAME&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;分类&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;AUTHOR_DATABASE_NAME&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;作者&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;CHAPTER_DATABASE_NAME&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;章节&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;除此之外，其他数据可以任意修改，包括页面的布局都不会影响程序运行。&lt;/p&gt;
 &lt;ol start=&#34;4&#34;&gt;
@@ -502,7 +879,7 @@
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/posts/github_heatmap/images/5.jpg&#34;
 	width=&#34;1466&#34;
 	height=&#34;390&#34;
-	srcset=&#34;http://localhost:1313/posts/github_heatmap/images/5_huc82d7b839fc53b7a5c86bd3cdfedcac6_120027_480x0_resize_q75_box.jpg 480w, http://localhost:1313/posts/github_heatmap/images/5_huc82d7b839fc53b7a5c86bd3cdfedcac6_120027_1024x0_resize_q75_box.jpg 1024w&#34;
+	srcset=&#34;http://localhost:1313/posts/github_heatmap/images/5_hu3038527515622514348.jpg 480w, http://localhost:1313/posts/github_heatmap/images/5_hu13064418878014064126.jpg 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -544,38 +921,38 @@
 &lt;/h2&gt;&lt;p&gt;和上面设置Year一样依次选择Settings-&amp;gt;Secrets and variables -&amp;gt; variables-&amp;gt; New repository variable。
 具体的变量名可以参考下表中的变量名，值为色值。&lt;/p&gt;
 &lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;变量名&lt;/th&gt;
-&lt;th&gt;变量说明&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;BACKGROUND_COLOR&lt;/td&gt;
-&lt;td&gt;背景颜色&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;DOM_COLOR&lt;/td&gt;
-&lt;td&gt;未填充的色块&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;TRACK_COLOR&lt;/td&gt;
-&lt;td&gt;一级颜色&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;SPECIAL_COLOR&lt;/td&gt;
-&lt;td&gt;二级颜色&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;SPECIAL_COLOR2&lt;/td&gt;
-&lt;td&gt;三级级颜色&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;TEXT_COLOR&lt;/td&gt;
-&lt;td&gt;文字颜色&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;变量名&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;变量说明&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;BACKGROUND_COLOR&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;背景颜色&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;DOM_COLOR&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;未填充的色块&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;TRACK_COLOR&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;一级颜色&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;SPECIAL_COLOR&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;二级颜色&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;SPECIAL_COLOR2&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;三级级颜色&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;TEXT_COLOR&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;文字颜色&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/04/521ec621b6acebc297d9700f9bfac1eb.jpg&#34;
 	
@@ -599,7 +976,7 @@
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/posts/github_heatmap/images/6.jpg&#34;
 	width=&#34;3022&#34;
 	height=&#34;1270&#34;
-	srcset=&#34;http://localhost:1313/posts/github_heatmap/images/6_huc82d7b839fc53b7a5c86bd3cdfedcac6_301544_480x0_resize_q75_box.jpg 480w, http://localhost:1313/posts/github_heatmap/images/6_huc82d7b839fc53b7a5c86bd3cdfedcac6_301544_1024x0_resize_q75_box.jpg 1024w&#34;
+	srcset=&#34;http://localhost:1313/posts/github_heatmap/images/6_hu10203153469398842297.jpg 480w, http://localhost:1313/posts/github_heatmap/images/6_hu7497221693733691004.jpg 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	

@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="保存键值对数据 原文：https://developer.android.com/training/data-storage/shared-preferences 如果您有想要保存的相对较小键值对集合，则应使用 SharedPreferences API。SharedPreferences 对象指向包含键值对的文件，并提供读写这些键值对的简单方法。每个 SharedPreferences 文件均由框架进行管理，可以是私有文件，也可以是共享文件。 {% hint style=&ldquo;info&rdquo; %} 注意：SharedPreferences API 用于读写键值对，不要将它们与 Preference API 混淆，后者可帮助您构建用于显示应用设置的界面（虽然它们也使用 SharedPreferences 保存用户设置）。如需了解 Preference API，请参阅设置开发者指南。 {% endhint %} 获取SharedPreferences 您可以通过调用以下方法之一创建新的共享偏好设置文件或访问已有共享偏好设置文件： getSharedPreferences() - 如果您需要多个由名称（使用第一个参数指定）标识的共享偏好设置文件，则使用此方法。您可以从您的应用中的任何 Context 调用此方法。 getPreferences() - 如果您只需使用 Activity 的一个共享首选项，请从 Activity 中使用此方法。由于这会检索属于该 Activity 的默认共享偏好设置文件，因此您无需提供名称。 如果您使用 SharedPreferences API 保存应用设置，则应改用PreferenceManager 的getDefaultSharedPreferences() 方法获取整个应用的默认共享偏好设置文件。如需了解详情，请参阅设置开发者指南。 1 2 3 4 5 6 7 //在私有模式下打开该文件，确保只有您的应用可以访问该文件： val sharedPreferences1 = getSharedPreferences(&#34;file1&#34;, Context.MODE_PRIVATE) sharedPreferences1.edit().putInt(&#34;value1&#34;,1).apply() val sharedPreferences2 = getPreferences(Context.MODE_PRIVATE) sharedPreferences2.edit().putInt(&#34;value2&#34;,2).apply() val sharedPreferences3 = PreferenceManager.getDefaultSharedPreferences(this) sharedPreferences3.">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="保存键值对数据 原文：https://developer.android.com/training/data-storage/shared-preferences\n如果您有想要保存的相对较小键值对集合，则应使用 SharedPreferences API。SharedPreferences 对象指向包含键值对的文件，并提供读写这些键值对的简单方法。每个 SharedPreferences 文件均由框架进行管理，可以是私有文件，也可以是共享文件。\n{% hint style=&ldquo;info&rdquo; %} 注意：SharedPreferences API 用于读写键值对，不要将它们与 Preference API 混淆，后者可帮助您构建用于显示应用设置的界面（虽然它们也使用 SharedPreferences 保存用户设置）。如需了解 Preference API，请参阅设置开发者指南。 {% endhint %}\n">
 <title></title>
 
 <link rel='canonical' href='http://localhost:1313/android/data-storage/shared-preferences/'>
 
 <link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
-<meta property='og:description' content="保存键值对数据 原文：https://developer.android.com/training/data-storage/shared-preferences 如果您有想要保存的相对较小键值对集合，则应使用 SharedPreferences API。SharedPreferences 对象指向包含键值对的文件，并提供读写这些键值对的简单方法。每个 SharedPreferences 文件均由框架进行管理，可以是私有文件，也可以是共享文件。 {% hint style=&ldquo;info&rdquo; %} 注意：SharedPreferences API 用于读写键值对，不要将它们与 Preference API 混淆，后者可帮助您构建用于显示应用设置的界面（虽然它们也使用 SharedPreferences 保存用户设置）。如需了解 Preference API，请参阅设置开发者指南。 {% endhint %} 获取SharedPreferences 您可以通过调用以下方法之一创建新的共享偏好设置文件或访问已有共享偏好设置文件： getSharedPreferences() - 如果您需要多个由名称（使用第一个参数指定）标识的共享偏好设置文件，则使用此方法。您可以从您的应用中的任何 Context 调用此方法。 getPreferences() - 如果您只需使用 Activity 的一个共享首选项，请从 Activity 中使用此方法。由于这会检索属于该 Activity 的默认共享偏好设置文件，因此您无需提供名称。 如果您使用 SharedPreferences API 保存应用设置，则应改用PreferenceManager 的getDefaultSharedPreferences() 方法获取整个应用的默认共享偏好设置文件。如需了解详情，请参阅设置开发者指南。 1 2 3 4 5 6 7 //在私有模式下打开该文件，确保只有您的应用可以访问该文件： val sharedPreferences1 = getSharedPreferences(&#34;file1&#34;, Context.MODE_PRIVATE) sharedPreferences1.edit().putInt(&#34;value1&#34;,1).apply() val sharedPreferences2 = getPreferences(Context.MODE_PRIVATE) sharedPreferences2.edit().putInt(&#34;value2&#34;,2).apply() val sharedPreferences3 = PreferenceManager.getDefaultSharedPreferences(this) sharedPreferences3.">
+<meta property='og:description' content="保存键值对数据 原文：https://developer.android.com/training/data-storage/shared-preferences\n如果您有想要保存的相对较小键值对集合，则应使用 SharedPreferences API。SharedPreferences 对象指向包含键值对的文件，并提供读写这些键值对的简单方法。每个 SharedPreferences 文件均由框架进行管理，可以是私有文件，也可以是共享文件。\n{% hint style=&ldquo;info&rdquo; %} 注意：SharedPreferences API 用于读写键值对，不要将它们与 Preference API 混淆，后者可帮助您构建用于显示应用设置的界面（虽然它们也使用 SharedPreferences 保存用户设置）。如需了解 Preference API，请参阅设置开发者指南。 {% endhint %}\n">
 <meta property='og:url' content='http://localhost:1313/android/data-storage/shared-preferences/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="保存键值对数据 原文：https://developer.android.com/training/data-storage/shared-preferences 如果您有想要保存的相对较小键值对集合，则应使用 SharedPreferences API。SharedPreferences 对象指向包含键值对的文件，并提供读写这些键值对的简单方法。每个 SharedPreferences 文件均由框架进行管理，可以是私有文件，也可以是共享文件。 {% hint style=&ldquo;info&rdquo; %} 注意：SharedPreferences API 用于读写键值对，不要将它们与 Preference API 混淆，后者可帮助您构建用于显示应用设置的界面（虽然它们也使用 SharedPreferences 保存用户设置）。如需了解 Preference API，请参阅设置开发者指南。 {% endhint %} 获取SharedPreferences 您可以通过调用以下方法之一创建新的共享偏好设置文件或访问已有共享偏好设置文件： getSharedPreferences() - 如果您需要多个由名称（使用第一个参数指定）标识的共享偏好设置文件，则使用此方法。您可以从您的应用中的任何 Context 调用此方法。 getPreferences() - 如果您只需使用 Activity 的一个共享首选项，请从 Activity 中使用此方法。由于这会检索属于该 Activity 的默认共享偏好设置文件，因此您无需提供名称。 如果您使用 SharedPreferences API 保存应用设置，则应改用PreferenceManager 的getDefaultSharedPreferences() 方法获取整个应用的默认共享偏好设置文件。如需了解详情，请参阅设置开发者指南。 1 2 3 4 5 6 7 //在私有模式下打开该文件，确保只有您的应用可以访问该文件： val sharedPreferences1 = getSharedPreferences(&#34;file1&#34;, Context.MODE_PRIVATE) sharedPreferences1.edit().putInt(&#34;value1&#34;,1).apply() val sharedPreferences2 = getPreferences(Context.MODE_PRIVATE) sharedPreferences2.edit().putInt(&#34;value2&#34;,2).apply() val sharedPreferences3 = PreferenceManager.getDefaultSharedPreferences(this) sharedPreferences3.">
-  
-    
+<meta name="twitter:description" content="保存键值对数据 原文：https://developer.android.com/training/data-storage/shared-preferences\n如果您有想要保存的相对较小键值对集合，则应使用 SharedPreferences API。SharedPreferences 对象指向包含键值对的文件，并提供读写这些键值对的简单方法。每个 SharedPreferences 文件均由框架进行管理，可以是私有文件，也可以是共享文件。\n{% hint style=&ldquo;info&rdquo; %} 注意：SharedPreferences API 用于读写键值对，不要将它们与 Preference API 混淆，后者可帮助您构建用于显示应用设置的界面（虽然它们也使用 SharedPreferences 保存用户设置）。如需了解 Preference API，请参阅设置开发者指南。 {% endhint %}\n">
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
       <script>
         var doNotTrack = false;
@@ -28,11 +26,7 @@
           gtag('js', new Date());
           gtag('config', 'G-G84J9N38RL');
         }
-      </script>
-    
-  
-
-<style>
+      </script><style>
     :root {
         --sys-font-family: "LXGW WenKai TC";
         --zh-font-family: "LXGW WenKai TC";
@@ -94,7 +88,7 @@
                     
                     
                         
-                        <img src="/images/avatar_hu74e4307e0baa534a3da4ee0210445065_34446_300x0_resize_q75_box.jpeg" width="300"
+                        <img src="/images/avatar_hu15583006483879718621.jpeg" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -114,7 +108,7 @@
             
                 <li>
                     <a 
-                        href='https://twitter.com/malinkang'
+                        href='https://space.bilibili.com/27440979'
                         target="_blank"
                         title="Bilibili"
                         rel="me"
@@ -128,7 +122,7 @@
             
                 <li>
                     <a 
-                        href='https://www.douban.com/people/malinkang/https://space.bilibili.com/27440979'
+                        href='https://www.douban.com/people/malinkang/'
                         target="_blank"
                         title="Douban"
                         rel="me"

@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="1. 介绍 Universal Image Loader 具有以下特性： 多线程加载图片 可以高度的自定义ImageLoader的配置（如线程执行，下载器，编码，内存和硬盘缓存，图片展示的选项等等） 许多自定义选项可以被每个展示的图片调用 图片可以缓存在内存中和硬盘上 可以监听图片的加载进度和下载进度 2.基本配置 2.1 构建项目 Jar包下载地址：https://github.com/nostra13/Android-Universal-Image-Loader Maven dependency: 1 2 3 4 5 &lt;dependency&gt; &lt;groupId&gt;com.nostra13.universalimageloader&lt;/groupId&gt; &lt;artifactId&gt;universal-image-loader&lt;/artifactId&gt; &lt;version&gt;1.9.3&lt;/version&gt; &lt;/dependency&gt; Gradle dependency: 1 compile &#39;com.nostra13.universalimageloader:universal-image-loader:1.9.3&#39; 2.2 配置 Android Manifest 在android Mainfest 配置必要的权限 1 2 3 4 5 6 7 8 &lt;manifest&gt; &lt;!-- 网络权限 --&gt; &lt;uses-permission android:name=&#34;android.permission.INTERNET&#34; /&gt; &lt;!-- 内存卡写入权限 --&gt; &lt;uses-permission android:name=&#34;android.permission.WRITE_EXTERNAL_STORAGE&#34; /&gt; ... &lt;/manifest&gt; 2.3 在Application和Activity中初始化ImageLoader 在第一次使用ImageLoader之前一定要在Application或Activity中初始化ImageLoader 1 2 3 4 5 6 7 8 9 10 11 12 13 14 public class MyActivity extends Activity { @Override public void onCreate() { super.">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="1. 介绍 Universal Image Loader 具有以下特性：\n多线程加载图片 可以高度的自定义ImageLoader的配置（如线程执行，下载器，编码，内存和硬盘缓存，图片展示的选项等等） 许多自定义选项可以被每个展示的图片调用 图片可以缓存在内存中和硬盘上 可以监听图片的加载进度和下载进度 2.基本配置 2.1 构建项目 Jar包下载地址：https://github.com/nostra13/Android-Universal-Image-Loader\nMaven dependency:\n1 2 3 4 5 &lt;dependency&gt; &lt;groupId&gt;com.nostra13.universalimageloader&lt;/groupId&gt; &lt;artifactId&gt;universal-image-loader&lt;/artifactId&gt; &lt;version&gt;1.9.3&lt;/version&gt; &lt;/dependency&gt; ">
 <title></title>
 
 <link rel='canonical' href='http://localhost:1313/android/network/android-universal-image-loader/'>
 
 <link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
-<meta property='og:description' content="1. 介绍 Universal Image Loader 具有以下特性： 多线程加载图片 可以高度的自定义ImageLoader的配置（如线程执行，下载器，编码，内存和硬盘缓存，图片展示的选项等等） 许多自定义选项可以被每个展示的图片调用 图片可以缓存在内存中和硬盘上 可以监听图片的加载进度和下载进度 2.基本配置 2.1 构建项目 Jar包下载地址：https://github.com/nostra13/Android-Universal-Image-Loader Maven dependency: 1 2 3 4 5 &lt;dependency&gt; &lt;groupId&gt;com.nostra13.universalimageloader&lt;/groupId&gt; &lt;artifactId&gt;universal-image-loader&lt;/artifactId&gt; &lt;version&gt;1.9.3&lt;/version&gt; &lt;/dependency&gt; Gradle dependency: 1 compile &#39;com.nostra13.universalimageloader:universal-image-loader:1.9.3&#39; 2.2 配置 Android Manifest 在android Mainfest 配置必要的权限 1 2 3 4 5 6 7 8 &lt;manifest&gt; &lt;!-- 网络权限 --&gt; &lt;uses-permission android:name=&#34;android.permission.INTERNET&#34; /&gt; &lt;!-- 内存卡写入权限 --&gt; &lt;uses-permission android:name=&#34;android.permission.WRITE_EXTERNAL_STORAGE&#34; /&gt; ... &lt;/manifest&gt; 2.3 在Application和Activity中初始化ImageLoader 在第一次使用ImageLoader之前一定要在Application或Activity中初始化ImageLoader 1 2 3 4 5 6 7 8 9 10 11 12 13 14 public class MyActivity extends Activity { @Override public void onCreate() { super.">
+<meta property='og:description' content="1. 介绍 Universal Image Loader 具有以下特性：\n多线程加载图片 可以高度的自定义ImageLoader的配置（如线程执行，下载器，编码，内存和硬盘缓存，图片展示的选项等等） 许多自定义选项可以被每个展示的图片调用 图片可以缓存在内存中和硬盘上 可以监听图片的加载进度和下载进度 2.基本配置 2.1 构建项目 Jar包下载地址：https://github.com/nostra13/Android-Universal-Image-Loader\nMaven dependency:\n1 2 3 4 5 &lt;dependency&gt; &lt;groupId&gt;com.nostra13.universalimageloader&lt;/groupId&gt; &lt;artifactId&gt;universal-image-loader&lt;/artifactId&gt; &lt;version&gt;1.9.3&lt;/version&gt; &lt;/dependency&gt; ">
 <meta property='og:url' content='http://localhost:1313/android/network/android-universal-image-loader/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="1. 介绍 Universal Image Loader 具有以下特性： 多线程加载图片 可以高度的自定义ImageLoader的配置（如线程执行，下载器，编码，内存和硬盘缓存，图片展示的选项等等） 许多自定义选项可以被每个展示的图片调用 图片可以缓存在内存中和硬盘上 可以监听图片的加载进度和下载进度 2.基本配置 2.1 构建项目 Jar包下载地址：https://github.com/nostra13/Android-Universal-Image-Loader Maven dependency: 1 2 3 4 5 &lt;dependency&gt; &lt;groupId&gt;com.nostra13.universalimageloader&lt;/groupId&gt; &lt;artifactId&gt;universal-image-loader&lt;/artifactId&gt; &lt;version&gt;1.9.3&lt;/version&gt; &lt;/dependency&gt; Gradle dependency: 1 compile &#39;com.nostra13.universalimageloader:universal-image-loader:1.9.3&#39; 2.2 配置 Android Manifest 在android Mainfest 配置必要的权限 1 2 3 4 5 6 7 8 &lt;manifest&gt; &lt;!-- 网络权限 --&gt; &lt;uses-permission android:name=&#34;android.permission.INTERNET&#34; /&gt; &lt;!-- 内存卡写入权限 --&gt; &lt;uses-permission android:name=&#34;android.permission.WRITE_EXTERNAL_STORAGE&#34; /&gt; ... &lt;/manifest&gt; 2.3 在Application和Activity中初始化ImageLoader 在第一次使用ImageLoader之前一定要在Application或Activity中初始化ImageLoader 1 2 3 4 5 6 7 8 9 10 11 12 13 14 public class MyActivity extends Activity { @Override public void onCreate() { super.">
-  
-    
+<meta name="twitter:description" content="1. 介绍 Universal Image Loader 具有以下特性：\n多线程加载图片 可以高度的自定义ImageLoader的配置（如线程执行，下载器，编码，内存和硬盘缓存，图片展示的选项等等） 许多自定义选项可以被每个展示的图片调用 图片可以缓存在内存中和硬盘上 可以监听图片的加载进度和下载进度 2.基本配置 2.1 构建项目 Jar包下载地址：https://github.com/nostra13/Android-Universal-Image-Loader\nMaven dependency:\n1 2 3 4 5 &lt;dependency&gt; &lt;groupId&gt;com.nostra13.universalimageloader&lt;/groupId&gt; &lt;artifactId&gt;universal-image-loader&lt;/artifactId&gt; &lt;version&gt;1.9.3&lt;/version&gt; &lt;/dependency&gt; ">
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
       <script>
         var doNotTrack = false;
@@ -28,11 +26,7 @@
           gtag('js', new Date());
           gtag('config', 'G-G84J9N38RL');
         }
-      </script>
-    
-  
-
-<style>
+      </script><style>
     :root {
         --sys-font-family: "LXGW WenKai TC";
         --zh-font-family: "LXGW WenKai TC";
@@ -94,7 +88,7 @@
                     
                     
                         
-                        <img src="/images/avatar_hu74e4307e0baa534a3da4ee0210445065_34446_300x0_resize_q75_box.jpeg" width="300"
+                        <img src="/images/avatar_hu15583006483879718621.jpeg" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -114,7 +108,7 @@
             
                 <li>
                     <a 
-                        href='https://twitter.com/malinkang'
+                        href='https://space.bilibili.com/27440979'
                         target="_blank"
                         title="Bilibili"
                         rel="me"
@@ -128,7 +122,7 @@
             
                 <li>
                     <a 
-                        href='https://www.douban.com/people/malinkang/https://space.bilibili.com/27440979'
+                        href='https://www.douban.com/people/malinkang/'
                         target="_blank"
                         title="Douban"
                         rel="me"

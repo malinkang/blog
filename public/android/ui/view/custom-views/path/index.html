@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Path使用 Path封装了由直线和曲线(二次，三次贝塞尔曲线)构成的几何路径。你能用Canvas中的drawPath来把这条路径画出来(同样支持Paint的不同绘制模式)，也可以用于剪裁画布和根据路径绘制文字。我们有时会用Path来描述一个图像的轮廓，所以也会称为轮廓线(轮廓线仅是Path的一种使用方法，两者并不等价)。 canvas只能绘制出常见的形状，但是无法绘制出复杂的形状。 moveTo、 setLastPoint、 lineTo 和 close moveTo：移动下一次操作的起点位置 setLastPoint：重置当前path中最后一个点位置，如果在绘制之前调用，效果和moveTo相同 lineTo：添加上一个点到当前点之间的直线到Path close：连接第一个点连接到最后一个点，形成一个闭合区域 1 2 3 4 Paint mPaint = new Paint(); // 创建画笔 mPaint.setColor(getResources().getColor(R.color.green));//设置画笔颜色 mPaint.setStyle(Paint.Style.STROKE);//设置画笔样式 mPaint.setStrokeWidth(10f); //设置画笔宽度为10px 1 2 3 4 5 Path path = new Path(); // 创建Path path.lineTo(400, 400); // 添加(0,0)到(400,400)之间的直线 path.moveTo(400, 200); // 移动到(400,200) path.lineTo(200, 0); // 添加(200,0)到(400,400)之间的直线 canvas.drawPath(path, mPaint); // 绘制Path 1 2 3 4 5 6 Path path = new Path(); // 创建Path path.lineTo(400, 400); // 添加(0,0)到(400,400)之间的直线 path.">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Path使用 Path封装了由直线和曲线(二次，三次贝塞尔曲线)构成的几何路径。你能用Canvas中的drawPath来把这条路径画出来(同样支持Paint的不同绘制模式)，也可以用于剪裁画布和根据路径绘制文字。我们有时会用Path来描述一个图像的轮廓，所以也会称为轮廓线(轮廓线仅是Path的一种使用方法，两者并不等价)。\ncanvas只能绘制出常见的形状，但是无法绘制出复杂的形状。\nmoveTo、 setLastPoint、 lineTo 和 close moveTo：移动下一次操作的起点位置 setLastPoint：重置当前path中最后一个点位置，如果在绘制之前调用，效果和moveTo相同 lineTo：添加上一个点到当前点之间的直线到Path close：连接第一个点连接到最后一个点，形成一个闭合区域 1 2 3 4 Paint mPaint = new Paint(); // 创建画笔 mPaint.setColor(getResources().getColor(R.color.green));//设置画笔颜色 mPaint.setStyle(Paint.Style.STROKE);//设置画笔样式 mPaint.setStrokeWidth(10f); //设置画笔宽度为10px ">
 <title></title>
 
 <link rel='canonical' href='http://localhost:1313/android/ui/view/custom-views/path/'>
 
 <link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
-<meta property='og:description' content="Path使用 Path封装了由直线和曲线(二次，三次贝塞尔曲线)构成的几何路径。你能用Canvas中的drawPath来把这条路径画出来(同样支持Paint的不同绘制模式)，也可以用于剪裁画布和根据路径绘制文字。我们有时会用Path来描述一个图像的轮廓，所以也会称为轮廓线(轮廓线仅是Path的一种使用方法，两者并不等价)。 canvas只能绘制出常见的形状，但是无法绘制出复杂的形状。 moveTo、 setLastPoint、 lineTo 和 close moveTo：移动下一次操作的起点位置 setLastPoint：重置当前path中最后一个点位置，如果在绘制之前调用，效果和moveTo相同 lineTo：添加上一个点到当前点之间的直线到Path close：连接第一个点连接到最后一个点，形成一个闭合区域 1 2 3 4 Paint mPaint = new Paint(); // 创建画笔 mPaint.setColor(getResources().getColor(R.color.green));//设置画笔颜色 mPaint.setStyle(Paint.Style.STROKE);//设置画笔样式 mPaint.setStrokeWidth(10f); //设置画笔宽度为10px 1 2 3 4 5 Path path = new Path(); // 创建Path path.lineTo(400, 400); // 添加(0,0)到(400,400)之间的直线 path.moveTo(400, 200); // 移动到(400,200) path.lineTo(200, 0); // 添加(200,0)到(400,400)之间的直线 canvas.drawPath(path, mPaint); // 绘制Path 1 2 3 4 5 6 Path path = new Path(); // 创建Path path.lineTo(400, 400); // 添加(0,0)到(400,400)之间的直线 path.">
+<meta property='og:description' content="Path使用 Path封装了由直线和曲线(二次，三次贝塞尔曲线)构成的几何路径。你能用Canvas中的drawPath来把这条路径画出来(同样支持Paint的不同绘制模式)，也可以用于剪裁画布和根据路径绘制文字。我们有时会用Path来描述一个图像的轮廓，所以也会称为轮廓线(轮廓线仅是Path的一种使用方法，两者并不等价)。\ncanvas只能绘制出常见的形状，但是无法绘制出复杂的形状。\nmoveTo、 setLastPoint、 lineTo 和 close moveTo：移动下一次操作的起点位置 setLastPoint：重置当前path中最后一个点位置，如果在绘制之前调用，效果和moveTo相同 lineTo：添加上一个点到当前点之间的直线到Path close：连接第一个点连接到最后一个点，形成一个闭合区域 1 2 3 4 Paint mPaint = new Paint(); // 创建画笔 mPaint.setColor(getResources().getColor(R.color.green));//设置画笔颜色 mPaint.setStyle(Paint.Style.STROKE);//设置画笔样式 mPaint.setStrokeWidth(10f); //设置画笔宽度为10px ">
 <meta property='og:url' content='http://localhost:1313/android/ui/view/custom-views/path/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="Path使用 Path封装了由直线和曲线(二次，三次贝塞尔曲线)构成的几何路径。你能用Canvas中的drawPath来把这条路径画出来(同样支持Paint的不同绘制模式)，也可以用于剪裁画布和根据路径绘制文字。我们有时会用Path来描述一个图像的轮廓，所以也会称为轮廓线(轮廓线仅是Path的一种使用方法，两者并不等价)。 canvas只能绘制出常见的形状，但是无法绘制出复杂的形状。 moveTo、 setLastPoint、 lineTo 和 close moveTo：移动下一次操作的起点位置 setLastPoint：重置当前path中最后一个点位置，如果在绘制之前调用，效果和moveTo相同 lineTo：添加上一个点到当前点之间的直线到Path close：连接第一个点连接到最后一个点，形成一个闭合区域 1 2 3 4 Paint mPaint = new Paint(); // 创建画笔 mPaint.setColor(getResources().getColor(R.color.green));//设置画笔颜色 mPaint.setStyle(Paint.Style.STROKE);//设置画笔样式 mPaint.setStrokeWidth(10f); //设置画笔宽度为10px 1 2 3 4 5 Path path = new Path(); // 创建Path path.lineTo(400, 400); // 添加(0,0)到(400,400)之间的直线 path.moveTo(400, 200); // 移动到(400,200) path.lineTo(200, 0); // 添加(200,0)到(400,400)之间的直线 canvas.drawPath(path, mPaint); // 绘制Path 1 2 3 4 5 6 Path path = new Path(); // 创建Path path.lineTo(400, 400); // 添加(0,0)到(400,400)之间的直线 path.">
-  
-    
+<meta name="twitter:description" content="Path使用 Path封装了由直线和曲线(二次，三次贝塞尔曲线)构成的几何路径。你能用Canvas中的drawPath来把这条路径画出来(同样支持Paint的不同绘制模式)，也可以用于剪裁画布和根据路径绘制文字。我们有时会用Path来描述一个图像的轮廓，所以也会称为轮廓线(轮廓线仅是Path的一种使用方法，两者并不等价)。\ncanvas只能绘制出常见的形状，但是无法绘制出复杂的形状。\nmoveTo、 setLastPoint、 lineTo 和 close moveTo：移动下一次操作的起点位置 setLastPoint：重置当前path中最后一个点位置，如果在绘制之前调用，效果和moveTo相同 lineTo：添加上一个点到当前点之间的直线到Path close：连接第一个点连接到最后一个点，形成一个闭合区域 1 2 3 4 Paint mPaint = new Paint(); // 创建画笔 mPaint.setColor(getResources().getColor(R.color.green));//设置画笔颜色 mPaint.setStyle(Paint.Style.STROKE);//设置画笔样式 mPaint.setStrokeWidth(10f); //设置画笔宽度为10px ">
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
       <script>
         var doNotTrack = false;
@@ -28,11 +26,7 @@
           gtag('js', new Date());
           gtag('config', 'G-G84J9N38RL');
         }
-      </script>
-    
-  
-
-<style>
+      </script><style>
     :root {
         --sys-font-family: "LXGW WenKai TC";
         --zh-font-family: "LXGW WenKai TC";
@@ -94,7 +88,7 @@
                     
                     
                         
-                        <img src="/images/avatar_hu74e4307e0baa534a3da4ee0210445065_34446_300x0_resize_q75_box.jpeg" width="300"
+                        <img src="/images/avatar_hu15583006483879718621.jpeg" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -114,7 +108,7 @@
             
                 <li>
                     <a 
-                        href='https://twitter.com/malinkang'
+                        href='https://space.bilibili.com/27440979'
                         target="_blank"
                         title="Bilibili"
                         rel="me"
@@ -128,7 +122,7 @@
             
                 <li>
                     <a 
-                        href='https://www.douban.com/people/malinkang/https://space.bilibili.com/27440979'
+                        href='https://www.douban.com/people/malinkang/'
                         target="_blank"
                         title="Douban"
                         rel="me"
@@ -838,20 +832,20 @@
 </div>
 </div><p>两个方法中的返回值用于判断布尔运算是否成功。Path.Op可选的值包括如下：</p>
 <div class="table-wrapper"><table>
-<thead>
-<tr>
-<th>逻辑名称</th>
-<th>类比</th>
-<th>说明</th>
-<th>示意图</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>DIFFERENCE</td>
-<td>差集</td>
-<td>Path1中减去Path2后剩下的部分</td>
-<td><img src="http://ww2.sinaimg.cn/large/005Xtdi2gw1f43j85gcaqj305k03c0sn.jpg"
+  <thead>
+      <tr>
+          <th style="text-align: left">逻辑名称</th>
+          <th style="text-align: left">类比</th>
+          <th style="text-align: left">说明</th>
+          <th style="text-align: left">示意图</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">DIFFERENCE</td>
+          <td style="text-align: left">差集</td>
+          <td style="text-align: left">Path1中减去Path2后剩下的部分</td>
+          <td style="text-align: left"><img src="http://ww2.sinaimg.cn/large/005Xtdi2gw1f43j85gcaqj305k03c0sn.jpg"
 	
 	
 	
@@ -859,12 +853,12 @@
 	
 	
 ></td>
-</tr>
-<tr>
-<td>REVERSE_DIFFERENCE</td>
-<td>差集</td>
-<td>Path2中减去Path1后剩下的部分</td>
-<td><img src="http://ww2.sinaimg.cn/large/005Xtdi2gw1f43jbaaw80j305k03c0sn.jpg"
+      </tr>
+      <tr>
+          <td style="text-align: left">REVERSE_DIFFERENCE</td>
+          <td style="text-align: left">差集</td>
+          <td style="text-align: left">Path2中减去Path1后剩下的部分</td>
+          <td style="text-align: left"><img src="http://ww2.sinaimg.cn/large/005Xtdi2gw1f43jbaaw80j305k03c0sn.jpg"
 	
 	
 	
@@ -872,12 +866,12 @@
 	
 	
 ></td>
-</tr>
-<tr>
-<td>INTERSECT</td>
-<td>交集</td>
-<td>Path1与Path2相交的部分</td>
-<td><img src="http://ww3.sinaimg.cn/large/005Xtdi2gw1f43jbj4iddj305k03c746.jpg"
+      </tr>
+      <tr>
+          <td style="text-align: left">INTERSECT</td>
+          <td style="text-align: left">交集</td>
+          <td style="text-align: left">Path1与Path2相交的部分</td>
+          <td style="text-align: left"><img src="http://ww3.sinaimg.cn/large/005Xtdi2gw1f43jbj4iddj305k03c746.jpg"
 	
 	
 	
@@ -885,12 +879,12 @@
 	
 	
 ></td>
-</tr>
-<tr>
-<td>UNION</td>
-<td>并集</td>
-<td>包含全部Path1和Path2</td>
-<td><img src="http://ww2.sinaimg.cn/large/005Xtdi2gw1f43jbqk8rbj305k03cmx4.jpg"
+      </tr>
+      <tr>
+          <td style="text-align: left">UNION</td>
+          <td style="text-align: left">并集</td>
+          <td style="text-align: left">包含全部Path1和Path2</td>
+          <td style="text-align: left"><img src="http://ww2.sinaimg.cn/large/005Xtdi2gw1f43jbqk8rbj305k03cmx4.jpg"
 	
 	
 	
@@ -898,12 +892,12 @@
 	
 	
 ></td>
-</tr>
-<tr>
-<td>XOR</td>
-<td>异或</td>
-<td>包含Path1与Path2但不包括两者相交的部分</td>
-<td><img src="http://ww3.sinaimg.cn/large/005Xtdi2gw1f43jby8c60j305k03c0sp.jpg"
+      </tr>
+      <tr>
+          <td style="text-align: left">XOR</td>
+          <td style="text-align: left">异或</td>
+          <td style="text-align: left">包含Path1与Path2但不包括两者相交的部分</td>
+          <td style="text-align: left"><img src="http://ww3.sinaimg.cn/large/005Xtdi2gw1f43jby8c60j305k03c0sp.jpg"
 	
 	
 	
@@ -911,8 +905,8 @@
 	
 	
 ></td>
-</tr>
-</tbody>
+      </tr>
+  </tbody>
 </table></div>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1017,25 +1011,25 @@
 <h2 id="重置path">重置path
 </h2><p>重置Path有两个方法，分别是reset和rewind，两者区别主要有以下两点：</p>
 <div class="table-wrapper"><table>
-<thead>
-<tr>
-<th>方法</th>
-<th style="text-align:center">是否保留FillType设置</th>
-<th style="text-align:center">是否保留原有数据结构</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>reset</td>
-<td style="text-align:center">是</td>
-<td style="text-align:center">否</td>
-</tr>
-<tr>
-<td>rewind</td>
-<td style="text-align:center">否</td>
-<td style="text-align:center">是</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">方法</th>
+          <th style="text-align: center">是否保留FillType设置</th>
+          <th style="text-align: center">是否保留原有数据结构</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">reset</td>
+          <td style="text-align: center">是</td>
+          <td style="text-align: center">否</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">rewind</td>
+          <td style="text-align: center">否</td>
+          <td style="text-align: center">是</td>
+      </tr>
+  </tbody>
 </table></div>
 <p>这个两个方法应该何时选择呢？</p>
 <p>选择权重: FillType &gt; 数据结构</p>

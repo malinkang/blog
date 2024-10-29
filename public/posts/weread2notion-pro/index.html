@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Warning Weread2Notion和Weread2Notion-Pro是两个不同的项目，模板也不相同，切勿用错模板。 Weread2Notion教程：https://malinkang.com/posts/weread2notion/ 热力图使用教程：https://malinkang.com/posts/github_heatmap/ WeRead2Notion-Pro不仅仅是将微信读书笔记同步到Notion，它是一个强大的管理系统。 WeRead2Notion和WeRead2Notion-Pro有什么区别主要有如下 WeRead2Notion不支持在笔记中添加自己的笔记，每次有新笔记会删除原有的笔记。WeRead2Notion-Pro支持添加自己的笔记，每次更新不会覆盖笔记。 WeRead2Notion功能更加简洁，同步速度更快。 WeRead2Notion-Pro支持按照年、月、周、日的阅读时长、笔记数阅读数的时间统计，支持数据可视化。所以选用哪个看个人喜好，也可以两个都用。 预览 也可以打开网页版本查看效果：https://malinkang.notion.site/9a311b7413b74c8788752249edd0b256?pvs=74 下面给大家讲解一下如何使用： Fork工程 打开Weread2Notion-Pro，点击右上角的Fork（顺便点个star谢谢） 获取微信读书Cookie 浏览器打开网页版微信读书扫码登录 按F12进入开发者模式，依次点网络-&gt;文档，然后选中weread.qq.com，下拉找到Cookie，复制Cookie值 Tip 如果没有内容显示，请刷新下浏览器。 建议使用Chrome浏览器，有的小伙伴使用QQ浏览器拿到的Cookie一直不能用。 授权 浏览器打开 https://api.notion.com/v1/oauth/authorize?client_id=f86ce456-f9cb-4cd5-8e4b-07bd9e18a8f8&response_type=code&owner=user&redirect_uri=https%3A%2F%2Fnotion-auth.malinkang.com%2Fweread2notionpro-oauth-callback 然后点击Next-&gt;Allow access 点击复制按钮，复制NOTION_TOKEN和NOTION_PAGE的值。 在Github的Secrets中添加变量 打开你fork的工程，点击Settings-&gt;Secrets and variables-&gt;New repository secret Name输入WEREAD_COOKIE，Secret输入框中填入你前面获取的微信读书Cookie，然后点击Add secret 同理，继续点击New repository secret，分别增加变量NOTION_TOKEN和NOTION_PAGE。最终的结果如下图所示。 Warning 注意这三个变量名一定要填写正确，一个字母都不能错，否则会同步失败。 运行 上面配置完成之后，打开你Fork的项目，依次点击Actions-&gt;weread note sync-&gt; Run workflow，就可以运行了。 以相同的方式运行read time sync。weread note sync主要用来同步书籍、笔记和划线。read time sync 用来生成热力图和同步阅读时长。 问题排查 可以点击你Fork项目的Action，查看运行状态，绿色是成功，红色是失败。 Warning 运行成功，只代表程序没有出错，不代表就一定同步数据，比如微信Cookie过期就不会报错。所以如果运行成功，Notion中没有数据的话，也可以通过下面第2步来查看日志 2.可以点进去查日志，来自行排查问题。 问题解答 如何自动运行 Github Action提供每日定时自动运行程序的功能。之前有的朋友会问，我关了电脑会同步吗，该脚本运行在Github的服务器上，并不是运行在你的电脑上，所以你关机并不会影响程序自动运行。 每天何时同步 笔记设置的是utc时间的0点同步，如果你在中国，那就是每天8点同步。不过据我观察，Github这个可能有延迟。时间同步是每3个小时运行一次。你也可以自行修改同步时间，具体参考这里。需要注意的是Github每个月2000分钟有免费的额度，如果改的过于频繁可能会导致额度不够。 模板中哪些可以修改 Database中的Formula和Rollup类型的属性名可以修改，其他的属性名不支持修改，因为代码中是通过属性的名字来增加修改这个属性的，修改了名字程序就无法正常运行。要修改数据库的名字需要按照以下步骤。 依次选择Settings-&gt;Secrets and variables -&gt; variables-&gt; New repository variable。">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content=" Warning\n">
 <title>WeRead2NotionPro使用文档</title>
 
 <link rel='canonical' href='http://localhost:1313/posts/weread2notion-pro/'>
 
 <link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="WeRead2NotionPro使用文档">
-<meta property='og:description' content="Warning Weread2Notion和Weread2Notion-Pro是两个不同的项目，模板也不相同，切勿用错模板。 Weread2Notion教程：https://malinkang.com/posts/weread2notion/ 热力图使用教程：https://malinkang.com/posts/github_heatmap/ WeRead2Notion-Pro不仅仅是将微信读书笔记同步到Notion，它是一个强大的管理系统。 WeRead2Notion和WeRead2Notion-Pro有什么区别主要有如下 WeRead2Notion不支持在笔记中添加自己的笔记，每次有新笔记会删除原有的笔记。WeRead2Notion-Pro支持添加自己的笔记，每次更新不会覆盖笔记。 WeRead2Notion功能更加简洁，同步速度更快。 WeRead2Notion-Pro支持按照年、月、周、日的阅读时长、笔记数阅读数的时间统计，支持数据可视化。所以选用哪个看个人喜好，也可以两个都用。 预览 也可以打开网页版本查看效果：https://malinkang.notion.site/9a311b7413b74c8788752249edd0b256?pvs=74 下面给大家讲解一下如何使用： Fork工程 打开Weread2Notion-Pro，点击右上角的Fork（顺便点个star谢谢） 获取微信读书Cookie 浏览器打开网页版微信读书扫码登录 按F12进入开发者模式，依次点网络-&gt;文档，然后选中weread.qq.com，下拉找到Cookie，复制Cookie值 Tip 如果没有内容显示，请刷新下浏览器。 建议使用Chrome浏览器，有的小伙伴使用QQ浏览器拿到的Cookie一直不能用。 授权 浏览器打开 https://api.notion.com/v1/oauth/authorize?client_id=f86ce456-f9cb-4cd5-8e4b-07bd9e18a8f8&response_type=code&owner=user&redirect_uri=https%3A%2F%2Fnotion-auth.malinkang.com%2Fweread2notionpro-oauth-callback 然后点击Next-&gt;Allow access 点击复制按钮，复制NOTION_TOKEN和NOTION_PAGE的值。 在Github的Secrets中添加变量 打开你fork的工程，点击Settings-&gt;Secrets and variables-&gt;New repository secret Name输入WEREAD_COOKIE，Secret输入框中填入你前面获取的微信读书Cookie，然后点击Add secret 同理，继续点击New repository secret，分别增加变量NOTION_TOKEN和NOTION_PAGE。最终的结果如下图所示。 Warning 注意这三个变量名一定要填写正确，一个字母都不能错，否则会同步失败。 运行 上面配置完成之后，打开你Fork的项目，依次点击Actions-&gt;weread note sync-&gt; Run workflow，就可以运行了。 以相同的方式运行read time sync。weread note sync主要用来同步书籍、笔记和划线。read time sync 用来生成热力图和同步阅读时长。 问题排查 可以点击你Fork项目的Action，查看运行状态，绿色是成功，红色是失败。 Warning 运行成功，只代表程序没有出错，不代表就一定同步数据，比如微信Cookie过期就不会报错。所以如果运行成功，Notion中没有数据的话，也可以通过下面第2步来查看日志 2.可以点进去查日志，来自行排查问题。 问题解答 如何自动运行 Github Action提供每日定时自动运行程序的功能。之前有的朋友会问，我关了电脑会同步吗，该脚本运行在Github的服务器上，并不是运行在你的电脑上，所以你关机并不会影响程序自动运行。 每天何时同步 笔记设置的是utc时间的0点同步，如果你在中国，那就是每天8点同步。不过据我观察，Github这个可能有延迟。时间同步是每3个小时运行一次。你也可以自行修改同步时间，具体参考这里。需要注意的是Github每个月2000分钟有免费的额度，如果改的过于频繁可能会导致额度不够。 模板中哪些可以修改 Database中的Formula和Rollup类型的属性名可以修改，其他的属性名不支持修改，因为代码中是通过属性的名字来增加修改这个属性的，修改了名字程序就无法正常运行。要修改数据库的名字需要按照以下步骤。 依次选择Settings-&gt;Secrets and variables -&gt; variables-&gt; New repository variable。">
+<meta property='og:description' content=" Warning\n">
 <meta property='og:url' content='http://localhost:1313/posts/weread2notion-pro/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='微信读书' /><meta property='article:tag' content='Notion' /><meta property='article:tag' content='WeRead' /><meta property='article:published_time' content='2024-01-03T15:28:05&#43;08:00'/><meta property='article:modified_time' content='2024-01-03T15:28:05&#43;08:00'/><meta property='og:image' content='https://images.malinkang.com/2024/03/19dd1580dd991c7985abea7724c87043.png' />
 <meta name="twitter:title" content="WeRead2NotionPro使用文档">
-<meta name="twitter:description" content="Warning Weread2Notion和Weread2Notion-Pro是两个不同的项目，模板也不相同，切勿用错模板。 Weread2Notion教程：https://malinkang.com/posts/weread2notion/ 热力图使用教程：https://malinkang.com/posts/github_heatmap/ WeRead2Notion-Pro不仅仅是将微信读书笔记同步到Notion，它是一个强大的管理系统。 WeRead2Notion和WeRead2Notion-Pro有什么区别主要有如下 WeRead2Notion不支持在笔记中添加自己的笔记，每次有新笔记会删除原有的笔记。WeRead2Notion-Pro支持添加自己的笔记，每次更新不会覆盖笔记。 WeRead2Notion功能更加简洁，同步速度更快。 WeRead2Notion-Pro支持按照年、月、周、日的阅读时长、笔记数阅读数的时间统计，支持数据可视化。所以选用哪个看个人喜好，也可以两个都用。 预览 也可以打开网页版本查看效果：https://malinkang.notion.site/9a311b7413b74c8788752249edd0b256?pvs=74 下面给大家讲解一下如何使用： Fork工程 打开Weread2Notion-Pro，点击右上角的Fork（顺便点个star谢谢） 获取微信读书Cookie 浏览器打开网页版微信读书扫码登录 按F12进入开发者模式，依次点网络-&gt;文档，然后选中weread.qq.com，下拉找到Cookie，复制Cookie值 Tip 如果没有内容显示，请刷新下浏览器。 建议使用Chrome浏览器，有的小伙伴使用QQ浏览器拿到的Cookie一直不能用。 授权 浏览器打开 https://api.notion.com/v1/oauth/authorize?client_id=f86ce456-f9cb-4cd5-8e4b-07bd9e18a8f8&response_type=code&owner=user&redirect_uri=https%3A%2F%2Fnotion-auth.malinkang.com%2Fweread2notionpro-oauth-callback 然后点击Next-&gt;Allow access 点击复制按钮，复制NOTION_TOKEN和NOTION_PAGE的值。 在Github的Secrets中添加变量 打开你fork的工程，点击Settings-&gt;Secrets and variables-&gt;New repository secret Name输入WEREAD_COOKIE，Secret输入框中填入你前面获取的微信读书Cookie，然后点击Add secret 同理，继续点击New repository secret，分别增加变量NOTION_TOKEN和NOTION_PAGE。最终的结果如下图所示。 Warning 注意这三个变量名一定要填写正确，一个字母都不能错，否则会同步失败。 运行 上面配置完成之后，打开你Fork的项目，依次点击Actions-&gt;weread note sync-&gt; Run workflow，就可以运行了。 以相同的方式运行read time sync。weread note sync主要用来同步书籍、笔记和划线。read time sync 用来生成热力图和同步阅读时长。 问题排查 可以点击你Fork项目的Action，查看运行状态，绿色是成功，红色是失败。 Warning 运行成功，只代表程序没有出错，不代表就一定同步数据，比如微信Cookie过期就不会报错。所以如果运行成功，Notion中没有数据的话，也可以通过下面第2步来查看日志 2.可以点进去查日志，来自行排查问题。 问题解答 如何自动运行 Github Action提供每日定时自动运行程序的功能。之前有的朋友会问，我关了电脑会同步吗，该脚本运行在Github的服务器上，并不是运行在你的电脑上，所以你关机并不会影响程序自动运行。 每天何时同步 笔记设置的是utc时间的0点同步，如果你在中国，那就是每天8点同步。不过据我观察，Github这个可能有延迟。时间同步是每3个小时运行一次。你也可以自行修改同步时间，具体参考这里。需要注意的是Github每个月2000分钟有免费的额度，如果改的过于频繁可能会导致额度不够。 模板中哪些可以修改 Database中的Formula和Rollup类型的属性名可以修改，其他的属性名不支持修改，因为代码中是通过属性的名字来增加修改这个属性的，修改了名字程序就无法正常运行。要修改数据库的名字需要按照以下步骤。 依次选择Settings-&gt;Secrets and variables -&gt; variables-&gt; New repository variable。"><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content=" Warning\n"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://images.malinkang.com/2024/03/19dd1580dd991c7985abea7724c87043.png' />
-  
-    
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
       <script>
         var doNotTrack = false;
@@ -29,11 +27,7 @@
           gtag('js', new Date());
           gtag('config', 'G-G84J9N38RL');
         }
-      </script>
-    
-  
-
-<style>
+      </script><style>
     :root {
         --sys-font-family: "LXGW WenKai TC";
         --zh-font-family: "LXGW WenKai TC";
@@ -95,7 +89,7 @@
                     
                     
                         
-                        <img src="/images/avatar_hu74e4307e0baa534a3da4ee0210445065_34446_300x0_resize_q75_box.jpeg" width="300"
+                        <img src="/images/avatar_hu15583006483879718621.jpeg" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -115,7 +109,7 @@
             
                 <li>
                     <a 
-                        href='https://twitter.com/malinkang'
+                        href='https://space.bilibili.com/27440979'
                         target="_blank"
                         title="Bilibili"
                         rel="me"
@@ -129,7 +123,7 @@
             
                 <li>
                     <a 
-                        href='https://www.douban.com/people/malinkang/https://space.bilibili.com/27440979'
+                        href='https://www.douban.com/people/malinkang/'
                         target="_blank"
                         title="Douban"
                         rel="me"
@@ -683,54 +677,54 @@
 </blockquote>
 <p>具体的变量名可以参考下表中的变量名，值为你想要修改的名字。</p>
 <div class="table-wrapper"><table>
-<thead>
-<tr>
-<th>变量名</th>
-<th>当前数据库的名字</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>BOOK_DATABASE_NAME</td>
-<td>书架</td>
-</tr>
-<tr>
-<td>REVIEW_DATABASE_NAME</td>
-<td>笔记</td>
-</tr>
-<tr>
-<td>BOOKMARK_DATABASE_NAME</td>
-<td>划线</td>
-</tr>
-<tr>
-<td>DAY_DATABASE_NAME</td>
-<td>日</td>
-</tr>
-<tr>
-<td>WEEK_DATABASE_NAME</td>
-<td>周</td>
-</tr>
-<tr>
-<td>MONTH_DATABASE_NAME</td>
-<td>月</td>
-</tr>
-<tr>
-<td>YEAR_DATABASE_NAME</td>
-<td>年</td>
-</tr>
-<tr>
-<td>CATEGORY_DATABASE_NAME</td>
-<td>分类</td>
-</tr>
-<tr>
-<td>AUTHOR_DATABASE_NAME</td>
-<td>作者</td>
-</tr>
-<tr>
-<td>CHAPTER_DATABASE_NAME</td>
-<td>章节</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">变量名</th>
+          <th style="text-align: left">当前数据库的名字</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">BOOK_DATABASE_NAME</td>
+          <td style="text-align: left">书架</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">REVIEW_DATABASE_NAME</td>
+          <td style="text-align: left">笔记</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">BOOKMARK_DATABASE_NAME</td>
+          <td style="text-align: left">划线</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">DAY_DATABASE_NAME</td>
+          <td style="text-align: left">日</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">WEEK_DATABASE_NAME</td>
+          <td style="text-align: left">周</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">MONTH_DATABASE_NAME</td>
+          <td style="text-align: left">月</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">YEAR_DATABASE_NAME</td>
+          <td style="text-align: left">年</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">CATEGORY_DATABASE_NAME</td>
+          <td style="text-align: left">分类</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">AUTHOR_DATABASE_NAME</td>
+          <td style="text-align: left">作者</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">CHAPTER_DATABASE_NAME</td>
+          <td style="text-align: left">章节</td>
+      </tr>
+  </tbody>
 </table></div>
 <p>除此之外，其他数据可以任意修改，包括页面的布局都不会影响程序运行。</p>
 <ol start="4">
@@ -842,6 +836,25 @@
     <h2 class="section-title">Related content</h2>
     <div class="related-content">
         <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/posts/weread2notion-pro-settings/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://images.malinkang.com/2024/03/19dd1580dd991c7985abea7724c87043.png" loading="lazy" data-key="" data-hash="https://images.malinkang.com/2024/03/19dd1580dd991c7985abea7724c87043.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Werad2NotionPro支持自定义设置了</h2>
+        </div>
+    </a>
+</article>
+
             
                 
 <article class="has-image">

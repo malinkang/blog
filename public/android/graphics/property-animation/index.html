@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="属性动画系统是一个强大的框架，允许您使几乎任何事物产生动画。您可以定义一个动画以随时间更改任何对象属性，无论它是否绘制到屏幕。属性动画在指定的时间长度内更改属性（对象中的字段）值。要动画某些东西，您可以指定要对其进行动画处理的对象属性，例如对象在屏幕上的位置，要对其进行动画处理的时间以及要在其间进行动画处理的值。 属性动画系统允许您定义动画的以下特征： 时间插值：您可以指定如何根据动画当前所用时间计算属性值。 重复计数和行为：您可以指定是否在持续时间结束时重复动画，并重复播放动画的次数。您还可以指定是否要相反地播放动画。将其设置为反向播放动画向前，然后反复向后，直到达到重复次数。 动画集：您可以将动画组合到一起或顺序播放或指定延迟之后的逻辑集。 帧刷新延迟：您可以指定刷新动画帧的频率。默认设置为每10ms更新一次，但是应用程序刷新帧的速度最终取决于系统整体的繁忙程度，以及系统能够为底层定时器提供多长时间的服务。 属性动画原理 首先，我们来看一个动画如何工作，一个简单的例子。下图描绘了一个假设的对象，它以x属性为动画，表示其在屏幕上的水平位置。动画的持续时间设置为40 ms，行驶距离为40像素。每10 ms，这是默认的帧刷新率，对象水平移动10像素。在40ms结束时，动画停止，物体在水平位置40处结束。这是具有线性插值的动画的示例，意味着物体以恒定的速度移动。 您还可以指定具有非线性内插的动画。下图描绘了在动画开始时加速的假想对象，并且在动画结束时减速。物体仍然在40毫秒内移动40像素，但是非线性。一开始，这个动画加速到中途，然后从中途减速直到动画结束。如下图所示，动画开始和结束时行进的距离小于中间。 我们来详细了解属性动画系统的重要组件如何计算如上所示的动画。下图描绘了主要类之间如何工作。 ValueAnimator对象跟踪您的动画的时间，例如动画已运行多长时间，以及动画所属属性的当前值。 ValueAnimator封装了TimeInterpolator，它定义了动画插值，还有一个TypeEvaluator，它定义了如何计算动画属性的值。例如，在图2中，使用的TimeInterpolator将为AccelerateDecelerateInterpolator，TypeEvaluator将为IntEvaluator。 要启动动画，请创建一个ValueAnimator，并为其创建动画的属性以及动画持续时间给出它的开始和结束值。当你调用start（）动画开始。在整个动画过程中，ValueAnimator根据动画的持续时间和经过多少时间，计算0到1之间的经过分数。经过的分数表示动画完成的时间百分比，0表示0％，1表示100％。例如，在图1中，t = 10ms时的经过分数为0.25，因为总持续时间为t = 40ms。 当ValueAnimator完成计算经过的分数时，它调用当前设置的TimeInterpolator，以计算插值分数。插值分数将经过的分数映射到考虑到设置的时间插值的新分数。例如，在图2中，由于动画缓慢加速，所以在t = 10 ms时，内插分数约为.15，小于经过分数.25。在图1中，插值分数总是与经过分数相同。 当计算插值分数时，ValueAnimator将根据插值分数，起始值和动画的结束值，调用相应的TypeEvaluator来计算您要动画化的属性值。例如，在图2中，在t = 10 ms时插值分数为.15，因此该时间的属性值为.15 X（40 - 0）或6。 属性动画和View动画的区别 View动画系统提供了只能对View对象进行动画化的功能，因此，如果您想为非View对象设置动画效果，则必须实现自己的代码。视图动画系统也受到限制，因为它仅将View对象的几个方面暴露给动画，例如视图的缩放和旋转，而不是背景颜色。 View动画系统的另一个缺点是它只修改了View的绘制位置，而不是实际的View本身。例如，如果您将动画按钮移动到屏幕上，则按钮正确绘制，但您可以单击按钮的实际位置不会更改，因此您必须实现自己的逻辑来处理此问题。 使用属性动画系统，这些约束被完全删除，您可以对任何对象（视图和非视图）的任何属性进行动画处理，并且对象本身实际上进行了修改。属性动画系统在执行动画的过程中也更为强大。在高层次上，您可以为要动画化的属性（如颜色，位置或大小）分配动画师，并可以定义动画的各个方面，如多个动画制作工具的插值和同步。 然而，视图动画系统需要较少的时间来设置，并且需要较少的代码来写入。如果视图动画完成了您需要执行的所有操作，或者如果现有代码已经按照您想要的方式工作，则不需要使用属性动画系统。如果出现用例，在不同情况下使用动画系统也可能是有意义的。 API 概览 您可以在android.animation中找到大部分属性动画系统的API。 因为视图动画系统已经在android.view.animation中定义了许多插值器，所以您也可以在属性动画系统中使用这些插值器。 下表描述了属性动画系统的主要组件。 Animator类提供了创建动画的基本结构。 您通常不直接使用此类，因为它只提供必须扩展的最小功能，以完全支持动画值。 以下子类扩展了Animator： 类 描述 ValueAnimator 属性动画的主要定时引擎，也可以计算要动画的属性的值。它具有计算动画值的所有核心功能，并包含每个动画的时序细节，有关动画重复的信息，接收更新事件的收听者以及设置自定义类型进行评估的能力。动画属性有两部分：计算动画值，并在动画对象和属性上设置这些值。 ValueAnimator不执行第二部分，因此您必须监听由ValueAnimator计算的值的更新，并使用自己的逻辑修改要进行动画化的对象。 ObjectAnimator ValueAnimator的子类，允许您将目标对象和对象属性设置为动画。 当该类计算动画的新值时，此类将相应地更新该属性。 你想在大多数时候使用ObjectAnimator，因为它使得在目标对象上动画化值的过程更容易。 但是，有时候您希望直接使用ValueAnimator，因为ObjectAnimator还有一些限制，例如需要在目标对象上存在特定的教程方法。 AnimatorSet 提供一种将动画分组在一起的机制，以便它们相互运行。 您可以将动画设置为一起播放，顺序播放或指定延迟播放。 有关详细信息，请参阅有关使用动画组合编排多个动画的部分。 Evaluators告诉属性动画系统如何计算给定属性的值。 它们获取Animator类提供的时间数据，动画的开始和结束值，并根据此数据计算属性的动画值。 属性动画系统提供以下评估者： 表2. Evaluators 类/接口 描述 IntEvaluator 用于计算int属性值的默认Evaluator FloatEvaluator 用于计算float属性值的默认Evaluator ArgbEvaluator 用于计算以十六进制值表示的颜色属性的值的默认用于计算float属性值的默认Evaluator。 TypeEvaluator 一个允许您创建自己的Evaluator的接口。 如果要动画的对象属性化不是int，float或color的对象属性，则必须实现TypeEvaluator接口以指定如何计算对象属性的动画值。 如果要处理不同于默认行为的类型，还可以为int，float和color值指定自定义的TypeEvaluator。 时间插值器定义如何计算动画中的特定值作为时间的函数。 例如，您可以指定动画在整个动画中线性发生，这意味着动画在整个时间内均匀移动，或者您可以指定使用非线性时间的动画，例如，在开始时加速并在 动画。 表3描述了android.">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="属性动画系统是一个强大的框架，允许您使几乎任何事物产生动画。您可以定义一个动画以随时间更改任何对象属性，无论它是否绘制到屏幕。属性动画在指定的时间长度内更改属性（对象中的字段）值。要动画某些东西，您可以指定要对其进行动画处理的对象属性，例如对象在屏幕上的位置，要对其进行动画处理的时间以及要在其间进行动画处理的值。\n属性动画系统允许您定义动画的以下特征：\n时间插值：您可以指定如何根据动画当前所用时间计算属性值。 重复计数和行为：您可以指定是否在持续时间结束时重复动画，并重复播放动画的次数。您还可以指定是否要相反地播放动画。将其设置为反向播放动画向前，然后反复向后，直到达到重复次数。 动画集：您可以将动画组合到一起或顺序播放或指定延迟之后的逻辑集。 帧刷新延迟：您可以指定刷新动画帧的频率。默认设置为每10ms更新一次，但是应用程序刷新帧的速度最终取决于系统整体的繁忙程度，以及系统能够为底层定时器提供多长时间的服务。 属性动画原理 首先，我们来看一个动画如何工作，一个简单的例子。下图描绘了一个假设的对象，它以x属性为动画，表示其在屏幕上的水平位置。动画的持续时间设置为40 ms，行驶距离为40像素。每10 ms，这是默认的帧刷新率，对象水平移动10像素。在40ms结束时，动画停止，物体在水平位置40处结束。这是具有线性插值的动画的示例，意味着物体以恒定的速度移动。\n您还可以指定具有非线性内插的动画。下图描绘了在动画开始时加速的假想对象，并且在动画结束时减速。物体仍然在40毫秒内移动40像素，但是非线性。一开始，这个动画加速到中途，然后从中途减速直到动画结束。如下图所示，动画开始和结束时行进的距离小于中间。\n我们来详细了解属性动画系统的重要组件如何计算如上所示的动画。下图描绘了主要类之间如何工作。\n">
 <title></title>
 
 <link rel='canonical' href='http://localhost:1313/android/graphics/property-animation/'>
 
 <link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
-<meta property='og:description' content="属性动画系统是一个强大的框架，允许您使几乎任何事物产生动画。您可以定义一个动画以随时间更改任何对象属性，无论它是否绘制到屏幕。属性动画在指定的时间长度内更改属性（对象中的字段）值。要动画某些东西，您可以指定要对其进行动画处理的对象属性，例如对象在屏幕上的位置，要对其进行动画处理的时间以及要在其间进行动画处理的值。 属性动画系统允许您定义动画的以下特征： 时间插值：您可以指定如何根据动画当前所用时间计算属性值。 重复计数和行为：您可以指定是否在持续时间结束时重复动画，并重复播放动画的次数。您还可以指定是否要相反地播放动画。将其设置为反向播放动画向前，然后反复向后，直到达到重复次数。 动画集：您可以将动画组合到一起或顺序播放或指定延迟之后的逻辑集。 帧刷新延迟：您可以指定刷新动画帧的频率。默认设置为每10ms更新一次，但是应用程序刷新帧的速度最终取决于系统整体的繁忙程度，以及系统能够为底层定时器提供多长时间的服务。 属性动画原理 首先，我们来看一个动画如何工作，一个简单的例子。下图描绘了一个假设的对象，它以x属性为动画，表示其在屏幕上的水平位置。动画的持续时间设置为40 ms，行驶距离为40像素。每10 ms，这是默认的帧刷新率，对象水平移动10像素。在40ms结束时，动画停止，物体在水平位置40处结束。这是具有线性插值的动画的示例，意味着物体以恒定的速度移动。 您还可以指定具有非线性内插的动画。下图描绘了在动画开始时加速的假想对象，并且在动画结束时减速。物体仍然在40毫秒内移动40像素，但是非线性。一开始，这个动画加速到中途，然后从中途减速直到动画结束。如下图所示，动画开始和结束时行进的距离小于中间。 我们来详细了解属性动画系统的重要组件如何计算如上所示的动画。下图描绘了主要类之间如何工作。 ValueAnimator对象跟踪您的动画的时间，例如动画已运行多长时间，以及动画所属属性的当前值。 ValueAnimator封装了TimeInterpolator，它定义了动画插值，还有一个TypeEvaluator，它定义了如何计算动画属性的值。例如，在图2中，使用的TimeInterpolator将为AccelerateDecelerateInterpolator，TypeEvaluator将为IntEvaluator。 要启动动画，请创建一个ValueAnimator，并为其创建动画的属性以及动画持续时间给出它的开始和结束值。当你调用start（）动画开始。在整个动画过程中，ValueAnimator根据动画的持续时间和经过多少时间，计算0到1之间的经过分数。经过的分数表示动画完成的时间百分比，0表示0％，1表示100％。例如，在图1中，t = 10ms时的经过分数为0.25，因为总持续时间为t = 40ms。 当ValueAnimator完成计算经过的分数时，它调用当前设置的TimeInterpolator，以计算插值分数。插值分数将经过的分数映射到考虑到设置的时间插值的新分数。例如，在图2中，由于动画缓慢加速，所以在t = 10 ms时，内插分数约为.15，小于经过分数.25。在图1中，插值分数总是与经过分数相同。 当计算插值分数时，ValueAnimator将根据插值分数，起始值和动画的结束值，调用相应的TypeEvaluator来计算您要动画化的属性值。例如，在图2中，在t = 10 ms时插值分数为.15，因此该时间的属性值为.15 X（40 - 0）或6。 属性动画和View动画的区别 View动画系统提供了只能对View对象进行动画化的功能，因此，如果您想为非View对象设置动画效果，则必须实现自己的代码。视图动画系统也受到限制，因为它仅将View对象的几个方面暴露给动画，例如视图的缩放和旋转，而不是背景颜色。 View动画系统的另一个缺点是它只修改了View的绘制位置，而不是实际的View本身。例如，如果您将动画按钮移动到屏幕上，则按钮正确绘制，但您可以单击按钮的实际位置不会更改，因此您必须实现自己的逻辑来处理此问题。 使用属性动画系统，这些约束被完全删除，您可以对任何对象（视图和非视图）的任何属性进行动画处理，并且对象本身实际上进行了修改。属性动画系统在执行动画的过程中也更为强大。在高层次上，您可以为要动画化的属性（如颜色，位置或大小）分配动画师，并可以定义动画的各个方面，如多个动画制作工具的插值和同步。 然而，视图动画系统需要较少的时间来设置，并且需要较少的代码来写入。如果视图动画完成了您需要执行的所有操作，或者如果现有代码已经按照您想要的方式工作，则不需要使用属性动画系统。如果出现用例，在不同情况下使用动画系统也可能是有意义的。 API 概览 您可以在android.animation中找到大部分属性动画系统的API。 因为视图动画系统已经在android.view.animation中定义了许多插值器，所以您也可以在属性动画系统中使用这些插值器。 下表描述了属性动画系统的主要组件。 Animator类提供了创建动画的基本结构。 您通常不直接使用此类，因为它只提供必须扩展的最小功能，以完全支持动画值。 以下子类扩展了Animator： 类 描述 ValueAnimator 属性动画的主要定时引擎，也可以计算要动画的属性的值。它具有计算动画值的所有核心功能，并包含每个动画的时序细节，有关动画重复的信息，接收更新事件的收听者以及设置自定义类型进行评估的能力。动画属性有两部分：计算动画值，并在动画对象和属性上设置这些值。 ValueAnimator不执行第二部分，因此您必须监听由ValueAnimator计算的值的更新，并使用自己的逻辑修改要进行动画化的对象。 ObjectAnimator ValueAnimator的子类，允许您将目标对象和对象属性设置为动画。 当该类计算动画的新值时，此类将相应地更新该属性。 你想在大多数时候使用ObjectAnimator，因为它使得在目标对象上动画化值的过程更容易。 但是，有时候您希望直接使用ValueAnimator，因为ObjectAnimator还有一些限制，例如需要在目标对象上存在特定的教程方法。 AnimatorSet 提供一种将动画分组在一起的机制，以便它们相互运行。 您可以将动画设置为一起播放，顺序播放或指定延迟播放。 有关详细信息，请参阅有关使用动画组合编排多个动画的部分。 Evaluators告诉属性动画系统如何计算给定属性的值。 它们获取Animator类提供的时间数据，动画的开始和结束值，并根据此数据计算属性的动画值。 属性动画系统提供以下评估者： 表2. Evaluators 类/接口 描述 IntEvaluator 用于计算int属性值的默认Evaluator FloatEvaluator 用于计算float属性值的默认Evaluator ArgbEvaluator 用于计算以十六进制值表示的颜色属性的值的默认用于计算float属性值的默认Evaluator。 TypeEvaluator 一个允许您创建自己的Evaluator的接口。 如果要动画的对象属性化不是int，float或color的对象属性，则必须实现TypeEvaluator接口以指定如何计算对象属性的动画值。 如果要处理不同于默认行为的类型，还可以为int，float和color值指定自定义的TypeEvaluator。 时间插值器定义如何计算动画中的特定值作为时间的函数。 例如，您可以指定动画在整个动画中线性发生，这意味着动画在整个时间内均匀移动，或者您可以指定使用非线性时间的动画，例如，在开始时加速并在 动画。 表3描述了android.">
+<meta property='og:description' content="属性动画系统是一个强大的框架，允许您使几乎任何事物产生动画。您可以定义一个动画以随时间更改任何对象属性，无论它是否绘制到屏幕。属性动画在指定的时间长度内更改属性（对象中的字段）值。要动画某些东西，您可以指定要对其进行动画处理的对象属性，例如对象在屏幕上的位置，要对其进行动画处理的时间以及要在其间进行动画处理的值。\n属性动画系统允许您定义动画的以下特征：\n时间插值：您可以指定如何根据动画当前所用时间计算属性值。 重复计数和行为：您可以指定是否在持续时间结束时重复动画，并重复播放动画的次数。您还可以指定是否要相反地播放动画。将其设置为反向播放动画向前，然后反复向后，直到达到重复次数。 动画集：您可以将动画组合到一起或顺序播放或指定延迟之后的逻辑集。 帧刷新延迟：您可以指定刷新动画帧的频率。默认设置为每10ms更新一次，但是应用程序刷新帧的速度最终取决于系统整体的繁忙程度，以及系统能够为底层定时器提供多长时间的服务。 属性动画原理 首先，我们来看一个动画如何工作，一个简单的例子。下图描绘了一个假设的对象，它以x属性为动画，表示其在屏幕上的水平位置。动画的持续时间设置为40 ms，行驶距离为40像素。每10 ms，这是默认的帧刷新率，对象水平移动10像素。在40ms结束时，动画停止，物体在水平位置40处结束。这是具有线性插值的动画的示例，意味着物体以恒定的速度移动。\n您还可以指定具有非线性内插的动画。下图描绘了在动画开始时加速的假想对象，并且在动画结束时减速。物体仍然在40毫秒内移动40像素，但是非线性。一开始，这个动画加速到中途，然后从中途减速直到动画结束。如下图所示，动画开始和结束时行进的距离小于中间。\n我们来详细了解属性动画系统的重要组件如何计算如上所示的动画。下图描绘了主要类之间如何工作。\n">
 <meta property='og:url' content='http://localhost:1313/android/graphics/property-animation/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="属性动画系统是一个强大的框架，允许您使几乎任何事物产生动画。您可以定义一个动画以随时间更改任何对象属性，无论它是否绘制到屏幕。属性动画在指定的时间长度内更改属性（对象中的字段）值。要动画某些东西，您可以指定要对其进行动画处理的对象属性，例如对象在屏幕上的位置，要对其进行动画处理的时间以及要在其间进行动画处理的值。 属性动画系统允许您定义动画的以下特征： 时间插值：您可以指定如何根据动画当前所用时间计算属性值。 重复计数和行为：您可以指定是否在持续时间结束时重复动画，并重复播放动画的次数。您还可以指定是否要相反地播放动画。将其设置为反向播放动画向前，然后反复向后，直到达到重复次数。 动画集：您可以将动画组合到一起或顺序播放或指定延迟之后的逻辑集。 帧刷新延迟：您可以指定刷新动画帧的频率。默认设置为每10ms更新一次，但是应用程序刷新帧的速度最终取决于系统整体的繁忙程度，以及系统能够为底层定时器提供多长时间的服务。 属性动画原理 首先，我们来看一个动画如何工作，一个简单的例子。下图描绘了一个假设的对象，它以x属性为动画，表示其在屏幕上的水平位置。动画的持续时间设置为40 ms，行驶距离为40像素。每10 ms，这是默认的帧刷新率，对象水平移动10像素。在40ms结束时，动画停止，物体在水平位置40处结束。这是具有线性插值的动画的示例，意味着物体以恒定的速度移动。 您还可以指定具有非线性内插的动画。下图描绘了在动画开始时加速的假想对象，并且在动画结束时减速。物体仍然在40毫秒内移动40像素，但是非线性。一开始，这个动画加速到中途，然后从中途减速直到动画结束。如下图所示，动画开始和结束时行进的距离小于中间。 我们来详细了解属性动画系统的重要组件如何计算如上所示的动画。下图描绘了主要类之间如何工作。 ValueAnimator对象跟踪您的动画的时间，例如动画已运行多长时间，以及动画所属属性的当前值。 ValueAnimator封装了TimeInterpolator，它定义了动画插值，还有一个TypeEvaluator，它定义了如何计算动画属性的值。例如，在图2中，使用的TimeInterpolator将为AccelerateDecelerateInterpolator，TypeEvaluator将为IntEvaluator。 要启动动画，请创建一个ValueAnimator，并为其创建动画的属性以及动画持续时间给出它的开始和结束值。当你调用start（）动画开始。在整个动画过程中，ValueAnimator根据动画的持续时间和经过多少时间，计算0到1之间的经过分数。经过的分数表示动画完成的时间百分比，0表示0％，1表示100％。例如，在图1中，t = 10ms时的经过分数为0.25，因为总持续时间为t = 40ms。 当ValueAnimator完成计算经过的分数时，它调用当前设置的TimeInterpolator，以计算插值分数。插值分数将经过的分数映射到考虑到设置的时间插值的新分数。例如，在图2中，由于动画缓慢加速，所以在t = 10 ms时，内插分数约为.15，小于经过分数.25。在图1中，插值分数总是与经过分数相同。 当计算插值分数时，ValueAnimator将根据插值分数，起始值和动画的结束值，调用相应的TypeEvaluator来计算您要动画化的属性值。例如，在图2中，在t = 10 ms时插值分数为.15，因此该时间的属性值为.15 X（40 - 0）或6。 属性动画和View动画的区别 View动画系统提供了只能对View对象进行动画化的功能，因此，如果您想为非View对象设置动画效果，则必须实现自己的代码。视图动画系统也受到限制，因为它仅将View对象的几个方面暴露给动画，例如视图的缩放和旋转，而不是背景颜色。 View动画系统的另一个缺点是它只修改了View的绘制位置，而不是实际的View本身。例如，如果您将动画按钮移动到屏幕上，则按钮正确绘制，但您可以单击按钮的实际位置不会更改，因此您必须实现自己的逻辑来处理此问题。 使用属性动画系统，这些约束被完全删除，您可以对任何对象（视图和非视图）的任何属性进行动画处理，并且对象本身实际上进行了修改。属性动画系统在执行动画的过程中也更为强大。在高层次上，您可以为要动画化的属性（如颜色，位置或大小）分配动画师，并可以定义动画的各个方面，如多个动画制作工具的插值和同步。 然而，视图动画系统需要较少的时间来设置，并且需要较少的代码来写入。如果视图动画完成了您需要执行的所有操作，或者如果现有代码已经按照您想要的方式工作，则不需要使用属性动画系统。如果出现用例，在不同情况下使用动画系统也可能是有意义的。 API 概览 您可以在android.animation中找到大部分属性动画系统的API。 因为视图动画系统已经在android.view.animation中定义了许多插值器，所以您也可以在属性动画系统中使用这些插值器。 下表描述了属性动画系统的主要组件。 Animator类提供了创建动画的基本结构。 您通常不直接使用此类，因为它只提供必须扩展的最小功能，以完全支持动画值。 以下子类扩展了Animator： 类 描述 ValueAnimator 属性动画的主要定时引擎，也可以计算要动画的属性的值。它具有计算动画值的所有核心功能，并包含每个动画的时序细节，有关动画重复的信息，接收更新事件的收听者以及设置自定义类型进行评估的能力。动画属性有两部分：计算动画值，并在动画对象和属性上设置这些值。 ValueAnimator不执行第二部分，因此您必须监听由ValueAnimator计算的值的更新，并使用自己的逻辑修改要进行动画化的对象。 ObjectAnimator ValueAnimator的子类，允许您将目标对象和对象属性设置为动画。 当该类计算动画的新值时，此类将相应地更新该属性。 你想在大多数时候使用ObjectAnimator，因为它使得在目标对象上动画化值的过程更容易。 但是，有时候您希望直接使用ValueAnimator，因为ObjectAnimator还有一些限制，例如需要在目标对象上存在特定的教程方法。 AnimatorSet 提供一种将动画分组在一起的机制，以便它们相互运行。 您可以将动画设置为一起播放，顺序播放或指定延迟播放。 有关详细信息，请参阅有关使用动画组合编排多个动画的部分。 Evaluators告诉属性动画系统如何计算给定属性的值。 它们获取Animator类提供的时间数据，动画的开始和结束值，并根据此数据计算属性的动画值。 属性动画系统提供以下评估者： 表2. Evaluators 类/接口 描述 IntEvaluator 用于计算int属性值的默认Evaluator FloatEvaluator 用于计算float属性值的默认Evaluator ArgbEvaluator 用于计算以十六进制值表示的颜色属性的值的默认用于计算float属性值的默认Evaluator。 TypeEvaluator 一个允许您创建自己的Evaluator的接口。 如果要动画的对象属性化不是int，float或color的对象属性，则必须实现TypeEvaluator接口以指定如何计算对象属性的动画值。 如果要处理不同于默认行为的类型，还可以为int，float和color值指定自定义的TypeEvaluator。 时间插值器定义如何计算动画中的特定值作为时间的函数。 例如，您可以指定动画在整个动画中线性发生，这意味着动画在整个时间内均匀移动，或者您可以指定使用非线性时间的动画，例如，在开始时加速并在 动画。 表3描述了android.">
-  
-    
+<meta name="twitter:description" content="属性动画系统是一个强大的框架，允许您使几乎任何事物产生动画。您可以定义一个动画以随时间更改任何对象属性，无论它是否绘制到屏幕。属性动画在指定的时间长度内更改属性（对象中的字段）值。要动画某些东西，您可以指定要对其进行动画处理的对象属性，例如对象在屏幕上的位置，要对其进行动画处理的时间以及要在其间进行动画处理的值。\n属性动画系统允许您定义动画的以下特征：\n时间插值：您可以指定如何根据动画当前所用时间计算属性值。 重复计数和行为：您可以指定是否在持续时间结束时重复动画，并重复播放动画的次数。您还可以指定是否要相反地播放动画。将其设置为反向播放动画向前，然后反复向后，直到达到重复次数。 动画集：您可以将动画组合到一起或顺序播放或指定延迟之后的逻辑集。 帧刷新延迟：您可以指定刷新动画帧的频率。默认设置为每10ms更新一次，但是应用程序刷新帧的速度最终取决于系统整体的繁忙程度，以及系统能够为底层定时器提供多长时间的服务。 属性动画原理 首先，我们来看一个动画如何工作，一个简单的例子。下图描绘了一个假设的对象，它以x属性为动画，表示其在屏幕上的水平位置。动画的持续时间设置为40 ms，行驶距离为40像素。每10 ms，这是默认的帧刷新率，对象水平移动10像素。在40ms结束时，动画停止，物体在水平位置40处结束。这是具有线性插值的动画的示例，意味着物体以恒定的速度移动。\n您还可以指定具有非线性内插的动画。下图描绘了在动画开始时加速的假想对象，并且在动画结束时减速。物体仍然在40毫秒内移动40像素，但是非线性。一开始，这个动画加速到中途，然后从中途减速直到动画结束。如下图所示，动画开始和结束时行进的距离小于中间。\n我们来详细了解属性动画系统的重要组件如何计算如上所示的动画。下图描绘了主要类之间如何工作。\n">
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
       <script>
         var doNotTrack = false;
@@ -28,11 +26,7 @@
           gtag('js', new Date());
           gtag('config', 'G-G84J9N38RL');
         }
-      </script>
-    
-  
-
-<style>
+      </script><style>
     :root {
         --sys-font-family: "LXGW WenKai TC";
         --zh-font-family: "LXGW WenKai TC";
@@ -94,7 +88,7 @@
                     
                     
                         
-                        <img src="/images/avatar_hu74e4307e0baa534a3da4ee0210445065_34446_300x0_resize_q75_box.jpeg" width="300"
+                        <img src="/images/avatar_hu15583006483879718621.jpeg" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -114,7 +108,7 @@
             
                 <li>
                     <a 
-                        href='https://twitter.com/malinkang'
+                        href='https://space.bilibili.com/27440979'
                         target="_blank"
                         title="Bilibili"
                         rel="me"
@@ -128,7 +122,7 @@
             
                 <li>
                     <a 
-                        href='https://www.douban.com/people/malinkang/https://space.bilibili.com/27440979'
+                        href='https://www.douban.com/people/malinkang/'
                         target="_blank"
                         title="Douban"
                         rel="me"
@@ -493,106 +487,106 @@
 </h3><p>您可以在android.animation中找到大部分属性动画系统的API。 因为视图动画系统已经在android.view.animation中定义了许多插值器，所以您也可以在属性动画系统中使用这些插值器。 下表描述了属性动画系统的主要组件。</p>
 <p>Animator类提供了创建动画的基本结构。 您通常不直接使用此类，因为它只提供必须扩展的最小功能，以完全支持动画值。 以下子类扩展了Animator：</p>
 <div class="table-wrapper"><table>
-<thead>
-<tr>
-<th>类</th>
-<th style="text-align:center">描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ValueAnimator</td>
-<td style="text-align:center">属性动画的主要定时引擎，也可以计算要动画的属性的值。它具有计算动画值的所有核心功能，并包含每个动画的时序细节，有关动画重复的信息，接收更新事件的收听者以及设置自定义类型进行评估的能力。动画属性有两部分：计算动画值，并在动画对象和属性上设置这些值。 ValueAnimator不执行第二部分，因此您必须监听由ValueAnimator计算的值的更新，并使用自己的逻辑修改要进行动画化的对象。</td>
-</tr>
-<tr>
-<td>ObjectAnimator</td>
-<td style="text-align:center">ValueAnimator的子类，允许您将目标对象和对象属性设置为动画。 当该类计算动画的新值时，此类将相应地更新该属性。 你想在大多数时候使用ObjectAnimator，因为它使得在目标对象上动画化值的过程更容易。 但是，有时候您希望直接使用ValueAnimator，因为ObjectAnimator还有一些限制，例如需要在目标对象上存在特定的教程方法。</td>
-</tr>
-<tr>
-<td>AnimatorSet</td>
-<td style="text-align:center">提供一种将动画分组在一起的机制，以便它们相互运行。 您可以将动画设置为一起播放，顺序播放或指定延迟播放。 有关详细信息，请参阅有关使用动画组合编排多个动画的部分。</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">类</th>
+          <th style="text-align: center">描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">ValueAnimator</td>
+          <td style="text-align: center">属性动画的主要定时引擎，也可以计算要动画的属性的值。它具有计算动画值的所有核心功能，并包含每个动画的时序细节，有关动画重复的信息，接收更新事件的收听者以及设置自定义类型进行评估的能力。动画属性有两部分：计算动画值，并在动画对象和属性上设置这些值。 ValueAnimator不执行第二部分，因此您必须监听由ValueAnimator计算的值的更新，并使用自己的逻辑修改要进行动画化的对象。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">ObjectAnimator</td>
+          <td style="text-align: center">ValueAnimator的子类，允许您将目标对象和对象属性设置为动画。 当该类计算动画的新值时，此类将相应地更新该属性。 你想在大多数时候使用ObjectAnimator，因为它使得在目标对象上动画化值的过程更容易。 但是，有时候您希望直接使用ValueAnimator，因为ObjectAnimator还有一些限制，例如需要在目标对象上存在特定的教程方法。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">AnimatorSet</td>
+          <td style="text-align: center">提供一种将动画分组在一起的机制，以便它们相互运行。 您可以将动画设置为一起播放，顺序播放或指定延迟播放。 有关详细信息，请参阅有关使用动画组合编排多个动画的部分。</td>
+      </tr>
+  </tbody>
 </table></div>
 <p><code>Evaluators</code>告诉属性动画系统如何计算给定属性的值。 它们获取Animator类提供的时间数据，动画的开始和结束值，并根据此数据计算属性的动画值。 属性动画系统提供以下评估者：</p>
 <p>表2. Evaluators</p>
 <div class="table-wrapper"><table>
-<thead>
-<tr>
-<th>类/接口</th>
-<th style="text-align:center">描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>IntEvaluator</td>
-<td style="text-align:center">用于计算int属性值的默认Evaluator</td>
-</tr>
-<tr>
-<td>FloatEvaluator</td>
-<td style="text-align:center">用于计算float属性值的默认Evaluator</td>
-</tr>
-<tr>
-<td>ArgbEvaluator</td>
-<td style="text-align:center">用于计算以十六进制值表示的颜色属性的值的默认用于计算float属性值的默认Evaluator。</td>
-</tr>
-<tr>
-<td>TypeEvaluator</td>
-<td style="text-align:center">一个允许您创建自己的Evaluator的接口。 如果要动画的对象属性化不是int，float或color的对象属性，则必须实现TypeEvaluator接口以指定如何计算对象属性的动画值。 如果要处理不同于默认行为的类型，还可以为int，float和color值指定自定义的TypeEvaluator。</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">类/接口</th>
+          <th style="text-align: center">描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">IntEvaluator</td>
+          <td style="text-align: center">用于计算int属性值的默认Evaluator</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">FloatEvaluator</td>
+          <td style="text-align: center">用于计算float属性值的默认Evaluator</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">ArgbEvaluator</td>
+          <td style="text-align: center">用于计算以十六进制值表示的颜色属性的值的默认用于计算float属性值的默认Evaluator。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">TypeEvaluator</td>
+          <td style="text-align: center">一个允许您创建自己的Evaluator的接口。 如果要动画的对象属性化不是int，float或color的对象属性，则必须实现TypeEvaluator接口以指定如何计算对象属性的动画值。 如果要处理不同于默认行为的类型，还可以为int，float和color值指定自定义的TypeEvaluator。</td>
+      </tr>
+  </tbody>
 </table></div>
 <p>时间插值器定义如何计算动画中的特定值作为时间的函数。 例如，您可以指定动画在整个动画中线性发生，这意味着动画在整个时间内均匀移动，或者您可以指定使用非线性时间的动画，例如，在开始时加速并在 动画。 表3描述了android.view.animation中包含的插值器。 如果没有提供的插件适合您的需要，请实现TimeInterpolator接口并创建自己的插值器。</p>
 <p>表3. 插值器</p>
 <div class="table-wrapper"><table>
-<thead>
-<tr>
-<th>类/接口</th>
-<th style="text-align:center">描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>AccelerateDecelerateInterpolator</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td>AccelerateInterpolator</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td>AnticipateInterpolator</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td>AnticipateOvershootInterpolator</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td>BounceInterpolator</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td>CycleInterpolator</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td>DecelerateInterpolator</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td>LinearInterpolator</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td>OvershootInterpolator</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td>TimeInterpolator</td>
-<td style="text-align:center"></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">类/接口</th>
+          <th style="text-align: center">描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">AccelerateDecelerateInterpolator</td>
+          <td style="text-align: center"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">AccelerateInterpolator</td>
+          <td style="text-align: center"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">AnticipateInterpolator</td>
+          <td style="text-align: center"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">AnticipateOvershootInterpolator</td>
+          <td style="text-align: center"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">BounceInterpolator</td>
+          <td style="text-align: center"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">CycleInterpolator</td>
+          <td style="text-align: center"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">DecelerateInterpolator</td>
+          <td style="text-align: center"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">LinearInterpolator</td>
+          <td style="text-align: center"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">OvershootInterpolator</td>
+          <td style="text-align: center"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">TimeInterpolator</td>
+          <td style="text-align: center"></td>
+      </tr>
+  </tbody>
 </table></div>
 <h3 id="vuleanimator">VuleAnimator
 </h3><p>ValueAnimator类允许您通过指定一组int，float或颜色值来动画化，为动画持续时间对某些类型的值进行动画处理。通过调用其中一种工厂方法获得ValueAnimator：ofInt（），ofFloat（）或orObject（）。例如：</p>

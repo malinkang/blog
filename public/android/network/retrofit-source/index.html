@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Retrofit源码分析 基本流程： 1.通过ServiceMethod获取请求参数和请求信息 2.创建OkhttpCall 3.获取对应的CallAdapter，然后调用adapt方法并将OkhttpCall传入。 4.在CallAdapter的adapt方法中执行OkhttpCall的execute方法，并调用ServiceMethod中的ConvertAdapter将返回结果转换为相应的实体。 ServiceMethod ServiceMethod主要用来解析我们声明的方法。 1.Builder构造函数中获取方法上的注解和注解里的值。 2.调用createCallAdapter方法获取CallAdapter。 3.调用createResponseConverter方法获取Converter。 4.调用parseMethodAnnotation来解析方法上的注解 5.调用parseParameterAnnotation来解析参数上的注解，并将这些注解包含的信息封装成一个ParameterHandler对象。 6.在OkHttpCall中调用toRequest的方法来获取请求的参数。 1 2 3 4 5 6 7 public Builder(Retrofit retrofit, Method method) { this.retrofit = retrofit; this.method = method; this.methodAnnotations = method.getAnnotations();//获取方法上的注解 this.parameterTypes = method.getGenericParameterTypes();//获取参数类型 this.parameterAnnotationsArray = method.getParameterAnnotations();//获取参数上的注解 这里是一个二维数组，每个参数可能有多个注解 } createCallAdapter方法获取方法的返回值和注解，根据注解和返回值获取对应的CallAdapter。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 private CallAdapter&lt;T, R&gt; createCallAdapter() { Type returnType = method.">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Retrofit源码分析 基本流程： 1.通过ServiceMethod获取请求参数和请求信息 2.创建OkhttpCall 3.获取对应的CallAdapter，然后调用adapt方法并将OkhttpCall传入。 4.在CallAdapter的adapt方法中执行OkhttpCall的execute方法，并调用ServiceMethod中的ConvertAdapter将返回结果转换为相应的实体。\nServiceMethod ServiceMethod主要用来解析我们声明的方法。 1.Builder构造函数中获取方法上的注解和注解里的值。 2.调用createCallAdapter方法获取CallAdapter。 3.调用createResponseConverter方法获取Converter。 4.调用parseMethodAnnotation来解析方法上的注解 5.调用parseParameterAnnotation来解析参数上的注解，并将这些注解包含的信息封装成一个ParameterHandler对象。 6.在OkHttpCall中调用toRequest的方法来获取请求的参数。\n1 2 3 4 5 6 7 public Builder(Retrofit retrofit, Method method) { this.retrofit = retrofit; this.method = method; this.methodAnnotations = method.getAnnotations();//获取方法上的注解 this.parameterTypes = method.getGenericParameterTypes();//获取参数类型 this.parameterAnnotationsArray = method.getParameterAnnotations();//获取参数上的注解 这里是一个二维数组，每个参数可能有多个注解 } ">
 <title></title>
 
 <link rel='canonical' href='http://localhost:1313/android/network/retrofit-source/'>
 
 <link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
-<meta property='og:description' content="Retrofit源码分析 基本流程： 1.通过ServiceMethod获取请求参数和请求信息 2.创建OkhttpCall 3.获取对应的CallAdapter，然后调用adapt方法并将OkhttpCall传入。 4.在CallAdapter的adapt方法中执行OkhttpCall的execute方法，并调用ServiceMethod中的ConvertAdapter将返回结果转换为相应的实体。 ServiceMethod ServiceMethod主要用来解析我们声明的方法。 1.Builder构造函数中获取方法上的注解和注解里的值。 2.调用createCallAdapter方法获取CallAdapter。 3.调用createResponseConverter方法获取Converter。 4.调用parseMethodAnnotation来解析方法上的注解 5.调用parseParameterAnnotation来解析参数上的注解，并将这些注解包含的信息封装成一个ParameterHandler对象。 6.在OkHttpCall中调用toRequest的方法来获取请求的参数。 1 2 3 4 5 6 7 public Builder(Retrofit retrofit, Method method) { this.retrofit = retrofit; this.method = method; this.methodAnnotations = method.getAnnotations();//获取方法上的注解 this.parameterTypes = method.getGenericParameterTypes();//获取参数类型 this.parameterAnnotationsArray = method.getParameterAnnotations();//获取参数上的注解 这里是一个二维数组，每个参数可能有多个注解 } createCallAdapter方法获取方法的返回值和注解，根据注解和返回值获取对应的CallAdapter。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 private CallAdapter&lt;T, R&gt; createCallAdapter() { Type returnType = method.">
+<meta property='og:description' content="Retrofit源码分析 基本流程： 1.通过ServiceMethod获取请求参数和请求信息 2.创建OkhttpCall 3.获取对应的CallAdapter，然后调用adapt方法并将OkhttpCall传入。 4.在CallAdapter的adapt方法中执行OkhttpCall的execute方法，并调用ServiceMethod中的ConvertAdapter将返回结果转换为相应的实体。\nServiceMethod ServiceMethod主要用来解析我们声明的方法。 1.Builder构造函数中获取方法上的注解和注解里的值。 2.调用createCallAdapter方法获取CallAdapter。 3.调用createResponseConverter方法获取Converter。 4.调用parseMethodAnnotation来解析方法上的注解 5.调用parseParameterAnnotation来解析参数上的注解，并将这些注解包含的信息封装成一个ParameterHandler对象。 6.在OkHttpCall中调用toRequest的方法来获取请求的参数。\n1 2 3 4 5 6 7 public Builder(Retrofit retrofit, Method method) { this.retrofit = retrofit; this.method = method; this.methodAnnotations = method.getAnnotations();//获取方法上的注解 this.parameterTypes = method.getGenericParameterTypes();//获取参数类型 this.parameterAnnotationsArray = method.getParameterAnnotations();//获取参数上的注解 这里是一个二维数组，每个参数可能有多个注解 } ">
 <meta property='og:url' content='http://localhost:1313/android/network/retrofit-source/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="Retrofit源码分析 基本流程： 1.通过ServiceMethod获取请求参数和请求信息 2.创建OkhttpCall 3.获取对应的CallAdapter，然后调用adapt方法并将OkhttpCall传入。 4.在CallAdapter的adapt方法中执行OkhttpCall的execute方法，并调用ServiceMethod中的ConvertAdapter将返回结果转换为相应的实体。 ServiceMethod ServiceMethod主要用来解析我们声明的方法。 1.Builder构造函数中获取方法上的注解和注解里的值。 2.调用createCallAdapter方法获取CallAdapter。 3.调用createResponseConverter方法获取Converter。 4.调用parseMethodAnnotation来解析方法上的注解 5.调用parseParameterAnnotation来解析参数上的注解，并将这些注解包含的信息封装成一个ParameterHandler对象。 6.在OkHttpCall中调用toRequest的方法来获取请求的参数。 1 2 3 4 5 6 7 public Builder(Retrofit retrofit, Method method) { this.retrofit = retrofit; this.method = method; this.methodAnnotations = method.getAnnotations();//获取方法上的注解 this.parameterTypes = method.getGenericParameterTypes();//获取参数类型 this.parameterAnnotationsArray = method.getParameterAnnotations();//获取参数上的注解 这里是一个二维数组，每个参数可能有多个注解 } createCallAdapter方法获取方法的返回值和注解，根据注解和返回值获取对应的CallAdapter。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 private CallAdapter&lt;T, R&gt; createCallAdapter() { Type returnType = method.">
-  
-    
+<meta name="twitter:description" content="Retrofit源码分析 基本流程： 1.通过ServiceMethod获取请求参数和请求信息 2.创建OkhttpCall 3.获取对应的CallAdapter，然后调用adapt方法并将OkhttpCall传入。 4.在CallAdapter的adapt方法中执行OkhttpCall的execute方法，并调用ServiceMethod中的ConvertAdapter将返回结果转换为相应的实体。\nServiceMethod ServiceMethod主要用来解析我们声明的方法。 1.Builder构造函数中获取方法上的注解和注解里的值。 2.调用createCallAdapter方法获取CallAdapter。 3.调用createResponseConverter方法获取Converter。 4.调用parseMethodAnnotation来解析方法上的注解 5.调用parseParameterAnnotation来解析参数上的注解，并将这些注解包含的信息封装成一个ParameterHandler对象。 6.在OkHttpCall中调用toRequest的方法来获取请求的参数。\n1 2 3 4 5 6 7 public Builder(Retrofit retrofit, Method method) { this.retrofit = retrofit; this.method = method; this.methodAnnotations = method.getAnnotations();//获取方法上的注解 this.parameterTypes = method.getGenericParameterTypes();//获取参数类型 this.parameterAnnotationsArray = method.getParameterAnnotations();//获取参数上的注解 这里是一个二维数组，每个参数可能有多个注解 } ">
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
       <script>
         var doNotTrack = false;
@@ -28,11 +26,7 @@
           gtag('js', new Date());
           gtag('config', 'G-G84J9N38RL');
         }
-      </script>
-    
-  
-
-<style>
+      </script><style>
     :root {
         --sys-font-family: "LXGW WenKai TC";
         --zh-font-family: "LXGW WenKai TC";
@@ -94,7 +88,7 @@
                     
                     
                         
-                        <img src="/images/avatar_hu74e4307e0baa534a3da4ee0210445065_34446_300x0_resize_q75_box.jpeg" width="300"
+                        <img src="/images/avatar_hu15583006483879718621.jpeg" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -114,7 +108,7 @@
             
                 <li>
                     <a 
-                        href='https://twitter.com/malinkang'
+                        href='https://space.bilibili.com/27440979'
                         target="_blank"
                         title="Bilibili"
                         rel="me"
@@ -128,7 +122,7 @@
             
                 <li>
                     <a 
-                        href='https://www.douban.com/people/malinkang/https://space.bilibili.com/27440979'
+                        href='https://www.douban.com/people/malinkang/'
                         target="_blank"
                         title="Douban"
                         rel="me"

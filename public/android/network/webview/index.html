@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="WebView WebView常用方法 public void loadUrl (String url) 1 2 3 4 5 6 7 8 9 10 //打开本包内asset目录下的test.html文件 loadUrl(&#34;file:///android_asset/test.html&#34;); //打开本地sd卡内的kris.html文件 loadUrl(&#34;content://com.android.htmlfileprovider/sdcard/malinkang.html&#34;); //打开指定URL的html文件 loadUrl(&#34;http://malinkang.com/&#34;); //使用loadUrl调用javascript方法 loadUrl(&#34;javascript:test()&#34;); //调用javascript方法传入参数 loadUrl(&#34;javascript:test(\\&#34;hello\\&#34;)&#34;); 有时候html可能需要从资源文件中加载图片 1 &lt;img src=&#34;file:///android_res/drawable/a.png&#34;&gt; loadData(String data, String mimeType, String encoding) loadDataWithBaseURL(String baseUrl, String data, String mimeType, String encoding, String historyUrl) 1 2 3 4 //加载字符串 4.0+没有问题，2.3下乱码 loadData(htmlStr, &#34;text/html;charset=utf-8&#34;,null); //4.0+和2.3都没有问题 loadDataWithBaseURL(null, htmlStr,&#34;text/html&#34;, &#34;utf-8&#34;, null); public String getTitle()：获取当前页面的title WebChromeClient WebChromeClient是辅助WebView处理Javascript的对话框,网站图标,网站title等。常用方法如下： public void onProgressChanged(WebView view, int newProgress) {}：告诉应用网页加载进度 WebView源码分析 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 //WebView的所有操作都是通过调用Provider相应的方法 private WebViewProvider mProvider; //创建WebViewProvider private void ensureProviderCreated() { checkThread(); if (mProvider == null) { // As this can get called during the base class constructor chain, pass the minimum // number of dependencies here; the rest are deferred to init().">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="WebView WebView常用方法 public void loadUrl (String url)\n1 2 3 4 5 6 7 8 9 10 //打开本包内asset目录下的test.html文件 loadUrl(&#34;file:///android_asset/test.html&#34;); //打开本地sd卡内的kris.html文件 loadUrl(&#34;content://com.android.htmlfileprovider/sdcard/malinkang.html&#34;); //打开指定URL的html文件 loadUrl(&#34;http://malinkang.com/&#34;); //使用loadUrl调用javascript方法 loadUrl(&#34;javascript:test()&#34;); //调用javascript方法传入参数 loadUrl(&#34;javascript:test(\\&#34;hello\\&#34;)&#34;); ">
 <title></title>
 
 <link rel='canonical' href='http://localhost:1313/android/network/webview/'>
 
 <link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
-<meta property='og:description' content="WebView WebView常用方法 public void loadUrl (String url) 1 2 3 4 5 6 7 8 9 10 //打开本包内asset目录下的test.html文件 loadUrl(&#34;file:///android_asset/test.html&#34;); //打开本地sd卡内的kris.html文件 loadUrl(&#34;content://com.android.htmlfileprovider/sdcard/malinkang.html&#34;); //打开指定URL的html文件 loadUrl(&#34;http://malinkang.com/&#34;); //使用loadUrl调用javascript方法 loadUrl(&#34;javascript:test()&#34;); //调用javascript方法传入参数 loadUrl(&#34;javascript:test(\\&#34;hello\\&#34;)&#34;); 有时候html可能需要从资源文件中加载图片 1 &lt;img src=&#34;file:///android_res/drawable/a.png&#34;&gt; loadData(String data, String mimeType, String encoding) loadDataWithBaseURL(String baseUrl, String data, String mimeType, String encoding, String historyUrl) 1 2 3 4 //加载字符串 4.0+没有问题，2.3下乱码 loadData(htmlStr, &#34;text/html;charset=utf-8&#34;,null); //4.0+和2.3都没有问题 loadDataWithBaseURL(null, htmlStr,&#34;text/html&#34;, &#34;utf-8&#34;, null); public String getTitle()：获取当前页面的title WebChromeClient WebChromeClient是辅助WebView处理Javascript的对话框,网站图标,网站title等。常用方法如下： public void onProgressChanged(WebView view, int newProgress) {}：告诉应用网页加载进度 WebView源码分析 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 //WebView的所有操作都是通过调用Provider相应的方法 private WebViewProvider mProvider; //创建WebViewProvider private void ensureProviderCreated() { checkThread(); if (mProvider == null) { // As this can get called during the base class constructor chain, pass the minimum // number of dependencies here; the rest are deferred to init().">
+<meta property='og:description' content="WebView WebView常用方法 public void loadUrl (String url)\n1 2 3 4 5 6 7 8 9 10 //打开本包内asset目录下的test.html文件 loadUrl(&#34;file:///android_asset/test.html&#34;); //打开本地sd卡内的kris.html文件 loadUrl(&#34;content://com.android.htmlfileprovider/sdcard/malinkang.html&#34;); //打开指定URL的html文件 loadUrl(&#34;http://malinkang.com/&#34;); //使用loadUrl调用javascript方法 loadUrl(&#34;javascript:test()&#34;); //调用javascript方法传入参数 loadUrl(&#34;javascript:test(\\&#34;hello\\&#34;)&#34;); ">
 <meta property='og:url' content='http://localhost:1313/android/network/webview/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="WebView WebView常用方法 public void loadUrl (String url) 1 2 3 4 5 6 7 8 9 10 //打开本包内asset目录下的test.html文件 loadUrl(&#34;file:///android_asset/test.html&#34;); //打开本地sd卡内的kris.html文件 loadUrl(&#34;content://com.android.htmlfileprovider/sdcard/malinkang.html&#34;); //打开指定URL的html文件 loadUrl(&#34;http://malinkang.com/&#34;); //使用loadUrl调用javascript方法 loadUrl(&#34;javascript:test()&#34;); //调用javascript方法传入参数 loadUrl(&#34;javascript:test(\\&#34;hello\\&#34;)&#34;); 有时候html可能需要从资源文件中加载图片 1 &lt;img src=&#34;file:///android_res/drawable/a.png&#34;&gt; loadData(String data, String mimeType, String encoding) loadDataWithBaseURL(String baseUrl, String data, String mimeType, String encoding, String historyUrl) 1 2 3 4 //加载字符串 4.0+没有问题，2.3下乱码 loadData(htmlStr, &#34;text/html;charset=utf-8&#34;,null); //4.0+和2.3都没有问题 loadDataWithBaseURL(null, htmlStr,&#34;text/html&#34;, &#34;utf-8&#34;, null); public String getTitle()：获取当前页面的title WebChromeClient WebChromeClient是辅助WebView处理Javascript的对话框,网站图标,网站title等。常用方法如下： public void onProgressChanged(WebView view, int newProgress) {}：告诉应用网页加载进度 WebView源码分析 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 //WebView的所有操作都是通过调用Provider相应的方法 private WebViewProvider mProvider; //创建WebViewProvider private void ensureProviderCreated() { checkThread(); if (mProvider == null) { // As this can get called during the base class constructor chain, pass the minimum // number of dependencies here; the rest are deferred to init().">
-  
-    
+<meta name="twitter:description" content="WebView WebView常用方法 public void loadUrl (String url)\n1 2 3 4 5 6 7 8 9 10 //打开本包内asset目录下的test.html文件 loadUrl(&#34;file:///android_asset/test.html&#34;); //打开本地sd卡内的kris.html文件 loadUrl(&#34;content://com.android.htmlfileprovider/sdcard/malinkang.html&#34;); //打开指定URL的html文件 loadUrl(&#34;http://malinkang.com/&#34;); //使用loadUrl调用javascript方法 loadUrl(&#34;javascript:test()&#34;); //调用javascript方法传入参数 loadUrl(&#34;javascript:test(\\&#34;hello\\&#34;)&#34;); ">
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
       <script>
         var doNotTrack = false;
@@ -28,11 +26,7 @@
           gtag('js', new Date());
           gtag('config', 'G-G84J9N38RL');
         }
-      </script>
-    
-  
-
-<style>
+      </script><style>
     :root {
         --sys-font-family: "LXGW WenKai TC";
         --zh-font-family: "LXGW WenKai TC";
@@ -94,7 +88,7 @@
                     
                     
                         
-                        <img src="/images/avatar_hu74e4307e0baa534a3da4ee0210445065_34446_300x0_resize_q75_box.jpeg" width="300"
+                        <img src="/images/avatar_hu15583006483879718621.jpeg" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -114,7 +108,7 @@
             
                 <li>
                     <a 
-                        href='https://twitter.com/malinkang'
+                        href='https://space.bilibili.com/27440979'
                         target="_blank"
                         title="Bilibili"
                         rel="me"
@@ -128,7 +122,7 @@
             
                 <li>
                     <a 
-                        href='https://www.douban.com/people/malinkang/https://space.bilibili.com/27440979'
+                        href='https://www.douban.com/people/malinkang/'
                         target="_blank"
                         title="Douban"
                         rel="me"

@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="生命周期 关于Activity的生命周期，可以参考官方文档： Activity 简介 了解 Activity 生命周期 需要注意的是：onStop()在Activity不可见时会调用，如果打开的是一个透明的Activity，就不会回调onStop()，当关闭透明Activity时，也不会回调onRestart()和onStart()。onStart()在Activity可见时调用，刚好与onStop()相反。当打开一个非Activity的Dialog时，不会触发生命周期方法回调（官方文档上说会弹出Dialog会调用onPause()，实测并没有调用）。 当两个Activity A和B，如果A启动B，然后转屏B会销毁重建，当返回A，A会重建。如果B是一个透明Activity，A和B都会重建，并且A会调用onPause()， 保存和恢复状态 参考文档： 保存和恢复瞬时界面状态 保存界面状态 状态保存 当正常点击返回键和调用finish()不会调用onSaveInstanceState()，其他情况当应用不可见时，就会调用，比如： onSaveInstanceState()的与生命周期方法的调用顺序。9.0及其之后发生在onStop()之后。之前的版本可能发生在onPause()之前或者之后。 状态恢复 [onCreate()](https://developer.android.com/reference/android/app/Activity#onCreate(android.os.Bundle))\u00a0和\u00a0[onRestoreInstanceState()](https://developer.android.com/reference/android/app/Activity#onRestoreInstanceState(android.os.Bundle))\u00a0回调方法均会收到包含实例状态信息的相同\u00a0[Bundle](https://developer.android.com/reference/android/os/Bundle)。无论系统是新建 Activity 实例还是重新创建之前的实例，都会调用\u00a0[onCreate()](https://developer.android.com/reference/android/app/Activity#onCreate(android.os.Bundle))\u00a0方法。官方文档中说仅当存在要恢复的已保存状态时，系统才会调用\u00a0[onRestoreInstanceState()](https://developer.android.com/reference/android/app/Activity#onRestoreInstanceState(android.os.Bundle))。何时需要恢复？假设两个Activity A和B，A打开B，会调用onSaveInstanceState()，然后依次关闭B和A、再次打开A并没有调用onRestoreInstanceState()。如果A打开B，然后强制杀死应用，再次打开A亦然不会调用onRestoreInstanceState()。在转屏的时候会调用onSaveInstanceState()和onRestoreInstanceState()。 启动模式 参考文档： Android 面试黑洞——当我按下 Home 键再切回来，会发生什么？ ">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="生命周期 关于Activity的生命周期，可以参考官方文档：\nActivity 简介\n了解 Activity 生命周期\n需要注意的是：onStop()在Activity不可见时会调用，如果打开的是一个透明的Activity，就不会回调onStop()，当关闭透明Activity时，也不会回调onRestart()和onStart()。onStart()在Activity可见时调用，刚好与onStop()相反。当打开一个非Activity的Dialog时，不会触发生命周期方法回调（官方文档上说会弹出Dialog会调用onPause()，实测并没有调用）。\n当两个Activity A和B，如果A启动B，然后转屏B会销毁重建，当返回A，A会重建。如果B是一个透明Activity，A和B都会重建，并且A会调用onPause()，\n保存和恢复状态 参考文档：\n保存和恢复瞬时界面状态\n保存界面状态\n">
 <title></title>
 
 <link rel='canonical' href='http://localhost:1313/android/%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6/activity/'>
 
 <link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
-<meta property='og:description' content="生命周期 关于Activity的生命周期，可以参考官方文档： Activity 简介 了解 Activity 生命周期 需要注意的是：onStop()在Activity不可见时会调用，如果打开的是一个透明的Activity，就不会回调onStop()，当关闭透明Activity时，也不会回调onRestart()和onStart()。onStart()在Activity可见时调用，刚好与onStop()相反。当打开一个非Activity的Dialog时，不会触发生命周期方法回调（官方文档上说会弹出Dialog会调用onPause()，实测并没有调用）。 当两个Activity A和B，如果A启动B，然后转屏B会销毁重建，当返回A，A会重建。如果B是一个透明Activity，A和B都会重建，并且A会调用onPause()， 保存和恢复状态 参考文档： 保存和恢复瞬时界面状态 保存界面状态 状态保存 当正常点击返回键和调用finish()不会调用onSaveInstanceState()，其他情况当应用不可见时，就会调用，比如： onSaveInstanceState()的与生命周期方法的调用顺序。9.0及其之后发生在onStop()之后。之前的版本可能发生在onPause()之前或者之后。 状态恢复 [onCreate()](https://developer.android.com/reference/android/app/Activity#onCreate(android.os.Bundle))\u00a0和\u00a0[onRestoreInstanceState()](https://developer.android.com/reference/android/app/Activity#onRestoreInstanceState(android.os.Bundle))\u00a0回调方法均会收到包含实例状态信息的相同\u00a0[Bundle](https://developer.android.com/reference/android/os/Bundle)。无论系统是新建 Activity 实例还是重新创建之前的实例，都会调用\u00a0[onCreate()](https://developer.android.com/reference/android/app/Activity#onCreate(android.os.Bundle))\u00a0方法。官方文档中说仅当存在要恢复的已保存状态时，系统才会调用\u00a0[onRestoreInstanceState()](https://developer.android.com/reference/android/app/Activity#onRestoreInstanceState(android.os.Bundle))。何时需要恢复？假设两个Activity A和B，A打开B，会调用onSaveInstanceState()，然后依次关闭B和A、再次打开A并没有调用onRestoreInstanceState()。如果A打开B，然后强制杀死应用，再次打开A亦然不会调用onRestoreInstanceState()。在转屏的时候会调用onSaveInstanceState()和onRestoreInstanceState()。 启动模式 参考文档： Android 面试黑洞——当我按下 Home 键再切回来，会发生什么？ ">
+<meta property='og:description' content="生命周期 关于Activity的生命周期，可以参考官方文档：\nActivity 简介\n了解 Activity 生命周期\n需要注意的是：onStop()在Activity不可见时会调用，如果打开的是一个透明的Activity，就不会回调onStop()，当关闭透明Activity时，也不会回调onRestart()和onStart()。onStart()在Activity可见时调用，刚好与onStop()相反。当打开一个非Activity的Dialog时，不会触发生命周期方法回调（官方文档上说会弹出Dialog会调用onPause()，实测并没有调用）。\n当两个Activity A和B，如果A启动B，然后转屏B会销毁重建，当返回A，A会重建。如果B是一个透明Activity，A和B都会重建，并且A会调用onPause()，\n保存和恢复状态 参考文档：\n保存和恢复瞬时界面状态\n保存界面状态\n">
 <meta property='og:url' content='http://localhost:1313/android/%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6/activity/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="生命周期 关于Activity的生命周期，可以参考官方文档： Activity 简介 了解 Activity 生命周期 需要注意的是：onStop()在Activity不可见时会调用，如果打开的是一个透明的Activity，就不会回调onStop()，当关闭透明Activity时，也不会回调onRestart()和onStart()。onStart()在Activity可见时调用，刚好与onStop()相反。当打开一个非Activity的Dialog时，不会触发生命周期方法回调（官方文档上说会弹出Dialog会调用onPause()，实测并没有调用）。 当两个Activity A和B，如果A启动B，然后转屏B会销毁重建，当返回A，A会重建。如果B是一个透明Activity，A和B都会重建，并且A会调用onPause()， 保存和恢复状态 参考文档： 保存和恢复瞬时界面状态 保存界面状态 状态保存 当正常点击返回键和调用finish()不会调用onSaveInstanceState()，其他情况当应用不可见时，就会调用，比如： onSaveInstanceState()的与生命周期方法的调用顺序。9.0及其之后发生在onStop()之后。之前的版本可能发生在onPause()之前或者之后。 状态恢复 [onCreate()](https://developer.android.com/reference/android/app/Activity#onCreate(android.os.Bundle))\u00a0和\u00a0[onRestoreInstanceState()](https://developer.android.com/reference/android/app/Activity#onRestoreInstanceState(android.os.Bundle))\u00a0回调方法均会收到包含实例状态信息的相同\u00a0[Bundle](https://developer.android.com/reference/android/os/Bundle)。无论系统是新建 Activity 实例还是重新创建之前的实例，都会调用\u00a0[onCreate()](https://developer.android.com/reference/android/app/Activity#onCreate(android.os.Bundle))\u00a0方法。官方文档中说仅当存在要恢复的已保存状态时，系统才会调用\u00a0[onRestoreInstanceState()](https://developer.android.com/reference/android/app/Activity#onRestoreInstanceState(android.os.Bundle))。何时需要恢复？假设两个Activity A和B，A打开B，会调用onSaveInstanceState()，然后依次关闭B和A、再次打开A并没有调用onRestoreInstanceState()。如果A打开B，然后强制杀死应用，再次打开A亦然不会调用onRestoreInstanceState()。在转屏的时候会调用onSaveInstanceState()和onRestoreInstanceState()。 启动模式 参考文档： Android 面试黑洞——当我按下 Home 键再切回来，会发生什么？ ">
-  
-    
+<meta name="twitter:description" content="生命周期 关于Activity的生命周期，可以参考官方文档：\nActivity 简介\n了解 Activity 生命周期\n需要注意的是：onStop()在Activity不可见时会调用，如果打开的是一个透明的Activity，就不会回调onStop()，当关闭透明Activity时，也不会回调onRestart()和onStart()。onStart()在Activity可见时调用，刚好与onStop()相反。当打开一个非Activity的Dialog时，不会触发生命周期方法回调（官方文档上说会弹出Dialog会调用onPause()，实测并没有调用）。\n当两个Activity A和B，如果A启动B，然后转屏B会销毁重建，当返回A，A会重建。如果B是一个透明Activity，A和B都会重建，并且A会调用onPause()，\n保存和恢复状态 参考文档：\n保存和恢复瞬时界面状态\n保存界面状态\n">
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
       <script>
         var doNotTrack = false;
@@ -28,11 +26,7 @@
           gtag('js', new Date());
           gtag('config', 'G-G84J9N38RL');
         }
-      </script>
-    
-  
-
-<style>
+      </script><style>
     :root {
         --sys-font-family: "LXGW WenKai TC";
         --zh-font-family: "LXGW WenKai TC";
@@ -94,7 +88,7 @@
                     
                     
                         
-                        <img src="/images/avatar_hu74e4307e0baa534a3da4ee0210445065_34446_300x0_resize_q75_box.jpeg" width="300"
+                        <img src="/images/avatar_hu15583006483879718621.jpeg" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -114,7 +108,7 @@
             
                 <li>
                     <a 
-                        href='https://twitter.com/malinkang'
+                        href='https://space.bilibili.com/27440979'
                         target="_blank"
                         title="Bilibili"
                         rel="me"
@@ -128,7 +122,7 @@
             
                 <li>
                     <a 
-                        href='https://www.douban.com/people/malinkang/https://space.bilibili.com/27440979'
+                        href='https://www.douban.com/people/malinkang/'
                         target="_blank"
                         title="Douban"
                         rel="me"

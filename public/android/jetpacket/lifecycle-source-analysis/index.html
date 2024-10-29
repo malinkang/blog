@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Lifecycle源码分析 Lifecycle Lifecycle代表生命周期，是一个抽象类，我们经常使用它的子类LifecycleRegistry。 Lifecycle提供了三个抽象方法用来添加、删除LifecycleObserver和获取当前Lifecycle状态。 1 2 3 4 5 6 7 @MainThread public abstract void addObserver(@NonNull LifecycleObserver observer); @MainThread public abstract void removeObserver(@NonNull LifecycleObserver observer); @MainThread @NonNull public abstract State getCurrentState(); Lifecycle还提供了两个内部枚举Event和State。 Event Event代表生命周期发生变化时发送的事件。 1 2 3 4 5 6 7 8 9 10 @SuppressWarnings(&#34;WeakerAccess&#34;) public enum Event { ON_CREATE, //onCreate发送该事件 ON_START, ON_RESUME, ON_PAUSE, ON_STOP, ON_DESTROY, ON_ANY } State State代表当前生命周期状态。 1 2 3 4 5 6 7 8 9 10 11 12 public enum State { //处于Destoryed状态，Lifecycle将不会发送任何事件 DESTROYED, INITIALIZED, CREATED, STARTED, RESUMED; //比较当前状态大于或等于给定状态 public boolean isAtLeast(@NonNull State state) { return compareTo(state) &gt;= 0; } } LifecycleOwner LifecycleOwner即生命周期拥有者，是一个接口，只提供了一个获取生命周期的方法。">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Lifecycle源码分析 Lifecycle Lifecycle代表生命周期，是一个抽象类，我们经常使用它的子类LifecycleRegistry。\nLifecycle提供了三个抽象方法用来添加、删除LifecycleObserver和获取当前Lifecycle状态。\n1 2 3 4 5 6 7 @MainThread public abstract void addObserver(@NonNull LifecycleObserver observer); @MainThread public abstract void removeObserver(@NonNull LifecycleObserver observer); @MainThread @NonNull public abstract State getCurrentState(); ">
 <title></title>
 
 <link rel='canonical' href='http://localhost:1313/android/jetpacket/lifecycle-source-analysis/'>
 
 <link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
-<meta property='og:description' content="Lifecycle源码分析 Lifecycle Lifecycle代表生命周期，是一个抽象类，我们经常使用它的子类LifecycleRegistry。 Lifecycle提供了三个抽象方法用来添加、删除LifecycleObserver和获取当前Lifecycle状态。 1 2 3 4 5 6 7 @MainThread public abstract void addObserver(@NonNull LifecycleObserver observer); @MainThread public abstract void removeObserver(@NonNull LifecycleObserver observer); @MainThread @NonNull public abstract State getCurrentState(); Lifecycle还提供了两个内部枚举Event和State。 Event Event代表生命周期发生变化时发送的事件。 1 2 3 4 5 6 7 8 9 10 @SuppressWarnings(&#34;WeakerAccess&#34;) public enum Event { ON_CREATE, //onCreate发送该事件 ON_START, ON_RESUME, ON_PAUSE, ON_STOP, ON_DESTROY, ON_ANY } State State代表当前生命周期状态。 1 2 3 4 5 6 7 8 9 10 11 12 public enum State { //处于Destoryed状态，Lifecycle将不会发送任何事件 DESTROYED, INITIALIZED, CREATED, STARTED, RESUMED; //比较当前状态大于或等于给定状态 public boolean isAtLeast(@NonNull State state) { return compareTo(state) &gt;= 0; } } LifecycleOwner LifecycleOwner即生命周期拥有者，是一个接口，只提供了一个获取生命周期的方法。">
+<meta property='og:description' content="Lifecycle源码分析 Lifecycle Lifecycle代表生命周期，是一个抽象类，我们经常使用它的子类LifecycleRegistry。\nLifecycle提供了三个抽象方法用来添加、删除LifecycleObserver和获取当前Lifecycle状态。\n1 2 3 4 5 6 7 @MainThread public abstract void addObserver(@NonNull LifecycleObserver observer); @MainThread public abstract void removeObserver(@NonNull LifecycleObserver observer); @MainThread @NonNull public abstract State getCurrentState(); ">
 <meta property='og:url' content='http://localhost:1313/android/jetpacket/lifecycle-source-analysis/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="Lifecycle源码分析 Lifecycle Lifecycle代表生命周期，是一个抽象类，我们经常使用它的子类LifecycleRegistry。 Lifecycle提供了三个抽象方法用来添加、删除LifecycleObserver和获取当前Lifecycle状态。 1 2 3 4 5 6 7 @MainThread public abstract void addObserver(@NonNull LifecycleObserver observer); @MainThread public abstract void removeObserver(@NonNull LifecycleObserver observer); @MainThread @NonNull public abstract State getCurrentState(); Lifecycle还提供了两个内部枚举Event和State。 Event Event代表生命周期发生变化时发送的事件。 1 2 3 4 5 6 7 8 9 10 @SuppressWarnings(&#34;WeakerAccess&#34;) public enum Event { ON_CREATE, //onCreate发送该事件 ON_START, ON_RESUME, ON_PAUSE, ON_STOP, ON_DESTROY, ON_ANY } State State代表当前生命周期状态。 1 2 3 4 5 6 7 8 9 10 11 12 public enum State { //处于Destoryed状态，Lifecycle将不会发送任何事件 DESTROYED, INITIALIZED, CREATED, STARTED, RESUMED; //比较当前状态大于或等于给定状态 public boolean isAtLeast(@NonNull State state) { return compareTo(state) &gt;= 0; } } LifecycleOwner LifecycleOwner即生命周期拥有者，是一个接口，只提供了一个获取生命周期的方法。">
-  
-    
+<meta name="twitter:description" content="Lifecycle源码分析 Lifecycle Lifecycle代表生命周期，是一个抽象类，我们经常使用它的子类LifecycleRegistry。\nLifecycle提供了三个抽象方法用来添加、删除LifecycleObserver和获取当前Lifecycle状态。\n1 2 3 4 5 6 7 @MainThread public abstract void addObserver(@NonNull LifecycleObserver observer); @MainThread public abstract void removeObserver(@NonNull LifecycleObserver observer); @MainThread @NonNull public abstract State getCurrentState(); ">
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
       <script>
         var doNotTrack = false;
@@ -28,11 +26,7 @@
           gtag('js', new Date());
           gtag('config', 'G-G84J9N38RL');
         }
-      </script>
-    
-  
-
-<style>
+      </script><style>
     :root {
         --sys-font-family: "LXGW WenKai TC";
         --zh-font-family: "LXGW WenKai TC";
@@ -94,7 +88,7 @@
                     
                     
                         
-                        <img src="/images/avatar_hu74e4307e0baa534a3da4ee0210445065_34446_300x0_resize_q75_box.jpeg" width="300"
+                        <img src="/images/avatar_hu15583006483879718621.jpeg" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -114,7 +108,7 @@
             
                 <li>
                     <a 
-                        href='https://twitter.com/malinkang'
+                        href='https://space.bilibili.com/27440979'
                         target="_blank"
                         title="Bilibili"
                         rel="me"
@@ -128,7 +122,7 @@
             
                 <li>
                     <a 
-                        href='https://www.douban.com/people/malinkang/https://space.bilibili.com/27440979'
+                        href='https://www.douban.com/people/malinkang/'
                         target="_blank"
                         title="Douban"
                         rel="me"

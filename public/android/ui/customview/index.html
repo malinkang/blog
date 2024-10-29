@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="自定义控件 目录 1.了解View的绘制流程 1.1测量流程 1.2layout流程 1.3draw流程 2.View事件传递 参考 1.了解View的绘制流程 View绘制流程 1.1测量流程 测量流程由View的measure方法发起，从上到下有序的测量View，测量工作全部完成后，每个视图存储自己的尺寸大小和测量规格。 MeasureSpecs对象：包含测量要求和尺寸的信息，有三种模式： UNSPECIFIED 父View不对子View有任何约束，它可以达到所期望的任意尺寸，比如ListView和ScrollView。 EXACTLY 父View为子View指定一个确切的尺寸，而且无论子View期望多大，它都必须在该指定大小的边界内，对应的属性为match_parent或者具体值。 AT_MOST 父View为子View指定一个最大尺寸。对应的属性wrap_content。这种模式下，父控件无法确定子View的尺寸，只能子控件 ViewGroup绘制流程 measureChildren方法 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 /** * Ask all of the children of this view to measure themselves, taking into * account both the MeasureSpec requirements for this view and its padding. * We skip children that are in the GONE state The heavy lifting is done in * getChildMeasureSpec.">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="自定义控件 目录 1.了解View的绘制流程 1.1测量流程 1.2layout流程 1.3draw流程 2.View事件传递 参考 1.了解View的绘制流程 View绘制流程\n1.1测量流程 测量流程由View的measure方法发起，从上到下有序的测量View，测量工作全部完成后，每个视图存储自己的尺寸大小和测量规格。\nMeasureSpecs对象：包含测量要求和尺寸的信息，有三种模式：\nUNSPECIFIED 父View不对子View有任何约束，它可以达到所期望的任意尺寸，比如ListView和ScrollView。 EXACTLY 父View为子View指定一个确切的尺寸，而且无论子View期望多大，它都必须在该指定大小的边界内，对应的属性为match_parent或者具体值。 AT_MOST 父View为子View指定一个最大尺寸。对应的属性wrap_content。这种模式下，父控件无法确定子View的尺寸，只能子控件 ViewGroup绘制流程\n">
 <title></title>
 
 <link rel='canonical' href='http://localhost:1313/android/ui/customview/'>
 
 <link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
-<meta property='og:description' content="自定义控件 目录 1.了解View的绘制流程 1.1测量流程 1.2layout流程 1.3draw流程 2.View事件传递 参考 1.了解View的绘制流程 View绘制流程 1.1测量流程 测量流程由View的measure方法发起，从上到下有序的测量View，测量工作全部完成后，每个视图存储自己的尺寸大小和测量规格。 MeasureSpecs对象：包含测量要求和尺寸的信息，有三种模式： UNSPECIFIED 父View不对子View有任何约束，它可以达到所期望的任意尺寸，比如ListView和ScrollView。 EXACTLY 父View为子View指定一个确切的尺寸，而且无论子View期望多大，它都必须在该指定大小的边界内，对应的属性为match_parent或者具体值。 AT_MOST 父View为子View指定一个最大尺寸。对应的属性wrap_content。这种模式下，父控件无法确定子View的尺寸，只能子控件 ViewGroup绘制流程 measureChildren方法 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 /** * Ask all of the children of this view to measure themselves, taking into * account both the MeasureSpec requirements for this view and its padding. * We skip children that are in the GONE state The heavy lifting is done in * getChildMeasureSpec.">
+<meta property='og:description' content="自定义控件 目录 1.了解View的绘制流程 1.1测量流程 1.2layout流程 1.3draw流程 2.View事件传递 参考 1.了解View的绘制流程 View绘制流程\n1.1测量流程 测量流程由View的measure方法发起，从上到下有序的测量View，测量工作全部完成后，每个视图存储自己的尺寸大小和测量规格。\nMeasureSpecs对象：包含测量要求和尺寸的信息，有三种模式：\nUNSPECIFIED 父View不对子View有任何约束，它可以达到所期望的任意尺寸，比如ListView和ScrollView。 EXACTLY 父View为子View指定一个确切的尺寸，而且无论子View期望多大，它都必须在该指定大小的边界内，对应的属性为match_parent或者具体值。 AT_MOST 父View为子View指定一个最大尺寸。对应的属性wrap_content。这种模式下，父控件无法确定子View的尺寸，只能子控件 ViewGroup绘制流程\n">
 <meta property='og:url' content='http://localhost:1313/android/ui/customview/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="自定义控件 目录 1.了解View的绘制流程 1.1测量流程 1.2layout流程 1.3draw流程 2.View事件传递 参考 1.了解View的绘制流程 View绘制流程 1.1测量流程 测量流程由View的measure方法发起，从上到下有序的测量View，测量工作全部完成后，每个视图存储自己的尺寸大小和测量规格。 MeasureSpecs对象：包含测量要求和尺寸的信息，有三种模式： UNSPECIFIED 父View不对子View有任何约束，它可以达到所期望的任意尺寸，比如ListView和ScrollView。 EXACTLY 父View为子View指定一个确切的尺寸，而且无论子View期望多大，它都必须在该指定大小的边界内，对应的属性为match_parent或者具体值。 AT_MOST 父View为子View指定一个最大尺寸。对应的属性wrap_content。这种模式下，父控件无法确定子View的尺寸，只能子控件 ViewGroup绘制流程 measureChildren方法 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 /** * Ask all of the children of this view to measure themselves, taking into * account both the MeasureSpec requirements for this view and its padding. * We skip children that are in the GONE state The heavy lifting is done in * getChildMeasureSpec.">
-  
-    
+<meta name="twitter:description" content="自定义控件 目录 1.了解View的绘制流程 1.1测量流程 1.2layout流程 1.3draw流程 2.View事件传递 参考 1.了解View的绘制流程 View绘制流程\n1.1测量流程 测量流程由View的measure方法发起，从上到下有序的测量View，测量工作全部完成后，每个视图存储自己的尺寸大小和测量规格。\nMeasureSpecs对象：包含测量要求和尺寸的信息，有三种模式：\nUNSPECIFIED 父View不对子View有任何约束，它可以达到所期望的任意尺寸，比如ListView和ScrollView。 EXACTLY 父View为子View指定一个确切的尺寸，而且无论子View期望多大，它都必须在该指定大小的边界内，对应的属性为match_parent或者具体值。 AT_MOST 父View为子View指定一个最大尺寸。对应的属性wrap_content。这种模式下，父控件无法确定子View的尺寸，只能子控件 ViewGroup绘制流程\n">
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
       <script>
         var doNotTrack = false;
@@ -28,11 +26,7 @@
           gtag('js', new Date());
           gtag('config', 'G-G84J9N38RL');
         }
-      </script>
-    
-  
-
-<style>
+      </script><style>
     :root {
         --sys-font-family: "LXGW WenKai TC";
         --zh-font-family: "LXGW WenKai TC";
@@ -94,7 +88,7 @@
                     
                     
                         
-                        <img src="/images/avatar_hu74e4307e0baa534a3da4ee0210445065_34446_300x0_resize_q75_box.jpeg" width="300"
+                        <img src="/images/avatar_hu15583006483879718621.jpeg" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -114,7 +108,7 @@
             
                 <li>
                     <a 
-                        href='https://twitter.com/malinkang'
+                        href='https://space.bilibili.com/27440979'
                         target="_blank"
                         title="Bilibili"
                         rel="me"
@@ -128,7 +122,7 @@
             
                 <li>
                     <a 
-                        href='https://www.douban.com/people/malinkang/https://space.bilibili.com/27440979'
+                        href='https://www.douban.com/people/malinkang/'
                         target="_blank"
                         title="Douban"
                         rel="me"

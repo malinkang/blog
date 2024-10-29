@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Handler源码分析 Looper 我们知道一个线程是一段可执行的代码，当可执行代码执行完成后，线程生命周期便会终止，线程就会退出，那么作为App的主线程，如果代码段执行完了会怎样？，那么就会出现App启动后执行一段代码后就自动退出了，这是很不合理的。所以为了防止代码段被执行完，只能在代码中插入一个死循环，那么代码就不会被执行完，然后自动退出，怎么在在代码中插入一个死循环呢？那么Looper出现了，在主线程中调用Looper.prepare()&hellip;Looper.loop()就会变当前线程变成Looper线程（可以先简单理解：无限循环不退出的线程），Looper.loop()方法里面有一段死循环的代码，所以主线程会进入while(true){&hellip;}的代码段跳不出来，但是主线程也不能什么都不做吧？其实所有做的事情都在while(true){&hellip;}里面做了，主线程会在死循环中不断等其他线程给它发消息（消息包括：Activity启动，生命周期，更新UI，控件事件等），一有消息就根据消息做相应的处理，Looper的另外一部分工作就是在循环代码中会不断从消息队列挨个拿出消息给主线程处理。 在Looper的loop()方法中循环从MessageQueue中取出Message，然后通过Handler来处理消息。假若队列为空，那么它会进入休眠。 Handler方法提供接收一个Looper对象的构造函数。但是在UI线程中创建调用不带参数的构造函数也不会报错，那么UI线程的Looper是何时创建的呢？其实在程序启动时，系统就为UI线程创建了一个Looper对象。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 //ActivityThread的main方法 public static void main(String[] args) { //... Looper.prepareMainLooper(); // Find the value for {@link #PROC_START_SEQ_IDENT} if provided on the command line. // It will be in the format &#34;seq=114&#34; long startSeq = 0; if (args !">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Handler源码分析 Looper 我们知道一个线程是一段可执行的代码，当可执行代码执行完成后，线程生命周期便会终止，线程就会退出，那么作为App的主线程，如果代码段执行完了会怎样？，那么就会出现App启动后执行一段代码后就自动退出了，这是很不合理的。所以为了防止代码段被执行完，只能在代码中插入一个死循环，那么代码就不会被执行完，然后自动退出，怎么在在代码中插入一个死循环呢？那么Looper出现了，在主线程中调用Looper.prepare()&hellip;Looper.loop()就会变当前线程变成Looper线程（可以先简单理解：无限循环不退出的线程），Looper.loop()方法里面有一段死循环的代码，所以主线程会进入while(true){&hellip;}的代码段跳不出来，但是主线程也不能什么都不做吧？其实所有做的事情都在while(true){&hellip;}里面做了，主线程会在死循环中不断等其他线程给它发消息（消息包括：Activity启动，生命周期，更新UI，控件事件等），一有消息就根据消息做相应的处理，Looper的另外一部分工作就是在循环代码中会不断从消息队列挨个拿出消息给主线程处理。\n在Looper的loop()方法中循环从MessageQueue中取出Message，然后通过Handler来处理消息。假若队列为空，那么它会进入休眠。\nHandler方法提供接收一个Looper对象的构造函数。但是在UI线程中创建调用不带参数的构造函数也不会报错，那么UI线程的Looper是何时创建的呢？其实在程序启动时，系统就为UI线程创建了一个Looper对象。\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 ">
 <title></title>
 
 <link rel='canonical' href='http://localhost:1313/android/aosp/handler/'>
 
 <link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
-<meta property='og:description' content="Handler源码分析 Looper 我们知道一个线程是一段可执行的代码，当可执行代码执行完成后，线程生命周期便会终止，线程就会退出，那么作为App的主线程，如果代码段执行完了会怎样？，那么就会出现App启动后执行一段代码后就自动退出了，这是很不合理的。所以为了防止代码段被执行完，只能在代码中插入一个死循环，那么代码就不会被执行完，然后自动退出，怎么在在代码中插入一个死循环呢？那么Looper出现了，在主线程中调用Looper.prepare()&hellip;Looper.loop()就会变当前线程变成Looper线程（可以先简单理解：无限循环不退出的线程），Looper.loop()方法里面有一段死循环的代码，所以主线程会进入while(true){&hellip;}的代码段跳不出来，但是主线程也不能什么都不做吧？其实所有做的事情都在while(true){&hellip;}里面做了，主线程会在死循环中不断等其他线程给它发消息（消息包括：Activity启动，生命周期，更新UI，控件事件等），一有消息就根据消息做相应的处理，Looper的另外一部分工作就是在循环代码中会不断从消息队列挨个拿出消息给主线程处理。 在Looper的loop()方法中循环从MessageQueue中取出Message，然后通过Handler来处理消息。假若队列为空，那么它会进入休眠。 Handler方法提供接收一个Looper对象的构造函数。但是在UI线程中创建调用不带参数的构造函数也不会报错，那么UI线程的Looper是何时创建的呢？其实在程序启动时，系统就为UI线程创建了一个Looper对象。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 //ActivityThread的main方法 public static void main(String[] args) { //... Looper.prepareMainLooper(); // Find the value for {@link #PROC_START_SEQ_IDENT} if provided on the command line. // It will be in the format &#34;seq=114&#34; long startSeq = 0; if (args !">
+<meta property='og:description' content="Handler源码分析 Looper 我们知道一个线程是一段可执行的代码，当可执行代码执行完成后，线程生命周期便会终止，线程就会退出，那么作为App的主线程，如果代码段执行完了会怎样？，那么就会出现App启动后执行一段代码后就自动退出了，这是很不合理的。所以为了防止代码段被执行完，只能在代码中插入一个死循环，那么代码就不会被执行完，然后自动退出，怎么在在代码中插入一个死循环呢？那么Looper出现了，在主线程中调用Looper.prepare()&hellip;Looper.loop()就会变当前线程变成Looper线程（可以先简单理解：无限循环不退出的线程），Looper.loop()方法里面有一段死循环的代码，所以主线程会进入while(true){&hellip;}的代码段跳不出来，但是主线程也不能什么都不做吧？其实所有做的事情都在while(true){&hellip;}里面做了，主线程会在死循环中不断等其他线程给它发消息（消息包括：Activity启动，生命周期，更新UI，控件事件等），一有消息就根据消息做相应的处理，Looper的另外一部分工作就是在循环代码中会不断从消息队列挨个拿出消息给主线程处理。\n在Looper的loop()方法中循环从MessageQueue中取出Message，然后通过Handler来处理消息。假若队列为空，那么它会进入休眠。\nHandler方法提供接收一个Looper对象的构造函数。但是在UI线程中创建调用不带参数的构造函数也不会报错，那么UI线程的Looper是何时创建的呢？其实在程序启动时，系统就为UI线程创建了一个Looper对象。\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 ">
 <meta property='og:url' content='http://localhost:1313/android/aosp/handler/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="Handler源码分析 Looper 我们知道一个线程是一段可执行的代码，当可执行代码执行完成后，线程生命周期便会终止，线程就会退出，那么作为App的主线程，如果代码段执行完了会怎样？，那么就会出现App启动后执行一段代码后就自动退出了，这是很不合理的。所以为了防止代码段被执行完，只能在代码中插入一个死循环，那么代码就不会被执行完，然后自动退出，怎么在在代码中插入一个死循环呢？那么Looper出现了，在主线程中调用Looper.prepare()&hellip;Looper.loop()就会变当前线程变成Looper线程（可以先简单理解：无限循环不退出的线程），Looper.loop()方法里面有一段死循环的代码，所以主线程会进入while(true){&hellip;}的代码段跳不出来，但是主线程也不能什么都不做吧？其实所有做的事情都在while(true){&hellip;}里面做了，主线程会在死循环中不断等其他线程给它发消息（消息包括：Activity启动，生命周期，更新UI，控件事件等），一有消息就根据消息做相应的处理，Looper的另外一部分工作就是在循环代码中会不断从消息队列挨个拿出消息给主线程处理。 在Looper的loop()方法中循环从MessageQueue中取出Message，然后通过Handler来处理消息。假若队列为空，那么它会进入休眠。 Handler方法提供接收一个Looper对象的构造函数。但是在UI线程中创建调用不带参数的构造函数也不会报错，那么UI线程的Looper是何时创建的呢？其实在程序启动时，系统就为UI线程创建了一个Looper对象。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 //ActivityThread的main方法 public static void main(String[] args) { //... Looper.prepareMainLooper(); // Find the value for {@link #PROC_START_SEQ_IDENT} if provided on the command line. // It will be in the format &#34;seq=114&#34; long startSeq = 0; if (args !">
-  
-    
+<meta name="twitter:description" content="Handler源码分析 Looper 我们知道一个线程是一段可执行的代码，当可执行代码执行完成后，线程生命周期便会终止，线程就会退出，那么作为App的主线程，如果代码段执行完了会怎样？，那么就会出现App启动后执行一段代码后就自动退出了，这是很不合理的。所以为了防止代码段被执行完，只能在代码中插入一个死循环，那么代码就不会被执行完，然后自动退出，怎么在在代码中插入一个死循环呢？那么Looper出现了，在主线程中调用Looper.prepare()&hellip;Looper.loop()就会变当前线程变成Looper线程（可以先简单理解：无限循环不退出的线程），Looper.loop()方法里面有一段死循环的代码，所以主线程会进入while(true){&hellip;}的代码段跳不出来，但是主线程也不能什么都不做吧？其实所有做的事情都在while(true){&hellip;}里面做了，主线程会在死循环中不断等其他线程给它发消息（消息包括：Activity启动，生命周期，更新UI，控件事件等），一有消息就根据消息做相应的处理，Looper的另外一部分工作就是在循环代码中会不断从消息队列挨个拿出消息给主线程处理。\n在Looper的loop()方法中循环从MessageQueue中取出Message，然后通过Handler来处理消息。假若队列为空，那么它会进入休眠。\nHandler方法提供接收一个Looper对象的构造函数。但是在UI线程中创建调用不带参数的构造函数也不会报错，那么UI线程的Looper是何时创建的呢？其实在程序启动时，系统就为UI线程创建了一个Looper对象。\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 ">
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
       <script>
         var doNotTrack = false;
@@ -28,11 +26,7 @@
           gtag('js', new Date());
           gtag('config', 'G-G84J9N38RL');
         }
-      </script>
-    
-  
-
-<style>
+      </script><style>
     :root {
         --sys-font-family: "LXGW WenKai TC";
         --zh-font-family: "LXGW WenKai TC";
@@ -94,7 +88,7 @@
                     
                     
                         
-                        <img src="/images/avatar_hu74e4307e0baa534a3da4ee0210445065_34446_300x0_resize_q75_box.jpeg" width="300"
+                        <img src="/images/avatar_hu15583006483879718621.jpeg" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -114,7 +108,7 @@
             
                 <li>
                     <a 
-                        href='https://twitter.com/malinkang'
+                        href='https://space.bilibili.com/27440979'
                         target="_blank"
                         title="Bilibili"
                         rel="me"
@@ -128,7 +122,7 @@
             
                 <li>
                     <a 
-                        href='https://www.douban.com/people/malinkang/https://space.bilibili.com/27440979'
+                        href='https://www.douban.com/people/malinkang/'
                         target="_blank"
                         title="Douban"
                         rel="me"
@@ -974,50 +968,50 @@
 </h2><h3 id="消息对象">消息对象
 </h3><p>每个消息用<code>Message</code>表示，<code>Message</code>主要包含以下内容：</p>
 <div class="table-wrapper"><table>
-<thead>
-<tr>
-<th style="text-align:left">数据类型</th>
-<th style="text-align:left">成员变量</th>
-<th style="text-align:left">解释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">int</td>
-<td style="text-align:left">what</td>
-<td style="text-align:left">消息类别</td>
-</tr>
-<tr>
-<td style="text-align:left">long</td>
-<td style="text-align:left">when</td>
-<td style="text-align:left">消息触发时间</td>
-</tr>
-<tr>
-<td style="text-align:left">int</td>
-<td style="text-align:left">arg1</td>
-<td style="text-align:left">参数1</td>
-</tr>
-<tr>
-<td style="text-align:left">int</td>
-<td style="text-align:left">arg2</td>
-<td style="text-align:left">参数2</td>
-</tr>
-<tr>
-<td style="text-align:left">Object</td>
-<td style="text-align:left">obj</td>
-<td style="text-align:left">消息内容</td>
-</tr>
-<tr>
-<td style="text-align:left">Handler</td>
-<td style="text-align:left">target</td>
-<td style="text-align:left">消息响应方</td>
-</tr>
-<tr>
-<td style="text-align:left">Runnable</td>
-<td style="text-align:left">callback</td>
-<td style="text-align:left">回调方法</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">数据类型</th>
+          <th style="text-align: left">成员变量</th>
+          <th style="text-align: left">解释</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">int</td>
+          <td style="text-align: left">what</td>
+          <td style="text-align: left">消息类别</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">long</td>
+          <td style="text-align: left">when</td>
+          <td style="text-align: left">消息触发时间</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">int</td>
+          <td style="text-align: left">arg1</td>
+          <td style="text-align: left">参数1</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">int</td>
+          <td style="text-align: left">arg2</td>
+          <td style="text-align: left">参数2</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Object</td>
+          <td style="text-align: left">obj</td>
+          <td style="text-align: left">消息内容</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Handler</td>
+          <td style="text-align: left">target</td>
+          <td style="text-align: left">消息响应方</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Runnable</td>
+          <td style="text-align: left">callback</td>
+          <td style="text-align: left">回调方法</td>
+      </tr>
+  </tbody>
 </table></div>
 <p>创建消息的过程，就是填充消息的上述内容的一项或多项。</p>
 <div class="highlight"><div class="chroma">

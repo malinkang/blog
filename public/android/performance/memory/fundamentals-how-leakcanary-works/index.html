@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="LeakCanary如何工作 一旦安装了LeakCanary，它就会按照以下4个步骤自动检测和报告内存泄漏 检测持有对象 转储堆。 分析堆。 对泄漏进行分类。 1. 检测持有对象 LeakCanary与Android生命周期想关联，自动检测Activity和Fragment何时被销毁，何时应该被垃圾回收。这些被销毁的对象被传递给ObjectWatcher，该ObjectWatcher持有对它们的弱引用。LeakCanary会自动检测以下对象的泄漏: 销毁的Activity实例 销毁的Fragment实例 销毁的View实例 ViewModel实例 您可以观看任何不再需要的对象，例如一个分离的视图或一个被破坏的演示器。 1 AppWatcher.objectWatcher.watch(myDetachedView, &#34;View was detached&#34;) 如果ObjectWatcher持有的弱引用在等待5秒并运行垃圾回收后没有被清除，被监视的对象就会被认为是被持有，并且有可能泄漏。LeakCanary将此记录到Logcat。 1 2 3 4 5 6 7 D LeakCanary: Watching instance of com.example.leakcanary.MainActivity (Activity received Activity#onDestroy() callback) ... 5 seconds later ... D LeakCanary: Scheduling check for retained objects because found new object retained LeakCanary等待保留对象的计数达到阈值后才会转储堆，并显示最新计数的通知。 1 2 D LeakCanary: Rescheduling check for retained objects in 2000ms because found only 4 retained objects (&lt; 5 while app visible) 默认的阈值是当应用可见时保留5个对象，当应用不可见时保留1个对象。如果您看到保留对象通知，然后将应用程序置于后台（例如按下主页按钮），那么阈值从5变为1，LeakCanary会在5秒内转储堆。点击通知会迫使LeakCanary立即转储堆。">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="LeakCanary如何工作 一旦安装了LeakCanary，它就会按照以下4个步骤自动检测和报告内存泄漏\n检测持有对象 转储堆。 分析堆。 对泄漏进行分类。 1. 检测持有对象 LeakCanary与Android生命周期想关联，自动检测Activity和Fragment何时被销毁，何时应该被垃圾回收。这些被销毁的对象被传递给ObjectWatcher，该ObjectWatcher持有对它们的弱引用。LeakCanary会自动检测以下对象的泄漏:\n销毁的Activity实例 销毁的Fragment实例 销毁的View实例 ViewModel实例 您可以观看任何不再需要的对象，例如一个分离的视图或一个被破坏的演示器。\n1 AppWatcher.objectWatcher.watch(myDetachedView, &#34;View was detached&#34;) 如果ObjectWatcher持有的弱引用在等待5秒并运行垃圾回收后没有被清除，被监视的对象就会被认为是被持有，并且有可能泄漏。LeakCanary将此记录到Logcat。\n1 2 3 4 5 6 7 ">
 <title></title>
 
 <link rel='canonical' href='http://localhost:1313/android/performance/memory/fundamentals-how-leakcanary-works/'>
 
 <link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
-<meta property='og:description' content="LeakCanary如何工作 一旦安装了LeakCanary，它就会按照以下4个步骤自动检测和报告内存泄漏 检测持有对象 转储堆。 分析堆。 对泄漏进行分类。 1. 检测持有对象 LeakCanary与Android生命周期想关联，自动检测Activity和Fragment何时被销毁，何时应该被垃圾回收。这些被销毁的对象被传递给ObjectWatcher，该ObjectWatcher持有对它们的弱引用。LeakCanary会自动检测以下对象的泄漏: 销毁的Activity实例 销毁的Fragment实例 销毁的View实例 ViewModel实例 您可以观看任何不再需要的对象，例如一个分离的视图或一个被破坏的演示器。 1 AppWatcher.objectWatcher.watch(myDetachedView, &#34;View was detached&#34;) 如果ObjectWatcher持有的弱引用在等待5秒并运行垃圾回收后没有被清除，被监视的对象就会被认为是被持有，并且有可能泄漏。LeakCanary将此记录到Logcat。 1 2 3 4 5 6 7 D LeakCanary: Watching instance of com.example.leakcanary.MainActivity (Activity received Activity#onDestroy() callback) ... 5 seconds later ... D LeakCanary: Scheduling check for retained objects because found new object retained LeakCanary等待保留对象的计数达到阈值后才会转储堆，并显示最新计数的通知。 1 2 D LeakCanary: Rescheduling check for retained objects in 2000ms because found only 4 retained objects (&lt; 5 while app visible) 默认的阈值是当应用可见时保留5个对象，当应用不可见时保留1个对象。如果您看到保留对象通知，然后将应用程序置于后台（例如按下主页按钮），那么阈值从5变为1，LeakCanary会在5秒内转储堆。点击通知会迫使LeakCanary立即转储堆。">
+<meta property='og:description' content="LeakCanary如何工作 一旦安装了LeakCanary，它就会按照以下4个步骤自动检测和报告内存泄漏\n检测持有对象 转储堆。 分析堆。 对泄漏进行分类。 1. 检测持有对象 LeakCanary与Android生命周期想关联，自动检测Activity和Fragment何时被销毁，何时应该被垃圾回收。这些被销毁的对象被传递给ObjectWatcher，该ObjectWatcher持有对它们的弱引用。LeakCanary会自动检测以下对象的泄漏:\n销毁的Activity实例 销毁的Fragment实例 销毁的View实例 ViewModel实例 您可以观看任何不再需要的对象，例如一个分离的视图或一个被破坏的演示器。\n1 AppWatcher.objectWatcher.watch(myDetachedView, &#34;View was detached&#34;) 如果ObjectWatcher持有的弱引用在等待5秒并运行垃圾回收后没有被清除，被监视的对象就会被认为是被持有，并且有可能泄漏。LeakCanary将此记录到Logcat。\n1 2 3 4 5 6 7 ">
 <meta property='og:url' content='http://localhost:1313/android/performance/memory/fundamentals-how-leakcanary-works/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="LeakCanary如何工作 一旦安装了LeakCanary，它就会按照以下4个步骤自动检测和报告内存泄漏 检测持有对象 转储堆。 分析堆。 对泄漏进行分类。 1. 检测持有对象 LeakCanary与Android生命周期想关联，自动检测Activity和Fragment何时被销毁，何时应该被垃圾回收。这些被销毁的对象被传递给ObjectWatcher，该ObjectWatcher持有对它们的弱引用。LeakCanary会自动检测以下对象的泄漏: 销毁的Activity实例 销毁的Fragment实例 销毁的View实例 ViewModel实例 您可以观看任何不再需要的对象，例如一个分离的视图或一个被破坏的演示器。 1 AppWatcher.objectWatcher.watch(myDetachedView, &#34;View was detached&#34;) 如果ObjectWatcher持有的弱引用在等待5秒并运行垃圾回收后没有被清除，被监视的对象就会被认为是被持有，并且有可能泄漏。LeakCanary将此记录到Logcat。 1 2 3 4 5 6 7 D LeakCanary: Watching instance of com.example.leakcanary.MainActivity (Activity received Activity#onDestroy() callback) ... 5 seconds later ... D LeakCanary: Scheduling check for retained objects because found new object retained LeakCanary等待保留对象的计数达到阈值后才会转储堆，并显示最新计数的通知。 1 2 D LeakCanary: Rescheduling check for retained objects in 2000ms because found only 4 retained objects (&lt; 5 while app visible) 默认的阈值是当应用可见时保留5个对象，当应用不可见时保留1个对象。如果您看到保留对象通知，然后将应用程序置于后台（例如按下主页按钮），那么阈值从5变为1，LeakCanary会在5秒内转储堆。点击通知会迫使LeakCanary立即转储堆。">
-  
-    
+<meta name="twitter:description" content="LeakCanary如何工作 一旦安装了LeakCanary，它就会按照以下4个步骤自动检测和报告内存泄漏\n检测持有对象 转储堆。 分析堆。 对泄漏进行分类。 1. 检测持有对象 LeakCanary与Android生命周期想关联，自动检测Activity和Fragment何时被销毁，何时应该被垃圾回收。这些被销毁的对象被传递给ObjectWatcher，该ObjectWatcher持有对它们的弱引用。LeakCanary会自动检测以下对象的泄漏:\n销毁的Activity实例 销毁的Fragment实例 销毁的View实例 ViewModel实例 您可以观看任何不再需要的对象，例如一个分离的视图或一个被破坏的演示器。\n1 AppWatcher.objectWatcher.watch(myDetachedView, &#34;View was detached&#34;) 如果ObjectWatcher持有的弱引用在等待5秒并运行垃圾回收后没有被清除，被监视的对象就会被认为是被持有，并且有可能泄漏。LeakCanary将此记录到Logcat。\n1 2 3 4 5 6 7 ">
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
       <script>
         var doNotTrack = false;
@@ -28,11 +26,7 @@
           gtag('js', new Date());
           gtag('config', 'G-G84J9N38RL');
         }
-      </script>
-    
-  
-
-<style>
+      </script><style>
     :root {
         --sys-font-family: "LXGW WenKai TC";
         --zh-font-family: "LXGW WenKai TC";
@@ -94,7 +88,7 @@
                     
                     
                         
-                        <img src="/images/avatar_hu74e4307e0baa534a3da4ee0210445065_34446_300x0_resize_q75_box.jpeg" width="300"
+                        <img src="/images/avatar_hu15583006483879718621.jpeg" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -114,7 +108,7 @@
             
                 <li>
                     <a 
-                        href='https://twitter.com/malinkang'
+                        href='https://space.bilibili.com/27440979'
                         target="_blank"
                         title="Bilibili"
                         rel="me"
@@ -128,7 +122,7 @@
             
                 <li>
                     <a 
-                        href='https://www.douban.com/people/malinkang/https://space.bilibili.com/27440979'
+                        href='https://www.douban.com/people/malinkang/'
                         target="_blank"
                         title="Douban"
                         rel="me"

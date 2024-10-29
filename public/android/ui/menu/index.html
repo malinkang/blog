@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="菜单 菜单在很多应用中是一个常见的用户界面组件。为了提供一个常见和一致的用户体验，你应当使用MenuAPI去呈现用户操作和你Activity的其它选项。 从Android3.0开始（API level 11），Android设备不再要求提供专门的菜单按钮。由于这个改变，Android应用应当从依赖传统6个条目菜单面板迁移出来，并且提供一个app bar去展现常见的用户操作。 尽管一些菜单的设计和用户体验已经发生改变，但是定义一套动作和选项仍然基于MenuAPI。这篇指南将介绍如何在所有Android版本上创建三中基本类型的菜单或者动作展现。 选项菜单和app bar 选项菜单是activity最基本的菜单条目集合。你应当放置一个对应用有全局影响的动作，例如搜索，编写邮件和搜索。 如果你正在为Android2.3或者以下版本开发，用户可以通过按菜单按钮显示出选项菜单。 Android 3.0或者以上版本，选项菜单的条目由app bar 显示为屏幕上的操作条目和溢出选项组合。从Android3.0开始，菜单按钮过时了，因此你应向使用actionbar去提供访问操纵和其他选项迁移。 ** Context 菜单和contextual action mode 一个context菜单是一个浮动菜单，当用户在一个元素上执行一个长按操作它就会显示。它提供影响选项内容或者context frame的动作。 当为Android 3.0或者以上开发，你应该当使用使用contextual action mode在所选内容上启用操作。 Menus ">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="菜单 菜单在很多应用中是一个常见的用户界面组件。为了提供一个常见和一致的用户体验，你应当使用MenuAPI去呈现用户操作和你Activity的其它选项。\n从Android3.0开始（API level 11），Android设备不再要求提供专门的菜单按钮。由于这个改变，Android应用应当从依赖传统6个条目菜单面板迁移出来，并且提供一个app bar去展现常见的用户操作。\n尽管一些菜单的设计和用户体验已经发生改变，但是定义一套动作和选项仍然基于MenuAPI。这篇指南将介绍如何在所有Android版本上创建三中基本类型的菜单或者动作展现。\n选项菜单和app bar\n选项菜单是activity最基本的菜单条目集合。你应当放置一个对应用有全局影响的动作，例如搜索，编写邮件和搜索。\n如果你正在为Android2.3或者以下版本开发，用户可以通过按菜单按钮显示出选项菜单。\nAndroid 3.0或者以上版本，选项菜单的条目由app bar 显示为屏幕上的操作条目和溢出选项组合。从Android3.0开始，菜单按钮过时了，因此你应向使用actionbar去提供访问操纵和其他选项迁移。\n** Context 菜单和contextual action mode\n一个context菜单是一个浮动菜单，当用户在一个元素上执行一个长按操作它就会显示。它提供影响选项内容或者context frame的动作。\n当为Android 3.0或者以上开发，你应该当使用使用contextual action mode在所选内容上启用操作。\nMenus ">
 <title></title>
 
 <link rel='canonical' href='http://localhost:1313/android/ui/menu/'>
 
 <link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
-<meta property='og:description' content="菜单 菜单在很多应用中是一个常见的用户界面组件。为了提供一个常见和一致的用户体验，你应当使用MenuAPI去呈现用户操作和你Activity的其它选项。 从Android3.0开始（API level 11），Android设备不再要求提供专门的菜单按钮。由于这个改变，Android应用应当从依赖传统6个条目菜单面板迁移出来，并且提供一个app bar去展现常见的用户操作。 尽管一些菜单的设计和用户体验已经发生改变，但是定义一套动作和选项仍然基于MenuAPI。这篇指南将介绍如何在所有Android版本上创建三中基本类型的菜单或者动作展现。 选项菜单和app bar 选项菜单是activity最基本的菜单条目集合。你应当放置一个对应用有全局影响的动作，例如搜索，编写邮件和搜索。 如果你正在为Android2.3或者以下版本开发，用户可以通过按菜单按钮显示出选项菜单。 Android 3.0或者以上版本，选项菜单的条目由app bar 显示为屏幕上的操作条目和溢出选项组合。从Android3.0开始，菜单按钮过时了，因此你应向使用actionbar去提供访问操纵和其他选项迁移。 ** Context 菜单和contextual action mode 一个context菜单是一个浮动菜单，当用户在一个元素上执行一个长按操作它就会显示。它提供影响选项内容或者context frame的动作。 当为Android 3.0或者以上开发，你应该当使用使用contextual action mode在所选内容上启用操作。 Menus ">
+<meta property='og:description' content="菜单 菜单在很多应用中是一个常见的用户界面组件。为了提供一个常见和一致的用户体验，你应当使用MenuAPI去呈现用户操作和你Activity的其它选项。\n从Android3.0开始（API level 11），Android设备不再要求提供专门的菜单按钮。由于这个改变，Android应用应当从依赖传统6个条目菜单面板迁移出来，并且提供一个app bar去展现常见的用户操作。\n尽管一些菜单的设计和用户体验已经发生改变，但是定义一套动作和选项仍然基于MenuAPI。这篇指南将介绍如何在所有Android版本上创建三中基本类型的菜单或者动作展现。\n选项菜单和app bar\n选项菜单是activity最基本的菜单条目集合。你应当放置一个对应用有全局影响的动作，例如搜索，编写邮件和搜索。\n如果你正在为Android2.3或者以下版本开发，用户可以通过按菜单按钮显示出选项菜单。\nAndroid 3.0或者以上版本，选项菜单的条目由app bar 显示为屏幕上的操作条目和溢出选项组合。从Android3.0开始，菜单按钮过时了，因此你应向使用actionbar去提供访问操纵和其他选项迁移。\n** Context 菜单和contextual action mode\n一个context菜单是一个浮动菜单，当用户在一个元素上执行一个长按操作它就会显示。它提供影响选项内容或者context frame的动作。\n当为Android 3.0或者以上开发，你应该当使用使用contextual action mode在所选内容上启用操作。\nMenus ">
 <meta property='og:url' content='http://localhost:1313/android/ui/menu/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="菜单 菜单在很多应用中是一个常见的用户界面组件。为了提供一个常见和一致的用户体验，你应当使用MenuAPI去呈现用户操作和你Activity的其它选项。 从Android3.0开始（API level 11），Android设备不再要求提供专门的菜单按钮。由于这个改变，Android应用应当从依赖传统6个条目菜单面板迁移出来，并且提供一个app bar去展现常见的用户操作。 尽管一些菜单的设计和用户体验已经发生改变，但是定义一套动作和选项仍然基于MenuAPI。这篇指南将介绍如何在所有Android版本上创建三中基本类型的菜单或者动作展现。 选项菜单和app bar 选项菜单是activity最基本的菜单条目集合。你应当放置一个对应用有全局影响的动作，例如搜索，编写邮件和搜索。 如果你正在为Android2.3或者以下版本开发，用户可以通过按菜单按钮显示出选项菜单。 Android 3.0或者以上版本，选项菜单的条目由app bar 显示为屏幕上的操作条目和溢出选项组合。从Android3.0开始，菜单按钮过时了，因此你应向使用actionbar去提供访问操纵和其他选项迁移。 ** Context 菜单和contextual action mode 一个context菜单是一个浮动菜单，当用户在一个元素上执行一个长按操作它就会显示。它提供影响选项内容或者context frame的动作。 当为Android 3.0或者以上开发，你应该当使用使用contextual action mode在所选内容上启用操作。 Menus ">
-  
-    
+<meta name="twitter:description" content="菜单 菜单在很多应用中是一个常见的用户界面组件。为了提供一个常见和一致的用户体验，你应当使用MenuAPI去呈现用户操作和你Activity的其它选项。\n从Android3.0开始（API level 11），Android设备不再要求提供专门的菜单按钮。由于这个改变，Android应用应当从依赖传统6个条目菜单面板迁移出来，并且提供一个app bar去展现常见的用户操作。\n尽管一些菜单的设计和用户体验已经发生改变，但是定义一套动作和选项仍然基于MenuAPI。这篇指南将介绍如何在所有Android版本上创建三中基本类型的菜单或者动作展现。\n选项菜单和app bar\n选项菜单是activity最基本的菜单条目集合。你应当放置一个对应用有全局影响的动作，例如搜索，编写邮件和搜索。\n如果你正在为Android2.3或者以下版本开发，用户可以通过按菜单按钮显示出选项菜单。\nAndroid 3.0或者以上版本，选项菜单的条目由app bar 显示为屏幕上的操作条目和溢出选项组合。从Android3.0开始，菜单按钮过时了，因此你应向使用actionbar去提供访问操纵和其他选项迁移。\n** Context 菜单和contextual action mode\n一个context菜单是一个浮动菜单，当用户在一个元素上执行一个长按操作它就会显示。它提供影响选项内容或者context frame的动作。\n当为Android 3.0或者以上开发，你应该当使用使用contextual action mode在所选内容上启用操作。\nMenus ">
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
       <script>
         var doNotTrack = false;
@@ -28,11 +26,7 @@
           gtag('js', new Date());
           gtag('config', 'G-G84J9N38RL');
         }
-      </script>
-    
-  
-
-<style>
+      </script><style>
     :root {
         --sys-font-family: "LXGW WenKai TC";
         --zh-font-family: "LXGW WenKai TC";
@@ -94,7 +88,7 @@
                     
                     
                         
-                        <img src="/images/avatar_hu74e4307e0baa534a3da4ee0210445065_34446_300x0_resize_q75_box.jpeg" width="300"
+                        <img src="/images/avatar_hu15583006483879718621.jpeg" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -114,7 +108,7 @@
             
                 <li>
                     <a 
-                        href='https://twitter.com/malinkang'
+                        href='https://space.bilibili.com/27440979'
                         target="_blank"
                         title="Bilibili"
                         rel="me"
@@ -128,7 +122,7 @@
             
                 <li>
                     <a 
-                        href='https://www.douban.com/people/malinkang/https://space.bilibili.com/27440979'
+                        href='https://www.douban.com/people/malinkang/'
                         target="_blank"
                         title="Douban"
                         rel="me"

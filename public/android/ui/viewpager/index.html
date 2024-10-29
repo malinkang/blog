@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="ViewPager 布局： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 &lt;LinearLayout android:layout_width=&#34;match_parent&#34; android:layout_height=&#34;match_parent&#34; android:orientation=&#34;vertical&#34;&gt; &lt;android.support.design.widget.TabLayout android:id=&#34;@+id/tablayout&#34; android:layout_width=&#34;match_parent&#34; android:layout_height=&#34;wrap_content&#34; app:tabGravity=&#34;center&#34; app:tabIndicatorColor=&#34;@color/colorAccent&#34; app:tabMode=&#34;fixed&#34; app:tabTextColor=&#34;#FF000000&#34;/&gt; &lt;android.support.v4.view.ViewPager android:id=&#34;@+id/viewpager&#34; android:layout_width=&#34;match_parent&#34; android:layout_height=&#34;match_parent&#34;/&gt; &lt;/LinearLayout&gt; Java代码： 1 mTablayout.setupWithViewPager(mViewpager); 属性： tabMode：可选值scrollable和fixed 当设置为scrollable条目过多可以进行滚动，条目过少则会居左显示。: 当设置为fixed，则不会进行滚动，tabGravity只有当tabMode是fixed时候起作用，tabGravity可选是是fill和center。 当设置为center时居中。 当设置为fill时将会占满所有的位置。 tabIndicatorColor：设置指示器颜色。 tabTextColor：设置文本颜色。 扩展更多 Great animations with PageTransformer 为什么调用 FragmentPagerAdapter.notifyDataSetChanged() 并不能更新其 Fragment？ ">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="ViewPager 布局：\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 &lt;LinearLayout android:layout_width=&#34;match_parent&#34; android:layout_height=&#34;match_parent&#34; android:orientation=&#34;vertical&#34;&gt; &lt;android.support.design.widget.TabLayout android:id=&#34;@+id/tablayout&#34; android:layout_width=&#34;match_parent&#34; android:layout_height=&#34;wrap_content&#34; app:tabGravity=&#34;center&#34; app:tabIndicatorColor=&#34;@color/colorAccent&#34; app:tabMode=&#34;fixed&#34; app:tabTextColor=&#34;#FF000000&#34;/&gt; &lt;android.support.v4.view.ViewPager android:id=&#34;@+id/viewpager&#34; android:layout_width=&#34;match_parent&#34; android:layout_height=&#34;match_parent&#34;/&gt; &lt;/LinearLayout&gt; ">
 <title></title>
 
 <link rel='canonical' href='http://localhost:1313/android/ui/viewpager/'>
 
 <link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
-<meta property='og:description' content="ViewPager 布局： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 &lt;LinearLayout android:layout_width=&#34;match_parent&#34; android:layout_height=&#34;match_parent&#34; android:orientation=&#34;vertical&#34;&gt; &lt;android.support.design.widget.TabLayout android:id=&#34;@+id/tablayout&#34; android:layout_width=&#34;match_parent&#34; android:layout_height=&#34;wrap_content&#34; app:tabGravity=&#34;center&#34; app:tabIndicatorColor=&#34;@color/colorAccent&#34; app:tabMode=&#34;fixed&#34; app:tabTextColor=&#34;#FF000000&#34;/&gt; &lt;android.support.v4.view.ViewPager android:id=&#34;@+id/viewpager&#34; android:layout_width=&#34;match_parent&#34; android:layout_height=&#34;match_parent&#34;/&gt; &lt;/LinearLayout&gt; Java代码： 1 mTablayout.setupWithViewPager(mViewpager); 属性： tabMode：可选值scrollable和fixed 当设置为scrollable条目过多可以进行滚动，条目过少则会居左显示。: 当设置为fixed，则不会进行滚动，tabGravity只有当tabMode是fixed时候起作用，tabGravity可选是是fill和center。 当设置为center时居中。 当设置为fill时将会占满所有的位置。 tabIndicatorColor：设置指示器颜色。 tabTextColor：设置文本颜色。 扩展更多 Great animations with PageTransformer 为什么调用 FragmentPagerAdapter.notifyDataSetChanged() 并不能更新其 Fragment？ ">
+<meta property='og:description' content="ViewPager 布局：\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 &lt;LinearLayout android:layout_width=&#34;match_parent&#34; android:layout_height=&#34;match_parent&#34; android:orientation=&#34;vertical&#34;&gt; &lt;android.support.design.widget.TabLayout android:id=&#34;@+id/tablayout&#34; android:layout_width=&#34;match_parent&#34; android:layout_height=&#34;wrap_content&#34; app:tabGravity=&#34;center&#34; app:tabIndicatorColor=&#34;@color/colorAccent&#34; app:tabMode=&#34;fixed&#34; app:tabTextColor=&#34;#FF000000&#34;/&gt; &lt;android.support.v4.view.ViewPager android:id=&#34;@+id/viewpager&#34; android:layout_width=&#34;match_parent&#34; android:layout_height=&#34;match_parent&#34;/&gt; &lt;/LinearLayout&gt; ">
 <meta property='og:url' content='http://localhost:1313/android/ui/viewpager/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="ViewPager 布局： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 &lt;LinearLayout android:layout_width=&#34;match_parent&#34; android:layout_height=&#34;match_parent&#34; android:orientation=&#34;vertical&#34;&gt; &lt;android.support.design.widget.TabLayout android:id=&#34;@+id/tablayout&#34; android:layout_width=&#34;match_parent&#34; android:layout_height=&#34;wrap_content&#34; app:tabGravity=&#34;center&#34; app:tabIndicatorColor=&#34;@color/colorAccent&#34; app:tabMode=&#34;fixed&#34; app:tabTextColor=&#34;#FF000000&#34;/&gt; &lt;android.support.v4.view.ViewPager android:id=&#34;@+id/viewpager&#34; android:layout_width=&#34;match_parent&#34; android:layout_height=&#34;match_parent&#34;/&gt; &lt;/LinearLayout&gt; Java代码： 1 mTablayout.setupWithViewPager(mViewpager); 属性： tabMode：可选值scrollable和fixed 当设置为scrollable条目过多可以进行滚动，条目过少则会居左显示。: 当设置为fixed，则不会进行滚动，tabGravity只有当tabMode是fixed时候起作用，tabGravity可选是是fill和center。 当设置为center时居中。 当设置为fill时将会占满所有的位置。 tabIndicatorColor：设置指示器颜色。 tabTextColor：设置文本颜色。 扩展更多 Great animations with PageTransformer 为什么调用 FragmentPagerAdapter.notifyDataSetChanged() 并不能更新其 Fragment？ ">
-  
-    
+<meta name="twitter:description" content="ViewPager 布局：\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 &lt;LinearLayout android:layout_width=&#34;match_parent&#34; android:layout_height=&#34;match_parent&#34; android:orientation=&#34;vertical&#34;&gt; &lt;android.support.design.widget.TabLayout android:id=&#34;@+id/tablayout&#34; android:layout_width=&#34;match_parent&#34; android:layout_height=&#34;wrap_content&#34; app:tabGravity=&#34;center&#34; app:tabIndicatorColor=&#34;@color/colorAccent&#34; app:tabMode=&#34;fixed&#34; app:tabTextColor=&#34;#FF000000&#34;/&gt; &lt;android.support.v4.view.ViewPager android:id=&#34;@+id/viewpager&#34; android:layout_width=&#34;match_parent&#34; android:layout_height=&#34;match_parent&#34;/&gt; &lt;/LinearLayout&gt; ">
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
       <script>
         var doNotTrack = false;
@@ -28,11 +26,7 @@
           gtag('js', new Date());
           gtag('config', 'G-G84J9N38RL');
         }
-      </script>
-    
-  
-
-<style>
+      </script><style>
     :root {
         --sys-font-family: "LXGW WenKai TC";
         --zh-font-family: "LXGW WenKai TC";
@@ -94,7 +88,7 @@
                     
                     
                         
-                        <img src="/images/avatar_hu74e4307e0baa534a3da4ee0210445065_34446_300x0_resize_q75_box.jpeg" width="300"
+                        <img src="/images/avatar_hu15583006483879718621.jpeg" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -114,7 +108,7 @@
             
                 <li>
                     <a 
-                        href='https://twitter.com/malinkang'
+                        href='https://space.bilibili.com/27440979'
                         target="_blank"
                         title="Bilibili"
                         rel="me"
@@ -128,7 +122,7 @@
             
                 <li>
                     <a 
-                        href='https://www.douban.com/people/malinkang/https://space.bilibili.com/27440979'
+                        href='https://www.douban.com/people/malinkang/'
                         target="_blank"
                         title="Douban"
                         rel="me"

@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="FragmentTabHost 禁止页面切换时，页面重绘 通过查看FragmentTabHost源码，可以看到当页面来回切换时，调用了detach和attach方法，会导致每次Fragment都会调用onCreateView方法。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 private FragmentTransaction doTabChanged(String tabId, FragmentTransaction ft) { TabInfo newTab = null; for (int i=0; i&lt;mTabs.size(); i++) { TabInfo tab = mTabs.get(i); if (tab.tag.equals(tabId)) { newTab = tab; } } if (newTab == null) { throw new IllegalStateException(&#34;No tab known for tag &#34; + tabId); } if (mLastTab !">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="FragmentTabHost 禁止页面切换时，页面重绘 通过查看FragmentTabHost源码，可以看到当页面来回切换时，调用了detach和attach方法，会导致每次Fragment都会调用onCreateView方法。\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 ">
 <title></title>
 
 <link rel='canonical' href='http://localhost:1313/android/ui/fragmenttabhost/'>
 
 <link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
-<meta property='og:description' content="FragmentTabHost 禁止页面切换时，页面重绘 通过查看FragmentTabHost源码，可以看到当页面来回切换时，调用了detach和attach方法，会导致每次Fragment都会调用onCreateView方法。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 private FragmentTransaction doTabChanged(String tabId, FragmentTransaction ft) { TabInfo newTab = null; for (int i=0; i&lt;mTabs.size(); i++) { TabInfo tab = mTabs.get(i); if (tab.tag.equals(tabId)) { newTab = tab; } } if (newTab == null) { throw new IllegalStateException(&#34;No tab known for tag &#34; + tabId); } if (mLastTab !">
+<meta property='og:description' content="FragmentTabHost 禁止页面切换时，页面重绘 通过查看FragmentTabHost源码，可以看到当页面来回切换时，调用了detach和attach方法，会导致每次Fragment都会调用onCreateView方法。\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 ">
 <meta property='og:url' content='http://localhost:1313/android/ui/fragmenttabhost/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="FragmentTabHost 禁止页面切换时，页面重绘 通过查看FragmentTabHost源码，可以看到当页面来回切换时，调用了detach和attach方法，会导致每次Fragment都会调用onCreateView方法。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 private FragmentTransaction doTabChanged(String tabId, FragmentTransaction ft) { TabInfo newTab = null; for (int i=0; i&lt;mTabs.size(); i++) { TabInfo tab = mTabs.get(i); if (tab.tag.equals(tabId)) { newTab = tab; } } if (newTab == null) { throw new IllegalStateException(&#34;No tab known for tag &#34; + tabId); } if (mLastTab !">
-  
-    
+<meta name="twitter:description" content="FragmentTabHost 禁止页面切换时，页面重绘 通过查看FragmentTabHost源码，可以看到当页面来回切换时，调用了detach和attach方法，会导致每次Fragment都会调用onCreateView方法。\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 ">
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
       <script>
         var doNotTrack = false;
@@ -28,11 +26,7 @@
           gtag('js', new Date());
           gtag('config', 'G-G84J9N38RL');
         }
-      </script>
-    
-  
-
-<style>
+      </script><style>
     :root {
         --sys-font-family: "LXGW WenKai TC";
         --zh-font-family: "LXGW WenKai TC";
@@ -94,7 +88,7 @@
                     
                     
                         
-                        <img src="/images/avatar_hu74e4307e0baa534a3da4ee0210445065_34446_300x0_resize_q75_box.jpeg" width="300"
+                        <img src="/images/avatar_hu15583006483879718621.jpeg" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -114,7 +108,7 @@
             
                 <li>
                     <a 
-                        href='https://twitter.com/malinkang'
+                        href='https://space.bilibili.com/27440979'
                         target="_blank"
                         title="Bilibili"
                         rel="me"
@@ -128,7 +122,7 @@
             
                 <li>
                     <a 
-                        href='https://www.douban.com/people/malinkang/https://space.bilibili.com/27440979'
+                        href='https://www.douban.com/people/malinkang/'
                         target="_blank"
                         title="Douban"
                         rel="me"

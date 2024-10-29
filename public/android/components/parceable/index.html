@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Android中，Activity和Fragment之间传递对象，可以通过将对象序列化并存入Bundle或者Intent中进行传递，也可以将对象转化为JSON字符串，进行传递。 序列化对象可以使用Java的Serializable的接口Parcelable接口。转化成JSON字符串，可以使用Gson等库。 1.Serializable Model 1 2 3 4 5 6 public class Author implements Serializable{ private int id; private String name; //... } 1 2 3 4 5 public class Book implements Serializable{ private String title; private Author author; //... } 传递数据 1 2 3 4 5 6 7 8 9 Book book=new Book(); book.setTitle(&#34;Java编程思想&#34;); Author author=new Author(); author.setId(1); author.setName(&#34;Bruce Eckel&#34;); book.setAuthor(author); Intent intent=new Intent(this,SecondActivity.class); intent.putExtra(&#34;book&#34;,book); startActivity(intent); 接收数据 1 2 3 Book book= (Book) getIntent().">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Android中，Activity和Fragment之间传递对象，可以通过将对象序列化并存入Bundle或者Intent中进行传递，也可以将对象转化为JSON字符串，进行传递。\n序列化对象可以使用Java的Serializable的接口Parcelable接口。转化成JSON字符串，可以使用Gson等库。\n1.Serializable Model\n1 2 3 4 5 6 public class Author implements Serializable{ private int id; private String name; //... } ">
 <title></title>
 
 <link rel='canonical' href='http://localhost:1313/android/components/parceable/'>
 
 <link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
-<meta property='og:description' content="Android中，Activity和Fragment之间传递对象，可以通过将对象序列化并存入Bundle或者Intent中进行传递，也可以将对象转化为JSON字符串，进行传递。 序列化对象可以使用Java的Serializable的接口Parcelable接口。转化成JSON字符串，可以使用Gson等库。 1.Serializable Model 1 2 3 4 5 6 public class Author implements Serializable{ private int id; private String name; //... } 1 2 3 4 5 public class Book implements Serializable{ private String title; private Author author; //... } 传递数据 1 2 3 4 5 6 7 8 9 Book book=new Book(); book.setTitle(&#34;Java编程思想&#34;); Author author=new Author(); author.setId(1); author.setName(&#34;Bruce Eckel&#34;); book.setAuthor(author); Intent intent=new Intent(this,SecondActivity.class); intent.putExtra(&#34;book&#34;,book); startActivity(intent); 接收数据 1 2 3 Book book= (Book) getIntent().">
+<meta property='og:description' content="Android中，Activity和Fragment之间传递对象，可以通过将对象序列化并存入Bundle或者Intent中进行传递，也可以将对象转化为JSON字符串，进行传递。\n序列化对象可以使用Java的Serializable的接口Parcelable接口。转化成JSON字符串，可以使用Gson等库。\n1.Serializable Model\n1 2 3 4 5 6 public class Author implements Serializable{ private int id; private String name; //... } ">
 <meta property='og:url' content='http://localhost:1313/android/components/parceable/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="Android中，Activity和Fragment之间传递对象，可以通过将对象序列化并存入Bundle或者Intent中进行传递，也可以将对象转化为JSON字符串，进行传递。 序列化对象可以使用Java的Serializable的接口Parcelable接口。转化成JSON字符串，可以使用Gson等库。 1.Serializable Model 1 2 3 4 5 6 public class Author implements Serializable{ private int id; private String name; //... } 1 2 3 4 5 public class Book implements Serializable{ private String title; private Author author; //... } 传递数据 1 2 3 4 5 6 7 8 9 Book book=new Book(); book.setTitle(&#34;Java编程思想&#34;); Author author=new Author(); author.setId(1); author.setName(&#34;Bruce Eckel&#34;); book.setAuthor(author); Intent intent=new Intent(this,SecondActivity.class); intent.putExtra(&#34;book&#34;,book); startActivity(intent); 接收数据 1 2 3 Book book= (Book) getIntent().">
-  
-    
+<meta name="twitter:description" content="Android中，Activity和Fragment之间传递对象，可以通过将对象序列化并存入Bundle或者Intent中进行传递，也可以将对象转化为JSON字符串，进行传递。\n序列化对象可以使用Java的Serializable的接口Parcelable接口。转化成JSON字符串，可以使用Gson等库。\n1.Serializable Model\n1 2 3 4 5 6 public class Author implements Serializable{ private int id; private String name; //... } ">
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
       <script>
         var doNotTrack = false;
@@ -28,11 +26,7 @@
           gtag('js', new Date());
           gtag('config', 'G-G84J9N38RL');
         }
-      </script>
-    
-  
-
-<style>
+      </script><style>
     :root {
         --sys-font-family: "LXGW WenKai TC";
         --zh-font-family: "LXGW WenKai TC";
@@ -94,7 +88,7 @@
                     
                     
                         
-                        <img src="/images/avatar_hu74e4307e0baa534a3da4ee0210445065_34446_300x0_resize_q75_box.jpeg" width="300"
+                        <img src="/images/avatar_hu15583006483879718621.jpeg" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -114,7 +108,7 @@
             
                 <li>
                     <a 
-                        href='https://twitter.com/malinkang'
+                        href='https://space.bilibili.com/27440979'
                         target="_blank"
                         title="Bilibili"
                         rel="me"
@@ -128,7 +122,7 @@
             
                 <li>
                     <a 
-                        href='https://www.douban.com/people/malinkang/https://space.bilibili.com/27440979'
+                        href='https://www.douban.com/people/malinkang/'
                         target="_blank"
                         title="Douban"
                         rel="me"

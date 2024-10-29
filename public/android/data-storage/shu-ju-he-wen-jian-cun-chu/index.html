@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="数据和文件存储 Android 使用的文件系统类似于其他平台上基于磁盘的文件系统。该系统为您提供了以下几种保存应用数据的选项： 应用专属存储空间：存储仅供应用使用的文件，可以存储到内部存储卷中的专属目录或外部存储空间中的其他专属目录。使用内部存储空间中的目录保存其他应用不应访问的敏感信息。 共享存储：存储您的应用打算与其他应用共享的文件，包括媒体、文档和其他文件。 偏好设置：以键值对形式存储私有原始数据。 数据库：使用 Room 持久性库将结构化数据存储在专用数据库中。 下表汇总了这些选项的特点： 内容类型 访问方法 所需权限 其他应用是否可以访问？ 卸载应用时是否移除文件？ 应用专属文件 仅供您的应用使用的文件 从内部存储空间访问，可以使用 getFilesDir() 或 getCacheDir() 方法 从外部存储空间访问，可以使用 getExternalFilesDir() 或 getExternalCacheDir() 方法 从内部存储空间访问不需要任何权限 如果应用在搭载 Android 4.4（API 级别 19）或更高版本的设备上运行，从外部存储空间访问不需要任何权限 如果文件存储在内部存储空间中的目录内，则不能访问 如果文件存储在外部存储空间中的目录内，则可以访问 是 媒体 可共享的媒体文件（图片、音频文件、视频） MediaStore API 在 Android 10（API 级别 29）或更高版本中，访问其他应用的文件需要 READ_EXTERNAL_STORAGE 或 WRITE_EXTERNAL_STORAGE 权限 在 Android 9（API 级别 28）或更低版本中，访问所有文件均需要相关权限 是，但其他应用需要 READ_EXTERNAL_STORAGE 权限 否 文档和其他文件 其他类型的可共享内容，包括已下载的文件 存储访问框架 无 是，可以通过系统文件选择器访问 否 应用偏好设置 键值对 Jetpack Preferences 库 无 否 是 数据库 结构化数据 Room 持久性库 无 否 是 您应根据自己的具体需求选择解决方案：">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="数据和文件存储 Android 使用的文件系统类似于其他平台上基于磁盘的文件系统。该系统为您提供了以下几种保存应用数据的选项：\n应用专属存储空间：存储仅供应用使用的文件，可以存储到内部存储卷中的专属目录或外部存储空间中的其他专属目录。使用内部存储空间中的目录保存其他应用不应访问的敏感信息。 共享存储：存储您的应用打算与其他应用共享的文件，包括媒体、文档和其他文件。 偏好设置：以键值对形式存储私有原始数据。 数据库：使用 Room 持久性库将结构化数据存储在专用数据库中。 下表汇总了这些选项的特点：\n内容类型 访问方法 所需权限 其他应用是否可以访问？ 卸载应用时是否移除文件？ 应用专属文件 仅供您的应用使用的文件 从内部存储空间访问，可以使用 getFilesDir() 或 getCacheDir() 方法 从外部存储空间访问，可以使用 getExternalFilesDir() 或 getExternalCacheDir() 方法 从内部存储空间访问不需要任何权限 如果应用在搭载 Android 4.4（API 级别 19）或更高版本的设备上运行，从外部存储空间访问不需要任何权限 如果文件存储在内部存储空间中的目录内，则不能访问 如果文件存储在外部存储空间中的目录内，则可以访问 是 媒体 可共享的媒体文件（图片、音频文件、视频） MediaStore API 在 Android 10（API 级别 29）或更高版本中，访问其他应用的文件需要 READ_EXTERNAL_STORAGE 或 WRITE_EXTERNAL_STORAGE 权限 在 Android 9（API 级别 28）或更低版本中，访问所有文件均需要相关权限 是，但其他应用需要 READ_EXTERNAL_STORAGE 权限 否 文档和其他文件 其他类型的可共享内容，包括已下载的文件 存储访问框架 无 是，可以通过系统文件选择器访问 否 应用偏好设置 键值对 Jetpack Preferences 库 无 否 是 数据库 结构化数据 Room 持久性库 无 否 是 您应根据自己的具体需求选择解决方案：\n">
 <title></title>
 
 <link rel='canonical' href='http://localhost:1313/android/data-storage/shu-ju-he-wen-jian-cun-chu/'>
 
 <link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
-<meta property='og:description' content="数据和文件存储 Android 使用的文件系统类似于其他平台上基于磁盘的文件系统。该系统为您提供了以下几种保存应用数据的选项： 应用专属存储空间：存储仅供应用使用的文件，可以存储到内部存储卷中的专属目录或外部存储空间中的其他专属目录。使用内部存储空间中的目录保存其他应用不应访问的敏感信息。 共享存储：存储您的应用打算与其他应用共享的文件，包括媒体、文档和其他文件。 偏好设置：以键值对形式存储私有原始数据。 数据库：使用 Room 持久性库将结构化数据存储在专用数据库中。 下表汇总了这些选项的特点： 内容类型 访问方法 所需权限 其他应用是否可以访问？ 卸载应用时是否移除文件？ 应用专属文件 仅供您的应用使用的文件 从内部存储空间访问，可以使用 getFilesDir() 或 getCacheDir() 方法 从外部存储空间访问，可以使用 getExternalFilesDir() 或 getExternalCacheDir() 方法 从内部存储空间访问不需要任何权限 如果应用在搭载 Android 4.4（API 级别 19）或更高版本的设备上运行，从外部存储空间访问不需要任何权限 如果文件存储在内部存储空间中的目录内，则不能访问 如果文件存储在外部存储空间中的目录内，则可以访问 是 媒体 可共享的媒体文件（图片、音频文件、视频） MediaStore API 在 Android 10（API 级别 29）或更高版本中，访问其他应用的文件需要 READ_EXTERNAL_STORAGE 或 WRITE_EXTERNAL_STORAGE 权限 在 Android 9（API 级别 28）或更低版本中，访问所有文件均需要相关权限 是，但其他应用需要 READ_EXTERNAL_STORAGE 权限 否 文档和其他文件 其他类型的可共享内容，包括已下载的文件 存储访问框架 无 是，可以通过系统文件选择器访问 否 应用偏好设置 键值对 Jetpack Preferences 库 无 否 是 数据库 结构化数据 Room 持久性库 无 否 是 您应根据自己的具体需求选择解决方案：">
+<meta property='og:description' content="数据和文件存储 Android 使用的文件系统类似于其他平台上基于磁盘的文件系统。该系统为您提供了以下几种保存应用数据的选项：\n应用专属存储空间：存储仅供应用使用的文件，可以存储到内部存储卷中的专属目录或外部存储空间中的其他专属目录。使用内部存储空间中的目录保存其他应用不应访问的敏感信息。 共享存储：存储您的应用打算与其他应用共享的文件，包括媒体、文档和其他文件。 偏好设置：以键值对形式存储私有原始数据。 数据库：使用 Room 持久性库将结构化数据存储在专用数据库中。 下表汇总了这些选项的特点：\n内容类型 访问方法 所需权限 其他应用是否可以访问？ 卸载应用时是否移除文件？ 应用专属文件 仅供您的应用使用的文件 从内部存储空间访问，可以使用 getFilesDir() 或 getCacheDir() 方法 从外部存储空间访问，可以使用 getExternalFilesDir() 或 getExternalCacheDir() 方法 从内部存储空间访问不需要任何权限 如果应用在搭载 Android 4.4（API 级别 19）或更高版本的设备上运行，从外部存储空间访问不需要任何权限 如果文件存储在内部存储空间中的目录内，则不能访问 如果文件存储在外部存储空间中的目录内，则可以访问 是 媒体 可共享的媒体文件（图片、音频文件、视频） MediaStore API 在 Android 10（API 级别 29）或更高版本中，访问其他应用的文件需要 READ_EXTERNAL_STORAGE 或 WRITE_EXTERNAL_STORAGE 权限 在 Android 9（API 级别 28）或更低版本中，访问所有文件均需要相关权限 是，但其他应用需要 READ_EXTERNAL_STORAGE 权限 否 文档和其他文件 其他类型的可共享内容，包括已下载的文件 存储访问框架 无 是，可以通过系统文件选择器访问 否 应用偏好设置 键值对 Jetpack Preferences 库 无 否 是 数据库 结构化数据 Room 持久性库 无 否 是 您应根据自己的具体需求选择解决方案：\n">
 <meta property='og:url' content='http://localhost:1313/android/data-storage/shu-ju-he-wen-jian-cun-chu/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="数据和文件存储 Android 使用的文件系统类似于其他平台上基于磁盘的文件系统。该系统为您提供了以下几种保存应用数据的选项： 应用专属存储空间：存储仅供应用使用的文件，可以存储到内部存储卷中的专属目录或外部存储空间中的其他专属目录。使用内部存储空间中的目录保存其他应用不应访问的敏感信息。 共享存储：存储您的应用打算与其他应用共享的文件，包括媒体、文档和其他文件。 偏好设置：以键值对形式存储私有原始数据。 数据库：使用 Room 持久性库将结构化数据存储在专用数据库中。 下表汇总了这些选项的特点： 内容类型 访问方法 所需权限 其他应用是否可以访问？ 卸载应用时是否移除文件？ 应用专属文件 仅供您的应用使用的文件 从内部存储空间访问，可以使用 getFilesDir() 或 getCacheDir() 方法 从外部存储空间访问，可以使用 getExternalFilesDir() 或 getExternalCacheDir() 方法 从内部存储空间访问不需要任何权限 如果应用在搭载 Android 4.4（API 级别 19）或更高版本的设备上运行，从外部存储空间访问不需要任何权限 如果文件存储在内部存储空间中的目录内，则不能访问 如果文件存储在外部存储空间中的目录内，则可以访问 是 媒体 可共享的媒体文件（图片、音频文件、视频） MediaStore API 在 Android 10（API 级别 29）或更高版本中，访问其他应用的文件需要 READ_EXTERNAL_STORAGE 或 WRITE_EXTERNAL_STORAGE 权限 在 Android 9（API 级别 28）或更低版本中，访问所有文件均需要相关权限 是，但其他应用需要 READ_EXTERNAL_STORAGE 权限 否 文档和其他文件 其他类型的可共享内容，包括已下载的文件 存储访问框架 无 是，可以通过系统文件选择器访问 否 应用偏好设置 键值对 Jetpack Preferences 库 无 否 是 数据库 结构化数据 Room 持久性库 无 否 是 您应根据自己的具体需求选择解决方案：">
-  
-    
+<meta name="twitter:description" content="数据和文件存储 Android 使用的文件系统类似于其他平台上基于磁盘的文件系统。该系统为您提供了以下几种保存应用数据的选项：\n应用专属存储空间：存储仅供应用使用的文件，可以存储到内部存储卷中的专属目录或外部存储空间中的其他专属目录。使用内部存储空间中的目录保存其他应用不应访问的敏感信息。 共享存储：存储您的应用打算与其他应用共享的文件，包括媒体、文档和其他文件。 偏好设置：以键值对形式存储私有原始数据。 数据库：使用 Room 持久性库将结构化数据存储在专用数据库中。 下表汇总了这些选项的特点：\n内容类型 访问方法 所需权限 其他应用是否可以访问？ 卸载应用时是否移除文件？ 应用专属文件 仅供您的应用使用的文件 从内部存储空间访问，可以使用 getFilesDir() 或 getCacheDir() 方法 从外部存储空间访问，可以使用 getExternalFilesDir() 或 getExternalCacheDir() 方法 从内部存储空间访问不需要任何权限 如果应用在搭载 Android 4.4（API 级别 19）或更高版本的设备上运行，从外部存储空间访问不需要任何权限 如果文件存储在内部存储空间中的目录内，则不能访问 如果文件存储在外部存储空间中的目录内，则可以访问 是 媒体 可共享的媒体文件（图片、音频文件、视频） MediaStore API 在 Android 10（API 级别 29）或更高版本中，访问其他应用的文件需要 READ_EXTERNAL_STORAGE 或 WRITE_EXTERNAL_STORAGE 权限 在 Android 9（API 级别 28）或更低版本中，访问所有文件均需要相关权限 是，但其他应用需要 READ_EXTERNAL_STORAGE 权限 否 文档和其他文件 其他类型的可共享内容，包括已下载的文件 存储访问框架 无 是，可以通过系统文件选择器访问 否 应用偏好设置 键值对 Jetpack Preferences 库 无 否 是 数据库 结构化数据 Room 持久性库 无 否 是 您应根据自己的具体需求选择解决方案：\n">
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
       <script>
         var doNotTrack = false;
@@ -28,11 +26,7 @@
           gtag('js', new Date());
           gtag('config', 'G-G84J9N38RL');
         }
-      </script>
-    
-  
-
-<style>
+      </script><style>
     :root {
         --sys-font-family: "LXGW WenKai TC";
         --zh-font-family: "LXGW WenKai TC";
@@ -94,7 +88,7 @@
                     
                     
                         
-                        <img src="/images/avatar_hu74e4307e0baa534a3da4ee0210445065_34446_300x0_resize_q75_box.jpeg" width="300"
+                        <img src="/images/avatar_hu15583006483879718621.jpeg" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -114,7 +108,7 @@
             
                 <li>
                     <a 
-                        href='https://twitter.com/malinkang'
+                        href='https://space.bilibili.com/27440979'
                         target="_blank"
                         title="Bilibili"
                         rel="me"
@@ -128,7 +122,7 @@
             
                 <li>
                     <a 
-                        href='https://www.douban.com/people/malinkang/https://space.bilibili.com/27440979'
+                        href='https://www.douban.com/people/malinkang/'
                         target="_blank"
                         title="Douban"
                         rel="me"
@@ -457,64 +451,64 @@
 </ul>
 <p>下表汇总了这些选项的特点：</p>
 <div class="table-wrapper"><table>
-<thead>
-<tr>
-<th style="text-align:left">内容类型</th>
-<th style="text-align:center">访问方法</th>
-<th style="text-align:left">所需权限</th>
-<th style="text-align:left">其他应用是否可以访问？</th>
-<th style="text-align:left">卸载应用时是否移除文件？</th>
-<th style="text-align:left"></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left"><a class="link" href="https://developer.android.com/training/data-storage/app-specific"  target="_blank" rel="noopener"
+  <thead>
+      <tr>
+          <th style="text-align: left">内容类型</th>
+          <th style="text-align: center">访问方法</th>
+          <th style="text-align: left">所需权限</th>
+          <th style="text-align: left">其他应用是否可以访问？</th>
+          <th style="text-align: left">卸载应用时是否移除文件？</th>
+          <th style="text-align: left"></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><a class="link" href="https://developer.android.com/training/data-storage/app-specific"  target="_blank" rel="noopener"
     >应用专属文件</a></td>
-<td style="text-align:center">仅供您的应用使用的文件</td>
-<td style="text-align:left">从内部存储空间访问，可以使用 <code>getFilesDir()</code> 或 <code>getCacheDir()</code> 方法  从外部存储空间访问，可以使用 <code>getExternalFilesDir()</code> 或 <code>getExternalCacheDir()</code> 方法</td>
-<td style="text-align:left">从内部存储空间访问不需要任何权限  如果应用在搭载 Android 4.4（API 级别 19）或更高版本的设备上运行，从外部存储空间访问不需要任何权限</td>
-<td style="text-align:left">如果文件存储在内部存储空间中的目录内，则不能访问  如果文件存储在外部存储空间中的目录内，则可以访问</td>
-<td style="text-align:left">是</td>
-</tr>
-<tr>
-<td style="text-align:left"><a class="link" href="https://developer.android.com/training/data-storage/shared/media"  target="_blank" rel="noopener"
+          <td style="text-align: center">仅供您的应用使用的文件</td>
+          <td style="text-align: left">从内部存储空间访问，可以使用 <code>getFilesDir()</code> 或 <code>getCacheDir()</code> 方法  从外部存储空间访问，可以使用 <code>getExternalFilesDir()</code> 或 <code>getExternalCacheDir()</code> 方法</td>
+          <td style="text-align: left">从内部存储空间访问不需要任何权限  如果应用在搭载 Android 4.4（API 级别 19）或更高版本的设备上运行，从外部存储空间访问不需要任何权限</td>
+          <td style="text-align: left">如果文件存储在内部存储空间中的目录内，则不能访问  如果文件存储在外部存储空间中的目录内，则可以访问</td>
+          <td style="text-align: left">是</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><a class="link" href="https://developer.android.com/training/data-storage/shared/media"  target="_blank" rel="noopener"
     >媒体</a></td>
-<td style="text-align:center">可共享的媒体文件（图片、音频文件、视频）</td>
-<td style="text-align:left"><code>MediaStore</code> API</td>
-<td style="text-align:left">在 Android 10（API 级别 29）或更高版本中，访问其他应用的文件需要 <code>READ_EXTERNAL_STORAGE</code> 或 <code>WRITE_EXTERNAL_STORAGE</code> 权限  在 Android 9（API 级别 28）或更低版本中，访问<strong>所有</strong>文件均需要相关权限</td>
-<td style="text-align:left">是，但其他应用需要 <code>READ_EXTERNAL_STORAGE</code> 权限</td>
-<td style="text-align:left">否</td>
-</tr>
-<tr>
-<td style="text-align:left"><a class="link" href="https://developer.android.com/training/data-storage/shared/documents-files"  target="_blank" rel="noopener"
+          <td style="text-align: center">可共享的媒体文件（图片、音频文件、视频）</td>
+          <td style="text-align: left"><code>MediaStore</code> API</td>
+          <td style="text-align: left">在 Android 10（API 级别 29）或更高版本中，访问其他应用的文件需要 <code>READ_EXTERNAL_STORAGE</code> 或 <code>WRITE_EXTERNAL_STORAGE</code> 权限  在 Android 9（API 级别 28）或更低版本中，访问<strong>所有</strong>文件均需要相关权限</td>
+          <td style="text-align: left">是，但其他应用需要 <code>READ_EXTERNAL_STORAGE</code> 权限</td>
+          <td style="text-align: left">否</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><a class="link" href="https://developer.android.com/training/data-storage/shared/documents-files"  target="_blank" rel="noopener"
     >文档和其他文件</a></td>
-<td style="text-align:center">其他类型的可共享内容，包括已下载的文件</td>
-<td style="text-align:left">存储访问框架</td>
-<td style="text-align:left">无</td>
-<td style="text-align:left">是，可以通过系统文件选择器访问</td>
-<td style="text-align:left">否</td>
-</tr>
-<tr>
-<td style="text-align:left"><a class="link" href="https://developer.android.com/training/data-storage/shared-preferences"  target="_blank" rel="noopener"
+          <td style="text-align: center">其他类型的可共享内容，包括已下载的文件</td>
+          <td style="text-align: left">存储访问框架</td>
+          <td style="text-align: left">无</td>
+          <td style="text-align: left">是，可以通过系统文件选择器访问</td>
+          <td style="text-align: left">否</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><a class="link" href="https://developer.android.com/training/data-storage/shared-preferences"  target="_blank" rel="noopener"
     >应用偏好设置</a></td>
-<td style="text-align:center">键值对</td>
-<td style="text-align:left"><a class="link" href="https://developer.android.com/guide/topics/ui/settings/use-saved-values"  target="_blank" rel="noopener"
+          <td style="text-align: center">键值对</td>
+          <td style="text-align: left"><a class="link" href="https://developer.android.com/guide/topics/ui/settings/use-saved-values"  target="_blank" rel="noopener"
     >Jetpack Preferences</a> 库</td>
-<td style="text-align:left">无</td>
-<td style="text-align:left">否</td>
-<td style="text-align:left">是</td>
-</tr>
-<tr>
-<td style="text-align:left">数据库</td>
-<td style="text-align:center">结构化数据</td>
-<td style="text-align:left"><a class="link" href="https://developer.android.com/training/data-storage/room"  target="_blank" rel="noopener"
+          <td style="text-align: left">无</td>
+          <td style="text-align: left">否</td>
+          <td style="text-align: left">是</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">数据库</td>
+          <td style="text-align: center">结构化数据</td>
+          <td style="text-align: left"><a class="link" href="https://developer.android.com/training/data-storage/room"  target="_blank" rel="noopener"
     >Room</a> 持久性库</td>
-<td style="text-align:left">无</td>
-<td style="text-align:left">否</td>
-<td style="text-align:left">是</td>
-</tr>
-</tbody>
+          <td style="text-align: left">无</td>
+          <td style="text-align: left">否</td>
+          <td style="text-align: left">是</td>
+      </tr>
+  </tbody>
 </table></div>
 <p>您应根据自己的具体需求选择解决方案：</p>
 <p><strong>您的数据需要占用多少空间</strong></p>

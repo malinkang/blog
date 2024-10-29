@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Canvas使用 Canvas我们可以称之为画布，我们可以使用画笔在上面绘制颜色，也可以绘制点、线以及矩形、扇形等各种形状，还可以绘制图片文本路径等，下面我们一一进行介绍 绘制颜色 Canvas提供了三个绘制颜色的方法。 drawColor drawRGB drawARGB 绘制基本形状 想要在画布上进行绘制，就需要一个画笔Paint。这里我们只简单介绍画笔的使用，关于画笔的详细使用将在画笔这一章详细介绍。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 public class CanvasView extends View { public CanvasView(Context context, @Nullable AttributeSet attrs) { super(context, attrs); initPaint(); } //1.创建Paint对象 private Paint mPaint = new Paint(); //2.初始化Paint private void initPaint(){ mPaint.setColor(getResources().getColor(R.color.purple));//设置画笔颜色 mPaint.setStyle(Paint.Style.FILL);//设置画笔样式为填充 mPaint.setStrokeWidth(10f); //设置画笔宽度为10px } @Override protected void onDraw(Canvas canvas) { super.onDraw(canvas); } } 绘制点 绘制一个点需要这个点的坐标。">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Canvas使用 Canvas我们可以称之为画布，我们可以使用画笔在上面绘制颜色，也可以绘制点、线以及矩形、扇形等各种形状，还可以绘制图片文本路径等，下面我们一一进行介绍\n绘制颜色 Canvas提供了三个绘制颜色的方法。\ndrawColor drawRGB drawARGB 绘制基本形状 想要在画布上进行绘制，就需要一个画笔Paint。这里我们只简单介绍画笔的使用，关于画笔的详细使用将在画笔这一章详细介绍。\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 ">
 <title></title>
 
 <link rel='canonical' href='http://localhost:1313/android/ui/view/custom-views/canvas/'>
 
 <link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
-<meta property='og:description' content="Canvas使用 Canvas我们可以称之为画布，我们可以使用画笔在上面绘制颜色，也可以绘制点、线以及矩形、扇形等各种形状，还可以绘制图片文本路径等，下面我们一一进行介绍 绘制颜色 Canvas提供了三个绘制颜色的方法。 drawColor drawRGB drawARGB 绘制基本形状 想要在画布上进行绘制，就需要一个画笔Paint。这里我们只简单介绍画笔的使用，关于画笔的详细使用将在画笔这一章详细介绍。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 public class CanvasView extends View { public CanvasView(Context context, @Nullable AttributeSet attrs) { super(context, attrs); initPaint(); } //1.创建Paint对象 private Paint mPaint = new Paint(); //2.初始化Paint private void initPaint(){ mPaint.setColor(getResources().getColor(R.color.purple));//设置画笔颜色 mPaint.setStyle(Paint.Style.FILL);//设置画笔样式为填充 mPaint.setStrokeWidth(10f); //设置画笔宽度为10px } @Override protected void onDraw(Canvas canvas) { super.onDraw(canvas); } } 绘制点 绘制一个点需要这个点的坐标。">
+<meta property='og:description' content="Canvas使用 Canvas我们可以称之为画布，我们可以使用画笔在上面绘制颜色，也可以绘制点、线以及矩形、扇形等各种形状，还可以绘制图片文本路径等，下面我们一一进行介绍\n绘制颜色 Canvas提供了三个绘制颜色的方法。\ndrawColor drawRGB drawARGB 绘制基本形状 想要在画布上进行绘制，就需要一个画笔Paint。这里我们只简单介绍画笔的使用，关于画笔的详细使用将在画笔这一章详细介绍。\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 ">
 <meta property='og:url' content='http://localhost:1313/android/ui/view/custom-views/canvas/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="Canvas使用 Canvas我们可以称之为画布，我们可以使用画笔在上面绘制颜色，也可以绘制点、线以及矩形、扇形等各种形状，还可以绘制图片文本路径等，下面我们一一进行介绍 绘制颜色 Canvas提供了三个绘制颜色的方法。 drawColor drawRGB drawARGB 绘制基本形状 想要在画布上进行绘制，就需要一个画笔Paint。这里我们只简单介绍画笔的使用，关于画笔的详细使用将在画笔这一章详细介绍。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 public class CanvasView extends View { public CanvasView(Context context, @Nullable AttributeSet attrs) { super(context, attrs); initPaint(); } //1.创建Paint对象 private Paint mPaint = new Paint(); //2.初始化Paint private void initPaint(){ mPaint.setColor(getResources().getColor(R.color.purple));//设置画笔颜色 mPaint.setStyle(Paint.Style.FILL);//设置画笔样式为填充 mPaint.setStrokeWidth(10f); //设置画笔宽度为10px } @Override protected void onDraw(Canvas canvas) { super.onDraw(canvas); } } 绘制点 绘制一个点需要这个点的坐标。">
-  
-    
+<meta name="twitter:description" content="Canvas使用 Canvas我们可以称之为画布，我们可以使用画笔在上面绘制颜色，也可以绘制点、线以及矩形、扇形等各种形状，还可以绘制图片文本路径等，下面我们一一进行介绍\n绘制颜色 Canvas提供了三个绘制颜色的方法。\ndrawColor drawRGB drawARGB 绘制基本形状 想要在画布上进行绘制，就需要一个画笔Paint。这里我们只简单介绍画笔的使用，关于画笔的详细使用将在画笔这一章详细介绍。\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 ">
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
       <script>
         var doNotTrack = false;
@@ -28,11 +26,7 @@
           gtag('js', new Date());
           gtag('config', 'G-G84J9N38RL');
         }
-      </script>
-    
-  
-
-<style>
+      </script><style>
     :root {
         --sys-font-family: "LXGW WenKai TC";
         --zh-font-family: "LXGW WenKai TC";
@@ -94,7 +88,7 @@
                     
                     
                         
-                        <img src="/images/avatar_hu74e4307e0baa534a3da4ee0210445065_34446_300x0_resize_q75_box.jpeg" width="300"
+                        <img src="/images/avatar_hu15583006483879718621.jpeg" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -114,7 +108,7 @@
             
                 <li>
                     <a 
-                        href='https://twitter.com/malinkang'
+                        href='https://space.bilibili.com/27440979'
                         target="_blank"
                         title="Bilibili"
                         rel="me"
@@ -128,7 +122,7 @@
             
                 <li>
                     <a 
-                        href='https://www.douban.com/people/malinkang/https://space.bilibili.com/27440979'
+                        href='https://www.douban.com/people/malinkang/'
                         target="_blank"
                         title="Douban"
                         rel="me"
@@ -787,42 +781,42 @@
 <p>这两个方法中前两个参数是相同的分别为x轴和y轴的缩放比例。而第二种方法比前一种多了两个参数，用来控制缩放中心位置的。</p>
 <p>缩放比例(sx,sy)取值范围详解：</p>
 <div class="table-wrapper"><table>
-<thead>
-<tr>
-<th>取值范围(n)</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>[-∞, -1)</td>
-<td>先根据缩放中心放大n倍，再根据中心轴进行翻转</td>
-</tr>
-<tr>
-<td>-1</td>
-<td>根据缩放中心轴进行翻转</td>
-</tr>
-<tr>
-<td>(-1, 0)</td>
-<td>先根据缩放中心缩小到n，再根据中心轴进行翻转</td>
-</tr>
-<tr>
-<td>0</td>
-<td>不会显示，若sx为0，则宽度为0，不会显示，sy同理</td>
-</tr>
-<tr>
-<td>(0, 1)</td>
-<td>根据缩放中心缩小到n</td>
-</tr>
-<tr>
-<td>1</td>
-<td>没有变化</td>
-</tr>
-<tr>
-<td>(1, +∞)</td>
-<td>根据缩放中心放大n倍</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">取值范围(n)</th>
+          <th style="text-align: left">说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">[-∞, -1)</td>
+          <td style="text-align: left">先根据缩放中心放大n倍，再根据中心轴进行翻转</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">-1</td>
+          <td style="text-align: left">根据缩放中心轴进行翻转</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">(-1, 0)</td>
+          <td style="text-align: left">先根据缩放中心缩小到n，再根据中心轴进行翻转</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">0</td>
+          <td style="text-align: left">不会显示，若sx为0，则宽度为0，不会显示，sy同理</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">(0, 1)</td>
+          <td style="text-align: left">根据缩放中心缩小到n</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">1</td>
+          <td style="text-align: left">没有变化</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">(1, +∞)</td>
+          <td style="text-align: left">根据缩放中心放大n倍</td>
+      </tr>
+  </tbody>
 </table></div>
 <p>如果在缩放时稍微注意一下就会发现<strong>缩放的中心默认为坐标原点,而缩放中心轴就是坐标轴</strong>，如下：</p>
 <div class="highlight"><div class="chroma">

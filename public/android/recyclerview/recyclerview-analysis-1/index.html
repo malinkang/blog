@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="RecyclerView是我们开发中最常用的控件，RecyclerView是如何工作的，如何处理缓存的有助于解决一些使用RecyclerView的bug和优化RecyclerView。 RecyclerView RecyclerView内部定义了如下几个内部类。 我们接下来将逐个分析每个内部类的主要功能，和一些常用的方法。后面再把各个部分串起来看他们是如何工作的。 Adapter Adapter是一个典型的适配器模式。负责将数据转换成ItemView，然后添加到RecyclerView。 常用方法 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 public abstract VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType); public abstract void onBindViewHolder(@NonNull VH holder, int position); public int getItemViewType(int position) { return 0; } * @see #notifyItemChanged(int) * @see #notifyItemInserted(int) * @see #notifyItemRemoved(int) * @see #notifyItemRangeChanged(int, int) * @see #notifyItemRangeInserted(int, int) * @see #notifyItemRangeRemoved(int, int) */ public final void notifyDataSetChanged() { mObservable.">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="RecyclerView是我们开发中最常用的控件，RecyclerView是如何工作的，如何处理缓存的有助于解决一些使用RecyclerView的bug和优化RecyclerView。\nRecyclerView RecyclerView内部定义了如下几个内部类。\n我们接下来将逐个分析每个内部类的主要功能，和一些常用的方法。后面再把各个部分串起来看他们是如何工作的。\nAdapter Adapter是一个典型的适配器模式。负责将数据转换成ItemView，然后添加到RecyclerView。\n常用方法\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 ">
 <title></title>
 
 <link rel='canonical' href='http://localhost:1313/android/recyclerview/recyclerview-analysis-1/'>
 
 <link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
-<meta property='og:description' content="RecyclerView是我们开发中最常用的控件，RecyclerView是如何工作的，如何处理缓存的有助于解决一些使用RecyclerView的bug和优化RecyclerView。 RecyclerView RecyclerView内部定义了如下几个内部类。 我们接下来将逐个分析每个内部类的主要功能，和一些常用的方法。后面再把各个部分串起来看他们是如何工作的。 Adapter Adapter是一个典型的适配器模式。负责将数据转换成ItemView，然后添加到RecyclerView。 常用方法 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 public abstract VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType); public abstract void onBindViewHolder(@NonNull VH holder, int position); public int getItemViewType(int position) { return 0; } * @see #notifyItemChanged(int) * @see #notifyItemInserted(int) * @see #notifyItemRemoved(int) * @see #notifyItemRangeChanged(int, int) * @see #notifyItemRangeInserted(int, int) * @see #notifyItemRangeRemoved(int, int) */ public final void notifyDataSetChanged() { mObservable.">
+<meta property='og:description' content="RecyclerView是我们开发中最常用的控件，RecyclerView是如何工作的，如何处理缓存的有助于解决一些使用RecyclerView的bug和优化RecyclerView。\nRecyclerView RecyclerView内部定义了如下几个内部类。\n我们接下来将逐个分析每个内部类的主要功能，和一些常用的方法。后面再把各个部分串起来看他们是如何工作的。\nAdapter Adapter是一个典型的适配器模式。负责将数据转换成ItemView，然后添加到RecyclerView。\n常用方法\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 ">
 <meta property='og:url' content='http://localhost:1313/android/recyclerview/recyclerview-analysis-1/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="RecyclerView是我们开发中最常用的控件，RecyclerView是如何工作的，如何处理缓存的有助于解决一些使用RecyclerView的bug和优化RecyclerView。 RecyclerView RecyclerView内部定义了如下几个内部类。 我们接下来将逐个分析每个内部类的主要功能，和一些常用的方法。后面再把各个部分串起来看他们是如何工作的。 Adapter Adapter是一个典型的适配器模式。负责将数据转换成ItemView，然后添加到RecyclerView。 常用方法 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 public abstract VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType); public abstract void onBindViewHolder(@NonNull VH holder, int position); public int getItemViewType(int position) { return 0; } * @see #notifyItemChanged(int) * @see #notifyItemInserted(int) * @see #notifyItemRemoved(int) * @see #notifyItemRangeChanged(int, int) * @see #notifyItemRangeInserted(int, int) * @see #notifyItemRangeRemoved(int, int) */ public final void notifyDataSetChanged() { mObservable.">
-  
-    
+<meta name="twitter:description" content="RecyclerView是我们开发中最常用的控件，RecyclerView是如何工作的，如何处理缓存的有助于解决一些使用RecyclerView的bug和优化RecyclerView。\nRecyclerView RecyclerView内部定义了如下几个内部类。\n我们接下来将逐个分析每个内部类的主要功能，和一些常用的方法。后面再把各个部分串起来看他们是如何工作的。\nAdapter Adapter是一个典型的适配器模式。负责将数据转换成ItemView，然后添加到RecyclerView。\n常用方法\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 ">
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
       <script>
         var doNotTrack = false;
@@ -28,11 +26,7 @@
           gtag('js', new Date());
           gtag('config', 'G-G84J9N38RL');
         }
-      </script>
-    
-  
-
-<style>
+      </script><style>
     :root {
         --sys-font-family: "LXGW WenKai TC";
         --zh-font-family: "LXGW WenKai TC";
@@ -94,7 +88,7 @@
                     
                     
                         
-                        <img src="/images/avatar_hu74e4307e0baa534a3da4ee0210445065_34446_300x0_resize_q75_box.jpeg" width="300"
+                        <img src="/images/avatar_hu15583006483879718621.jpeg" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -114,7 +108,7 @@
             
                 <li>
                     <a 
-                        href='https://twitter.com/malinkang'
+                        href='https://space.bilibili.com/27440979'
                         target="_blank"
                         title="Bilibili"
                         rel="me"
@@ -128,7 +122,7 @@
             
                 <li>
                     <a 
-                        href='https://www.douban.com/people/malinkang/https://space.bilibili.com/27440979'
+                        href='https://www.douban.com/people/malinkang/'
                         target="_blank"
                         title="Douban"
                         rel="me"

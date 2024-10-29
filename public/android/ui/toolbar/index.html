@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Toolbar 1.使用ToolBar Toolbar是在Android5.0开始推出的一个MaterialDesign风格的导航控件，用来取代之前的Actionbar。与Actionbar相比，Toolbar更加灵活。它不像Actionbar一样，一定要固定在Activity的顶部，而是可以放到界面的任意位置。 Toobar是Android5.0才引入的，Google也在兼容包appcompat-v7中提供了向下兼容的ToolBar：android.support.v7.widget.Toolbar。 1.1基本使用 首先，我们要在build.gradle中添加依赖。 1 compile &#39;com.android.support:appcompat-v7:24.2.0&#39; 定义NoActionBar的主题，并在AndroidManifest.xml中为Activity指定。 1 2 3 4 5 6 7 &lt;!-- Base application theme. --&gt; &lt;style name=&#34;AppTheme&#34; parent=&#34;Theme.AppCompat.Light.NoActionBar&#34;&gt; &lt;!-- Customize your theme here. --&gt; &lt;item name=&#34;colorPrimary&#34;&gt;@color/colorPrimary&lt;/item&gt; &lt;item name=&#34;colorPrimaryDark&#34;&gt;@color/colorPrimaryDark&lt;/item&gt; &lt;item name=&#34;colorAccent&#34;&gt;@color/colorAccent&lt;/item&gt; &lt;/style&gt; 然后我们就可以在布局文件中添加ToolBar。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 &lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt; &lt;LinearLayout xmlns:android=&#34;http://schemas.android.com/apk/res/android&#34; xmlns:app=&#34;http://schemas.android.com/apk/res-auto&#34; android:layout_width=&#34;match_parent&#34; android:layout_height=&#34;match_parent&#34;&gt; &lt;android.support.v7.widget.Toolbar android:id=&#34;@+id/toolbar&#34; android:layout_width=&#34;match_parent&#34; android:layout_height=&#34;wrap_content&#34; android:background=&#34;?attr/colorPrimary&#34; android:minHeight=&#34;?attr/actionBarSize&#34; app:titleTextColor=&#34;@android:color/white&#34;/&gt; &lt;/LinearLayout&gt; 最后，在Activity或者Fragment中，通过调用setSupportActionBar让ToolBar扮演ActionBar的角色。">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Toolbar 1.使用ToolBar Toolbar是在Android5.0开始推出的一个MaterialDesign风格的导航控件，用来取代之前的Actionbar。与Actionbar相比，Toolbar更加灵活。它不像Actionbar一样，一定要固定在Activity的顶部，而是可以放到界面的任意位置。\nToobar是Android5.0才引入的，Google也在兼容包appcompat-v7中提供了向下兼容的ToolBar：android.support.v7.widget.Toolbar。\n1.1基本使用 首先，我们要在build.gradle中添加依赖。\n1 compile &#39;com.android.support:appcompat-v7:24.2.0&#39; 定义NoActionBar的主题，并在AndroidManifest.xml中为Activity指定。\n1 2 3 4 5 6 7 &lt;!-- Base application theme. --&gt; &lt;style name=&#34;AppTheme&#34; parent=&#34;Theme.AppCompat.Light.NoActionBar&#34;&gt; &lt;!-- Customize your theme here. --&gt; &lt;item name=&#34;colorPrimary&#34;&gt;@color/colorPrimary&lt;/item&gt; &lt;item name=&#34;colorPrimaryDark&#34;&gt;@color/colorPrimaryDark&lt;/item&gt; &lt;item name=&#34;colorAccent&#34;&gt;@color/colorAccent&lt;/item&gt; &lt;/style&gt; ">
 <title></title>
 
 <link rel='canonical' href='http://localhost:1313/android/ui/toolbar/'>
 
 <link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
-<meta property='og:description' content="Toolbar 1.使用ToolBar Toolbar是在Android5.0开始推出的一个MaterialDesign风格的导航控件，用来取代之前的Actionbar。与Actionbar相比，Toolbar更加灵活。它不像Actionbar一样，一定要固定在Activity的顶部，而是可以放到界面的任意位置。 Toobar是Android5.0才引入的，Google也在兼容包appcompat-v7中提供了向下兼容的ToolBar：android.support.v7.widget.Toolbar。 1.1基本使用 首先，我们要在build.gradle中添加依赖。 1 compile &#39;com.android.support:appcompat-v7:24.2.0&#39; 定义NoActionBar的主题，并在AndroidManifest.xml中为Activity指定。 1 2 3 4 5 6 7 &lt;!-- Base application theme. --&gt; &lt;style name=&#34;AppTheme&#34; parent=&#34;Theme.AppCompat.Light.NoActionBar&#34;&gt; &lt;!-- Customize your theme here. --&gt; &lt;item name=&#34;colorPrimary&#34;&gt;@color/colorPrimary&lt;/item&gt; &lt;item name=&#34;colorPrimaryDark&#34;&gt;@color/colorPrimaryDark&lt;/item&gt; &lt;item name=&#34;colorAccent&#34;&gt;@color/colorAccent&lt;/item&gt; &lt;/style&gt; 然后我们就可以在布局文件中添加ToolBar。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 &lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt; &lt;LinearLayout xmlns:android=&#34;http://schemas.android.com/apk/res/android&#34; xmlns:app=&#34;http://schemas.android.com/apk/res-auto&#34; android:layout_width=&#34;match_parent&#34; android:layout_height=&#34;match_parent&#34;&gt; &lt;android.support.v7.widget.Toolbar android:id=&#34;@+id/toolbar&#34; android:layout_width=&#34;match_parent&#34; android:layout_height=&#34;wrap_content&#34; android:background=&#34;?attr/colorPrimary&#34; android:minHeight=&#34;?attr/actionBarSize&#34; app:titleTextColor=&#34;@android:color/white&#34;/&gt; &lt;/LinearLayout&gt; 最后，在Activity或者Fragment中，通过调用setSupportActionBar让ToolBar扮演ActionBar的角色。">
+<meta property='og:description' content="Toolbar 1.使用ToolBar Toolbar是在Android5.0开始推出的一个MaterialDesign风格的导航控件，用来取代之前的Actionbar。与Actionbar相比，Toolbar更加灵活。它不像Actionbar一样，一定要固定在Activity的顶部，而是可以放到界面的任意位置。\nToobar是Android5.0才引入的，Google也在兼容包appcompat-v7中提供了向下兼容的ToolBar：android.support.v7.widget.Toolbar。\n1.1基本使用 首先，我们要在build.gradle中添加依赖。\n1 compile &#39;com.android.support:appcompat-v7:24.2.0&#39; 定义NoActionBar的主题，并在AndroidManifest.xml中为Activity指定。\n1 2 3 4 5 6 7 &lt;!-- Base application theme. --&gt; &lt;style name=&#34;AppTheme&#34; parent=&#34;Theme.AppCompat.Light.NoActionBar&#34;&gt; &lt;!-- Customize your theme here. --&gt; &lt;item name=&#34;colorPrimary&#34;&gt;@color/colorPrimary&lt;/item&gt; &lt;item name=&#34;colorPrimaryDark&#34;&gt;@color/colorPrimaryDark&lt;/item&gt; &lt;item name=&#34;colorAccent&#34;&gt;@color/colorAccent&lt;/item&gt; &lt;/style&gt; ">
 <meta property='og:url' content='http://localhost:1313/android/ui/toolbar/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="Toolbar 1.使用ToolBar Toolbar是在Android5.0开始推出的一个MaterialDesign风格的导航控件，用来取代之前的Actionbar。与Actionbar相比，Toolbar更加灵活。它不像Actionbar一样，一定要固定在Activity的顶部，而是可以放到界面的任意位置。 Toobar是Android5.0才引入的，Google也在兼容包appcompat-v7中提供了向下兼容的ToolBar：android.support.v7.widget.Toolbar。 1.1基本使用 首先，我们要在build.gradle中添加依赖。 1 compile &#39;com.android.support:appcompat-v7:24.2.0&#39; 定义NoActionBar的主题，并在AndroidManifest.xml中为Activity指定。 1 2 3 4 5 6 7 &lt;!-- Base application theme. --&gt; &lt;style name=&#34;AppTheme&#34; parent=&#34;Theme.AppCompat.Light.NoActionBar&#34;&gt; &lt;!-- Customize your theme here. --&gt; &lt;item name=&#34;colorPrimary&#34;&gt;@color/colorPrimary&lt;/item&gt; &lt;item name=&#34;colorPrimaryDark&#34;&gt;@color/colorPrimaryDark&lt;/item&gt; &lt;item name=&#34;colorAccent&#34;&gt;@color/colorAccent&lt;/item&gt; &lt;/style&gt; 然后我们就可以在布局文件中添加ToolBar。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 &lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt; &lt;LinearLayout xmlns:android=&#34;http://schemas.android.com/apk/res/android&#34; xmlns:app=&#34;http://schemas.android.com/apk/res-auto&#34; android:layout_width=&#34;match_parent&#34; android:layout_height=&#34;match_parent&#34;&gt; &lt;android.support.v7.widget.Toolbar android:id=&#34;@+id/toolbar&#34; android:layout_width=&#34;match_parent&#34; android:layout_height=&#34;wrap_content&#34; android:background=&#34;?attr/colorPrimary&#34; android:minHeight=&#34;?attr/actionBarSize&#34; app:titleTextColor=&#34;@android:color/white&#34;/&gt; &lt;/LinearLayout&gt; 最后，在Activity或者Fragment中，通过调用setSupportActionBar让ToolBar扮演ActionBar的角色。">
-  
-    
+<meta name="twitter:description" content="Toolbar 1.使用ToolBar Toolbar是在Android5.0开始推出的一个MaterialDesign风格的导航控件，用来取代之前的Actionbar。与Actionbar相比，Toolbar更加灵活。它不像Actionbar一样，一定要固定在Activity的顶部，而是可以放到界面的任意位置。\nToobar是Android5.0才引入的，Google也在兼容包appcompat-v7中提供了向下兼容的ToolBar：android.support.v7.widget.Toolbar。\n1.1基本使用 首先，我们要在build.gradle中添加依赖。\n1 compile &#39;com.android.support:appcompat-v7:24.2.0&#39; 定义NoActionBar的主题，并在AndroidManifest.xml中为Activity指定。\n1 2 3 4 5 6 7 &lt;!-- Base application theme. --&gt; &lt;style name=&#34;AppTheme&#34; parent=&#34;Theme.AppCompat.Light.NoActionBar&#34;&gt; &lt;!-- Customize your theme here. --&gt; &lt;item name=&#34;colorPrimary&#34;&gt;@color/colorPrimary&lt;/item&gt; &lt;item name=&#34;colorPrimaryDark&#34;&gt;@color/colorPrimaryDark&lt;/item&gt; &lt;item name=&#34;colorAccent&#34;&gt;@color/colorAccent&lt;/item&gt; &lt;/style&gt; ">
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
       <script>
         var doNotTrack = false;
@@ -28,11 +26,7 @@
           gtag('js', new Date());
           gtag('config', 'G-G84J9N38RL');
         }
-      </script>
-    
-  
-
-<style>
+      </script><style>
     :root {
         --sys-font-family: "LXGW WenKai TC";
         --zh-font-family: "LXGW WenKai TC";
@@ -94,7 +88,7 @@
                     
                     
                         
-                        <img src="/images/avatar_hu74e4307e0baa534a3da4ee0210445065_34446_300x0_resize_q75_box.jpeg" width="300"
+                        <img src="/images/avatar_hu15583006483879718621.jpeg" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -114,7 +108,7 @@
             
                 <li>
                     <a 
-                        href='https://twitter.com/malinkang'
+                        href='https://space.bilibili.com/27440979'
                         target="_blank"
                         title="Bilibili"
                         rel="me"
@@ -128,7 +122,7 @@
             
                 <li>
                     <a 
-                        href='https://www.douban.com/people/malinkang/https://space.bilibili.com/27440979'
+                        href='https://www.douban.com/people/malinkang/'
                         target="_blank"
                         title="Douban"
                         rel="me"

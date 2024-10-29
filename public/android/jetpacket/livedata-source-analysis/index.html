@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="LiveData源码分析 LiveData LiveData和RxJava里的Observable类似，可以添加一个订阅者Observer。当LiveData的值发生变化时，Observer可以收到变化的值。所以源码分析主要分析LiveData的订阅和更新数据。 RxJava并没有提供与生命周期绑定的方法，一般我们可以通过第三方库RxLifecycle或者AutoDispose来实现自动解绑。LiveData的observe()方法要求传递一个LifecycleOwner对象，当生命周期结束时自动解绑，避免内存泄露。 LiveData是一个抽象类，所以我们只能使用它的子类。 LiveData内部定义了一个mVersion来管理数据的版本。通过observer()传进来的Observer对象会被包装成一个ObserverWrapper对象，内部同样定义了一个mLastVersion。如果ObserverWrapper的mLastVersion小于mVersion就会分发数据。 1 2 3 4 5 6 7 public abstract class LiveData&lt;T&gt;{ int mActiveCount = 0; //活跃数 private int mVersion;//版本号 //和LifecycleRegistry一样 内部创建了一个SafeIterableMap来保存Observer private SafeIterableMap&lt;Observer&lt;? super T&gt;, ObserverWrapper&gt; mObservers = new SafeIterableMap&lt;&gt;(); } 订阅数据 我们有三种方式来订阅LiveData 扩展函数observe() observe() observeForever() 扩展函数observe() 扩展函数允许我们传入一个函数类型，内部还是调用的observe() 1 2 3 4 5 6 7 8 9 10 11 12 //LiveData.kt //LiveData扩展函数 @MainThread inline fun &lt;T&gt; LiveData&lt;T&gt;.observe( owner: LifecycleOwner, crossinline onChanged: (T) -&gt; Unit ): Observer&lt;T&gt; { //创建Observer对象 val wrappedObserver = Observer&lt;T&gt; { t -&gt; onChanged.">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="LiveData源码分析 LiveData LiveData和RxJava里的Observable类似，可以添加一个订阅者Observer。当LiveData的值发生变化时，Observer可以收到变化的值。所以源码分析主要分析LiveData的订阅和更新数据。\nRxJava并没有提供与生命周期绑定的方法，一般我们可以通过第三方库RxLifecycle或者AutoDispose来实现自动解绑。LiveData的observe()方法要求传递一个LifecycleOwner对象，当生命周期结束时自动解绑，避免内存泄露。\nLiveData是一个抽象类，所以我们只能使用它的子类。\nLiveData内部定义了一个mVersion来管理数据的版本。通过observer()传进来的Observer对象会被包装成一个ObserverWrapper对象，内部同样定义了一个mLastVersion。如果ObserverWrapper的mLastVersion小于mVersion就会分发数据。\n1 2 3 4 5 6 7 ">
 <title></title>
 
 <link rel='canonical' href='http://localhost:1313/android/jetpacket/livedata-source-analysis/'>
 
 <link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
-<meta property='og:description' content="LiveData源码分析 LiveData LiveData和RxJava里的Observable类似，可以添加一个订阅者Observer。当LiveData的值发生变化时，Observer可以收到变化的值。所以源码分析主要分析LiveData的订阅和更新数据。 RxJava并没有提供与生命周期绑定的方法，一般我们可以通过第三方库RxLifecycle或者AutoDispose来实现自动解绑。LiveData的observe()方法要求传递一个LifecycleOwner对象，当生命周期结束时自动解绑，避免内存泄露。 LiveData是一个抽象类，所以我们只能使用它的子类。 LiveData内部定义了一个mVersion来管理数据的版本。通过observer()传进来的Observer对象会被包装成一个ObserverWrapper对象，内部同样定义了一个mLastVersion。如果ObserverWrapper的mLastVersion小于mVersion就会分发数据。 1 2 3 4 5 6 7 public abstract class LiveData&lt;T&gt;{ int mActiveCount = 0; //活跃数 private int mVersion;//版本号 //和LifecycleRegistry一样 内部创建了一个SafeIterableMap来保存Observer private SafeIterableMap&lt;Observer&lt;? super T&gt;, ObserverWrapper&gt; mObservers = new SafeIterableMap&lt;&gt;(); } 订阅数据 我们有三种方式来订阅LiveData 扩展函数observe() observe() observeForever() 扩展函数observe() 扩展函数允许我们传入一个函数类型，内部还是调用的observe() 1 2 3 4 5 6 7 8 9 10 11 12 //LiveData.kt //LiveData扩展函数 @MainThread inline fun &lt;T&gt; LiveData&lt;T&gt;.observe( owner: LifecycleOwner, crossinline onChanged: (T) -&gt; Unit ): Observer&lt;T&gt; { //创建Observer对象 val wrappedObserver = Observer&lt;T&gt; { t -&gt; onChanged.">
+<meta property='og:description' content="LiveData源码分析 LiveData LiveData和RxJava里的Observable类似，可以添加一个订阅者Observer。当LiveData的值发生变化时，Observer可以收到变化的值。所以源码分析主要分析LiveData的订阅和更新数据。\nRxJava并没有提供与生命周期绑定的方法，一般我们可以通过第三方库RxLifecycle或者AutoDispose来实现自动解绑。LiveData的observe()方法要求传递一个LifecycleOwner对象，当生命周期结束时自动解绑，避免内存泄露。\nLiveData是一个抽象类，所以我们只能使用它的子类。\nLiveData内部定义了一个mVersion来管理数据的版本。通过observer()传进来的Observer对象会被包装成一个ObserverWrapper对象，内部同样定义了一个mLastVersion。如果ObserverWrapper的mLastVersion小于mVersion就会分发数据。\n1 2 3 4 5 6 7 ">
 <meta property='og:url' content='http://localhost:1313/android/jetpacket/livedata-source-analysis/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="LiveData源码分析 LiveData LiveData和RxJava里的Observable类似，可以添加一个订阅者Observer。当LiveData的值发生变化时，Observer可以收到变化的值。所以源码分析主要分析LiveData的订阅和更新数据。 RxJava并没有提供与生命周期绑定的方法，一般我们可以通过第三方库RxLifecycle或者AutoDispose来实现自动解绑。LiveData的observe()方法要求传递一个LifecycleOwner对象，当生命周期结束时自动解绑，避免内存泄露。 LiveData是一个抽象类，所以我们只能使用它的子类。 LiveData内部定义了一个mVersion来管理数据的版本。通过observer()传进来的Observer对象会被包装成一个ObserverWrapper对象，内部同样定义了一个mLastVersion。如果ObserverWrapper的mLastVersion小于mVersion就会分发数据。 1 2 3 4 5 6 7 public abstract class LiveData&lt;T&gt;{ int mActiveCount = 0; //活跃数 private int mVersion;//版本号 //和LifecycleRegistry一样 内部创建了一个SafeIterableMap来保存Observer private SafeIterableMap&lt;Observer&lt;? super T&gt;, ObserverWrapper&gt; mObservers = new SafeIterableMap&lt;&gt;(); } 订阅数据 我们有三种方式来订阅LiveData 扩展函数observe() observe() observeForever() 扩展函数observe() 扩展函数允许我们传入一个函数类型，内部还是调用的observe() 1 2 3 4 5 6 7 8 9 10 11 12 //LiveData.kt //LiveData扩展函数 @MainThread inline fun &lt;T&gt; LiveData&lt;T&gt;.observe( owner: LifecycleOwner, crossinline onChanged: (T) -&gt; Unit ): Observer&lt;T&gt; { //创建Observer对象 val wrappedObserver = Observer&lt;T&gt; { t -&gt; onChanged.">
-  
-    
+<meta name="twitter:description" content="LiveData源码分析 LiveData LiveData和RxJava里的Observable类似，可以添加一个订阅者Observer。当LiveData的值发生变化时，Observer可以收到变化的值。所以源码分析主要分析LiveData的订阅和更新数据。\nRxJava并没有提供与生命周期绑定的方法，一般我们可以通过第三方库RxLifecycle或者AutoDispose来实现自动解绑。LiveData的observe()方法要求传递一个LifecycleOwner对象，当生命周期结束时自动解绑，避免内存泄露。\nLiveData是一个抽象类，所以我们只能使用它的子类。\nLiveData内部定义了一个mVersion来管理数据的版本。通过observer()传进来的Observer对象会被包装成一个ObserverWrapper对象，内部同样定义了一个mLastVersion。如果ObserverWrapper的mLastVersion小于mVersion就会分发数据。\n1 2 3 4 5 6 7 ">
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
       <script>
         var doNotTrack = false;
@@ -28,11 +26,7 @@
           gtag('js', new Date());
           gtag('config', 'G-G84J9N38RL');
         }
-      </script>
-    
-  
-
-<style>
+      </script><style>
     :root {
         --sys-font-family: "LXGW WenKai TC";
         --zh-font-family: "LXGW WenKai TC";
@@ -94,7 +88,7 @@
                     
                     
                         
-                        <img src="/images/avatar_hu74e4307e0baa534a3da4ee0210445065_34446_300x0_resize_q75_box.jpeg" width="300"
+                        <img src="/images/avatar_hu15583006483879718621.jpeg" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -114,7 +108,7 @@
             
                 <li>
                     <a 
-                        href='https://twitter.com/malinkang'
+                        href='https://space.bilibili.com/27440979'
                         target="_blank"
                         title="Bilibili"
                         rel="me"
@@ -128,7 +122,7 @@
             
                 <li>
                     <a 
-                        href='https://www.douban.com/people/malinkang/https://space.bilibili.com/27440979'
+                        href='https://www.douban.com/people/malinkang/'
                         target="_blank"
                         title="Douban"
                         rel="me"

@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="RxJava 目录 1.创建Observable 2.操作符 3.错误处理 4.调度器 5.订阅 参考 RxJava最核心的东西就是Observables和Subscribers。Observables发出一系列事件，Subscribers处理这些事件。如果一个Observables没有任何的Subscribers，那么这个Observables是不会发出任何事件来。 1.创建Observable RxJava提供了多种创建Observables的方法。create方法创建一实例需要传入一个OnSubscribe,当Subscriber订阅时进行调用。 创建Subscriber 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 Subscriber&lt;String&gt; mySubscriber = new Subscriber&lt;String&gt;() { @Override public void onCompleted() { } @Override public void onError(Throwable e) { } @Override public void onNext(String s) { System.out.println(s); } }; 创建Observable 1 2 3 4 5 6 7 8 9 10 11 Observable&lt;String&gt; myObservable=Observable.create( new Observable.">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="RxJava 目录 1.创建Observable 2.操作符 3.错误处理 4.调度器 5.订阅 参考 RxJava最核心的东西就是Observables和Subscribers。Observables发出一系列事件，Subscribers处理这些事件。如果一个Observables没有任何的Subscribers，那么这个Observables是不会发出任何事件来。\n1.创建Observable RxJava提供了多种创建Observables的方法。create方法创建一实例需要传入一个OnSubscribe,当Subscriber订阅时进行调用。\n创建Subscriber\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 ">
 <title></title>
 
 <link rel='canonical' href='http://localhost:1313/android/network/rxjava/'>
 
 <link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
-<meta property='og:description' content="RxJava 目录 1.创建Observable 2.操作符 3.错误处理 4.调度器 5.订阅 参考 RxJava最核心的东西就是Observables和Subscribers。Observables发出一系列事件，Subscribers处理这些事件。如果一个Observables没有任何的Subscribers，那么这个Observables是不会发出任何事件来。 1.创建Observable RxJava提供了多种创建Observables的方法。create方法创建一实例需要传入一个OnSubscribe,当Subscriber订阅时进行调用。 创建Subscriber 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 Subscriber&lt;String&gt; mySubscriber = new Subscriber&lt;String&gt;() { @Override public void onCompleted() { } @Override public void onError(Throwable e) { } @Override public void onNext(String s) { System.out.println(s); } }; 创建Observable 1 2 3 4 5 6 7 8 9 10 11 Observable&lt;String&gt; myObservable=Observable.create( new Observable.">
+<meta property='og:description' content="RxJava 目录 1.创建Observable 2.操作符 3.错误处理 4.调度器 5.订阅 参考 RxJava最核心的东西就是Observables和Subscribers。Observables发出一系列事件，Subscribers处理这些事件。如果一个Observables没有任何的Subscribers，那么这个Observables是不会发出任何事件来。\n1.创建Observable RxJava提供了多种创建Observables的方法。create方法创建一实例需要传入一个OnSubscribe,当Subscriber订阅时进行调用。\n创建Subscriber\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 ">
 <meta property='og:url' content='http://localhost:1313/android/network/rxjava/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="RxJava 目录 1.创建Observable 2.操作符 3.错误处理 4.调度器 5.订阅 参考 RxJava最核心的东西就是Observables和Subscribers。Observables发出一系列事件，Subscribers处理这些事件。如果一个Observables没有任何的Subscribers，那么这个Observables是不会发出任何事件来。 1.创建Observable RxJava提供了多种创建Observables的方法。create方法创建一实例需要传入一个OnSubscribe,当Subscriber订阅时进行调用。 创建Subscriber 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 Subscriber&lt;String&gt; mySubscriber = new Subscriber&lt;String&gt;() { @Override public void onCompleted() { } @Override public void onError(Throwable e) { } @Override public void onNext(String s) { System.out.println(s); } }; 创建Observable 1 2 3 4 5 6 7 8 9 10 11 Observable&lt;String&gt; myObservable=Observable.create( new Observable.">
-  
-    
+<meta name="twitter:description" content="RxJava 目录 1.创建Observable 2.操作符 3.错误处理 4.调度器 5.订阅 参考 RxJava最核心的东西就是Observables和Subscribers。Observables发出一系列事件，Subscribers处理这些事件。如果一个Observables没有任何的Subscribers，那么这个Observables是不会发出任何事件来。\n1.创建Observable RxJava提供了多种创建Observables的方法。create方法创建一实例需要传入一个OnSubscribe,当Subscriber订阅时进行调用。\n创建Subscriber\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 ">
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
       <script>
         var doNotTrack = false;
@@ -28,11 +26,7 @@
           gtag('js', new Date());
           gtag('config', 'G-G84J9N38RL');
         }
-      </script>
-    
-  
-
-<style>
+      </script><style>
     :root {
         --sys-font-family: "LXGW WenKai TC";
         --zh-font-family: "LXGW WenKai TC";
@@ -94,7 +88,7 @@
                     
                     
                         
-                        <img src="/images/avatar_hu74e4307e0baa534a3da4ee0210445065_34446_300x0_resize_q75_box.jpeg" width="300"
+                        <img src="/images/avatar_hu15583006483879718621.jpeg" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -114,7 +108,7 @@
             
                 <li>
                     <a 
-                        href='https://twitter.com/malinkang'
+                        href='https://space.bilibili.com/27440979'
                         target="_blank"
                         title="Bilibili"
                         rel="me"
@@ -128,7 +122,7 @@
             
                 <li>
                     <a 
-                        href='https://www.douban.com/people/malinkang/https://space.bilibili.com/27440979'
+                        href='https://www.douban.com/people/malinkang/'
                         target="_blank"
                         title="Douban"
                         rel="me"

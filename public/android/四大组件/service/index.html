@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="服务类型 服务有三种类型 前台服务 后台服务 绑定服务 参考： 服务概览 前台服务 绑定服务 当客户端取消绑定时，系统不会调用onServiceDisconnected()方法。 在Activity中绑定的服务，Activity销毁时绑定的服务也会随之销毁。 AIDL oneway和非oneway区别。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 override fun onServiceConnected(name: ComponentName?, service: IBinder?) { val start =System.currentTimeMillis() mService=Operator.Stub.asInterface(service) mService?.add(10,20,object:Callback.Stub(){ override fun onSuccess(result: Int) { Log.d(TAG,&#34;onSuccess = $result&#34;) } }) val end = System.currentTimeMillis() Log.d(TAG,&#34;cost ${end -start} ms&#34;) } //远程服务 private val mBinder =object : Operator.">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="服务类型 服务有三种类型\n前台服务\n后台服务\n绑定服务\n参考：\n服务概览\n前台服务\n绑定服务 当客户端取消绑定时，系统不会调用onServiceDisconnected()方法。\n在Activity中绑定的服务，Activity销毁时绑定的服务也会随之销毁。\nAIDL oneway和非oneway区别。\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 ">
 <title></title>
 
 <link rel='canonical' href='http://localhost:1313/android/%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6/service/'>
 
 <link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
-<meta property='og:description' content="服务类型 服务有三种类型 前台服务 后台服务 绑定服务 参考： 服务概览 前台服务 绑定服务 当客户端取消绑定时，系统不会调用onServiceDisconnected()方法。 在Activity中绑定的服务，Activity销毁时绑定的服务也会随之销毁。 AIDL oneway和非oneway区别。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 override fun onServiceConnected(name: ComponentName?, service: IBinder?) { val start =System.currentTimeMillis() mService=Operator.Stub.asInterface(service) mService?.add(10,20,object:Callback.Stub(){ override fun onSuccess(result: Int) { Log.d(TAG,&#34;onSuccess = $result&#34;) } }) val end = System.currentTimeMillis() Log.d(TAG,&#34;cost ${end -start} ms&#34;) } //远程服务 private val mBinder =object : Operator.">
+<meta property='og:description' content="服务类型 服务有三种类型\n前台服务\n后台服务\n绑定服务\n参考：\n服务概览\n前台服务\n绑定服务 当客户端取消绑定时，系统不会调用onServiceDisconnected()方法。\n在Activity中绑定的服务，Activity销毁时绑定的服务也会随之销毁。\nAIDL oneway和非oneway区别。\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 ">
 <meta property='og:url' content='http://localhost:1313/android/%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6/service/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="服务类型 服务有三种类型 前台服务 后台服务 绑定服务 参考： 服务概览 前台服务 绑定服务 当客户端取消绑定时，系统不会调用onServiceDisconnected()方法。 在Activity中绑定的服务，Activity销毁时绑定的服务也会随之销毁。 AIDL oneway和非oneway区别。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 override fun onServiceConnected(name: ComponentName?, service: IBinder?) { val start =System.currentTimeMillis() mService=Operator.Stub.asInterface(service) mService?.add(10,20,object:Callback.Stub(){ override fun onSuccess(result: Int) { Log.d(TAG,&#34;onSuccess = $result&#34;) } }) val end = System.currentTimeMillis() Log.d(TAG,&#34;cost ${end -start} ms&#34;) } //远程服务 private val mBinder =object : Operator.">
-  
-    
+<meta name="twitter:description" content="服务类型 服务有三种类型\n前台服务\n后台服务\n绑定服务\n参考：\n服务概览\n前台服务\n绑定服务 当客户端取消绑定时，系统不会调用onServiceDisconnected()方法。\n在Activity中绑定的服务，Activity销毁时绑定的服务也会随之销毁。\nAIDL oneway和非oneway区别。\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 ">
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
       <script>
         var doNotTrack = false;
@@ -28,11 +26,7 @@
           gtag('js', new Date());
           gtag('config', 'G-G84J9N38RL');
         }
-      </script>
-    
-  
-
-<style>
+      </script><style>
     :root {
         --sys-font-family: "LXGW WenKai TC";
         --zh-font-family: "LXGW WenKai TC";
@@ -94,7 +88,7 @@
                     
                     
                         
-                        <img src="/images/avatar_hu74e4307e0baa534a3da4ee0210445065_34446_300x0_resize_q75_box.jpeg" width="300"
+                        <img src="/images/avatar_hu15583006483879718621.jpeg" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -114,7 +108,7 @@
             
                 <li>
                     <a 
-                        href='https://twitter.com/malinkang'
+                        href='https://space.bilibili.com/27440979'
                         target="_blank"
                         title="Bilibili"
                         rel="me"
@@ -128,7 +122,7 @@
             
                 <li>
                     <a 
-                        href='https://www.douban.com/people/malinkang/https://space.bilibili.com/27440979'
+                        href='https://www.douban.com/people/malinkang/'
                         target="_blank"
                         title="Douban"
                         rel="me"

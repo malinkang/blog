@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="ButterKnife是一个Android View注入的库。 1 配置Eclipse 在使用ButterKnife需要先配置一下Eclipse。 项目右键-Properties-Java Complier-Annotation Processing 确保设置和下图一致 接着展开Annotation Processing选择Factory Path,选中Enable project specific settings。然后点击 Add JARs&hellip;,选中ButterKnife的jar包 然后点击ok保存设置，Eclipse将问你是否重新构建新项目，点击Yes。 确保你项目的根目录里有一个.apt_generated的文件夹，文件夹中包含YOURACTIVITY$$ViewInjector.java这样的文件。 2 使用注解 在Activity中使用注解 1 2 3 4 5 6 7 8 9 10 11 12 class ExampleActivity extends Activity { @InjectView(R.id.title) TextView title; @InjectView(R.id.subtitle) TextView subtitle; @InjectView(R.id.footer) TextView footer; @Override public void onCreate(Bundle savedInstanceState) { super.onCreate(savedInstanceState); setContentView(R.layout.simple_activity); ButterKnife.inject(this); // TODO Use &#34;injected&#34; views... } } Fragment中使用注解 1 2 3 4 5 6 7 8 9 10 11 12 public class FancyFragment extends Fragment { @InjectView(R.">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="ButterKnife是一个Android View注入的库。\n1 配置Eclipse 在使用ButterKnife需要先配置一下Eclipse。\n项目右键-Properties-Java Complier-Annotation Processing 确保设置和下图一致\n接着展开Annotation Processing选择Factory Path,选中Enable project specific settings。然后点击 Add JARs&hellip;,选中ButterKnife的jar包\n然后点击ok保存设置，Eclipse将问你是否重新构建新项目，点击Yes。\n确保你项目的根目录里有一个.apt_generated的文件夹，文件夹中包含YOURACTIVITY$$ViewInjector.java这样的文件。\n2 使用注解 在Activity中使用注解\n1 2 3 4 5 6 7 8 9 10 11 12 ">
 <title></title>
 
 <link rel='canonical' href='http://localhost:1313/android/annotation/butterknife/'>
 
 <link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
-<meta property='og:description' content="ButterKnife是一个Android View注入的库。 1 配置Eclipse 在使用ButterKnife需要先配置一下Eclipse。 项目右键-Properties-Java Complier-Annotation Processing 确保设置和下图一致 接着展开Annotation Processing选择Factory Path,选中Enable project specific settings。然后点击 Add JARs&hellip;,选中ButterKnife的jar包 然后点击ok保存设置，Eclipse将问你是否重新构建新项目，点击Yes。 确保你项目的根目录里有一个.apt_generated的文件夹，文件夹中包含YOURACTIVITY$$ViewInjector.java这样的文件。 2 使用注解 在Activity中使用注解 1 2 3 4 5 6 7 8 9 10 11 12 class ExampleActivity extends Activity { @InjectView(R.id.title) TextView title; @InjectView(R.id.subtitle) TextView subtitle; @InjectView(R.id.footer) TextView footer; @Override public void onCreate(Bundle savedInstanceState) { super.onCreate(savedInstanceState); setContentView(R.layout.simple_activity); ButterKnife.inject(this); // TODO Use &#34;injected&#34; views... } } Fragment中使用注解 1 2 3 4 5 6 7 8 9 10 11 12 public class FancyFragment extends Fragment { @InjectView(R.">
+<meta property='og:description' content="ButterKnife是一个Android View注入的库。\n1 配置Eclipse 在使用ButterKnife需要先配置一下Eclipse。\n项目右键-Properties-Java Complier-Annotation Processing 确保设置和下图一致\n接着展开Annotation Processing选择Factory Path,选中Enable project specific settings。然后点击 Add JARs&hellip;,选中ButterKnife的jar包\n然后点击ok保存设置，Eclipse将问你是否重新构建新项目，点击Yes。\n确保你项目的根目录里有一个.apt_generated的文件夹，文件夹中包含YOURACTIVITY$$ViewInjector.java这样的文件。\n2 使用注解 在Activity中使用注解\n1 2 3 4 5 6 7 8 9 10 11 12 ">
 <meta property='og:url' content='http://localhost:1313/android/annotation/butterknife/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="ButterKnife是一个Android View注入的库。 1 配置Eclipse 在使用ButterKnife需要先配置一下Eclipse。 项目右键-Properties-Java Complier-Annotation Processing 确保设置和下图一致 接着展开Annotation Processing选择Factory Path,选中Enable project specific settings。然后点击 Add JARs&hellip;,选中ButterKnife的jar包 然后点击ok保存设置，Eclipse将问你是否重新构建新项目，点击Yes。 确保你项目的根目录里有一个.apt_generated的文件夹，文件夹中包含YOURACTIVITY$$ViewInjector.java这样的文件。 2 使用注解 在Activity中使用注解 1 2 3 4 5 6 7 8 9 10 11 12 class ExampleActivity extends Activity { @InjectView(R.id.title) TextView title; @InjectView(R.id.subtitle) TextView subtitle; @InjectView(R.id.footer) TextView footer; @Override public void onCreate(Bundle savedInstanceState) { super.onCreate(savedInstanceState); setContentView(R.layout.simple_activity); ButterKnife.inject(this); // TODO Use &#34;injected&#34; views... } } Fragment中使用注解 1 2 3 4 5 6 7 8 9 10 11 12 public class FancyFragment extends Fragment { @InjectView(R.">
-  
-    
+<meta name="twitter:description" content="ButterKnife是一个Android View注入的库。\n1 配置Eclipse 在使用ButterKnife需要先配置一下Eclipse。\n项目右键-Properties-Java Complier-Annotation Processing 确保设置和下图一致\n接着展开Annotation Processing选择Factory Path,选中Enable project specific settings。然后点击 Add JARs&hellip;,选中ButterKnife的jar包\n然后点击ok保存设置，Eclipse将问你是否重新构建新项目，点击Yes。\n确保你项目的根目录里有一个.apt_generated的文件夹，文件夹中包含YOURACTIVITY$$ViewInjector.java这样的文件。\n2 使用注解 在Activity中使用注解\n1 2 3 4 5 6 7 8 9 10 11 12 ">
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
       <script>
         var doNotTrack = false;
@@ -28,11 +26,7 @@
           gtag('js', new Date());
           gtag('config', 'G-G84J9N38RL');
         }
-      </script>
-    
-  
-
-<style>
+      </script><style>
     :root {
         --sys-font-family: "LXGW WenKai TC";
         --zh-font-family: "LXGW WenKai TC";
@@ -94,7 +88,7 @@
                     
                     
                         
-                        <img src="/images/avatar_hu74e4307e0baa534a3da4ee0210445065_34446_300x0_resize_q75_box.jpeg" width="300"
+                        <img src="/images/avatar_hu15583006483879718621.jpeg" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -114,7 +108,7 @@
             
                 <li>
                     <a 
-                        href='https://twitter.com/malinkang'
+                        href='https://space.bilibili.com/27440979'
                         target="_blank"
                         title="Bilibili"
                         rel="me"
@@ -128,7 +122,7 @@
             
                 <li>
                     <a 
-                        href='https://www.douban.com/people/malinkang/https://space.bilibili.com/27440979'
+                        href='https://www.douban.com/people/malinkang/'
                         target="_blank"
                         title="Douban"
                         rel="me"

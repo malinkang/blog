@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="JavaPoet 文档翻译 原文 JavaPoet 是一套生成.java源文件的Java接口。 当做一些比如注解处理或者和元数据文件（比如数据库的schemas，协议格式）交互的事情时，源文件生成非常有用。通过生成代码，你不用写模板代码同时也保证了元数据的唯一来源。 Example 下面是样板式的 HelloWorld class: 1 2 3 4 5 6 7 package com.example.helloworld; public final class HelloWorld { public static void main(String[] args) { System.out.println(&#34;Hello, JavaPoet!&#34;); } } 而下面是通过JavaPoet生成的（令人兴奋的）代码: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 MethodSpec main = MethodSpec.methodBuilder(&#34;main&#34;) .addModifiers(Modifier.PUBLIC, Modifier.STATIC) .returns(void.class) .addParameter(String[].class, &#34;args&#34;) .addStatement(&#34;$T.out.println($S)&#34;, System.class, &#34;Hello, JavaPoet!&#34;) .build(); TypeSpec helloWorld = TypeSpec.classBuilder(&#34;HelloWorld&#34;) .addModifiers(Modifier.PUBLIC, Modifier.">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="JavaPoet 文档翻译 原文\nJavaPoet 是一套生成.java源文件的Java接口。\n当做一些比如注解处理或者和元数据文件（比如数据库的schemas，协议格式）交互的事情时，源文件生成非常有用。通过生成代码，你不用写模板代码同时也保证了元数据的唯一来源。\nExample 下面是样板式的 HelloWorld class:\n1 2 3 4 5 6 7 package com.example.helloworld; public final class HelloWorld { public static void main(String[] args) { System.out.println(&#34;Hello, JavaPoet!&#34;); } } ">
 <title></title>
 
 <link rel='canonical' href='http://localhost:1313/android/annotation/javapoet-wen-dang-fan-yi/'>
 
 <link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
-<meta property='og:description' content="JavaPoet 文档翻译 原文 JavaPoet 是一套生成.java源文件的Java接口。 当做一些比如注解处理或者和元数据文件（比如数据库的schemas，协议格式）交互的事情时，源文件生成非常有用。通过生成代码，你不用写模板代码同时也保证了元数据的唯一来源。 Example 下面是样板式的 HelloWorld class: 1 2 3 4 5 6 7 package com.example.helloworld; public final class HelloWorld { public static void main(String[] args) { System.out.println(&#34;Hello, JavaPoet!&#34;); } } 而下面是通过JavaPoet生成的（令人兴奋的）代码: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 MethodSpec main = MethodSpec.methodBuilder(&#34;main&#34;) .addModifiers(Modifier.PUBLIC, Modifier.STATIC) .returns(void.class) .addParameter(String[].class, &#34;args&#34;) .addStatement(&#34;$T.out.println($S)&#34;, System.class, &#34;Hello, JavaPoet!&#34;) .build(); TypeSpec helloWorld = TypeSpec.classBuilder(&#34;HelloWorld&#34;) .addModifiers(Modifier.PUBLIC, Modifier.">
+<meta property='og:description' content="JavaPoet 文档翻译 原文\nJavaPoet 是一套生成.java源文件的Java接口。\n当做一些比如注解处理或者和元数据文件（比如数据库的schemas，协议格式）交互的事情时，源文件生成非常有用。通过生成代码，你不用写模板代码同时也保证了元数据的唯一来源。\nExample 下面是样板式的 HelloWorld class:\n1 2 3 4 5 6 7 package com.example.helloworld; public final class HelloWorld { public static void main(String[] args) { System.out.println(&#34;Hello, JavaPoet!&#34;); } } ">
 <meta property='og:url' content='http://localhost:1313/android/annotation/javapoet-wen-dang-fan-yi/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Android' />
 <meta name="twitter:title" content="">
-<meta name="twitter:description" content="JavaPoet 文档翻译 原文 JavaPoet 是一套生成.java源文件的Java接口。 当做一些比如注解处理或者和元数据文件（比如数据库的schemas，协议格式）交互的事情时，源文件生成非常有用。通过生成代码，你不用写模板代码同时也保证了元数据的唯一来源。 Example 下面是样板式的 HelloWorld class: 1 2 3 4 5 6 7 package com.example.helloworld; public final class HelloWorld { public static void main(String[] args) { System.out.println(&#34;Hello, JavaPoet!&#34;); } } 而下面是通过JavaPoet生成的（令人兴奋的）代码: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 MethodSpec main = MethodSpec.methodBuilder(&#34;main&#34;) .addModifiers(Modifier.PUBLIC, Modifier.STATIC) .returns(void.class) .addParameter(String[].class, &#34;args&#34;) .addStatement(&#34;$T.out.println($S)&#34;, System.class, &#34;Hello, JavaPoet!&#34;) .build(); TypeSpec helloWorld = TypeSpec.classBuilder(&#34;HelloWorld&#34;) .addModifiers(Modifier.PUBLIC, Modifier.">
-  
-    
+<meta name="twitter:description" content="JavaPoet 文档翻译 原文\nJavaPoet 是一套生成.java源文件的Java接口。\n当做一些比如注解处理或者和元数据文件（比如数据库的schemas，协议格式）交互的事情时，源文件生成非常有用。通过生成代码，你不用写模板代码同时也保证了元数据的唯一来源。\nExample 下面是样板式的 HelloWorld class:\n1 2 3 4 5 6 7 package com.example.helloworld; public final class HelloWorld { public static void main(String[] args) { System.out.println(&#34;Hello, JavaPoet!&#34;); } } ">
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
       <script>
         var doNotTrack = false;
@@ -28,11 +26,7 @@
           gtag('js', new Date());
           gtag('config', 'G-G84J9N38RL');
         }
-      </script>
-    
-  
-
-<style>
+      </script><style>
     :root {
         --sys-font-family: "LXGW WenKai TC";
         --zh-font-family: "LXGW WenKai TC";
@@ -94,7 +88,7 @@
                     
                     
                         
-                        <img src="/images/avatar_hu74e4307e0baa534a3da4ee0210445065_34446_300x0_resize_q75_box.jpeg" width="300"
+                        <img src="/images/avatar_hu15583006483879718621.jpeg" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -114,7 +108,7 @@
             
                 <li>
                     <a 
-                        href='https://twitter.com/malinkang'
+                        href='https://space.bilibili.com/27440979'
                         target="_blank"
                         title="Bilibili"
                         rel="me"
@@ -128,7 +122,7 @@
             
                 <li>
                     <a 
-                        href='https://www.douban.com/people/malinkang/https://space.bilibili.com/27440979'
+                        href='https://www.douban.com/people/malinkang/'
                         target="_blank"
                         title="Douban"
                         rel="me"

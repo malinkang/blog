@@ -7,7 +7,110 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>malinkang</copyright>
-        <lastBuildDate>Wed, 03 Jan 2024 15:28:05 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/%E5%BE%AE%E4%BF%A1%E8%AF%BB%E4%B9%A6/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 03 Oct 2024 15:28:05 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/%E5%BE%AE%E4%BF%A1%E8%AF%BB%E4%B9%A6/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Werad2NotionPro支持自定义设置了</title>
+        <link>http://localhost:1313/posts/weread2notion-pro-settings/</link>
+        <pubDate>Thu, 03 Oct 2024 15:28:05 +0800</pubDate>
+        
+        <guid>http://localhost:1313/posts/weread2notion-pro-settings/</guid>
+        <description>&lt;img src="https://images.malinkang.com/2024/03/19dd1580dd991c7985abea7724c87043.png" alt="Featured image of post Werad2NotionPro支持自定义设置了" /&gt;&lt;h2 id=&#34;自定义设置&#34;&gt;自定义设置
+&lt;/h2&gt;&lt;p&gt;现在Weread2NotionPro支持用户设置同步样式了。接下来就给大家讲解下如何使用。&lt;/p&gt;
+&lt;p&gt;首先就是同步代码。打开你Fork的项目，点击Sync fork进行同步，如果有冲突可以点击Discard那个按钮。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/53c917e4bcfd70d0509a05680a2f10b4.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;同步成功之后，手动运行一下任务。打开你Fork的项目，依次点击Actions-&amp;gt;weread note sync-&amp;gt; Run workflow，就可以运行了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/41ba7acfac4c8de1cfd4ee40443644b8.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;运行完成之后，Notion中会增加一个名为设置的database，点击打开。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/10/cad3dd6dd00b07881d758e4ad16b3ec7.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;接下来依次讲解下每个配置：&lt;/p&gt;
+&lt;p&gt;NotinPage、NotinToken和WeReadCookie三个值用来存储之前填写到Github上的值&lt;/p&gt;
+&lt;h3 id=&#34;同步书签&#34;&gt;同步书签
+&lt;/h3&gt;&lt;p&gt;之前书签和划线都会被同步到Notion，如果不希望同步书签，取消勾选即可，默认是勾选状态。&lt;/p&gt;
+&lt;h3 id=&#34;样式&#34;&gt;样式
+&lt;/h3&gt;&lt;p&gt;样式用于自定义同步到Notion的样式，目前支持如下值：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;callout：默认样式&lt;/li&gt;
+&lt;li&gt;quote：引用样式&lt;/li&gt;
+&lt;li&gt;paragraph：普通段落&lt;/li&gt;
+&lt;li&gt;bulleted_list_item：无序列表&lt;/li&gt;
+&lt;li&gt;numbered_list_item：有序列表&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;根据划线颜色设置文字颜色&#34;&gt;根据划线颜色设置文字颜色
+&lt;/h3&gt;&lt;p&gt;之前同步默认会根据划线颜色设置Notion中文字的颜色，如果不希望根据划线颜色来设置Notion中文字的颜色，取消勾选即可，默认是勾选状态。&lt;/p&gt;
+&lt;p&gt;以上就是所有的配置项。所有的修改只会对后续的同步有效，并不会对之前同步过的数据进行修改。未来会把热力图的配置也迁移到Notion中。你还需要哪些自定义设置，请在评论区里留言。&lt;/p&gt;
+&lt;h2 id=&#34;修复重复bug&#34;&gt;修复重复Bug
+&lt;/h2&gt;&lt;p&gt;国庆节前代码重构，导致同步会有重复的书籍，目前已经修复，之前重复的书籍需要手动删除。&lt;/p&gt;
+&lt;h2 id=&#34;如何新增图表&#34;&gt;如何新增图表
+&lt;/h2&gt;&lt;p&gt;Notion出了图表功能之后，我也给自己的读书模板增加了图表功能，一直有人问如何设置，我也简单讲解下。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/10/5df217cc45d549a276fd54430eceab07.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;在月这个Database中新增一列函数类型，名字为阅读时长（小时）。默认提供的时长单位是秒。所以直接使用公式&lt;code&gt;floor(prop(&amp;quot;时长&amp;quot;)/3600)&lt;/code&gt;对将阅读时长转化为小时格式。&lt;/p&gt;
+&lt;p&gt;在想要放置图表的地方添加数据库的链接视图，选择月这个database。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/10/f7a379427d7552dd9be84cb967dd9fe3.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;X轴显示内容选择日期然后选择月&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/10/a5deb6ae3046d0c36aa61d5a79a6e945.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Y轴显示内容选择阅读时长（小时）然后选择总和&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/10/77050fa1477c95423c20bf3c8701a8f5.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;筛选选择本年&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/10/027fbc8cd62e48078c913991185d8b1c.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;这样就可以看到今年每个月的阅读时长图表了。&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>WeRead2NotionPro使用文档</title>
         <link>http://localhost:1313/posts/weread2notion-pro/</link>
         <pubDate>Wed, 03 Jan 2024 15:28:05 +0800</pubDate>
@@ -226,54 +329,54 @@
 &lt;/blockquote&gt;
 &lt;p&gt;具体的变量名可以参考下表中的变量名，值为你想要修改的名字。&lt;/p&gt;
 &lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;变量名&lt;/th&gt;
-&lt;th&gt;当前数据库的名字&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;BOOK_DATABASE_NAME&lt;/td&gt;
-&lt;td&gt;书架&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;REVIEW_DATABASE_NAME&lt;/td&gt;
-&lt;td&gt;笔记&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;BOOKMARK_DATABASE_NAME&lt;/td&gt;
-&lt;td&gt;划线&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;DAY_DATABASE_NAME&lt;/td&gt;
-&lt;td&gt;日&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;WEEK_DATABASE_NAME&lt;/td&gt;
-&lt;td&gt;周&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;MONTH_DATABASE_NAME&lt;/td&gt;
-&lt;td&gt;月&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;YEAR_DATABASE_NAME&lt;/td&gt;
-&lt;td&gt;年&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;CATEGORY_DATABASE_NAME&lt;/td&gt;
-&lt;td&gt;分类&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;AUTHOR_DATABASE_NAME&lt;/td&gt;
-&lt;td&gt;作者&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;CHAPTER_DATABASE_NAME&lt;/td&gt;
-&lt;td&gt;章节&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;变量名&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;当前数据库的名字&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;BOOK_DATABASE_NAME&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;书架&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;REVIEW_DATABASE_NAME&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;笔记&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;BOOKMARK_DATABASE_NAME&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;划线&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;DAY_DATABASE_NAME&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;日&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;WEEK_DATABASE_NAME&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;周&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;MONTH_DATABASE_NAME&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;月&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;YEAR_DATABASE_NAME&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;年&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;CATEGORY_DATABASE_NAME&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;分类&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;AUTHOR_DATABASE_NAME&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;作者&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;CHAPTER_DATABASE_NAME&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;章节&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;除此之外，其他数据可以任意修改，包括页面的布局都不会影响程序运行。&lt;/p&gt;
 &lt;ol start=&#34;4&#34;&gt;
@@ -385,7 +488,7 @@
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/posts/github_heatmap/images/5.jpg&#34;
 	width=&#34;1466&#34;
 	height=&#34;390&#34;
-	srcset=&#34;http://localhost:1313/posts/github_heatmap/images/5_huc82d7b839fc53b7a5c86bd3cdfedcac6_120027_480x0_resize_q75_box.jpg 480w, http://localhost:1313/posts/github_heatmap/images/5_huc82d7b839fc53b7a5c86bd3cdfedcac6_120027_1024x0_resize_q75_box.jpg 1024w&#34;
+	srcset=&#34;http://localhost:1313/posts/github_heatmap/images/5_hu3038527515622514348.jpg 480w, http://localhost:1313/posts/github_heatmap/images/5_hu13064418878014064126.jpg 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -427,38 +530,38 @@
 &lt;/h2&gt;&lt;p&gt;和上面设置Year一样依次选择Settings-&amp;gt;Secrets and variables -&amp;gt; variables-&amp;gt; New repository variable。
 具体的变量名可以参考下表中的变量名，值为色值。&lt;/p&gt;
 &lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;变量名&lt;/th&gt;
-&lt;th&gt;变量说明&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;BACKGROUND_COLOR&lt;/td&gt;
-&lt;td&gt;背景颜色&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;DOM_COLOR&lt;/td&gt;
-&lt;td&gt;未填充的色块&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;TRACK_COLOR&lt;/td&gt;
-&lt;td&gt;一级颜色&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;SPECIAL_COLOR&lt;/td&gt;
-&lt;td&gt;二级颜色&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;SPECIAL_COLOR2&lt;/td&gt;
-&lt;td&gt;三级级颜色&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;TEXT_COLOR&lt;/td&gt;
-&lt;td&gt;文字颜色&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;变量名&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;变量说明&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;BACKGROUND_COLOR&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;背景颜色&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;DOM_COLOR&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;未填充的色块&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;TRACK_COLOR&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;一级颜色&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;SPECIAL_COLOR&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;二级颜色&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;SPECIAL_COLOR2&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;三级级颜色&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;TEXT_COLOR&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;文字颜色&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/04/521ec621b6acebc297d9700f9bfac1eb.jpg&#34;
 	
@@ -482,7 +585,7 @@
 &lt;p&gt;&lt;img src=&#34;http://localhost:1313/posts/github_heatmap/images/6.jpg&#34;
 	width=&#34;3022&#34;
 	height=&#34;1270&#34;
-	srcset=&#34;http://localhost:1313/posts/github_heatmap/images/6_huc82d7b839fc53b7a5c86bd3cdfedcac6_301544_480x0_resize_q75_box.jpg 480w, http://localhost:1313/posts/github_heatmap/images/6_huc82d7b839fc53b7a5c86bd3cdfedcac6_301544_1024x0_resize_q75_box.jpg 1024w&#34;
+	srcset=&#34;http://localhost:1313/posts/github_heatmap/images/6_hu10203153469398842297.jpg 480w, http://localhost:1313/posts/github_heatmap/images/6_hu7497221693733691004.jpg 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
