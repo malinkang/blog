@@ -7,121 +7,189 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>malinkang</copyright>
-        <lastBuildDate>Tue, 27 Feb 2024 09:40:05 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/kepp/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Keep2Notion使用指南</title>
+        <lastBuildDate>Tue, 15 Apr 2025 09:40:05 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/kepp/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>将运动数据自动同步到Notion</title>
         <link>http://localhost:1313/posts/keep2notion/</link>
-        <pubDate>Tue, 27 Feb 2024 09:40:05 +0800</pubDate>
+        <pubDate>Tue, 15 Apr 2025 09:40:05 +0800</pubDate>
         
         <guid>http://localhost:1313/posts/keep2notion/</guid>
-        <description>&lt;img src="https://images.unsplash.com/photo-1663813251302-e5d2c7199e86?q=80&amp;w=2660&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Featured image of post Keep2Notion使用指南" /&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://malinkang.notion.site/7c556041c7fd4e21a6713673b6168fd4?pvs=4&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;预览效果&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
+        <description>&lt;img src="https://images.unsplash.com/photo-1663813251302-e5d2c7199e86?q=80&amp;w=2660&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Featured image of post 将运动数据自动同步到Notion" /&gt;&lt;p&gt;最近在健身房发现人比刚过完年那段时间人少多了。自己也变得越来越堕落了，每月跑100公里的目标两个月都没有完成。刚好最近不忙，重新把运动数据同步到Notion这个项目的模板优化下。&lt;/p&gt;
+&lt;p&gt;一年前，发布了&lt;a class=&#34;link&#34; href=&#34;https://mp.weixin.qq.com/s?__biz=MzI1OTcxOTI4NA==&amp;amp;mid=2247483850&amp;amp;idx=1&amp;amp;sn=c6453d8f640a7ed526463eaedae7772a&amp;amp;chksm=ea75e8d1dd0261c7e9d5619127bf80f2d5bb4e17c8faceb45b723ce34e19f892c52b5318b4f5&amp;amp;token=303069103&amp;amp;lang=zh_CN#rd&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;将跑步数据自动同步到Notion&lt;/a&gt;。上线之后遇到的问的最多的三个问题就是：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;能否支持其他运动类型&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;能否支持苹果运动、小米运动、华为运动以及其他运动。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;能否将体重数据同步到Notion&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;对于第一个问题，目前已经支持所有的运动类型。跑步有3中类型：跑步、室内跑步和室外跑步，跑步的数据包含加了室内跑步和室外跑步。同理，步行和骑行也有有三种类型。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2025/04/209ef16b5338244f7e838e35c34d87b4.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;每个运动类型都有热力图和图标。我们可以点击某个运动类型打开就可以看到热力图和图表。图表可以根据自己的需求修改，不需要的话可以删除，不会影响同步。注意Notion免费用户只能创建一个图表，需要显示更多图表，可以联系我付费升级教育Plus，十元永久使用。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2025/04/3373252639e13696bb05d11cef644947.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;CleanShot 2025-04-15 at 11.07.05@2x&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;对于第二个问题，Keep支持将苹果健康、小米运动、华为运动、佳明、高驰等运动数据同步到Notion。没有使用过Keep的同学可以先下载Keep App，然后点击我的、点击右上角的手表图标，添加应用服务，将自己的运动数据同步到Keep，然后再自动同步到Notion。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2025/04/806536588ea686e0abcae37f211f2fc2.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;CleanShot 2025-04-15 at 10.56.56&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2025/04/aca56fb639bd172fbe21723e54274150.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;第三个问题，目前也支持将体重数据同步到Notion，搭配上Notion的图标功能，让体重数据可视化，更加能激励自己。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2025/04/475070dd6dd705f7982100b05ce366b9.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;此外还增加了我的设备、可以在Keep中添加设备，然后同步到Notion中。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2025/04/912c66043227756669e17812dba036a5.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;以上就是这次更新的全部内容，可以查看我已经同步的效果，了解更多信息。https://malinkang.notion.site/1ca86019c92c8103bf6acbd5007d7483?pvs=4&lt;/p&gt;
 &lt;h2 id=&#34;使用&#34;&gt;使用
 &lt;/h2&gt;&lt;h3 id=&#34;fork工程&#34;&gt;Fork工程
 &lt;/h3&gt;&lt;p&gt;打开&lt;a class=&#34;link&#34; href=&#34;https://github.com/malinkang/keep2notion&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Keep2Notion&lt;/a&gt;，点击右上角的Fork（顺便点个star谢谢）&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/posts/keep2notion/images/fork.jpg&#34;
-	width=&#34;1210&#34;
-	height=&#34;166&#34;
-	srcset=&#34;http://localhost:1313/posts/keep2notion/images/fork_hu4602295652819021875.jpg 480w, http://localhost:1313/posts/keep2notion/images/fork_hu8206259885579306544.jpg 1024w&#34;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2025/04/2678769b17a791ae8c797244955eb9ba.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;728&#34;
-		data-flex-basis=&#34;1749px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;复制notion模板&#34;&gt;复制Notion模板
 &lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;
-&lt;p&gt;浏览器打开模板&lt;a class=&#34;link&#34; href=&#34;https://malinkang.notion.site/9f43e44a009243b5b0c242e35d83178d?pvs=74&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://malinkang.notion.site/9f43e44a009243b5b0c242e35d83178d?pvs=74&lt;/a&gt;，点击右上角的Duplicate复制。&lt;/p&gt;
+&lt;p&gt;浏览器打开：https://api.notion.com/v1/oauth/authorize?client_id=89f93a9e-a400-45f8-98dc-051c8f6488d3&amp;amp;response_type=code&amp;amp;owner=user&amp;amp;redirect_uri=https%3A%2F%2Fnotion-auth.malinkang.com%2Fkeep-oauth-callback&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;打开你刚复制的模板，点击右上角的三个点，找到&lt;code&gt;Connections&lt;/code&gt;，然后添加你创建的Integration。不知道如何创建Integration，可以参考&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;点击右上角的Share，然后点击Copy link获取页面的链接，后面会用到。&lt;/p&gt;
+&lt;p&gt;然后点击Next-&amp;gt;Allow access&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h3 id=&#34;在github的secrets中添加变量&#34;&gt;在Github的Secrets中添加变量
-&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;打开你fork的工程，点击Settings-&amp;gt;Secrets and variables-&amp;gt;New repository secret&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/posts/keep2notion/images/secret.jpg&#34;
-	width=&#34;2720&#34;
-	height=&#34;1654&#34;
-	srcset=&#34;http://localhost:1313/posts/keep2notion/images/secret_hu9193254705817156569.jpg 480w, http://localhost:1313/posts/keep2notion/images/secret_hu18171953166844438916.jpg 1024w&#34;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2025/04/7e737d65cc058dc227849ab53ffc76e7.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;CleanShot 2025-04-15 at 11.17.15&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2025/04/35b87a5868469a465882aedf574b2753.png&#34;
+	
+	
+	
 	loading=&#34;lazy&#34;
 	
 	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;164&#34;
-		data-flex-basis=&#34;394px&#34;
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2025/04/87122f6d9f22db281332dbd9a627c69b.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;在github的secrets中添加变量&#34;&gt;在Github的Secrets中添加变量
+&lt;/h3&gt;&lt;p&gt;打开你fork的工程，点击Settings-&amp;gt;Secrets and variables-&amp;gt;New repository secret&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2025/04/06e1e3a22f22655cf9b88d06caf5534a.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;依次输入如下值：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;KEEP_MOBILE：注册Keep的手机号&lt;/li&gt;
-&lt;li&gt;KEEP_PASSWORD：Keep密码&lt;/li&gt;
-&lt;li&gt;NOTION_TOKEN：你创建的Token.&lt;/li&gt;
-&lt;li&gt;NAME：热力图标题&lt;/li&gt;
-&lt;li&gt;NOTION_PAGE：你复制的模板的链接&lt;/li&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Name&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Secret&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;KEEP_MOBILE&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Keep手机号&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;KEEP_PASSWORD&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Keep密码&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;NOTION_TOKEN&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;第二步复制的NOTION_TOKEN&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;NAME&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;热力图名字&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;NOTION_PAGE&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;第二步复制的NOTION_PAGE&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;运行&#34;&gt;运行
+&lt;/h3&gt;&lt;p&gt;打开你Fork的项目依次点击Action-&amp;gt;Keep sync-&amp;gt;Run workflow&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2025/04/81603313c264108840c94d2c63178e83.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;常见问题&#34;&gt;常见问题
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;之后每天8点左右会自动同步。如果你使用的是iPhone，可以参考，在关闭Keep的时候自动触发同步。&lt;/li&gt;
+&lt;li&gt;热力图配置可以参考：&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;捐赠&#34;&gt;捐赠
-&lt;/h2&gt;&lt;p&gt;如果你觉得项目对你有帮助，可以捐赠。我也会不断的优化项目，并做出其他开源的项目。&lt;/p&gt;
-&lt;h3 id=&#34;微信&#34;&gt;微信
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/posts/keep2notion/images/wechat.jpg&#34;
-	width=&#34;559&#34;
-	height=&#34;762&#34;
-	srcset=&#34;http://localhost:1313/posts/keep2notion/images/wechat_hu3595234284741726922.jpg 480w, http://localhost:1313/posts/keep2notion/images/wechat_hu13937659219787580131.jpg 1024w&#34;
-	loading=&#34;lazy&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;73&#34;
-		data-flex-basis=&#34;176px&#34;
-	
-&gt;&lt;/p&gt;
-&lt;h3 id=&#34;支付宝&#34;&gt;支付宝
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/posts/keep2notion/images/alipay.jpg&#34;
-	width=&#34;540&#34;
-	height=&#34;840&#34;
-	srcset=&#34;http://localhost:1313/posts/keep2notion/images/alipay_hu7340839020198133067.jpg 480w, http://localhost:1313/posts/keep2notion/images/alipay_hu17362895171651341820.jpg 1024w&#34;
-	loading=&#34;lazy&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;64&#34;
-		data-flex-basis=&#34;154px&#34;
-	
-&gt;&lt;/p&gt;
-&lt;h2 id=&#34;付费解答&#34;&gt;付费解答
-&lt;/h2&gt;&lt;p&gt;有问题先自行解决，往往失败都是一些小细节没注意导致的。我的文档写的已经足够详细，按照文档来操作基本都能成功。你也可以尝试在群里咨询。不要直接加我微信来让我来解答，这个项目我已经投入了大量时间来开发维护，实在没有更多的精力来一对一解答。如果实在解决不了，可以付费一对一咨询，30元一位。付完款可以微信私聊我。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/posts/keep2notion/images/wexin.jpg&#34;
-	width=&#34;475&#34;
-	height=&#34;648&#34;
-	srcset=&#34;http://localhost:1313/posts/keep2notion/images/wexin_hu13484399580718362098.jpg 480w, http://localhost:1313/posts/keep2notion/images/wexin_hu3842367349424335297.jpg 1024w&#34;
-	loading=&#34;lazy&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;73&#34;
-		data-flex-basis=&#34;175px&#34;
-	
-&gt;&lt;/p&gt;
-&lt;h2 id=&#34;群&#34;&gt;群
-&lt;/h2&gt;&lt;p&gt;欢迎加入微信群讨论。使用中遇到的任何问题，包括Notion的使用，微信读书组队打卡，后续的更新都会在群里讨论。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://drive.malinkang.com/api/raw/?path=/Images/group.jpg&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;使用过程中有任何问题或者任何建议欢迎留言。&lt;/p&gt;
+&lt;p&gt;我是马林康，喜欢读书、运动和看电影。做了一系列自动同步到Notion的项目。如果我的项目对你有帮助，可以捐赠支持下。也欢迎添加我的微信malinkang交个朋友。&lt;/p&gt;
 </description>
         </item>
         

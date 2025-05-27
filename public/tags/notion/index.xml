@@ -7,7 +7,566 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>malinkang</copyright>
-        <lastBuildDate>Thu, 03 Oct 2024 15:28:05 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/notion/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 15 Apr 2025 09:40:05 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/notion/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>将运动数据自动同步到Notion</title>
+        <link>http://localhost:1313/posts/keep2notion/</link>
+        <pubDate>Tue, 15 Apr 2025 09:40:05 +0800</pubDate>
+        
+        <guid>http://localhost:1313/posts/keep2notion/</guid>
+        <description>&lt;img src="https://images.unsplash.com/photo-1663813251302-e5d2c7199e86?q=80&amp;w=2660&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Featured image of post 将运动数据自动同步到Notion" /&gt;&lt;p&gt;最近在健身房发现人比刚过完年那段时间人少多了。自己也变得越来越堕落了，每月跑100公里的目标两个月都没有完成。刚好最近不忙，重新把运动数据同步到Notion这个项目的模板优化下。&lt;/p&gt;
+&lt;p&gt;一年前，发布了&lt;a class=&#34;link&#34; href=&#34;https://mp.weixin.qq.com/s?__biz=MzI1OTcxOTI4NA==&amp;amp;mid=2247483850&amp;amp;idx=1&amp;amp;sn=c6453d8f640a7ed526463eaedae7772a&amp;amp;chksm=ea75e8d1dd0261c7e9d5619127bf80f2d5bb4e17c8faceb45b723ce34e19f892c52b5318b4f5&amp;amp;token=303069103&amp;amp;lang=zh_CN#rd&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;将跑步数据自动同步到Notion&lt;/a&gt;。上线之后遇到的问的最多的三个问题就是：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;能否支持其他运动类型&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;能否支持苹果运动、小米运动、华为运动以及其他运动。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;能否将体重数据同步到Notion&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;对于第一个问题，目前已经支持所有的运动类型。跑步有3中类型：跑步、室内跑步和室外跑步，跑步的数据包含加了室内跑步和室外跑步。同理，步行和骑行也有有三种类型。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2025/04/209ef16b5338244f7e838e35c34d87b4.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;每个运动类型都有热力图和图标。我们可以点击某个运动类型打开就可以看到热力图和图表。图表可以根据自己的需求修改，不需要的话可以删除，不会影响同步。注意Notion免费用户只能创建一个图表，需要显示更多图表，可以联系我付费升级教育Plus，十元永久使用。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2025/04/3373252639e13696bb05d11cef644947.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;CleanShot 2025-04-15 at 11.07.05@2x&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;对于第二个问题，Keep支持将苹果健康、小米运动、华为运动、佳明、高驰等运动数据同步到Notion。没有使用过Keep的同学可以先下载Keep App，然后点击我的、点击右上角的手表图标，添加应用服务，将自己的运动数据同步到Keep，然后再自动同步到Notion。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2025/04/806536588ea686e0abcae37f211f2fc2.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;CleanShot 2025-04-15 at 10.56.56&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2025/04/aca56fb639bd172fbe21723e54274150.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;第三个问题，目前也支持将体重数据同步到Notion，搭配上Notion的图标功能，让体重数据可视化，更加能激励自己。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2025/04/475070dd6dd705f7982100b05ce366b9.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;此外还增加了我的设备、可以在Keep中添加设备，然后同步到Notion中。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2025/04/912c66043227756669e17812dba036a5.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;以上就是这次更新的全部内容，可以查看我已经同步的效果，了解更多信息。https://malinkang.notion.site/1ca86019c92c8103bf6acbd5007d7483?pvs=4&lt;/p&gt;
+&lt;h2 id=&#34;使用&#34;&gt;使用
+&lt;/h2&gt;&lt;h3 id=&#34;fork工程&#34;&gt;Fork工程
+&lt;/h3&gt;&lt;p&gt;打开&lt;a class=&#34;link&#34; href=&#34;https://github.com/malinkang/keep2notion&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Keep2Notion&lt;/a&gt;，点击右上角的Fork（顺便点个star谢谢）&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2025/04/2678769b17a791ae8c797244955eb9ba.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;复制notion模板&#34;&gt;复制Notion模板
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;浏览器打开：https://api.notion.com/v1/oauth/authorize?client_id=89f93a9e-a400-45f8-98dc-051c8f6488d3&amp;amp;response_type=code&amp;amp;owner=user&amp;amp;redirect_uri=https%3A%2F%2Fnotion-auth.malinkang.com%2Fkeep-oauth-callback&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;然后点击Next-&amp;gt;Allow access&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2025/04/7e737d65cc058dc227849ab53ffc76e7.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;CleanShot 2025-04-15 at 11.17.15&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2025/04/35b87a5868469a465882aedf574b2753.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2025/04/87122f6d9f22db281332dbd9a627c69b.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;在github的secrets中添加变量&#34;&gt;在Github的Secrets中添加变量
+&lt;/h3&gt;&lt;p&gt;打开你fork的工程，点击Settings-&amp;gt;Secrets and variables-&amp;gt;New repository secret&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2025/04/06e1e3a22f22655cf9b88d06caf5534a.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;依次输入如下值：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Name&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Secret&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;KEEP_MOBILE&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Keep手机号&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;KEEP_PASSWORD&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Keep密码&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;NOTION_TOKEN&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;第二步复制的NOTION_TOKEN&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;NAME&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;热力图名字&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;NOTION_PAGE&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;第二步复制的NOTION_PAGE&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;运行&#34;&gt;运行
+&lt;/h3&gt;&lt;p&gt;打开你Fork的项目依次点击Action-&amp;gt;Keep sync-&amp;gt;Run workflow&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2025/04/81603313c264108840c94d2c63178e83.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;常见问题&#34;&gt;常见问题
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;之后每天8点左右会自动同步。如果你使用的是iPhone，可以参考，在关闭Keep的时候自动触发同步。&lt;/li&gt;
+&lt;li&gt;热力图配置可以参考：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;使用过程中有任何问题或者任何建议欢迎留言。&lt;/p&gt;
+&lt;p&gt;我是马林康，喜欢读书、运动和看电影。做了一系列自动同步到Notion的项目。如果我的项目对你有帮助，可以捐赠支持下。也欢迎添加我的微信malinkang交个朋友。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Notion动态图标使用</title>
+        <link>http://localhost:1313/posts/notion_token/</link>
+        <pubDate>Mon, 24 Mar 2025 01:08:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/posts/notion_token/</guid>
+        <description>&lt;img src="https://drive.malinkang.com/api/raw/?path=/Images/WechatIMG26.jpg" alt="Featured image of post Notion动态图标使用" /&gt;&lt;p&gt;之前为了满足自己的需求做了一个Notion的动态图标，最近有朋友刚好有类似的需求，就分享给他了。想着其他人可能有类似的需求，不如写一篇公众号分享给大家。&lt;/p&gt;
+&lt;p&gt;所谓动态图标，就是在我们设置完成之后，不用修改图标的链接，会自动发生变化。比如将Notion图标设置为我写的https://notion-icon.malinkang.com/，每天打开会自动显示当日的日期。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2025/03/62833609c8c9af5f649a7d31a5b496a1.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;设置日期&#34;&gt;设置日期
+&lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://notion-icon.malinkang.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://notion-icon.malinkang.com/&lt;/a&gt;默认显示当日的日期。也可以在链接后面添加&lt;/p&gt;
+&lt;p&gt;?date=2026-01-01来设置指定日期，比如：https://notion-icon.malinkang.com/?date=2026-01-01。日期可以自己按照格式随便写。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2025/03/d1b3a59dda64f21a0106582891c996ea.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;设置类型&#34;&gt;设置类型
+&lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://notion-icon.malinkang.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://notion-icon.malinkang.com/&lt;/a&gt;支持多种类型。使用方法是在链接后面加上&lt;/p&gt;
+&lt;p&gt;?type=类型。详细的类型如下表所示&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;类型&lt;/th&gt;
+          &lt;th&gt;效果&lt;/th&gt;
+          &lt;th&gt;示例&lt;/th&gt;
+          &lt;th&gt;说明&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;day&lt;/td&gt;
+          &lt;td&gt;&lt;img src=&#34;https://notion-icon.malinkang.com/?type=day&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;https://notion-icon.malinkang.com/?type=day&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://notion-icon.malinkang.com/?type=day&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;当前时间的日期&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;week&lt;/td&gt;
+          &lt;td&gt;&lt;img src=&#34;https://notion-icon.malinkang.com/?type=week&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;https://notion-icon.malinkang.com/?type=week&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://notion-icon.malinkang.com/?type=week&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;当前时间是一年中的第几周&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;month&lt;/td&gt;
+          &lt;td&gt;&lt;img src=&#34;https://notion-icon.malinkang.com/?type=month&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;https://notion-icon.malinkang.com/?type=month&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://notion-icon.malinkang.com/?type=month&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;当前时间是一年中的第几个月&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;year&lt;/td&gt;
+          &lt;td&gt;&lt;img src=&#34;https://notion-icon.malinkang.com/?type=year&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;https://notion-icon.malinkang.com/?type=year&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://notion-icon.malinkang.com/?type=year&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;当前时间的年份&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;text&lt;/td&gt;
+          &lt;td&gt;&lt;img src=&#34;https://notion-icon.malinkang.com/?type=text&amp;amp;content=%E5%A5%BD&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;https://notion-icon.malinkang.com/?type=text&amp;amp;content=%E5%A5%BD&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://notion-icon.malinkang.com/?type=text&amp;content=%E5%A5%BD&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;文字类型，可以自己设置icon上的字&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;pass&lt;/td&gt;
+          &lt;td&gt;&lt;img src=&#34;https://notion-icon.malinkang.com/?type=pass&amp;amp;date=2026-01-01&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;https://notion-icon.malinkang.com/?type=pass&amp;amp;date=2026-01-01&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://notion-icon.malinkang.com/?type=pass&amp;date=2026-01-01&lt;/a&gt;&lt;/td&gt;
+          &lt;td&gt;这里的date是必填的，date指定的时间距离当前时间还有几天。&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;设置颜色&#34;&gt;设置颜色
+&lt;/h2&gt;&lt;p&gt;动态图标还支持多种颜色，默认是红色。使用方法是链接后面添加?color=pink。&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;颜色&lt;/th&gt;
+          &lt;th&gt;效果&lt;/th&gt;
+          &lt;th&gt;示例&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;green&lt;/td&gt;
+          &lt;td&gt;&lt;img src=&#34;https://notion-icon.malinkang.com/?type=pass&amp;amp;date=2026-01-01&amp;amp;color=green&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;https://notion-icon.malinkang.com/?type=pass&amp;amp;date=2026-01-01&amp;amp;color=green&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://notion-icon.malinkang.com/?type=pass&amp;date=2026-01-01&amp;color=green&lt;/a&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;pink&lt;/td&gt;
+          &lt;td&gt;&lt;img src=&#34;https://notion-icon.malinkang.com/?type=pass&amp;amp;date=2026-01-01&amp;amp;color=pink&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;https://notion-icon.malinkang.com/?type=pass&amp;amp;date=2026-01-01&amp;amp;color=pink&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://notion-icon.malinkang.com/?type=pass&amp;date=2026-01-01&amp;color=pink&lt;/a&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;yellow&lt;/td&gt;
+          &lt;td&gt;&lt;img src=&#34;https://notion-icon.malinkang.com/?type=pass&amp;amp;date=2026-01-01&amp;amp;color=yellow&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;https://notion-icon.malinkang.com/?type=pass&amp;amp;date=2026-01-01&amp;amp;color=yellow&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://notion-icon.malinkang.com/?type=pass&amp;date=2026-01-01&amp;color=yellow&lt;/a&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;blue&lt;/td&gt;
+          &lt;td&gt;&lt;img src=&#34;https://notion-icon.malinkang.com/?type=pass&amp;amp;date=2026-01-01&amp;amp;color=blue&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;a class=&#34;link&#34; href=&#34;https://notion-icon.malinkang.com/?type=pass&amp;amp;date=2026-01-01&amp;amp;color=blue&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://notion-icon.malinkang.com/?type=pass&amp;date=2026-01-01&amp;color=blue&lt;/a&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;这个动态图标，不仅可以使用在icon上，也可以用在封面上。以下是我设置成封面的效果。https://malinkang.notion.site/d34e3250832a4b5fb44054a8b364df2a?v=4b77a5dbe8034da0b99d81d3162e2af7&amp;amp;pvs=74&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2025/03/7e7747862cb9f7bb43d39209450a2777.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;以上就是教程的全部内容，使用中有什么问题或者建议欢迎给我留言。&lt;/p&gt;
+&lt;p&gt;另外打一波广告，有需要Notion教育plus的可以添加我的微信malinkang进行购买。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>免费为Notion绑定域名</title>
+        <link>http://localhost:1313/posts/notion-custom-domains/</link>
+        <pubDate>Tue, 29 Oct 2024 09:40:05 +0800</pubDate>
+        
+        <guid>http://localhost:1313/posts/notion-custom-domains/</guid>
+        <description>&lt;img src="https://images.unsplash.com/photo-1729366790976-81844c8dd310?q=80&amp;w=2970&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Featured image of post 免费为Notion绑定域名" /&gt;&lt;p&gt;前两个月Notion官方推出了可以为Notion页面绑定域名的服务，每个月需要10刀。高昂的价格应该劝退不少小伙伴，今天我就来给大家分享下我的免费方案。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/10/9f4ee08847c9f36ba1ab48e744d571aa.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;具体效果可以参考：https://book.malinkang.com/，这个方案是基于开源方案fruitionsite：https://github.com/stephenou/fruitionsite。但是代码已经3年没有更新了，很多功能已经生效。所以我复制了一份源码修改了一些bug。&lt;/p&gt;
+&lt;h2 id=&#34;域名注册&#34;&gt;域名注册
+&lt;/h2&gt;&lt;p&gt;可以选择在腾讯云或者阿里云上或者其他平台上购买域名。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;腾讯云购买地址：https://buy.cloud.tencent.com/domain/。&lt;/li&gt;
+&lt;li&gt;阿里云购买地址：https://wanwang.aliyun.com/&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;修改dns信息&#34;&gt;修改DNS信息
+&lt;/h2&gt;&lt;p&gt;注册cloudflare： &lt;a class=&#34;link&#34; href=&#34;https://dash.cloudflare.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://dash.cloudflare.com/&lt;/a&gt;，登录成功之后添加点击添加域。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/6d247f00849fea4816b5ec8ba5f641d4.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;输入我们购买的域名，然后点击继续。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/3f476e2164c92e153efe6c31cc6b0f4c.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;进入下一个页面，选择免费计划。这里免费计划在最下面，如果屏幕小的可能会看不到。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/0f888391cc92f7c766a6b6826b6f6c46.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;然后点击继续，会看到我们需要配置的DNS服务器。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/b176e6958691d4c611989b2afead6574.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;打开购买域名的网站，将你购买的域名的DNS修改为cloudflare的DNS服务器。&lt;/p&gt;
+&lt;p&gt;腾讯云修改DNS教程：https://cloud.tencent.com/document/product/302/5518#id.3Aserveraddress
+阿里云修改DNS教程：https://help.aliyun.com/zh/dws/user-guide/change-dns-servers-for-a-domain-name#6a5c8962350ho&lt;/p&gt;
+&lt;h2 id=&#34;生成代码&#34;&gt;生成代码
+&lt;/h2&gt;&lt;p&gt;打开网站：https://site.notionhub.app/&lt;/p&gt;
+&lt;p&gt;输入我们的域名和要绑定域名的Notion链接，请确保你的Notion已经发布到网络上。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/10/df9d9682b43518d7f4895939e17df118.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;如果你需要配置多个页面，比如https://malinkang.com/book，https://malinkang.com/podcast这种，点击&lt;code&gt;ADD A PRETTY LINK&lt;/code&gt;添加对应的路径和NOTION链接即可。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/10/6c58539c790e1a8c049bad3f1e3d964e.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;最后可以点击&lt;code&gt;TOGGLE STYLE AND SCRIPT SETTINGS&lt;/code&gt;来设置网站标题描述和字体。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/10/12202920ca0a4c96fb23ee326f1957b3.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;全部设置完成点击复制代码。&lt;/p&gt;
+&lt;h2 id=&#34;配置cloudflare-worker&#34;&gt;配置Cloudflare Worker
+&lt;/h2&gt;&lt;p&gt;打开Cloudflare：https://dash.cloudflare.com/，选中Workers和Pages，然后点击创建按钮&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/10/6eb1d65944ffa1db51be478a42ec716a.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;输入名字，然后点击部署&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/10/eaa35ec15dcb1fb692ed0f5c24c074da.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;点击编辑代码&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/10/5919e6b5d3be20710b0c142e9703a65e.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;将我们上一步生成的代码，粘贴到箭头所指的地方，然后点击部署。部署完成后点返回按钮返回。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/10/145ce93397b2166100acdf4adf6986ee.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;选中设置-&amp;gt;域和路由，点击添加，输入我们的域名然后点击添加域即可。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/10/f5a029b42c6b71dbb475094c53f4d56d.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/10/d00a365e67a3f8444564328303dca28a.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;欢迎加入Notion交流群，一起交流Notion使用心得。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/10/fd30ce8dd93c33d3f8562b55448bab7c.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;如果二维码失效可以添加我的个人微信，我来邀请你入群。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/10/2a44bb2cdac0cbced732f09e15126c70.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;如果你觉得文章对您有帮助，请捐赠支持一下。&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>Werad2NotionPro支持自定义设置了</title>
         <link>http://localhost:1313/posts/weread2notion-pro-settings/</link>
         <pubDate>Thu, 03 Oct 2024 15:28:05 +0800</pubDate>
@@ -112,135 +671,15 @@
         </item>
         <item>
         <title>免费申请Notion教育Plus计划白嫖Notion图表</title>
-        <link>http://localhost:1313/posts/notion-custom-domains/</link>
-        <pubDate>Thu, 12 Sep 2024 09:40:05 +0800</pubDate>
-        
-        <guid>http://localhost:1313/posts/notion-custom-domains/</guid>
-        <description>&lt;img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&amp;w=2022&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Featured image of post 免费申请Notion教育Plus计划白嫖Notion图表" /&gt;&lt;p&gt;之前一直用的Notion的免费版本，上个月Notion发布了Notion图表功能，免费用户只能创建一个图表，已经满足不了我的需求，然后就找到低成本的方案，使用ac.cn邮箱免费升级到教育Plus计划。今天我就把这个方案分享给大家。&lt;/p&gt;
-&lt;h2 id=&#34;域名注册&#34;&gt;域名注册
-&lt;/h2&gt;&lt;p&gt;可以选择在腾讯云或者阿里云上或者其他平台上购买域名。&lt;/p&gt;
-&lt;p&gt;腾讯云购买地址：https://buy.cloud.tencent.com/domain/。
-阿里云购买地址：https://wanwang.aliyun.com/&lt;/p&gt;
-&lt;h2 id=&#34;修改dns信息&#34;&gt;修改DNS信息
-&lt;/h2&gt;&lt;p&gt;注册cloudflare： &lt;a class=&#34;link&#34; href=&#34;https://dash.cloudflare.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://dash.cloudflare.com/&lt;/a&gt;，登录成功之后添加点击添加域。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/6d247f00849fea4816b5ec8ba5f641d4.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;输入我们购买的域名，然后点击继续。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/3f476e2164c92e153efe6c31cc6b0f4c.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;进入下一个页面，选择免费计划。这里免费计划在最下面，如果屏幕小的可以会看不到。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/0f888391cc92f7c766a6b6826b6f6c46.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;然后点击继续，会看到我们需要配置的DNS服务器。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/b176e6958691d4c611989b2afead6574.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;打开https://console.cloud.tencent.com/domain/all-domain/all可以看到我们购买的域名，找到要配置的域名，点击管理。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/7af620e6a137d7b11833ac6b1e2229e9.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;进入下一个页面，点击修改DNS服务器。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/d89150e9245af7c38a33def3f1c414d6.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;输入Cloudflare的DNS服务器，点击提交即可。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/34f8855d0b5a5da3d6f7f62255513d5b.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h2 id=&#34;配置邮件转发&#34;&gt;配置邮件转发
-&lt;/h2&gt;&lt;p&gt;在Cloudflare中，点击我们的域名，然后选择电子邮件路由，输入自定义地址和目标位置。之后所有发送到自定义地址的邮件都会被自动转发到目标位置，然后点击创建并继续。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/04b326d138ee1033a8d02450c0eea69d.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h2 id=&#34;升级计划&#34;&gt;升级计划
-&lt;/h2&gt;&lt;p&gt;打开Notion，修改邮箱。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/661aaa5c2b7113b4814caba988dc390c.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;修改完成后，点击右下角的Upgrade plan。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/ad302b67832fae717f8fd04d559d5df0.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;然后点击Get the Education Plan，就可以升级为Education Plan了。升级为Education Plan之后，会提示让输入密码，这样即便是我们教育邮箱不能使用，还可以继续使用密码登录Notion。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/00832d2ff5739fa553367303d1f3bd19.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h2 id=&#34;参考&#34;&gt;参考
-&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.dajun.info/notion-Education-Plus-Plan&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;ac.cn邮箱如何用教育邮箱申请notion Education Plus Plan&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        </item>
-        <item>
-        <title>免费申请Notion教育Plus计划白嫖Notion图表</title>
         <link>http://localhost:1313/posts/notion-education-plan/</link>
         <pubDate>Thu, 12 Sep 2024 09:40:05 +0800</pubDate>
         
         <guid>http://localhost:1313/posts/notion-education-plan/</guid>
-        <description>&lt;img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&amp;w=2022&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Featured image of post 免费申请Notion教育Plus计划白嫖Notion图表" /&gt;&lt;p&gt;之前一直用的Notion的免费版本，上个月Notion发布了Notion图表功能，免费用户只能创建一个图表，已经满足不了我的需求，然后就找到低成本的方案，使用ac.cn邮箱免费升级到教育Plus计划。今天我就把这个方案分享给大家。&lt;/p&gt;
+        <description>&lt;img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&amp;w=2022&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Featured image of post 免费申请Notion教育Plus计划白嫖Notion图表" /&gt;&lt;p&gt;上次教大家如何使用ac.cn域名注册教育邮箱，升级Notion教育Plus，白嫖Notion的无限图表功能和上传不限制。后面有两个小伙伴按照教程注册之后，发现无法升级Notion教育Plus，今天就教大家一个新的方案，注册edu.kg域名。&lt;/p&gt;
+&lt;p&gt;需要注意谁也无法保证这个域名能使用多久，所以在注册使用之前，先去网络上搜索下是否还能用，避免注册之后不能使用。&lt;/p&gt;
 &lt;h2 id=&#34;域名注册&#34;&gt;域名注册
-&lt;/h2&gt;&lt;p&gt;可以选择在腾讯云或者阿里云上购买域名。对比了价格，我选择在腾讯云购买，购买地址：https://buy.cloud.tencent.com/domain/。输入自己想要的域名查询，然后点立即购买。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/224855aa31500f3045d2214112230f4f.png&#34;
+&lt;/h2&gt;&lt;p&gt;打开https://www.cctld.kg/ 进行注册。注册成功之后，选择Balance充值。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/11/fe3cd4c054719f6b5ccb3f212e2f6577.png&#34;
 	
 	
 	
@@ -248,8 +687,8 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;如果没有创建过实名信息模板，需要先创建信息模板，才能购买。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/d1770cb4fdeb500c0bd1100c6b3bfe2f.png&#34;
+&lt;p&gt;注册一个edu.kg的域名每年需要261.06Som(吉尔吉斯共斯坦货币)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/11/0df848d05b70386ce950fff1d7fcf8a3.png&#34;
 	
 	
 	
@@ -257,20 +696,25 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/620852f733f34ada42c63498dbccff05.png&#34;
+&lt;p&gt;充值完成之后，点击Domains，注册域名。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/11/bd246f6fa8776266f43a31a1ba7b217c.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;CleanShot 2024-11-21 at 09.22.31@2x&#34;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;填写完信息，然后提交等待审核通过。 然后选择信息模板，点击提交订单支付即可。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/ab1a441162f1f36bac733f95a674bb07.png&#34;
+&lt;p&gt;输入你的域名，然后点击Continue，进入下一步。页面不要关闭，新开一个页面，打开Cloudflare，按照下面流程修改DNS信息。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/11/741a421ebb377275b1c9f6f538a687a1.png&#34;
 	
 	
 	
 	loading=&#34;lazy&#34;
+	
+		alt=&#34;CleanShot 2024-11-21 at 09.24.22@2x&#34;
 	
 	
 &gt;&lt;/p&gt;
@@ -312,26 +756,8 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;打开https://console.cloud.tencent.com/domain/all-domain/all可以看到我们购买的域名，找到要配置的域名，点击管理。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/7af620e6a137d7b11833ac6b1e2229e9.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;进入下一个页面，点击修改DNS服务器。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/d89150e9245af7c38a33def3f1c414d6.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;输入Cloudflare的DNS服务器，点击提交即可。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/09/34f8855d0b5a5da3d6f7f62255513d5b.png&#34;
+&lt;p&gt;再次回到我们域名注册的网站，填写DNS信息。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/11/a551f44753a84f95941c04ea8c2b4bd8.png&#34;
 	
 	
 	
@@ -377,128 +803,40 @@
 	
 	
 &gt;&lt;/p&gt;
+&lt;h2 id=&#34;广告&#34;&gt;广告
+&lt;/h2&gt;&lt;p&gt;最后打波广告。如果嫌注册麻烦的同学，可以联系我购买教育邮箱，10元永久使用。只要域名能用，我会一直续费下去。需要购买的同学可以直接加我微信，直接转账购买。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/11/2a44bb2cdac0cbced732f09e15126c70.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Plus版本和免费版本区别。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/11/1d09ce205a9420c2a2642a66a937e018.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;更详细的区别可以点击设置，探索方案查看。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/11/8abd20ab7c97d6fbd40a8335e74373f3.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;修改邮箱不会对你的内容有任何的影响，可放心使用。&lt;/p&gt;
 &lt;h2 id=&#34;参考&#34;&gt;参考
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.dajun.info/notion-Education-Plus-Plan&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;ac.cn邮箱如何用教育邮箱申请notion Education Plus Plan&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-        </item>
-        <item>
-        <title>Keep2Notion使用指南</title>
-        <link>http://localhost:1313/posts/keep2notion/</link>
-        <pubDate>Tue, 27 Feb 2024 09:40:05 +0800</pubDate>
-        
-        <guid>http://localhost:1313/posts/keep2notion/</guid>
-        <description>&lt;img src="https://images.unsplash.com/photo-1663813251302-e5d2c7199e86?q=80&amp;w=2660&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Featured image of post Keep2Notion使用指南" /&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://malinkang.notion.site/7c556041c7fd4e21a6713673b6168fd4?pvs=4&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;预览效果&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;使用&#34;&gt;使用
-&lt;/h2&gt;&lt;h3 id=&#34;fork工程&#34;&gt;Fork工程
-&lt;/h3&gt;&lt;p&gt;打开&lt;a class=&#34;link&#34; href=&#34;https://github.com/malinkang/keep2notion&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;Keep2Notion&lt;/a&gt;，点击右上角的Fork（顺便点个star谢谢）&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/posts/keep2notion/images/fork.jpg&#34;
-	width=&#34;1210&#34;
-	height=&#34;166&#34;
-	srcset=&#34;http://localhost:1313/posts/keep2notion/images/fork_hu4602295652819021875.jpg 480w, http://localhost:1313/posts/keep2notion/images/fork_hu8206259885579306544.jpg 1024w&#34;
-	loading=&#34;lazy&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;728&#34;
-		data-flex-basis=&#34;1749px&#34;
-	
-&gt;&lt;/p&gt;
-&lt;h3 id=&#34;复制notion模板&#34;&gt;复制Notion模板
-&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;浏览器打开模板&lt;a class=&#34;link&#34; href=&#34;https://malinkang.notion.site/9f43e44a009243b5b0c242e35d83178d?pvs=74&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://malinkang.notion.site/9f43e44a009243b5b0c242e35d83178d?pvs=74&lt;/a&gt;，点击右上角的Duplicate复制。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;打开你刚复制的模板，点击右上角的三个点，找到&lt;code&gt;Connections&lt;/code&gt;，然后添加你创建的Integration。不知道如何创建Integration，可以参考&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;点击右上角的Share，然后点击Copy link获取页面的链接，后面会用到。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&#34;在github的secrets中添加变量&#34;&gt;在Github的Secrets中添加变量
-&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;打开你fork的工程，点击Settings-&amp;gt;Secrets and variables-&amp;gt;New repository secret&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/posts/keep2notion/images/secret.jpg&#34;
-	width=&#34;2720&#34;
-	height=&#34;1654&#34;
-	srcset=&#34;http://localhost:1313/posts/keep2notion/images/secret_hu9193254705817156569.jpg 480w, http://localhost:1313/posts/keep2notion/images/secret_hu18171953166844438916.jpg 1024w&#34;
-	loading=&#34;lazy&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;164&#34;
-		data-flex-basis=&#34;394px&#34;
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;依次输入如下值：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;KEEP_MOBILE：注册Keep的手机号&lt;/li&gt;
-&lt;li&gt;KEEP_PASSWORD：Keep密码&lt;/li&gt;
-&lt;li&gt;NOTION_TOKEN：你创建的Token.&lt;/li&gt;
-&lt;li&gt;NAME：热力图标题&lt;/li&gt;
-&lt;li&gt;NOTION_PAGE：你复制的模板的链接&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;捐赠&#34;&gt;捐赠
-&lt;/h2&gt;&lt;p&gt;如果你觉得项目对你有帮助，可以捐赠。我也会不断的优化项目，并做出其他开源的项目。&lt;/p&gt;
-&lt;h3 id=&#34;微信&#34;&gt;微信
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/posts/keep2notion/images/wechat.jpg&#34;
-	width=&#34;559&#34;
-	height=&#34;762&#34;
-	srcset=&#34;http://localhost:1313/posts/keep2notion/images/wechat_hu3595234284741726922.jpg 480w, http://localhost:1313/posts/keep2notion/images/wechat_hu13937659219787580131.jpg 1024w&#34;
-	loading=&#34;lazy&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;73&#34;
-		data-flex-basis=&#34;176px&#34;
-	
-&gt;&lt;/p&gt;
-&lt;h3 id=&#34;支付宝&#34;&gt;支付宝
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/posts/keep2notion/images/alipay.jpg&#34;
-	width=&#34;540&#34;
-	height=&#34;840&#34;
-	srcset=&#34;http://localhost:1313/posts/keep2notion/images/alipay_hu7340839020198133067.jpg 480w, http://localhost:1313/posts/keep2notion/images/alipay_hu17362895171651341820.jpg 1024w&#34;
-	loading=&#34;lazy&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;64&#34;
-		data-flex-basis=&#34;154px&#34;
-	
-&gt;&lt;/p&gt;
-&lt;h2 id=&#34;付费解答&#34;&gt;付费解答
-&lt;/h2&gt;&lt;p&gt;有问题先自行解决，往往失败都是一些小细节没注意导致的。我的文档写的已经足够详细，按照文档来操作基本都能成功。你也可以尝试在群里咨询。不要直接加我微信来让我来解答，这个项目我已经投入了大量时间来开发维护，实在没有更多的精力来一对一解答。如果实在解决不了，可以付费一对一咨询，30元一位。付完款可以微信私聊我。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/posts/keep2notion/images/wexin.jpg&#34;
-	width=&#34;475&#34;
-	height=&#34;648&#34;
-	srcset=&#34;http://localhost:1313/posts/keep2notion/images/wexin_hu13484399580718362098.jpg 480w, http://localhost:1313/posts/keep2notion/images/wexin_hu3842367349424335297.jpg 1024w&#34;
-	loading=&#34;lazy&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;73&#34;
-		data-flex-basis=&#34;175px&#34;
-	
-&gt;&lt;/p&gt;
-&lt;h2 id=&#34;群&#34;&gt;群
-&lt;/h2&gt;&lt;p&gt;欢迎加入微信群讨论。使用中遇到的任何问题，包括Notion的使用，微信读书组队打卡，后续的更新都会在群里讨论。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://drive.malinkang.com/api/raw/?path=/Images/group.jpg&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
 </description>
         </item>
         <item>
@@ -509,7 +847,7 @@
         <guid>http://localhost:1313/posts/weread2notion-pro/</guid>
         <description>&lt;img src="https://images.malinkang.com/2024/03/19dd1580dd991c7985abea7724c87043.png" alt="Featured image of post WeRead2NotionPro使用文档" /&gt;&lt;style type=&#34;text/css&#34;&gt;.notice{--root-color:#444;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#c33;--warning-content:#fee;--info-title:#fb7;--info-content:#fec;--note-title:#6be;--note-content:#e7f2fa;--tip-title:#5a5;--tip-content:#efe}@media (prefers-color-scheme:dark){.notice{--root-color:#ddd;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#800;--warning-content:#400;--info-title:#a50;--info-content:#420;--note-title:#069;--note-content:#023;--tip-title:#363;--tip-content:#121}}body.dark .notice{--root-color:#ddd;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#800;--warning-content:#400;--info-title:#a50;--info-content:#420;--note-title:#069;--note-content:#023;--tip-title:#363;--tip-content:#121}.notice{padding:18px;line-height:24px;margin-bottom:24px;border-radius:4px;color:var(--root-color);background:var(--root-background)}.notice p:last-child{margin-bottom:0}.notice-title{margin:-18px -18px 12px;padding:4px 18px;border-radius:4px 4px 0 0;font-weight:700;color:var(--title-color);background:var(--title-background)}.notice.warning .notice-title{background:var(--warning-title)}.notice.warning{background:var(--warning-content)}.notice.info .notice-title{background:var(--info-title)}.notice.info{background:var(--info-content)}.notice.note .notice-title{background:var(--note-title)}.notice.note{background:var(--note-content)}.notice.tip .notice-title{background:var(--tip-title)}.notice.tip{background:var(--tip-content)}.icon-notice{display:inline-flex;align-self:center;margin-right:8px}.icon-notice img,.icon-notice svg{height:1em;width:1em;fill:currentColor}.icon-notice img,.icon-notice.baseline svg{top:.125em;position:relative}&lt;/style&gt;
 &lt;div&gt;&lt;svg width=&#34;0&#34; height=&#34;0&#34; display=&#34;none&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;&lt;symbol id=&#34;tip-notice&#34; viewBox=&#34;0 0 512 512&#34; preserveAspectRatio=&#34;xMidYMid meet&#34;&gt;&lt;path d=&#34;M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z&#34;/&gt;&lt;/symbol&gt;&lt;symbol id=&#34;note-notice&#34; viewBox=&#34;0 0 512 512&#34; preserveAspectRatio=&#34;xMidYMid meet&#34;&gt;&lt;path d=&#34;M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z&#34;/&gt;&lt;/symbol&gt;&lt;symbol id=&#34;warning-notice&#34; viewBox=&#34;0 0 576 512&#34; preserveAspectRatio=&#34;xMidYMid meet&#34;&gt;&lt;path d=&#34;M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z&#34;/&gt;&lt;/symbol&gt;&lt;symbol id=&#34;info-notice&#34; viewBox=&#34;0 0 512 512&#34; preserveAspectRatio=&#34;xMidYMid meet&#34;&gt;&lt;path d=&#34;M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z&#34;/&gt;&lt;/symbol&gt;&lt;/svg&gt;&lt;/div&gt;&lt;div class=&#34;notice warning&#34; &gt;
-&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#warning-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;Warning&lt;/p&gt;&lt;p&gt;Weread2Notion和Weread2Notion-Pro是两个不同的项目，模板也不相同，切勿用错模板。&lt;/p&gt;
+&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#warning-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;警告&lt;/p&gt;&lt;p&gt;Weread2Notion和Weread2Notion-Pro是两个不同的项目，模板也不相同，切勿用错模板。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Weread2Notion教程：&lt;a class=&#34;link&#34; href=&#34;https://malinkang.com/posts/weread2notion/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://malinkang.com/posts/weread2notion/&lt;/a&gt;&lt;/li&gt;
@@ -555,7 +893,7 @@
 &lt;li&gt;按F12进入开发者模式，依次点网络-&amp;gt;文档，然后选中weread.qq.com，下拉找到Cookie，复制Cookie值&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class=&#34;notice tip&#34; &gt;
-&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#tip-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;Tip&lt;/p&gt;&lt;p&gt;如果没有内容显示，请刷新下浏览器。&lt;/p&gt;
+&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#tip-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;提示&lt;/p&gt;&lt;p&gt;如果没有内容显示，请刷新下浏览器。&lt;/p&gt;
 &lt;p&gt;建议使用Chrome浏览器，有的小伙伴使用QQ浏览器拿到的Cookie一直不能用。&lt;/p&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/2a26e0b6d2a5a3b36711e91037b837f3.jpg&#34;
@@ -644,7 +982,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;div class=&#34;notice warning&#34; &gt;
-&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#warning-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;Warning&lt;/p&gt;&lt;p&gt;注意这三个变量名一定要填写正确，一个字母都不能错，否则会同步失败。&lt;/p&gt;&lt;/div&gt;
+&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#warning-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;警告&lt;/p&gt;&lt;p&gt;注意这三个变量名一定要填写正确，一个字母都不能错，否则会同步失败。&lt;/p&gt;&lt;/div&gt;
 
 &lt;h3 id=&#34;运行&#34;&gt;运行
 &lt;/h3&gt;&lt;p&gt;上面配置完成之后，打开你Fork的项目，依次点击Actions-&amp;gt;weread note sync-&amp;gt; Run workflow，就可以运行了。&lt;/p&gt;
@@ -678,7 +1016,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;div class=&#34;notice warning&#34; &gt;
-&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#warning-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;Warning&lt;/p&gt;&lt;p&gt;运行成功，只代表程序没有出错，不代表就一定同步数据，比如微信Cookie过期就不会报错。所以如果运行成功，Notion中没有数据的话，也可以通过下面第2步来查看日志&lt;/p&gt;&lt;/div&gt;
+&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#warning-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;警告&lt;/p&gt;&lt;p&gt;运行成功，只代表程序没有出错，不代表就一定同步数据，比如微信Cookie过期就不会报错。所以如果运行成功，Notion中没有数据的话，也可以通过下面第2步来查看日志&lt;/p&gt;&lt;/div&gt;
 
 &lt;p&gt;2.可以点进去查日志，来自行排查问题。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/34089868d5569f92c9138ade3ba99428.jpg&#34;
@@ -722,50 +1060,50 @@
 &lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;变量名&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;当前数据库的名字&lt;/th&gt;
+          &lt;th&gt;变量名&lt;/th&gt;
+          &lt;th&gt;当前数据库的名字&lt;/th&gt;
       &lt;/tr&gt;
   &lt;/thead&gt;
   &lt;tbody&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;BOOK_DATABASE_NAME&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;书架&lt;/td&gt;
+          &lt;td&gt;BOOK_DATABASE_NAME&lt;/td&gt;
+          &lt;td&gt;书架&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;REVIEW_DATABASE_NAME&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;笔记&lt;/td&gt;
+          &lt;td&gt;REVIEW_DATABASE_NAME&lt;/td&gt;
+          &lt;td&gt;笔记&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;BOOKMARK_DATABASE_NAME&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;划线&lt;/td&gt;
+          &lt;td&gt;BOOKMARK_DATABASE_NAME&lt;/td&gt;
+          &lt;td&gt;划线&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;DAY_DATABASE_NAME&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;日&lt;/td&gt;
+          &lt;td&gt;DAY_DATABASE_NAME&lt;/td&gt;
+          &lt;td&gt;日&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;WEEK_DATABASE_NAME&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;周&lt;/td&gt;
+          &lt;td&gt;WEEK_DATABASE_NAME&lt;/td&gt;
+          &lt;td&gt;周&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;MONTH_DATABASE_NAME&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;月&lt;/td&gt;
+          &lt;td&gt;MONTH_DATABASE_NAME&lt;/td&gt;
+          &lt;td&gt;月&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;YEAR_DATABASE_NAME&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;年&lt;/td&gt;
+          &lt;td&gt;YEAR_DATABASE_NAME&lt;/td&gt;
+          &lt;td&gt;年&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;CATEGORY_DATABASE_NAME&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;分类&lt;/td&gt;
+          &lt;td&gt;CATEGORY_DATABASE_NAME&lt;/td&gt;
+          &lt;td&gt;分类&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;AUTHOR_DATABASE_NAME&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;作者&lt;/td&gt;
+          &lt;td&gt;AUTHOR_DATABASE_NAME&lt;/td&gt;
+          &lt;td&gt;作者&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;CHAPTER_DATABASE_NAME&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;章节&lt;/td&gt;
+          &lt;td&gt;CHAPTER_DATABASE_NAME&lt;/td&gt;
+          &lt;td&gt;章节&lt;/td&gt;
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
@@ -923,34 +1261,34 @@
 &lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;变量名&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;变量说明&lt;/th&gt;
+          &lt;th&gt;变量名&lt;/th&gt;
+          &lt;th&gt;变量说明&lt;/th&gt;
       &lt;/tr&gt;
   &lt;/thead&gt;
   &lt;tbody&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;BACKGROUND_COLOR&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;背景颜色&lt;/td&gt;
+          &lt;td&gt;BACKGROUND_COLOR&lt;/td&gt;
+          &lt;td&gt;背景颜色&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;DOM_COLOR&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;未填充的色块&lt;/td&gt;
+          &lt;td&gt;DOM_COLOR&lt;/td&gt;
+          &lt;td&gt;未填充的色块&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;TRACK_COLOR&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;一级颜色&lt;/td&gt;
+          &lt;td&gt;TRACK_COLOR&lt;/td&gt;
+          &lt;td&gt;一级颜色&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;SPECIAL_COLOR&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;二级颜色&lt;/td&gt;
+          &lt;td&gt;SPECIAL_COLOR&lt;/td&gt;
+          &lt;td&gt;二级颜色&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;SPECIAL_COLOR2&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;三级级颜色&lt;/td&gt;
+          &lt;td&gt;SPECIAL_COLOR2&lt;/td&gt;
+          &lt;td&gt;三级级颜色&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;TEXT_COLOR&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;文字颜色&lt;/td&gt;
+          &lt;td&gt;TEXT_COLOR&lt;/td&gt;
+          &lt;td&gt;文字颜色&lt;/td&gt;
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
@@ -998,6 +1336,165 @@
         </item>
         <item>
         <title>WeRead2Notion使用文档</title>
+        <link>http://localhost:1313/posts/todo2notion/</link>
+        <pubDate>Sun, 10 Sep 2023 15:28:05 +0800</pubDate>
+        
+        <guid>http://localhost:1313/posts/todo2notion/</guid>
+        <description>&lt;img src="https://images.malinkang.com/2024/03/e1bc45eb87ec93a249edf163a9115874.png" alt="Featured image of post WeRead2Notion使用文档" /&gt;&lt;p&gt;我之前最开始使用奇妙清单，后来奇妙清单被微软收购了，就开始使用微软Todo，用了这么多年，一直没有换过。因为它足够简洁并且免费，而且开放API，我也一直是使用N8N来将微软Todo同步到Notion了。&lt;/p&gt;
+&lt;p&gt;因为一直有人在公众号后台问滴答清单能否同步到Notion，所以我在6月份就开发了滴答清单同步到Notion。但是为什么迟迟没发，因为有两个问题一直困扰着我，第一个是滴答清单和Notion笔记如何合并，第二个问题就是滴答清单笔记里的图片是私有的，无法在Notion中显示，后面思考了好久也算是找到了虽然不算完美的解决方案。&lt;/p&gt;
+&lt;p&gt;最开始设计模板的时候，我是把Todo和番茄钟和习惯打卡放在一个模板里，后面又觉得太重，后面又拆分成3个功能。这样时间就来到了11月，原本计划11月6号发，但是以为我11月4号跑步摔了一跤，住院了，所以文档也没来写。然后在11月6号的时候看到滴答清单官方计划12月支持Notion的双向同步，然后我一直在纠结还要不要发。就这样又纠结了两周，还是决定发出来。注意这个项目只支持滴答清单同步到Notion，不支持Notion同步到滴答清单。支持子任务。&lt;/p&gt;
+&lt;h2 id=&#34;fork工程&#34;&gt;Fork工程
+&lt;/h2&gt;&lt;p&gt;打开https://github.com/malinkang/todo2notion，点击右上角的Fork（顺便点个star谢谢）&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/11/b9102e7046edcabf864041b7848903e9.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;权限&#34;&gt;权限
+&lt;/h2&gt;&lt;p&gt;确保你打开了读写权限。&lt;/p&gt;
+&lt;p&gt;依次选择Settings-&amp;gt;Actions-&amp;gt;General，然后下拉，找到Workflow permissions，如果没有选中Read and write permissions，请选中，然后点下面的save保存。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/11/a6fff291ba6bc65e7a57409850d91d5e.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/11/4847b60276ac280e612695c1c5208eb5.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;授权&#34;&gt;授权
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;浏览器打开 &lt;a class=&#34;link&#34; href=&#34;https://www.notion.so/install-integration?response_type=code&amp;amp;client_id=85564f7a-1b41-49bf-a43a-41452c57cf83&amp;amp;redirect_uri=https%3A%2F%2Fnotion-auth.malinkang.com%2Ftodo-oauth-callback&amp;amp;owner=user&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.notion.so/install-integration?response_type=code&amp;client_id=85564f7a-1b41-49bf-a43a-41452c57cf83&amp;redirect_uri=https%3A%2F%2Fnotion-auth.malinkang.com%2Ftodo-oauth-callback&amp;owner=user&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;然后点击下一步-&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/11/c106882464221aad45c91aada405cdde.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;选择使用 开发人员提供的模板，然后点击允许访问。这一步会自动复制模板到你的Notion里。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/11/2f18aaa4fb7889930922db19f6077985.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;点击复制按钮，复制NOTION_TOKEN和NOTION_PAGE的值。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/42c04cb1e6ab95eed832f33462c96831.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;复制&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;在github的secrets中添加变量&#34;&gt;在Github的Secrets中添加变量
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;打开你fork的工程，点击Settings-&amp;gt;Secrets and variables-&amp;gt;New repository secret&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/11/5b73a15815fbdb834ab974a9ec83527b.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;Name输入NOTION_TOKEN，Secret输入框中填入你授权获取的NOTION_TOKEN，然后点击Add secret&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/11/904b5035423274c09fb4fd18ca6551bc.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;同理，继续点击New repository secret，增加变量NOTION_PAGE，Secret输入框中填入你授权获取的NOTION_TOKEN，然后点击Add secret。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;设置&#34;&gt;设置
+&lt;/h2&gt;&lt;p&gt;打开你复制的Notion模板，找到设置数据库，打开。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/11/4bfce4347eeb9ad5172e24402fd54536.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;输入滴答清单的账号和密码（如果Todo页面设置为公开的话，记得将设置数据库设置为私有）。并选择是否将图片上传到Github。（注意上传到Github可以被别人访问到，如果图片有个人隐私，请勿勾选此选项）。&lt;/p&gt;
+&lt;h2 id=&#34;运行&#34;&gt;运行
+&lt;/h2&gt;&lt;p&gt;上面配置完成之后，打开你Fork的项目，依次点击Actions-&amp;gt;todo sync-&amp;gt; Run workflow，就可以运行了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/11/9aebe3ff1a22c841eb4bb8bddea2d661.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;之后会每3个小时更新一次。&lt;/p&gt;
+&lt;h2 id=&#34;笔记&#34;&gt;笔记
+&lt;/h2&gt;&lt;p&gt;每次运行之后，滴答清单里的笔记会被同步到Todo所在的页面里。如果Todo被修改笔记也会被删除并重建一个页面，所以不要直接在当前Todo页面下做笔记。如果需要额外在Notion中增加笔记，请在笔记数据库里添加笔记，并将笔记关联到Todo上，每次同步时会自动将关联的笔记复制到Todo所在的页面里。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/11/e3e25d9d22562c4df59ce91950e40d91.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;以上，就是教程的全部内容。有什么问题或者疑问请评论区留言或者加群交流。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/11/f9b48967c2d478866be86f4588ca447d.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;如果二维码失效可以添加我的个人微信，我来邀请你入群。当然你想交个朋友，也可以加我微信。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/10/2a44bb2cdac0cbced732f09e15126c70.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;如果你觉得文章对您有帮助，请捐赠支持一下。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>WeRead2Notion使用文档</title>
         <link>http://localhost:1313/posts/weread2notion/</link>
         <pubDate>Sun, 10 Sep 2023 15:28:05 +0800</pubDate>
         
@@ -1006,7 +1503,7 @@
     &gt;WeRead2Notion-Pro&lt;/a&gt;。&lt;/p&gt;
 &lt;style type=&#34;text/css&#34;&gt;.notice{--root-color:#444;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#c33;--warning-content:#fee;--info-title:#fb7;--info-content:#fec;--note-title:#6be;--note-content:#e7f2fa;--tip-title:#5a5;--tip-content:#efe}@media (prefers-color-scheme:dark){.notice{--root-color:#ddd;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#800;--warning-content:#400;--info-title:#a50;--info-content:#420;--note-title:#069;--note-content:#023;--tip-title:#363;--tip-content:#121}}body.dark .notice{--root-color:#ddd;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#800;--warning-content:#400;--info-title:#a50;--info-content:#420;--note-title:#069;--note-content:#023;--tip-title:#363;--tip-content:#121}.notice{padding:18px;line-height:24px;margin-bottom:24px;border-radius:4px;color:var(--root-color);background:var(--root-background)}.notice p:last-child{margin-bottom:0}.notice-title{margin:-18px -18px 12px;padding:4px 18px;border-radius:4px 4px 0 0;font-weight:700;color:var(--title-color);background:var(--title-background)}.notice.warning .notice-title{background:var(--warning-title)}.notice.warning{background:var(--warning-content)}.notice.info .notice-title{background:var(--info-title)}.notice.info{background:var(--info-content)}.notice.note .notice-title{background:var(--note-title)}.notice.note{background:var(--note-content)}.notice.tip .notice-title{background:var(--tip-title)}.notice.tip{background:var(--tip-content)}.icon-notice{display:inline-flex;align-self:center;margin-right:8px}.icon-notice img,.icon-notice svg{height:1em;width:1em;fill:currentColor}.icon-notice img,.icon-notice.baseline svg{top:.125em;position:relative}&lt;/style&gt;
 &lt;div&gt;&lt;svg width=&#34;0&#34; height=&#34;0&#34; display=&#34;none&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;&lt;symbol id=&#34;tip-notice&#34; viewBox=&#34;0 0 512 512&#34; preserveAspectRatio=&#34;xMidYMid meet&#34;&gt;&lt;path d=&#34;M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z&#34;/&gt;&lt;/symbol&gt;&lt;symbol id=&#34;note-notice&#34; viewBox=&#34;0 0 512 512&#34; preserveAspectRatio=&#34;xMidYMid meet&#34;&gt;&lt;path d=&#34;M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z&#34;/&gt;&lt;/symbol&gt;&lt;symbol id=&#34;warning-notice&#34; viewBox=&#34;0 0 576 512&#34; preserveAspectRatio=&#34;xMidYMid meet&#34;&gt;&lt;path d=&#34;M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z&#34;/&gt;&lt;/symbol&gt;&lt;symbol id=&#34;info-notice&#34; viewBox=&#34;0 0 512 512&#34; preserveAspectRatio=&#34;xMidYMid meet&#34;&gt;&lt;path d=&#34;M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z&#34;/&gt;&lt;/symbol&gt;&lt;/svg&gt;&lt;/div&gt;&lt;div class=&#34;notice warning&#34; &gt;
-&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#warning-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;Warning&lt;/p&gt;&lt;p&gt;Weread2Notion和Weread2Notion-Pro是两个不同的项目，模板也不相同，切勿用错模板。&lt;/p&gt;
+&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#warning-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;警告&lt;/p&gt;&lt;p&gt;Weread2Notion和Weread2Notion-Pro是两个不同的项目，模板也不相同，切勿用错模板。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Weread2Notion-Pro教程：&lt;a class=&#34;link&#34; href=&#34;https://malinkang.com/posts/weread2notion-pro/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://malinkang.com/posts/weread2notion-pro/&lt;/a&gt;&lt;/li&gt;
@@ -1063,7 +1560,7 @@
 &lt;li&gt;按F12进入开发者模式，依次点网络-&amp;gt;文档，然后选中weread.qq.com，下拉找到Cookie，复制Cookie值&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class=&#34;notice tip&#34; &gt;
-&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#tip-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;Tip&lt;/p&gt;&lt;p&gt;如果没有内容显示，请刷新下浏览器。&lt;/p&gt;
+&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#tip-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;提示&lt;/p&gt;&lt;p&gt;如果没有内容显示，请刷新下浏览器。&lt;/p&gt;
 &lt;p&gt;建议使用Chrome浏览器，有的小伙伴使用QQ浏览器拿到的Cookie一直不能用。&lt;/p&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/2a26e0b6d2a5a3b36711e91037b837f3.jpg&#34;
@@ -1154,7 +1651,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;div class=&#34;notice warning&#34; &gt;
-&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#warning-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;Warning&lt;/p&gt;&lt;p&gt;注意这三个变量名一定要填写正确，一个字母都不能错，否则会同步失败。&lt;/p&gt;&lt;/div&gt;
+&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#warning-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;警告&lt;/p&gt;&lt;p&gt;注意这三个变量名一定要填写正确，一个字母都不能错，否则会同步失败。&lt;/p&gt;&lt;/div&gt;
 
 &lt;h3 id=&#34;运行&#34;&gt;运行
 &lt;/h3&gt;&lt;p&gt;上面配置完成之后，打开你Fork的项目，依次点击Actions-&amp;gt;weread sync-&amp;gt; Run workflow，就可以运行了。&lt;/p&gt;
@@ -1179,7 +1676,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;div class=&#34;notice warning&#34; &gt;
-&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#warning-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;Warning&lt;/p&gt;&lt;p&gt;运行成功，只代表程序没有出错，不代表就一定同步数据，比如微信Cookie过期就不会报错。所以如果运行成功，Notion中没有数据的话，也可以通过下面第2步来查看日志&lt;/p&gt;&lt;/div&gt;
+&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#warning-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;警告&lt;/p&gt;&lt;p&gt;运行成功，只代表程序没有出错，不代表就一定同步数据，比如微信Cookie过期就不会报错。所以如果运行成功，Notion中没有数据的话，也可以通过下面第2步来查看日志&lt;/p&gt;&lt;/div&gt;
 
 &lt;p&gt;2.可以点进去查日志，来自行排查问题。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/34089868d5569f92c9138ade3ba99428.jpg&#34;

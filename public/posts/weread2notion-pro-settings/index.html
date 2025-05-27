@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="自定义设置 现在Weread2NotionPro支持用户设置同步样式了。接下来就给大家讲解下如何使用。\n首先就是同步代码。打开你Fork的项目，点击Sync fork进行同步，如果有冲突可以点击Discard那个按钮。\n同步成功之后，手动运行一下任务。打开你Fork的项目，依次点击Actions-&gt;weread note sync-&gt; Run workflow，就可以运行了。\n运行完成之后，Notion中会增加一个名为设置的database，点击打开。\n接下来依次讲解下每个配置：\nNotinPage、NotinToken和WeReadCookie三个值用来存储之前填写到Github上的值\n同步书签 之前书签和划线都会被同步到Notion，如果不希望同步书签，取消勾选即可，默认是勾选状态。\n">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="自定义设置 现在Weread2NotionPro支持用户设置同步样式了。接下来就给大家讲解下如何使用。\n首先就是同步代码。打开你Fork的项目，点击Sync fork进行同步，如果有冲突可以点击Discard那个按钮。\n同步成功之后，手动运行一下任务。打开你Fork的项目，依次点击Actions-&gt;weread note sync-&gt; Run workflow，就可以运行了。\n运行完成之后，Notion中会增加一个名为设置的database，点击打开。\n接下来依次讲解下每个配置：\nNotinPage、NotinToken和WeReadCookie三个值用来存储之前填写到Github上的值\n同步书签 之前书签和划线都会被同步到Notion，如果不希望同步书签，取消勾选即可，默认是勾选状态。\n样式 样式用于自定义同步到Notion的样式，目前支持如下值：\ncallout：默认样式 quote：引用样式 paragraph：普通段落 bulleted_list_item：无序列表 numbered_list_item：有序列表 根据划线颜色设置文字颜色 之前同步默认会根据划线颜色设置Notion中文字的颜色，如果不希望根据划线颜色来设置Notion中文字的颜色，取消勾选即可，默认是勾选状态。\n以上就是所有的配置项。所有的修改只会对后续的同步有效，并不会对之前同步过的数据进行修改。未来会把热力图的配置也迁移到Notion中。你还需要哪些自定义设置，请在评论区里留言。\n修复重复Bug 国庆节前代码重构，导致同步会有重复的书籍，目前已经修复，之前重复的书籍需要手动删除。\n如何新增图表 Notion出了图表功能之后，我也给自己的读书模板增加了图表功能，一直有人问如何设置，我也简单讲解下。\n在月这个Database中新增一列函数类型，名字为阅读时长（小时）。默认提供的时长单位是秒。所以直接使用公式floor(prop(&quot;时长&quot;)/3600)对将阅读时长转化为小时格式。\n在想要放置图表的地方添加数据库的链接视图，选择月这个database。\nX轴显示内容选择日期然后选择月\nY轴显示内容选择阅读时长（小时）然后选择总和\n筛选选择本年\n这样就可以看到今年每个月的阅读时长图表了。\n">
 <title>Werad2NotionPro支持自定义设置了</title>
 
 <link rel='canonical' href='http://localhost:1313/posts/weread2notion-pro-settings/'>
 
-<link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="Werad2NotionPro支持自定义设置了">
-<meta property='og:description' content="自定义设置 现在Weread2NotionPro支持用户设置同步样式了。接下来就给大家讲解下如何使用。\n首先就是同步代码。打开你Fork的项目，点击Sync fork进行同步，如果有冲突可以点击Discard那个按钮。\n同步成功之后，手动运行一下任务。打开你Fork的项目，依次点击Actions-&gt;weread note sync-&gt; Run workflow，就可以运行了。\n运行完成之后，Notion中会增加一个名为设置的database，点击打开。\n接下来依次讲解下每个配置：\nNotinPage、NotinToken和WeReadCookie三个值用来存储之前填写到Github上的值\n同步书签 之前书签和划线都会被同步到Notion，如果不希望同步书签，取消勾选即可，默认是勾选状态。\n">
+<link rel="stylesheet" href="/scss/style.min.ec699b5a71cf5dcf4c0b64b0b47bfcdfa0e15276f4505101ff823b5f1efb4c0e.css"><meta property='og:title' content="Werad2NotionPro支持自定义设置了">
+<meta property='og:description' content="自定义设置 现在Weread2NotionPro支持用户设置同步样式了。接下来就给大家讲解下如何使用。\n首先就是同步代码。打开你Fork的项目，点击Sync fork进行同步，如果有冲突可以点击Discard那个按钮。\n同步成功之后，手动运行一下任务。打开你Fork的项目，依次点击Actions-&gt;weread note sync-&gt; Run workflow，就可以运行了。\n运行完成之后，Notion中会增加一个名为设置的database，点击打开。\n接下来依次讲解下每个配置：\nNotinPage、NotinToken和WeReadCookie三个值用来存储之前填写到Github上的值\n同步书签 之前书签和划线都会被同步到Notion，如果不希望同步书签，取消勾选即可，默认是勾选状态。\n样式 样式用于自定义同步到Notion的样式，目前支持如下值：\ncallout：默认样式 quote：引用样式 paragraph：普通段落 bulleted_list_item：无序列表 numbered_list_item：有序列表 根据划线颜色设置文字颜色 之前同步默认会根据划线颜色设置Notion中文字的颜色，如果不希望根据划线颜色来设置Notion中文字的颜色，取消勾选即可，默认是勾选状态。\n以上就是所有的配置项。所有的修改只会对后续的同步有效，并不会对之前同步过的数据进行修改。未来会把热力图的配置也迁移到Notion中。你还需要哪些自定义设置，请在评论区里留言。\n修复重复Bug 国庆节前代码重构，导致同步会有重复的书籍，目前已经修复，之前重复的书籍需要手动删除。\n如何新增图表 Notion出了图表功能之后，我也给自己的读书模板增加了图表功能，一直有人问如何设置，我也简单讲解下。\n在月这个Database中新增一列函数类型，名字为阅读时长（小时）。默认提供的时长单位是秒。所以直接使用公式floor(prop(&quot;时长&quot;)/3600)对将阅读时长转化为小时格式。\n在想要放置图表的地方添加数据库的链接视图，选择月这个database。\nX轴显示内容选择日期然后选择月\nY轴显示内容选择阅读时长（小时）然后选择总和\n筛选选择本年\n这样就可以看到今年每个月的阅读时长图表了。\n">
 <meta property='og:url' content='http://localhost:1313/posts/weread2notion-pro-settings/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='微信读书' /><meta property='article:tag' content='Notion' /><meta property='article:tag' content='WeRead' /><meta property='article:published_time' content='2024-10-03T15:28:05&#43;08:00'/><meta property='article:modified_time' content='2024-10-03T15:28:05&#43;08:00'/><meta property='og:image' content='https://images.malinkang.com/2024/03/19dd1580dd991c7985abea7724c87043.png' />
 <meta name="twitter:title" content="Werad2NotionPro支持自定义设置了">
-<meta name="twitter:description" content="自定义设置 现在Weread2NotionPro支持用户设置同步样式了。接下来就给大家讲解下如何使用。\n首先就是同步代码。打开你Fork的项目，点击Sync fork进行同步，如果有冲突可以点击Discard那个按钮。\n同步成功之后，手动运行一下任务。打开你Fork的项目，依次点击Actions-&gt;weread note sync-&gt; Run workflow，就可以运行了。\n运行完成之后，Notion中会增加一个名为设置的database，点击打开。\n接下来依次讲解下每个配置：\nNotinPage、NotinToken和WeReadCookie三个值用来存储之前填写到Github上的值\n同步书签 之前书签和划线都会被同步到Notion，如果不希望同步书签，取消勾选即可，默认是勾选状态。\n"><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="自定义设置 现在Weread2NotionPro支持用户设置同步样式了。接下来就给大家讲解下如何使用。\n首先就是同步代码。打开你Fork的项目，点击Sync fork进行同步，如果有冲突可以点击Discard那个按钮。\n同步成功之后，手动运行一下任务。打开你Fork的项目，依次点击Actions-&gt;weread note sync-&gt; Run workflow，就可以运行了。\n运行完成之后，Notion中会增加一个名为设置的database，点击打开。\n接下来依次讲解下每个配置：\nNotinPage、NotinToken和WeReadCookie三个值用来存储之前填写到Github上的值\n同步书签 之前书签和划线都会被同步到Notion，如果不希望同步书签，取消勾选即可，默认是勾选状态。\n样式 样式用于自定义同步到Notion的样式，目前支持如下值：\ncallout：默认样式 quote：引用样式 paragraph：普通段落 bulleted_list_item：无序列表 numbered_list_item：有序列表 根据划线颜色设置文字颜色 之前同步默认会根据划线颜色设置Notion中文字的颜色，如果不希望根据划线颜色来设置Notion中文字的颜色，取消勾选即可，默认是勾选状态。\n以上就是所有的配置项。所有的修改只会对后续的同步有效，并不会对之前同步过的数据进行修改。未来会把热力图的配置也迁移到Notion中。你还需要哪些自定义设置，请在评论区里留言。\n修复重复Bug 国庆节前代码重构，导致同步会有重复的书籍，目前已经修复，之前重复的书籍需要手动删除。\n如何新增图表 Notion出了图表功能之后，我也给自己的读书模板增加了图表功能，一直有人问如何设置，我也简单讲解下。\n在月这个Database中新增一列函数类型，名字为阅读时长（小时）。默认提供的时长单位是秒。所以直接使用公式floor(prop(&quot;时长&quot;)/3600)对将阅读时长转化为小时格式。\n在想要放置图表的地方添加数据库的链接视图，选择月这个database。\nX轴显示内容选择日期然后选择月\nY轴显示内容选择阅读时长（小时）然后选择总和\n筛选选择本年\n这样就可以看到今年每个月的阅读时长图表了。\n"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://images.malinkang.com/2024/03/19dd1580dd991c7985abea7724c87043.png' />
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
       <script>
@@ -73,7 +73,7 @@
     })();
 </script>
 <div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
-    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
         <span class="hamburger-box">
             <span class="hamburger-inner"></span>
         </span>
@@ -103,23 +103,9 @@
         
         <div class="site-meta">
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
-            <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+            <h2 class="site-description"></h2>
         </div>
     </header><ol class="menu-social">
-            
-                <li>
-                    <a 
-                        href='https://space.bilibili.com/27440979'
-                        target="_blank"
-                        title="Bilibili"
-                        rel="me"
-                    >
-                        
-                        
-                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
-                        
-                    </a>
-                </li>
             
                 <li>
                     <a 
@@ -157,34 +143,6 @@
             
                 <li>
                     <a 
-                        href='https://www.instagram.com/malinkang'
-                        target="_blank"
-                        title="Instagram"
-                        rel="me"
-                    >
-                        
-                        
-                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-instagram"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 4a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" /><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M16.5 7.5l0 .01" /></svg>
-                        
-                    </a>
-                </li>
-            
-                <li>
-                    <a 
-                        href='https://www.strava.com/athletes/20840511'
-                        target="_blank"
-                        title="Strava"
-                        rel="me"
-                    >
-                        
-                        
-                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-strava"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 13l-5 -10l-5 10m6 0l4 8l4 -8" /></svg>
-                        
-                    </a>
-                </li>
-            
-                <li>
-                    <a 
                         href='https://t.me/malinkanglife'
                         target="_blank"
                         title="Telegram"
@@ -215,6 +173,8 @@
         
         
         
+        
+        
         <li >
             <a href='/' >
                 
@@ -230,9 +190,10 @@
 
 
                 
-                <span>Home</span>
+                <span>首页</span>
             </a>
         </li>
+        
         
         
         <li >
@@ -252,6 +213,7 @@
                 <span>关于</span>
             </a>
         </li>
+        
         
         
         <li >
@@ -274,6 +236,7 @@
         </li>
         
         
+        
         <li >
             <a href='/search/' >
                 
@@ -291,6 +254,7 @@
                 <span>Search</span>
             </a>
         </li>
+        
         
         
         <li >
@@ -332,7 +296,7 @@
 
 
 
-                        <span>Dark Mode</span>
+                        <span>暗色模式</span>
                     </li>
                 
             </ol>
@@ -357,7 +321,7 @@
 
 
         </div>
-        <h2 class="widget-title section-title">Table of contents</h2>
+        <h2 class="widget-title section-title">目录</h2>
         
         <div class="widget--toc">
             <nav id="TableOfContents">
@@ -435,7 +399,7 @@
 
 
                 <time class="article-time--reading">
-                    1 minute read
+                    阅读时长: 1 分钟
                 </time>
             </div>
         
@@ -585,7 +549,7 @@
     
 
 <aside class="related-content--wrapper">
-    <h2 class="section-title">Related content</h2>
+    <h2 class="section-title">相关文章</h2>
     <div class="related-content">
         <div class="flex article-list--tile">
             
@@ -611,6 +575,25 @@
                 
 <article class="has-image">
     <a href="/posts/weread2notion/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://images.malinkang.com/2024/03/e1bc45eb87ec93a249edf163a9115874.png" loading="lazy" data-key="" data-hash="https://images.malinkang.com/2024/03/e1bc45eb87ec93a249edf163a9115874.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">WeRead2Notion使用文档</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/posts/todo2notion/">
         
         
             <div class="article-image">
@@ -666,6 +649,7 @@
     data-input-position="top"
     data-theme="light"
     data-lang="en"
+    data-loading=""
     crossorigin="anonymous"
     async
 ></script>
@@ -711,12 +695,12 @@
         
             2013 - 
         
-        2024 malinkang
+        2025 malinkang
     </section>
     
     <section class="powerby">
-        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
 <script>
@@ -813,7 +797,7 @@
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.8bfdb33b7f70320be44567599957ad8d2f7a6416f8672721494636aa1d83573a.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');
@@ -824,6 +808,110 @@
 
         document.head.appendChild(customFont);
     }());
+</script>
+
+<a href="#" id="back-to-top" title="返回顶部"></a>
+
+
+<style>
+  #back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 55px;
+    width: 55px;
+    height: 55px;
+    border-radius: 7px;
+    background-color: rgba(64, 158, 255, 0.5);
+    box-shadow: var(--shadow-l2);
+    font-size: 30px;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+  }
+
+  #back-to-top:before {
+    content: ' ';
+    display: inline-block;
+    position: relative;
+    top: 0;
+    transform: rotate(135deg);
+    height: 10px;
+    width: 10px;
+    border-width: 0 0 2px 2px;
+    border-color: var(--back-to-top-color);
+    border-style: solid;
+  }
+
+  #back-to-top:hover:before {
+    border-color: #2674e0;
+  }
+
+   
+  @media screen and (max-width: 768px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      font-size: 10px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1024px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 40px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1280px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 55px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1536px) {
+    #back-to-top {
+      visibility: hidden;
+    }
+  }
+</style>
+
+
+<script>
+  function backToTop() {
+    document.documentElement.scrollIntoView({
+      behavior: 'smooth',
+    })
+  }
+
+  window.onload = function () {
+    let scrollTop =
+      this.document.documentElement.scrollTop || this.document.body.scrollTop
+    let totopBtn = this.document.getElementById('back-to-top')
+    if (scrollTop > 0) {
+      totopBtn.style.display = 'inline'
+    } else {
+      totopBtn.style.display = 'none'
+    }
+  }
+
+  window.onscroll = function () {
+    let scrollTop =
+      this.document.documentElement.scrollTop || this.document.body.scrollTop
+    let totopBtn = this.document.getElementById('back-to-top')
+    if (scrollTop < 200) {
+      totopBtn.style.display = 'none'
+    } else {
+      totopBtn.style.display = 'inline'
+      totopBtn.addEventListener('click', backToTop, false)
+    }
+  }
 </script>
 
     </body>

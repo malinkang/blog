@@ -40,7 +40,7 @@ params:
       lastUpdated: Jan 02, 2006 15:04 MST
   sidebar:
       emoji: 🍥
-      subtitle: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      subtitle: 
       avatar:
         enabled: true
         local: true
@@ -164,10 +164,11 @@ params:
 ### See https://docs.stack.jimmycai.com/configuration/custom-menu.html
 ### To remove about, archive and search page menu item, remove `menu` field from their FrontMatter
 #https://tabler.io/icons
+defaultContentLanguage: zh-cn
 menu:
     main: 
       - identifier: home
-        name: Home
+        name: 首页
         url: /
         weight: -100
         params:
@@ -189,26 +190,26 @@ menu:
         url: https://www.douban.com/people/malinkang/
         params:
             icon: brand-douban
-      - identifier: bilibili
-        name: Bilibili
-        url: https://space.bilibili.com/27440979
-        params:
-            icon: brand-bilibili      
+      # - identifier: bilibili
+      #   name: Bilibili
+      #   url: https://space.bilibili.com/27440979
+      #   params:
+      #       icon: brand-bilibili      
       - identifier: telegram
         name: Telegram
         url: https://t.me/malinkanglife
         params:
             icon: brand-telegram
-      - identifier: instagram
-        name: Instagram
-        url: https://www.instagram.com/malinkang
-        params:
-            icon: brand-instagram      
-      - identifier: strava
-        name: Strava
-        url: https://www.strava.com/athletes/20840511
-        params:
-            icon: brand-strava
+      # - identifier: instagram
+      #   name: Instagram
+      #   url: https://www.instagram.com/malinkang
+      #   params:
+      #       icon: brand-instagram      
+      # - identifier: strava
+      #   name: Strava
+      #   url: https://www.strava.com/athletes/20840511
+      #   params:
+      #       icon: brand-strava
       # - identifier: zhihu
       #   name: Zhihu
       #   url: https://www.strava.com/athletes/20840511

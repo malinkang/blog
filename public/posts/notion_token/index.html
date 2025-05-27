@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="">
-<title></title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="之前为了满足自己的需求做了一个Notion的动态图标，最近有朋友刚好有类似的需求，就分享给他了。想着其他人可能有类似的需求，不如写一篇公众号分享给大家。\n所谓动态图标，就是在我们设置完成之后，不用修改图标的链接，会自动发生变化。比如将Notion图标设置为我写的https://notion-icon.malinkang.com/，每天打开会自动显示当日的日期。\n设置日期 https://notion-icon.malinkang.com/默认显示当日的日期。也可以在链接后面添加\n?date=2026-01-01来设置指定日期，比如：https://notion-icon.malinkang.com/?date=2026-01-01。日期可以自己按照格式随便写。\n设置类型 https://notion-icon.malinkang.com/支持多种类型。使用方法是在链接后面加上\n?type=类型。详细的类型如下表所示\n类型 效果 示例 说明 day https://notion-icon.malinkang.com/?type=day 当前时间的日期 week https://notion-icon.malinkang.com/?type=week 当前时间是一年中的第几周 month https://notion-icon.malinkang.com/?type=month 当前时间是一年中的第几个月 year https://notion-icon.malinkang.com/?type=year 当前时间的年份 text https://notion-icon.malinkang.com/?type=text&content=%E5%A5%BD 文字类型，可以自己设置icon上的字 pass https://notion-icon.malinkang.com/?type=pass&date=2026-01-01 这里的date是必填的，date指定的时间距离当前时间还有几天。 设置颜色 动态图标还支持多种颜色，默认是红色。使用方法是链接后面添加?color=pink。\n颜色 效果 示例 green https://notion-icon.malinkang.com/?type=pass&date=2026-01-01&color=green pink https://notion-icon.malinkang.com/?type=pass&date=2026-01-01&color=pink yellow https://notion-icon.malinkang.com/?type=pass&date=2026-01-01&color=yellow blue https://notion-icon.malinkang.com/?type=pass&date=2026-01-01&color=blue 这个动态图标，不仅可以使用在icon上，也可以用在封面上。以下是我设置成封面的效果。https://malinkang.notion.site/d34e3250832a4b5fb44054a8b364df2a?v=4b77a5dbe8034da0b99d81d3162e2af7&amp;pvs=74\n">
+<title>Notion动态图标使用</title>
 
 <link rel='canonical' href='http://localhost:1313/posts/notion_token/'>
 
-<link rel="stylesheet" href="/scss/style.min.d0a16b8285afbefdc07c79fbf6282161f02e29094d9cc49a298d4e2016d2afc7.css"><meta property='og:title' content="">
-<meta property='og:description' content="">
+<link rel="stylesheet" href="/scss/style.min.ec699b5a71cf5dcf4c0b64b0b47bfcdfa0e15276f4505101ff823b5f1efb4c0e.css"><meta property='og:title' content="Notion动态图标使用">
+<meta property='og:description' content="之前为了满足自己的需求做了一个Notion的动态图标，最近有朋友刚好有类似的需求，就分享给他了。想着其他人可能有类似的需求，不如写一篇公众号分享给大家。\n所谓动态图标，就是在我们设置完成之后，不用修改图标的链接，会自动发生变化。比如将Notion图标设置为我写的https://notion-icon.malinkang.com/，每天打开会自动显示当日的日期。\n设置日期 https://notion-icon.malinkang.com/默认显示当日的日期。也可以在链接后面添加\n?date=2026-01-01来设置指定日期，比如：https://notion-icon.malinkang.com/?date=2026-01-01。日期可以自己按照格式随便写。\n设置类型 https://notion-icon.malinkang.com/支持多种类型。使用方法是在链接后面加上\n?type=类型。详细的类型如下表所示\n类型 效果 示例 说明 day https://notion-icon.malinkang.com/?type=day 当前时间的日期 week https://notion-icon.malinkang.com/?type=week 当前时间是一年中的第几周 month https://notion-icon.malinkang.com/?type=month 当前时间是一年中的第几个月 year https://notion-icon.malinkang.com/?type=year 当前时间的年份 text https://notion-icon.malinkang.com/?type=text&content=%E5%A5%BD 文字类型，可以自己设置icon上的字 pass https://notion-icon.malinkang.com/?type=pass&date=2026-01-01 这里的date是必填的，date指定的时间距离当前时间还有几天。 设置颜色 动态图标还支持多种颜色，默认是红色。使用方法是链接后面添加?color=pink。\n颜色 效果 示例 green https://notion-icon.malinkang.com/?type=pass&date=2026-01-01&color=green pink https://notion-icon.malinkang.com/?type=pass&date=2026-01-01&color=pink yellow https://notion-icon.malinkang.com/?type=pass&date=2026-01-01&color=yellow blue https://notion-icon.malinkang.com/?type=pass&date=2026-01-01&color=blue 这个动态图标，不仅可以使用在icon上，也可以用在封面上。以下是我设置成封面的效果。https://malinkang.notion.site/d34e3250832a4b5fb44054a8b364df2a?v=4b77a5dbe8034da0b99d81d3162e2af7&amp;pvs=74\n">
 <meta property='og:url' content='http://localhost:1313/posts/notion_token/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Posts' />
-<meta name="twitter:title" content="">
-<meta name="twitter:description" content="">
+<meta property='og:type' content='article'><meta property='article:section' content='Posts' /><meta property='article:tag' content='Notion' /><meta property='article:published_time' content='2025-03-24T01:08:00&#43;00:00'/><meta property='article:modified_time' content='2025-03-24T01:08:00&#43;00:00'/><meta property='og:image' content='https://drive.malinkang.com/api/raw/?path=/Images/WechatIMG26.jpg' />
+<meta name="twitter:title" content="Notion动态图标使用">
+<meta name="twitter:description" content="之前为了满足自己的需求做了一个Notion的动态图标，最近有朋友刚好有类似的需求，就分享给他了。想着其他人可能有类似的需求，不如写一篇公众号分享给大家。\n所谓动态图标，就是在我们设置完成之后，不用修改图标的链接，会自动发生变化。比如将Notion图标设置为我写的https://notion-icon.malinkang.com/，每天打开会自动显示当日的日期。\n设置日期 https://notion-icon.malinkang.com/默认显示当日的日期。也可以在链接后面添加\n?date=2026-01-01来设置指定日期，比如：https://notion-icon.malinkang.com/?date=2026-01-01。日期可以自己按照格式随便写。\n设置类型 https://notion-icon.malinkang.com/支持多种类型。使用方法是在链接后面加上\n?type=类型。详细的类型如下表所示\n类型 效果 示例 说明 day https://notion-icon.malinkang.com/?type=day 当前时间的日期 week https://notion-icon.malinkang.com/?type=week 当前时间是一年中的第几周 month https://notion-icon.malinkang.com/?type=month 当前时间是一年中的第几个月 year https://notion-icon.malinkang.com/?type=year 当前时间的年份 text https://notion-icon.malinkang.com/?type=text&content=%E5%A5%BD 文字类型，可以自己设置icon上的字 pass https://notion-icon.malinkang.com/?type=pass&date=2026-01-01 这里的date是必填的，date指定的时间距离当前时间还有几天。 设置颜色 动态图标还支持多种颜色，默认是红色。使用方法是链接后面添加?color=pink。\n颜色 效果 示例 green https://notion-icon.malinkang.com/?type=pass&date=2026-01-01&color=green pink https://notion-icon.malinkang.com/?type=pass&date=2026-01-01&color=pink yellow https://notion-icon.malinkang.com/?type=pass&date=2026-01-01&color=yellow blue https://notion-icon.malinkang.com/?type=pass&date=2026-01-01&color=blue 这个动态图标，不仅可以使用在icon上，也可以用在封面上。以下是我设置成封面的效果。https://malinkang.notion.site/d34e3250832a4b5fb44054a8b364df2a?v=4b77a5dbe8034da0b99d81d3162e2af7&amp;pvs=74\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://drive.malinkang.com/api/raw/?path=/Images/WechatIMG26.jpg' />
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-G84J9N38RL"></script>
       <script>
         var doNotTrack = false;
@@ -72,7 +73,7 @@
     })();
 </script>
 <div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
-    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
         <span class="hamburger-box">
             <span class="hamburger-inner"></span>
         </span>
@@ -102,23 +103,9 @@
         
         <div class="site-meta">
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
-            <h2 class="site-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+            <h2 class="site-description"></h2>
         </div>
     </header><ol class="menu-social">
-            
-                <li>
-                    <a 
-                        href='https://space.bilibili.com/27440979'
-                        target="_blank"
-                        title="Bilibili"
-                        rel="me"
-                    >
-                        
-                        
-                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
-                        
-                    </a>
-                </li>
             
                 <li>
                     <a 
@@ -156,34 +143,6 @@
             
                 <li>
                     <a 
-                        href='https://www.instagram.com/malinkang'
-                        target="_blank"
-                        title="Instagram"
-                        rel="me"
-                    >
-                        
-                        
-                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-instagram"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 4a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" /><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M16.5 7.5l0 .01" /></svg>
-                        
-                    </a>
-                </li>
-            
-                <li>
-                    <a 
-                        href='https://www.strava.com/athletes/20840511'
-                        target="_blank"
-                        title="Strava"
-                        rel="me"
-                    >
-                        
-                        
-                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-strava"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 13l-5 -10l-5 10m6 0l4 8l4 -8" /></svg>
-                        
-                    </a>
-                </li>
-            
-                <li>
-                    <a 
                         href='https://t.me/malinkanglife'
                         target="_blank"
                         title="Telegram"
@@ -214,6 +173,8 @@
         
         
         
+        
+        
         <li >
             <a href='/' >
                 
@@ -229,9 +190,10 @@
 
 
                 
-                <span>Home</span>
+                <span>首页</span>
             </a>
         </li>
+        
         
         
         <li >
@@ -251,6 +213,7 @@
                 <span>关于</span>
             </a>
         </li>
+        
         
         
         <li >
@@ -273,6 +236,7 @@
         </li>
         
         
+        
         <li >
             <a href='/search/' >
                 
@@ -290,6 +254,7 @@
                 <span>Search</span>
             </a>
         </li>
+        
         
         
         <li >
@@ -331,7 +296,7 @@
 
 
 
-                        <span>Dark Mode</span>
+                        <span>暗色模式</span>
                     </li>
                 
             </ol>
@@ -339,18 +304,59 @@
     </ol>
 </aside>
 
-    
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#设置日期">设置日期</a></li>
+    <li><a href="#设置类型">设置类型</a></li>
+    <li><a href="#设置颜色">设置颜色</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
 
             <main class="main full-width">
-    <article class="main-article">
+    <article class="has-image main-article">
     <header class="article-header">
+        <div class="article-image">
+            <a href="/posts/notion_token/">
+                
+                    <img src="https://drive.malinkang.com/api/raw/?path=/Images/WechatIMG26.jpg" loading="lazy" alt="Featured image of post Notion动态图标使用" />
+                
+            </a>
+        </div>
+    
 
     <div class="article-details">
     
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/posts/notion_token/"></a>
+            <a href="/posts/notion_token/">Notion动态图标使用</a>
         </h2>
     
         
@@ -361,6 +367,19 @@
     
     
     <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Mar 24, 2025</time>
+            </div>
         
 
         
@@ -374,7 +393,7 @@
 
 
                 <time class="article-time--reading">
-                    0 minute read
+                    阅读时长: 1 分钟
                 </time>
             </div>
         
@@ -389,12 +408,216 @@
     <section class="article-content">
     
     
-    
+    <p>之前为了满足自己的需求做了一个Notion的动态图标，最近有朋友刚好有类似的需求，就分享给他了。想着其他人可能有类似的需求，不如写一篇公众号分享给大家。</p>
+<p>所谓动态图标，就是在我们设置完成之后，不用修改图标的链接，会自动发生变化。比如将Notion图标设置为我写的https://notion-icon.malinkang.com/，每天打开会自动显示当日的日期。</p>
+<p><img src="https://images.malinkang.com/2025/03/62833609c8c9af5f649a7d31a5b496a1.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="设置日期">设置日期
+</h2><p><a class="link" href="https://notion-icon.malinkang.com/"  target="_blank" rel="noopener"
+    >https://notion-icon.malinkang.com/</a>默认显示当日的日期。也可以在链接后面添加</p>
+<p>?date=2026-01-01来设置指定日期，比如：https://notion-icon.malinkang.com/?date=2026-01-01。日期可以自己按照格式随便写。</p>
+<p><img src="https://images.malinkang.com/2025/03/d1b3a59dda64f21a0106582891c996ea.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="设置类型">设置类型
+</h2><p><a class="link" href="https://notion-icon.malinkang.com/"  target="_blank" rel="noopener"
+    >https://notion-icon.malinkang.com/</a>支持多种类型。使用方法是在链接后面加上</p>
+<p>?type=类型。详细的类型如下表所示</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>类型</th>
+          <th>效果</th>
+          <th>示例</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>day</td>
+          <td><img src="https://notion-icon.malinkang.com/?type=day"
+	
+	
+	
+	loading="lazy"
+	
+	
+></td>
+          <td><a class="link" href="https://notion-icon.malinkang.com/?type=day"  target="_blank" rel="noopener"
+    >https://notion-icon.malinkang.com/?type=day</a></td>
+          <td>当前时间的日期</td>
+      </tr>
+      <tr>
+          <td>week</td>
+          <td><img src="https://notion-icon.malinkang.com/?type=week"
+	
+	
+	
+	loading="lazy"
+	
+	
+></td>
+          <td><a class="link" href="https://notion-icon.malinkang.com/?type=week"  target="_blank" rel="noopener"
+    >https://notion-icon.malinkang.com/?type=week</a></td>
+          <td>当前时间是一年中的第几周</td>
+      </tr>
+      <tr>
+          <td>month</td>
+          <td><img src="https://notion-icon.malinkang.com/?type=month"
+	
+	
+	
+	loading="lazy"
+	
+	
+></td>
+          <td><a class="link" href="https://notion-icon.malinkang.com/?type=month"  target="_blank" rel="noopener"
+    >https://notion-icon.malinkang.com/?type=month</a></td>
+          <td>当前时间是一年中的第几个月</td>
+      </tr>
+      <tr>
+          <td>year</td>
+          <td><img src="https://notion-icon.malinkang.com/?type=year"
+	
+	
+	
+	loading="lazy"
+	
+	
+></td>
+          <td><a class="link" href="https://notion-icon.malinkang.com/?type=year"  target="_blank" rel="noopener"
+    >https://notion-icon.malinkang.com/?type=year</a></td>
+          <td>当前时间的年份</td>
+      </tr>
+      <tr>
+          <td>text</td>
+          <td><img src="https://notion-icon.malinkang.com/?type=text&amp;content=%E5%A5%BD"
+	
+	
+	
+	loading="lazy"
+	
+	
+></td>
+          <td><a class="link" href="https://notion-icon.malinkang.com/?type=text&amp;content=%E5%A5%BD"  target="_blank" rel="noopener"
+    >https://notion-icon.malinkang.com/?type=text&content=%E5%A5%BD</a></td>
+          <td>文字类型，可以自己设置icon上的字</td>
+      </tr>
+      <tr>
+          <td>pass</td>
+          <td><img src="https://notion-icon.malinkang.com/?type=pass&amp;date=2026-01-01"
+	
+	
+	
+	loading="lazy"
+	
+	
+></td>
+          <td><a class="link" href="https://notion-icon.malinkang.com/?type=pass&amp;date=2026-01-01"  target="_blank" rel="noopener"
+    >https://notion-icon.malinkang.com/?type=pass&date=2026-01-01</a></td>
+          <td>这里的date是必填的，date指定的时间距离当前时间还有几天。</td>
+      </tr>
+  </tbody>
+</table></div>
+<h2 id="设置颜色">设置颜色
+</h2><p>动态图标还支持多种颜色，默认是红色。使用方法是链接后面添加?color=pink。</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>颜色</th>
+          <th>效果</th>
+          <th>示例</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>green</td>
+          <td><img src="https://notion-icon.malinkang.com/?type=pass&amp;date=2026-01-01&amp;color=green"
+	
+	
+	
+	loading="lazy"
+	
+	
+></td>
+          <td><a class="link" href="https://notion-icon.malinkang.com/?type=pass&amp;date=2026-01-01&amp;color=green"  target="_blank" rel="noopener"
+    >https://notion-icon.malinkang.com/?type=pass&date=2026-01-01&color=green</a></td>
+      </tr>
+      <tr>
+          <td>pink</td>
+          <td><img src="https://notion-icon.malinkang.com/?type=pass&amp;date=2026-01-01&amp;color=pink"
+	
+	
+	
+	loading="lazy"
+	
+	
+></td>
+          <td><a class="link" href="https://notion-icon.malinkang.com/?type=pass&amp;date=2026-01-01&amp;color=pink"  target="_blank" rel="noopener"
+    >https://notion-icon.malinkang.com/?type=pass&date=2026-01-01&color=pink</a></td>
+      </tr>
+      <tr>
+          <td>yellow</td>
+          <td><img src="https://notion-icon.malinkang.com/?type=pass&amp;date=2026-01-01&amp;color=yellow"
+	
+	
+	
+	loading="lazy"
+	
+	
+></td>
+          <td><a class="link" href="https://notion-icon.malinkang.com/?type=pass&amp;date=2026-01-01&amp;color=yellow"  target="_blank" rel="noopener"
+    >https://notion-icon.malinkang.com/?type=pass&date=2026-01-01&color=yellow</a></td>
+      </tr>
+      <tr>
+          <td>blue</td>
+          <td><img src="https://notion-icon.malinkang.com/?type=pass&amp;date=2026-01-01&amp;color=blue"
+	
+	
+	
+	loading="lazy"
+	
+	
+></td>
+          <td><a class="link" href="https://notion-icon.malinkang.com/?type=pass&amp;date=2026-01-01&amp;color=blue"  target="_blank" rel="noopener"
+    >https://notion-icon.malinkang.com/?type=pass&date=2026-01-01&color=blue</a></td>
+      </tr>
+  </tbody>
+</table></div>
+<p>这个动态图标，不仅可以使用在icon上，也可以用在封面上。以下是我设置成封面的效果。https://malinkang.notion.site/d34e3250832a4b5fb44054a8b364df2a?v=4b77a5dbe8034da0b99d81d3162e2af7&amp;pvs=74</p>
+<p><img src="https://images.malinkang.com/2025/03/7e7747862cb9f7bb43d39209450a2777.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>以上就是教程的全部内容，使用中有什么问题或者建议欢迎给我留言。</p>
+<p>另外打一波广告，有需要Notion教育plus的可以添加我的微信malinkang进行购买。</p>
+
 </section>
 
 
     <footer class="article-footer">
     
+    <section class="article-tags">
+        
+            <a href="/tags/notion/">Notion</a>
+        
+    </section>
+
 
     
     <section class="article-copyright">
@@ -434,6 +657,7 @@
     data-input-position="top"
     data-theme="light"
     data-lang="en"
+    data-loading=""
     crossorigin="anonymous"
     async
 ></script>
@@ -479,12 +703,12 @@
         
             2013 - 
         
-        2024 malinkang
+        2025 malinkang
     </section>
     
     <section class="powerby">
-        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
 <script>
@@ -581,7 +805,7 @@
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.8bfdb33b7f70320be44567599957ad8d2f7a6416f8672721494636aa1d83573a.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');
@@ -592,6 +816,110 @@
 
         document.head.appendChild(customFont);
     }());
+</script>
+
+<a href="#" id="back-to-top" title="返回顶部"></a>
+
+
+<style>
+  #back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 55px;
+    width: 55px;
+    height: 55px;
+    border-radius: 7px;
+    background-color: rgba(64, 158, 255, 0.5);
+    box-shadow: var(--shadow-l2);
+    font-size: 30px;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+  }
+
+  #back-to-top:before {
+    content: ' ';
+    display: inline-block;
+    position: relative;
+    top: 0;
+    transform: rotate(135deg);
+    height: 10px;
+    width: 10px;
+    border-width: 0 0 2px 2px;
+    border-color: var(--back-to-top-color);
+    border-style: solid;
+  }
+
+  #back-to-top:hover:before {
+    border-color: #2674e0;
+  }
+
+   
+  @media screen and (max-width: 768px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      font-size: 10px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1024px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 40px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1280px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 55px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1536px) {
+    #back-to-top {
+      visibility: hidden;
+    }
+  }
+</style>
+
+
+<script>
+  function backToTop() {
+    document.documentElement.scrollIntoView({
+      behavior: 'smooth',
+    })
+  }
+
+  window.onload = function () {
+    let scrollTop =
+      this.document.documentElement.scrollTop || this.document.body.scrollTop
+    let totopBtn = this.document.getElementById('back-to-top')
+    if (scrollTop > 0) {
+      totopBtn.style.display = 'inline'
+    } else {
+      totopBtn.style.display = 'none'
+    }
+  }
+
+  window.onscroll = function () {
+    let scrollTop =
+      this.document.documentElement.scrollTop || this.document.body.scrollTop
+    let totopBtn = this.document.getElementById('back-to-top')
+    if (scrollTop < 200) {
+      totopBtn.style.display = 'none'
+    } else {
+      totopBtn.style.display = 'inline'
+      totopBtn.addEventListener('click', backToTop, false)
+    }
+  }
 </script>
 
     </body>

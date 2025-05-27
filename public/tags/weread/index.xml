@@ -118,7 +118,7 @@
         <guid>http://localhost:1313/posts/weread2notion-pro/</guid>
         <description>&lt;img src="https://images.malinkang.com/2024/03/19dd1580dd991c7985abea7724c87043.png" alt="Featured image of post WeRead2NotionPro使用文档" /&gt;&lt;style type=&#34;text/css&#34;&gt;.notice{--root-color:#444;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#c33;--warning-content:#fee;--info-title:#fb7;--info-content:#fec;--note-title:#6be;--note-content:#e7f2fa;--tip-title:#5a5;--tip-content:#efe}@media (prefers-color-scheme:dark){.notice{--root-color:#ddd;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#800;--warning-content:#400;--info-title:#a50;--info-content:#420;--note-title:#069;--note-content:#023;--tip-title:#363;--tip-content:#121}}body.dark .notice{--root-color:#ddd;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#800;--warning-content:#400;--info-title:#a50;--info-content:#420;--note-title:#069;--note-content:#023;--tip-title:#363;--tip-content:#121}.notice{padding:18px;line-height:24px;margin-bottom:24px;border-radius:4px;color:var(--root-color);background:var(--root-background)}.notice p:last-child{margin-bottom:0}.notice-title{margin:-18px -18px 12px;padding:4px 18px;border-radius:4px 4px 0 0;font-weight:700;color:var(--title-color);background:var(--title-background)}.notice.warning .notice-title{background:var(--warning-title)}.notice.warning{background:var(--warning-content)}.notice.info .notice-title{background:var(--info-title)}.notice.info{background:var(--info-content)}.notice.note .notice-title{background:var(--note-title)}.notice.note{background:var(--note-content)}.notice.tip .notice-title{background:var(--tip-title)}.notice.tip{background:var(--tip-content)}.icon-notice{display:inline-flex;align-self:center;margin-right:8px}.icon-notice img,.icon-notice svg{height:1em;width:1em;fill:currentColor}.icon-notice img,.icon-notice.baseline svg{top:.125em;position:relative}&lt;/style&gt;
 &lt;div&gt;&lt;svg width=&#34;0&#34; height=&#34;0&#34; display=&#34;none&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;&lt;symbol id=&#34;tip-notice&#34; viewBox=&#34;0 0 512 512&#34; preserveAspectRatio=&#34;xMidYMid meet&#34;&gt;&lt;path d=&#34;M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z&#34;/&gt;&lt;/symbol&gt;&lt;symbol id=&#34;note-notice&#34; viewBox=&#34;0 0 512 512&#34; preserveAspectRatio=&#34;xMidYMid meet&#34;&gt;&lt;path d=&#34;M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z&#34;/&gt;&lt;/symbol&gt;&lt;symbol id=&#34;warning-notice&#34; viewBox=&#34;0 0 576 512&#34; preserveAspectRatio=&#34;xMidYMid meet&#34;&gt;&lt;path d=&#34;M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z&#34;/&gt;&lt;/symbol&gt;&lt;symbol id=&#34;info-notice&#34; viewBox=&#34;0 0 512 512&#34; preserveAspectRatio=&#34;xMidYMid meet&#34;&gt;&lt;path d=&#34;M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z&#34;/&gt;&lt;/symbol&gt;&lt;/svg&gt;&lt;/div&gt;&lt;div class=&#34;notice warning&#34; &gt;
-&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#warning-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;Warning&lt;/p&gt;&lt;p&gt;Weread2Notion和Weread2Notion-Pro是两个不同的项目，模板也不相同，切勿用错模板。&lt;/p&gt;
+&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#warning-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;警告&lt;/p&gt;&lt;p&gt;Weread2Notion和Weread2Notion-Pro是两个不同的项目，模板也不相同，切勿用错模板。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Weread2Notion教程：&lt;a class=&#34;link&#34; href=&#34;https://malinkang.com/posts/weread2notion/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://malinkang.com/posts/weread2notion/&lt;/a&gt;&lt;/li&gt;
@@ -164,7 +164,7 @@
 &lt;li&gt;按F12进入开发者模式，依次点网络-&amp;gt;文档，然后选中weread.qq.com，下拉找到Cookie，复制Cookie值&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class=&#34;notice tip&#34; &gt;
-&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#tip-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;Tip&lt;/p&gt;&lt;p&gt;如果没有内容显示，请刷新下浏览器。&lt;/p&gt;
+&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#tip-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;提示&lt;/p&gt;&lt;p&gt;如果没有内容显示，请刷新下浏览器。&lt;/p&gt;
 &lt;p&gt;建议使用Chrome浏览器，有的小伙伴使用QQ浏览器拿到的Cookie一直不能用。&lt;/p&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/2a26e0b6d2a5a3b36711e91037b837f3.jpg&#34;
@@ -253,7 +253,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;div class=&#34;notice warning&#34; &gt;
-&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#warning-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;Warning&lt;/p&gt;&lt;p&gt;注意这三个变量名一定要填写正确，一个字母都不能错，否则会同步失败。&lt;/p&gt;&lt;/div&gt;
+&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#warning-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;警告&lt;/p&gt;&lt;p&gt;注意这三个变量名一定要填写正确，一个字母都不能错，否则会同步失败。&lt;/p&gt;&lt;/div&gt;
 
 &lt;h3 id=&#34;运行&#34;&gt;运行
 &lt;/h3&gt;&lt;p&gt;上面配置完成之后，打开你Fork的项目，依次点击Actions-&amp;gt;weread note sync-&amp;gt; Run workflow，就可以运行了。&lt;/p&gt;
@@ -287,7 +287,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;div class=&#34;notice warning&#34; &gt;
-&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#warning-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;Warning&lt;/p&gt;&lt;p&gt;运行成功，只代表程序没有出错，不代表就一定同步数据，比如微信Cookie过期就不会报错。所以如果运行成功，Notion中没有数据的话，也可以通过下面第2步来查看日志&lt;/p&gt;&lt;/div&gt;
+&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#warning-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;警告&lt;/p&gt;&lt;p&gt;运行成功，只代表程序没有出错，不代表就一定同步数据，比如微信Cookie过期就不会报错。所以如果运行成功，Notion中没有数据的话，也可以通过下面第2步来查看日志&lt;/p&gt;&lt;/div&gt;
 
 &lt;p&gt;2.可以点进去查日志，来自行排查问题。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/34089868d5569f92c9138ade3ba99428.jpg&#34;
@@ -331,50 +331,50 @@
 &lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;变量名&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;当前数据库的名字&lt;/th&gt;
+          &lt;th&gt;变量名&lt;/th&gt;
+          &lt;th&gt;当前数据库的名字&lt;/th&gt;
       &lt;/tr&gt;
   &lt;/thead&gt;
   &lt;tbody&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;BOOK_DATABASE_NAME&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;书架&lt;/td&gt;
+          &lt;td&gt;BOOK_DATABASE_NAME&lt;/td&gt;
+          &lt;td&gt;书架&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;REVIEW_DATABASE_NAME&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;笔记&lt;/td&gt;
+          &lt;td&gt;REVIEW_DATABASE_NAME&lt;/td&gt;
+          &lt;td&gt;笔记&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;BOOKMARK_DATABASE_NAME&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;划线&lt;/td&gt;
+          &lt;td&gt;BOOKMARK_DATABASE_NAME&lt;/td&gt;
+          &lt;td&gt;划线&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;DAY_DATABASE_NAME&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;日&lt;/td&gt;
+          &lt;td&gt;DAY_DATABASE_NAME&lt;/td&gt;
+          &lt;td&gt;日&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;WEEK_DATABASE_NAME&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;周&lt;/td&gt;
+          &lt;td&gt;WEEK_DATABASE_NAME&lt;/td&gt;
+          &lt;td&gt;周&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;MONTH_DATABASE_NAME&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;月&lt;/td&gt;
+          &lt;td&gt;MONTH_DATABASE_NAME&lt;/td&gt;
+          &lt;td&gt;月&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;YEAR_DATABASE_NAME&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;年&lt;/td&gt;
+          &lt;td&gt;YEAR_DATABASE_NAME&lt;/td&gt;
+          &lt;td&gt;年&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;CATEGORY_DATABASE_NAME&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;分类&lt;/td&gt;
+          &lt;td&gt;CATEGORY_DATABASE_NAME&lt;/td&gt;
+          &lt;td&gt;分类&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;AUTHOR_DATABASE_NAME&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;作者&lt;/td&gt;
+          &lt;td&gt;AUTHOR_DATABASE_NAME&lt;/td&gt;
+          &lt;td&gt;作者&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;CHAPTER_DATABASE_NAME&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;章节&lt;/td&gt;
+          &lt;td&gt;CHAPTER_DATABASE_NAME&lt;/td&gt;
+          &lt;td&gt;章节&lt;/td&gt;
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
@@ -532,34 +532,34 @@
 &lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;变量名&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;变量说明&lt;/th&gt;
+          &lt;th&gt;变量名&lt;/th&gt;
+          &lt;th&gt;变量说明&lt;/th&gt;
       &lt;/tr&gt;
   &lt;/thead&gt;
   &lt;tbody&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;BACKGROUND_COLOR&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;背景颜色&lt;/td&gt;
+          &lt;td&gt;BACKGROUND_COLOR&lt;/td&gt;
+          &lt;td&gt;背景颜色&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;DOM_COLOR&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;未填充的色块&lt;/td&gt;
+          &lt;td&gt;DOM_COLOR&lt;/td&gt;
+          &lt;td&gt;未填充的色块&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;TRACK_COLOR&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;一级颜色&lt;/td&gt;
+          &lt;td&gt;TRACK_COLOR&lt;/td&gt;
+          &lt;td&gt;一级颜色&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;SPECIAL_COLOR&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;二级颜色&lt;/td&gt;
+          &lt;td&gt;SPECIAL_COLOR&lt;/td&gt;
+          &lt;td&gt;二级颜色&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;SPECIAL_COLOR2&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;三级级颜色&lt;/td&gt;
+          &lt;td&gt;SPECIAL_COLOR2&lt;/td&gt;
+          &lt;td&gt;三级级颜色&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;TEXT_COLOR&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;文字颜色&lt;/td&gt;
+          &lt;td&gt;TEXT_COLOR&lt;/td&gt;
+          &lt;td&gt;文字颜色&lt;/td&gt;
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
@@ -607,6 +607,165 @@
         </item>
         <item>
         <title>WeRead2Notion使用文档</title>
+        <link>http://localhost:1313/posts/todo2notion/</link>
+        <pubDate>Sun, 10 Sep 2023 15:28:05 +0800</pubDate>
+        
+        <guid>http://localhost:1313/posts/todo2notion/</guid>
+        <description>&lt;img src="https://images.malinkang.com/2024/03/e1bc45eb87ec93a249edf163a9115874.png" alt="Featured image of post WeRead2Notion使用文档" /&gt;&lt;p&gt;我之前最开始使用奇妙清单，后来奇妙清单被微软收购了，就开始使用微软Todo，用了这么多年，一直没有换过。因为它足够简洁并且免费，而且开放API，我也一直是使用N8N来将微软Todo同步到Notion了。&lt;/p&gt;
+&lt;p&gt;因为一直有人在公众号后台问滴答清单能否同步到Notion，所以我在6月份就开发了滴答清单同步到Notion。但是为什么迟迟没发，因为有两个问题一直困扰着我，第一个是滴答清单和Notion笔记如何合并，第二个问题就是滴答清单笔记里的图片是私有的，无法在Notion中显示，后面思考了好久也算是找到了虽然不算完美的解决方案。&lt;/p&gt;
+&lt;p&gt;最开始设计模板的时候，我是把Todo和番茄钟和习惯打卡放在一个模板里，后面又觉得太重，后面又拆分成3个功能。这样时间就来到了11月，原本计划11月6号发，但是以为我11月4号跑步摔了一跤，住院了，所以文档也没来写。然后在11月6号的时候看到滴答清单官方计划12月支持Notion的双向同步，然后我一直在纠结还要不要发。就这样又纠结了两周，还是决定发出来。注意这个项目只支持滴答清单同步到Notion，不支持Notion同步到滴答清单。支持子任务。&lt;/p&gt;
+&lt;h2 id=&#34;fork工程&#34;&gt;Fork工程
+&lt;/h2&gt;&lt;p&gt;打开https://github.com/malinkang/todo2notion，点击右上角的Fork（顺便点个star谢谢）&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/11/b9102e7046edcabf864041b7848903e9.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;权限&#34;&gt;权限
+&lt;/h2&gt;&lt;p&gt;确保你打开了读写权限。&lt;/p&gt;
+&lt;p&gt;依次选择Settings-&amp;gt;Actions-&amp;gt;General，然后下拉，找到Workflow permissions，如果没有选中Read and write permissions，请选中，然后点下面的save保存。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/11/a6fff291ba6bc65e7a57409850d91d5e.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/11/4847b60276ac280e612695c1c5208eb5.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;授权&#34;&gt;授权
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;浏览器打开 &lt;a class=&#34;link&#34; href=&#34;https://www.notion.so/install-integration?response_type=code&amp;amp;client_id=85564f7a-1b41-49bf-a43a-41452c57cf83&amp;amp;redirect_uri=https%3A%2F%2Fnotion-auth.malinkang.com%2Ftodo-oauth-callback&amp;amp;owner=user&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.notion.so/install-integration?response_type=code&amp;client_id=85564f7a-1b41-49bf-a43a-41452c57cf83&amp;redirect_uri=https%3A%2F%2Fnotion-auth.malinkang.com%2Ftodo-oauth-callback&amp;owner=user&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;然后点击下一步-&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/11/c106882464221aad45c91aada405cdde.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;选择使用 开发人员提供的模板，然后点击允许访问。这一步会自动复制模板到你的Notion里。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/11/2f18aaa4fb7889930922db19f6077985.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;点击复制按钮，复制NOTION_TOKEN和NOTION_PAGE的值。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/42c04cb1e6ab95eed832f33462c96831.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;复制&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;在github的secrets中添加变量&#34;&gt;在Github的Secrets中添加变量
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;打开你fork的工程，点击Settings-&amp;gt;Secrets and variables-&amp;gt;New repository secret&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/11/5b73a15815fbdb834ab974a9ec83527b.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;Name输入NOTION_TOKEN，Secret输入框中填入你授权获取的NOTION_TOKEN，然后点击Add secret&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/11/904b5035423274c09fb4fd18ca6551bc.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;同理，继续点击New repository secret，增加变量NOTION_PAGE，Secret输入框中填入你授权获取的NOTION_TOKEN，然后点击Add secret。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;设置&#34;&gt;设置
+&lt;/h2&gt;&lt;p&gt;打开你复制的Notion模板，找到设置数据库，打开。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/11/4bfce4347eeb9ad5172e24402fd54536.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;输入滴答清单的账号和密码（如果Todo页面设置为公开的话，记得将设置数据库设置为私有）。并选择是否将图片上传到Github。（注意上传到Github可以被别人访问到，如果图片有个人隐私，请勿勾选此选项）。&lt;/p&gt;
+&lt;h2 id=&#34;运行&#34;&gt;运行
+&lt;/h2&gt;&lt;p&gt;上面配置完成之后，打开你Fork的项目，依次点击Actions-&amp;gt;todo sync-&amp;gt; Run workflow，就可以运行了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/11/9aebe3ff1a22c841eb4bb8bddea2d661.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;之后会每3个小时更新一次。&lt;/p&gt;
+&lt;h2 id=&#34;笔记&#34;&gt;笔记
+&lt;/h2&gt;&lt;p&gt;每次运行之后，滴答清单里的笔记会被同步到Todo所在的页面里。如果Todo被修改笔记也会被删除并重建一个页面，所以不要直接在当前Todo页面下做笔记。如果需要额外在Notion中增加笔记，请在笔记数据库里添加笔记，并将笔记关联到Todo上，每次同步时会自动将关联的笔记复制到Todo所在的页面里。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/11/e3e25d9d22562c4df59ce91950e40d91.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;以上，就是教程的全部内容。有什么问题或者疑问请评论区留言或者加群交流。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/11/f9b48967c2d478866be86f4588ca447d.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;如果二维码失效可以添加我的个人微信，我来邀请你入群。当然你想交个朋友，也可以加我微信。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/10/2a44bb2cdac0cbced732f09e15126c70.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;如果你觉得文章对您有帮助，请捐赠支持一下。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>WeRead2Notion使用文档</title>
         <link>http://localhost:1313/posts/weread2notion/</link>
         <pubDate>Sun, 10 Sep 2023 15:28:05 +0800</pubDate>
         
@@ -615,7 +774,7 @@
     &gt;WeRead2Notion-Pro&lt;/a&gt;。&lt;/p&gt;
 &lt;style type=&#34;text/css&#34;&gt;.notice{--root-color:#444;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#c33;--warning-content:#fee;--info-title:#fb7;--info-content:#fec;--note-title:#6be;--note-content:#e7f2fa;--tip-title:#5a5;--tip-content:#efe}@media (prefers-color-scheme:dark){.notice{--root-color:#ddd;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#800;--warning-content:#400;--info-title:#a50;--info-content:#420;--note-title:#069;--note-content:#023;--tip-title:#363;--tip-content:#121}}body.dark .notice{--root-color:#ddd;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#800;--warning-content:#400;--info-title:#a50;--info-content:#420;--note-title:#069;--note-content:#023;--tip-title:#363;--tip-content:#121}.notice{padding:18px;line-height:24px;margin-bottom:24px;border-radius:4px;color:var(--root-color);background:var(--root-background)}.notice p:last-child{margin-bottom:0}.notice-title{margin:-18px -18px 12px;padding:4px 18px;border-radius:4px 4px 0 0;font-weight:700;color:var(--title-color);background:var(--title-background)}.notice.warning .notice-title{background:var(--warning-title)}.notice.warning{background:var(--warning-content)}.notice.info .notice-title{background:var(--info-title)}.notice.info{background:var(--info-content)}.notice.note .notice-title{background:var(--note-title)}.notice.note{background:var(--note-content)}.notice.tip .notice-title{background:var(--tip-title)}.notice.tip{background:var(--tip-content)}.icon-notice{display:inline-flex;align-self:center;margin-right:8px}.icon-notice img,.icon-notice svg{height:1em;width:1em;fill:currentColor}.icon-notice img,.icon-notice.baseline svg{top:.125em;position:relative}&lt;/style&gt;
 &lt;div&gt;&lt;svg width=&#34;0&#34; height=&#34;0&#34; display=&#34;none&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;&lt;symbol id=&#34;tip-notice&#34; viewBox=&#34;0 0 512 512&#34; preserveAspectRatio=&#34;xMidYMid meet&#34;&gt;&lt;path d=&#34;M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z&#34;/&gt;&lt;/symbol&gt;&lt;symbol id=&#34;note-notice&#34; viewBox=&#34;0 0 512 512&#34; preserveAspectRatio=&#34;xMidYMid meet&#34;&gt;&lt;path d=&#34;M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z&#34;/&gt;&lt;/symbol&gt;&lt;symbol id=&#34;warning-notice&#34; viewBox=&#34;0 0 576 512&#34; preserveAspectRatio=&#34;xMidYMid meet&#34;&gt;&lt;path d=&#34;M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z&#34;/&gt;&lt;/symbol&gt;&lt;symbol id=&#34;info-notice&#34; viewBox=&#34;0 0 512 512&#34; preserveAspectRatio=&#34;xMidYMid meet&#34;&gt;&lt;path d=&#34;M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z&#34;/&gt;&lt;/symbol&gt;&lt;/svg&gt;&lt;/div&gt;&lt;div class=&#34;notice warning&#34; &gt;
-&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#warning-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;Warning&lt;/p&gt;&lt;p&gt;Weread2Notion和Weread2Notion-Pro是两个不同的项目，模板也不相同，切勿用错模板。&lt;/p&gt;
+&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#warning-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;警告&lt;/p&gt;&lt;p&gt;Weread2Notion和Weread2Notion-Pro是两个不同的项目，模板也不相同，切勿用错模板。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Weread2Notion-Pro教程：&lt;a class=&#34;link&#34; href=&#34;https://malinkang.com/posts/weread2notion-pro/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://malinkang.com/posts/weread2notion-pro/&lt;/a&gt;&lt;/li&gt;
@@ -672,7 +831,7 @@
 &lt;li&gt;按F12进入开发者模式，依次点网络-&amp;gt;文档，然后选中weread.qq.com，下拉找到Cookie，复制Cookie值&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class=&#34;notice tip&#34; &gt;
-&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#tip-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;Tip&lt;/p&gt;&lt;p&gt;如果没有内容显示，请刷新下浏览器。&lt;/p&gt;
+&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#tip-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;提示&lt;/p&gt;&lt;p&gt;如果没有内容显示，请刷新下浏览器。&lt;/p&gt;
 &lt;p&gt;建议使用Chrome浏览器，有的小伙伴使用QQ浏览器拿到的Cookie一直不能用。&lt;/p&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/2a26e0b6d2a5a3b36711e91037b837f3.jpg&#34;
@@ -763,7 +922,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;div class=&#34;notice warning&#34; &gt;
-&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#warning-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;Warning&lt;/p&gt;&lt;p&gt;注意这三个变量名一定要填写正确，一个字母都不能错，否则会同步失败。&lt;/p&gt;&lt;/div&gt;
+&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#warning-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;警告&lt;/p&gt;&lt;p&gt;注意这三个变量名一定要填写正确，一个字母都不能错，否则会同步失败。&lt;/p&gt;&lt;/div&gt;
 
 &lt;h3 id=&#34;运行&#34;&gt;运行
 &lt;/h3&gt;&lt;p&gt;上面配置完成之后，打开你Fork的项目，依次点击Actions-&amp;gt;weread sync-&amp;gt; Run workflow，就可以运行了。&lt;/p&gt;
@@ -788,7 +947,7 @@
 	
 &gt;&lt;/p&gt;
 &lt;div class=&#34;notice warning&#34; &gt;
-&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#warning-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;Warning&lt;/p&gt;&lt;p&gt;运行成功，只代表程序没有出错，不代表就一定同步数据，比如微信Cookie过期就不会报错。所以如果运行成功，Notion中没有数据的话，也可以通过下面第2步来查看日志&lt;/p&gt;&lt;/div&gt;
+&lt;p class=&#34;first notice-title&#34;&gt;&lt;span class=&#34;icon-notice baseline&#34;&gt;&lt;svg&gt;&lt;use href=&#34;#warning-notice&#34;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;警告&lt;/p&gt;&lt;p&gt;运行成功，只代表程序没有出错，不代表就一定同步数据，比如微信Cookie过期就不会报错。所以如果运行成功，Notion中没有数据的话，也可以通过下面第2步来查看日志&lt;/p&gt;&lt;/div&gt;
 
 &lt;p&gt;2.可以点进去查日志，来自行排查问题。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://images.malinkang.com/2024/03/34089868d5569f92c9138ade3ba99428.jpg&#34;
