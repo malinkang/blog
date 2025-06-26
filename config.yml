@@ -178,43 +178,75 @@ menu:
       - identifier: github
         name: GitHub
         url: https://github.com/malinkang
+        weight: 1
         params:
             icon: brand-github
-      # - identifier: x
-      #   name: X
-      #   url: https://x.com/malinkang
-      #   params:
-      #       icon: brand-x
-      # - identifier: douban
-      #   name: Douban
-      #   url: https://www.douban.com/people/malinkang/
-      #   params:
-      #       icon: brand-douban
-      # - identifier: bilibili
-      #   name: Bilibili
-      #   url: https://space.bilibili.com/27440979
-      #   params:
-      #       icon: brand-bilibili      
-      # - identifier: telegram
-      #   name: Telegram
-      #   url: https://t.me/malinkanglife
-      #   params:
-      #       icon: brand-telegram
-      # - identifier: instagram
-      #   name: Instagram
-      #   url: https://www.instagram.com/malinkang
-      #   params:
-      #       icon: brand-instagram      
-      # - identifier: strava
-      #   name: Strava
-      #   url: https://www.strava.com/athletes/20840511
-      #   params:
-      #       icon: brand-strava
-      # - identifier: zhihu
-      #   name: Zhihu
-      #   url: https://www.strava.com/athletes/20840511
-      #   params:
-      #       icon: brand-zhihu
+      - identifier: x
+        name: X
+        url: https://x.com/malinkang
+        weight: 2
+        params:
+            icon: brand-x
+      - identifier: weibo
+        name: 微博
+        url: https://www.weibo.com/malinkang
+        weight: 4
+        params:
+            icon: brand-weibo
+      - identifier: douban
+        name: 豆瓣
+        url: https://www.douban.com/people/malinkang/
+        weight: 8
+        params:
+            icon: brand-douban
+      - identifier: bilibili
+        name: Bilibili
+        url: https://space.bilibili.com/27440979
+        weight: 7
+        params:
+            icon: brand-bilibili      
+      - identifier: telegram
+        name: Telegram
+        weight: 3
+        url: https://t.me/malinkang
+        params:
+            icon: brand-telegram
+      - identifier: instagram
+        name: Instagram
+        url: https://www.instagram.com/malinkang
+        weight: 5
+        params:
+            icon: brand-instagram      
+      - identifier: mastodon
+        name: Mastodon
+        url: https://mastodon.social/@malinkang
+        weight: 6
+        params:
+            icon: brand-mastodon   
+      - identifier: strava
+        name: Strava
+        url: https://www.strava.com/athletes/20840511
+        weight: 10
+        params:
+            icon: brand-strava
+      - identifier: zhihu
+        name: 知乎
+        url: https://www.strava.com/athletes/20840511
+        weight: 9
+        params:
+            icon: brand-zhihu      
+      - identifier: juejin
+        name: 掘金
+        url: https://juejin.cn/user/3051900006833694/
+        weight: 11
+        params:
+            icon: brand-juejin
+      - identifier: rss
+        name: Rss
+        url: index.xml
+        weight: 12
+        params:
+            icon: rss
 
 related:
     includeNewer: true

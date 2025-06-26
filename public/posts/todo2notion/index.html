@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='http://localhost:1313/posts/todo2notion/'>
 
-<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="WeRead2Notion使用文档">
+<link rel="stylesheet" href="/scss/style.min.d8670c5d824e2c2f18c7a056928251a2d6b901347acafb0878d41fe42d2ca33c.css"><meta property='og:title' content="WeRead2Notion使用文档">
 <meta property='og:description' content="我之前最开始使用奇妙清单，后来奇妙清单被微软收购了，就开始使用微软Todo，用了这么多年，一直没有换过。因为它足够简洁并且免费，而且开放API，我也一直是使用N8N来将微软Todo同步到Notion了。\n因为一直有人在公众号后台问滴答清单能否同步到Notion，所以我在6月份就开发了滴答清单同步到Notion。但是为什么迟迟没发，因为有两个问题一直困扰着我，第一个是滴答清单和Notion笔记如何合并，第二个问题就是滴答清单笔记里的图片是私有的，无法在Notion中显示，后面思考了好久也算是找到了虽然不算完美的解决方案。\n最开始设计模板的时候，我是把Todo和番茄钟和习惯打卡放在一个模板里，后面又觉得太重，后面又拆分成3个功能。这样时间就来到了11月，原本计划11月6号发，但是以为我11月4号跑步摔了一跤，住院了，所以文档也没来写。然后在11月6号的时候看到滴答清单官方计划12月支持Notion的双向同步，然后我一直在纠结还要不要发。就这样又纠结了两周，还是决定发出来。注意这个项目只支持滴答清单同步到Notion，不支持Notion同步到滴答清单。支持子任务。\nFork工程 打开https://github.com/malinkang/todo2notion，点击右上角的Fork（顺便点个star谢谢）\n权限 确保你打开了读写权限。\n依次选择Settings-&gt;Actions-&gt;General，然后下拉，找到Workflow permissions，如果没有选中Read and write permissions，请选中，然后点下面的save保存。\n授权 浏览器打开 https://www.notion.so/install-integration?response_type=code&client_id=85564f7a-1b41-49bf-a43a-41452c57cf83&redirect_uri=https%3A%2F%2Fnotion-auth.malinkang.com%2Ftodo-oauth-callback&owner=user\n然后点击下一步-\n选择使用 开发人员提供的模板，然后点击允许访问。这一步会自动复制模板到你的Notion里。 点击复制按钮，复制NOTION_TOKEN和NOTION_PAGE的值。 在Github的Secrets中添加变量 打开你fork的工程，点击Settings-&gt;Secrets and variables-&gt;New repository secret Name输入NOTION_TOKEN，Secret输入框中填入你授权获取的NOTION_TOKEN，然后点击Add secret 同理，继续点击New repository secret，增加变量NOTION_PAGE，Secret输入框中填入你授权获取的NOTION_TOKEN，然后点击Add secret。 设置 打开你复制的Notion模板，找到设置数据库，打开。\n输入滴答清单的账号和密码（如果Todo页面设置为公开的话，记得将设置数据库设置为私有）。并选择是否将图片上传到Github。（注意上传到Github可以被别人访问到，如果图片有个人隐私，请勿勾选此选项）。\n运行 上面配置完成之后，打开你Fork的项目，依次点击Actions-&gt;todo sync-&gt; Run workflow，就可以运行了。\n之后会每3个小时更新一次。\n笔记 每次运行之后，滴答清单里的笔记会被同步到Todo所在的页面里。如果Todo被修改笔记也会被删除并重建一个页面，所以不要直接在当前Todo页面下做笔记。如果需要额外在Notion中增加笔记，请在笔记数据库里添加笔记，并将笔记关联到Todo上，每次同步时会自动将关联的笔记复制到Todo所在的页面里。\n以上，就是教程的全部内容。有什么问题或者疑问请评论区留言或者加群交流。\n如果二维码失效可以添加我的个人微信，我来邀请你入群。当然你想交个朋友，也可以加我微信。\n如果你觉得文章对您有帮助，请捐赠支持一下。\n">
 <meta property='og:url' content='http://localhost:1313/posts/todo2notion/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
@@ -101,6 +101,168 @@
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
   <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://x.com/malinkang'
+                        target="_blank"
+                        title="X"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-x"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://t.me/malinkang'
+                        target="_blank"
+                        title="Telegram"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-telegram"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://www.weibo.com/malinkang'
+                        target="_blank"
+                        title="微博"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-weibo"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19 14.127c0 3.073 -3.502 5.873 -8 5.873c-4.126 0 -8 -2.224 -8 -5.565c0 -1.78 .984 -3.737 2.7 -5.567c2.362 -2.51 5.193 -3.687 6.551 -2.238c.415 .44 .752 1.39 .749 2.062c2 -1.615 4.308 .387 3.5 2.693c1.26 .557 2.5 .538 2.5 2.742z" /><path d="M15 4h1a5 5 0 0 1 5 5v1" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://www.instagram.com/malinkang'
+                        target="_blank"
+                        title="Instagram"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-instagram"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 4a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" /><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M16.5 7.5l0 .01" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://mastodon.social/@malinkang'
+                        target="_blank"
+                        title="Mastodon"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-mastodon"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18.648 15.254c-1.816 1.763 -6.648 1.626 -6.648 1.626a18.262 18.262 0 0 1 -3.288 -.256c1.127 1.985 4.12 2.81 8.982 2.475c-1.945 2.013 -13.598 5.257 -13.668 -7.636l-.026 -1.154c0 -3.036 .023 -4.115 1.352 -5.633c1.671 -1.91 6.648 -1.666 6.648 -1.666s4.977 -.243 6.648 1.667c1.329 1.518 1.352 2.597 1.352 5.633s-.456 4.074 -1.352 4.944z" /><path d="M12 11.204v-2.926c0 -1.258 -.895 -2.278 -2 -2.278s-2 1.02 -2 2.278v4.722m4 -4.722c0 -1.258 .895 -2.278 2 -2.278s2 1.02 2 2.278v4.722" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/27440979'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://www.douban.com/people/malinkang/'
+                        target="_blank"
+                        title="豆瓣"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-douban"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20h16" /><path d="M5 4h14" /><path d="M8 8h8a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2v-2a2 2 0 0 1 2 -2z" /><path d="M16 14l-2 6" /><path d="M8 17l1 3" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://www.strava.com/athletes/20840511'
+                        target="_blank"
+                        title="知乎"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-zhihu"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 6h6v12h-2l-2 2l-1 -2h-1z" /><path d="M4 12h6.5" /><path d="M10.5 6h-5" /><path d="M6 4c-.5 2.5 -1.5 3.5 -2.5 4.5" /><path d="M8 6v7c0 4.5 -2 5.5 -4 7" /><path d="M11 18l-3 -5" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://www.strava.com/athletes/20840511'
+                        target="_blank"
+                        title="Strava"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-strava"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 13l-5 -10l-5 10m6 0l4 8l4 -8" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://juejin.cn/user/3051900006833694/'
+                        target="_blank"
+                        title="掘金"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-juejin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M2 12l10 7.422l10 -7.422" /><path d="M7 9l5 4l5 -4" /><path d="M11 6l1 .8l1 -.8l-1 -.8z" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='index.xml'
+                        target="_blank"
+                        title="Rss"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-rss" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="5" cy="19" r="1" />
+  <path d="M4 4a16 16 0 0 1 16 16" />
+  <path d="M4 11a9 9 0 0 1 9 9" />
 </svg>
 
 
