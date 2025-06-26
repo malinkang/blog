@@ -4,18 +4,6 @@
 [submodule "content/posts"]
 	path = content/posts
 	url = git@github.com:malinkang/posts
-[submodule "themes/diary"]
-	path = themes/diary
-	url = git@github.com:malinkang/hugo-theme-diary
-[submodule "content/android"]
-	path = content/android
-	url = git@github.com:malinkang/AndroidNote.git
 [submodule "themes/hugo-notice"]
 	path = themes/hugo-notice
 	url = https://github.com/martignoni/hugo-notice.git
-[submodule "themes/papermod"]
-	path = themes/papermod
-	url = git@github.com:adityatelange/hugo-PaperMod.git
-[submodule "themes/stack"]
-	path = themes/stack
-	url = git@github.com:malinkang/hugo-theme-stack.git

@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='http://localhost:1313/android/cha-jian-hua/virtualapk-fen-xi/'>
 
-<link rel="stylesheet" href="/scss/style.min.ec699b5a71cf5dcf4c0b64b0b47bfcdfa0e15276f4505101ff823b5f1efb4c0e.css"><meta property='og:title' content="">
+<link rel="stylesheet" href="/scss/style.min.468550849f83b1226002bd6ea87652ebda0577c8d28bfd6371b109fe8cc160f4.css"><meta property='og:title' content="">
 <meta property='og:description' content="VirtualAPK分析 VirtualAPK初始化流程 在使用VirtualAPK之前，我们需要多VirtualAPK进行初始化，如下所示：\n1 2 3 4 5 6 @Override protected void attachBaseContext(Context base) { super.attachBaseContext(base); long start = System.currentTimeMillis(); PluginManager.getInstance(base).init(); } getInstance() 双重校验锁实现单例\n1 2 3 4 5 6 7 8 9 10 11 12 private static volatile PluginManager sInstance = null; public static PluginManager getInstance(Context base) { if (sInstance == null) { synchronized (PluginManager.class) { if (sInstance == null) { //调用createInstance创建PluginManager sInstance = createInstance(base); } } } return sInstance; } createInstance() 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 private static PluginManager createInstance(Context context) { try { //获取清单文件种的meta数据 Bundle metaData = context.getPackageManager() .getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA) .metaData; if (metaData == null) { return new PluginManager(context); } String factoryClass = metaData.getString(&#34;VA_FACTORY&#34;); if (factoryClass == null) { return new PluginManager(context); } //调用清单文件中Factory创建PluginManager类 PluginManager pluginManager = Reflector.on(factoryClass).method(&#34;create&#34;, Context.class).call(context); if (pluginManager != null) { Log.d(TAG, &#34;Created a instance of &#34; + pluginManager.getClass()); return pluginManager; } } catch (Exception e) { Log.w(TAG, &#34;Created the instance error!&#34;, e); } //清单文件中没有声明 直接调用构造函数 return new PluginManager(context); } 构造函数 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 protected PluginManager(Context context) { if (context instanceof Application) { this.mApplication = (Application) context; this.mContext = mApplication.getBaseContext(); } else { final Context app = context.getApplicationContext(); if (app == null) { this.mContext = context; this.mApplication = ActivityThread.currentApplication(); } else { this.mApplication = (Application) app; this.mContext = mApplication.getBaseContext(); } } //创建ComponentsHandler mComponentsHandler = createComponentsHandler(); //hook当前线程 hookCurrentProcess(); } hookCurrentProcess() 1 2 3 4 5 protected void hookCurrentProcess() { hookInstrumentationAndHandler(); hookSystemServices(); hookDataBindingUtil(); } hookInstrumentationAndHandler() 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 protected void hookInstrumentationAndHandler() { try { //获取ActivityThread ActivityThread activityThread = ActivityThread.currentActivityThread(); //获取ActivityThread的 Instrumentation 对象 Instrumentation baseInstrumentation = activityThread.getInstrumentation(); //如果是在平行空间中运行，则退出 if (baseInstrumentation.getClass().getName().contains(&#34;lbe&#34;)) { // reject executing in paralell space, for example, lbe. System.exit(0); } //创建代理对象 final VAInstrumentation instrumentation = createInstrumentation(baseInstrumentation); Reflector.with(activityThread).field(&#34;mInstrumentation&#34;).set(instrumentation); Handler mainHandler = Reflector.with(activityThread).method(&#34;getHandler&#34;).call(); Reflector.with(mainHandler).field(&#34;mCallback&#34;).set(instrumentation); this.mInstrumentation = instrumentation; Log.d(TAG, &#34;hookInstrumentationAndHandler succeed : &#34; + mInstrumentation); } catch (Exception e) { Log.w(TAG, e); } } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 @Override public Activity newActivity(ClassLoader cl, String className, Intent intent) throws InstantiationException, IllegalAccessException, ClassNotFoundException { try { cl.loadClass(className); Log.i(TAG, String.format(&#34;newActivity[%s]&#34;, className)); } catch (ClassNotFoundException e) { //没有找到类，说明是插件中的类 ComponentName component = PluginUtil.getComponent(intent); if (component == null) { return newActivity(mBase.newActivity(cl, className, intent)); } String targetClassName = component.getClassName(); Log.i(TAG, String.format(&#34;newActivity[%s : %s/%s]&#34;, className, component.getPackageName(), targetClassName)); //获取插件 LoadedPlugin plugin = this.mPluginManager.getLoadedPlugin(component); if (plugin == null) { // Not found then goto stub activity. boolean debuggable = false; try { Context context = this.mPluginManager.getHostContext(); debuggable = (context.getApplicationInfo().flags &amp; ApplicationInfo.FLAG_DEBUGGABLE) != 0; } catch (Throwable ex) { } if (debuggable) { throw new ActivityNotFoundException(&#34;error intent: &#34; + intent.toURI()); } Log.i(TAG, &#34;Not found. starting the stub activity: &#34; + StubActivity.class); return newActivity(mBase.newActivity(cl, StubActivity.class.getName(), intent)); } Activity activity = mBase.newActivity(plugin.getClassLoader(), targetClassName, intent); activity.setIntent(intent); // for 4.1+ Reflector.QuietReflector.with(activity).field(&#34;mResources&#34;).set(plugin.getResources()); return newActivity(activity); } return newActivity(mBase.newActivity(cl, className, intent)); } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 //从Intent中获取 public static ComponentName getComponent(Intent intent) { if (intent == null) { return null; } //Intent中isPlugin值为true说明是插件中的intent if (isIntentFromPlugin(intent)) { //插件的类名和包名通过Intent传递过来 //奇怪，宿主工程并不知道插件里面的类名，如何传递Activity的类名 return new ComponentName(intent.getStringExtra(Constants.KEY_TARGET_PACKAGE), intent.getStringExtra(Constants.KEY_TARGET_ACTIVITY)); } return intent.getComponent(); } hookSystemServices 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 protected void hookSystemServices() { try { Singleton&lt;IActivityManager&gt; defaultSingleton; if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.O) { defaultSingleton = Reflector.on(ActivityManager.class).field(&#34;IActivityManagerSingleton&#34;).get(); } else { defaultSingleton = Reflector.on(ActivityManagerNative.class).field(&#34;gDefault&#34;).get(); } IActivityManager origin = defaultSingleton.get(); //创建IActivityManager的代理类 IActivityManager activityManagerProxy = (IActivityManager) Proxy.newProxyInstance(mContext.getClassLoader(), new Class[] { IActivityManager.class }, createActivityManagerProxy(origin)); //将代理类设置给mInstance // Hook IActivityManager from ActivityManagerNative Reflector.with(defaultSingleton).field(&#34;mInstance&#34;).set(activityManagerProxy); if (defaultSingleton.get() == activityManagerProxy) { this.mActivityManager = activityManagerProxy; Log.d(TAG, &#34;hookSystemServices succeed : &#34; + mActivityManager); } } catch (Exception e) { Log.w(TAG, e); } } VirtualAPK的的加载流程 VirtualAPK对于加载的APK文件没有额外的约束，只需要添加VirtualAPK的插件进行编译，如下所示：\n">
 <meta property='og:url' content='http://localhost:1313/android/cha-jian-hua/virtualapk-fen-xi/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
@@ -26,25 +26,7 @@
           gtag('js', new Date());
           gtag('config', 'G-G84J9N38RL');
         }
-      </script><style>
-    :root {
-        --sys-font-family: "LXGW WenKai TC";
-        --zh-font-family: "LXGW WenKai TC";
-        --base-font-family: "LXGW WenKai TC";
-        --code-font-family: "LXGW WenKai TC";
-        --article-font-family: "LXGW WenKai TC";
-    }
-</style>
-
-<script>
-    (function () {
-        const customFont = document.createElement("link");
-        customFont.href = "https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&display=swap";
-        customFont.type = "text/css";
-        customFont.rel = "stylesheet";
-        document.head.appendChild(customFont);
-    })();
-</script>
+      </script>
     </head>
     <body class="
     article-page
@@ -108,20 +90,6 @@
             
                 <li>
                     <a 
-                        href='https://www.douban.com/people/malinkang/'
-                        target="_blank"
-                        title="Douban"
-                        rel="me"
-                    >
-                        
-                        
-                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-douban"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20h16" /><path d="M5 4h14" /><path d="M8 8h8a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2v-2a2 2 0 0 1 2 -2z" /><path d="M16 14l-2 6" /><path d="M8 17l1 3" /></svg>
-                        
-                    </a>
-                </li>
-            
-                <li>
-                    <a 
                         href='https://github.com/malinkang'
                         target="_blank"
                         title="GitHub"
@@ -140,37 +108,7 @@
                     </a>
                 </li>
             
-                <li>
-                    <a 
-                        href='https://t.me/malinkanglife'
-                        target="_blank"
-                        title="Telegram"
-                        rel="me"
-                    >
-                        
-                        
-                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-telegram"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" /></svg>
-                        
-                    </a>
-                </li>
-            
-                <li>
-                    <a 
-                        href='https://x.com/malinkang'
-                        target="_blank"
-                        title="X"
-                        rel="me"
-                    >
-                        
-                        
-                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-x"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg>
-                        
-                    </a>
-                </li>
-            
         </ol><ol class="menu" id="main-menu">
-        
-        
         
         
         
@@ -194,7 +132,6 @@
         </li>
         
         
-        
         <li >
             <a href='/pages/about/' >
                 
@@ -212,7 +149,6 @@
                 <span>关于</span>
             </a>
         </li>
-        
         
         
         <li >
@@ -235,7 +171,6 @@
         </li>
         
         
-        
         <li >
             <a href='/search/' >
                 
@@ -250,10 +185,9 @@
 
 
                 
-                <span>Search</span>
+                <span>搜索</span>
             </a>
         </li>
-        
         
         
         <li >
@@ -1503,14 +1437,6 @@
         主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
-<script>
-    var s1 = '2014-01-01';
-    s1 = new Date(s1.replace(/-/g, "/"));
-    s2 = new Date();
-    var days = s2.getTime() - s1.getTime();
-    var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
-    document.getElementById('days').innerHTML = number_of_days;
-</script>
 
 
     
@@ -1608,110 +1534,6 @@
 
         document.head.appendChild(customFont);
     }());
-</script>
-
-<a href="#" id="back-to-top" title="返回顶部"></a>
-
-
-<style>
-  #back-to-top {
-    display: none;
-    position: fixed;
-    bottom: 20px;
-    right: 55px;
-    width: 55px;
-    height: 55px;
-    border-radius: 7px;
-    background-color: rgba(64, 158, 255, 0.5);
-    box-shadow: var(--shadow-l2);
-    font-size: 30px;
-    text-align: center;
-    line-height: 50px;
-    cursor: pointer;
-  }
-
-  #back-to-top:before {
-    content: ' ';
-    display: inline-block;
-    position: relative;
-    top: 0;
-    transform: rotate(135deg);
-    height: 10px;
-    width: 10px;
-    border-width: 0 0 2px 2px;
-    border-color: var(--back-to-top-color);
-    border-style: solid;
-  }
-
-  #back-to-top:hover:before {
-    border-color: #2674e0;
-  }
-
-   
-  @media screen and (max-width: 768px) {
-    #back-to-top {
-      bottom: 20px;
-      right: 20px;
-      width: 40px;
-      height: 40px;
-      font-size: 10px;
-    }
-  }
-
-   
-  @media screen and (min-width: 1024px) {
-    #back-to-top {
-      bottom: 20px;
-      right: 40px;
-    }
-  }
-
-   
-  @media screen and (min-width: 1280px) {
-    #back-to-top {
-      bottom: 20px;
-      right: 55px;
-    }
-  }
-
-   
-  @media screen and (min-width: 1536px) {
-    #back-to-top {
-      visibility: hidden;
-    }
-  }
-</style>
-
-
-<script>
-  function backToTop() {
-    document.documentElement.scrollIntoView({
-      behavior: 'smooth',
-    })
-  }
-
-  window.onload = function () {
-    let scrollTop =
-      this.document.documentElement.scrollTop || this.document.body.scrollTop
-    let totopBtn = this.document.getElementById('back-to-top')
-    if (scrollTop > 0) {
-      totopBtn.style.display = 'inline'
-    } else {
-      totopBtn.style.display = 'none'
-    }
-  }
-
-  window.onscroll = function () {
-    let scrollTop =
-      this.document.documentElement.scrollTop || this.document.body.scrollTop
-    let totopBtn = this.document.getElementById('back-to-top')
-    if (scrollTop < 200) {
-      totopBtn.style.display = 'none'
-    } else {
-      totopBtn.style.display = 'inline'
-      totopBtn.addEventListener('click', backToTop, false)
-    }
-  }
 </script>
 
     </body>

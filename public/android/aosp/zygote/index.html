@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='http://localhost:1313/android/aosp/zygote/'>
 
-<link rel="stylesheet" href="/scss/style.min.ec699b5a71cf5dcf4c0b64b0b47bfcdfa0e15276f4505101ff823b5f1efb4c0e.css"><meta property='og:title' content="">
+<link rel="stylesheet" href="/scss/style.min.468550849f83b1226002bd6ea87652ebda0577c8d28bfd6371b109fe8cc160f4.css"><meta property='og:title' content="">
 <meta property='og:description' content="Zygote启动流程 在Android系统中，应用程序进程以及运行系统的关键服务的SystemServer进程都是由Zygote进程来创建的，我们也将它称为孵化器。它通过fork（复制进程）的形式来创建应用程序进程和SystemServer进程。\nZygote进程是在init进程启动时创建的，起初Zygote进程的名称并不是叫“zygote”，而是叫“app_process”，这个名称是在Android.mk中定义的，Zygote进程启动后，Linux系统下的pctrl系统会调用app_process，将其名称换成了“zygote”。\n1 2 3 4 5 sequenceDiagram init.rc-&gt;&gt;init.zygote32.rc:调用 init.zygote32.rc-&gt;&gt;app_main.cpp:main() app_main.cpp-&gt;&gt;AndroidRuntime:start() AndroidRuntime-&gt;&gt;ZygoteInit:main() 在init.rc文件中采用了import引入Zygote启动脚本。\n1 2 3 4 //system/core/rootdir/init.rc import /init.${ro.hardware}.rc import /init.usb.configfs.rc import /init.${ro.zygote}.rc//导入zygote.rc 可以看出init.rc不会直接引入一个固定的文件，而是根据属性ro.zygote的内容来引入不同的文件。\n从Android 5.0开始，Android开始支持64位程序，Zygote也就有了32位和64位的区别，所以在这里用ro.zygote属性来控制使用不同的Zygote启动脚本，从而也就启动了不同版本的Zygote进程，ro.zygote属性的取值有以下4种：\ninit.zygote32.rc\ninit.zygote32_64.rc\ninit.zygote64.rc\ninit.zygote64_32.rc\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 //system/core/rootdir/init.zygote64.rc //启动zygote service 路径/system/bin/app_process64 service zygote /system/bin/app_process64 -Xzygote /system/bin --zygote --start-system-server class main priority -20 user root group root readproc reserved_disk socket zygote stream 660 root system socket usap_pool_primary stream 660 root system onrestart exec_background - system system -- /system/bin/vdc volume abort_fuse onrestart write /sys/power/state on onrestart restart audioserver onrestart restart cameraserver onrestart restart media onrestart restart netd onrestart restart wificond task_profiles ProcessCapacityHigh critical window=${zygote.critical_window.minute:-off} target=zygote-fatal 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 //frameworks/base/cmds/app_process/Android.mk include $(CLEAR_VARS) LOCAL_SRC_FILES:= \\ app_main.cpp LOCAL_SHARED_LIBRARIES := \\ libcutils \\ libutils \\ liblog \\ libbinder \\ libandroid_runtime \\ $(app_process_common_shared_libs) \\ LOCAL_WHOLE_STATIC_LIBRARIES := libsigchain LOCAL_LDFLAGS := -ldl -Wl,--version-script,art/sigchainlib/version-script.txt -Wl,--export-dynamic LOCAL_CPPFLAGS := -std=c++11 LOCAL_MODULE := app_process__asan LOCAL_MULTILIB := both //编译32位和64位 LOCAL_MODULE_STEM_32 := app_process32 //32位 LOCAL_MODULE_STEM_64 := app_process64//64位 main() app_main.cpp的main方法会接收传进的来参数，并根据传进来的参数调用AndroidRuntime的start方法。\n">
 <meta property='og:url' content='http://localhost:1313/android/aosp/zygote/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
@@ -26,25 +26,7 @@
           gtag('js', new Date());
           gtag('config', 'G-G84J9N38RL');
         }
-      </script><style>
-    :root {
-        --sys-font-family: "LXGW WenKai TC";
-        --zh-font-family: "LXGW WenKai TC";
-        --base-font-family: "LXGW WenKai TC";
-        --code-font-family: "LXGW WenKai TC";
-        --article-font-family: "LXGW WenKai TC";
-    }
-</style>
-
-<script>
-    (function () {
-        const customFont = document.createElement("link");
-        customFont.href = "https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&display=swap";
-        customFont.type = "text/css";
-        customFont.rel = "stylesheet";
-        document.head.appendChild(customFont);
-    })();
-</script>
+      </script>
     </head>
     <body class="
     article-page
@@ -108,20 +90,6 @@
             
                 <li>
                     <a 
-                        href='https://www.douban.com/people/malinkang/'
-                        target="_blank"
-                        title="Douban"
-                        rel="me"
-                    >
-                        
-                        
-                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-douban"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20h16" /><path d="M5 4h14" /><path d="M8 8h8a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2v-2a2 2 0 0 1 2 -2z" /><path d="M16 14l-2 6" /><path d="M8 17l1 3" /></svg>
-                        
-                    </a>
-                </li>
-            
-                <li>
-                    <a 
                         href='https://github.com/malinkang'
                         target="_blank"
                         title="GitHub"
@@ -140,37 +108,7 @@
                     </a>
                 </li>
             
-                <li>
-                    <a 
-                        href='https://t.me/malinkanglife'
-                        target="_blank"
-                        title="Telegram"
-                        rel="me"
-                    >
-                        
-                        
-                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-telegram"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" /></svg>
-                        
-                    </a>
-                </li>
-            
-                <li>
-                    <a 
-                        href='https://x.com/malinkang'
-                        target="_blank"
-                        title="X"
-                        rel="me"
-                    >
-                        
-                        
-                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-x"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg>
-                        
-                    </a>
-                </li>
-            
         </ol><ol class="menu" id="main-menu">
-        
-        
         
         
         
@@ -194,7 +132,6 @@
         </li>
         
         
-        
         <li >
             <a href='/pages/about/' >
                 
@@ -212,7 +149,6 @@
                 <span>关于</span>
             </a>
         </li>
-        
         
         
         <li >
@@ -235,7 +171,6 @@
         </li>
         
         
-        
         <li >
             <a href='/search/' >
                 
@@ -250,10 +185,9 @@
 
 
                 
-                <span>Search</span>
+                <span>搜索</span>
             </a>
         </li>
-        
         
         
         <li >
@@ -3247,14 +3181,6 @@
         主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
-<script>
-    var s1 = '2014-01-01';
-    s1 = new Date(s1.replace(/-/g, "/"));
-    s2 = new Date();
-    var days = s2.getTime() - s1.getTime();
-    var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
-    document.getElementById('days').innerHTML = number_of_days;
-</script>
 
 
     
@@ -3352,110 +3278,6 @@
 
         document.head.appendChild(customFont);
     }());
-</script>
-
-<a href="#" id="back-to-top" title="返回顶部"></a>
-
-
-<style>
-  #back-to-top {
-    display: none;
-    position: fixed;
-    bottom: 20px;
-    right: 55px;
-    width: 55px;
-    height: 55px;
-    border-radius: 7px;
-    background-color: rgba(64, 158, 255, 0.5);
-    box-shadow: var(--shadow-l2);
-    font-size: 30px;
-    text-align: center;
-    line-height: 50px;
-    cursor: pointer;
-  }
-
-  #back-to-top:before {
-    content: ' ';
-    display: inline-block;
-    position: relative;
-    top: 0;
-    transform: rotate(135deg);
-    height: 10px;
-    width: 10px;
-    border-width: 0 0 2px 2px;
-    border-color: var(--back-to-top-color);
-    border-style: solid;
-  }
-
-  #back-to-top:hover:before {
-    border-color: #2674e0;
-  }
-
-   
-  @media screen and (max-width: 768px) {
-    #back-to-top {
-      bottom: 20px;
-      right: 20px;
-      width: 40px;
-      height: 40px;
-      font-size: 10px;
-    }
-  }
-
-   
-  @media screen and (min-width: 1024px) {
-    #back-to-top {
-      bottom: 20px;
-      right: 40px;
-    }
-  }
-
-   
-  @media screen and (min-width: 1280px) {
-    #back-to-top {
-      bottom: 20px;
-      right: 55px;
-    }
-  }
-
-   
-  @media screen and (min-width: 1536px) {
-    #back-to-top {
-      visibility: hidden;
-    }
-  }
-</style>
-
-
-<script>
-  function backToTop() {
-    document.documentElement.scrollIntoView({
-      behavior: 'smooth',
-    })
-  }
-
-  window.onload = function () {
-    let scrollTop =
-      this.document.documentElement.scrollTop || this.document.body.scrollTop
-    let totopBtn = this.document.getElementById('back-to-top')
-    if (scrollTop > 0) {
-      totopBtn.style.display = 'inline'
-    } else {
-      totopBtn.style.display = 'none'
-    }
-  }
-
-  window.onscroll = function () {
-    let scrollTop =
-      this.document.documentElement.scrollTop || this.document.body.scrollTop
-    let totopBtn = this.document.getElementById('back-to-top')
-    if (scrollTop < 200) {
-      totopBtn.style.display = 'none'
-    } else {
-      totopBtn.style.display = 'inline'
-      totopBtn.addEventListener('click', backToTop, false)
-    }
-  }
 </script>
 
     </body>

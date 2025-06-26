@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='http://localhost:1313/android/aosp/context/'>
 
-<link rel="stylesheet" href="/scss/style.min.ec699b5a71cf5dcf4c0b64b0b47bfcdfa0e15276f4505101ff823b5f1efb4c0e.css"><meta property='og:title' content="">
+<link rel="stylesheet" href="/scss/style.min.468550849f83b1226002bd6ea87652ebda0577c8d28bfd6371b109fe8cc160f4.css"><meta property='og:title' content="">
 <meta property='og:description' content="Context分析 Context关联类 Context意为上下文，是一个应用程序环境信息的接口。\n在开发中我们经常使用Context，它的使用场景总的来说分为两大类，它们分别是：\n使用Context调用方法，比如启动Activity、访问资源、调用系统级服务等。 调用方法时传入Context，比如弹出Toast、创建Dialog等。 Activity、Service和Application都间接地继承自Context，因此我们可以计算出一个应用程序进程中有多少个Context，这个数量等于Activity和Service的总个数加1，1指的是Application的数量。\nContext 是一个抽象类，它的内部定义了很多方法以及静态常量，它的具体实现类为ContextImpl。和Context相关联的类，除了ContextImpl，还有ContextWrapper、ContextThemeWrapper和Activity等，如图所示。\nContextImpl和ContextWrapper继承自Context，ContextWrapper内部包含Context类型的mBase对象，mBase 具体指向ContextImpl。ContextImpl 提供了很多功能，但是外界需要使用并拓展ContextImpl的功能，因此设计上使用了装饰模式，ContextWrapper是装饰类，它对ContextImpl进行包装，ContextWrapper主要是起了方法传递的作用，ContextWrapper中几乎所有的方法都是调用ContextImpl的相应方法来实现的。ContextThemeWrapper、Service和Application都继承自ContextWrapper，这样它们都可以通过mBase来使用Context的方法，同时它们也是装饰类，在ContextWrapper的基础上又添加了不同的功能。ContextThemeWrapper中包含和主题相关的方法（比如getTheme方法），因此，需要主题的Activity继承ContextThemeWrapper，而不需要主题的Service继承ContextWrapper。\nContext的关联类采用了装饰模式，主要有以下的优点：\n使用者（比如Service）能够更方便地使用Context。 如果ContextImpl发生了变化，它的装饰类ContextWrapper不需要做任何修改。 ContextImpl的实现不会暴露给使用者，使用者也不必关心ContextImpl的实现。 通过组合而非继承的方式，拓展ContextImpl的功能，在运行时选择不同的装饰类，实现不同的功能。 为了更好地理解Context的关联类的设计理念，就需要理解Application、Activity、Service的Context的创建过程，下面分别对它们进行介绍。\nApplicationContext创建 我们通过调用getApplicationContext()来获取应用程序全局的ApplicationContext，那么Application Context是如何创建的呢？在一个应用程序启动完成后，应用程序就会有一个全局的Application Context，那么我们就从应用程序启动过程开始着手。\nperformLaunchActivity() 1 2 3 4 5 6 7 8 //frameworks/base/core/java/android/app/ActivityThread.java private Activity performLaunchActivity(ActivityClientRecord r, Intent customIntent) { try { //调用LoadedApk的makeApplication方法 Application app = r.packageInfo.makeApplication(false, mInstrumentation); } return activity; } makeApplication() 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 //frameworks/base/core/java/android/app/LoadedApk.java public Application makeApplication(boolean forceDefaultAppClass, Instrumentation instrumentation) { //判断是否为null if (mApplication != null) { return mApplication; } Trace.traceBegin(Trace.TRACE_TAG_ACTIVITY_MANAGER, &#34;makeApplication&#34;); Application app = null; //获取Application类名 String appClass = mApplicationInfo.className; if (forceDefaultAppClass || (appClass == null)) { appClass = &#34;android.app.Application&#34;; } try { //获取ClassLoader java.lang.ClassLoader cl = getClassLoader(); if (!mPackageName.equals(&#34;android&#34;)) { Trace.traceBegin(Trace.TRACE_TAG_ACTIVITY_MANAGER, &#34;initializeJavaContextClassLoader&#34;); initializeJavaContextClassLoader(); Trace.traceEnd(Trace.TRACE_TAG_ACTIVITY_MANAGER); } //调用ContextImpl静态方法createAppContext创建ContextImpl ContextImpl appContext = ContextImpl.createAppContext(mActivityThread, this); //创建Application app = mActivityThread.mInstrumentation.newApplication( cl, appClass, appContext); appContext.setOuterContext(app); } catch (Exception e) { if (!mActivityThread.mInstrumentation.onException(app, e)) { Trace.traceEnd(Trace.TRACE_TAG_ACTIVITY_MANAGER); throw new RuntimeException( &#34;Unable to instantiate application &#34; + appClass + &#34;: &#34; + e.toString(), e); } } mActivityThread.mAllApplications.add(app); mApplication = app; //赋值 if (instrumentation != null) { try { instrumentation.callApplicationOnCreate(app); } catch (Exception e) { if (!instrumentation.onException(app, e)) { Trace.traceEnd(Trace.TRACE_TAG_ACTIVITY_MANAGER); throw new RuntimeException( &#34;Unable to create application &#34; + app.getClass().getName() + &#34;: &#34; + e.toString(), e); } } } //... return app; } createAppContext() 1 2 3 4 5 6 7 8 9 10 11 12 13 14 //frameworks/base/core/java/android/app/ContextImpl.java static ContextImpl createAppContext(ActivityThread mainThread, LoadedApk packageInfo) { return createAppContext(mainThread, packageInfo, null); } static ContextImpl createAppContext(ActivityThread mainThread, LoadedApk packageInfo, String opPackageName) { if (packageInfo == null) throw new IllegalArgumentException(&#34;packageInfo&#34;); ContextImpl context = new ContextImpl(null, mainThread, packageInfo, ContextParams.EMPTY, null, null, null, null, null, 0, null, opPackageName); context.setResources(packageInfo.getResources()); context.mContextType = isSystemOrSystemUI(context) ? CONTEXT_TYPE_SYSTEM_OR_SYSTEM_UI : CONTEXT_TYPE_NON_UI; return context; } newApplication() 1 2 3 4 5 6 7 8 9 10 11 //frameworks/base/core/java/android/app/Instrumentation.java public Application newApplication(ClassLoader cl, String className, Context context) throws InstantiationException, IllegalAccessException, ClassNotFoundException { //先获取AppComponentFactory Application app = getFactory(context.getPackageName()) .instantiateApplication(cl, className); //调用Application的attach方法 app.attach(context); return app; } getFactory() 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 //frameworks/base/core/java/android/app/Instrumentation.java private AppComponentFactory getFactory(String pkg) { if (pkg == null) { Log.e(TAG, &#34;No pkg specified, disabling AppComponentFactory&#34;); return AppComponentFactory.DEFAULT; } if (mThread == null) { Log.e(TAG, &#34;Uninitialized ActivityThread, likely app-created Instrumentation,&#34; + &#34; disabling AppComponentFactory&#34;, new Throwable()); return AppComponentFactory.DEFAULT; } LoadedApk apk = mThread.peekPackageInfo(pkg, true); // This is in the case of starting up &#34;android&#34;. if (apk == null) apk = mThread.getSystemContext().mPackageInfo; return apk.getAppFactory(); } instantiateApplication() 1 2 3 4 5 6 7 //frameworks/base/core/java/android/app/AppComponentFactory.java //创建Application public @NonNull Application instantiateApplication(@NonNull ClassLoader cl, @NonNull String className) throws InstantiationException, IllegalAccessException, ClassNotFoundException { return (Application) cl.loadClass(className).newInstance(); } attach() 1 2 3 4 5 //Application.java final void attach(Context context) { attachBaseContext(context); mLoadedApk = ContextImpl.getImpl(context).mPackageInfo; } attachBaseContext() 1 2 3 4 5 6 7 //ContextWrapper.java protected void attachBaseContext(Context base) { if (mBase != null) { throw new IllegalStateException(&#34;Base context already set&#34;); } mBase = base; } 这个base一路传递过来指的是ContextImpl，它是Context的实现类，将ContextImpl赋值给ContextWrapper的Context类型的成员变量mBase，这样在ContextWrapper中就可以使用Context的方法，而Application继承自ContextWrapper，同样可以使用Context的方法。Application的attach方法的作用就是使Application可以使用Context的方法，这样Application才可以用来代表Application Context。\n">
 <meta property='og:url' content='http://localhost:1313/android/aosp/context/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
@@ -26,25 +26,7 @@
           gtag('js', new Date());
           gtag('config', 'G-G84J9N38RL');
         }
-      </script><style>
-    :root {
-        --sys-font-family: "LXGW WenKai TC";
-        --zh-font-family: "LXGW WenKai TC";
-        --base-font-family: "LXGW WenKai TC";
-        --code-font-family: "LXGW WenKai TC";
-        --article-font-family: "LXGW WenKai TC";
-    }
-</style>
-
-<script>
-    (function () {
-        const customFont = document.createElement("link");
-        customFont.href = "https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&display=swap";
-        customFont.type = "text/css";
-        customFont.rel = "stylesheet";
-        document.head.appendChild(customFont);
-    })();
-</script>
+      </script>
     </head>
     <body class="
     article-page
@@ -108,20 +90,6 @@
             
                 <li>
                     <a 
-                        href='https://www.douban.com/people/malinkang/'
-                        target="_blank"
-                        title="Douban"
-                        rel="me"
-                    >
-                        
-                        
-                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-douban"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20h16" /><path d="M5 4h14" /><path d="M8 8h8a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2v-2a2 2 0 0 1 2 -2z" /><path d="M16 14l-2 6" /><path d="M8 17l1 3" /></svg>
-                        
-                    </a>
-                </li>
-            
-                <li>
-                    <a 
                         href='https://github.com/malinkang'
                         target="_blank"
                         title="GitHub"
@@ -140,37 +108,7 @@
                     </a>
                 </li>
             
-                <li>
-                    <a 
-                        href='https://t.me/malinkanglife'
-                        target="_blank"
-                        title="Telegram"
-                        rel="me"
-                    >
-                        
-                        
-                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-telegram"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" /></svg>
-                        
-                    </a>
-                </li>
-            
-                <li>
-                    <a 
-                        href='https://x.com/malinkang'
-                        target="_blank"
-                        title="X"
-                        rel="me"
-                    >
-                        
-                        
-                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-x"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg>
-                        
-                    </a>
-                </li>
-            
         </ol><ol class="menu" id="main-menu">
-        
-        
         
         
         
@@ -194,7 +132,6 @@
         </li>
         
         
-        
         <li >
             <a href='/pages/about/' >
                 
@@ -212,7 +149,6 @@
                 <span>关于</span>
             </a>
         </li>
-        
         
         
         <li >
@@ -235,7 +171,6 @@
         </li>
         
         
-        
         <li >
             <a href='/search/' >
                 
@@ -250,10 +185,9 @@
 
 
                 
-                <span>Search</span>
+                <span>搜索</span>
             </a>
         </li>
-        
         
         
         <li >
@@ -1089,14 +1023,6 @@
         主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
-<script>
-    var s1 = '2014-01-01';
-    s1 = new Date(s1.replace(/-/g, "/"));
-    s2 = new Date();
-    var days = s2.getTime() - s1.getTime();
-    var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
-    document.getElementById('days').innerHTML = number_of_days;
-</script>
 
 
     
@@ -1194,110 +1120,6 @@
 
         document.head.appendChild(customFont);
     }());
-</script>
-
-<a href="#" id="back-to-top" title="返回顶部"></a>
-
-
-<style>
-  #back-to-top {
-    display: none;
-    position: fixed;
-    bottom: 20px;
-    right: 55px;
-    width: 55px;
-    height: 55px;
-    border-radius: 7px;
-    background-color: rgba(64, 158, 255, 0.5);
-    box-shadow: var(--shadow-l2);
-    font-size: 30px;
-    text-align: center;
-    line-height: 50px;
-    cursor: pointer;
-  }
-
-  #back-to-top:before {
-    content: ' ';
-    display: inline-block;
-    position: relative;
-    top: 0;
-    transform: rotate(135deg);
-    height: 10px;
-    width: 10px;
-    border-width: 0 0 2px 2px;
-    border-color: var(--back-to-top-color);
-    border-style: solid;
-  }
-
-  #back-to-top:hover:before {
-    border-color: #2674e0;
-  }
-
-   
-  @media screen and (max-width: 768px) {
-    #back-to-top {
-      bottom: 20px;
-      right: 20px;
-      width: 40px;
-      height: 40px;
-      font-size: 10px;
-    }
-  }
-
-   
-  @media screen and (min-width: 1024px) {
-    #back-to-top {
-      bottom: 20px;
-      right: 40px;
-    }
-  }
-
-   
-  @media screen and (min-width: 1280px) {
-    #back-to-top {
-      bottom: 20px;
-      right: 55px;
-    }
-  }
-
-   
-  @media screen and (min-width: 1536px) {
-    #back-to-top {
-      visibility: hidden;
-    }
-  }
-</style>
-
-
-<script>
-  function backToTop() {
-    document.documentElement.scrollIntoView({
-      behavior: 'smooth',
-    })
-  }
-
-  window.onload = function () {
-    let scrollTop =
-      this.document.documentElement.scrollTop || this.document.body.scrollTop
-    let totopBtn = this.document.getElementById('back-to-top')
-    if (scrollTop > 0) {
-      totopBtn.style.display = 'inline'
-    } else {
-      totopBtn.style.display = 'none'
-    }
-  }
-
-  window.onscroll = function () {
-    let scrollTop =
-      this.document.documentElement.scrollTop || this.document.body.scrollTop
-    let totopBtn = this.document.getElementById('back-to-top')
-    if (scrollTop < 200) {
-      totopBtn.style.display = 'none'
-    } else {
-      totopBtn.style.display = 'inline'
-      totopBtn.addEventListener('click', backToTop, false)
-    }
-  }
 </script>
 
     </body>

@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='http://localhost:1313/android/ui/notifications/'>
 
-<link rel="stylesheet" href="/scss/style.min.ec699b5a71cf5dcf4c0b64b0b47bfcdfa0e15276f4505101ff823b5f1efb4c0e.css"><meta property='og:title' content="">
+<link rel="stylesheet" href="/scss/style.min.468550849f83b1226002bd6ea87652ebda0577c8d28bfd6371b109fe8cc160f4.css"><meta property='og:title' content="">
 <meta property='og:description' content="通知 通知是您可以在应用的常规 UI 外部向用户显示的消息。当您告知系统发出通知时，它将先以图标的形式显示在通知区域中。用户可以打开抽屉式通知栏查看通知的详细信息。 通知区域和抽屉式通知栏均是由系统控制的区域，用户可以随时查看。\n创建通知 SupportV4包提供了 NotificationCompat.Builder 类。Android 3.0（API 级别 11）中已添加类 Notification.Builder。\n您可以在 NotificationCompat.Builder 对象中为通知指定 UI 信息和操作。要创建通知，请调用 NotificationCompat.Builder.build()，它将返回包含您的具体规范的 Notification 对象。要发出通知，请通过调用 NotificationManager.notify() 将 Notification 对象传递给系统。\n必需的通知内容 Notification 对象必须包含以下内容：\n小图标，由 setSmallIcon() 设置 标题，由 setContentTitle() 设置 详细文本，由 setContentText() 设置 可选通知内容和设置 所有其他通知设置和内容都是可选的。如需了解有关它们的更多详情，请参阅 NotificationCompat.Builder 参考文档。\n通知操作 尽管通知操作都是可选的，但是您至少应向通知添加一个操作。 操作允许用户直接从通知转到应用中的 Activity，他们可在其中查看一个或多个事件或执行进一步的操作。\n一个通知可以提供多个操作。您应该始终定义一个当用户点击通知时会触发的操作；通常，此操作会在应用中打开 Activity。 您也可以向通知添加按钮来执行其他操作，例如，暂停闹铃或立即答复短信；此功能自 Android 4.1 起可用。如果使用其他操作按钮，则您还必须使这些按钮的功能在应用的 Activity 中可用；\n在 Notification 内部，操作本身由 PendingIntent 定义，后者包含在应用中启动 Activity 的 Intent。要将 PendingIntent 与手势相关联，请调用 NotificationCompat.Builder 的适当方法。例如，如果您要在用户点击抽屉式通知栏中的通知文本时启动 Activity，则可通过调用 setContentIntent() 来添加 PendingIntent。\n">
 <meta property='og:url' content='http://localhost:1313/android/ui/notifications/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
@@ -26,25 +26,7 @@
           gtag('js', new Date());
           gtag('config', 'G-G84J9N38RL');
         }
-      </script><style>
-    :root {
-        --sys-font-family: "LXGW WenKai TC";
-        --zh-font-family: "LXGW WenKai TC";
-        --base-font-family: "LXGW WenKai TC";
-        --code-font-family: "LXGW WenKai TC";
-        --article-font-family: "LXGW WenKai TC";
-    }
-</style>
-
-<script>
-    (function () {
-        const customFont = document.createElement("link");
-        customFont.href = "https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&display=swap";
-        customFont.type = "text/css";
-        customFont.rel = "stylesheet";
-        document.head.appendChild(customFont);
-    })();
-</script>
+      </script>
     </head>
     <body class="
     article-page
@@ -108,20 +90,6 @@
             
                 <li>
                     <a 
-                        href='https://www.douban.com/people/malinkang/'
-                        target="_blank"
-                        title="Douban"
-                        rel="me"
-                    >
-                        
-                        
-                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-douban"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20h16" /><path d="M5 4h14" /><path d="M8 8h8a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2v-2a2 2 0 0 1 2 -2z" /><path d="M16 14l-2 6" /><path d="M8 17l1 3" /></svg>
-                        
-                    </a>
-                </li>
-            
-                <li>
-                    <a 
                         href='https://github.com/malinkang'
                         target="_blank"
                         title="GitHub"
@@ -140,37 +108,7 @@
                     </a>
                 </li>
             
-                <li>
-                    <a 
-                        href='https://t.me/malinkanglife'
-                        target="_blank"
-                        title="Telegram"
-                        rel="me"
-                    >
-                        
-                        
-                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-telegram"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" /></svg>
-                        
-                    </a>
-                </li>
-            
-                <li>
-                    <a 
-                        href='https://x.com/malinkang'
-                        target="_blank"
-                        title="X"
-                        rel="me"
-                    >
-                        
-                        
-                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-x"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg>
-                        
-                    </a>
-                </li>
-            
         </ol><ol class="menu" id="main-menu">
-        
-        
         
         
         
@@ -194,7 +132,6 @@
         </li>
         
         
-        
         <li >
             <a href='/pages/about/' >
                 
@@ -212,7 +149,6 @@
                 <span>关于</span>
             </a>
         </li>
-        
         
         
         <li >
@@ -235,7 +171,6 @@
         </li>
         
         
-        
         <li >
             <a href='/search/' >
                 
@@ -250,10 +185,9 @@
 
 
                 
-                <span>Search</span>
+                <span>搜索</span>
             </a>
         </li>
-        
         
         
         <li >
@@ -1259,14 +1193,6 @@
         主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
-<script>
-    var s1 = '2014-01-01';
-    s1 = new Date(s1.replace(/-/g, "/"));
-    s2 = new Date();
-    var days = s2.getTime() - s1.getTime();
-    var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
-    document.getElementById('days').innerHTML = number_of_days;
-</script>
 
 
     
@@ -1364,110 +1290,6 @@
 
         document.head.appendChild(customFont);
     }());
-</script>
-
-<a href="#" id="back-to-top" title="返回顶部"></a>
-
-
-<style>
-  #back-to-top {
-    display: none;
-    position: fixed;
-    bottom: 20px;
-    right: 55px;
-    width: 55px;
-    height: 55px;
-    border-radius: 7px;
-    background-color: rgba(64, 158, 255, 0.5);
-    box-shadow: var(--shadow-l2);
-    font-size: 30px;
-    text-align: center;
-    line-height: 50px;
-    cursor: pointer;
-  }
-
-  #back-to-top:before {
-    content: ' ';
-    display: inline-block;
-    position: relative;
-    top: 0;
-    transform: rotate(135deg);
-    height: 10px;
-    width: 10px;
-    border-width: 0 0 2px 2px;
-    border-color: var(--back-to-top-color);
-    border-style: solid;
-  }
-
-  #back-to-top:hover:before {
-    border-color: #2674e0;
-  }
-
-   
-  @media screen and (max-width: 768px) {
-    #back-to-top {
-      bottom: 20px;
-      right: 20px;
-      width: 40px;
-      height: 40px;
-      font-size: 10px;
-    }
-  }
-
-   
-  @media screen and (min-width: 1024px) {
-    #back-to-top {
-      bottom: 20px;
-      right: 40px;
-    }
-  }
-
-   
-  @media screen and (min-width: 1280px) {
-    #back-to-top {
-      bottom: 20px;
-      right: 55px;
-    }
-  }
-
-   
-  @media screen and (min-width: 1536px) {
-    #back-to-top {
-      visibility: hidden;
-    }
-  }
-</style>
-
-
-<script>
-  function backToTop() {
-    document.documentElement.scrollIntoView({
-      behavior: 'smooth',
-    })
-  }
-
-  window.onload = function () {
-    let scrollTop =
-      this.document.documentElement.scrollTop || this.document.body.scrollTop
-    let totopBtn = this.document.getElementById('back-to-top')
-    if (scrollTop > 0) {
-      totopBtn.style.display = 'inline'
-    } else {
-      totopBtn.style.display = 'none'
-    }
-  }
-
-  window.onscroll = function () {
-    let scrollTop =
-      this.document.documentElement.scrollTop || this.document.body.scrollTop
-    let totopBtn = this.document.getElementById('back-to-top')
-    if (scrollTop < 200) {
-      totopBtn.style.display = 'none'
-    } else {
-      totopBtn.style.display = 'inline'
-      totopBtn.addEventListener('click', backToTop, false)
-    }
-  }
 </script>
 
     </body>

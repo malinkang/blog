@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='http://localhost:1313/android/%E4%B8%89%E6%96%B9%E6%BA%90%E7%A0%81/arouter/'>
 
-<link rel="stylesheet" href="/scss/style.min.ec699b5a71cf5dcf4c0b64b0b47bfcdfa0e15276f4505101ff823b5f1efb4c0e.css"><meta property='og:title' content="">
+<link rel="stylesheet" href="/scss/style.min.468550849f83b1226002bd6ea87652ebda0577c8d28bfd6371b109fe8cc160f4.css"><meta property='og:title' content="">
 <meta property='og:description' content="ARouter原理如下 编译期，会扫描@Route注解，将注解里的信息封装成一个RouteMeta对象。并生成一个辅助类ARouter$$Group$$groupName，groupName即分组的名字，这也意味着同一个group只会生成一个辅助类。该类继承自IRouteGroup，有一个loadInto()方法。LogisticsCenter的addRouteGroupDynamic方法会调用loadInto()方法，将@Route中的path作为key，封装的RouteMeta作为value存储到Warehouse的routes中。\n每一个module都会生成一个ARouter$$Root$$moduleName ，该类继承自IRouteRoot，在LogisticsCenter的loadRouterMap方法中调用loadInto()方法，将当前所有module下所有的group名称和生成的Group类的映射关系存储到Warehouse的groupsIndex中。\n此外，每一个module还会生成ARouter$$Interceptors$$moduleName和ARouter$$Providers$$moduleName负责将拦截器和Provider添加到Warehouse的对应字段中。\n调用build方法会创建一个Postcard对象，Postcard会根据传入的Path从Warehouse对象获取对应的对应的RouteMeta对象，然后找到对应的Class类，封装成Intent，调用系统的startActivity()进行跳转。\n代码生成 1 2 3 4 5 6 7 8 9 classDiagram class AbstractProcessor &lt;&lt;abstract&gt;&gt; AbstractProcessor class BaseProcessor &lt;&lt;abstract&gt;&gt; BaseProcessor AbstractProcessor&lt;|--BaseProcessor BaseProcessor&lt;|--RouteProcessor BaseProcessor&lt;|--AutowiredProcessor BaseProcessor&lt;|--InterceptorProcessor 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 //RouteProcessor的parseRoutes方法 //遍历所有元素 for (Element element : routeElements) { TypeMirror tm = element.asType(); //获取注解 Route route = element.getAnnotation(Route.class); RouteMeta routeMeta; // Activity or Fragment //判断注解作用的类，是否是Activity或者Fragment的子类 if (types.isSubtype(tm, type_Activity) || types.isSubtype(tm, fragmentTm) || types.isSubtype(tm, fragmentTmV4)) { // Get all fields annotation by @Autowired Map&lt;String, Integer&gt; paramsType = new HashMap&lt;&gt;(); Map&lt;String, Autowired&gt; injectConfig = new HashMap&lt;&gt;(); injectParamCollector(element, paramsType, injectConfig); //如果是Activity if (types.isSubtype(tm, type_Activity)) { // Activity logger.info(&#34;&gt;&gt;&gt; Found activity route: &#34; + tm.toString() + &#34; &lt;&lt;&lt;&#34;); routeMeta = new RouteMeta(route, element, RouteType.ACTIVITY, paramsType); } else { //若果是Fragment // Fragment logger.info(&#34;&gt;&gt;&gt; Found fragment route: &#34; + tm.toString() + &#34; &lt;&lt;&lt;&#34;); routeMeta = new RouteMeta(route, element, RouteType.parse(FRAGMENT), paramsType); } routeMeta.setInjectConfig(injectConfig); } else if (types.isSubtype(tm, iProvider)) { // IProvider logger.info(&#34;&gt;&gt;&gt; Found provider route: &#34; + tm.toString() + &#34; &lt;&lt;&lt;&#34;); routeMeta = new RouteMeta(route, element, RouteType.PROVIDER, null); } else if (types.isSubtype(tm, type_Service)) { // Service logger.info(&#34;&gt;&gt;&gt; Found service route: &#34; + tm.toString() + &#34; &lt;&lt;&lt;&#34;); routeMeta = new RouteMeta(route, element, RouteType.parse(SERVICE), null); } else { throw new RuntimeException(&#34;The @Route is marked on unsupported class, look at [&#34; + tm.toString() + &#34;].&#34;); } categories(routeMeta); } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 private void categories(RouteMeta routeMete) { //校验 if (routeVerify(routeMete)) { logger.info(&#34;&gt;&gt;&gt; Start categories, group = &#34; + routeMete.getGroup() + &#34;, path = &#34; + routeMete.getPath() + &#34; &lt;&lt;&lt;&#34;); Set&lt;RouteMeta&gt; routeMetas = groupMap.get(routeMete.getGroup()); //如果是空则创建Set，并将routeMeta添加到Set中，最后将Set添加到Map中 if (CollectionUtils.isEmpty(routeMetas)) { //创建TreeSet保持有序 Set&lt;RouteMeta&gt; routeMetaSet = new TreeSet&lt;&gt;(new Comparator&lt;RouteMeta&gt;() { @Override public int compare(RouteMeta r1, RouteMeta r2) { try { return r1.getPath().compareTo(r2.getPath()); } catch (NullPointerException npe) { logger.error(npe.getMessage()); return 0; } } }); routeMetaSet.add(routeMete); groupMap.put(routeMete.getGroup(), routeMetaSet); } else { routeMetas.add(routeMete); } } else { logger.warning(&#34;&gt;&gt;&gt; Route meta verify error, group is &#34; + routeMete.getGroup() + &#34; &lt;&lt;&lt;&#34;); } } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 private boolean routeVerify(RouteMeta meta) { String path = meta.getPath(); //如果path是空或者不是以/开头直接返回false //这里设计是否可以优化一下呢？能否在编译时报错，而不是到运行时才校验？ if (StringUtils.isEmpty(path) || !path.startsWith(&#34;/&#34;)) { // The path must be start with &#39;/&#39; and not empty! return false; } //如果Group是空，则截取第一个/和第二个/之间的字符串为Group if (StringUtils.isEmpty(meta.getGroup())) { // Use default group(the first word in path) try { String defaultGroup = path.substring(1, path.indexOf(&#34;/&#34;, 1)); logger.info(&#34;routeVerify path&#34;+path); logger.info(&#34;routeVerify &#34;+defaultGroup); if (StringUtils.isEmpty(defaultGroup)) { return false; } meta.setGroup(defaultGroup); return true; } catch (Exception e) { logger.error(&#34;Failed to extract default group! &#34; + e.getMessage()); return false; } } return true; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 //遍历HashMap for (Map.Entry&lt;String, Set&lt;RouteMeta&gt;&gt; entry : groupMap.entrySet()) { String groupName = entry.getKey(); //loadInto方法 MethodSpec.Builder loadIntoMethodOfGroupBuilder = MethodSpec.methodBuilder(METHOD_LOAD_INTO) .addAnnotation(Override.class) .addModifiers(PUBLIC) .addParameter(groupParamSpec); List&lt;RouteDoc&gt; routeDocList = new ArrayList&lt;&gt;(); // Build group method body //获取相同Group的RouteMeta Set&lt;RouteMeta&gt; groupData = entry.getValue(); for (RouteMeta routeMeta : groupData) { //将RouteMeta映射为RouteDoc RouteDoc routeDoc = extractDocInfo(routeMeta); ClassName className = ClassName.get((TypeElement) routeMeta.getRawType()); //如果是Provider switch (routeMeta.getType()) { case PROVIDER: // Need cache provider&#39;s super class List&lt;? extends TypeMirror&gt; interfaces = ((TypeElement) routeMeta.getRawType()).getInterfaces(); for (TypeMirror tm : interfaces) { routeDoc.addPrototype(tm.toString()); if (types.isSameType(tm, iProvider)) { // Its implements iProvider interface himself. // This interface extend the IProvider, so it can be used for mark provider loadIntoMethodOfProviderBuilder.addStatement( &#34;providers.put($S, $T.build($T.&#34; + routeMeta.getType() + &#34;, $T.class, $S, $S, null, &#34; + routeMeta.getPriority() + &#34;, &#34; + routeMeta.getExtra() + &#34;))&#34;, (routeMeta.getRawType()).toString(), routeMetaCn, routeTypeCn, className, routeMeta.getPath(), routeMeta.getGroup()); } else if (types.isSubtype(tm, iProvider)) { // This interface extend the IProvider, so it can be used for mark provider loadIntoMethodOfProviderBuilder.addStatement( &#34;providers.put($S, $T.build($T.&#34; + routeMeta.getType() + &#34;, $T.class, $S, $S, null, &#34; + routeMeta.getPriority() + &#34;, &#34; + routeMeta.getExtra() + &#34;))&#34;, tm.toString(), // So stupid, will duplicate only save class name. routeMetaCn, routeTypeCn, className, routeMeta.getPath(), routeMeta.getGroup()); } } break; default: break; } // Make map body for paramsType StringBuilder mapBodyBuilder = new StringBuilder(); Map&lt;String, Integer&gt; paramsType = routeMeta.getParamsType(); Map&lt;String, Autowired&gt; injectConfigs = routeMeta.getInjectConfig(); if (MapUtils.isNotEmpty(paramsType)) { List&lt;RouteDoc.Param&gt; paramList = new ArrayList&lt;&gt;(); for (Map.Entry&lt;String, Integer&gt; types : paramsType.entrySet()) { mapBodyBuilder.append(&#34;put(\\&#34;&#34;).append(types.getKey()).append(&#34;\\&#34;, &#34;).append(types.getValue()).append(&#34;); &#34;); RouteDoc.Param param = new RouteDoc.Param(); Autowired injectConfig = injectConfigs.get(types.getKey()); param.setKey(types.getKey()); param.setType(TypeKind.values()[types.getValue()].name().toLowerCase()); param.setDescription(injectConfig.desc()); param.setRequired(injectConfig.required()); paramList.add(param); } routeDoc.setParams(paramList); } String mapBody = mapBodyBuilder.toString(); //方法 loadIntoMethodOfGroupBuilder.addStatement( &#34;atlas.put($S, $T.build($T.&#34; + routeMeta.getType() + &#34;, $T.class, $S, $S, &#34; + (StringUtils.isEmpty(mapBody) ? null : (&#34;new java.util.HashMap&lt;String, Integer&gt;(){{&#34; + mapBodyBuilder.toString() + &#34;}}&#34;)) + &#34;, &#34; + routeMeta.getPriority() + &#34;, &#34; + routeMeta.getExtra() + &#34;))&#34;, routeMeta.getPath(), routeMetaCn, routeTypeCn, className, routeMeta.getPath().toLowerCase(), routeMeta.getGroup().toLowerCase()); routeDoc.setClassName(className.toString()); routeDocList.add(routeDoc); } 核心类 Route 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 @Target({ElementType.TYPE}) @Retention(RetentionPolicy.CLASS) public @interface Route { /** * Path of route */ String path(); //路径 /** * Used to merger routes, the group name MUST BE USE THE COMMON WORDS !!! */ String group() default &#34;&#34;; //group 如果不是设置会获取[1,indexOf(1,&#39;/&#39;)]之间的字符串为group /** * Name of route, used to generate javadoc. */ String name() default &#34;&#34;; /** * Extra data, can be set by user. * Ps. U should use the integer num sign the switch, by bits. 10001010101010 */ int extras() default Integer.MIN_VALUE; /** * The priority of route. */ int priority() default -1; } RouteMeta RouteMeta存储路由的信息，是Postcard的父类。\n">
 <meta property='og:url' content='http://localhost:1313/android/%E4%B8%89%E6%96%B9%E6%BA%90%E7%A0%81/arouter/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
@@ -26,25 +26,7 @@
           gtag('js', new Date());
           gtag('config', 'G-G84J9N38RL');
         }
-      </script><style>
-    :root {
-        --sys-font-family: "LXGW WenKai TC";
-        --zh-font-family: "LXGW WenKai TC";
-        --base-font-family: "LXGW WenKai TC";
-        --code-font-family: "LXGW WenKai TC";
-        --article-font-family: "LXGW WenKai TC";
-    }
-</style>
-
-<script>
-    (function () {
-        const customFont = document.createElement("link");
-        customFont.href = "https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&display=swap";
-        customFont.type = "text/css";
-        customFont.rel = "stylesheet";
-        document.head.appendChild(customFont);
-    })();
-</script>
+      </script>
     </head>
     <body class="
     article-page
@@ -108,20 +90,6 @@
             
                 <li>
                     <a 
-                        href='https://www.douban.com/people/malinkang/'
-                        target="_blank"
-                        title="Douban"
-                        rel="me"
-                    >
-                        
-                        
-                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-douban"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20h16" /><path d="M5 4h14" /><path d="M8 8h8a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2v-2a2 2 0 0 1 2 -2z" /><path d="M16 14l-2 6" /><path d="M8 17l1 3" /></svg>
-                        
-                    </a>
-                </li>
-            
-                <li>
-                    <a 
                         href='https://github.com/malinkang'
                         target="_blank"
                         title="GitHub"
@@ -140,37 +108,7 @@
                     </a>
                 </li>
             
-                <li>
-                    <a 
-                        href='https://t.me/malinkanglife'
-                        target="_blank"
-                        title="Telegram"
-                        rel="me"
-                    >
-                        
-                        
-                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-telegram"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" /></svg>
-                        
-                    </a>
-                </li>
-            
-                <li>
-                    <a 
-                        href='https://x.com/malinkang'
-                        target="_blank"
-                        title="X"
-                        rel="me"
-                    >
-                        
-                        
-                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-x"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg>
-                        
-                    </a>
-                </li>
-            
         </ol><ol class="menu" id="main-menu">
-        
-        
         
         
         
@@ -194,7 +132,6 @@
         </li>
         
         
-        
         <li >
             <a href='/pages/about/' >
                 
@@ -212,7 +149,6 @@
                 <span>关于</span>
             </a>
         </li>
-        
         
         
         <li >
@@ -235,7 +171,6 @@
         </li>
         
         
-        
         <li >
             <a href='/search/' >
                 
@@ -250,10 +185,9 @@
 
 
                 
-                <span>Search</span>
+                <span>搜索</span>
             </a>
         </li>
-        
         
         
         <li >
@@ -2129,14 +2063,6 @@
         主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
-<script>
-    var s1 = '2014-01-01';
-    s1 = new Date(s1.replace(/-/g, "/"));
-    s2 = new Date();
-    var days = s2.getTime() - s1.getTime();
-    var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
-    document.getElementById('days').innerHTML = number_of_days;
-</script>
 
 
     
@@ -2234,110 +2160,6 @@
 
         document.head.appendChild(customFont);
     }());
-</script>
-
-<a href="#" id="back-to-top" title="返回顶部"></a>
-
-
-<style>
-  #back-to-top {
-    display: none;
-    position: fixed;
-    bottom: 20px;
-    right: 55px;
-    width: 55px;
-    height: 55px;
-    border-radius: 7px;
-    background-color: rgba(64, 158, 255, 0.5);
-    box-shadow: var(--shadow-l2);
-    font-size: 30px;
-    text-align: center;
-    line-height: 50px;
-    cursor: pointer;
-  }
-
-  #back-to-top:before {
-    content: ' ';
-    display: inline-block;
-    position: relative;
-    top: 0;
-    transform: rotate(135deg);
-    height: 10px;
-    width: 10px;
-    border-width: 0 0 2px 2px;
-    border-color: var(--back-to-top-color);
-    border-style: solid;
-  }
-
-  #back-to-top:hover:before {
-    border-color: #2674e0;
-  }
-
-   
-  @media screen and (max-width: 768px) {
-    #back-to-top {
-      bottom: 20px;
-      right: 20px;
-      width: 40px;
-      height: 40px;
-      font-size: 10px;
-    }
-  }
-
-   
-  @media screen and (min-width: 1024px) {
-    #back-to-top {
-      bottom: 20px;
-      right: 40px;
-    }
-  }
-
-   
-  @media screen and (min-width: 1280px) {
-    #back-to-top {
-      bottom: 20px;
-      right: 55px;
-    }
-  }
-
-   
-  @media screen and (min-width: 1536px) {
-    #back-to-top {
-      visibility: hidden;
-    }
-  }
-</style>
-
-
-<script>
-  function backToTop() {
-    document.documentElement.scrollIntoView({
-      behavior: 'smooth',
-    })
-  }
-
-  window.onload = function () {
-    let scrollTop =
-      this.document.documentElement.scrollTop || this.document.body.scrollTop
-    let totopBtn = this.document.getElementById('back-to-top')
-    if (scrollTop > 0) {
-      totopBtn.style.display = 'inline'
-    } else {
-      totopBtn.style.display = 'none'
-    }
-  }
-
-  window.onscroll = function () {
-    let scrollTop =
-      this.document.documentElement.scrollTop || this.document.body.scrollTop
-    let totopBtn = this.document.getElementById('back-to-top')
-    if (scrollTop < 200) {
-      totopBtn.style.display = 'none'
-    } else {
-      totopBtn.style.display = 'inline'
-      totopBtn.addEventListener('click', backToTop, false)
-    }
-  }
 </script>
 
     </body>

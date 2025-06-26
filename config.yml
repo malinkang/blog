@@ -180,26 +180,26 @@ menu:
         url: https://github.com/malinkang
         params:
             icon: brand-github
-      - identifier: x
-        name: X
-        url: https://x.com/malinkang
-        params:
-            icon: brand-x
-      - identifier: douban
-        name: Douban
-        url: https://www.douban.com/people/malinkang/
-        params:
-            icon: brand-douban
+      # - identifier: x
+      #   name: X
+      #   url: https://x.com/malinkang
+      #   params:
+      #       icon: brand-x
+      # - identifier: douban
+      #   name: Douban
+      #   url: https://www.douban.com/people/malinkang/
+      #   params:
+      #       icon: brand-douban
       # - identifier: bilibili
       #   name: Bilibili
       #   url: https://space.bilibili.com/27440979
       #   params:
       #       icon: brand-bilibili      
-      - identifier: telegram
-        name: Telegram
-        url: https://t.me/malinkanglife
-        params:
-            icon: brand-telegram
+      # - identifier: telegram
+      #   name: Telegram
+      #   url: https://t.me/malinkanglife
+      #   params:
+      #       icon: brand-telegram
       # - identifier: instagram
       #   name: Instagram
       #   url: https://www.instagram.com/malinkang
