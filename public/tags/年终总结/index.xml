@@ -23,6 +23,9 @@
 
 
 
+
+
+
 	
 
 
@@ -60,13 +63,15 @@
 
 
 
-  	
+
+
+	
 	
 
 	
 		&lt;script src=&#34;http://localhost:1313/shortcode-gallery/jquery-3.7.1.min.js&#34;&gt;&lt;/script&gt;
 	
-	
+
 	
 		&lt;script src=&#34;http://localhost:1313/shortcode-gallery/lazy/jquery.lazy.min.js&#34;&gt;&lt;/script&gt;
 	
@@ -92,10 +97,15 @@
 &lt;div id=&#34;gallery-825294d2edcaa390ab7c24723256abd4-0&#34; class=&#34;justified-gallery&#34;&gt;
 	
 		
-		
+
+			
+			
+
+			
+			
 				
 			
-			
+
 			
 				
 			
@@ -110,10 +120,6 @@
 
 			
 			
-
-			
-			
-
 
 			&lt;div&gt;
 				
@@ -121,11 +127,18 @@
 					
 					
 				
-				&lt;a href=&#34;http://localhost:1313/posts/2022/images/keep01.jpg&#34; 
+
+				
+				
+					
+					
+				
+
+				&lt;a href=&#34;http://localhost:1313/posts/2022/images/keep01.jpg&#34;
 					class=&#34;galleryImg&#34;
 					
 					&gt;
-					&lt;img			
+					&lt;img
 						width=&#34;284&#34; height=&#34;600&#34;
 
 						
@@ -145,10 +158,15 @@
 		
 	
 		
-		
+
+			
+			
+
+			
+			
 				
 			
-			
+
 			
 				
 			
@@ -163,10 +181,6 @@
 
 			
 			
-
-			
-			
-
 
 			&lt;div&gt;
 				
@@ -174,11 +188,18 @@
 					
 					
 				
-				&lt;a href=&#34;http://localhost:1313/posts/2022/images/keep02.jpg&#34; 
+
+				
+				
+					
+					
+				
+
+				&lt;a href=&#34;http://localhost:1313/posts/2022/images/keep02.jpg&#34;
 					class=&#34;galleryImg&#34;
 					
 					&gt;
-					&lt;img			
+					&lt;img
 						width=&#34;284&#34; height=&#34;600&#34;
 
 						
@@ -198,10 +219,15 @@
 		
 	
 		
-		
+
+			
+			
+
+			
+			
 				
 			
-			
+
 			
 				
 			
@@ -216,10 +242,6 @@
 
 			
 			
-
-			
-			
-
 
 			&lt;div&gt;
 				
@@ -227,11 +249,18 @@
 					
 					
 				
-				&lt;a href=&#34;http://localhost:1313/posts/2022/images/keep03.jpg&#34; 
+
+				
+				
+					
+					
+				
+
+				&lt;a href=&#34;http://localhost:1313/posts/2022/images/keep03.jpg&#34;
 					class=&#34;galleryImg&#34;
 					
 					&gt;
-					&lt;img			
+					&lt;img
 						width=&#34;284&#34; height=&#34;600&#34;
 
 						
@@ -251,10 +280,15 @@
 		
 	
 		
-		
+
+			
+			
+
+			
+			
 				
 			
-			
+
 			
 				
 			
@@ -269,10 +303,6 @@
 
 			
 			
-
-			
-			
-
 
 			&lt;div&gt;
 				
@@ -280,11 +310,18 @@
 					
 					
 				
-				&lt;a href=&#34;http://localhost:1313/posts/2022/images/keep04.jpg&#34; 
+
+				
+				
+					
+					
+				
+
+				&lt;a href=&#34;http://localhost:1313/posts/2022/images/keep04.jpg&#34;
 					class=&#34;galleryImg&#34;
 					
 					&gt;
-					&lt;img			
+					&lt;img
 						width=&#34;284&#34; height=&#34;600&#34;
 
 						
@@ -304,10 +341,15 @@
 		
 	
 		
-		
+
+			
+			
+
+			
+			
 				
 			
-			
+
 			
 				
 			
@@ -322,10 +364,6 @@
 
 			
 			
-
-			
-			
-
 
 			&lt;div&gt;
 				
@@ -333,11 +371,18 @@
 					
 					
 				
-				&lt;a href=&#34;http://localhost:1313/posts/2022/images/keep05.jpg&#34; 
+
+				
+				
+					
+					
+				
+
+				&lt;a href=&#34;http://localhost:1313/posts/2022/images/keep05.jpg&#34;
 					class=&#34;galleryImg&#34;
 					
 					&gt;
-					&lt;img			
+					&lt;img
 						width=&#34;284&#34; height=&#34;600&#34;
 
 						
@@ -357,10 +402,15 @@
 		
 	
 		
-		
+
+			
+			
+
+			
+			
 				
 			
-			
+
 			
 				
 			
@@ -375,10 +425,6 @@
 
 			
 			
-
-			
-			
-
 
 			&lt;div&gt;
 				
@@ -386,11 +432,18 @@
 					
 					
 				
-				&lt;a href=&#34;http://localhost:1313/posts/2022/images/keep06.jpg&#34; 
+
+				
+				
+					
+					
+				
+
+				&lt;a href=&#34;http://localhost:1313/posts/2022/images/keep06.jpg&#34;
 					class=&#34;galleryImg&#34;
 					
 					&gt;
-					&lt;img			
+					&lt;img
 						width=&#34;284&#34; height=&#34;600&#34;
 
 						
@@ -410,10 +463,15 @@
 		
 	
 		
-		
+
+			
+			
+
+			
+			
 				
 			
-			
+
 			
 				
 			
@@ -428,10 +486,6 @@
 
 			
 			
-
-			
-			
-
 
 			&lt;div&gt;
 				
@@ -439,11 +493,18 @@
 					
 					
 				
-				&lt;a href=&#34;http://localhost:1313/posts/2022/images/keep07.jpg&#34; 
+
+				
+				
+					
+					
+				
+
+				&lt;a href=&#34;http://localhost:1313/posts/2022/images/keep07.jpg&#34;
 					class=&#34;galleryImg&#34;
 					
 					&gt;
-					&lt;img			
+					&lt;img
 						width=&#34;284&#34; height=&#34;600&#34;
 
 						
@@ -463,10 +524,15 @@
 		
 	
 		
-		
+
+			
+			
+
+			
+			
 				
 			
-			
+
 			
 				
 			
@@ -481,10 +547,6 @@
 
 			
 			
-
-			
-			
-
 
 			&lt;div&gt;
 				
@@ -492,11 +554,18 @@
 					
 					
 				
-				&lt;a href=&#34;http://localhost:1313/posts/2022/images/keep08.jpg&#34; 
+
+				
+				
+					
+					
+				
+
+				&lt;a href=&#34;http://localhost:1313/posts/2022/images/keep08.jpg&#34;
 					class=&#34;galleryImg&#34;
 					
 					&gt;
-					&lt;img			
+					&lt;img
 						width=&#34;284&#34; height=&#34;600&#34;
 
 						
@@ -516,10 +585,15 @@
 		
 	
 		
-		
+
+			
+			
+
+			
+			
 				
 			
-			
+
 			
 				
 			
@@ -534,10 +608,6 @@
 
 			
 			
-
-			
-			
-
 
 			&lt;div&gt;
 				
@@ -545,11 +615,18 @@
 					
 					
 				
-				&lt;a href=&#34;http://localhost:1313/posts/2022/images/keep09.jpg&#34; 
+
+				
+				
+					
+					
+				
+
+				&lt;a href=&#34;http://localhost:1313/posts/2022/images/keep09.jpg&#34;
 					class=&#34;galleryImg&#34;
 					
 					&gt;
-					&lt;img			
+					&lt;img
 						width=&#34;284&#34; height=&#34;600&#34;
 
 						
@@ -569,10 +646,15 @@
 		
 	
 		
-		
+
+			
+			
+
+			
+			
 				
 			
-			
+
 			
 				
 			
@@ -587,10 +669,6 @@
 
 			
 			
-
-			
-			
-
 
 			&lt;div&gt;
 				
@@ -598,11 +676,18 @@
 					
 					
 				
-				&lt;a href=&#34;http://localhost:1313/posts/2022/images/keep10.jpg&#34; 
+
+				
+				
+					
+					
+				
+
+				&lt;a href=&#34;http://localhost:1313/posts/2022/images/keep10.jpg&#34;
 					class=&#34;galleryImg&#34;
 					
 					&gt;
-					&lt;img			
+					&lt;img
 						width=&#34;329&#34; height=&#34;600&#34;
 
 						
@@ -668,17 +753,20 @@
 			});
 
 			
-			gallery.justifiedGallery({
-				rowHeight : &#34;250&#34;,
-				margins : &#34;5&#34;,
-				border : 0,
-				randomize :  false ,
-				waitThumbnailsLoad : false,
-				lastRow : &#34;justify&#34;,
-				captions : false,
-				
-				
-			});
+			gallery.justifiedGallery($.extend(
+				{
+					rowHeight : &#34;250&#34;,
+					margins : &#34;5&#34;,
+					border : 0,
+					randomize :  false ,
+					waitThumbnailsLoad : false,
+					lastRow : &#34;justify&#34;,
+					captions : false,
+					
+					
+				},
+				{  }
+			));
 
 			
 			
@@ -754,7 +842,12 @@
 
 
 
+
+
+
 	
+
+
 
 
 
@@ -806,10 +899,15 @@
 &lt;div id=&#34;gallery-825294d2edcaa390ab7c24723256abd4-1&#34; class=&#34;justified-gallery&#34;&gt;
 	
 		
-		
+
+			
+			
+
+			
+			
 				
 			
-			
+
 			
 				
 			
@@ -824,10 +922,6 @@
 
 			
 			
-
-			
-			
-
 
 			&lt;div&gt;
 				
@@ -835,11 +929,18 @@
 					
 					
 				
-				&lt;a href=&#34;http://localhost:1313/posts/2022/images/weixin01.jpg&#34; 
+
+				
+				
+					
+					
+				
+
+				&lt;a href=&#34;http://localhost:1313/posts/2022/images/weixin01.jpg&#34;
 					class=&#34;galleryImg&#34;
 					
 					&gt;
-					&lt;img			
+					&lt;img
 						width=&#34;284&#34; height=&#34;600&#34;
 
 						
@@ -859,10 +960,15 @@
 		
 	
 		
-		
+
+			
+			
+
+			
+			
 				
 			
-			
+
 			
 				
 			
@@ -877,10 +983,6 @@
 
 			
 			
-
-			
-			
-
 
 			&lt;div&gt;
 				
@@ -888,11 +990,18 @@
 					
 					
 				
-				&lt;a href=&#34;http://localhost:1313/posts/2022/images/weixin02.jpg&#34; 
+
+				
+				
+					
+					
+				
+
+				&lt;a href=&#34;http://localhost:1313/posts/2022/images/weixin02.jpg&#34;
 					class=&#34;galleryImg&#34;
 					
 					&gt;
-					&lt;img			
+					&lt;img
 						width=&#34;284&#34; height=&#34;600&#34;
 
 						
@@ -912,10 +1021,15 @@
 		
 	
 		
-		
+
+			
+			
+
+			
+			
 				
 			
-			
+
 			
 				
 			
@@ -930,10 +1044,6 @@
 
 			
 			
-
-			
-			
-
 
 			&lt;div&gt;
 				
@@ -941,11 +1051,18 @@
 					
 					
 				
-				&lt;a href=&#34;http://localhost:1313/posts/2022/images/weixin03.jpg&#34; 
+
+				
+				
+					
+					
+				
+
+				&lt;a href=&#34;http://localhost:1313/posts/2022/images/weixin03.jpg&#34;
 					class=&#34;galleryImg&#34;
 					
 					&gt;
-					&lt;img			
+					&lt;img
 						width=&#34;284&#34; height=&#34;600&#34;
 
 						
@@ -965,10 +1082,15 @@
 		
 	
 		
-		
+
+			
+			
+
+			
+			
 				
 			
-			
+
 			
 				
 			
@@ -983,10 +1105,6 @@
 
 			
 			
-
-			
-			
-
 
 			&lt;div&gt;
 				
@@ -994,11 +1112,18 @@
 					
 					
 				
-				&lt;a href=&#34;http://localhost:1313/posts/2022/images/weixin04.jpg&#34; 
+
+				
+				
+					
+					
+				
+
+				&lt;a href=&#34;http://localhost:1313/posts/2022/images/weixin04.jpg&#34;
 					class=&#34;galleryImg&#34;
 					
 					&gt;
-					&lt;img			
+					&lt;img
 						width=&#34;284&#34; height=&#34;600&#34;
 
 						
@@ -1018,10 +1143,15 @@
 		
 	
 		
-		
+
+			
+			
+
+			
+			
 				
 			
-			
+
 			
 				
 			
@@ -1036,10 +1166,6 @@
 
 			
 			
-
-			
-			
-
 
 			&lt;div&gt;
 				
@@ -1047,11 +1173,18 @@
 					
 					
 				
-				&lt;a href=&#34;http://localhost:1313/posts/2022/images/weixin05.jpg&#34; 
+
+				
+				
+					
+					
+				
+
+				&lt;a href=&#34;http://localhost:1313/posts/2022/images/weixin05.jpg&#34;
 					class=&#34;galleryImg&#34;
 					
 					&gt;
-					&lt;img			
+					&lt;img
 						width=&#34;284&#34; height=&#34;600&#34;
 
 						
@@ -1071,10 +1204,15 @@
 		
 	
 		
-		
+
+			
+			
+
+			
+			
 				
 			
-			
+
 			
 				
 			
@@ -1089,10 +1227,6 @@
 
 			
 			
-
-			
-			
-
 
 			&lt;div&gt;
 				
@@ -1100,11 +1234,18 @@
 					
 					
 				
-				&lt;a href=&#34;http://localhost:1313/posts/2022/images/weixin06.jpg&#34; 
+
+				
+				
+					
+					
+				
+
+				&lt;a href=&#34;http://localhost:1313/posts/2022/images/weixin06.jpg&#34;
 					class=&#34;galleryImg&#34;
 					
 					&gt;
-					&lt;img			
+					&lt;img
 						width=&#34;284&#34; height=&#34;600&#34;
 
 						
@@ -1124,10 +1265,15 @@
 		
 	
 		
-		
+
+			
+			
+
+			
+			
 				
 			
-			
+
 			
 				
 			
@@ -1142,10 +1288,6 @@
 
 			
 			
-
-			
-			
-
 
 			&lt;div&gt;
 				
@@ -1153,11 +1295,18 @@
 					
 					
 				
-				&lt;a href=&#34;http://localhost:1313/posts/2022/images/weixin07.jpg&#34; 
+
+				
+				
+					
+					
+				
+
+				&lt;a href=&#34;http://localhost:1313/posts/2022/images/weixin07.jpg&#34;
 					class=&#34;galleryImg&#34;
 					
 					&gt;
-					&lt;img			
+					&lt;img
 						width=&#34;284&#34; height=&#34;600&#34;
 
 						
@@ -1177,10 +1326,15 @@
 		
 	
 		
-		
+
+			
+			
+
+			
+			
 				
 			
-			
+
 			
 				
 			
@@ -1195,10 +1349,6 @@
 
 			
 			
-
-			
-			
-
 
 			&lt;div&gt;
 				
@@ -1206,11 +1356,18 @@
 					
 					
 				
-				&lt;a href=&#34;http://localhost:1313/posts/2022/images/weixin08.jpg&#34; 
+
+				
+				
+					
+					
+				
+
+				&lt;a href=&#34;http://localhost:1313/posts/2022/images/weixin08.jpg&#34;
 					class=&#34;galleryImg&#34;
 					
 					&gt;
-					&lt;img			
+					&lt;img
 						width=&#34;284&#34; height=&#34;600&#34;
 
 						
@@ -1230,10 +1387,15 @@
 		
 	
 		
-		
+
+			
+			
+
+			
+			
 				
 			
-			
+
 			
 				
 			
@@ -1248,10 +1410,6 @@
 
 			
 			
-
-			
-			
-
 
 			&lt;div&gt;
 				
@@ -1259,11 +1417,18 @@
 					
 					
 				
-				&lt;a href=&#34;http://localhost:1313/posts/2022/images/weixin09.jpg&#34; 
+
+				
+				
+					
+					
+				
+
+				&lt;a href=&#34;http://localhost:1313/posts/2022/images/weixin09.jpg&#34;
 					class=&#34;galleryImg&#34;
 					
 					&gt;
-					&lt;img			
+					&lt;img
 						width=&#34;284&#34; height=&#34;600&#34;
 
 						
@@ -1283,10 +1448,15 @@
 		
 	
 		
-		
+
+			
+			
+
+			
+			
 				
 			
-			
+
 			
 				
 			
@@ -1301,10 +1471,6 @@
 
 			
 			
-
-			
-			
-
 
 			&lt;div&gt;
 				
@@ -1312,11 +1478,18 @@
 					
 					
 				
-				&lt;a href=&#34;http://localhost:1313/posts/2022/images/weixin10.jpg&#34; 
+
+				
+				
+					
+					
+				
+
+				&lt;a href=&#34;http://localhost:1313/posts/2022/images/weixin10.jpg&#34;
 					class=&#34;galleryImg&#34;
 					
 					&gt;
-					&lt;img			
+					&lt;img
 						width=&#34;284&#34; height=&#34;600&#34;
 
 						
@@ -1382,17 +1555,20 @@
 			});
 
 			
-			gallery.justifiedGallery({
-				rowHeight : &#34;250&#34;,
-				margins : &#34;5&#34;,
-				border : 0,
-				randomize :  false ,
-				waitThumbnailsLoad : false,
-				lastRow : &#34;justify&#34;,
-				captions : false,
-				
-				
-			});
+			gallery.justifiedGallery($.extend(
+				{
+					rowHeight : &#34;250&#34;,
+					margins : &#34;5&#34;,
+					border : 0,
+					randomize :  false ,
+					waitThumbnailsLoad : false,
+					lastRow : &#34;justify&#34;,
+					captions : false,
+					
+					
+				},
+				{  }
+			));
 
 			
 			
