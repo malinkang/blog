@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='http://localhost:1313/posts/todo2notion/'>
 
-<link rel="stylesheet" href="/scss/style.min.02e787cae5940f4bd01460aa6f925ded7ffad9a74fe0060627559a12778ce732.css"><meta property='og:title' content="WeRead2Notion使用文档">
+<link rel="stylesheet" href="/scss/style.min.0776daf8896c30c9fb01acadcfa5f94b143de40fefee88d83cf4de0d3d10e7b4.css"><meta property='og:title' content="WeRead2Notion使用文档">
 <meta property='og:description' content="我之前最开始使用奇妙清单，后来奇妙清单被微软收购了，就开始使用微软Todo，用了这么多年，一直没有换过。因为它足够简洁并且免费，而且开放API，我也一直是使用N8N来将微软Todo同步到Notion了。\n因为一直有人在公众号后台问滴答清单能否同步到Notion，所以我在6月份就开发了滴答清单同步到Notion。但是为什么迟迟没发，因为有两个问题一直困扰着我，第一个是滴答清单和Notion笔记如何合并，第二个问题就是滴答清单笔记里的图片是私有的，无法在Notion中显示，后面思考了好久也算是找到了虽然不算完美的解决方案。\n最开始设计模板的时候，我是把Todo和番茄钟和习惯打卡放在一个模板里，后面又觉得太重，后面又拆分成3个功能。这样时间就来到了11月，原本计划11月6号发，但是以为我11月4号跑步摔了一跤，住院了，所以文档也没来写。然后在11月6号的时候看到滴答清单官方计划12月支持Notion的双向同步，然后我一直在纠结还要不要发。就这样又纠结了两周，还是决定发出来。注意这个项目只支持滴答清单同步到Notion，不支持Notion同步到滴答清单。支持子任务。\nFork工程 打开https://github.com/malinkang/todo2notion，点击右上角的Fork（顺便点个star谢谢）\n权限 确保你打开了读写权限。\n依次选择Settings-&gt;Actions-&gt;General，然后下拉，找到Workflow permissions，如果没有选中Read and write permissions，请选中，然后点下面的save保存。\n授权 浏览器打开 https://www.notion.so/install-integration?response_type=code&client_id=85564f7a-1b41-49bf-a43a-41452c57cf83&redirect_uri=https%3A%2F%2Fnotion-auth.malinkang.com%2Ftodo-oauth-callback&owner=user\n然后点击下一步-\n选择使用 开发人员提供的模板，然后点击允许访问。这一步会自动复制模板到你的Notion里。 点击复制按钮，复制NOTION_TOKEN和NOTION_PAGE的值。 在Github的Secrets中添加变量 打开你fork的工程，点击Settings-&gt;Secrets and variables-&gt;New repository secret Name输入NOTION_TOKEN，Secret输入框中填入你授权获取的NOTION_TOKEN，然后点击Add secret 同理，继续点击New repository secret，增加变量NOTION_PAGE，Secret输入框中填入你授权获取的NOTION_TOKEN，然后点击Add secret。 设置 打开你复制的Notion模板，找到设置数据库，打开。\n输入滴答清单的账号和密码（如果Todo页面设置为公开的话，记得将设置数据库设置为私有）。并选择是否将图片上传到Github。（注意上传到Github可以被别人访问到，如果图片有个人隐私，请勿勾选此选项）。\n运行 上面配置完成之后，打开你Fork的项目，依次点击Actions-&gt;todo sync-&gt; Run workflow，就可以运行了。\n之后会每3个小时更新一次。\n笔记 每次运行之后，滴答清单里的笔记会被同步到Todo所在的页面里。如果Todo被修改笔记也会被删除并重建一个页面，所以不要直接在当前Todo页面下做笔记。如果需要额外在Notion中增加笔记，请在笔记数据库里添加笔记，并将笔记关联到Todo上，每次同步时会自动将关联的笔记复制到Todo所在的页面里。\n以上，就是教程的全部内容。有什么问题或者疑问请评论区留言或者加群交流。\n如果二维码失效可以添加我的个人微信，我来邀请你入群。当然你想交个朋友，也可以加我微信。\n如果你觉得文章对您有帮助，请捐赠支持一下。\n">
 <meta property='og:url' content='http://localhost:1313/posts/todo2notion/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
@@ -73,7 +73,7 @@
     })();
 </script>
 <div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
-    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
         <span class="hamburger-box">
             <span class="hamburger-inner"></span>
         </span>
@@ -227,7 +227,7 @@
             
                 <li>
                     <a 
-                        href='https://www.strava.com/athletes/20840511'
+                        href='https://www.zhihu.com/people/malinkang'
                         target="_blank"
                         title="知乎"
                         rel="me"
@@ -389,6 +389,54 @@
             </a>
         </li>
         
+        
+        <li >
+            <a href='https://malinkang.notion.site/book' target="_blank">
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-book"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0" /><path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0" /><path d="M3 6l0 13" /><path d="M12 6l0 13" /><path d="M21 6l0 13" /></svg>
+                
+                <span>阅读</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='https://malinkang.notion.site/workouts' target="_blank">
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-run"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M13 4m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M4 17l5 1l.75 -1.5" /><path d="M15 21l0 -4l-4 -3l1 -6" /><path d="M7 12l0 -3l5 -1l3 3l3 1" /></svg>
+                
+                <span>运动</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='https://malinkang.notion.site/workouts' target="_blank">
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-movie"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M8 4l0 16" /><path d="M16 4l0 16" /><path d="M4 8l4 0" /><path d="M4 16l4 0" /><path d="M4 12l16 0" /><path d="M16 8l4 0" /><path d="M16 16l4 0" /></svg>
+                
+                <span>观影</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='https://malinkang.notion.site/workouts' target="_blank">
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-broadcast"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18.364 19.364a9 9 0 1 0 -12.728 0" /><path d="M15.536 16.536a5 5 0 1 0 -7.072 0" /><path d="M12 13m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /></svg>
+                
+                <span>播客</span>
+            </a>
+        </li>
+        
         <li class="menu-bottom-section">
             <ol class="menu">
 
@@ -410,7 +458,7 @@
 
 
 
-                        <span>Dark Mode</span>
+                        <span>暗色模式</span>
                     </li>
                 
             </ol>
@@ -435,7 +483,7 @@
 
 
         </div>
-        <h2 class="widget-title section-title">Table of contents</h2>
+        <h2 class="widget-title section-title">目录</h2>
         
         <div class="widget--toc">
             <nav id="TableOfContents">
@@ -511,7 +559,7 @@
 
 
                 <time class="article-time--reading">
-                    1 minute read
+                    阅读时长: 1 分钟
                 </time>
             </div>
         
@@ -717,7 +765,7 @@
     
 
 <aside class="related-content--wrapper">
-    <h2 class="section-title">Related content</h2>
+    <h2 class="section-title">相关文章</h2>
     <div class="related-content">
         <div class="flex article-list--tile">
             
@@ -867,8 +915,8 @@
     </section>
     
     <section class="powerby">
-        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
 

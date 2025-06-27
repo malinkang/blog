@@ -83,10 +83,10 @@
     <loc>http://localhost:1313/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/</loc>
     <lastmod>2022-12-31T15:28:05+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/youran/</loc>
+    <loc>http://localhost:1313/categories/%E7%94%9F%E6%B4%BB/</loc>
     <lastmod>2022-03-29T01:08:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/%E7%94%9F%E6%B4%BB/</loc>
+    <loc>http://localhost:1313/posts/youran/</loc>
     <lastmod>2022-03-29T01:08:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/pages/</loc>
@@ -94,9 +94,6 @@
   </url><url>
     <loc>http://localhost:1313/pages/archives/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/pages/about/</loc>
-    <lastmod>2019-02-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/git/</loc>
     <lastmod>2016-11-25T11:22:54+00:00</lastmod>
@@ -106,11 +103,9 @@
   </url><url>
     <loc>http://localhost:1313/archives/</loc>
   </url><url>
+    <loc>http://localhost:1313/pages/about/</loc>
+  </url><url>
     <loc>http://localhost:1313/pages/links/</loc>
-  </url><url>
-    <loc>http://localhost:1313/movies/</loc>
-  </url><url>
-    <loc>http://localhost:1313/books/</loc>
   </url><url>
     <loc>http://localhost:1313/search/</loc>
   </url>
