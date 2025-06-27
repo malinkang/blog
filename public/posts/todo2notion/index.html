@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='http://localhost:1313/posts/todo2notion/'>
 
-<link rel="stylesheet" href="/scss/style.min.d8670c5d824e2c2f18c7a056928251a2d6b901347acafb0878d41fe42d2ca33c.css"><meta property='og:title' content="WeRead2Notion使用文档">
+<link rel="stylesheet" href="/scss/style.min.02e787cae5940f4bd01460aa6f925ded7ffad9a74fe0060627559a12778ce732.css"><meta property='og:title' content="WeRead2Notion使用文档">
 <meta property='og:description' content="我之前最开始使用奇妙清单，后来奇妙清单被微软收购了，就开始使用微软Todo，用了这么多年，一直没有换过。因为它足够简洁并且免费，而且开放API，我也一直是使用N8N来将微软Todo同步到Notion了。\n因为一直有人在公众号后台问滴答清单能否同步到Notion，所以我在6月份就开发了滴答清单同步到Notion。但是为什么迟迟没发，因为有两个问题一直困扰着我，第一个是滴答清单和Notion笔记如何合并，第二个问题就是滴答清单笔记里的图片是私有的，无法在Notion中显示，后面思考了好久也算是找到了虽然不算完美的解决方案。\n最开始设计模板的时候，我是把Todo和番茄钟和习惯打卡放在一个模板里，后面又觉得太重，后面又拆分成3个功能。这样时间就来到了11月，原本计划11月6号发，但是以为我11月4号跑步摔了一跤，住院了，所以文档也没来写。然后在11月6号的时候看到滴答清单官方计划12月支持Notion的双向同步，然后我一直在纠结还要不要发。就这样又纠结了两周，还是决定发出来。注意这个项目只支持滴答清单同步到Notion，不支持Notion同步到滴答清单。支持子任务。\nFork工程 打开https://github.com/malinkang/todo2notion，点击右上角的Fork（顺便点个star谢谢）\n权限 确保你打开了读写权限。\n依次选择Settings-&gt;Actions-&gt;General，然后下拉，找到Workflow permissions，如果没有选中Read and write permissions，请选中，然后点下面的save保存。\n授权 浏览器打开 https://www.notion.so/install-integration?response_type=code&client_id=85564f7a-1b41-49bf-a43a-41452c57cf83&redirect_uri=https%3A%2F%2Fnotion-auth.malinkang.com%2Ftodo-oauth-callback&owner=user\n然后点击下一步-\n选择使用 开发人员提供的模板，然后点击允许访问。这一步会自动复制模板到你的Notion里。 点击复制按钮，复制NOTION_TOKEN和NOTION_PAGE的值。 在Github的Secrets中添加变量 打开你fork的工程，点击Settings-&gt;Secrets and variables-&gt;New repository secret Name输入NOTION_TOKEN，Secret输入框中填入你授权获取的NOTION_TOKEN，然后点击Add secret 同理，继续点击New repository secret，增加变量NOTION_PAGE，Secret输入框中填入你授权获取的NOTION_TOKEN，然后点击Add secret。 设置 打开你复制的Notion模板，找到设置数据库，打开。\n输入滴答清单的账号和密码（如果Todo页面设置为公开的话，记得将设置数据库设置为私有）。并选择是否将图片上传到Github。（注意上传到Github可以被别人访问到，如果图片有个人隐私，请勿勾选此选项）。\n运行 上面配置完成之后，打开你Fork的项目，依次点击Actions-&gt;todo sync-&gt; Run workflow，就可以运行了。\n之后会每3个小时更新一次。\n笔记 每次运行之后，滴答清单里的笔记会被同步到Todo所在的页面里。如果Todo被修改笔记也会被删除并重建一个页面，所以不要直接在当前Todo页面下做笔记。如果需要额外在Notion中增加笔记，请在笔记数据库里添加笔记，并将笔记关联到Todo上，每次同步时会自动将关联的笔记复制到Todo所在的页面里。\n以上，就是教程的全部内容。有什么问题或者疑问请评论区留言或者加群交流。\n如果二维码失效可以添加我的个人微信，我来邀请你入群。当然你想交个朋友，也可以加我微信。\n如果你觉得文章对您有帮助，请捐赠支持一下。\n">
 <meta property='og:url' content='http://localhost:1313/posts/todo2notion/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
@@ -27,7 +27,25 @@
           gtag('js', new Date());
           gtag('config', 'G-G84J9N38RL');
         }
-      </script>
+      </script><style>
+    :root {
+        --sys-font-family: "LXGW WenKai TC";
+        --zh-font-family: "LXGW WenKai TC";
+        --base-font-family: "LXGW WenKai TC";
+        --code-font-family: "LXGW WenKai TC";
+        --article-font-family: "LXGW WenKai TC";
+    }
+</style>
+
+<script>
+    (function () {
+        const customFont = document.createElement("link");
+        customFont.href = "https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&display=swap";
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+        document.head.appendChild(customFont);
+    })();
+</script>
     </head>
     <body class="
     article-page
@@ -85,7 +103,7 @@
         
         <div class="site-meta">
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
-            <h2 class="site-description"></h2>
+            <h2 class="site-description">采菊东篱下，悠然见南山。</h2>
         </div>
     </header><ol class="menu-social">
             

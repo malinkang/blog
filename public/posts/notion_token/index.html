@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='http://localhost:1313/posts/notion_token/'>
 
-<link rel="stylesheet" href="/scss/style.min.d8670c5d824e2c2f18c7a056928251a2d6b901347acafb0878d41fe42d2ca33c.css"><meta property='og:title' content="Notion动态图标使用">
+<link rel="stylesheet" href="/scss/style.min.02e787cae5940f4bd01460aa6f925ded7ffad9a74fe0060627559a12778ce732.css"><meta property='og:title' content="Notion动态图标使用">
 <meta property='og:description' content="之前为了满足自己的需求做了一个Notion的动态图标，最近有朋友刚好有类似的需求，就分享给他了。想着其他人可能有类似的需求，不如写一篇公众号分享给大家。\n所谓动态图标，就是在我们设置完成之后，不用修改图标的链接，会自动发生变化。比如将Notion图标设置为我写的https://notion-icon.malinkang.com/，每天打开会自动显示当日的日期。\n设置日期 https://notion-icon.malinkang.com/默认显示当日的日期。也可以在链接后面添加\n?date=2026-01-01来设置指定日期，比如：https://notion-icon.malinkang.com/?date=2026-01-01。日期可以自己按照格式随便写。\n设置类型 https://notion-icon.malinkang.com/支持多种类型。使用方法是在链接后面加上\n?type=类型。详细的类型如下表所示\n类型 效果 示例 说明 day https://notion-icon.malinkang.com/?type=day 当前时间的日期 week https://notion-icon.malinkang.com/?type=week 当前时间是一年中的第几周 month https://notion-icon.malinkang.com/?type=month 当前时间是一年中的第几个月 year https://notion-icon.malinkang.com/?type=year 当前时间的年份 text https://notion-icon.malinkang.com/?type=text&content=%E5%A5%BD 文字类型，可以自己设置icon上的字 pass https://notion-icon.malinkang.com/?type=pass&date=2026-01-01 这里的date是必填的，date指定的时间距离当前时间还有几天。 设置颜色 动态图标还支持多种颜色，默认是红色。使用方法是链接后面添加?color=pink。\n颜色 效果 示例 green https://notion-icon.malinkang.com/?type=pass&date=2026-01-01&color=green pink https://notion-icon.malinkang.com/?type=pass&date=2026-01-01&color=pink yellow https://notion-icon.malinkang.com/?type=pass&date=2026-01-01&color=yellow blue https://notion-icon.malinkang.com/?type=pass&date=2026-01-01&color=blue 这个动态图标，不仅可以使用在icon上，也可以用在封面上。以下是我设置成封面的效果。https://malinkang.notion.site/d34e3250832a4b5fb44054a8b364df2a?v=4b77a5dbe8034da0b99d81d3162e2af7&amp;pvs=74\n">
 <meta property='og:url' content='http://localhost:1313/posts/notion_token/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
@@ -27,7 +27,25 @@
           gtag('js', new Date());
           gtag('config', 'G-G84J9N38RL');
         }
-      </script>
+      </script><style>
+    :root {
+        --sys-font-family: "LXGW WenKai TC";
+        --zh-font-family: "LXGW WenKai TC";
+        --base-font-family: "LXGW WenKai TC";
+        --code-font-family: "LXGW WenKai TC";
+        --article-font-family: "LXGW WenKai TC";
+    }
+</style>
+
+<script>
+    (function () {
+        const customFont = document.createElement("link");
+        customFont.href = "https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&display=swap";
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+        document.head.appendChild(customFont);
+    })();
+</script>
     </head>
     <body class="
     article-page
@@ -85,7 +103,7 @@
         
         <div class="site-meta">
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
-            <h2 class="site-description"></h2>
+            <h2 class="site-description">采菊东篱下，悠然见南山。</h2>
         </div>
     </header><ol class="menu-social">
             

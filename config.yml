@@ -40,7 +40,7 @@ params:
       lastUpdated: Jan 02, 2006 15:04 MST
   sidebar:
       emoji: 🍥
-      subtitle: 
+      subtitle: 采菊东篱下，悠然见南山。
       avatar:
         enabled: true
         local: true

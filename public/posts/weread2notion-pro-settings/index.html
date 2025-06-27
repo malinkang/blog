@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='http://localhost:1313/posts/weread2notion-pro-settings/'>
 
-<link rel="stylesheet" href="/scss/style.min.d8670c5d824e2c2f18c7a056928251a2d6b901347acafb0878d41fe42d2ca33c.css"><meta property='og:title' content="Werad2NotionPro支持自定义设置了">
+<link rel="stylesheet" href="/scss/style.min.02e787cae5940f4bd01460aa6f925ded7ffad9a74fe0060627559a12778ce732.css"><meta property='og:title' content="Werad2NotionPro支持自定义设置了">
 <meta property='og:description' content="自定义设置 现在Weread2NotionPro支持用户设置同步样式了。接下来就给大家讲解下如何使用。\n首先就是同步代码。打开你Fork的项目，点击Sync fork进行同步，如果有冲突可以点击Discard那个按钮。\n同步成功之后，手动运行一下任务。打开你Fork的项目，依次点击Actions-&gt;weread note sync-&gt; Run workflow，就可以运行了。\n运行完成之后，Notion中会增加一个名为设置的database，点击打开。\n接下来依次讲解下每个配置：\nNotinPage、NotinToken和WeReadCookie三个值用来存储之前填写到Github上的值\n同步书签 之前书签和划线都会被同步到Notion，如果不希望同步书签，取消勾选即可，默认是勾选状态。\n样式 样式用于自定义同步到Notion的样式，目前支持如下值：\ncallout：默认样式 quote：引用样式 paragraph：普通段落 bulleted_list_item：无序列表 numbered_list_item：有序列表 根据划线颜色设置文字颜色 之前同步默认会根据划线颜色设置Notion中文字的颜色，如果不希望根据划线颜色来设置Notion中文字的颜色，取消勾选即可，默认是勾选状态。\n以上就是所有的配置项。所有的修改只会对后续的同步有效，并不会对之前同步过的数据进行修改。未来会把热力图的配置也迁移到Notion中。你还需要哪些自定义设置，请在评论区里留言。\n修复重复Bug 国庆节前代码重构，导致同步会有重复的书籍，目前已经修复，之前重复的书籍需要手动删除。\n如何新增图表 Notion出了图表功能之后，我也给自己的读书模板增加了图表功能，一直有人问如何设置，我也简单讲解下。\n在月这个Database中新增一列函数类型，名字为阅读时长（小时）。默认提供的时长单位是秒。所以直接使用公式floor(prop(&quot;时长&quot;)/3600)对将阅读时长转化为小时格式。\n在想要放置图表的地方添加数据库的链接视图，选择月这个database。\nX轴显示内容选择日期然后选择月\nY轴显示内容选择阅读时长（小时）然后选择总和\n筛选选择本年\n这样就可以看到今年每个月的阅读时长图表了。\n">
 <meta property='og:url' content='http://localhost:1313/posts/weread2notion-pro-settings/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
@@ -27,7 +27,25 @@
           gtag('js', new Date());
           gtag('config', 'G-G84J9N38RL');
         }
-      </script>
+      </script><style>
+    :root {
+        --sys-font-family: "LXGW WenKai TC";
+        --zh-font-family: "LXGW WenKai TC";
+        --base-font-family: "LXGW WenKai TC";
+        --code-font-family: "LXGW WenKai TC";
+        --article-font-family: "LXGW WenKai TC";
+    }
+</style>
+
+<script>
+    (function () {
+        const customFont = document.createElement("link");
+        customFont.href = "https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&display=swap";
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+        document.head.appendChild(customFont);
+    })();
+</script>
     </head>
     <body class="
     article-page
@@ -85,7 +103,7 @@
         
         <div class="site-meta">
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
-            <h2 class="site-description"></h2>
+            <h2 class="site-description">采菊东篱下，悠然见南山。</h2>
         </div>
     </header><ol class="menu-social">
             
@@ -670,7 +688,7 @@
             
                 
 <article class="has-image">
-    <a href="/posts/todo2notion/">
+    <a href="/posts/weread2notion/">
         
         
             <div class="article-image">
@@ -689,7 +707,7 @@
             
                 
 <article class="has-image">
-    <a href="/posts/weread2notion/">
+    <a href="/posts/todo2notion/">
         
         
             <div class="article-image">

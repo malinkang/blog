@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='http://localhost:1313/posts/shortcuts-action/'>
 
-<link rel="stylesheet" href="/scss/style.min.d8670c5d824e2c2f18c7a056928251a2d6b901347acafb0878d41fe42d2ca33c.css"><meta property='og:title' content="快捷指令触发Github Action">
+<link rel="stylesheet" href="/scss/style.min.02e787cae5940f4bd01460aa6f925ded7ffad9a74fe0060627559a12778ce732.css"><meta property='og:title' content="快捷指令触发Github Action">
 <meta property='og:description' content="之前一直有朋友问我为什么我的Weread2Notion-Pro为什么没有执行同步，因为Github执行Action并不准时，有的时候可能会延迟几个小时。今天就给大家分享一下如何使用快捷指令来准时触发Github Action执行，并且实现比如关闭微信读书同步笔记。\n第一步：获取快捷指令 打开链接获取指令：https://www.icloud.com/shortcuts/6282dd771f8849ffb8816ebc7d001155\n第二步：填值 打开你获取的快捷指令，会看到这里需要填3个值 name是你的Github的用户名，repository是你的仓库名。比如我的weread2notion-pro的仓库地址是：https://github.com/malinkang/weread2notion-pro，那么我的name就填malinkang，repository值就填weread2notion-pro。\n第三个值是token，获取比较麻烦一些。\n首先打开网页：https://github.com/settings/apps，按照下图标的顺序点击，进入Token创建页面 在Token创建页面我们需要填写和勾选如下三个值： Note是备注信息，可以根据个人情况填写。 Expiration是Token的过期时间，我选择的是No expration，这样Token就不会过期 第三个是Token的作用范围，勾选workflow，这样这个Token就有权限触发我们的Github Action. 填写完成之后点击最下面的Generate token创建。\n创建完成会跳转到Token列表，点击复制按钮复制你创建的Token，然后填写到快捷指令中。\n最终的效果如下图所示： 现在我们可以手动运行这个快捷指令触发Github Action了。\n第三步：自动化设置 接下来我们可以通过自动化设置实现关闭微信读书同步微信读书笔记。\n打开手机里的快捷指令，切换到中间的自动化tab，然后点击右上角的+号创建自动化。 点击创建个人自动化，向下滑动找到App，点击进入。 App选择微信读书，勾选已关闭，点击右上角下一步。 点击添加操作，搜索快捷指令，然后选择运行快捷指令。 点击快捷指令，选择第一步我们获取的快捷指令 最后点击下一步，然后关闭运行前询问。如果不关闭的话，每次运行这个自动化都会弹一个对话框询问是否运行这个自动化。关闭之后，可以无感运行这个 自动化。 这样之后我们就可以在关闭微信读书的时候自动触发笔记同步。\n同理我们也可以实现如下操作：\n关闭豆瓣时触发Douban2Notion同步\n关闭Toggl时触发Toggle2Notion同步。\n关闭多邻国时触发Duolingo2Notion同步\n关闭Keep时触发Keep2Notion同步\n&hellip;\n快捷指令的触发条件有很多，也可以通过设置固定时间来同步，你可以自行研究。\n另外之前我说每个月Github Action有2000分钟的限额，后来看了一下只针对私有仓库，公共仓库是不限额的，所以我们可以提高我们同步的频率，再也不用担心额度用不完了。\n">
 <meta property='og:url' content='http://localhost:1313/posts/shortcuts-action/'>
 <meta property='og:site_name' content='Malinkang&#39;s Blog'>
@@ -27,7 +27,25 @@
           gtag('js', new Date());
           gtag('config', 'G-G84J9N38RL');
         }
-      </script>
+      </script><style>
+    :root {
+        --sys-font-family: "LXGW WenKai TC";
+        --zh-font-family: "LXGW WenKai TC";
+        --base-font-family: "LXGW WenKai TC";
+        --code-font-family: "LXGW WenKai TC";
+        --article-font-family: "LXGW WenKai TC";
+    }
+</style>
+
+<script>
+    (function () {
+        const customFont = document.createElement("link");
+        customFont.href = "https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=LXGW+WenKai+TC&display=swap";
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+        document.head.appendChild(customFont);
+    })();
+</script>
     </head>
     <body class="
     article-page
@@ -85,7 +103,7 @@
         
         <div class="site-meta">
             <h1 class="site-name"><a href="/">Malinkang&#39;s Blog</a></h1>
-            <h2 class="site-description"></h2>
+            <h2 class="site-description">采菊东篱下，悠然见南山。</h2>
         </div>
     </header><ol class="menu-social">
             
