@@ -1,0 +1,13 @@
+# Hugo build output and local state
+/public/
+/resources/_gen/
+/.hugo_build.lock
+
+# Local-only config that can contain credentials or proxy nodes
+/assets/config.yaml
+
+# OS/editor noise
+.DS_Store
+
+__pycache__/
+*.pyc

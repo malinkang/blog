@@ -1,0 +1,109 @@
+name: sync notion posts
+
+"on":
+  workflow_dispatch:
+    inputs:
+      database_id:
+        description: Optional Notion database ID. Falls back to NOTION_DATABASE_ID secret.
+        required: false
+        type: string
+      content_dir:
+        description: Markdown output directory.
+        required: false
+        default: content/posts
+        type: string
+  schedule:
+    # 04:30 Asia/Shanghai every day.
+    - cron: '30 20 * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: notion-post-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    env:
+      NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+      NOTION_DATABASE_ID: ${{ github.event.inputs.database_id || secrets.NOTION_DATABASE_ID }}
+      CONTENT_DIR: ${{ github.event.inputs.content_dir || 'content/posts' }}
+      CONTENT_SUBMODULE_BRANCH: main
+      NOTION_HOST: https://www.notion.so
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
+          # Required when private submodules use git@github.com URLs.
+          ssh-key: ${{ secrets.BLOG_SSH_KEY }}
+
+      - name: Prepare Git identity
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git config --global --add safe.directory "$GITHUB_WORKSPACE/$CONTENT_DIR"
+
+      - name: Checkout content submodule branch
+        run: |
+          if [ -d "$CONTENT_DIR" ] && [ "$(git -C "$CONTENT_DIR" rev-parse --show-toplevel 2>/dev/null)" != "$GITHUB_WORKSPACE" ]; then
+            git -C "$CONTENT_DIR" fetch origin "$CONTENT_SUBMODULE_BRANCH"
+            git -C "$CONTENT_DIR" checkout "$CONTENT_SUBMODULE_BRANCH" || git -C "$CONTENT_DIR" checkout -B "$CONTENT_SUBMODULE_BRANCH" "origin/$CONTENT_SUBMODULE_BRANCH"
+            git -C "$CONTENT_DIR" pull --ff-only origin "$CONTENT_SUBMODULE_BRANCH"
+          fi
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Validate Notion configuration
+        run: |
+          test -n "$NOTION_TOKEN" || (echo "Missing NOTION_TOKEN secret" && exit 1)
+          test -n "$NOTION_DATABASE_ID" || (echo "Missing NOTION_DATABASE_ID secret or workflow input" && exit 1)
+
+      - name: Sync Notion pages to Markdown
+        run: |
+          python scripts/notion_sync.py \
+            --database-id "$NOTION_DATABASE_ID" \
+            --content-dir "$CONTENT_DIR" \
+            --notion-host "$NOTION_HOST"
+
+      - name: Commit content submodule changes
+        run: |
+          CONTENT_TOP="$(git -C "$CONTENT_DIR" rev-parse --show-toplevel 2>/dev/null || echo '')"
+          ROOT_TOP="$(git rev-parse --show-toplevel)"
+
+          if [ -n "$CONTENT_TOP" ] && [ "$CONTENT_TOP" != "$ROOT_TOP" ]; then
+            if [ -n "$(git -C "$CONTENT_DIR" status --porcelain)" ]; then
+              git -C "$CONTENT_DIR" add -A
+              git -C "$CONTENT_DIR" commit -m "chore: sync notion posts"
+              git -C "$CONTENT_DIR" push origin "$CONTENT_SUBMODULE_BRANCH"
+            else
+              echo "No content submodule changes."
+            fi
+          else
+            git add "$CONTENT_DIR"
+            if git diff --cached --quiet; then
+              echo "No content changes."
+            else
+              git commit -m "chore: sync notion posts"
+            fi
+          fi
+
+      - name: Commit main repository pointer
+        run: |
+          git add "$CONTENT_DIR"
+          if git diff --cached --quiet; then
+            echo "No main repository changes."
+          else
+            git commit -m "chore: update notion posts pointer"
+            git push
+          fi

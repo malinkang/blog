@@ -9,4 +9,4 @@
 	url = https://github.com/martignoni/hugo-notice.git
 [submodule "themes/stack"]
 	path = themes/stack
-	url = git@github.com:malinkang/hugo-theme-stack.git
+	url = https://github.com/CaiJimmy/hugo-theme-stack.git

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Notion Dynamic Icons">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#152738"/>
+      <stop offset="1" stop-color="#0f1d2a"/>
+    </linearGradient>
+    <pattern id="grain" width="56" height="56" patternUnits="userSpaceOnUse">
+      <path d="M56 0H0v56" fill="none" stroke="#ffffff" stroke-opacity="0.055" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#grain)"/>
+  <circle cx="320" cy="190" r="230" fill="#ffffff" opacity="0.035"/>
+  <circle cx="1250" cy="210" r="250" fill="#cac52f" opacity="0.08"/>
+  <g transform="translate(255 170)">
+    <rect x="0" y="0" width="1090" height="560" rx="8" fill="#152738" stroke="#374151" stroke-width="2"/>
+    <rect x="72" y="72" width="270" height="270" rx="8" fill="#152738" stroke="#cac52f" stroke-width="3"/>
+    <path d="M130 154h154M130 214h154M130 274h116" stroke="#ffffff" stroke-width="18" stroke-linecap="round" opacity="0.9"/>
+    <rect x="410" y="92" width="220" height="58" rx="4" fill="#cac52f"/>
+    <text x="520" y="130" text-anchor="middle" font-family="Noto Serif SC, Songti SC, serif" font-size="30" fill="#152738" font-weight="700">TODAY</text>
+    <rect x="410" y="190" width="140" height="58" rx="4" fill="none" stroke="#ffffff" stroke-width="2"/>
+    <text x="480" y="228" text-anchor="middle" font-family="Noto Serif SC, Songti SC, serif" font-size="30" fill="#ffffff">+365</text>
+    <rect x="580" y="190" width="190" height="58" rx="4" fill="none" stroke="#374151" stroke-width="2"/>
+    <text x="675" y="228" text-anchor="middle" font-family="Noto Serif SC, Songti SC, serif" font-size="30" fill="#ffffff" opacity="0.82">WEEK 21</text>
+    <text x="410" y="350" font-family="Noto Serif SC, Songti SC, serif" font-size="70" fill="#ffffff" font-weight="700">Notion Dynamic Icons</text>
+    <text x="410" y="410" font-family="Noto Serif SC, Songti SC, serif" font-size="30" fill="#ffffff" opacity="0.68">Date, countdown and text badges that update themselves.</text>
+    <path d="M72 458H1018" stroke="#374151" stroke-width="2"/>
+    <text x="72" y="508" font-family="Noto Serif SC, Songti SC, serif" font-size="24" fill="#cac52f">quiet automation / notion widgets / personal tools</text>
+  </g>
+</svg>

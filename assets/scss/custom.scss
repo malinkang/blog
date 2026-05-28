@@ -1,0 +1,91 @@
+:root {
+    --base-font-family: "LXGW WenKai Screen", "LXGW WenKai", "霞鹜文楷", "Songti SC", serif;
+    --article-font-family: var(--base-font-family);
+    --article-font-size: 1.55rem;
+    --article-line-height: 1.85;
+}
+
+:root[data-scheme="dark"] {
+    --body-background: #152738;
+    --card-background: #193046;
+    --card-background-selected: rgba(255, 255, 255, 0.16);
+    --card-text-color-main: rgba(255, 255, 255, 0.9);
+    --card-text-color-secondary: rgba(255, 255, 255, 0.7);
+    --card-text-color-tertiary: rgba(255, 255, 255, 0.5);
+    --card-separator-color: rgba(255, 255, 255, 0.12);
+    --accent-color: #ecf0f1;
+    --accent-color-darker: #57b9e1;
+    --accent-color-text: #0b2437;
+    --body-text-color: rgba(255, 255, 255, 0.7);
+    --code-background-color: rgba(87, 185, 225, 0.7);
+    --code-text-color: #0b2437;
+    --pre-background-color: #131f31;
+    --pre-text-color: #f8f8f2;
+    --blockquote-background-color: #0b2437;
+}
+
+:root[data-scheme="light"] {
+    --code-background-color: rgba(87, 185, 225, 0.32);
+    --code-text-color: #0b2437;
+}
+
+.article-content :not(pre) > code {
+    color: #0b2437;
+    background: #57b9e1;
+    border: 0;
+    border-radius: 6px;
+    padding: 0.08em 0.32em 0.12em;
+    font-family: var(--article-font-family);
+    font-size: 1em;
+    line-height: 1;
+    overflow-wrap: break-word;
+}
+
+.widget--toc #TableOfContents {
+    max-height: 70vh;
+}
+
+.widget--toc #TableOfContents li {
+    margin: 5px 10px;
+    padding: 6px;
+}
+
+.widget--toc #TableOfContents li > ol,
+.widget--toc #TableOfContents li > ul {
+    margin-top: 8px;
+    padding-left: 8px;
+}
+
+.article-list--compact.links {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.article-list--compact.links article {
+    background: var(--card-background);
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--shadow-l1);
+    overflow: hidden;
+}
+
+.article-list--compact.links article:not(:last-of-type) {
+    border-bottom: 0;
+}
+
+.article-list--compact.links article > a {
+    height: 100%;
+}
+
+.article-list--compact.links .article-meta {
+    line-height: 1.5;
+}
+
+@media (min-width: 768px) {
+    .article-list--compact.links {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}

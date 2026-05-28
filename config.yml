@@ -1,11 +1,12 @@
-baseurl: https://example.com
-languageCode: en-us
+baseURL: https://malinkang.com/
+languageCode: zh-cn
 theme: 
   - stack
   - gallery
   - hugo-notice
-paginate: 5
+paginate: 6
 title: Malinkang's Blog
+summaryLength: 35
 copyright: malinkang
 
 # Change it to your Disqus shortname before using
@@ -16,35 +17,33 @@ googleAnalytics: G-G84J9N38RL
 
 # Theme i18n support
 # Available values: ar, bn, ca, de, el, en, es, fr, hu, id, it, ja, ko, nl, pt-br, th, uk, zh-cn, zh-hk, zh-tw
-DefaultContentLanguage: en
+defaultContentLanguage: zh-cn
 
 # Set hasCJKLanguage to true if DefaultContentLanguage is in [zh-cn ja ko]
 # This will make .Summary and .WordCount behave correctly for CJK languages.
-hasCJKLanguage: false
+hasCJKLanguage: true
 
 permalinks:
     post: /p/:slug/
     page: /:slug/
 
 params:
+  description: 采菊东篱下，悠然见南山。
   mainSections:
     - posts
   featuredImageField: image
-  rssFullContent: true
+  rssFullContent: false
   favicon:  # e.g.: favicon placed in `static/favicon.ico` of your site folder, then set this field to `/favicon.ico` (`/` is necessary)
   footer:
     since: 2013
     customText:
   dateFormat:
-      published: Jan 02, 2006
-      lastUpdated: Jan 02, 2006 15:04 MST
+      published: 2006年01月02日
+      lastUpdated: 2006年01月02日 15:04
   sidebar:
       emoji: 🍥
       subtitle: 采菊东篱下，悠然见南山。
-      avatar:
-        enabled: true
-        local: true
-        src: images/avatar.jpeg
+      avatar: images/avatar.jpeg
 
   article:
     math: false
@@ -153,7 +152,7 @@ params:
       # Display toggle
       toggle: true
       # Available values: auto, light, dark
-      default: auto
+      default: dark
   imageProcessing:
       cover:
           enabled: true
@@ -164,7 +163,6 @@ params:
 ### See https://docs.stack.jimmycai.com/configuration/custom-menu.html
 ### To remove about, archive and search page menu item, remove `menu` field from their FrontMatter
 #https://tabler.io/icons
-defaultContentLanguage: zh-cn
 menu:
     main: 
       - identifier: home
@@ -174,34 +172,6 @@ menu:
         params:
           icon: home
           newTab: false
-      - identifier: book
-        name: 阅读
-        url: https://malinkang.notion.site/book
-        weight: 100
-        params:
-          icon: book
-          newTab: true
-      - identifier: workout
-        name: 运动
-        url: https://malinkang.notion.site/workouts
-        weight: 101
-        params:
-          icon: run
-          newTab: true
-      - identifier: movie
-        name: 观影
-        url: https://malinkang.notion.site/workouts
-        weight: 102
-        params:
-          icon: movie
-          newTab: true
-      - identifier: podcast
-        name: 播客
-        url: https://malinkang.notion.site/workouts
-        weight: 103
-        params:
-          icon: broadcast
-          newTab: true
     social:
       - identifier: github
         name: GitHub
@@ -227,55 +197,12 @@ menu:
         weight: 8
         params:
             icon: brand-douban
-      - identifier: bilibili
-        name: Bilibili
-        url: https://space.bilibili.com/27440979
-        weight: 7
-        params:
-            icon: brand-bilibili      
-      - identifier: telegram
-        name: Telegram
-        weight: 3
-        url: https://t.me/malinkang
-        params:
-            icon: brand-telegram
-      - identifier: instagram
-        name: Instagram
-        url: https://www.instagram.com/malinkang
-        weight: 5
-        params:
-            icon: brand-instagram      
-      - identifier: mastodon
-        name: Mastodon
-        url: https://mastodon.social/@malinkang
-        weight: 6
-        params:
-            icon: brand-mastodon   
       - identifier: strava
         name: Strava
         url: https://www.strava.com/athletes/20840511
         weight: 10
         params:
             icon: brand-strava
-      - identifier: zhihu
-        name: 知乎
-        url: https://www.zhihu.com/people/malinkang
-        weight: 9
-        params:
-            icon: brand-zhihu      
-      - identifier: juejin
-        name: 掘金
-        url: https://juejin.cn/user/3051900006833694/
-        weight: 11
-        params:
-            icon: brand-juejin
-      - identifier: rss
-        name: Rss
-        url: index.xml
-        weight: 12
-        params:
-            icon: rss
-
 related:
     includeNewer: true
     threshold: 60
@@ -289,6 +216,8 @@ related:
 
 markup:
   goldmark:
+      extensions:
+          linkify: true
       renderer:
           ## Set to true if you have HTML content inside Markdown
           unsafe: true
