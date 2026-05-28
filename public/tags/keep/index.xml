@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Keep on Malinkang's Blog</title><link>https://malinkang.com/tags/keep/</link><description>Recent content in Keep on Malinkang's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>malinkang</copyright><lastBuildDate>Tue, 27 Feb 2024 09:40:05 +0800</lastBuildDate><atom:link href="https://malinkang.com/tags/keep/index.xml" rel="self" type="application/rss+xml"/><item><title>Keep2Notion使用指南</title><link>https://malinkang.com/posts/keep2notion/</link><pubDate>Tue, 27 Feb 2024 09:40:05 +0800</pubDate><guid>https://malinkang.com/posts/keep2notion/</guid><description>&lt;img src="https://images.unsplash.com/photo-1663813251302-e5d2c7199e86?q=80&amp;w=2660&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Featured image of post Keep2Notion使用指南" /&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://malinkang.notion.site/7c556041c7fd4e21a6713673b6168fd4?pvs=4" target="_blank" rel="noopener"
+ &gt;预览效果&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="使用"&gt;使用
+&lt;/h2&gt;&lt;h3 id="fork工程"&gt;Fork工程
+&lt;/h3&gt;&lt;p&gt;打开&lt;a class="link" href="https://github.com/malinkang/keep2notion" target="_blank" rel="noopener"
+ &gt;Keep2Notion&lt;/a&gt;，点击右上角的Fork（顺便点个star谢谢）&lt;/p&gt;</description></item></channel></rss>
